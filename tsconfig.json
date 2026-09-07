@@ -345,6 +345,12 @@
     },
     {
       "path": "./packages/meilisearch/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/mercury/tsconfig.json"
+    },
+    {
+      "path": "./packages/mercury/tsconfig.scripts.json"
     }
   ]
 }
