@@ -309,6 +309,12 @@
     },
     {
       "path": "./packages/gusto/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/hostinger/tsconfig.json"
+    },
+    {
+      "path": "./packages/hostinger/tsconfig.scripts.json"
     }
   ]
 }
