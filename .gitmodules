@@ -363,3 +363,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-digitalocean.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/opencode/specs/spec-mirror-opencode"]
+	path = packages/opencode/specs/spec-mirror-opencode
+	url = https://github.com/distilled-mirror/spec-mirror-opencode.git
+	ignore = dirty
+	shallow = true
