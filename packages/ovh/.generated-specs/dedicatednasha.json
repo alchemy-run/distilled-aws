@@ -1,0 +1,3533 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.dedicatednasha#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatednasha#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNasha": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaStorageWithIAM": {
+      "type": "structure",
+      "members": {
+        "canCreatePartition": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True, if partition creation is allowed on this nas HA"
+          }
+        },
+        "customName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name you give to the nas",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "datacenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "area of nas",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diskType": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageDiskTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "the disk type of the nasHa"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.dedicatednasha#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access ip of nas",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "monitored": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Send an email to customer if any issue is detected"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The storage service name"
+          }
+        },
+        "zpoolCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "percentage of nas space used in %"
+          }
+        },
+        "zpoolSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the size of the nas"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage nas HA"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageDiskTypeEnum": {
+      "type": "enum",
+      "members": {
+        "HDD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hdd"
+          }
+        },
+        "NVME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nvme"
+          }
+        },
+        "SSD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssd"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "the disk type of the nasHa"
+      }
+    },
+    "com.ovh.dedicatednasha#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.dedicatednasha#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.dedicatednasha#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNasha": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaStorageWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#PutDedicatedNashaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "customName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name you give to the nas",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "monitored": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Send an email to customer if any issue is detected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#PutDedicatedNasha": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#PutDedicatedNashaRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/nasha/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.dedicatednasha#ServiceTerminationFutureUseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_REPLACING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REPLACING_SERVICE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "SUBSCRIBE_AN_OTHER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_AN_OTHER_SERVICE"
+          }
+        },
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+          }
+        },
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All future uses you can provide for a service termination"
+      }
+    },
+    "com.ovh.dedicatednasha#ServiceTerminationReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURES_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURES_DONT_SUIT_ME"
+          }
+        },
+        "LACK_OF_PERFORMANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LACK_OF_PERFORMANCES"
+          }
+        },
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+          }
+        },
+        "MIGRATED_TO_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_COMPETITOR"
+          }
+        },
+        "NOT_ENOUGH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ENOUGH_RECOGNITION"
+          }
+        },
+        "NOT_NEEDED_ANYMORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NEEDED_ANYMORE"
+          }
+        },
+        "NOT_RELIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RELIABLE"
+          }
+        },
+        "NO_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_ANSWER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PRODUCT_DIMENSION_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_DIMENSION_DONT_SUIT_ME"
+          }
+        },
+        "PRODUCT_TOOLS_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_TOOLS_DONT_SUIT_ME"
+          }
+        },
+        "TOO_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EXPENSIVE"
+          }
+        },
+        "TOO_HARD_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_HARD_TO_USE"
+          }
+        },
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All reasons you can provide for a service termination"
+      }
+    },
+    "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "commentary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commentary about your termination request"
+          }
+        },
+        "futureUse": {
+          "target": "com.ovh.dedicatednasha#ServiceTerminationFutureUseEnum",
+          "traits": {
+            "smithy.api#documentation": "What next after your termination request"
+          }
+        },
+        "reason": {
+          "target": "com.ovh.dedicatednasha#ServiceTerminationReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Reason of your termination request"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The termination token sent by email to the admin contact",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ConfirmDedicatedNashaTermination": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ConfirmDedicatedNashaTerminationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/confirmTermination",
+          "code": 200
+        },
+        "smithy.api#documentation": "Confirm service termination"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaMetricsTokenRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageMetricsTokenResult": {
+      "type": "structure",
+      "members": {
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url of the endpoint"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token value"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A structure describing the metrics token result"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaMetricsToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaMetricsTokenRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedStorageMetricsTokenResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/metricsToken",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return a read token for manager mimir metrics"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartition": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get partition list"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageProtocolEnum": {
+      "type": "enum",
+      "members": {
+        "CIFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CIFS"
+          }
+        },
+        "NFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NFS"
+          }
+        },
+        "NFS_CIFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NFS_CIFS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition Protocol"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partition description"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Partition name",
+            "smithy.api#required": {}
+          }
+        },
+        "protocol": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageProtocolEnum",
+          "traits": {
+            "smithy.api#documentation": "NFS|CIFS|NFS_CIFS",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Partition size",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNasTaskTask": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "information about operation",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "doneDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the date when the task finished",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "last modification of task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operation": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageTaskFunctionEnum",
+          "traits": {
+            "smithy.api#documentation": "Task type of operation"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the partition",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.dedicatednasha#DedicatedTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The actual state of the task"
+          }
+        },
+        "storageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the name of your service",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "id of the task"
+          }
+        },
+        "todoDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Insertion of task in the todo",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage task"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageTaskFunctionEnum": {
+      "type": "enum",
+      "members": {
+        "BACKUPRECURSIVEDESTROY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "backupRecursiveDestroy"
+          }
+        },
+        "CLUSTERLECLERCACLUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercAclUpdate"
+          }
+        },
+        "CLUSTERLECLERCCHANGESERVICEIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercChangeServiceIp"
+          }
+        },
+        "CLUSTERLECLERCCUSTOMSNAPCREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercCustomSnapCreate"
+          }
+        },
+        "CLUSTERLECLERCCUSTOMSNAPDELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercCustomSnapDelete"
+          }
+        },
+        "CLUSTERLECLERCDELETESNAPSHOTDIRECTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercDeleteSnapshotDirectory"
+          }
+        },
+        "CLUSTERLECLERCDESTROYNASCONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercDestroyNasContainer"
+          }
+        },
+        "CLUSTERLECLERCPARTITIONADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercPartitionAdd"
+          }
+        },
+        "CLUSTERLECLERCPARTITIONDELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercPartitionDelete"
+          }
+        },
+        "CLUSTERLECLERCPARTITIONUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercPartitionUpdate"
+          }
+        },
+        "CLUSTERLECLERCQUOTAUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercQuotaUpdate"
+          }
+        },
+        "CLUSTERLECLERCSETUPNASCONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercSetupNasContainer"
+          }
+        },
+        "CLUSTERLECLERCSNAPSHOTUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercSnapshotUpdate"
+          }
+        },
+        "CLUSTERLECLERCZFSOPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterLeclercZfsOptions"
+          }
+        },
+        "NASACLUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nasAclUpdate"
+          }
+        },
+        "NASDELETESNAPSHOTDIRECTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nasDeleteSnapshotDirectory"
+          }
+        },
+        "NASPARTITIONADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nasPartitionAdd"
+          }
+        },
+        "NASPARTITIONDELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nasPartitionDelete"
+          }
+        },
+        "NASPARTITIONUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nasPartitionUpdate"
+          }
+        },
+        "NASQUOTAUPDATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nasQuotaUpdate"
+          }
+        },
+        "REMOTEBACKUPRECURSIVEDESTROY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remoteBackupRecursiveDestroy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Distincts task"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "CUSTOMERERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customerError"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "INIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "init"
+          }
+        },
+        "OVHERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ovhError"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "different task status"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartition": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/partition",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new partition"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaPartition": {
+      "type": "structure",
+      "members": {
+        "partitionCapacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "percentage of partition space used in %",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "partitionDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a brief description of the partition",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "protocol": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageProtocolEnum",
+          "traits": {
+            "smithy.api#documentation": "must be nfs cifs or both"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Partition size"
+          }
+        },
+        "usedBySnapshots": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "percentage of partition space used by snapshots, in %",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage zpool partition"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartition": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaPartition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#PutDedicatedNashaPartitionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "partitionDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a brief description of the partition",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Partition size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#PutDedicatedNashaPartition": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#PutDedicatedNashaPartitionRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartition": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete this partition"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/access",
+          "code": 200
+        },
+        "smithy.api#documentation": "get ACL for this partition"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageAclTypeEnum": {
+      "type": "enum",
+      "members": {
+        "READONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "readonly"
+          }
+        },
+        "READWRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "readwrite"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Acl Type"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "aclDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ACL description"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ip or block to add",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageAclTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "ACL type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/access",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a new ACL entry"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the ip in root on storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaAccess": {
+      "type": "structure",
+      "members": {
+        "accessId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the id of the access"
+          }
+        },
+        "aclDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a brief description of the acl",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the ip in root on storage"
+          }
+        },
+        "type": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageAclTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "ACL type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Define Acl for partition"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaAccess"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/access/{ip}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the ip in root on storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/access/{ip}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an ACL entry"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocks": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/authorizableBlocks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all RIPE/ARIN blocks that can be used in the ACL"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIps": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIpsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/authorizableIps",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all IPs that can be used in the ACL"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshotResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/customSnapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get custom snapshots for this partition"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "optional expiration date/time, in iso8601 format"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the name of the snapshot",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/customSnapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new snapshot"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaCustomSnap": {
+      "type": "structure",
+      "members": {
+        "expiration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "date and time at which snapshot will be automatically destroyed",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of the snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom Snapshot"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaCustomSnap"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/customSnapshot/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "name of the snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/customSnapshot/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a given snapshot"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptionsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaOptions": {
+      "type": "structure",
+      "members": {
+        "atime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "atime setting"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID"
+          }
+        },
+        "recordsize": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ZFS recordsize"
+          }
+        },
+        "sync": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sync setting"
+          }
+        },
+        "templateName": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageTemplateUsageOptionsEnum",
+          "traits": {
+            "smithy.api#documentation": "the template name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition options"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageTemplateUsageOptionsEnum": {
+      "type": "enum",
+      "members": {
+        "DATABASES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Databases"
+          }
+        },
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Default"
+          }
+        },
+        "FILE_SYSTEMS_BIG_FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "File Systems (big files)"
+          }
+        },
+        "VIRTUAL_MACHINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Virtual machines"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template enumeration available for your partition."
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptions": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptionsRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaOptions"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/options",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageAtimeEnum": {
+      "type": "enum",
+      "members": {
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Atime values"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageRecordSizeEnum": {
+      "type": "enum",
+      "members": {
+        "_1048576": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1048576"
+          }
+        },
+        "_131072": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "131072"
+          }
+        },
+        "_16384": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "16384"
+          }
+        },
+        "_32768": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "32768"
+          }
+        },
+        "_4096": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "4096"
+          }
+        },
+        "_65536": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "65536"
+          }
+        },
+        "_8192": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8192"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Recordsize values"
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageSyncEnum": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "always"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sync values"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOptionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "atime": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageAtimeEnum",
+          "traits": {
+            "smithy.api#documentation": "atime setting"
+          }
+        },
+        "recordsize": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageRecordSizeEnum",
+          "traits": {
+            "smithy.api#documentation": "ZFS recordsize"
+          }
+        },
+        "sync": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageSyncEnum",
+          "traits": {
+            "smithy.api#documentation": "sync setting"
+          }
+        },
+        "templateName": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageTemplateUsageOptionsEnum",
+          "traits": {
+            "smithy.api#documentation": "The name of the usage template to apply for this partition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOption": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/options",
+          "code": 200
+        },
+        "smithy.api#documentation": "Setup options"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuota": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuotaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/quota",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get quota for this partition"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuotaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the size to set in MB",
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the uid to set quota on",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuota": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuotaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/quota",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a new quota"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuotaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "uid": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the uid to set quota on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaQuota": {
+      "type": "structure",
+      "members": {
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the size to set in MB"
+          }
+        },
+        "uid": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "the uid to set quota on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition Quota"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuota": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuotaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaQuota"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/quota/{uid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuotaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "uid": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the uid to set quota on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuota": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuotaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/quota/{uid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a given quota"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageSnapshotEnum": {
+      "type": "enum",
+      "members": {
+        "DAY_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-1"
+          }
+        },
+        "DAY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-2"
+          }
+        },
+        "DAY_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-3"
+          }
+        },
+        "DAY_7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-7"
+          }
+        },
+        "HOUR_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour-1"
+          }
+        },
+        "HOUR_6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour-6"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition snapshot allowed "
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatednasha#DedicatedStorageSnapshotEnum"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshotResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/snapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get scheduled snapshot types for this partition"
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "snapshotType": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageSnapshotEnum",
+          "traits": {
+            "smithy.api#documentation": "Snapshot interval to add",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/snapshot",
+          "code": 200
+        },
+        "smithy.api#documentation": "Schedule a new snapshot type"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequestSnapshotType": {
+      "type": "enum",
+      "members": {
+        "DAY_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-1"
+          }
+        },
+        "DAY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-2"
+          }
+        },
+        "DAY_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-3"
+          }
+        },
+        "DAY_7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-7"
+          }
+        },
+        "HOUR_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour-1"
+          }
+        },
+        "HOUR_6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour-6"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition snapshot allowed "
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "snapshotType": {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequestSnapshotType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the interval of snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedNashaSnapshot": {
+      "type": "structure",
+      "members": {
+        "snapshotType": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageSnapshotEnum",
+          "traits": {
+            "smithy.api#documentation": "the interval of snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition Snapshot"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNashaSnapshot"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/snapshot/{snapshotType}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequestSnapshotType": {
+      "type": "enum",
+      "members": {
+        "DAY_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-1"
+          }
+        },
+        "DAY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-2"
+          }
+        },
+        "DAY_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-3"
+          }
+        },
+        "DAY_7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day-7"
+          }
+        },
+        "HOUR_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour-1"
+          }
+        },
+        "HOUR_6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour-6"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partition snapshot allowed "
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "snapshotType": {
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequestSnapshotType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the interval of snapshot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshot": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshotRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/snapshot/{snapshotType}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a given snapshot"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageTemplateUsageOptionsDetails": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the template."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the template"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A structure describing the template usage result"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.dedicatednasha#DedicatedStorageTemplateUsageOptionsDetails"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsage": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsageResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/templateUsage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all the template usages options applicable to this partition."
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStoragePartitionUsageTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SIZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "size"
+          }
+        },
+        "USED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "used"
+          }
+        },
+        "USEDBYSNAPSHOTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "usedbysnapshots"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available types for NAS partition usage"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUseRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "partitionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "the given name of partition"
+          }
+        },
+        "type": {
+          "target": "com.ovh.dedicatednasha#DedicatedStoragePartitionUsageTypeEnum",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of statistic to be fetched"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ComplexTypeUnitAndValueDouble": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A numeric value tagged with its unit"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUse": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUseRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ComplexTypeUnitAndValueDouble"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/partition/{partitionName}/use",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return statistics about the partition"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.dedicatednasha#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.dedicatednasha#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.dedicatednasha#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.dedicatednasha#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.dedicatednasha#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.dedicatednasha#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.dedicatednasha#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "AUTOMATICV2024": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2024"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.dedicatednasha#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.dedicatednasha#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/dedicated/nasha/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "operation": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageTaskFunctionEnum",
+          "traits": {
+            "smithy.api#httpQuery": "operation",
+            "smithy.api#documentation": "Filter the value of operation property (=)"
+          }
+        },
+        "status": {
+          "target": "com.ovh.dedicatednasha#DedicatedTaskStatusEnum",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the value of status property (=)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#ListDedicatedNashaTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ListDedicatedNashaTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "View task list"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "id of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#DedicatedNasTaskTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.dedicatednasha#TerminateDedicatedNashaRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#TerminateDedicatedNashaResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.dedicatednasha#TerminateDedicatedNasha": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#TerminateDedicatedNashaRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#TerminateDedicatedNashaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dedicated/nasha/{serviceName}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ask for the termination of your service\n\nAsk for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint."
+      }
+    },
+    "com.ovh.dedicatednasha#DedicatedStorageNasUsageTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SIZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "size"
+          }
+        },
+        "USED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "used"
+          }
+        },
+        "USEDBYSNAPSHOTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "usedbysnapshots"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Available types for NAS usage"
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaUseRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your storage"
+          }
+        },
+        "type": {
+          "target": "com.ovh.dedicatednasha#DedicatedStorageNasUsageTypeEnum",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of statistic to be fetched"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.dedicatednasha#GetDedicatedNashaUse": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.dedicatednasha#GetDedicatedNashaUseRequest"
+      },
+      "output": {
+        "target": "com.ovh.dedicatednasha#ComplexTypeUnitAndValueDouble"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dedicated/nasha/{serviceName}/use",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return statistics about the nas"
+      }
+    },
+    "com.ovh.dedicatednasha#Dedicatednasha": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNasha"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNasha"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#PutDedicatedNasha"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaChangeContact"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ConfirmDedicatedNashaTermination"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaMetricsToken"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartition"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartition"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartition"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#PutDedicatedNashaPartition"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartition"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAccess"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionAccess"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionAccess"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionAccess"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableBlocks"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionAuthorizableIps"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionCustomSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionCustomSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionCustomSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionCustomSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionOptions"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionOption"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionQuota"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionQuota"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionQuota"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionQuota"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#CreateDedicatedNashaPartitionSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#DeleteDedicatedNashaPartitionSnapshot"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaPartitionTemplateUsage"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaPartitionUse"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaServiceInfos"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#PutDedicatedNashaServiceInfos"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#ListDedicatedNashaTask"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaTask"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#TerminateDedicatedNasha"
+        },
+        {
+          "target": "com.ovh.dedicatednasha#GetDedicatedNashaUse"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

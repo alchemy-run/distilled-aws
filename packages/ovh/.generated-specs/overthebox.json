@@ -1,0 +1,3951 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.overthebox#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.overthebox#ListOverTheBoxRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.overthebox#ListOverTheBoxRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBox": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.overthebox#PriceOverTheBoxOfferEnum": {
+      "type": "enum",
+      "members": {
+        "BUSINESS_V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "business.v1"
+          }
+        },
+        "PLUS_V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus.v1"
+          }
+        },
+        "STARTER_V1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "starter.v1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of Offers"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#PriceOverTheBoxOfferEnum"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableOffers": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxAvailableOffersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/availableOffers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the available offers for the new call"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDeviceForRegistration": {
+      "type": "structure",
+      "members": {
+        "activated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this device is actived"
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String"
+        },
+        "lastSeen": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last time this device was seen on the provisionning servers"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A device for registration"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OverTheBoxDeviceForRegistration"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDevice": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/devices",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the list of devices connected from the same IP address"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardware": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/hardware",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxHardwareAvailable": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxHardwareAvailableResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/hardware/available",
+          "code": 200
+        },
+        "smithy.api#documentation": "List hardware that can be linked to a service"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxHardwareRequest": {
+      "type": "structure",
+      "members": {
+        "hardwareName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your hardware"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxHardwareWithIAM": {
+      "type": "structure",
+      "members": {
+        "canBeLinkedToService": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if hardware can be linked to a service without deviceID"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.overthebox#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mac": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware MAC address",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware model"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware name"
+          }
+        },
+        "prettyModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hardware pretty model name"
+          }
+        },
+        "serial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware serial"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hardware properties"
+      }
+    },
+    "com.ovh.overthebox#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.overthebox#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.overthebox#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxHardware": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxHardwareRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxHardwareWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/hardware/{hardwareName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxServiceWithIAM": {
+      "type": "structure",
+      "members": {
+        "SOCKSProxyEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the socks proxy is enabled"
+          }
+        },
+        "autoMTU": {
+          "target": "com.ovh.overthebox#OverTheBoxAvailableStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the autoMTU"
+          }
+        },
+        "autoUpgrade": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable device auto upgrade"
+          }
+        },
+        "bandwidth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The service maximum bandwidth in bits"
+          }
+        },
+        "configurationMode": {
+          "target": "com.ovh.overthebox#OverTheBoxServiceConfigurationModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Configuration mode of the service"
+          }
+        },
+        "customerDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Editable field for customer",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "graphEndpoint": {
+          "target": "com.ovh.overthebox#OverTheBoxGraphEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Parameters needed to fetch metrics",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.overthebox#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ipv6Enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if IPv6 is enabled"
+          }
+        },
+        "offer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service offer"
+          }
+        },
+        "prettyOfferName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service pretty offer name"
+          }
+        },
+        "releaseChannel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Release channel of the service"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the service"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OverTheBoxServiceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the service"
+          }
+        },
+        "tunnelMode": {
+          "target": "com.ovh.overthebox#OverTheBoxTunnelModeEnum",
+          "traits": {
+            "smithy.api#documentation": "The tunnel mode of the service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxAvailableStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the service"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxServiceConfigurationModeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOCONFIGURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autoconfigure"
+          }
+        },
+        "LOCAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "local"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration mode of the service"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxGraphEndpoint": {
+      "type": "structure",
+      "members": {
+        "host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OpenTSDB host"
+          }
+        },
+        "readToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A read-only token"
+          }
+        },
+        "readTokenID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The read-only token ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parameters required to query metrics from OpenTSDB"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxServiceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "TOCREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toCreate"
+          }
+        },
+        "TODELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toDelete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the service."
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxTunnelModeEnum": {
+      "type": "enum",
+      "members": {
+        "GLORYTUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "glorytun"
+          }
+        },
+        "GLORYTUN_HYBRID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "glorytun_hybrid"
+          }
+        },
+        "GLORYTUN_MUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "glorytun_mud"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tunnel mode of the service."
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBox": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxServiceWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "autoUpgrade": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable device auto upgrade"
+          }
+        },
+        "customerDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Editable field for customer",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "releaseChannel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Release channel of the service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBox": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#PutOverTheBoxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/overTheBox/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBox": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#DeleteOverTheBoxRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/overTheBox/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Resiliate a service"
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxAutoMTURequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "mtuAuto": {
+          "target": "com.ovh.overthebox#OverTheBoxAvailableStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable autoMTU",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxAutoMTU": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#PutOverTheBoxAutoMTURequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/overTheBox/{serviceName}/autoMTU",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change the value of autoMTU"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannels": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannelsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/availableReleaseChannels",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available release channels for this service"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxBackupsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxBackupsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxBackupsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxBackupsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxBackups": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxBackupsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxBackupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/backups",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of backups for this service"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxBackupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the backup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxBackup": {
+      "type": "structure",
+      "members": {
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the backup"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the creation of the backup"
+          }
+        },
+        "deviceActionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the device action that triggered the backup",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backup"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxBackupRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxBackup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/backups/{backupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxBackupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the backup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#DeleteOverTheBoxBackupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/overTheBox/{serviceName}/backups/{backupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a backup"
+      }
+    },
+    "com.ovh.overthebox#CancelOverTheBoxResiliationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#CancelOverTheBoxResiliation": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CancelOverTheBoxResiliationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/cancelResiliation",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel the resiliation of the Service"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#CreateOverTheBoxChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#CreateOverTheBoxChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDevice": {
+      "type": "structure",
+      "members": {
+        "activated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not this device is associated to a service"
+          }
+        },
+        "availableUpdate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not an upate is available for this device"
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the device"
+          }
+        },
+        "lastSeen": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the device has been seen on the provisionning servers"
+          }
+        },
+        "networkInterfaces": {
+          "target": "com.ovh.overthebox#OverTheBoxDeviceNetworkInterfacesList",
+          "traits": {
+            "smithy.api#documentation": "Network interfaces of the device"
+          }
+        },
+        "publicIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The public IP of the device"
+          }
+        },
+        "system": {
+          "target": "com.ovh.overthebox#OverTheBoxDeviceSystem",
+          "traits": {
+            "smithy.api#documentation": "Device system information",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "systemVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "System version of the device"
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the device"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDeviceInterface": {
+      "type": "structure",
+      "members": {
+        "device": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device of the interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dnsServers": {
+          "target": "com.ovh.overthebox#OverTheBoxDeviceInterfaceDnsServersList",
+          "traits": {
+            "smithy.api#documentation": "The DNS servers of this interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gateway of the interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of the interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "multipathStatus": {
+          "target": "com.ovh.overthebox#OverTheBoxMultipathStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of MPTCP on this interface"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the interface"
+          }
+        },
+        "netmask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Netmask of the interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "publicIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public IP of the interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Infos about a network interface"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDeviceInterfaceDnsServersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DNS servers of this interface"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxMultipathStatusEnum": {
+      "type": "enum",
+      "members": {
+        "BACKUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "backup"
+          }
+        },
+        "HANDOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "handover"
+          }
+        },
+        "MASTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "master"
+          }
+        },
+        "OFF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "off"
+          }
+        },
+        "ON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of a MPTCP Interface."
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDeviceNetworkInterfacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OverTheBoxDeviceInterface"
+      },
+      "traits": {
+        "smithy.api#documentation": "Network interfaces of the device"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDeviceSystem": {
+      "type": "structure",
+      "members": {
+        "cpu": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device CPU",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device hostname",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "kernel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device linux kernel version",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mac": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device mac address (first interface mac)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Device model",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the device board",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "offerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OVH offer name of the device board",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ovhName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OVH name of the device board",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Infos about a device system"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxDevice": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxDeviceRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxDevice"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/device",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxDevice": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#DeleteOverTheBoxDeviceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/overTheBox/{serviceName}/device",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unlink a device from a service"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxActionStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of a task."
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceActionsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter the value of name property (=)"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OverTheBoxActionStatusEnum",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the value of status property (=)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceActions": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceActionsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceActionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/device/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of actions scheduled for this device"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceActionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the action",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxDeviceAction": {
+      "type": "structure",
+      "members": {
+        "actionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the action"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of creation of the action"
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The details of the action"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the action"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OverTheBoxActionStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the action"
+          }
+        },
+        "todoDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of execution of the action"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the action was updated"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device action"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceAction": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceActionRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/device/actions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a device action on the device"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxDeviceActionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "actionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the action"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxDeviceAction": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxDeviceActionRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/device/actions/{actionId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxAvailableDeviceAction": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the action"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the action"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device action"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OverTheBoxAvailableDeviceAction"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActions": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/device/availableActions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the available device actions"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceBackupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceBackupRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/device/backup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an action to generate a backup"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxDeviceHardwareRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxHardware": {
+      "type": "structure",
+      "members": {
+        "canBeLinkedToService": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if hardware can be linked to a service without deviceID"
+          }
+        },
+        "mac": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware MAC address",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware model"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware name"
+          }
+        },
+        "prettyModelName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hardware pretty model name"
+          }
+        },
+        "serial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware serial"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hardware properties"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxDeviceHardware": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxDeviceHardwareRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxHardware"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/device/hardware",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceLogRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxTemporaryLogsLink": {
+      "type": "structure",
+      "members": {
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary url expiration date"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary url"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Temporary url informations"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxDeviceLog": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxDeviceLogRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxTemporaryLogsLink"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/device/logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a temporary url to retrieve device logs"
+      }
+    },
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the backup to restore",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OverTheBoxDeviceAction"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#RestoreOverTheBoxDeviceBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/device/restoreBackup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a group of actions to restore a given backup"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxIpsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxIpsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxIpsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxIpsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxIps": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxIpsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxIpsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/ips",
+          "code": 200
+        },
+        "smithy.api#documentation": "List IP assigned to an OverTheBox service"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxIpsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OtbServiceIp": {
+      "type": "structure",
+      "members": {
+        "geolocation": {
+          "target": "com.ovh.overthebox#OtbServiceIpGeolocationEnum",
+          "traits": {
+            "smithy.api#documentation": "IP geolocation"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address"
+          }
+        },
+        "range": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "IP cidr prefix"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OtbServiceIpStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "IP status"
+          }
+        },
+        "version": {
+          "target": "com.ovh.overthebox#OtbServiceIpVersionEnum",
+          "traits": {
+            "smithy.api#documentation": "IP version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service IP details"
+      }
+    },
+    "com.ovh.overthebox#OtbServiceIpGeolocationEnum": {
+      "type": "enum",
+      "members": {
+        "FR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fr"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP geolocation"
+      }
+    },
+    "com.ovh.overthebox#OtbServiceIpStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free"
+          }
+        },
+        "PENDINGRELEASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingRelease"
+          }
+        },
+        "RELEASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "released"
+          }
+        },
+        "RESERVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reserved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP status"
+      }
+    },
+    "com.ovh.overthebox#OtbServiceIpVersionEnum": {
+      "type": "enum",
+      "members": {
+        "V4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v4"
+          }
+        },
+        "V6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "v6"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP version"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxIps": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxIpsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OtbServiceIp"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/ips/{ip}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details IP assigned to an OverTheBox service"
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxIpv6Request": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enabled/disabled IPv6",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxTask": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the task"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OverTheBoxTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "The status of the task"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Task"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of a task."
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxIpv6": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#PutOverTheBoxIpv6Request"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/overTheBox/{serviceName}/ipv6",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change the status of IPv6 on this service"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxLinkDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "deviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the device",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxLinkDevice": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxLinkDeviceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/linkDevice",
+          "code": 200
+        },
+        "smithy.api#documentation": "Link a device to this service"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxLinkHardwareRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "hardwareName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The internal name of your hardware",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxLinkHardware": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxLinkHardwareRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/linkHardware",
+          "code": 200
+        },
+        "smithy.api#documentation": "Link an available hardware to this service"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOfferRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "hardwareName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the hardware"
+          }
+        },
+        "offer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Offer name to migrate to",
+            "smithy.api#required": {}
+          }
+        },
+        "shippingContactID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "In case of hardware and if a shipping custom address is desired"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxOrderMigration": {
+      "type": "structure",
+      "members": {
+        "orderId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the migration order"
+          }
+        },
+        "orderUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the migration order"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Migration order"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOffer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOfferRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxOrderMigration"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/migration/changeOffers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Migrate to the selected overTheBox offer"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffersRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxAvailableMigrationOffer": {
+      "type": "structure",
+      "members": {
+        "currentOfferPrice": {
+          "target": "com.ovh.overthebox#OrderPrice",
+          "traits": {
+            "smithy.api#documentation": "Monthly price of the current offer"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the offer"
+          }
+        },
+        "engagementMonths": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of months of engagement"
+          }
+        },
+        "hardwareAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Specify if a hardware is available"
+          }
+        },
+        "hardwareName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the hardware",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hardwarePrice": {
+          "target": "com.ovh.overthebox#OrderPrice",
+          "traits": {
+            "smithy.api#documentation": "Hardware purchase price",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hardwares": {
+          "target": "com.ovh.overthebox#OverTheBoxAvailableMigrationOfferHardwaresList",
+          "traits": {
+            "smithy.api#documentation": "Details of available hardwares"
+          }
+        },
+        "offer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the offer"
+          }
+        },
+        "price": {
+          "target": "com.ovh.overthebox#OrderPrice",
+          "traits": {
+            "smithy.api#documentation": "Monthly price of the new offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Migration offer"
+      }
+    },
+    "com.ovh.overthebox#OrderPrice": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "com.ovh.overthebox#OrderCurrencyCodeEnum"
+        },
+        "text": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Price with it's currency and textual representation"
+      }
+    },
+    "com.ovh.overthebox#OrderCurrencyCodeEnum": {
+      "type": "enum",
+      "members": {
+        "AUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUD"
+          }
+        },
+        "CAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAD"
+          }
+        },
+        "CZK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CZK"
+          }
+        },
+        "EUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EUR"
+          }
+        },
+        "GBP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GBP"
+          }
+        },
+        "INR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INR"
+          }
+        },
+        "LTL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LTL"
+          }
+        },
+        "MAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAD"
+          }
+        },
+        "N_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N/A"
+          }
+        },
+        "PLN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLN"
+          }
+        },
+        "SGD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SGD"
+          }
+        },
+        "TND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TND"
+          }
+        },
+        "USD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USD"
+          }
+        },
+        "XOF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "XOF"
+          }
+        },
+        "POINTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "points"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#OverTheBoxHardwareDetails": {
+      "type": "structure",
+      "members": {
+        "hardwareDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pretty hardware model name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hardwareName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the hardware",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hardwarePrice": {
+          "target": "com.ovh.overthebox#OrderPrice",
+          "traits": {
+            "smithy.api#documentation": "Hardware purchase price",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of available hardwares"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxAvailableMigrationOfferHardwaresList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OverTheBoxHardwareDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of available hardwares"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OverTheBoxAvailableMigrationOffer"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxMigrationOffers": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffersRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/migration/offers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all available offers one can migrate to"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccessesRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxRemoteAccesses": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccessesRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccessesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/remoteAccesses",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of remote accesses for the service"
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxRemoteAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "allowedIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP block from which the remote access will be allowed (the default value is the IP from which the call is made)"
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expirationDate of the remote access (default 1 day)"
+          }
+        },
+        "exposedPort": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port that the device will expose",
+            "smithy.api#required": {}
+          }
+        },
+        "publicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The remote user public key authorized on the device (for SSH purpose)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxRemoteAccess": {
+      "type": "structure",
+      "members": {
+        "accepted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the remote access was accepted by the remote user"
+          }
+        },
+        "askDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date of the remote access demand"
+          }
+        },
+        "authorizedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user that authorized the remote access",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "connectionInfos": {
+          "target": "com.ovh.overthebox#OverTheBoxRemoteAccessConnectionInfos",
+          "traits": {
+            "smithy.api#documentation": "All the infos needed to connect yourself to your OTB"
+          }
+        },
+        "deletedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the remote access was deleted",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dockerVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Info about the docker version"
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the remote access will be automatically deleted"
+          }
+        },
+        "exposedPort": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The device's port which will be exposed"
+          }
+        },
+        "remoteAccessId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The id of the remote access"
+          }
+        },
+        "remoteUserInfos": {
+          "target": "com.ovh.overthebox#OverTheBoxRemoteAccessUserInfos",
+          "traits": {
+            "smithy.api#documentation": "Infos about the remote user"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OverTheBoxRemoteAccessStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the remote access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "If authorized, a remote access will expose a port, allowing an access to the device remotely"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxRemoteAccessConnectionInfos": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP to connect to when accessing the device remotely",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port to connect to when accessing the device remotely",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All the infos needed to connect yourself to your OTB"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxRemoteAccessUserInfos": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP from which the remote access will be allowed"
+          }
+        },
+        "publicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The public key authorized on the device (for SSH purpose)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user that will access the device remotely"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Infos about the remote user"
+      }
+    },
+    "com.ovh.overthebox#OverTheBoxRemoteAccessStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "PENDINGVALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingValidation"
+          }
+        },
+        "RECREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recreating"
+          }
+        },
+        "TODELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toDelete"
+          }
+        },
+        "TORECREATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toRecreate"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the remote access."
+      }
+    },
+    "com.ovh.overthebox#CreateOverTheBoxRemoteAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#CreateOverTheBoxRemoteAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxRemoteAccess"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/remoteAccesses",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new remote access for the service"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxRemoteAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "remoteAccessId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the remote access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxRemoteAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxRemoteAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxRemoteAccess"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/remoteAccesses/{remoteAccessId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxRemoteAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "remoteAccessId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the remote access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#DeleteOverTheBoxRemoteAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#DeleteOverTheBoxRemoteAccessRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/overTheBox/{serviceName}/remoteAccesses/{remoteAccessId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a remote access"
+      }
+    },
+    "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccessRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "remoteAccessId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the remote access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccessRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/overTheBox/{serviceName}/remoteAccesses/{remoteAccessId}/authorize",
+          "code": 200
+        },
+        "smithy.api#documentation": "Authorize the remote access"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.overthebox#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.overthebox#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.overthebox#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.overthebox#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.overthebox#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.overthebox#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.overthebox#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "AUTOMATICV2024": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2024"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.overthebox#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#GetOverTheBoxServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.overthebox#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#PutOverTheBoxServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#PutOverTheBoxServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/overTheBox/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "load"
+          }
+        },
+        "MEMORY_FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "memory_free"
+          }
+        },
+        "TRAFFIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "traffic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serie Name"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "daily"
+          }
+        },
+        "HOURLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hourly"
+          }
+        },
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        },
+        "WEEKLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "weekly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Statistics Period"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxStatisticsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "metricsType": {
+          "target": "com.ovh.overthebox#OtbDeviceStatisticsTypeEnum",
+          "traits": {
+            "smithy.api#httpQuery": "metricsType",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Type of metrics you want to retrieve"
+          }
+        },
+        "period": {
+          "target": "com.ovh.overthebox#OtbDeviceStatisticsPeriodEnum",
+          "traits": {
+            "smithy.api#httpQuery": "period",
+            "smithy.api#documentation": "Period (default is daily)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatistics": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the serie"
+          }
+        },
+        "points": {
+          "target": "com.ovh.overthebox#OtbDeviceStatisticsPointsList",
+          "traits": {
+            "smithy.api#documentation": "List of point"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.overthebox#OtbDeviceStatisticsTagsList",
+          "traits": {
+            "smithy.api#documentation": "List of tags"
+          }
+        },
+        "unit": {
+          "target": "com.ovh.overthebox#OtbDeviceStatisticsUnitEnum",
+          "traits": {
+            "smithy.api#documentation": "Unit of the serie"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Statistics Datapoints"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsPoint": {
+      "type": "structure",
+      "members": {
+        "timestamp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Timestamp"
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Datapoint value",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Statistics Datapoint"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsPointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OtbDeviceStatisticsPoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of point"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsTag": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of tag"
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of tag",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the metrics"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsTagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OtbDeviceStatisticsTag"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of tags"
+      }
+    },
+    "com.ovh.overthebox#OtbDeviceStatisticsUnitEnum": {
+      "type": "enum",
+      "members": {
+        "BPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bps"
+          }
+        },
+        "BYTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "byte"
+          }
+        },
+        "N_A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "n/a"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serie Unit"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxStatisticsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.overthebox#OtbDeviceStatistics"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxStatisticsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxStatisticsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxStatistics": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxStatisticsRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxStatisticsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/statistics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get statistics for an OTB device"
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxTasksRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter the value of name property (=)"
+          }
+        },
+        "status": {
+          "target": "com.ovh.overthebox#OverTheBoxTaskStatusEnum",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter the value of status property (=)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxTasksResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.overthebox#ListOverTheBoxTasksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.overthebox#ListOverTheBoxTasksResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.overthebox#ListOverTheBoxTasks": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#ListOverTheBoxTasksRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#ListOverTheBoxTasksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/tasks",
+          "code": 200
+        },
+        "smithy.api#documentation": "List of tasks scheduled for this service"
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your overTheBox offer"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.overthebox#GetOverTheBoxTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.overthebox#GetOverTheBoxTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.overthebox#OverTheBoxTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/overTheBox/{serviceName}/tasks/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.overthebox#Overthebox": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.overthebox#ListOverTheBox"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableOffers"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxDevice"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardware"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxHardwareAvailable"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxHardware"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBox"
+        },
+        {
+          "target": "com.ovh.overthebox#PutOverTheBox"
+        },
+        {
+          "target": "com.ovh.overthebox#DeleteOverTheBox"
+        },
+        {
+          "target": "com.ovh.overthebox#PutOverTheBoxAutoMTU"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxAvailableReleaseChannels"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxBackups"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxBackup"
+        },
+        {
+          "target": "com.ovh.overthebox#DeleteOverTheBoxBackup"
+        },
+        {
+          "target": "com.ovh.overthebox#CancelOverTheBoxResiliation"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxChangeContact"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxDevice"
+        },
+        {
+          "target": "com.ovh.overthebox#DeleteOverTheBoxDevice"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceActions"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceAction"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxDeviceAction"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxDeviceAvailableActions"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceBackup"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxDeviceHardware"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxDeviceLog"
+        },
+        {
+          "target": "com.ovh.overthebox#RestoreOverTheBoxDeviceBackup"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxIps"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxIps"
+        },
+        {
+          "target": "com.ovh.overthebox#PutOverTheBoxIpv6"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxLinkDevice"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxLinkHardware"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxMigrationChangeOffer"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxMigrationOffers"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxRemoteAccesses"
+        },
+        {
+          "target": "com.ovh.overthebox#CreateOverTheBoxRemoteAccess"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxRemoteAccess"
+        },
+        {
+          "target": "com.ovh.overthebox#DeleteOverTheBoxRemoteAccess"
+        },
+        {
+          "target": "com.ovh.overthebox#AuthorizeOverTheBoxRemoteAccess"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxServiceInfos"
+        },
+        {
+          "target": "com.ovh.overthebox#PutOverTheBoxServiceInfos"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxStatistics"
+        },
+        {
+          "target": "com.ovh.overthebox#ListOverTheBoxTasks"
+        },
+        {
+          "target": "com.ovh.overthebox#GetOverTheBoxTask"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

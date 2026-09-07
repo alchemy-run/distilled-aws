@@ -1,0 +1,1104 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.support#SupportTicketCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "ASSISTANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "assistance"
+          }
+        },
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "billing"
+          }
+        },
+        "INCIDENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "incident"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ticket request category"
+      }
+    },
+    "com.ovh.support#SupportTicketProductEnum": {
+      "type": "enum",
+      "members": {
+        "ADSL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "adsl"
+          }
+        },
+        "CDN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cdn"
+          }
+        },
+        "DEDICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicated"
+          }
+        },
+        "DEDICATED_BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicated-billing"
+          }
+        },
+        "DEDICATED_OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicated-other"
+          }
+        },
+        "DEDICATEDCLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicatedcloud"
+          }
+        },
+        "DOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain"
+          }
+        },
+        "EXCHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exchange"
+          }
+        },
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fax"
+          }
+        },
+        "HOSTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hosting"
+          }
+        },
+        "HOUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "housing"
+          }
+        },
+        "IAAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "iaas"
+          }
+        },
+        "MAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mail"
+          }
+        },
+        "NETWORK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "network"
+          }
+        },
+        "PUBLICCLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "publiccloud"
+          }
+        },
+        "SMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sms"
+          }
+        },
+        "SSL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ssl"
+          }
+        },
+        "STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage"
+          }
+        },
+        "TELECOM_BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "telecom-billing"
+          }
+        },
+        "TELECOM_OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "telecom-other"
+          }
+        },
+        "VAC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vac"
+          }
+        },
+        "VOIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "voip"
+          }
+        },
+        "VPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vps"
+          }
+        },
+        "WEB_BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "web-billing"
+          }
+        },
+        "WEB_OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "web-other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ticket product"
+      }
+    },
+    "com.ovh.support#SupportTicketStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Support ticket statuses"
+      }
+    },
+    "com.ovh.support#ListSupportTicketsRequest": {
+      "type": "structure",
+      "members": {
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "archived",
+            "smithy.api#documentation": "Search archived tickets"
+          }
+        },
+        "category": {
+          "target": "com.ovh.support#SupportTicketCategoryEnum",
+          "traits": {
+            "smithy.api#httpQuery": "category",
+            "smithy.api#documentation": "Search by ticket category"
+          }
+        },
+        "customerReplyNeeded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "customerReplyNeeded",
+            "smithy.api#documentation": "Tickets pending a customer reply"
+          }
+        },
+        "excludeAutogenerated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "excludeAutogenerated",
+            "smithy.api#documentation": "Exclude auto-generated tickets"
+          }
+        },
+        "maxCreationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "maxCreationDate",
+            "smithy.api#documentation": "Maximum creation date"
+          }
+        },
+        "minCreationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "minCreationDate",
+            "smithy.api#documentation": "Minimum creation date"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page of tickets to fetch (only if pageSize is defined)"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "pageSize",
+            "smithy.api#documentation": "Number of ticket to fetch"
+          }
+        },
+        "product": {
+          "target": "com.ovh.support#SupportTicketProductEnum",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "Search by ticket product"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "serviceName",
+            "smithy.api#documentation": "Ticket message service name"
+          }
+        },
+        "status": {
+          "target": "com.ovh.support#SupportTicketStatusEnum",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Status of ticket"
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "subject",
+            "smithy.api#documentation": "Search by ticket subject"
+          }
+        },
+        "ticketNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ticketNumber",
+            "smithy.api#documentation": "Search by ticket number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#ListSupportTicketsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.support#ListSupportTicketsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.support#ListSupportTicketsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.support#ListSupportTickets": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#ListSupportTicketsRequest"
+      },
+      "output": {
+        "target": "com.ovh.support#ListSupportTicketsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/support/tickets",
+          "code": 200
+        },
+        "smithy.api#documentation": "List support tickets identifiers for this service"
+      }
+    },
+    "com.ovh.support#SupportTicketImpactUrgencyEnum": {
+      "type": "enum",
+      "members": {
+        "HIGH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "high"
+          }
+        },
+        "LOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "low"
+          }
+        },
+        "MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "medium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ticket level of impact or urgency (reserved for Business or Enterprise support level accounts)"
+      }
+    },
+    "com.ovh.support#SupportTicketSubCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "ALERTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alerts"
+          }
+        },
+        "AUTORENEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenew"
+          }
+        },
+        "BILL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bill"
+          }
+        },
+        "DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "down"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inProgress"
+          }
+        },
+        "NEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "new"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        },
+        "PERFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "perfs"
+          }
+        },
+        "START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "start"
+          }
+        },
+        "USAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "usage"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ticket request subcategory"
+      }
+    },
+    "com.ovh.support#SupportTicketTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CRITICALINTERVENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "criticalIntervention"
+          }
+        },
+        "GENERICREQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "genericRequest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DEPRECATED - Ticket type (criticalIntervention requires VIP support level)"
+      }
+    },
+    "com.ovh.support#CreateSupportTicketRequestWatchersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of e-mail addresses to notify on ticket updates (max. 10)"
+      }
+    },
+    "com.ovh.support#CreateSupportTicketRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket message body",
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "com.ovh.support#SupportTicketCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket message category"
+          }
+        },
+        "impact": {
+          "target": "com.ovh.support#SupportTicketImpactUrgencyEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket impact (reserved for Business or Enterprise support level accounts)"
+          }
+        },
+        "product": {
+          "target": "com.ovh.support#SupportTicketProductEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket message product"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket message service name"
+          }
+        },
+        "subcategory": {
+          "target": "com.ovh.support#SupportTicketSubCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket message subcategory"
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket message subject",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.support#SupportTicketTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED - Ticket type (criticalIntervention requires VIP support level)"
+          }
+        },
+        "urgency": {
+          "target": "com.ovh.support#SupportTicketImpactUrgencyEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket urgency (reserved for Business or Enterprise support level accounts)"
+          }
+        },
+        "watchers": {
+          "target": "com.ovh.support#CreateSupportTicketRequestWatchersList",
+          "traits": {
+            "smithy.api#documentation": "List of e-mail addresses to notify on ticket updates (max. 10)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#SupportNewMessageInfo": {
+      "type": "structure",
+      "members": {
+        "additionalNotice": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Notice or warning",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "messageId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Message identifier"
+          }
+        },
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket identifier"
+          }
+        },
+        "ticketNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket external number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Newly created support identifiers"
+      }
+    },
+    "com.ovh.support#CreateSupportTicket": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#CreateSupportTicketRequest"
+      },
+      "output": {
+        "target": "com.ovh.support#SupportNewMessageInfo"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/support/tickets/create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new ticket"
+      }
+    },
+    "com.ovh.support#GetSupportTicketRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal identifier ticket"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#SupportTicket": {
+      "type": "structure",
+      "members": {
+        "accountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer account identifier"
+          }
+        },
+        "canBeClosed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Can this ticket be closed or not"
+          }
+        },
+        "category": {
+          "target": "com.ovh.support#SupportTicketCategoryEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket request category",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket creation date"
+          }
+        },
+        "lastMessageFrom": {
+          "target": "com.ovh.support#SupportMessageSenderEnum",
+          "traits": {
+            "smithy.api#documentation": "Sender type of last message"
+          }
+        },
+        "product": {
+          "target": "com.ovh.support#SupportTicketProductEnum",
+          "traits": {
+            "smithy.api#documentation": "Product service concerned by ticket",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket score"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of service concerned by ticket",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.support#SupportTicketStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "State of ticket"
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket subject"
+          }
+        },
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket identifier"
+          }
+        },
+        "ticketNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket external number"
+          }
+        },
+        "type": {
+          "target": "com.ovh.support#SupportTicketTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Ticket type"
+          }
+        },
+        "updateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket last update date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Support Ticket"
+      }
+    },
+    "com.ovh.support#SupportMessageSenderEnum": {
+      "type": "enum",
+      "members": {
+        "CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customer"
+          }
+        },
+        "SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "support"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message sender type"
+      }
+    },
+    "com.ovh.support#GetSupportTicket": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#GetSupportTicketRequest"
+      },
+      "output": {
+        "target": "com.ovh.support#SupportTicket"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/support/tickets/{ticketId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get ticket"
+      }
+    },
+    "com.ovh.support#GetSupportTicketCanBeScoredRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal ticket identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#GetSupportTicketCanBeScoredResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.support#GetSupportTicketCanBeScored": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#GetSupportTicketCanBeScoredRequest"
+      },
+      "output": {
+        "target": "com.ovh.support#GetSupportTicketCanBeScoredResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/support/tickets/{ticketId}/canBeScored",
+          "code": 200
+        },
+        "smithy.api#documentation": "Checks whether ticket can be scored"
+      }
+    },
+    "com.ovh.support#CreateSupportTicketCloseRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal ticket identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#CreateSupportTicketClose": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#CreateSupportTicketCloseRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/support/tickets/{ticketId}/close",
+          "code": 200
+        },
+        "smithy.api#documentation": "Close ticket"
+      }
+    },
+    "com.ovh.support#ListSupportTicketMessagesRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal ticket identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#SupportMessage": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message body"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message creation date"
+          }
+        },
+        "from": {
+          "target": "com.ovh.support#SupportMessageSenderEnum",
+          "traits": {
+            "smithy.api#documentation": "Message sender type"
+          }
+        },
+        "messageId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Message identifier"
+          }
+        },
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket identifier"
+          }
+        },
+        "updateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message last update date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Support ticket message"
+      }
+    },
+    "com.ovh.support#ListSupportTicketMessagesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.support#SupportMessage"
+      },
+      "traits": {}
+    },
+    "com.ovh.support#ListSupportTicketMessagesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.support#ListSupportTicketMessagesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.support#ListSupportTicketMessages": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#ListSupportTicketMessagesRequest"
+      },
+      "output": {
+        "target": "com.ovh.support#ListSupportTicketMessagesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/support/tickets/{ticketId}/messages",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get ticket messages"
+      }
+    },
+    "com.ovh.support#CreateSupportTicketReopenRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal ticket identifier"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ticket reopen reason",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#CreateSupportTicketReopen": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#CreateSupportTicketReopenRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/support/tickets/{ticketId}/reopen",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reopen a ticket"
+      }
+    },
+    "com.ovh.support#ReplySupportTicketRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal ticket identifier"
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "text body of ticket response",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#ReplySupportTicket": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#ReplySupportTicketRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/support/tickets/{ticketId}/reply",
+          "code": 200
+        },
+        "smithy.api#documentation": "Reply to ticket"
+      }
+    },
+    "com.ovh.support#CreateSupportTicketScoreRequest": {
+      "type": "structure",
+      "members": {
+        "ticketId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "internal ticket identifier"
+          }
+        },
+        "score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ticket score",
+            "smithy.api#required": {}
+          }
+        },
+        "scoreComment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ticket comment about the score"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.support#CreateSupportTicketScore": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.support#CreateSupportTicketScoreRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/support/tickets/{ticketId}/score",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set ticket score"
+      }
+    },
+    "com.ovh.support#Support": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.support#ListSupportTickets"
+        },
+        {
+          "target": "com.ovh.support#CreateSupportTicket"
+        },
+        {
+          "target": "com.ovh.support#GetSupportTicket"
+        },
+        {
+          "target": "com.ovh.support#GetSupportTicketCanBeScored"
+        },
+        {
+          "target": "com.ovh.support#CreateSupportTicketClose"
+        },
+        {
+          "target": "com.ovh.support#ListSupportTicketMessages"
+        },
+        {
+          "target": "com.ovh.support#CreateSupportTicketReopen"
+        },
+        {
+          "target": "com.ovh.support#ReplySupportTicket"
+        },
+        {
+          "target": "com.ovh.support#CreateSupportTicketScore"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

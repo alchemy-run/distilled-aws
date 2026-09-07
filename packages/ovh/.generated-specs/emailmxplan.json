@@ -1,0 +1,4355 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.emailmxplan#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailmxplan#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplan": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanServiceWithIAM": {
+      "type": "structure",
+      "members": {
+        "complexityEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "enable policy for strong and secure passwords"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "service displayName",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name of your service"
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of your service",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.emailmxplan#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "isZimbra": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Service use Zimbra as backend"
+          }
+        },
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Update date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lockoutDuration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes account will remain locked if it occurs"
+          }
+        },
+        "lockoutObservationWindow": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes that must elapse after a failed logon to reset lockout trigger"
+          }
+        },
+        "lockoutThreshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of attempts before account to be locked",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "maximum number of days that account's password is valid before expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxReceiveSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can receive in MB"
+          }
+        },
+        "maxSendSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can send in MB"
+          }
+        },
+        "minPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of days before able to change account's password",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "minPasswordLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of characters password must contain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "offer": {
+          "target": "com.ovh.emailmxplan#EmailMxplanServiceOfferEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of your offer"
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailmxplan#EmailProSpamAndVirusConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailmxplan#EmailProServiceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of your service"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task pending id"
+          }
+        },
+        "webUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for web interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "MXPlan service"
+      }
+    },
+    "com.ovh.emailmxplan#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.emailmxplan#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.emailmxplan#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanServiceOfferEnum": {
+      "type": "enum",
+      "members": {
+        "MXPLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MXPLAN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service Offer name"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProSpamAndVirusConfiguration": {
+      "type": "structure",
+      "members": {
+        "checkDKIM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Check DKIM of message"
+          }
+        },
+        "checkSPF": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Check SPF of message"
+          }
+        },
+        "deleteSpam": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a spam delete it"
+          }
+        },
+        "deleteVirus": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a virus delete it"
+          }
+        },
+        "putInJunk": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a spam or virus put in junk. Overridden by deleteSpam or deleteVirus"
+          }
+        },
+        "tagSpam": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a spam change its subject"
+          }
+        },
+        "tagVirus": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a virus change its subject"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Spam and Antyvirus configuration"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "INMAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inMaintenance"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "REOPENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reopening"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service State"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplan": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanServiceWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "complexityEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "enable policy for strong and secure passwords"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "service displayName",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lockoutDuration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes account will remain locked if it occurs"
+          }
+        },
+        "lockoutObservationWindow": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes that must elapse after a failed logon to reset lockout trigger"
+          }
+        },
+        "lockoutThreshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of attempts before account to be locked",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "maximum number of days that account's password is valid before expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxReceiveSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can receive in MB"
+          }
+        },
+        "maxSendSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can send in MB"
+          }
+        },
+        "minPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of days before able to change account's password",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "minPasswordLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of characters password must contain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailmxplan#EmailProSpamAndVirusConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplan": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#PutEmailMxplanRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/mxplan/{service}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "Filter the value of id property (like)"
+          }
+        },
+        "primaryEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "primaryEmailAddress",
+            "smithy.api#documentation": "Filter the value of primaryEmailAddress property (like)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account",
+          "code": 200
+        },
+        "smithy.api#documentation": "Accounts associated to this mxplan service"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccount": {
+      "type": "structure",
+      "members": {
+        "SAMAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAM account name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "configured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the account is configured"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "currentUsage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Mailbox usage",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "delete at expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email domain"
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "expiration date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expirationOutlookDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "expiration date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide account in Global Address List"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id"
+          }
+        },
+        "initial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account initials",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastLogoffDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last logoff",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastLogonDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last logon",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account login"
+          }
+        },
+        "mailingFilter": {
+          "target": "com.ovh.emailmxplan#EmailMxplanAccountMailingFilterList",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable anti-virus and anti-spam",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "passwordLastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time of account's password last update",
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "primaryEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "quota": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Account maximum size"
+          }
+        },
+        "renewPeriod": {
+          "target": "com.ovh.emailmxplan#EmailProRenewPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "change the renew period",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailmxplan#EmailProSpamAndVirusConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        },
+        "spamDetected": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Account was sending spam"
+          }
+        },
+        "spamTicketNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket number of spam detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailmxplan#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Account state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending tasks for this account",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProMailingFilterEnum": {
+      "type": "enum",
+      "members": {
+        "VADERETRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vaderetro"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mailing filter options availlable"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountMailingFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailmxplan#EmailProMailingFilterEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable anti-virus and anti-spam"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProRenewPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        },
+        "YEARLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yearly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Renew period"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProObjectStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "REOPENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reopening"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspending"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current object state"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccount"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanAccountRequestMailingFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailmxplan#EmailProMailingFilterEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable anti-virus and anti-spam"
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "delete at expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email domain"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide account in Global Address List"
+          }
+        },
+        "initial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account initials",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account login"
+          }
+        },
+        "mailingFilter": {
+          "target": "com.ovh.emailmxplan#PutEmailMxplanAccountRequestMailingFilterList",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable anti-virus and anti-spam",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quota": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Account maximum size"
+          }
+        },
+        "renewPeriod": {
+          "target": "com.ovh.emailmxplan#EmailProRenewPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "change the renew period",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailmxplan#EmailProSpamAndVirusConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#PutEmailMxplanAccountRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/mxplan/{service}/account/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailProTask": {
+      "type": "structure",
+      "members": {
+        "finishDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Completion date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "function": {
+          "target": "com.ovh.emailmxplan#EmailProTaskFunctionEnum",
+          "traits": {
+            "smithy.api#documentation": "Function name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task id"
+          }
+        },
+        "status": {
+          "target": "com.ovh.emailmxplan#EmailProTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Task status"
+          }
+        },
+        "todoDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization task details"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProTaskFunctionEnum": {
+      "type": "enum",
+      "members": {
+        "ADDACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addAccount"
+          }
+        },
+        "ADDALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addAlias"
+          }
+        },
+        "ADDDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomain"
+          }
+        },
+        "ADDDOMAINDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomainDKIM"
+          }
+        },
+        "ADDDOMAINDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomainDisclaimer"
+          }
+        },
+        "ADDEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addExternalContact"
+          }
+        },
+        "ADDFULLACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addFullAccess"
+          }
+        },
+        "ADDSENDAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addSendAs"
+          }
+        },
+        "ADDSENDONBEHALFTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addSendOnBehalfTo"
+          }
+        },
+        "ADDSERVICEAUTHORIZEDIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addServiceAuthorizedIp"
+          }
+        },
+        "CHANGEHOSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "changeHostname"
+          }
+        },
+        "CHANGEPASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "changePassword"
+          }
+        },
+        "CONFIGURECUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configureCustomer"
+          }
+        },
+        "DELETEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteAccount"
+          }
+        },
+        "DELETEALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteAlias"
+          }
+        },
+        "DELETEDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomain"
+          }
+        },
+        "DELETEDOMAINDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomainDKIM"
+          }
+        },
+        "DELETEDOMAINDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomainDisclaimer"
+          }
+        },
+        "DELETEEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteExternalContact"
+          }
+        },
+        "DELETEFULLACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteFullAccess"
+          }
+        },
+        "DELETESENDAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteSendAs"
+          }
+        },
+        "DELETESENDONBEHALFTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteSendOnBehalfTo"
+          }
+        },
+        "DELETESERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteService"
+          }
+        },
+        "DELETESERVICEAUTHORIZEDIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteServiceAuthorizedIp"
+          }
+        },
+        "DIAGNOSEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diagnoseAccount"
+          }
+        },
+        "DISABLEDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disableDKIM"
+          }
+        },
+        "ENABLEDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enableDKIM"
+          }
+        },
+        "EXPANDDRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expandDrive"
+          }
+        },
+        "INSTALLSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "installServer"
+          }
+        },
+        "MAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maintenance"
+          }
+        },
+        "MIGRATEACCOUNTVIAOMM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrateAccountViaOMM"
+          }
+        },
+        "MIGRATIONACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationAccount"
+          }
+        },
+        "MIGRATIONDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationDisclaimer"
+          }
+        },
+        "MIGRATIONEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationExternalContact"
+          }
+        },
+        "MIGRATIONHISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationHistory"
+          }
+        },
+        "MIGRATIONSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationService"
+          }
+        },
+        "REOPENACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reOpenAccount"
+          }
+        },
+        "SETACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setAccount"
+          }
+        },
+        "SETALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setAlias"
+          }
+        },
+        "SETDNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setDns"
+          }
+        },
+        "SETDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setDomain"
+          }
+        },
+        "SETDOMAINDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setDomainDisclaimer"
+          }
+        },
+        "SETEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setExternalContact"
+          }
+        },
+        "SETSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setService"
+          }
+        },
+        "SUSPENDACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspendAccount"
+          }
+        },
+        "SUSPENDSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspendService"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "UNSUSPENDACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsuspendAccount"
+          }
+        },
+        "UNSUSPENDSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsuspendService"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "function enumeration for task"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Task status"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/account/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing mailbox in mxplan server"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAliasResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/alias",
+          "code": 200
+        },
+        "smithy.api#documentation": "Aliases associated to this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alias",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/account/{email}/alias",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create new alias"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountAlias": {
+      "type": "structure",
+      "members": {
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alias"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Aliases on this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccountAlias"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/alias/{alias}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/account/{email}/alias/{alias}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing alias"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilitiesRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountCapabilities": {
+      "type": "structure",
+      "members": {
+        "quotas": {
+          "target": "com.ovh.emailmxplan#EmailMxplanAccountCapabilitiesQuotasList",
+          "traits": {
+            "smithy.api#documentation": "List of allowed quotas (no constraint if null)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account capabilities"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountCapabilitiesQuotasList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of allowed quotas (no constraint if null)"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilities": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilitiesRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccountCapabilities"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/capabilities",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get available capabilities for this account"
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePasswordRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "new password",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePassword": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePasswordRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/account/{email}/changePassword",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change mailbox password"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnosticRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountDiagnosis": {
+      "type": "structure",
+      "members": {
+        "canReceiveEmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if ingoing message has been received"
+          }
+        },
+        "canSendEmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if outgoing message has been delivered"
+          }
+        },
+        "connectiveWebmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if possible to authenticate with credentials"
+          }
+        },
+        "isLocked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if account is locked"
+          }
+        },
+        "isMxValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if MX record for account's domain is properly set"
+          }
+        },
+        "isSpammer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if account is flagged as spammer"
+          }
+        },
+        "isSrvValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if SRV (autodiscovery) record for account's domain is properly set"
+          }
+        },
+        "isSuspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if account is suspended"
+          }
+        },
+        "lastCheck": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last performed diagnostics date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account Diagnosis"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnostic": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnosticRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccountDiagnosis"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/diagnostic",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnosticRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account password",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnostic": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnosticRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/account/{email}/diagnostic",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create new diagnosis request"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/fullAccess",
+          "code": 200
+        },
+        "smithy.api#documentation": "Full access granted users for this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "User to give full access",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/account/{email}/fullAccess",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow full access to a user"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give full access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountFullAccess": {
+      "type": "structure",
+      "members": {
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to give full access"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Users having full access on this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccountFullAccess"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/fullAccess/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give full access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/account/{email}/fullAccess/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke full access"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/sendAs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send as granted users for this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#SendEmailMxplanAccountAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to allow to send mails from this mailbox",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#SendEmailMxplanAccountAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#SendEmailMxplanAccountAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/account/{email}/sendAs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow another user to send mails from this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give send as"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountSendAs": {
+      "type": "structure",
+      "members": {
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to give send as"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Users authorized to send mails from this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccountSendAs"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/sendAs/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give send as"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/account/{email}/sendAs/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete allowed user for sendAs"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfToResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/sendOnBehalfTo",
+          "code": 200
+        },
+        "smithy.api#documentation": "SendOnBehalfTo granted users for this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to allow to send On Behalf To mails from this mailbox",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/account/{email}/sendOnBehalfTo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow another user to Send On Behalf To mails from this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give send on behalf to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanAccountSendOnBehalfTo": {
+      "type": "structure",
+      "members": {
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to give send on behalf to"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Get users authorized to Send On Behalf To mails from this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanAccountSendOnBehalfTo"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/sendOnBehalfTo/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give send on behalf to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/account/{email}/sendOnBehalfTo/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete allowed user for SendOnBehalfTo"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanAccountTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pending task for this mailbox"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanAccountTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanAccountTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/account/{email}/task/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailmxplan#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Filter the value of state property (=)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomainResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/domain",
+          "code": 200
+        },
+        "smithy.api#documentation": "Domains associated to this service"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanDomain": {
+      "type": "structure",
+      "members": {
+        "cnameToCheck": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cname that will be checked to prove the domain ownership",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domainAliases": {
+          "target": "com.ovh.emailmxplan#EmailMxplanDomainDomainAliasesList",
+          "traits": {
+            "smithy.api#documentation": "List of aliases for this domain"
+          }
+        },
+        "domainValidated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Domain validation status"
+          }
+        },
+        "expectedMX": {
+          "target": "com.ovh.emailmxplan#EmailMxplanDomainExpectedMXList",
+          "traits": {
+            "smithy.api#documentation": "Expected MX record(s) on this domain"
+          }
+        },
+        "isAliasDomain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicate if this domain is an alias for another domain"
+          }
+        },
+        "mxIsValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns mx configuration is valid"
+          }
+        },
+        "mxRecord": {
+          "target": "com.ovh.emailmxplan#EmailMxplanDomainMxRecordList",
+          "traits": {
+            "smithy.api#documentation": "Domain MX record configured in DNS"
+          }
+        },
+        "mxRelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, emails to not existing address will be redirected to that domain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "srvIsValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns srv record is valid"
+          }
+        },
+        "srvRecord": {
+          "target": "com.ovh.emailmxplan#EmailMxplanDomainSrvRecordList",
+          "traits": {
+            "smithy.api#documentation": "Domain SRV record configured in DNS"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailmxplan#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending taks id"
+          }
+        },
+        "type": {
+          "target": "com.ovh.emailmxplan#EmailProDomainTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanDomainDomainAliasesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of aliases for this domain"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanDomainExpectedMXList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected MX record(s) on this domain"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanDomainMxRecordList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain MX record configured in DNS"
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanDomainSrvRecordList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain SRV record configured in DNS"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProDomainTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTHORITATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "authoritative"
+          }
+        },
+        "NONAUTHORITATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nonAuthoritative"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain type"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanDomain"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/domain/{domainName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "mxRelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, emails to not existing address will be redirected to that domain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.emailmxplan#EmailProDomainTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#PutEmailMxplanDomainRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/mxplan/{service}/domain/{domainName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailProDisclaimer": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature, added at the bottom of your organization emails"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disclaimer name"
+          }
+        },
+        "outsideOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Activate the disclaimer only for external emails"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "task pending id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "disclaimer"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProDisclaimer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature, added at the bottom of your organization emails",
+            "smithy.api#required": {}
+          }
+        },
+        "outsideOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Activate the disclaimer only for external emails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create organization disclaimer of each email"
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature, added at the bottom of your organization emails"
+          }
+        },
+        "outsideOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Activate the disclaimer only for external emails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/mxplan/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing organization disclaimer"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailProDisclaimerAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "CITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "City"
+          }
+        },
+        "COMPANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Company"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Country"
+          }
+        },
+        "DEPARTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Department"
+          }
+        },
+        "DISPLAYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DisplayName"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Email"
+          }
+        },
+        "FAXNUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FaxNumber"
+          }
+        },
+        "FIRSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FirstName"
+          }
+        },
+        "HOMEPHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HomePhoneNumber"
+          }
+        },
+        "INITIALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Initials"
+          }
+        },
+        "LASTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LastName"
+          }
+        },
+        "MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Manager"
+          }
+        },
+        "MOBILENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MobileNumber"
+          }
+        },
+        "NOTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Notes"
+          }
+        },
+        "OFFICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Office"
+          }
+        },
+        "OTHERFAXNUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OtherFaxNumber"
+          }
+        },
+        "OTHERHOMEPHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OtherHomePhoneNumber"
+          }
+        },
+        "OTHERPHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OtherPhoneNumber"
+          }
+        },
+        "PAGERNUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PagerNumber"
+          }
+        },
+        "PHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PhoneNumber"
+          }
+        },
+        "STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "State"
+          }
+        },
+        "STREET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Street"
+          }
+        },
+        "TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Title"
+          }
+        },
+        "USERLOGONNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserLogonName"
+          }
+        },
+        "ZIPCODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZipCode"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disclaimer attributes list"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailmxplan#EmailProDisclaimerAttributeEnum"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttribute": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttributeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/domain/{domainName}/disclaimerAttribute",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get diclaimer attributes to substitute with Active Directory properties"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "displayName",
+            "smithy.api#documentation": "Filter the value of displayName property (like)"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "externalEmailAddress",
+            "smithy.api#documentation": "Filter the value of externalEmailAddress property (like)"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "firstName",
+            "smithy.api#documentation": "Filter the value of firstName property (like)"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "Filter the value of id property (like)"
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "lastName",
+            "smithy.api#documentation": "Filter the value of lastName property (like)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/externalContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "External contacts for this service"
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact display name"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact email address",
+            "smithy.api#required": {}
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact first name"
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide the contact in Global Address List"
+          }
+        },
+        "initials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact initials"
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact last name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#CreateEmailMxplanExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#CreateEmailMxplanExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/externalContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "create new external contact"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Contact email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanExternalContact": {
+      "type": "structure",
+      "members": {
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact display name"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact email"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide the contact in Global Address List"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Contact id"
+          }
+        },
+        "initials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact initals",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailmxplan#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Contact state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task pending id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "External contact for this mxplan service"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanExternalContact"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/externalContact/{externalEmailAddress}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Contact email"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact display name"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide the contact in Global Address List"
+          }
+        },
+        "initials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact initals",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#PutEmailMxplanExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#PutEmailMxplanExternalContactRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/mxplan/{service}/externalContact/{externalEmailAddress}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Contact email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#DeleteEmailMxplanExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#DeleteEmailMxplanExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/mxplan/{service}/externalContact/{externalEmailAddress}",
+          "code": 200
+        },
+        "smithy.api#documentation": "delete external contact"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanServerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#EmailMxplanServer": {
+      "type": "structure",
+      "members": {
+        "currentDiskUsage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current disk usage in MB",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diskSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total disk size in MB",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ipV4"
+          }
+        },
+        "ipV6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ipV6",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "isAValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns A record is valid"
+          }
+        },
+        "isAaaaValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns AAAA record is valid"
+          }
+        },
+        "isPtrV6Valid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns ptrV6 record is valid"
+          }
+        },
+        "isPtrValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns ptr record is valid"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailmxplan#EmailProServerStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Server state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task pending id"
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Server version",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server"
+      }
+    },
+    "com.ovh.emailmxplan#EmailProServerStateEnum": {
+      "type": "enum",
+      "members": {
+        "CONFIGURATIONPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configurationPending"
+          }
+        },
+        "NOTCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notConfigured"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server State"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailMxplanServer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/server",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailmxplan#ListEmailMxplanTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#ListEmailMxplanTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pending actions"
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#GetEmailMxplanTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#GetEmailMxplanTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailmxplan#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/mxplan/{service}/task/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your mxplan organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccountsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/mxplan/{service}/updateFlagsOnAllAccounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update spam and virus flags on all active accounts"
+      }
+    },
+    "com.ovh.emailmxplan#Emailmxplan": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplan"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplan"
+        },
+        {
+          "target": "com.ovh.emailmxplan#PutEmailMxplan"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccount"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccount"
+        },
+        {
+          "target": "com.ovh.emailmxplan#PutEmailMxplanAccount"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccount"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountCapabilities"
+        },
+        {
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountChangePassword"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountDiagnostic"
+        },
+        {
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountDiagnostic"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendAs"
+        },
+        {
+          "target": "com.ovh.emailmxplan#SendEmailMxplanAccountAs"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendAs"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendAs"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountSendOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailmxplan#SendEmailMxplanAccountOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountSendOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanAccountSendOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanAccountTask"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanAccountTask"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomain"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanDomain"
+        },
+        {
+          "target": "com.ovh.emailmxplan#PutEmailMxplanDomain"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailmxplan#PutEmailMxplanDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanDomainDisclaimerAttribute"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanExternalContact"
+        },
+        {
+          "target": "com.ovh.emailmxplan#CreateEmailMxplanExternalContact"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanExternalContact"
+        },
+        {
+          "target": "com.ovh.emailmxplan#PutEmailMxplanExternalContact"
+        },
+        {
+          "target": "com.ovh.emailmxplan#DeleteEmailMxplanExternalContact"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanServer"
+        },
+        {
+          "target": "com.ovh.emailmxplan#ListEmailMxplanTask"
+        },
+        {
+          "target": "com.ovh.emailmxplan#GetEmailMxplanTask"
+        },
+        {
+          "target": "com.ovh.emailmxplan#UpdateEmailMxplanFlagsOnAllAccounts"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

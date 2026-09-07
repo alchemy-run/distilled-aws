@@ -1,0 +1,1375 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceTypeRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceTypeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceTypeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceType": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceTypeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceTypeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/reference/compatibleManagedServiceType",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all managed service types that are compatible with vRack Services (IAM resource types)\n\nThe compatible managed service types are represented here by their IAM resource types."
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceRegionRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesRegion": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A vRack Services compatible localization"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceRegionResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesRegion"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceRegionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrackservices#ListVrackServiceReferenceRegionResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceReferenceRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#ListVrackServiceReferenceRegionRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#ListVrackServiceReferenceRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/reference/region",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all vRack Services regions"
+      }
+    },
+    "com.ovh.vrackservices#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.vrackservices#ListVrackServiceResourceRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesWithIAM": {
+      "type": "structure",
+      "members": {
+        "checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the vRack Services delivery"
+          }
+        },
+        "currentState": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesCurrentState",
+          "traits": {
+            "smithy.api#documentation": "Current configuration applied to the vRack Services"
+          }
+        },
+        "currentTasks": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesWithIAMCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the vRack Services",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.vrackservices#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vrackservices#VrackServicesResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the vRack Services. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesTargetSpec",
+          "traits": {
+            "smithy.api#documentation": "Last target specification of the vRack Services"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the Last vRack Services update"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesCurrentState": {
+      "type": "structure",
+      "members": {
+        "productStatus": {
+          "target": "com.ovh.vrackservices#VrackServicesProductStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Product status of the vRack Services"
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region of the vRack Services. List of compatible regions can be retrieved from /reference/region"
+          }
+        },
+        "subnets": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesCurrentStateSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "Subnets of the current vRack Services"
+          }
+        },
+        "vrackId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vRack associated to the vRack Services",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current state of the vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesProductStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAFT"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ProductStatusEnum"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesSubnet": {
+      "type": "structure",
+      "members": {
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address range of the subnet in CIDR format"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the subnet",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "serviceEndpoints": {
+          "target": "com.ovh.vrackservices#VrackServicesSubnetServiceEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "Service endpoints of the subnet"
+          }
+        },
+        "serviceRange": {
+          "target": "com.ovh.vrackservices#VrackServicesServiceRange",
+          "traits": {
+            "smithy.api#documentation": "Defines a smaller subnet dedicated to the managed services IPs"
+          }
+        },
+        "vlan": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique inner VLAN that allows subnets segregation",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A network segment of the associated vRack. It represents an IP addressing scheme inside the private network"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesServiceEndpoint": {
+      "type": "structure",
+      "members": {
+        "endpoints": {
+          "target": "com.ovh.vrackservices#VrackServicesServiceEndpointEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "Endpoints representing the IPs assigned to the managed services"
+          }
+        },
+        "managedServiceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IAM Resource URN of the managed service. Compatible managed service types are listed by /reference/compatibleManagedServiceType call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Service Endpoint provides an access to managed services directly from one or several private IPs in the associated vRack"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesEndpoint": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP description defined in the managed service"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address assigned by OVHcloud"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Endpoint holding a managed service IP"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesServiceEndpointEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesEndpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "Endpoints representing the IPs assigned to the managed services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesSubnetServiceEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesServiceEndpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "Service endpoints of the subnet"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesServiceRange": {
+      "type": "structure",
+      "members": {
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CIDR dedicated to the subnet's services"
+          }
+        },
+        "remainingIps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of remaining IPs in the service range"
+          }
+        },
+        "reservedIps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of service range IPs reserved by OVHcloud"
+          }
+        },
+        "usedIps": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of service range IPs assigned to the managed services"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of the range dedicated to the subnet's services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesCurrentStateSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesSubnet"
+      },
+      "traits": {
+        "smithy.api#documentation": "Subnets of the current vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#CommonCurrentTask": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the current task"
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the task details"
+          }
+        },
+        "status": {
+          "target": "com.ovh.vrackservices#CommonCurrentTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current global status of the current task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the current task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operation currently running"
+      }
+    },
+    "com.ovh.vrackservices#CommonCurrentTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current status of a task. A task in ERROR cannot be retried without your inputs. PENDING tasks will be executed as soon as possible. A RUNNING task is currently executing your original request. SCHEDULED is used for tasks that will be executed in the future"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesWithIAMCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.vrackservices#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.vrackservices#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesResourceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "It reflects the readiness of the vRack Services resource. The status `READY` indicates that the vRack Services state is stable. It guarantees that the `currentState` is fully aligned with the `targetSpec`. A new target specification request will be accepted only in this status."
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesTargetSpec": {
+      "type": "structure",
+      "members": {
+        "subnets": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesTargetSpecSubnetsList",
+          "traits": {
+            "smithy.api#documentation": "Target specification of the subnets. Maximum one subnet per vRack Services",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of the vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesTargetSubnet": {
+      "type": "structure",
+      "members": {
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address range of the subnet in CIDR format. Must be a private network address (RFC1918). Authorized range for prefix length: /16 to /24",
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the subnet. Format must follow `^[ a-zA-Z0-9-_.]{0,40}$`",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "serviceEndpoints": {
+          "target": "com.ovh.vrackservices#VrackServicesTargetSubnetServiceEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "Target specification of the Service Endpoints",
+            "smithy.api#required": {}
+          }
+        },
+        "serviceRange": {
+          "target": "com.ovh.vrackservices#VrackServicesTargetServiceRange",
+          "traits": {
+            "smithy.api#documentation": "Defines a smaller subnet dedicated to the managed service IPs",
+            "smithy.api#required": {}
+          }
+        },
+        "vlan": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique inner VLAN that allows subnets segregation. Authorized values: [2 - 4094] and `null` (untagged traffic)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of a subnet"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesTargetServiceEndpoint": {
+      "type": "structure",
+      "members": {
+        "managedServiceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IAM Resource URN of the managed service. Managed service Region must match vRack Services Region. Compatible managed service types are listed by /reference/compatibleManagedServiceType call",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of a Service Endpoint. A Service Endpoint provides an access to a managed service directly from one or several private IPs in the associated vRack"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesTargetSubnetServiceEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesTargetServiceEndpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of the Service Endpoints"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesTargetServiceRange": {
+      "type": "structure",
+      "members": {
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address range dedicated to the subnet's services in CIDR format. Must be a private network address (RFC1918). Must be a sub-network of the subnet. Authorized range for prefix length: /27 to /29",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of the range dedicated to the subnet's services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesTargetSpecSubnetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesTargetSubnet"
+      },
+      "traits": {
+        "smithy.api#documentation": "Target specification of the subnets. Maximum one subnet per vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesVrackServicesWithIAM"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrackservices#ListVrackServiceResourceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/resource",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#GetVrackServiceResourceRequest": {
+      "type": "structure",
+      "members": {
+        "vrackServicesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Vrack services ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#GetVrackServiceResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#GetVrackServiceResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#VrackServicesVrackServicesWithIAM"
+      },
+      "errors": [
+        {
+          "target": "com.ovh.vrackservices#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/resource/{vrackServicesId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#PutVrackServiceResourceRequest": {
+      "type": "structure",
+      "members": {
+        "vrackServicesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Vrack services ID"
+          }
+        },
+        "checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Computed hash used to control concurrent modification requests. Here, it represents the target specification value the request is based on",
+            "smithy.api#required": {}
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesTargetSpec",
+          "traits": {
+            "smithy.api#documentation": "Requested target specification",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServices": {
+      "type": "structure",
+      "members": {
+        "checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Computed hash used to control concurrent modification requests. Here, it represents the current target specification value"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the vRack Services delivery"
+          }
+        },
+        "currentState": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesCurrentState",
+          "traits": {
+            "smithy.api#documentation": "Current configuration applied to the vRack Services"
+          }
+        },
+        "currentTasks": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesCurrentTasksList",
+          "traits": {
+            "smithy.api#documentation": "Asynchronous operations ongoing on the vRack Services",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier"
+          }
+        },
+        "resourceStatus": {
+          "target": "com.ovh.vrackservices#VrackServicesResourceStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Reflects the readiness of the vRack Services. A new target specification request will be accepted only in `READY` status"
+          }
+        },
+        "targetSpec": {
+          "target": "com.ovh.vrackservices#VrackServicesVrackServicesTargetSpec",
+          "traits": {
+            "smithy.api#documentation": "Last target specification of the vRack Services"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the Last vRack Services update"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesVrackServicesCurrentTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#CommonCurrentTask"
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operations ongoing on the vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#PutVrackServiceResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#PutVrackServiceResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#VrackServicesVrackServices"
+      },
+      "errors": [
+        {
+          "target": "com.ovh.vrackservices#BadRequest"
+        },
+        {
+          "target": "com.ovh.vrackservices#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vrackServices/resource/{vrackServicesId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request updates on the vRack Services configuration\n\nIt is the unique route handling any update on the vRack Services configuration. It works as following:\n1. You define a new target specification in the request payload,\n2. If this specification is validated, you get the resource with updated `targetSpec` and `checksum` values in return,\n3. The request is processed by one or several **asynchronous** tasks that aims to reconciliate the `currentState` with the `targetSpec`\n\n### Asynchronous processing\n* To follow this processing, the VrackServices resource can be polled with `GET /vrackServices/resource/{vrackServicesId}`<br>As soon as its `resourceStatus` is *READY*, the requested specification can be considered as applied to the vRack Services.\n* The `checksum` helps on detecting concurrency cases on update requests. If the polled `checksum` value differs from the one returned in response of your initial request, it means that processing of your request is completed and another request is being processed.\n* In case of processing error (i.e. `resourceStatus` in *ERROR*), the current vRack Services configuration is still active, but modification requests will be refused until the intervention of the support.\n* An overview on the asynchronous task(s) is available via the `currentTasks` attribute.<br>More details on a task are provided by the route `GET /vrackServices/resource/{vrackServicesId}/task/{taskId}`\n\n### Seamless configuration actions\nThe request can combine any of the following seamless actions (meaning there won't be any cut of the service while updating):\n* create a Subnet\n* delete a Subnet without any Service Endpoint\n* update a Subnet:\n  * create one or several Service Endpoints\n\n**Note** that a Subnet with several Service Endpoints can be created in the same payload\n\n### Not seamless configuration actions\nThe modification of the Subnet characteristics listed below **WILL** result in a service cut while processing the update as they are interpreted as the deletion of the existing Subnet and creation of a new Subnet with provided characteristics. The IPs that were given to the Managed Services will be reelected and may as a result change:\n* modifications on the Subnet `ServiceRange`\n* modifications on the Subnet `Vlan`\n* modifications on the Subnet `CIDR` \n\nThe embedded Service Endpoints will be also deleted and re-created which implies a flapping accessibility in the vRack for every related managed services.  \n**Note** that deleting a Subnet will also delete embedded Service Endpoints\n\nThe `vrackId` is a read-only attribute as the association vRack/vRackServices is handled by the [vRack API](console-preview/?section=%2Fvrack&branch=v1)"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedServiceRequest": {
+      "type": "structure",
+      "members": {
+        "vrackServicesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Vrack services ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesEligibleManagedService": {
+      "type": "structure",
+      "members": {
+        "managedServiceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IAM resource type. Compatible managed service types are listed by /reference/compatibleManagedServiceType call."
+          }
+        },
+        "managedServiceURNs": {
+          "target": "com.ovh.vrackservices#VrackServicesEligibleManagedServiceManagedServiceURNsList",
+          "traits": {
+            "smithy.api#documentation": "List of IAM resource URNs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of managed services eligible to the requested vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#VrackServicesEligibleManagedServiceManagedServiceURNsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IAM resource URNs"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedServiceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#VrackServicesEligibleManagedService"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedServiceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedServiceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedService": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedServiceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedServiceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/resource/{vrackServicesId}/eligibleManagedService",
+          "code": 200
+        },
+        "smithy.api#documentation": "List every managed service eligible to the requested vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceTaskRequest": {
+      "type": "structure",
+      "members": {
+        "vrackServicesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Vrack services ID"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#CommonTask": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the task"
+          }
+        },
+        "errors": {
+          "target": "com.ovh.vrackservices#CommonTaskErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Errors that occured on the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "finishedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ending date of the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the task"
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the related resource"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the task"
+          }
+        },
+        "progress": {
+          "target": "com.ovh.vrackservices#CommonTaskProgressList",
+          "traits": {
+            "smithy.api#documentation": "Progress steps of the asynchronous operation"
+          }
+        },
+        "startedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Starting date of the task",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.vrackservices#CommonTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current global status of the task"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the task"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update of the task"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operation"
+      }
+    },
+    "com.ovh.vrackservices#CommonTaskError": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error description"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Errors that occured on the task"
+      }
+    },
+    "com.ovh.vrackservices#CommonTaskErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#CommonTaskError"
+      },
+      "traits": {
+        "smithy.api#documentation": "Errors that occured on the task"
+      }
+    },
+    "com.ovh.vrackservices#CommonTaskProgress": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Progress step name"
+          }
+        },
+        "status": {
+          "target": "com.ovh.vrackservices#CommonTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Current status of the progress step"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed information about an asynchronous operation progress steps"
+      }
+    },
+    "com.ovh.vrackservices#CommonTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DONE"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TaskStatusEnum"
+      }
+    },
+    "com.ovh.vrackservices#CommonTaskProgressList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#CommonTaskProgress"
+      },
+      "traits": {
+        "smithy.api#documentation": "Progress steps of the asynchronous operation"
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrackservices#CommonTask"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrackservices#ListVrackServiceResourceTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrackservices#ListVrackServiceResourceTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#ListVrackServiceResourceTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/resource/{vrackServicesId}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all asynchronous operations related to the vRack Services"
+      }
+    },
+    "com.ovh.vrackservices#GetVrackServiceResourceTaskRequest": {
+      "type": "structure",
+      "members": {
+        "vrackServicesId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Vrack services ID"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Task ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrackservices#GetVrackServiceResourceTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrackservices#GetVrackServiceResourceTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrackservices#CommonTask"
+      },
+      "errors": [
+        {
+          "target": "com.ovh.vrackservices#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrackServices/resource/{vrackServicesId}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the task"
+      }
+    },
+    "com.ovh.vrackservices#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.ovh.vrackservices#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.ovh.vrackservices#Vrackservices": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.vrackservices#ListVrackServiceReferenceCompatibleManagedServiceType"
+        },
+        {
+          "target": "com.ovh.vrackservices#ListVrackServiceReferenceRegion"
+        },
+        {
+          "target": "com.ovh.vrackservices#ListVrackServiceResource"
+        },
+        {
+          "target": "com.ovh.vrackservices#GetVrackServiceResource"
+        },
+        {
+          "target": "com.ovh.vrackservices#PutVrackServiceResource"
+        },
+        {
+          "target": "com.ovh.vrackservices#ListVrackServiceResourceEligibleManagedService"
+        },
+        {
+          "target": "com.ovh.vrackservices#ListVrackServiceResourceTask"
+        },
+        {
+          "target": "com.ovh.vrackservices#GetVrackServiceResourceTask"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

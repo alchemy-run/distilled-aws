@@ -363,6 +363,12 @@
     },
     {
       "path": "./packages/onepassword/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/ovh/tsconfig.json"
+    },
+    {
+      "path": "./packages/ovh/tsconfig.scripts.json"
     }
   ]
 }

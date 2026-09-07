@@ -1,0 +1,5584 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.emailpro#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailpro#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.emailpro#ListEmailProRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.emailpro#ListEmailProRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailPro": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProServiceNativeWithIAM": {
+      "type": "structure",
+      "members": {
+        "complexityEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "enable policy for strong and secure passwords"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "service displayName",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name of your service"
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of your service",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "iam": {
+          "target": "com.ovh.emailpro#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Update date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lockoutDuration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes account will remain locked if it occurs"
+          }
+        },
+        "lockoutObservationWindow": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes that must elapse after a failed logon to reset lockout trigger"
+          }
+        },
+        "lockoutThreshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of attempts before account to be locked",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "maximum number of days that account's password is valid before expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxReceiveSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can receive in MB"
+          }
+        },
+        "maxSendSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can send in MB"
+          }
+        },
+        "minPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of days before able to change account's password",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "minPasswordLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of characters password must contain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "offer": {
+          "target": "com.ovh.emailpro#EmailProServiceOfferEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of your offer"
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailpro#EmailProSpamAndVirusConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProServiceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of your service"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task pending id"
+          }
+        },
+        "webUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for web interface",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Email pro service"
+      }
+    },
+    "com.ovh.emailpro#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.emailpro#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.emailpro#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.emailpro#EmailProServiceOfferEnum": {
+      "type": "enum",
+      "members": {
+        "EMAILPRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "emailpro"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service Offer name"
+      }
+    },
+    "com.ovh.emailpro#EmailProSpamAndVirusConfiguration": {
+      "type": "structure",
+      "members": {
+        "checkDKIM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Check DKIM of message"
+          }
+        },
+        "checkSPF": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Check SPF of message"
+          }
+        },
+        "deleteSpam": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a spam delete it"
+          }
+        },
+        "deleteVirus": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a virus delete it"
+          }
+        },
+        "putInJunk": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a spam or virus put in junk. Overridden by deleteSpam or deleteVirus"
+          }
+        },
+        "tagSpam": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a spam change its subject"
+          }
+        },
+        "tagVirus": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If message is a virus change its subject"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Spam and Antyvirus configuration"
+      }
+    },
+    "com.ovh.emailpro#EmailProServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "INMAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inMaintenance"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "REOPENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reopening"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspending"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service State"
+      }
+    },
+    "com.ovh.emailpro#GetEmailPro": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProServiceNativeWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#EmailProSpamAndVirusConfigurationInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Spam and Antyvirus configuration"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "complexityEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "enable policy for strong and secure passwords"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "service displayName",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lockoutDuration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes account will remain locked if it occurs"
+          }
+        },
+        "lockoutObservationWindow": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of minutes that must elapse after a failed logon to reset lockout trigger"
+          }
+        },
+        "lockoutThreshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "number of attempts before account to be locked",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "maximum number of days that account's password is valid before expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "maxReceiveSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can receive in MB"
+          }
+        },
+        "maxSendSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum message size that You can send in MB"
+          }
+        },
+        "minPasswordAge": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of days before able to change account's password",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "minPasswordLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "minimum number of characters password must contain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailpro#EmailProSpamAndVirusConfigurationInput",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#PutEmailPro": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#PutEmailProRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/pro/{service}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "Filter the value of id property (like)"
+          }
+        },
+        "primaryEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "primaryEmailAddress",
+            "smithy.api#documentation": "Filter the value of primaryEmailAddress property (like)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProAccountResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProAccountResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account",
+          "code": 200
+        },
+        "smithy.api#documentation": "Accounts associated to this pro service"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountNative": {
+      "type": "structure",
+      "members": {
+        "SAMAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAM account name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "configured": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the account is configured"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "currentUsage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Mailbox usage",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "delete at expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email domain"
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "expiration date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expirationOutlookDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "expiration date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide account in Global Address List"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id"
+          }
+        },
+        "initial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account initials",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastLogoffDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last logoff",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastLogonDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last logon",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastUpdateDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account login"
+          }
+        },
+        "mailingFilter": {
+          "target": "com.ovh.emailpro#EmailProAccountNativeMailingFilterList",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable anti-virus and anti-spam",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "passwordLastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time of account's password last update",
+            "com.distilled.openapi#nullable": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "primaryEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "quota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account maximum size"
+          }
+        },
+        "renewPeriod": {
+          "target": "com.ovh.emailpro#EmailProRenewPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "change the renew period",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailpro#EmailProSpamAndVirusConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        },
+        "spamDetected": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Account was sending spam"
+          }
+        },
+        "spamTicketNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Ticket number of spam detection",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Account state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending tasks for this account",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mailbox"
+      }
+    },
+    "com.ovh.emailpro#EmailProMailingFilterEnum": {
+      "type": "enum",
+      "members": {
+        "VADERETRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vaderetro"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mailing filter options availlable"
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountNativeMailingFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailpro#EmailProMailingFilterEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable anti-virus and anti-spam"
+      }
+    },
+    "com.ovh.emailpro#EmailProRenewPeriodEnum": {
+      "type": "enum",
+      "members": {
+        "MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monthly"
+          }
+        },
+        "YEARLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yearly"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Renew period"
+      }
+    },
+    "com.ovh.emailpro#EmailProObjectStateEnum": {
+      "type": "enum",
+      "members": {
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "REOPENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reopening"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspended"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspending"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Current object state"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProAccountNative"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProAccountRequestMailingFilterList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailpro#EmailProMailingFilterEnum"
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable anti-virus and anti-spam"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "delete at expiration",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email domain"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide account in Global Address List"
+          }
+        },
+        "initial": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account initials",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account login"
+          }
+        },
+        "mailingFilter": {
+          "target": "com.ovh.emailpro#PutEmailProAccountRequestMailingFilterList",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable anti-virus and anti-spam",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account maximum size"
+          }
+        },
+        "renewPeriod": {
+          "target": "com.ovh.emailpro#EmailProRenewPeriodEnum",
+          "traits": {
+            "smithy.api#documentation": "change the renew period",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "spamAndVirusConfiguration": {
+          "target": "com.ovh.emailpro#EmailProSpamAndVirusConfigurationInput",
+          "traits": {
+            "smithy.api#documentation": "Spam and Antivirus configuration"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#PutEmailProAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#PutEmailProAccountRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/pro/{service}/account/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProTask": {
+      "type": "structure",
+      "members": {
+        "finishDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Completion date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "function": {
+          "target": "com.ovh.emailpro#EmailProTaskFunctionEnum",
+          "traits": {
+            "smithy.api#documentation": "Function name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task id"
+          }
+        },
+        "status": {
+          "target": "com.ovh.emailpro#EmailProTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Task status"
+          }
+        },
+        "todoDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization task details"
+      }
+    },
+    "com.ovh.emailpro#EmailProTaskFunctionEnum": {
+      "type": "enum",
+      "members": {
+        "ADDACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addAccount"
+          }
+        },
+        "ADDALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addAlias"
+          }
+        },
+        "ADDDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomain"
+          }
+        },
+        "ADDDOMAINDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomainDKIM"
+          }
+        },
+        "ADDDOMAINDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addDomainDisclaimer"
+          }
+        },
+        "ADDEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addExternalContact"
+          }
+        },
+        "ADDFULLACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addFullAccess"
+          }
+        },
+        "ADDSENDAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addSendAs"
+          }
+        },
+        "ADDSENDONBEHALFTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addSendOnBehalfTo"
+          }
+        },
+        "ADDSERVICEAUTHORIZEDIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "addServiceAuthorizedIp"
+          }
+        },
+        "CHANGEHOSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "changeHostname"
+          }
+        },
+        "CHANGEPASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "changePassword"
+          }
+        },
+        "CONFIGURECUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configureCustomer"
+          }
+        },
+        "DELETEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteAccount"
+          }
+        },
+        "DELETEALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteAlias"
+          }
+        },
+        "DELETEDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomain"
+          }
+        },
+        "DELETEDOMAINDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomainDKIM"
+          }
+        },
+        "DELETEDOMAINDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteDomainDisclaimer"
+          }
+        },
+        "DELETEEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteExternalContact"
+          }
+        },
+        "DELETEFULLACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteFullAccess"
+          }
+        },
+        "DELETESENDAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteSendAs"
+          }
+        },
+        "DELETESENDONBEHALFTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteSendOnBehalfTo"
+          }
+        },
+        "DELETESERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteService"
+          }
+        },
+        "DELETESERVICEAUTHORIZEDIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleteServiceAuthorizedIp"
+          }
+        },
+        "DIAGNOSEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "diagnoseAccount"
+          }
+        },
+        "DISABLEDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disableDKIM"
+          }
+        },
+        "ENABLEDKIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enableDKIM"
+          }
+        },
+        "EXPANDDRIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expandDrive"
+          }
+        },
+        "INSTALLSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "installServer"
+          }
+        },
+        "MAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maintenance"
+          }
+        },
+        "MIGRATEACCOUNTVIAOMM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrateAccountViaOMM"
+          }
+        },
+        "MIGRATIONACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationAccount"
+          }
+        },
+        "MIGRATIONDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationDisclaimer"
+          }
+        },
+        "MIGRATIONEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationExternalContact"
+          }
+        },
+        "MIGRATIONHISTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationHistory"
+          }
+        },
+        "MIGRATIONSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "migrationService"
+          }
+        },
+        "REOPENACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reOpenAccount"
+          }
+        },
+        "SETACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setAccount"
+          }
+        },
+        "SETALIAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setAlias"
+          }
+        },
+        "SETDNS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setDns"
+          }
+        },
+        "SETDOMAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setDomain"
+          }
+        },
+        "SETDOMAINDISCLAIMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setDomainDisclaimer"
+          }
+        },
+        "SETEXTERNALCONTACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setExternalContact"
+          }
+        },
+        "SETSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "setService"
+          }
+        },
+        "SUSPENDACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspendAccount"
+          }
+        },
+        "SUSPENDSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "suspendService"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "UNSUSPENDACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsuspendAccount"
+          }
+        },
+        "UNSUSPENDSERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unsuspendService"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "function enumeration for task"
+      }
+    },
+    "com.ovh.emailpro#EmailProTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Task status"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/account/{email}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing mailbox in pro server"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountAliasResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProAccountAliasResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProAccountAliasResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProAccountAliasResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/alias",
+          "code": 200
+        },
+        "smithy.api#documentation": "Aliases associated to this mailbox"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alias",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/alias",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create new alias"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountAlias": {
+      "type": "structure",
+      "members": {
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alias"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Aliases on this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProAccountAlias"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/alias/{alias}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountAliasRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "alias": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Alias"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountAlias": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProAccountAliasRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/account/{email}/alias/{alias}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing alias"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountChangePasswordRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "new password",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountChangePassword": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProAccountChangePasswordRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/changePassword",
+          "code": 200
+        },
+        "smithy.api#documentation": "Change mailbox password"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountDiagnosticsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountDiagnosis": {
+      "type": "structure",
+      "members": {
+        "canReceiveEmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if ingoing message has been received"
+          }
+        },
+        "canSendEmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if outgoing message has been delivered"
+          }
+        },
+        "connectiveWebmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if possible to authenticate with credentials"
+          }
+        },
+        "isLocked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if account is locked"
+          }
+        },
+        "isMxValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if MX record for account's domain is properly set"
+          }
+        },
+        "isSpammer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if account is flagged as spammer"
+          }
+        },
+        "isSrvValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if SRV (autodiscovery) record for account's domain is properly set"
+          }
+        },
+        "isSuspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determines if account is suspended"
+          }
+        },
+        "lastCheck": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last performed diagnostics date"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account Diagnosis"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountDiagnostics": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountDiagnosticsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProAccountDiagnosis"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/diagnostics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountDiagnosticRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account password",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountDiagnostic": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProAccountDiagnosticRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/diagnostics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create new diagnosis request"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountFullAccessResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProAccountFullAccessResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProAccountFullAccessResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProAccountFullAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/fullAccess",
+          "code": 200
+        },
+        "smithy.api#documentation": "Full access granted users for this mailbox"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "User to give full access",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/fullAccess",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow full access to a user"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Allowed account ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountFullAccess": {
+      "type": "structure",
+      "members": {
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to give full access"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Users having full access on this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProAccountFullAccess"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/fullAccess/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountFullAccessRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give full access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountFullAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProAccountFullAccessRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/account/{email}/fullAccess/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke full access"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendAsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendAsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProAccountSendAsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProAccountSendAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProAccountSendAsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/sendAs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send as granted users for this mailbox"
+      }
+    },
+    "com.ovh.emailpro#SendEmailProAccountAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to allow to send mails from this mailbox",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#SendEmailProAccountAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#SendEmailProAccountAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/sendAs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow another user to send mails from this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountSendAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Allowed account ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountSendAs": {
+      "type": "structure",
+      "members": {
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to give send as"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Users authorized to send mails from this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountSendAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountSendAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProAccountSendAs"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/sendAs/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountSendAsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give send as"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountSendAs": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProAccountSendAsRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/account/{email}/sendAs/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete allowed user for sendAs"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountSendOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfToResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/sendOnBehalfTo",
+          "code": 200
+        },
+        "smithy.api#documentation": "SendOnBehalfTo granted users for this mailbox"
+      }
+    },
+    "com.ovh.emailpro#SendEmailProAccountOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to allow to send On Behalf To mails from this mailbox",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#SendEmailProAccountOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#SendEmailProAccountOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/sendOnBehalfTo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allow another user to Send On Behalf To mails from this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountSendOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Allowed account ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProAccountSendOnBehalfTo": {
+      "type": "structure",
+      "members": {
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Account id to give send on behalf to"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Get users authorized to Send On Behalf To mails from this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountSendOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountSendOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProAccountSendOnBehalfTo"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/sendOnBehalfTo/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfToRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        },
+        "allowedAccountId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account id to give send on behalf to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfTo": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfToRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/account/{email}/sendOnBehalfTo/{allowedAccountId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete allowed user for SendOnBehalfTo"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountTasksRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountTasksResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProAccountTasksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProAccountTasksResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProAccountTasks": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProAccountTasksRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProAccountTasksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/tasks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pending task for this mailbox"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Email"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#GetEmailProAccountTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProAccountTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/account/{email}/tasks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#TerminateEmailProAccountRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Default email for this mailbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#TerminateEmailProAccountResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#TerminateEmailProAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#TerminateEmailProAccountRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#TerminateEmailProAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/account/{email}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Terminate account at expiration date"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProBillingMigratedRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#GetEmailProBillingMigratedResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#GetEmailProBillingMigrated": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProBillingMigratedRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#GetEmailProBillingMigratedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/billingMigrated",
+          "code": 200
+        },
+        "smithy.api#documentation": "Detects billing transition status for the service"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProBillingPlanRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#GetEmailProBillingPlanResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#GetEmailProBillingPlan": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProBillingPlanRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#GetEmailProBillingPlanResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/billingPlan",
+          "code": 200
+        },
+        "smithy.api#documentation": "Emailpro billing plan"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#CreateEmailProChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#CreateEmailProChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#CreateEmailProChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "Filter the value of state property (=)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProDomainResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProDomainResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProDomainResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain",
+          "code": 200
+        },
+        "smithy.api#documentation": "Domains associated to this service"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTHORITATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "authoritative"
+          }
+        },
+        "NONAUTHORITATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nonAuthoritative"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain type"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "autoEnableDKIM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable DKIM automatically after DKIM configuration"
+          }
+        },
+        "configureAutodiscover": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If you host domain in OVH we can configure autodiscover record automatically"
+          }
+        },
+        "configureDKIM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Launch configuration of DKIM automatically for the domain"
+          }
+        },
+        "configureMx": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If you host domain in OVH we can configure mx record automatically"
+          }
+        },
+        "configureSPF": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable automatic SPF record (only for domains hosted by OVHcloud)"
+          }
+        },
+        "mxRelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, emails to not existing address will be redirected to that domain"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain to install on server",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.emailpro#EmailProDomainTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of domain that You want to install",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/domain",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create new domain in pro services"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainNative": {
+      "type": "structure",
+      "members": {
+        "cnameToCheck": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cname that will be checked to prove the domain ownership",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dkimDiagnostics": {
+          "target": "com.ovh.emailpro#EmailProDomainDkimDiagnostics",
+          "traits": {
+            "smithy.api#documentation": "Dkim selectors and DNS configuration state",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "domainAliases": {
+          "target": "com.ovh.emailpro#EmailProDomainNativeDomainAliasesList",
+          "traits": {
+            "smithy.api#documentation": "List of aliases for this domain"
+          }
+        },
+        "domainValidated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Domain validation status"
+          }
+        },
+        "expectedAutodiscoverSRV": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expected SRV record on this domain"
+          }
+        },
+        "expectedMX": {
+          "target": "com.ovh.emailpro#EmailProDomainNativeExpectedMXList",
+          "traits": {
+            "smithy.api#documentation": "Expected MX record(s) on this domain"
+          }
+        },
+        "expectedSPF": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expected SPF record on this domain"
+          }
+        },
+        "isAliasDomain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicate if this domain is an alias for another domain"
+          }
+        },
+        "mxIsValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your DNS MX configuration is valid"
+          }
+        },
+        "mxRecord": {
+          "target": "com.ovh.emailpro#EmailProDomainNativeMxRecordList",
+          "traits": {
+            "smithy.api#documentation": "Domain MX record configured in DNS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "mxRelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, emails to not existing address will be redirected to that domain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "spfIsValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "SPF record validation passed"
+          }
+        },
+        "spfRecord": {
+          "target": "com.ovh.emailpro#EmailProDomainNativeSpfRecordList",
+          "traits": {
+            "smithy.api#documentation": "Domain's SPF record configured in the DNS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "srvIsValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your DNS SRV record is valid"
+          }
+        },
+        "srvRecord": {
+          "target": "com.ovh.emailpro#EmailProDomainNativeSrvRecordList",
+          "traits": {
+            "smithy.api#documentation": "Domain SRV record configured in DNS",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending tasks id"
+          }
+        },
+        "type": {
+          "target": "com.ovh.emailpro#EmailProDomainTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainDkimDiagnostics": {
+      "type": "structure",
+      "members": {
+        "errorCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Error code related to misconfiguration of DKIM, if exists",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DKIM misconfiguration description, if exists",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProDomainDkimDiagnosticsStateEnum",
+          "traits": {
+            "smithy.api#documentation": "State of DKIM selectors",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dkim selectors and DNS configuration state"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainDkimDiagnosticsStateEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inProgress"
+          }
+        },
+        "TOCONFIGURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "toConfigure"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DKIM status"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainNativeDomainAliasesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of aliases for this domain"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainNativeExpectedMXList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected MX record(s) on this domain"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainNativeMxRecordList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain MX record configured in DNS"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainNativeSpfRecordList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain's SPF record configured in the DNS"
+      }
+    },
+    "com.ovh.emailpro#EmailProDomainNativeSrvRecordList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Domain SRV record configured in DNS"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProDomainNative"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain/{domainName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "mxRelay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, emails to not existing address will be redirected to that domain",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.ovh.emailpro#EmailProDomainTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Domain type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#PutEmailProDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#PutEmailProDomainRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/pro/{service}/domain/{domainName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProDomainRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProDomain": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProDomainRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/domain/{domainName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing domain in pro services"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProDisclaimerNative": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature, added at the bottom of your organization emails"
+          }
+        },
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Disclaimer name"
+          }
+        },
+        "outsideOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Activate the disclaimer only for external emails"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "task pending id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "disclaimer"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProDisclaimerNative"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature, added at the bottom of your organization emails",
+            "smithy.api#required": {}
+          }
+        },
+        "outsideOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Activate the disclaimer only for external emails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create organization disclaimer of each email"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Signature, added at the bottom of your organization emails"
+          }
+        },
+        "outsideOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Activate the disclaimer only for external emails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#PutEmailProDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#PutEmailProDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/pro/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProDomainDisclaimerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProDomainDisclaimer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProDomainDisclaimerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/domain/{domainName}/disclaimer",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete existing organization disclaimer"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProDisclaimerAttributeEnum": {
+      "type": "enum",
+      "members": {
+        "CITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "City"
+          }
+        },
+        "COMPANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Company"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Country"
+          }
+        },
+        "DEPARTMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Department"
+          }
+        },
+        "DISPLAYNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DisplayName"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Email"
+          }
+        },
+        "FAXNUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FaxNumber"
+          }
+        },
+        "FIRSTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FirstName"
+          }
+        },
+        "HOMEPHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HomePhoneNumber"
+          }
+        },
+        "INITIALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Initials"
+          }
+        },
+        "LASTNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LastName"
+          }
+        },
+        "MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Manager"
+          }
+        },
+        "MOBILENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MobileNumber"
+          }
+        },
+        "NOTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Notes"
+          }
+        },
+        "OFFICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Office"
+          }
+        },
+        "OTHERFAXNUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OtherFaxNumber"
+          }
+        },
+        "OTHERHOMEPHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OtherHomePhoneNumber"
+          }
+        },
+        "OTHERPHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OtherPhoneNumber"
+          }
+        },
+        "PAGERNUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PagerNumber"
+          }
+        },
+        "PHONENUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PhoneNumber"
+          }
+        },
+        "STATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "State"
+          }
+        },
+        "STREET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Street"
+          }
+        },
+        "TITLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Title"
+          }
+        },
+        "USERLOGONNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserLogonName"
+          }
+        },
+        "ZIPCODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZipCode"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Disclaimer attributes list"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.emailpro#EmailProDisclaimerAttributeEnum"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDisclaimerAttribute": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttributeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain/{domainName}/disclaimerAttribute",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get diclaimer attributes to substitute with Active Directory properties"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProDomainDkimResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkim": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkim",
+          "code": 200
+        },
+        "smithy.api#documentation": "DKIM associated to this domain"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProDomainDkimRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "autoEnableDKIM": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable DKIM automatically after DKIM configuration"
+          }
+        },
+        "configureDkim": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If you host domain in OVH we can configure dkim dns record automatically"
+          }
+        },
+        "selectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "selector name for DKIM",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProDomainDkim": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProDomainDkimRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkim",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create DKIM selector on this domain"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProDomainDkimRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "selectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Selector name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProDkim": {
+      "type": "structure",
+      "members": {
+        "cnameIsValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "DNS CNAME validation passed"
+          }
+        },
+        "customerRecord": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer DNS record"
+          }
+        },
+        "header": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Header used for DKIM signature"
+          }
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update date",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recordType": {
+          "target": "com.ovh.emailpro#EmailProDkimRecordTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Record type of the customer record"
+          }
+        },
+        "selectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Selector name"
+          }
+        },
+        "status": {
+          "target": "com.ovh.emailpro#EmailProDkimStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "DKIM status"
+          }
+        },
+        "targetRecord": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target of the customer record",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pending task for this DKIM",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DKIM for a domain"
+      }
+    },
+    "com.ovh.emailpro#EmailProDkimRecordTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CNAME"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Record type of the customer record"
+      }
+    },
+    "com.ovh.emailpro#EmailProDkimStatusEnum": {
+      "type": "enum",
+      "members": {
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleting"
+          }
+        },
+        "DISABLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabling"
+          }
+        },
+        "ENABLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabling"
+          }
+        },
+        "INPRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inProduction"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        },
+        "WAITINGRECORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waitingRecord"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DKIM status"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProDomainDkim": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProDomainDkimRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProDkim"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkim/{selectorName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProDomainDkimRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "selectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "selectorName"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProDomainDkim": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProDomainDkimRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkim/{selectorName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete DKIM selector on this domain"
+      }
+    },
+    "com.ovh.emailpro#DisableEmailProDomainDkimRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "selectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "selectorName"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DisableEmailProDomainDkim": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DisableEmailProDomainDkimRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkim/{selectorName}/disable",
+          "code": 200
+        },
+        "smithy.api#documentation": "disable dkim signing"
+      }
+    },
+    "com.ovh.emailpro#EnableEmailProDomainDkimRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        },
+        "selectorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "selectorName"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EnableEmailProDomainDkim": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#EnableEmailProDomainDkimRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkim/{selectorName}/enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "enable dkim signing or switch selector used"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimSelectorRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Domain name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProDomainDkimSelector": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimSelectorRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProDomainDkimSelectorResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/domain/{domainName}/dkimSelector",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get dkim selector list"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "displayName",
+            "smithy.api#documentation": "Filter the value of displayName property (like)"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "externalEmailAddress",
+            "smithy.api#documentation": "Filter the value of externalEmailAddress property (like)"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "firstName",
+            "smithy.api#documentation": "Filter the value of firstName property (like)"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#documentation": "Filter the value of id property (like)"
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "lastName",
+            "smithy.api#documentation": "Filter the value of lastName property (like)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProExternalContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProExternalContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProExternalContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProExternalContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/externalContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "External contacts for this service"
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact display name"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact email address",
+            "smithy.api#required": {}
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact first name"
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide the contact in Global Address List"
+          }
+        },
+        "initials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact initials"
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact last name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#CreateEmailProExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#CreateEmailProExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/externalContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "create new external contact"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "External email address"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProExternalContactNative": {
+      "type": "structure",
+      "members": {
+        "creationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact display name"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact email"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide the contact in Global Address List"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Contact id"
+          }
+        },
+        "initials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact initals",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProObjectStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Contact state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task pending id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "External contact for this pro service"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProExternalContactNative"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/externalContact/{externalEmailAddress}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Contact email"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact display name"
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact first name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hiddenFromGAL": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hide the contact in Global Address List"
+          }
+        },
+        "initials": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact initals",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact last name",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#PutEmailProExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#PutEmailProExternalContactRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/pro/{service}/externalContact/{externalEmailAddress}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProExternalContactRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "externalEmailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Contact email"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#DeleteEmailProExternalContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#DeleteEmailProExternalContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/email/pro/{service}/externalContact/{externalEmailAddress}",
+          "code": 200
+        },
+        "smithy.api#documentation": "delete external contact"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProServerRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#EmailProServer": {
+      "type": "structure",
+      "members": {
+        "currentDiskUsage": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current disk usage in MB",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diskSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total disk size in MB",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ipV4"
+          }
+        },
+        "ipV6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ipV6",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "isAValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns A record is valid"
+          }
+        },
+        "isAaaaValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns AAAA record is valid"
+          }
+        },
+        "isPtrV6Valid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns ptrV6 record is valid"
+          }
+        },
+        "isPtrValid": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true your dns ptr record is valid"
+          }
+        },
+        "state": {
+          "target": "com.ovh.emailpro#EmailProServerStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Server state"
+          }
+        },
+        "taskPendingId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Task pending id"
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server version",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server"
+      }
+    },
+    "com.ovh.emailpro#EmailProServerStateEnum": {
+      "type": "enum",
+      "members": {
+        "CONFIGURATIONPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "configurationPending"
+          }
+        },
+        "NOTCONFIGURED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notConfigured"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server State"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProServer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/server",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ServicesService": {
+      "type": "structure",
+      "members": {
+        "canDeleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the service can be set up to be deleted at expiration"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "engagedUpTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiration": {
+          "target": "smithy.api#String"
+        },
+        "possibleRenewPeriod": {
+          "target": "com.ovh.emailpro#ServicesServicePossibleRenewPeriodList",
+          "traits": {
+            "smithy.api#documentation": "All the possible renew period of your service in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renew": {
+          "target": "com.ovh.emailpro#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "renewalType": {
+          "target": "com.ovh.emailpro#ServiceRenewalTypeEnum"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.emailpro#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a Service"
+      }
+    },
+    "com.ovh.emailpro#ServicesServicePossibleRenewPeriodList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "All the possible renew period of your service in month"
+      }
+    },
+    "com.ovh.emailpro#ServiceRenewType": {
+      "type": "structure",
+      "members": {
+        "automatic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service is automatically renewed"
+          }
+        },
+        "deleteAtExpiration": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service will be deleted at expiration"
+          }
+        },
+        "forced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service forced to be renewed"
+          }
+        },
+        "manualPayment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The service needs to be manually renewed and paid",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "period of renew in month",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map a possible renew for a specific service"
+      }
+    },
+    "com.ovh.emailpro#ServiceRenewalTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AUTOMATICFORCEDPRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticForcedProduct"
+          }
+        },
+        "AUTOMATICV2012": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2012"
+          }
+        },
+        "AUTOMATICV2014": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2014"
+          }
+        },
+        "AUTOMATICV2016": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2016"
+          }
+        },
+        "AUTOMATICV2024": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "automaticV2024"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "ONESHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oneShot"
+          }
+        },
+        "OPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "option"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed renewal type of a service"
+      }
+    },
+    "com.ovh.emailpro#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#GetEmailProServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ServicesService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get service information"
+      }
+    },
+    "com.ovh.emailpro#PutEmailProServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        },
+        "renew": {
+          "target": "com.ovh.emailpro#ServiceRenewType",
+          "traits": {
+            "smithy.api#documentation": "Way of handling the renew",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#PutEmailProServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#PutEmailProServiceInfosRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/email/pro/{service}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update service information"
+      }
+    },
+    "com.ovh.emailpro#ListEmailProTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.emailpro#ListEmailProTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.emailpro#ListEmailProTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.emailpro#ListEmailProTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#ListEmailProTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#ListEmailProTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "Pending actions"
+      }
+    },
+    "com.ovh.emailpro#GetEmailProTaskRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Service"
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#GetEmailProTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#GetEmailProTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.emailpro#EmailProTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/email/pro/{service}/task/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your pro organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccountsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/email/pro/{service}/updateFlagsOnAllAccounts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update spam and virus flags on all active accounts"
+      }
+    },
+    "com.ovh.emailpro#Emailpro": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.emailpro#ListEmailPro"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailPro"
+        },
+        {
+          "target": "com.ovh.emailpro#PutEmailPro"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProAccount"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccount"
+        },
+        {
+          "target": "com.ovh.emailpro#PutEmailProAccount"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProAccount"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProAccountAlias"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProAccountChangePassword"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccountDiagnostics"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProAccountDiagnostic"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProAccountFullAccess"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProAccountSendAs"
+        },
+        {
+          "target": "com.ovh.emailpro#SendEmailProAccountAs"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccountSendAs"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProAccountSendAs"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProAccountSendOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailpro#SendEmailProAccountOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccountSendOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProAccountSendOnBehalfTo"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProAccountTasks"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProAccountTask"
+        },
+        {
+          "target": "com.ovh.emailpro#TerminateEmailProAccount"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProBillingMigrated"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProBillingPlan"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProChangeContact"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProDomain"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProDomain"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProDomain"
+        },
+        {
+          "target": "com.ovh.emailpro#PutEmailProDomain"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProDomain"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailpro#PutEmailProDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProDomainDisclaimer"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProDomainDisclaimerAttribute"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProDomainDkim"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProDomainDkim"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProDomainDkim"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProDomainDkim"
+        },
+        {
+          "target": "com.ovh.emailpro#DisableEmailProDomainDkim"
+        },
+        {
+          "target": "com.ovh.emailpro#EnableEmailProDomainDkim"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProDomainDkimSelector"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProExternalContact"
+        },
+        {
+          "target": "com.ovh.emailpro#CreateEmailProExternalContact"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProExternalContact"
+        },
+        {
+          "target": "com.ovh.emailpro#PutEmailProExternalContact"
+        },
+        {
+          "target": "com.ovh.emailpro#DeleteEmailProExternalContact"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProServer"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProServiceInfos"
+        },
+        {
+          "target": "com.ovh.emailpro#PutEmailProServiceInfos"
+        },
+        {
+          "target": "com.ovh.emailpro#ListEmailProTask"
+        },
+        {
+          "target": "com.ovh.emailpro#GetEmailProTask"
+        },
+        {
+          "target": "com.ovh.emailpro#UpdateEmailProFlagsOnAllAccounts"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

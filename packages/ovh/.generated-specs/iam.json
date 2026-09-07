@@ -1,0 +1,2907 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.iam#CheckIamAuthorizationRequestActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of actions to check authorizations for"
+      }
+    },
+    "com.ovh.iam#CheckIamAuthorizationRequestResourceURNsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources on which accesses should be checked"
+      }
+    },
+    "com.ovh.iam#CheckIamAuthorizationRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        },
+        "actions": {
+          "target": "com.ovh.iam#CheckIamAuthorizationRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "List of actions to check authorizations for",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceURNs": {
+          "target": "com.ovh.iam#CheckIamAuthorizationRequestResourceURNsList",
+          "traits": {
+            "smithy.api#documentation": "Resources on which accesses should be checked",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamAuthorizeBatchResponse": {
+      "type": "structure",
+      "members": {
+        "authorizedActions": {
+          "target": "com.ovh.iam#IamAuthorizeBatchResponseAuthorizedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Authorized actions"
+          }
+        },
+        "resourceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URN of the resource"
+          }
+        },
+        "unauthorizedActions": {
+          "target": "com.ovh.iam#IamAuthorizeBatchResponseUnauthorizedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Unauthorized actions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of an authorization request"
+      }
+    },
+    "com.ovh.iam#IamAuthorizeBatchResponseAuthorizedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Authorized actions"
+      }
+    },
+    "com.ovh.iam#IamAuthorizeBatchResponseUnauthorizedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Unauthorized actions"
+      }
+    },
+    "com.ovh.iam#CheckIamAuthorizationResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamAuthorizeBatchResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#CheckIamAuthorizationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#CheckIamAuthorizationResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#CheckIamAuthorization": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CheckIamAuthorizationRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#CheckIamAuthorizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/authorization/check",
+          "code": 200
+        },
+        "smithy.api#documentation": "Validate your authorizations on given resources"
+      }
+    },
+    "com.ovh.iam#ListIamLogKindRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#ListIamLogKindResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamLogKindResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamLogKindResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamLogKind": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamLogKindRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamLogKindResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/log/kind",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available log kinds"
+      }
+    },
+    "com.ovh.iam#GetIamLogKindRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DbaasLogsLogKind": {
+      "type": "structure",
+      "members": {
+        "additionalReturnedFields": {
+          "target": "com.ovh.iam#DbaasLogsLogKindAdditionalReturnedFieldsList",
+          "traits": {
+            "smithy.api#documentation": "List of additional log fields managed in this log kind"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the log kind"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind display name"
+          }
+        },
+        "kindId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update date of the log kind"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log kind"
+      }
+    },
+    "com.ovh.iam#DbaasLogsLogKindAdditionalReturnedFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of additional log fields managed in this log kind"
+      }
+    },
+    "com.ovh.iam#GetIamLogKind": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#GetIamLogKindRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#DbaasLogsLogKind"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/log/kind/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a log kind"
+      }
+    },
+    "com.ovh.iam#ListIamLogSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "Filter on a specific kind (e.g., default)"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#ListIamLogSubscriptionResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamLogSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamLogSubscriptionResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamLogSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamLogSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamLogSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/log/subscription",
+          "code": 200
+        },
+        "smithy.api#documentation": "List subscription IDs for a cluster"
+      }
+    },
+    "com.ovh.iam#CreateIamLogSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name to subscribe to",
+            "smithy.api#required": {}
+          }
+        },
+        "streamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Customer log stream ID",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DbaasLogsLogSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the operation"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation owner's service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Asynchronous operation after subscribing or unsubscribing to a resource logs"
+      }
+    },
+    "com.ovh.iam#CreateIamLogSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CreateIamLogSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#DbaasLogsLogSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/log/subscription",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a subscription from logs to a pre-existing LDP stream"
+      }
+    },
+    "com.ovh.iam#GetIamLogSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DbaasLogsLogSubscription": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the subscription"
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name of this subscription"
+          }
+        },
+        "resource": {
+          "target": "com.ovh.iam#DbaasLogsLogSubscriptionResource",
+          "traits": {
+            "smithy.api#documentation": "Subscribed resource, where the logs come from"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the destination log service"
+          }
+        },
+        "streamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the destination log stream"
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription ID"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update date of the subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log subscription"
+      }
+    },
+    "com.ovh.iam#DbaasLogsLogSubscriptionResource": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of subscribed resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of subscribed resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Log subscription resource"
+      }
+    },
+    "com.ovh.iam#GetIamLogSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#GetIamLogSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#DbaasLogsLogSubscription"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/log/subscription/{subscriptionId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get subscription details"
+      }
+    },
+    "com.ovh.iam#DeleteIamLogSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DeleteIamLogSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#DeleteIamLogSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#DbaasLogsLogSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/iam/log/subscription/{subscriptionId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a subscription"
+      }
+    },
+    "com.ovh.iam#CreateIamLogUrlRequest": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Log kind name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DbaasLogsTemporaryLogsLink": {
+      "type": "structure",
+      "members": {
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary url expiration date"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporary url"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Temporary url information"
+      }
+    },
+    "com.ovh.iam#CreateIamLogUrl": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CreateIamLogUrlRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#DbaasLogsTemporaryLogsLink"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/log/url",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a temporary URL to retrieve logs"
+      }
+    },
+    "com.ovh.iam#ListIamPermissionsGroupRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamPermissionsGroup": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation time"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the permissions group"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner of the permissions group"
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions granted when using this permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update time",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies to include this permissions group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions group defines a re-usable set of permissions"
+      }
+    },
+    "com.ovh.iam#IamPolicyPermissions": {
+      "type": "structure",
+      "members": {
+        "allow": {
+          "target": "com.ovh.iam#IamPolicyPermissionsAllowList",
+          "traits": {
+            "smithy.api#documentation": "List of allowed actions",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deny": {
+          "target": "com.ovh.iam#IamPolicyPermissionsDenyList",
+          "traits": {
+            "smithy.api#documentation": "Actions to deny the access to",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "except": {
+          "target": "com.ovh.iam#IamPolicyPermissionsExceptList",
+          "traits": {
+            "smithy.api#documentation": "Actions to filter from the allowed list",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions included in a policy"
+      }
+    },
+    "com.ovh.iam#IamPolicyAction": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the action",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action that can be allowed or denied on a resource"
+      }
+    },
+    "com.ovh.iam#IamPolicyPermissionsAllowList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of allowed actions"
+      }
+    },
+    "com.ovh.iam#IamPolicyPermissionsDenyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions to deny the access to"
+      }
+    },
+    "com.ovh.iam#IamPolicyPermissionsExceptList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyAction"
+      },
+      "traits": {
+        "smithy.api#documentation": "Actions to filter from the allowed list"
+      }
+    },
+    "com.ovh.iam#ListIamPermissionsGroupResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPermissionsGroup"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamPermissionsGroupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamPermissionsGroupResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamPermissionsGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamPermissionsGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamPermissionsGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/permissionsGroup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve all permissions groups"
+      }
+    },
+    "com.ovh.iam#CreateIamPermissionsGroupRequest": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions granted when using this permissions group",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#CreateIamPermissionsGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CreateIamPermissionsGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamPermissionsGroup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/permissionsGroup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a permissions group"
+      }
+    },
+    "com.ovh.iam#GetIamPermissionsGroupRequest": {
+      "type": "structure",
+      "members": {
+        "permissionsGroupURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Permissions groupurn"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#GetIamPermissionsGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#GetIamPermissionsGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamPermissionsGroup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/permissionsGroup/{permissionsGroupURN}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the given permissions group"
+      }
+    },
+    "com.ovh.iam#PutIamPermissionsGroupRequest": {
+      "type": "structure",
+      "members": {
+        "permissionsGroupURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Permissions groupurn"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the permissions group",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions granted when using this permissions group",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#PutIamPermissionsGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#PutIamPermissionsGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamPermissionsGroup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/iam/permissionsGroup/{permissionsGroupURN}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a permissions group"
+      }
+    },
+    "com.ovh.iam#DeleteIamPermissionsGroupRequest": {
+      "type": "structure",
+      "members": {
+        "permissionsGroupURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Permissions groupurn"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DeleteIamPermissionsGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#DeleteIamPermissionsGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/iam/permissionsGroup/{permissionsGroupURN}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the given permissions group"
+      }
+    },
+    "com.ovh.iam#ListIamPolicyRequestActionList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamPolicyRequestIdentityList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamPolicyRequestResourceURNList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "com.ovh.iam#ListIamPolicyRequestActionList",
+          "traits": {
+            "smithy.api#httpQuery": "action",
+            "smithy.api#documentation": "Filter on policies embedding the given IAM action"
+          }
+        },
+        "details": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "details",
+            "smithy.api#documentation": "Add extra information about resources in output"
+          }
+        },
+        "identity": {
+          "target": "com.ovh.iam#ListIamPolicyRequestIdentityList",
+          "traits": {
+            "smithy.api#httpQuery": "identity",
+            "smithy.api#documentation": "Filter on policies embedding the given identity"
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "readOnly",
+            "smithy.api#documentation": "Filter on the readOnly attribute"
+          }
+        },
+        "resourceURN": {
+          "target": "com.ovh.iam#ListIamPolicyRequestResourceURNList",
+          "traits": {
+            "smithy.api#httpQuery": "resourceURN",
+            "smithy.api#documentation": "Filter on policies embedding the given resource URN"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "conditions": {
+          "target": "com.ovh.iam#IamPolicyCondition",
+          "traits": {
+            "smithy.api#documentation": "Conditions restrict permissions following resources, date or customer's information",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation time"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the policy",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expiredAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration date of the policy, after this date it will no longer be applied",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the policy"
+          }
+        },
+        "identities": {
+          "target": "com.ovh.iam#IamPolicyResponseIdentitiesList",
+          "traits": {
+            "smithy.api#documentation": "Recipients of the delegated resources"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the policy"
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner of the policy"
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions accorded to the recipients on the given resources"
+          }
+        },
+        "permissionsGroups": {
+          "target": "com.ovh.iam#IamPolicyResponsePermissionsGroupsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions groups accorded to the recipients on the given resources"
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether you can update policy"
+          }
+        },
+        "resources": {
+          "target": "com.ovh.iam#IamPolicyResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to delegate"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update time",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Policy definition"
+      }
+    },
+    "com.ovh.iam#IamPolicyCondition": {
+      "type": "structure",
+      "members": {
+        "conditions": {
+          "target": "com.ovh.iam#IamPolicyConditionConditionsList",
+          "traits": {
+            "smithy.api#documentation": "conditions",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "operator": {
+          "target": "com.ovh.iam#IamPolicyConditionOperatorEnum",
+          "traits": {
+            "smithy.api#documentation": "Operator used with conditions"
+          }
+        },
+        "values": {
+          "target": "com.ovh.iam#IamPolicyConditionValuesMap",
+          "traits": {
+            "smithy.api#documentation": "Conditions to apply",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Condition included in a policy"
+      }
+    },
+    "com.ovh.iam#IamPolicyConditionConditionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyCondition"
+      },
+      "traits": {
+        "smithy.api#documentation": "conditions"
+      }
+    },
+    "com.ovh.iam#IamPolicyConditionOperatorEnum": {
+      "type": "enum",
+      "members": {
+        "AND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AND"
+          }
+        },
+        "MATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCH"
+          }
+        },
+        "NOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT"
+          }
+        },
+        "OR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operator that can be used in order to restrict policy"
+      }
+    },
+    "com.ovh.iam#IamPolicyConditionValuesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions to apply"
+      }
+    },
+    "com.ovh.iam#IamPolicyResponseIdentitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Recipients of the delegated resources"
+      }
+    },
+    "com.ovh.iam#IamPolicyPermissionsGroup": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the permissions group",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner of the permissions group",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions embedded in the permissions group",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URN of the permissions group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions group linked to a policy"
+      }
+    },
+    "com.ovh.iam#IamPolicyResponsePermissionsGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyPermissionsGroup"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions groups accorded to the recipients on the given resources"
+      }
+    },
+    "com.ovh.iam#IamPolicyResource": {
+      "type": "structure",
+      "members": {
+        "group": {
+          "target": "com.ovh.iam#IamPolicyGroup",
+          "traits": {
+            "smithy.api#documentation": "Group object, if resource is a group",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resource": {
+          "target": "com.ovh.iam#IamPolicySingleResource",
+          "traits": {
+            "smithy.api#documentation": "Resource object, if resource is a single resource",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URN of the resource",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource in a policy"
+      }
+    },
+    "com.ovh.iam#IamPolicyGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the group"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the group"
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether you can add or remove resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group defines a set of resources"
+      }
+    },
+    "com.ovh.iam#IamPolicySingleResource": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the resource"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource"
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.iam#IamPolicySingleResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type. All types can be retrieved at /reference/resource/type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Single resource in a policy"
+      }
+    },
+    "com.ovh.iam#IamPolicySingleResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.iam#IamPolicyResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to delegate"
+      }
+    },
+    "com.ovh.iam#ListIamPolicyResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamPolicyResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/policy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve all policies"
+      }
+    },
+    "com.ovh.iam#CreateIamPolicyRequestIdentitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Recipients of the delegated resources"
+      }
+    },
+    "com.ovh.iam#IamPolicyPermissionsGroupInput": {
+      "type": "structure",
+      "members": {
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URN of the permissions group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions group linked to a policy"
+      }
+    },
+    "com.ovh.iam#CreateIamPolicyRequestPermissionsGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyPermissionsGroupInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions groups accorded to the recipients on the given resources"
+      }
+    },
+    "com.ovh.iam#IamPolicyResourceInput": {
+      "type": "structure",
+      "members": {
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URN of the resource",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource in a policy"
+      }
+    },
+    "com.ovh.iam#CreateIamPolicyRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyResourceInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to delegate"
+      }
+    },
+    "com.ovh.iam#CreateIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "conditions": {
+          "target": "com.ovh.iam#IamPolicyCondition",
+          "traits": {
+            "smithy.api#documentation": "Conditions restrict permissions following resources, date or customer's information",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the policy"
+          }
+        },
+        "expiredAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration date of the policy, after this date it will no longer be applied",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "identities": {
+          "target": "com.ovh.iam#CreateIamPolicyRequestIdentitiesList",
+          "traits": {
+            "smithy.api#documentation": "Recipients of the delegated resources",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the policy",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions accorded to the recipients on the given resources",
+            "smithy.api#required": {}
+          }
+        },
+        "permissionsGroups": {
+          "target": "com.ovh.iam#CreateIamPolicyRequestPermissionsGroupsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions groups accorded to the recipients on the given resources",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resources": {
+          "target": "com.ovh.iam#CreateIamPolicyRequestResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to delegate",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#CreateIamPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CreateIamPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/policy",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new policy"
+      }
+    },
+    "com.ovh.iam#GetIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Policy ID"
+          }
+        },
+        "details": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "details",
+            "smithy.api#documentation": "Add extra information about resources in output"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#GetIamPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#GetIamPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/policy/{policyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the given policy"
+      }
+    },
+    "com.ovh.iam#PutIamPolicyRequestIdentitiesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Recipients of the delegated resources"
+      }
+    },
+    "com.ovh.iam#PutIamPolicyRequestPermissionsGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyPermissionsGroupInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Permissions groups accorded to the recipients on the given resources"
+      }
+    },
+    "com.ovh.iam#PutIamPolicyRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamPolicyResourceInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to delegate"
+      }
+    },
+    "com.ovh.iam#PutIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Policy ID"
+          }
+        },
+        "conditions": {
+          "target": "com.ovh.iam#IamPolicyCondition",
+          "traits": {
+            "smithy.api#documentation": "Conditions restrict permissions following resources, date or customer's information",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the policy"
+          }
+        },
+        "expiredAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration date of the policy, after this date it will no longer be applied",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "identities": {
+          "target": "com.ovh.iam#PutIamPolicyRequestIdentitiesList",
+          "traits": {
+            "smithy.api#documentation": "Recipients of the delegated resources",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the policy",
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.ovh.iam#IamPolicyPermissions",
+          "traits": {
+            "smithy.api#documentation": "Permissions accorded to the recipients on the given resources",
+            "smithy.api#required": {}
+          }
+        },
+        "permissionsGroups": {
+          "target": "com.ovh.iam#PutIamPolicyRequestPermissionsGroupsList",
+          "traits": {
+            "smithy.api#documentation": "Permissions groups accorded to the recipients on the given resources",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "resources": {
+          "target": "com.ovh.iam#PutIamPolicyRequestResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to delegate",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#PutIamPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#PutIamPolicyRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/iam/policy/{policyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing policy"
+      }
+    },
+    "com.ovh.iam#DeleteIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Policy ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DeleteIamPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#DeleteIamPolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/iam/policy/{policyId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the given policy"
+      }
+    },
+    "com.ovh.iam#ListIamReferenceActionRequestResourceTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamReferenceActionRequest": {
+      "type": "structure",
+      "members": {
+        "resourceType": {
+          "target": "com.ovh.iam#ListIamReferenceActionRequestResourceTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "resourceType",
+            "smithy.api#documentation": "Filter actions for specific resource types"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamReferenceAction": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the action"
+          }
+        },
+        "categories": {
+          "target": "com.ovh.iam#IamReferenceActionCategoriesList",
+          "traits": {
+            "smithy.api#documentation": "List of categories the action belongs to"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the action"
+          }
+        },
+        "hasQueryParameters": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether you can use the action with additional parameters"
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type related to the action"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Action that can be allowed or denied on a resource"
+      }
+    },
+    "com.ovh.iam#IamReferenceActionCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of categories the action belongs to"
+      }
+    },
+    "com.ovh.iam#ListIamReferenceActionResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamReferenceAction"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamReferenceActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamReferenceActionResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamReferenceAction": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamReferenceActionRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamReferenceActionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/reference/action",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve all actions"
+      }
+    },
+    "com.ovh.iam#ListIamReferenceResourceTypeRequest": {
+      "type": "structure",
+      "members": {
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#ListIamReferenceResourceTypeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamReferenceResourceTypeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamReferenceResourceTypeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamReferenceResourceType": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamReferenceResourceTypeRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamReferenceResourceTypeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/reference/resource/type",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve all resource types"
+      }
+    },
+    "com.ovh.iam#ListIamResourceRequestResourceNameList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamResourceRequestResourceTypeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamResourceRequestResourceURNList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.iam#ListIamResourceRequestTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamResourceRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.iam#ListIamResourceRequestTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "com.ovh.iam#ListIamResourceRequestResourceNameList",
+          "traits": {
+            "smithy.api#httpQuery": "resourceName",
+            "smithy.api#documentation": "Filter resources for specific resource names"
+          }
+        },
+        "resourceType": {
+          "target": "com.ovh.iam#ListIamResourceRequestResourceTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "resourceType",
+            "smithy.api#documentation": "Filter resources for specific resource types"
+          }
+        },
+        "resourceURN": {
+          "target": "com.ovh.iam#ListIamResourceRequestResourceURNList",
+          "traits": {
+            "smithy.api#httpQuery": "resourceURN",
+            "smithy.api#documentation": "Filter resources for specific resource URN patterns"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.iam#ListIamResourceRequestTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "tags",
+            "smithy.api#documentation": "Filter resources using tag filters"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamResourceResource": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource owner"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.iam#IamResourceResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type. All types can be retrieved at /reference/resource/type"
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource is an entity standing for a product. It is used for right delegation"
+      }
+    },
+    "com.ovh.iam#IamResourceResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.iam#ListIamResourceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamResourceResource"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamResourceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamResourceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/resource",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all resources"
+      }
+    },
+    "com.ovh.iam#GetIamResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ResourceURN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#GetIamResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#GetIamResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamResourceResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/resource/{resourceURN}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a resource"
+      }
+    },
+    "com.ovh.iam#PutIamResourceRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.iam#PutIamResourceRequest": {
+      "type": "structure",
+      "members": {
+        "resourceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ResourceURN"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.iam#PutIamResourceRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#PutIamResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#PutIamResourceRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamResourceResource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/iam/resource/{resourceURN}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing resource\n\nUpdate an existing resource\\\nDepending on the update, you will require specific grants on this resource:\n- Adding tag(s) requires action '$resourceType:apiovh:iam/resource/tag/add'\n- Removing tag(s) requires action '$resourceType:apiovh:iam/resource/tag/remove'\n\n(with $resourceType the type of the updated resource)"
+      }
+    },
+    "com.ovh.iam#CheckIamResourceAuthorizationRequestActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of actions to check authorizations for"
+      }
+    },
+    "com.ovh.iam#CheckIamResourceAuthorizationRequest": {
+      "type": "structure",
+      "members": {
+        "resourceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ResourceURN"
+          }
+        },
+        "actions": {
+          "target": "com.ovh.iam#CheckIamResourceAuthorizationRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "List of actions to check authorizations for",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamAuthorizeResponse": {
+      "type": "structure",
+      "members": {
+        "authorizedActions": {
+          "target": "com.ovh.iam#IamAuthorizeResponseAuthorizedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Authorized actions"
+          }
+        },
+        "unauthorizedActions": {
+          "target": "com.ovh.iam#IamAuthorizeResponseUnauthorizedActionsList",
+          "traits": {
+            "smithy.api#documentation": "Unauthorized actions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of an authorization request"
+      }
+    },
+    "com.ovh.iam#IamAuthorizeResponseAuthorizedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Authorized actions"
+      }
+    },
+    "com.ovh.iam#IamAuthorizeResponseUnauthorizedActionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Unauthorized actions"
+      }
+    },
+    "com.ovh.iam#CheckIamResourceAuthorization": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CheckIamResourceAuthorizationRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamAuthorizeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/resource/{resourceURN}/authorization/check",
+          "code": 200
+        },
+        "smithy.api#documentation": "Validate authorizations on a given resource"
+      }
+    },
+    "com.ovh.iam#CreateIamResourceTagRequest": {
+      "type": "structure",
+      "members": {
+        "resourceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ResourceURN"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource tag key. It must comply with '^[a-zA-Z0-9_.:/=+@-]{1,128}\\z'",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource tag value. It must comply with '^[a-zA-Z0-9_.:/=+@-]{0,256}\\z'",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#CreateIamResourceTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CreateIamResourceTagRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/resource/{resourceURN}/tag",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a tag to a resource\n\nAdd a tag to a resource\\\nThis action requires to be granted on action '$resourceType:apiovh:iam/resource/tag/add' (with $resourceType the type of the updated resource)"
+      }
+    },
+    "com.ovh.iam#DeleteIamResourceTagRequest": {
+      "type": "structure",
+      "members": {
+        "resourceURN": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ResourceURN"
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DeleteIamResourceTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#DeleteIamResourceTagRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/iam/resource/{resourceURN}/tag/{key}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a tag from a resource\n\nRemove a tag from a resource\\\nThis action requires to be granted on action '$resourceType:apiovh:iam/resource/tag/remove' (with $resourceType the type of the updated resource)"
+      }
+    },
+    "com.ovh.iam#ListIamResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "details",
+            "smithy.api#documentation": "Add extra information about resources in output"
+          }
+        },
+        "xPaginationCursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Cursor",
+            "smithy.api#documentation": "Pagination cursor"
+          }
+        },
+        "xPaginationSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpHeader": "X-Pagination-Size",
+            "smithy.api#documentation": "Pagination size"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#IamGroupResponse": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation time"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the group"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the group"
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner of the group"
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether you can add or remove resources"
+          }
+        },
+        "resources": {
+          "target": "com.ovh.iam#IamGroupResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources included in the group"
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last update time",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group defines a set of resources"
+      }
+    },
+    "com.ovh.iam#IamGroupResource": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource owner",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tags": {
+          "target": "com.ovh.iam#IamGroupResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type. All types can be retrieved at /reference/resource/type",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource is an entity standing for a product. It is used for right delegation"
+      }
+    },
+    "com.ovh.iam#IamGroupResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.iam#IamGroupResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamGroupResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources included in the group"
+      }
+    },
+    "com.ovh.iam#ListIamResourceGroupResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamGroupResponse"
+      },
+      "traits": {}
+    },
+    "com.ovh.iam#ListIamResourceGroupResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.iam#ListIamResourceGroupResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.iam#ListIamResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#ListIamResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#ListIamResourceGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/resourceGroup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve all resource groups"
+      }
+    },
+    "com.ovh.iam#IamGroupResourceInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource is an entity standing for a product. It is used for right delegation"
+      }
+    },
+    "com.ovh.iam#CreateIamResourceGroupRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamGroupResourceInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to add in the created group"
+      }
+    },
+    "com.ovh.iam#CreateIamResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the group",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.ovh.iam#CreateIamResourceGroupRequestResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to add in the created group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#CreateIamResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#CreateIamResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/iam/resourceGroup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new resource group"
+      }
+    },
+    "com.ovh.iam#GetIamResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Group ID"
+          }
+        },
+        "details": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "details",
+            "smithy.api#documentation": "Add extra information about resources in output"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#GetIamResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#GetIamResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/iam/resourceGroup/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve the given resource group"
+      }
+    },
+    "com.ovh.iam#PutIamResourceGroupRequestResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.iam#IamGroupResourceInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "New list of resources of the group"
+      }
+    },
+    "com.ovh.iam#PutIamResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Group ID"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New name of the group",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.ovh.iam#PutIamResourceGroupRequestResourcesList",
+          "traits": {
+            "smithy.api#documentation": "New list of resources of the group",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#PutIamResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#PutIamResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.ovh.iam#IamGroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/iam/resourceGroup/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing resource group"
+      }
+    },
+    "com.ovh.iam#DeleteIamResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Group ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.iam#DeleteIamResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.iam#DeleteIamResourceGroupRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/iam/resourceGroup/{groupId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the given resource group"
+      }
+    },
+    "com.ovh.iam#Iam": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.iam#CheckIamAuthorization"
+        },
+        {
+          "target": "com.ovh.iam#ListIamLogKind"
+        },
+        {
+          "target": "com.ovh.iam#GetIamLogKind"
+        },
+        {
+          "target": "com.ovh.iam#ListIamLogSubscription"
+        },
+        {
+          "target": "com.ovh.iam#CreateIamLogSubscription"
+        },
+        {
+          "target": "com.ovh.iam#GetIamLogSubscription"
+        },
+        {
+          "target": "com.ovh.iam#DeleteIamLogSubscription"
+        },
+        {
+          "target": "com.ovh.iam#CreateIamLogUrl"
+        },
+        {
+          "target": "com.ovh.iam#ListIamPermissionsGroup"
+        },
+        {
+          "target": "com.ovh.iam#CreateIamPermissionsGroup"
+        },
+        {
+          "target": "com.ovh.iam#GetIamPermissionsGroup"
+        },
+        {
+          "target": "com.ovh.iam#PutIamPermissionsGroup"
+        },
+        {
+          "target": "com.ovh.iam#DeleteIamPermissionsGroup"
+        },
+        {
+          "target": "com.ovh.iam#ListIamPolicy"
+        },
+        {
+          "target": "com.ovh.iam#CreateIamPolicy"
+        },
+        {
+          "target": "com.ovh.iam#GetIamPolicy"
+        },
+        {
+          "target": "com.ovh.iam#PutIamPolicy"
+        },
+        {
+          "target": "com.ovh.iam#DeleteIamPolicy"
+        },
+        {
+          "target": "com.ovh.iam#ListIamReferenceAction"
+        },
+        {
+          "target": "com.ovh.iam#ListIamReferenceResourceType"
+        },
+        {
+          "target": "com.ovh.iam#ListIamResource"
+        },
+        {
+          "target": "com.ovh.iam#GetIamResource"
+        },
+        {
+          "target": "com.ovh.iam#PutIamResource"
+        },
+        {
+          "target": "com.ovh.iam#CheckIamResourceAuthorization"
+        },
+        {
+          "target": "com.ovh.iam#CreateIamResourceTag"
+        },
+        {
+          "target": "com.ovh.iam#DeleteIamResourceTag"
+        },
+        {
+          "target": "com.ovh.iam#ListIamResourceGroup"
+        },
+        {
+          "target": "com.ovh.iam#CreateIamResourceGroup"
+        },
+        {
+          "target": "com.ovh.iam#GetIamResourceGroup"
+        },
+        {
+          "target": "com.ovh.iam#PutIamResourceGroup"
+        },
+        {
+          "target": "com.ovh.iam#DeleteIamResourceGroup"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}

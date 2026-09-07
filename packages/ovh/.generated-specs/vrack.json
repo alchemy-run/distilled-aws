@@ -1,0 +1,5098 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.ovh.vrack#IamResourceTagFilterInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Resource tag filter"
+      }
+    },
+    "com.ovh.vrack#ListVrackRequestIamTagsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrack#IamResourceTagFilterInput"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackRequestIamTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.ovh.vrack#ListVrackRequestIamTagsValueList"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackRequest": {
+      "type": "structure",
+      "members": {
+        "iamTags": {
+          "target": "com.ovh.vrack#ListVrackRequestIamTagsMap",
+          "traits": {
+            "smithy.api#httpQuery": "iamTags",
+            "smithy.api#documentation": "Filter resources on IAM tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available services"
+      }
+    },
+    "com.ovh.vrack#GetVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackVrackWithIAM": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the vRack"
+          }
+        },
+        "iam": {
+          "target": "com.ovh.vrack#IamResourceMetadata",
+          "traits": {
+            "smithy.api#documentation": "IAM resource metadata",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the vRack"
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service name of your vRack on OVHcloud"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrack"
+      }
+    },
+    "com.ovh.vrack#IamResourceMetadata": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the resource"
+          }
+        },
+        "tags": {
+          "target": "com.ovh.vrack#IamResourceMetadataTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "urn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique resource name used in policies"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IAM resource metadata embedded in services models"
+      }
+    },
+    "com.ovh.vrack#IamResourceMetadataTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags. Tags that were internally computed are prefixed with ovh:"
+      }
+    },
+    "com.ovh.vrack#GetVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackVrackWithIAM"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#PutVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the vRack"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the vRack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#PutVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#PutVrackRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vrack/{serviceName}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServiceEnum": {
+      "type": "enum",
+      "members": {
+        "CLOUDPROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cloudProject"
+          }
+        },
+        "DEDICATEDCLOUD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicatedCloud"
+          }
+        },
+        "DEDICATEDCLOUDDATACENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicatedCloudDatacenter"
+          }
+        },
+        "DEDICATEDCONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicatedConnect"
+          }
+        },
+        "DEDICATEDSERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicatedServer"
+          }
+        },
+        "DEDICATEDSERVERINTERFACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dedicatedServerInterface"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        },
+        "IPLOADBALANCING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ipLoadbalancing"
+          }
+        },
+        "IPV6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ipv6"
+          }
+        },
+        "LEGACYVRACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "legacyVrack"
+          }
+        },
+        "OVHCLOUDCONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ovhCloudConnect"
+          }
+        },
+        "VMWARECLOUDDIRECTORVIRTUALDATACENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vmwareCloudDirectorVirtualDataCenter"
+          }
+        },
+        "VRACKSERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vrackServices"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for vrack allowed service"
+      }
+    },
+    "com.ovh.vrack#ListVrackAllowedServicesRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "serviceFamily": {
+          "target": "com.ovh.vrack#VrackAllowedServiceEnum",
+          "traits": {
+            "smithy.api#httpQuery": "serviceFamily",
+            "smithy.api#documentation": "Filter on a specific service family"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServices": {
+      "type": "structure",
+      "members": {
+        "cloudProject": {
+          "target": "com.ovh.vrack#VrackAllowedServicesCloudProjectList",
+          "traits": {
+            "smithy.api#documentation": "list of publicCloud projects allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedCloud": {
+          "target": "com.ovh.vrack#VrackAllowedServicesDedicatedCloudList",
+          "traits": {
+            "smithy.api#documentation": "list of dedicated cloud allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedCloudDatacenter": {
+          "target": "com.ovh.vrack#VrackAllowedServicesDedicatedCloudDatacenterList",
+          "traits": {
+            "smithy.api#documentation": "list of dedicated cloud datacenters allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedConnect": {
+          "target": "com.ovh.vrack#VrackAllowedServicesDedicatedConnectList",
+          "traits": {
+            "smithy.api#documentation": "list of dedicated connect links allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedServer": {
+          "target": "com.ovh.vrack#VrackAllowedServicesDedicatedServerList",
+          "traits": {
+            "smithy.api#documentation": "list of dedicated servers allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "com.ovh.vrack#VrackAllowedServicesDedicatedServerInterfaceList",
+          "traits": {
+            "smithy.api#documentation": "list of dedicated server interfaces allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "com.ovh.vrack#VrackAllowedServicesIpList",
+          "traits": {
+            "smithy.api#documentation": "list of blocks allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ipLoadbalancing": {
+          "target": "com.ovh.vrack#VrackAllowedServicesIpLoadbalancingList",
+          "traits": {
+            "smithy.api#documentation": "list of ipLoadbalancing allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ipv6": {
+          "target": "com.ovh.vrack#VrackAllowedServicesIpv6List",
+          "traits": {
+            "smithy.api#documentation": "list of ipv6 blocks allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "legacyVrack": {
+          "target": "com.ovh.vrack#VrackAllowedServicesLegacyVrackList",
+          "traits": {
+            "smithy.api#documentation": "list of legacy vrack (1.0) allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ovhCloudConnect": {
+          "target": "com.ovh.vrack#VrackAllowedServicesOvhCloudConnectList",
+          "traits": {
+            "smithy.api#documentation": "List of the ovhCloudConnect services allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vmwareCloudDirectorVirtualDataCenter": {
+          "target": "com.ovh.vrack#VrackAllowedServicesVmwareCloudDirectorVirtualDataCenterList",
+          "traits": {
+            "smithy.api#documentation": "List of the vmwareCloudDirectorVirtualDataCenter allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vrackServices": {
+          "target": "com.ovh.vrack#VrackAllowedServicesVrackServicesList",
+          "traits": {
+            "smithy.api#documentation": "List of the vrackServices allowed to be connected to vrack",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A structure given all service allowed for this vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesCloudProjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of publicCloud projects allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesDedicatedCloudList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of dedicated cloud allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesDedicatedCloudDatacenterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of dedicated cloud datacenters allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesDedicatedConnectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of dedicated connect links allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesDedicatedServerList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of dedicated servers allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedDedicatedServerInterfaces": {
+      "type": "structure",
+      "members": {
+        "dedicatedServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the name of dedicatedServer"
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the unique identifier of dedicatedServerInterface"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the name of dedicatedServerInterface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A structure giving all dedicated server interfaces allowed for this vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesDedicatedServerInterfaceList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrack#VrackAllowedDedicatedServerInterfaces"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of dedicated server interfaces allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesIpList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of blocks allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesIpLoadbalancingList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of ipLoadbalancing allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesIpv6List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of ipv6 blocks allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesLegacyVrackList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "list of legacy vrack (1.0) allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesOvhCloudConnectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the ovhCloudConnect services allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesVmwareCloudDirectorVirtualDataCenterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the vmwareCloudDirectorVirtualDataCenter allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#VrackAllowedServicesVrackServicesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the vrackServices allowed to be connected to vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackAllowedServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackAllowedServicesRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackAllowedServices"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/allowedServices",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all services allowed in this vrack"
+      }
+    },
+    "com.ovh.vrack#CreateVrackChangeContactRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "contactAdmin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as admin contact"
+          }
+        },
+        "contactBilling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as billing contact"
+          }
+        },
+        "contactTech": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact to set as tech contact"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackChangeContactResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#CreateVrackChangeContactResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#CreateVrackChangeContactResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackChangeContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackChangeContactRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#CreateVrackChangeContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/changeContact",
+          "code": 200
+        },
+        "smithy.api#documentation": "Launch a contact change procedure"
+      }
+    },
+    "com.ovh.vrack#ListVrackCloudProjectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackCloudProjectResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackCloudProjectResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackCloudProjectResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackCloudProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackCloudProjectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackCloudProjectResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/cloudProject",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for publicCloud project"
+      }
+    },
+    "com.ovh.vrack#CreateVrackCloudProjectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "publicCloud project to add",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackTask": {
+      "type": "structure",
+      "members": {
+        "function": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "lastUpdate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "orderId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "status": {
+          "target": "com.ovh.vrack#VrackTaskStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Task status"
+          }
+        },
+        "targetDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "todoDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrack tasks"
+      }
+    },
+    "com.ovh.vrack#VrackTaskStatusEnum": {
+      "type": "enum",
+      "members": {
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cancelled"
+          }
+        },
+        "DOING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "doing"
+          }
+        },
+        "DONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "done"
+          }
+        },
+        "INIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "init"
+          }
+        },
+        "TODO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "todo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All states a vRack Task can be in"
+      }
+    },
+    "com.ovh.vrack#CreateVrackCloudProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackCloudProjectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/cloudProject",
+          "code": 200
+        },
+        "smithy.api#documentation": "add a publicCloud project to this vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackCloudProjectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "publicCloud project"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackCloudProject": {
+      "type": "structure",
+      "members": {
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "publicCloud project"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PublicCloud project in vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackCloudProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackCloudProjectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackCloudProject"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/cloudProject/{project}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackCloudProjectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "publicCloud project"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackCloudProject": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackCloudProjectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/cloudProject/{project}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this publicCloud project from this vrack"
+      }
+    },
+    "com.ovh.vrack#ServiceTerminationFutureUseEnum": {
+      "type": "enum",
+      "members": {
+        "NOT_REPLACING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_REPLACING_SERVICE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "SUBSCRIBE_AN_OTHER_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_AN_OTHER_SERVICE"
+          }
+        },
+        "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_OTHER_KIND_OF_SERVICE_WITH_COMPETITOR"
+          }
+        },
+        "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIBE_SIMILAR_SERVICE_WITH_COMPETITOR"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All future uses you can provide for a service termination"
+      }
+    },
+    "com.ovh.vrack#ServiceTerminationReasonEnum": {
+      "type": "enum",
+      "members": {
+        "FEATURES_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FEATURES_DONT_SUIT_ME"
+          }
+        },
+        "LACK_OF_PERFORMANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LACK_OF_PERFORMANCES"
+          }
+        },
+        "MIGRATED_TO_ANOTHER_OVH_PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_ANOTHER_OVH_PRODUCT"
+          }
+        },
+        "MIGRATED_TO_COMPETITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MIGRATED_TO_COMPETITOR"
+          }
+        },
+        "NOT_ENOUGH_RECOGNITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_ENOUGH_RECOGNITION"
+          }
+        },
+        "NOT_NEEDED_ANYMORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_NEEDED_ANYMORE"
+          }
+        },
+        "NOT_RELIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_RELIABLE"
+          }
+        },
+        "NO_ANSWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_ANSWER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PRODUCT_DIMENSION_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_DIMENSION_DONT_SUIT_ME"
+          }
+        },
+        "PRODUCT_TOOLS_DONT_SUIT_ME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRODUCT_TOOLS_DONT_SUIT_ME"
+          }
+        },
+        "TOO_EXPENSIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_EXPENSIVE"
+          }
+        },
+        "TOO_HARD_TO_USE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOO_HARD_TO_USE"
+          }
+        },
+        "UNSATIFIED_BY_CUSTOMER_SUPPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSATIFIED_BY_CUSTOMER_SUPPORT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All reasons you can provide for a service termination"
+      }
+    },
+    "com.ovh.vrack#ConfirmVrackTerminationRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "commentary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commentary about your termination request"
+          }
+        },
+        "futureUse": {
+          "target": "com.ovh.vrack#ServiceTerminationFutureUseEnum",
+          "traits": {
+            "smithy.api#documentation": "What next after your termination request"
+          }
+        },
+        "reason": {
+          "target": "com.ovh.vrack#ServiceTerminationReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Reason of your termination request"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The termination token sent by email to the admin contact",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ConfirmVrackTerminationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ConfirmVrackTermination": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ConfirmVrackTerminationRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ConfirmVrackTerminationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/confirmTermination",
+          "code": 200
+        },
+        "smithy.api#documentation": "Confirm service termination"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloud": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedCloud",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack dedicated cloud (VmNetwork)"
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedCloudRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedCloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedCloud": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackDedicatedCloudRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/dedicatedCloud",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add VMware on OVHcloud to vRack"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedCloudRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedCloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "your dedicated cloud service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackDedicatedCloud": {
+      "type": "structure",
+      "members": {
+        "dedicatedCloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "your dedicated cloud service"
+          }
+        },
+        "vlanId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Dedicated cloud vlanId used",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "VMware on OVHcloud vRack link"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedCloud": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackDedicatedCloudRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackDedicatedCloud"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedCloud/{dedicatedCloud}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get vRack"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedCloudRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedCloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "your dedicated cloud service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedCloud": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackDedicatedCloudRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/dedicatedCloud/{dedicatedCloud}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove VMware on OVHcloud from vRack"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedCloudDatacenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack dedicated cloud datacenter"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedCloudDatacenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "datacenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your dedicatedCloud datacenter name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackPccDatacenter": {
+      "type": "structure",
+      "members": {
+        "datacenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your dedicatedCloud datacenter name"
+          }
+        },
+        "dedicatedCloud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your dedicatedCloud name"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrack datacenter interface"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedCloudDatacenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackDedicatedCloudDatacenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackPccDatacenter"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedCloudDatacenter/{datacenter}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "datacenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your dedicatedCloud datacenter name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrackResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedCloudDatacenter/{datacenter}/allowedVrack",
+          "code": 200
+        },
+        "smithy.api#documentation": "Vracks allowed for your dedicatedCloud datacenter"
+      }
+    },
+    "com.ovh.vrack#MoveVrackDedicatedCloudDatacenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "datacenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your dedicatedCloud datacenter name"
+          }
+        },
+        "targetServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The internal name of your target vrack",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#MoveVrackDedicatedCloudDatacenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#MoveVrackDedicatedCloudDatacenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/dedicatedCloudDatacenter/{datacenter}/move",
+          "code": 200
+        },
+        "smithy.api#documentation": "Move your dedicatedCloud datacenter from a Vrack to another"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedConnectResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedConnectResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedConnectResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedConnectResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedConnect",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack dedicated connect"
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "entryPointSwitch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hostname of the network device where the dedicatedConnect link is connected to",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name for the dedicatedConnect link",
+            "smithy.api#required": {}
+          }
+        },
+        "vlanId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Vlan id of the dedicated link on OVH's G5 router",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackDedicatedConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/dedicatedConnect",
+          "code": 200
+        },
+        "smithy.api#documentation": "add a dedicatedConnect link to this vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A name for your dedicatedConnect link"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackDedicatedConnect": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name for your dedicatedConnect link"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrack dedicated connect interface"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackDedicatedConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackDedicatedConnect"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedConnect/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#PutVrackDedicatedConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A name for your dedicatedConnect link"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#PutVrackDedicatedConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#PutVrackDedicatedConnectRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vrack/{serviceName}/dedicatedConnect/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Alter this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A name for your dedicatedConnect link"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackDedicatedConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/dedicatedConnect/{name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this a dedicatedConnect link from this vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedServerResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedServerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedServer",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for dedicated server"
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedServerRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dedicated server to add ",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackDedicatedServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/dedicatedServer",
+          "code": 200
+        },
+        "smithy.api#documentation": "add a dedicated server to this vrack (LEGACY)"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedServerRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Dedicated Server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackDedicatedServer": {
+      "type": "structure",
+      "members": {
+        "dedicatedServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Server"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrack dedicated server interfaces (LEGACY)"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackDedicatedServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackDedicatedServer"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedServer/{dedicatedServer}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedServerRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Dedicated Server"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedServer": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackDedicatedServerRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/dedicatedServer/{dedicatedServer}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this server from this vrack (LEGACY)"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedServerInterface",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for dedicated server interface"
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedServerInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dedicated server interface to add ",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackDedicatedServerInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackDedicatedServerInterfaceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/dedicatedServerInterface",
+          "code": 200
+        },
+        "smithy.api#documentation": "add a dedicated server interface to this vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedServerInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Dedicated Server Interface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackDedicatedServerInterface": {
+      "type": "structure",
+      "members": {
+        "dedicatedServerInterface": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Dedicated Server Interface"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrack dedicated server interfaces"
+      }
+    },
+    "com.ovh.vrack#GetVrackDedicatedServerInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackDedicatedServerInterfaceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackDedicatedServerInterface"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedServerInterface/{dedicatedServerInterface}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedServerInterfaceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Dedicated Server Interface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackDedicatedServerInterface": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackDedicatedServerInterfaceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/dedicatedServerInterface/{dedicatedServerInterface}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this server interface from this vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrack#VrackAllowedDedicatedServerInterfaces"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/dedicatedServerInterfaceDetails",
+          "code": 200
+        },
+        "smithy.api#documentation": "Details for all dedicated server interfaces in this vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackEligibleServicesRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesResponse": {
+      "type": "structure",
+      "members": {
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation date of the call"
+          }
+        },
+        "errors": {
+          "target": "com.ovh.vrack#VrackEligibleServicesResponseErrorsList",
+          "traits": {
+            "smithy.api#documentation": "List of services where an error has been encountered"
+          }
+        },
+        "result": {
+          "target": "com.ovh.vrack#VrackEligibleServices",
+          "traits": {
+            "smithy.api#documentation": "Eligible services for this vRack"
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the call"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Eligible services call response"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of services where an error has been encountered"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServices": {
+      "type": "structure",
+      "members": {
+        "cloudProject": {
+          "target": "com.ovh.vrack#VrackEligibleServicesCloudProjectList",
+          "traits": {
+            "smithy.api#documentation": "List of publicCloud projects allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedCloud": {
+          "target": "com.ovh.vrack#VrackEligibleServicesDedicatedCloudList",
+          "traits": {
+            "smithy.api#documentation": "List of dedicated cloud allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedCloudDatacenter": {
+          "target": "com.ovh.vrack#VrackEligibleServicesDedicatedCloudDatacenterList",
+          "traits": {
+            "smithy.api#documentation": "List of dedicated cloud datacenters allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedConnect": {
+          "target": "com.ovh.vrack#VrackEligibleServicesDedicatedConnectList",
+          "traits": {
+            "smithy.api#documentation": "List of dedicated connect links allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedServer": {
+          "target": "com.ovh.vrack#VrackEligibleServicesDedicatedServerList",
+          "traits": {
+            "smithy.api#documentation": "List of dedicated servers allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "com.ovh.vrack#VrackEligibleServicesDedicatedServerInterfaceList",
+          "traits": {
+            "smithy.api#documentation": "List of dedicated server interfaces allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "com.ovh.vrack#VrackEligibleServicesIpList",
+          "traits": {
+            "smithy.api#documentation": "List of blocks allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ipLoadbalancing": {
+          "target": "com.ovh.vrack#VrackEligibleServicesIpLoadbalancingList",
+          "traits": {
+            "smithy.api#documentation": "List of ipLoadbalancing allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ipv6": {
+          "target": "com.ovh.vrack#VrackEligibleServicesIpv6List",
+          "traits": {
+            "smithy.api#documentation": "List of ipv6 blocks allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "legacyVrack": {
+          "target": "com.ovh.vrack#VrackEligibleServicesLegacyVrackList",
+          "traits": {
+            "smithy.api#documentation": "List of legacy vRack (1.0) allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ovhCloudConnect": {
+          "target": "com.ovh.vrack#VrackEligibleServicesOvhCloudConnectList",
+          "traits": {
+            "smithy.api#documentation": "List of the ovhCloudConnect services allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vmwareCloudDirectorVirtualDataCenter": {
+          "target": "com.ovh.vrack#VrackEligibleServicesVmwareCloudDirectorVirtualDataCenterList",
+          "traits": {
+            "smithy.api#documentation": "List of the VMwareCloudDirectorVirtualDatacenter allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "vrackServices": {
+          "target": "com.ovh.vrack#VrackEligibleServicesVrackServicesList",
+          "traits": {
+            "smithy.api#documentation": "List of the vrackServices allowed to be connected to this vRack",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Eligible services for this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesCloudProjectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of publicCloud projects allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesDedicatedCloudList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated cloud allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesDedicatedCloudDatacenterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated cloud datacenters allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesDedicatedConnectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated connect links allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesDedicatedServerList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated servers allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleDedicatedServerInterfaces": {
+      "type": "structure",
+      "members": {
+        "dedicatedServer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the dedicatedServer"
+          }
+        },
+        "dedicatedServerInterface": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the dedicatedServerInterface"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the dedicatedServerInterface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dedicated server interfaces allowed for this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesDedicatedServerInterfaceList": {
+      "type": "list",
+      "member": {
+        "target": "com.ovh.vrack#VrackEligibleDedicatedServerInterfaces"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dedicated server interfaces allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesIpList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of blocks allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesIpLoadbalancingList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of ipLoadbalancing allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesIpv6List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of ipv6 blocks allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesLegacyVrackList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of legacy vRack (1.0) allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesOvhCloudConnectList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the ovhCloudConnect services allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesVmwareCloudDirectorVirtualDataCenterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the VMwareCloudDirectorVirtualDatacenter allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#VrackEligibleServicesVrackServicesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of the vrackServices allowed to be connected to this vRack"
+      }
+    },
+    "com.ovh.vrack#ListVrackEligibleServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackEligibleServicesRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackEligibleServicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/eligibleServices",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all eligible services for this vRack asynchronously\n\nThis route allows asynchronous service eligibility requests. It means the route can be called several times until all the eligible services are returned.\n\nWhile the `status` is set to `pending` the results are partial.\n\nOnce the `status` is set to `done`, all the eligible services have been found.\n\nIn the eventuality of errors getting specific service types, the errors will be listed in the `errors` field."
+      }
+    },
+    "com.ovh.vrack#ListVrackIpRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackIpResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackIpResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIp": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackIpRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackIpResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ip",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for IP blocks"
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "block": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your IP block",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Choose the region in which to route the block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackIp": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackIpRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/ip",
+          "code": 200
+        },
+        "smithy.api#documentation": "add an IP block to this vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackIp": {
+      "type": "structure",
+      "members": {
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your gateway",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your IP block"
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Where you want your block announced on the network",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "zone": {
+          "target": "com.ovh.vrack#VrackVrackZoneEnum",
+          "traits": {
+            "smithy.api#documentation": "Where you want your block announced on the network",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP block in vrack"
+      }
+    },
+    "com.ovh.vrack#VrackVrackZoneEnum": {
+      "type": "enum",
+      "members": {
+        "BHS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bhs"
+          }
+        },
+        "CCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cch"
+          }
+        },
+        "FRA1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fra1"
+          }
+        },
+        "GRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gra"
+          }
+        },
+        "LON1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lon1"
+          }
+        },
+        "PDX1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pdx1"
+          }
+        },
+        "RBX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rbx"
+          }
+        },
+        "SBG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sbg"
+          }
+        },
+        "SGP1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sgp1"
+          }
+        },
+        "SYD1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "syd1"
+          }
+        },
+        "SYD2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "syd2"
+          }
+        },
+        "WAS1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "was1"
+          }
+        },
+        "WAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "waw"
+          }
+        },
+        "YYZ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "yyz"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for vrack zone"
+      }
+    },
+    "com.ovh.vrack#GetVrackIp": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackIpRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackIp"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ip/{ip}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIp": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackIpRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/ip/{ip}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this IP block from this vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackIpLoadbalancingRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpLoadbalancingResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackIpLoadbalancingResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackIpLoadbalancingResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpLoadbalancing": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackIpLoadbalancingRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackIpLoadbalancingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipLoadbalancing",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for ipLoadbalancing"
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpLoadbalancingRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipLoadbalancing": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your ipLoadbalancing",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpLoadbalancing": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackIpLoadbalancingRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/ipLoadbalancing",
+          "code": 200
+        },
+        "smithy.api#documentation": "add an ipLoadbalancing to this vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpLoadbalancingRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipLoadbalancing": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your ipLoadbalancing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackIplb": {
+      "type": "structure",
+      "members": {
+        "ipLoadbalancing": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your ipLoadbalancing"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ipLoadbalancing in vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpLoadbalancing": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackIpLoadbalancingRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackIplb"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipLoadbalancing/{ipLoadbalancing}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpLoadbalancingRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipLoadbalancing": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your ipLoadbalancing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpLoadbalancing": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackIpLoadbalancingRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/ipLoadbalancing/{ipLoadbalancing}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this ipLoadbalancing from this vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6Request": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6ResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackIpv6Response": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackIpv6ResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackIpv6Request"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackIpv6Response"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipv6",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for IP v6 blocks"
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpv6Request": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "block": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your IP v6 block",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpv6": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackIpv6Request"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/ipv6",
+          "code": 200
+        },
+        "smithy.api#documentation": "add an IP v6 block to this vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpv6Request": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackIpv6": {
+      "type": "structure",
+      "members": {
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Where you want your block announced on the network",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP v6 block in vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpv6": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackIpv6Request"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackIpv6"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpv6Request": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpv6": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackIpv6Request"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this IP v6 block from this vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6BridgedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrangeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/bridgedSubrange",
+          "code": 200
+        },
+        "smithy.api#documentation": "subrange bridged into your vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpv6BridgedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        },
+        "bridgedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "subrange bridged into your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackBridgedSubrange": {
+      "type": "structure",
+      "members": {
+        "bridgedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "subrange bridged into your vrack"
+          }
+        },
+        "gateway": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your gateway"
+          }
+        },
+        "slaac": {
+          "target": "com.ovh.vrack#VrackSlaacEnum",
+          "traits": {
+            "smithy.api#documentation": "Slaac status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Bridged subrange within your IP v6 block"
+      }
+    },
+    "com.ovh.vrack#VrackSlaacEnum": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Possible values for slaac"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpv6BridgedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackIpv6BridgedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackBridgedSubrange"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/bridgedSubrange/{bridgedSubrange}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#PutVrackIpv6BridgedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        },
+        "bridgedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "subrange bridged into your vrack"
+          }
+        },
+        "slaac": {
+          "target": "com.ovh.vrack#VrackSlaacEnum",
+          "traits": {
+            "smithy.api#documentation": "Slaac status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#PutVrackIpv6BridgedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#PutVrackIpv6BridgedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/bridgedSubrange/{bridgedSubrange}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Slaac status"
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackIpv6RoutedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrangeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/routedSubrange",
+          "code": 200
+        },
+        "smithy.api#documentation": "subrange routed into your vrack"
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpv6RoutedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        },
+        "nexthop": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "nexthop to configure for your routed subrange (must be part of bridged subrange)",
+            "smithy.api#required": {}
+          }
+        },
+        "routedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "subrange to route into your vrack",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackIpv6RoutedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackIpv6RoutedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/routedSubrange",
+          "code": 200
+        },
+        "smithy.api#documentation": "route a subrange of your IP v6 block into your vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpv6RoutedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        },
+        "routedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "subrange routed into your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackRoutedSubrange": {
+      "type": "structure",
+      "members": {
+        "nexthop": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "nexthop used as a gateway for your routed subrange"
+          }
+        },
+        "routedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "subrange routed into your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Routed subranges within your IP v6 block"
+      }
+    },
+    "com.ovh.vrack#GetVrackIpv6RoutedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackIpv6RoutedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackRoutedSubrange"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/routedSubrange/{routedSubrange}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpv6RoutedSubrangeRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ipv6": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Your IP v6 block"
+          }
+        },
+        "routedSubrange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "subrange routed into your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackIpv6RoutedSubrange": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackIpv6RoutedSubrangeRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/ipv6/{ipv6}/routedSubrange/{routedSubrange}",
+          "code": 200
+        },
+        "smithy.api#documentation": "unroute subrange from your vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackLegacyVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackLegacyVrackResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackLegacyVrackResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackLegacyVrackResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackLegacyVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackLegacyVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackLegacyVrackResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/legacyVrack",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for legacy vrack"
+      }
+    },
+    "com.ovh.vrack#CreateVrackLegacyVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "legacyVrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackLegacyVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackLegacyVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/legacyVrack",
+          "code": 200
+        },
+        "smithy.api#documentation": "add a legacy vrack (vrackXXXX) to this vrack (pn-XXXX)"
+      }
+    },
+    "com.ovh.vrack#GetVrackLegacyVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "legacyVrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "your legacy vrack service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackLegacyVrack": {
+      "type": "structure",
+      "members": {
+        "legacyVrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "your legacy vrack service"
+          }
+        },
+        "vlanId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "vlan to set on legacy vrack equipments"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "interface between legacy vrack (vrackXXXX) and vrack (pn-XXXX)"
+      }
+    },
+    "com.ovh.vrack#GetVrackLegacyVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackLegacyVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackLegacyVrack"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/legacyVrack/{legacyVrack}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackLegacyVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "legacyVrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "your legacy vrack service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackLegacyVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackLegacyVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/legacyVrack/{legacyVrack}",
+          "code": 200
+        },
+        "smithy.api#documentation": "remove this legacy vrack (vrackXXXX) from this vrack (pn-XXXX)"
+      }
+    },
+    "com.ovh.vrack#ListVrackOvhCloudConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackOvhCloudConnectResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackOvhCloudConnectResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackOvhCloudConnectResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackOvhCloudConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackOvhCloudConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackOvhCloudConnectResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ovhCloudConnect",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for ovhCloudConnect"
+      }
+    },
+    "com.ovh.vrack#CreateVrackOvhCloudConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ovhCloudConnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ovhCloudConnect service name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackOvhCloudConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackOvhCloudConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/ovhCloudConnect",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add an ovhCloudConnect to the vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackOvhCloudConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ovhCloudConnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ovhCloudConnect service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackOvhCloudConnect": {
+      "type": "structure",
+      "members": {
+        "ovhCloudConnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ovhCloudConnect service name"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ovhCloudConnect in vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackOvhCloudConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackOvhCloudConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackOvhCloudConnect"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/ovhCloudConnect/{ovhCloudConnect}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackOvhCloudConnectRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "ovhCloudConnect": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ovhCloudConnect service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackOvhCloudConnect": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackOvhCloudConnectRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/ovhCloudConnect/{ovhCloudConnect}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove the ovhCloudConnect from the vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackPublicRoutingOptionRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackPublicRoutingOption": {
+      "type": "structure",
+      "members": {
+        "bandwidth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Global bandwidth for blocks in your vrack (in Mbps)",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A structure describing the public routing option"
+      }
+    },
+    "com.ovh.vrack#GetVrackPublicRoutingOption": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackPublicRoutingOptionRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackPublicRoutingOption"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/publicRoutingOption",
+          "code": 200
+        },
+        "smithy.api#documentation": "Information on public routing option"
+      }
+    },
+    "com.ovh.vrack#GetVrackServiceInfosRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ServicesNonExpiringService": {
+      "type": "structure",
+      "members": {
+        "contactAdmin": {
+          "target": "smithy.api#String"
+        },
+        "contactBilling": {
+          "target": "smithy.api#String"
+        },
+        "contactTech": {
+          "target": "smithy.api#String"
+        },
+        "creation": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "serviceId": {
+          "target": "smithy.api#Integer"
+        },
+        "status": {
+          "target": "com.ovh.vrack#ServiceStateEnum"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a non-expiring Service"
+      }
+    },
+    "com.ovh.vrack#ServiceStateEnum": {
+      "type": "enum",
+      "members": {
+        "AUTORENEWINPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "autorenewInProgress"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expired"
+          }
+        },
+        "INCREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inCreation"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "PENDINGDEBT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pendingDebt"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unPaid"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#GetVrackServiceInfos": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackServiceInfosRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ServicesNonExpiringService"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/serviceInfos",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#ListVrackTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackTaskResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackTaskResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackTaskResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackTaskResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/task",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack tasks"
+      }
+    },
+    "com.ovh.vrack#GetVrackTaskRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "taskId": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#GetVrackTask": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackTaskRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/task/{taskId}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#TerminateVrackRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#TerminateVrackResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#TerminateVrack": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#TerminateVrackRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#TerminateVrackResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/terminate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ask for the termination of your service\n\nAsk for the termination of your service. Admin contact of this service will receive a termination token by email in order to confirm its termination with /confirmTermination endpoint."
+      }
+    },
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/vmwareCloudDirectorVirtualDataCenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for vmwareCloudDirectorVirtualDataCenter"
+      }
+    },
+    "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "vmwareCloudDirectorVirtualDataCenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vmwareCloudDirectorVirtualDataCenter service name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/vmwareCloudDirectorVirtualDataCenter",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a vmwareCloudDirectorVirtualDataCenter to the vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "vmwareCloudDirectorVirtualDataCenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "vmwareCloudDirectorVirtualDataCenter service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackVmwareCloudDirectorVirtualDataCenter": {
+      "type": "structure",
+      "members": {
+        "vmwareCloudDirectorVirtualDataCenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vmwareCloudDirectorVirtualDataCenter service name"
+          }
+        },
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vmwareCloudDirector virtualDataCenter in vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackVmwareCloudDirectorVirtualDataCenter"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/vmwareCloudDirectorVirtualDataCenter/{vmwareCloudDirectorVirtualDataCenter}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenterRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "vmwareCloudDirectorVirtualDataCenter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "vmwareCloudDirectorVirtualDataCenter service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenter": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenterRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/vmwareCloudDirectorVirtualDataCenter/{vmwareCloudDirectorVirtualDataCenter}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove the vmwareCloudDirectorVirtualDataCenter from the vrack"
+      }
+    },
+    "com.ovh.vrack#ListVrackVrackServicesRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackVrackServicesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.ovh.vrack#ListVrackVrackServicesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.ovh.vrack#ListVrackVrackServicesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.ovh.vrack#ListVrackVrackServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#ListVrackVrackServicesRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#ListVrackVrackServicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/vrackServices",
+          "code": 200
+        },
+        "smithy.api#documentation": "vrack for vrackServices"
+      }
+    },
+    "com.ovh.vrack#CreateVrackVrackServiceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "vrackServices": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrackServices service name",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#CreateVrackVrackService": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#CreateVrackVrackServiceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/vrack/{serviceName}/vrackServices",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a vrackServices to the vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackVrackServiceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "vrackServices": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "vrackServices service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#VrackVrackServices": {
+      "type": "structure",
+      "members": {
+        "vrack": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrack name"
+          }
+        },
+        "vrackServices": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "vrackServices service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "vrackServices in vrack"
+      }
+    },
+    "com.ovh.vrack#GetVrackVrackService": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#GetVrackVrackServiceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackVrackServices"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/vrack/{serviceName}/vrackServices/{vrackServices}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get this object properties"
+      }
+    },
+    "com.ovh.vrack#DeleteVrackVrackServiceRequest": {
+      "type": "structure",
+      "members": {
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The internal name of your vrack"
+          }
+        },
+        "vrackServices": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "vrackServices service name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.ovh.vrack#DeleteVrackVrackService": {
+      "type": "operation",
+      "input": {
+        "target": "com.ovh.vrack#DeleteVrackVrackServiceRequest"
+      },
+      "output": {
+        "target": "com.ovh.vrack#VrackTask"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/vrack/{serviceName}/vrackServices/{vrackServices}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove the vrackServices from the vrack"
+      }
+    },
+    "com.ovh.vrack#Vrack": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.ovh.vrack#ListVrack"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrack"
+        },
+        {
+          "target": "com.ovh.vrack#PutVrack"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackAllowedServices"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackChangeContact"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackCloudProject"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackCloudProject"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackCloudProject"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackCloudProject"
+        },
+        {
+          "target": "com.ovh.vrack#ConfirmVrackTermination"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedCloud"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackDedicatedCloud"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackDedicatedCloud"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackDedicatedCloud"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenter"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackDedicatedCloudDatacenter"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedCloudDatacenterAllowedVrack"
+        },
+        {
+          "target": "com.ovh.vrack#MoveVrackDedicatedCloudDatacenter"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedConnect"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackDedicatedConnect"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackDedicatedConnect"
+        },
+        {
+          "target": "com.ovh.vrack#PutVrackDedicatedConnect"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackDedicatedConnect"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedServer"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackDedicatedServer"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackDedicatedServer"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackDedicatedServer"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterface"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackDedicatedServerInterface"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackDedicatedServerInterface"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackDedicatedServerInterface"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackDedicatedServerInterfaceDetails"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackEligibleServices"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackIp"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackIp"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackIp"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackIp"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackIpLoadbalancing"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackIpLoadbalancing"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackIpLoadbalancing"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackIpLoadbalancing"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackIpv6"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackIpv6"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackIpv6"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackIpv6"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackIpv6BridgedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackIpv6BridgedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#PutVrackIpv6BridgedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackIpv6RoutedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackIpv6RoutedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackIpv6RoutedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackIpv6RoutedSubrange"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackLegacyVrack"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackLegacyVrack"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackLegacyVrack"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackLegacyVrack"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackOvhCloudConnect"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackOvhCloudConnect"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackOvhCloudConnect"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackOvhCloudConnect"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackPublicRoutingOption"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackServiceInfos"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackTask"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackTask"
+        },
+        {
+          "target": "com.ovh.vrack#TerminateVrack"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackVmwareCloudDirectorVirtualDataCenter"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackVmwareCloudDirectorVirtualDataCenter"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackVmwareCloudDirectorVirtualDataCenter"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackVmwareCloudDirectorVirtualDataCenter"
+        },
+        {
+          "target": "com.ovh.vrack#ListVrackVrackServices"
+        },
+        {
+          "target": "com.ovh.vrack#CreateVrackVrackService"
+        },
+        {
+          "target": "com.ovh.vrack#GetVrackVrackService"
+        },
+        {
+          "target": "com.ovh.vrack#DeleteVrackVrackService"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "OVHcloud API specification",
+        "smithy.api#documentation": "Specification for OVHcloud API"
+      }
+    }
+  }
+}
