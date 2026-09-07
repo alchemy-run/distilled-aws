@@ -328,3 +328,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-trigger-dev.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/turbopuffer/specs/spec-mirror-turbopuffer"]
+	path = packages/turbopuffer/specs/spec-mirror-turbopuffer
+	url = https://github.com/distilled-mirror/spec-mirror-turbopuffer.git
+	ignore = dirty
+	shallow = true
