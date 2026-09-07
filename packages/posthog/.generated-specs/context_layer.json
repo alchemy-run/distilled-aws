@@ -969,22 +969,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.context_layer#GetContextLayerChannelPage"
+        },
+        {
+          "target": "com.posthog.context_layer#CreateContextLayerCommit"
+        },
+        {
+          "target": "com.posthog.context_layer#ListContextLayerDreams"
+        },
+        {
+          "target": "com.posthog.context_layer#GetContextLayerDream"
+        },
+        {
           "target": "com.posthog.context_layer#ContextLayerEnableCreate"
         },
         {
           "target": "com.posthog.context_layer#ContextLayerExportRetrieve"
         },
         {
-          "target": "com.posthog.context_layer#CreateContextLayerCommit"
-        },
-        {
-          "target": "com.posthog.context_layer#GetContextLayerChannelPage"
-        },
-        {
-          "target": "com.posthog.context_layer#GetContextLayerDream"
-        },
-        {
           "target": "com.posthog.context_layer#GetContextLayerPage"
+        },
+        {
+          "target": "com.posthog.context_layer#UpdateContextLayerPage"
         },
         {
           "target": "com.posthog.context_layer#GetContextLayerStatus"
@@ -994,12 +1000,6 @@
         },
         {
           "target": "com.posthog.context_layer#GetContextLayerWikiReport"
-        },
-        {
-          "target": "com.posthog.context_layer#ListContextLayerDreams"
-        },
-        {
-          "target": "com.posthog.context_layer#UpdateContextLayerPage"
         }
       ],
       "traits": {

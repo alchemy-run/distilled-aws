@@ -6221,97 +6221,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.connectedcache#DeleteEnterpriseMccCacheNodesOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#DeleteEnterpriseMccCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#DeleteIspCacheNodesOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#DeleteIspCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetails"
-        },
-        {
-          "target": "com.azure.connectedcache#EnterpriseMccCustomersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetEnterpriseMccCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCacheNodesOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrs"
-        },
-        {
           "target": "com.azure.connectedcache#GetIspCacheNodesOperationCacheNodeMccIssueDetailsHistory"
-        },
-        {
-          "target": "com.azure.connectedcache#GetIspCustomer"
-        },
-        {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
         },
         {
           "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeInstallDetails"
         },
         {
-          "target": "com.azure.connectedcache#IspCustomersCreateOrUpdate"
+          "target": "com.azure.connectedcache#IspCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
         },
         {
-          "target": "com.azure.connectedcache#ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResource"
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperationBgpCidrs"
         },
         {
-          "target": "com.azure.connectedcache#ListEnterpriseMccCustomerByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedcache#ListEnterpriseMccCustomerBySubscription"
-        },
-        {
-          "target": "com.azure.connectedcache#ListIspCacheNodesOperationByIspCustomerResource"
-        },
-        {
-          "target": "com.azure.connectedcache#ListIspCustomerByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedcache#ListIspCustomerBySubscription"
-        },
-        {
-          "target": "com.azure.connectedcache#ListOperations"
-        },
-        {
-          "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperation"
-        },
-        {
-          "target": "com.azure.connectedcache#UpdateEnterpriseMccCustomer"
+          "target": "com.azure.connectedcache#DeleteIspCacheNodesOperation"
         },
         {
           "target": "com.azure.connectedcache#UpdateIspCacheNodesOperation"
         },
         {
+          "target": "com.azure.connectedcache#IspCacheNodesOperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#GetIspCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#ListIspCacheNodesOperationByIspCustomerResource"
+        },
+        {
+          "target": "com.azure.connectedcache#DeleteIspCustomer"
+        },
+        {
           "target": "com.azure.connectedcache#UpdateIspCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#IspCustomersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#GetIspCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#ListIspCustomerByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeTlsCertificateHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperationCacheNodeMccIssueDetailsHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeInstallDetails"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsGetCacheNodeAutoUpdateHistory"
+        },
+        {
+          "target": "com.azure.connectedcache#DeleteEnterpriseMccCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCacheNodesOperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCacheNodesOperation"
+        },
+        {
+          "target": "com.azure.connectedcache#ListEnterpriseMccCacheNodesOperationByEnterpriseMccCustomerResource"
+        },
+        {
+          "target": "com.azure.connectedcache#DeleteEnterpriseMccCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#UpdateEnterpriseMccCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#EnterpriseMccCustomersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedcache#GetEnterpriseMccCustomer"
+        },
+        {
+          "target": "com.azure.connectedcache#ListEnterpriseMccCustomerByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedcache#ListIspCustomerBySubscription"
+        },
+        {
+          "target": "com.azure.connectedcache#ListEnterpriseMccCustomerBySubscription"
+        },
+        {
+          "target": "com.azure.connectedcache#ListOperations"
         }
       ],
       "traits": {

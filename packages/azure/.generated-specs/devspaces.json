@@ -1085,31 +1085,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devspaces#CreateController"
-        },
-        {
-          "target": "com.azure.devspaces#DeleteController"
-        },
-        {
-          "target": "com.azure.devspaces#GetContainerHostMappingContainerHostMapping"
-        },
-        {
-          "target": "com.azure.devspaces#GetController"
-        },
-        {
-          "target": "com.azure.devspaces#ListControllerByResourceGroup"
-        },
-        {
           "target": "com.azure.devspaces#ListControllerConnectionDetails"
         },
         {
           "target": "com.azure.devspaces#ListControllers"
         },
         {
-          "target": "com.azure.devspaces#ListOperations"
+          "target": "com.azure.devspaces#ListControllerByResourceGroup"
+        },
+        {
+          "target": "com.azure.devspaces#DeleteController"
         },
         {
           "target": "com.azure.devspaces#UpdateController"
+        },
+        {
+          "target": "com.azure.devspaces#CreateController"
+        },
+        {
+          "target": "com.azure.devspaces#GetController"
+        },
+        {
+          "target": "com.azure.devspaces#ListOperations"
+        },
+        {
+          "target": "com.azure.devspaces#GetContainerHostMappingContainerHostMapping"
         }
       ],
       "traits": {

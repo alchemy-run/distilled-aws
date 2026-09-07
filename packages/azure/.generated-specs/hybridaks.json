@@ -5189,94 +5189,94 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridaks#AgentPoolCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridaks#DeleteAgentPool"
-        },
-        {
-          "target": "com.azure.hybridaks#DeleteHybridIdentityMetadata"
-        },
-        {
-          "target": "com.azure.hybridaks#DeleteKubernetesVersions"
-        },
-        {
-          "target": "com.azure.hybridaks#DeleteProvisionedClusterInstance"
-        },
-        {
-          "target": "com.azure.hybridaks#DeleteVirtualNetwork"
-        },
-        {
-          "target": "com.azure.hybridaks#DeleteVMSkus"
-        },
-        {
-          "target": "com.azure.hybridaks#GetAgentPool"
-        },
-        {
-          "target": "com.azure.hybridaks#GetHybridIdentityMetadata"
-        },
-        {
-          "target": "com.azure.hybridaks#GetKubernetesVersions"
-        },
-        {
-          "target": "com.azure.hybridaks#GetProvisionedClusterInstance"
-        },
-        {
-          "target": "com.azure.hybridaks#GetProvisionedClusterInstanceUpgradeProfile"
-        },
-        {
-          "target": "com.azure.hybridaks#GetVirtualNetwork"
-        },
-        {
-          "target": "com.azure.hybridaks#GetVMSkus"
-        },
-        {
-          "target": "com.azure.hybridaks#ListAgentPoolByProvisionedCluster"
-        },
-        {
-          "target": "com.azure.hybridaks#ListHybridIdentityMetadataByCluster"
-        },
-        {
-          "target": "com.azure.hybridaks#ListKubernetesVersions"
-        },
-        {
           "target": "com.azure.hybridaks#ListOperations"
-        },
-        {
-          "target": "com.azure.hybridaks#ListProvisionedClusterInstanceAdminKubeconfig"
-        },
-        {
-          "target": "com.azure.hybridaks#ListProvisionedClusterInstances"
-        },
-        {
-          "target": "com.azure.hybridaks#ListProvisionedClusterInstanceUserKubeconfig"
-        },
-        {
-          "target": "com.azure.hybridaks#ListVirtualNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridaks#ListVirtualNetworkBySubscription"
         },
         {
           "target": "com.azure.hybridaks#ListVMSkus"
         },
         {
-          "target": "com.azure.hybridaks#ProvisionedClusterInstancesCreateOrUpdate"
+          "target": "com.azure.hybridaks#DeleteVMSkus"
         },
         {
-          "target": "com.azure.hybridaks#PutHybridIdentityMetadata"
+          "target": "com.azure.hybridaks#PutVMSkus"
+        },
+        {
+          "target": "com.azure.hybridaks#GetVMSkus"
+        },
+        {
+          "target": "com.azure.hybridaks#ListKubernetesVersions"
+        },
+        {
+          "target": "com.azure.hybridaks#DeleteKubernetesVersions"
         },
         {
           "target": "com.azure.hybridaks#PutKubernetesVersions"
         },
         {
-          "target": "com.azure.hybridaks#PutVMSkus"
+          "target": "com.azure.hybridaks#GetKubernetesVersions"
+        },
+        {
+          "target": "com.azure.hybridaks#ListProvisionedClusterInstanceAdminKubeconfig"
+        },
+        {
+          "target": "com.azure.hybridaks#ListProvisionedClusterInstanceUserKubeconfig"
+        },
+        {
+          "target": "com.azure.hybridaks#ListAgentPoolByProvisionedCluster"
+        },
+        {
+          "target": "com.azure.hybridaks#DeleteAgentPool"
+        },
+        {
+          "target": "com.azure.hybridaks#AgentPoolCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridaks#GetAgentPool"
+        },
+        {
+          "target": "com.azure.hybridaks#ListHybridIdentityMetadataByCluster"
+        },
+        {
+          "target": "com.azure.hybridaks#DeleteHybridIdentityMetadata"
+        },
+        {
+          "target": "com.azure.hybridaks#PutHybridIdentityMetadata"
+        },
+        {
+          "target": "com.azure.hybridaks#GetHybridIdentityMetadata"
+        },
+        {
+          "target": "com.azure.hybridaks#GetProvisionedClusterInstanceUpgradeProfile"
+        },
+        {
+          "target": "com.azure.hybridaks#ListProvisionedClusterInstances"
+        },
+        {
+          "target": "com.azure.hybridaks#DeleteProvisionedClusterInstance"
+        },
+        {
+          "target": "com.azure.hybridaks#ProvisionedClusterInstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridaks#GetProvisionedClusterInstance"
+        },
+        {
+          "target": "com.azure.hybridaks#ListVirtualNetworkBySubscription"
+        },
+        {
+          "target": "com.azure.hybridaks#ListVirtualNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridaks#DeleteVirtualNetwork"
         },
         {
           "target": "com.azure.hybridaks#UpdateVirtualNetwork"
         },
         {
           "target": "com.azure.hybridaks#VirtualNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridaks#GetVirtualNetwork"
         }
       ],
       "traits": {

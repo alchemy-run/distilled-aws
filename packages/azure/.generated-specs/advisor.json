@@ -2674,58 +2674,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.advisor#CreateConfigurationInResourceGroup"
-        },
-        {
-          "target": "com.azure.advisor#CreateConfigurationInSubscription"
-        },
-        {
-          "target": "com.azure.advisor#CreateSuppression"
-        },
-        {
-          "target": "com.azure.advisor#DeleteSuppression"
-        },
-        {
-          "target": "com.azure.advisor#GenerateRecommendation"
-        },
-        {
           "target": "com.azure.advisor#GetAdvisorScore"
-        },
-        {
-          "target": "com.azure.advisor#GetRecommendation"
-        },
-        {
-          "target": "com.azure.advisor#GetRecommendationMetadata"
-        },
-        {
-          "target": "com.azure.advisor#GetSuppression"
         },
         {
           "target": "com.azure.advisor#ListAdvisorScores"
         },
         {
-          "target": "com.azure.advisor#ListConfigurationByResourceGroup"
-        },
-        {
-          "target": "com.azure.advisor#ListConfigurationBySubscription"
-        },
-        {
-          "target": "com.azure.advisor#ListOperations"
-        },
-        {
-          "target": "com.azure.advisor#ListRecommendationMetadata"
-        },
-        {
-          "target": "com.azure.advisor#ListRecommendations"
+          "target": "com.azure.advisor#Predict"
         },
         {
           "target": "com.azure.advisor#ListSuppressions"
         },
         {
-          "target": "com.azure.advisor#Predict"
+          "target": "com.azure.advisor#DeleteSuppression"
+        },
+        {
+          "target": "com.azure.advisor#CreateSuppression"
+        },
+        {
+          "target": "com.azure.advisor#GetSuppression"
+        },
+        {
+          "target": "com.azure.advisor#GetRecommendation"
+        },
+        {
+          "target": "com.azure.advisor#ListOperations"
+        },
+        {
+          "target": "com.azure.advisor#ListRecommendations"
         },
         {
           "target": "com.azure.advisor#RecommendationsGetGenerateStatus"
+        },
+        {
+          "target": "com.azure.advisor#GenerateRecommendation"
+        },
+        {
+          "target": "com.azure.advisor#CreateConfigurationInResourceGroup"
+        },
+        {
+          "target": "com.azure.advisor#ListConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.advisor#CreateConfigurationInSubscription"
+        },
+        {
+          "target": "com.azure.advisor#ListConfigurationBySubscription"
+        },
+        {
+          "target": "com.azure.advisor#ListRecommendationMetadata"
+        },
+        {
+          "target": "com.azure.advisor#GetRecommendationMetadata"
         }
       ],
       "traits": {

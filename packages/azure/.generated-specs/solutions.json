@@ -6329,58 +6329,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.solutions#ApplicationDefinitionsCreateOrUpdate"
+          "target": "com.azure.solutions#ListApplicationTokens"
         },
         {
-          "target": "com.azure.solutions#ApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.solutions#ApplicationsCreateOrUpdateById"
-        },
-        {
-          "target": "com.azure.solutions#DeleteApplication"
-        },
-        {
-          "target": "com.azure.solutions#DeleteApplicationById"
-        },
-        {
-          "target": "com.azure.solutions#DeleteApplicationDefinition"
-        },
-        {
-          "target": "com.azure.solutions#DeleteJitRequest"
-        },
-        {
-          "target": "com.azure.solutions#GetApplication"
-        },
-        {
-          "target": "com.azure.solutions#GetApplicationById"
-        },
-        {
-          "target": "com.azure.solutions#GetApplicationDefinition"
-        },
-        {
-          "target": "com.azure.solutions#GetJitRequest"
-        },
-        {
-          "target": "com.azure.solutions#JitRequestsCreateOrUpdate"
+          "target": "com.azure.solutions#UpdateApplicationAccess"
         },
         {
           "target": "com.azure.solutions#ListApplicationAllowedUpgradePlans"
         },
         {
-          "target": "com.azure.solutions#ListApplicationByResourceGroup"
-        },
-        {
-          "target": "com.azure.solutions#ListApplicationBySubscription"
-        },
-        {
-          "target": "com.azure.solutions#ListApplicationDefinitionByResourceGroup"
-        },
-        {
-          "target": "com.azure.solutions#ListApplicationDefinitionBySubscription"
-        },
-        {
-          "target": "com.azure.solutions#ListApplicationTokens"
+          "target": "com.azure.solutions#RefreshApplicationPermissions"
         },
         {
           "target": "com.azure.solutions#ListJitRequestByResourceGroup"
@@ -6389,25 +6347,67 @@
           "target": "com.azure.solutions#ListJitRequestBySubscription"
         },
         {
-          "target": "com.azure.solutions#ListOperations"
+          "target": "com.azure.solutions#DeleteJitRequest"
         },
         {
-          "target": "com.azure.solutions#RefreshApplicationPermissions"
+          "target": "com.azure.solutions#UpdateJitRequest"
         },
         {
-          "target": "com.azure.solutions#UpdateApplication"
+          "target": "com.azure.solutions#JitRequestsCreateOrUpdate"
         },
         {
-          "target": "com.azure.solutions#UpdateApplicationAccess"
+          "target": "com.azure.solutions#GetJitRequest"
+        },
+        {
+          "target": "com.azure.solutions#DeleteApplicationById"
         },
         {
           "target": "com.azure.solutions#UpdateApplicationById"
         },
         {
+          "target": "com.azure.solutions#ApplicationsCreateOrUpdateById"
+        },
+        {
+          "target": "com.azure.solutions#GetApplicationById"
+        },
+        {
+          "target": "com.azure.solutions#ListApplicationBySubscription"
+        },
+        {
+          "target": "com.azure.solutions#ListApplicationByResourceGroup"
+        },
+        {
+          "target": "com.azure.solutions#ListApplicationDefinitionBySubscription"
+        },
+        {
+          "target": "com.azure.solutions#ListApplicationDefinitionByResourceGroup"
+        },
+        {
+          "target": "com.azure.solutions#DeleteApplicationDefinition"
+        },
+        {
           "target": "com.azure.solutions#UpdateApplicationDefinition"
         },
         {
-          "target": "com.azure.solutions#UpdateJitRequest"
+          "target": "com.azure.solutions#ApplicationDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.solutions#GetApplicationDefinition"
+        },
+        {
+          "target": "com.azure.solutions#DeleteApplication"
+        },
+        {
+          "target": "com.azure.solutions#UpdateApplication"
+        },
+        {
+          "target": "com.azure.solutions#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.solutions#GetApplication"
+        },
+        {
+          "target": "com.azure.solutions#ListOperations"
         }
       ],
       "traits": {

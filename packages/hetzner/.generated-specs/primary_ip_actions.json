@@ -1896,13 +1896,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.primary_ip_actions#AssignPrimaryIp"
-        },
-        {
-          "target": "com.hetzner.primary_ip_actions#ChangePrimaryIpDnsPtr"
-        },
-        {
-          "target": "com.hetzner.primary_ip_actions#ChangePrimaryIpProtection"
+          "target": "com.hetzner.primary_ip_actions#ListPrimaryIpsActions"
         },
         {
           "target": "com.hetzner.primary_ip_actions#GetPrimaryIpsAction"
@@ -1911,7 +1905,13 @@
           "target": "com.hetzner.primary_ip_actions#ListPrimaryIpActions"
         },
         {
-          "target": "com.hetzner.primary_ip_actions#ListPrimaryIpsActions"
+          "target": "com.hetzner.primary_ip_actions#AssignPrimaryIp"
+        },
+        {
+          "target": "com.hetzner.primary_ip_actions#ChangePrimaryIpDnsPtr"
+        },
+        {
+          "target": "com.hetzner.primary_ip_actions#ChangePrimaryIpProtection"
         },
         {
           "target": "com.hetzner.primary_ip_actions#UnassignPrimaryIp"

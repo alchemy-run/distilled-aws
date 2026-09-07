@@ -1004,22 +1004,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.field_notes#ListFieldNotes"
+        },
+        {
           "target": "com.posthog.field_notes#CreateFieldNote"
         },
         {
-          "target": "com.posthog.field_notes#FieldNotesDestroy"
-        },
-        {
           "target": "com.posthog.field_notes#GetFieldNote"
-        },
-        {
-          "target": "com.posthog.field_notes#ListFieldNotes"
         },
         {
           "target": "com.posthog.field_notes#UpdateFieldNote"
         },
         {
           "target": "com.posthog.field_notes#UpdateFieldNotesPartial"
+        },
+        {
+          "target": "com.posthog.field_notes#FieldNotesDestroy"
         }
       ],
       "traits": {

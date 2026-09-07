@@ -5400,55 +5400,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.marketplace#AcknowledgePrivateStoreOfferNotification"
+          "target": "com.azure.marketplace#PrivateStoreWithdrawPlan"
         },
         {
-          "target": "com.azure.marketplace#ApprovePrivateStoreCollectionAllItems"
-        },
-        {
-          "target": "com.azure.marketplace#BulkPrivateStoreCollectionsAction"
+          "target": "com.azure.marketplace#PrivateStoreQueryRequestApproval"
         },
         {
           "target": "com.azure.marketplace#CreatePrivateStoreApprovalRequest"
         },
         {
-          "target": "com.azure.marketplace#DeletePrivateStore"
+          "target": "com.azure.marketplace#GetPrivateStoreRequestApproval"
         },
         {
-          "target": "com.azure.marketplace#DeletePrivateStoreCollection"
+          "target": "com.azure.marketplace#PrivateStoreGetApprovalRequestsList"
         },
         {
-          "target": "com.azure.marketplace#DeletePrivateStoreCollectionOffer"
+          "target": "com.azure.marketplace#QueryUserRules"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreQueryUserOffers"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreQueryOffers"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreQueryNotificationsState"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreQueryApprovedPlans"
+        },
+        {
+          "target": "com.azure.marketplace#AcknowledgePrivateStoreOfferNotification"
+        },
+        {
+          "target": "com.azure.marketplace#ListPrivateStoreSubscriptionsContext"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreListStopSellOffersPlansNotifications"
+        },
+        {
+          "target": "com.azure.marketplace#ListPrivateStoreNewPlansNotifications"
         },
         {
           "target": "com.azure.marketplace#FetchPrivateStoreAllSubscriptionsInTenant"
         },
         {
-          "target": "com.azure.marketplace#GetPrivateStore"
+          "target": "com.azure.marketplace#PrivateStoreCollectionsToSubscriptionsMapping"
         },
         {
-          "target": "com.azure.marketplace#GetPrivateStoreAdminRequestApproval"
+          "target": "com.azure.marketplace#TransferPrivateStoreCollectionOffers"
         },
         {
-          "target": "com.azure.marketplace#GetPrivateStoreCollection"
+          "target": "com.azure.marketplace#SetCollectionRules"
+        },
+        {
+          "target": "com.azure.marketplace#QueryRules"
+        },
+        {
+          "target": "com.azure.marketplace#UpsertPrivateStoreCollectionOfferOfferWithMultiContext"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreCollectionOfferContextsView"
+        },
+        {
+          "target": "com.azure.marketplace#DeletePrivateStoreCollectionOffer"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreCollectionOfferCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.marketplace#PostPrivateStoreCollectionOffer"
         },
         {
           "target": "com.azure.marketplace#GetPrivateStoreCollectionOffer"
-        },
-        {
-          "target": "com.azure.marketplace#GetPrivateStoreRequestApproval"
-        },
-        {
-          "target": "com.azure.marketplace#ListOperations"
-        },
-        {
-          "target": "com.azure.marketplace#ListPrivateStore"
-        },
-        {
-          "target": "com.azure.marketplace#ListPrivateStoreAdminRequestApprovals"
-        },
-        {
-          "target": "com.azure.marketplace#ListPrivateStoreCollection"
         },
         {
           "target": "com.azure.marketplace#ListPrivateStoreCollectionOffer"
@@ -5457,82 +5481,58 @@
           "target": "com.azure.marketplace#ListPrivateStoreCollectionOfferByContexts"
         },
         {
-          "target": "com.azure.marketplace#ListPrivateStoreNewPlansNotifications"
+          "target": "com.azure.marketplace#PrivateStoreCollectionDisableApproveAllItems"
         },
         {
-          "target": "com.azure.marketplace#ListPrivateStoreSubscriptionsContext"
+          "target": "com.azure.marketplace#ApprovePrivateStoreCollectionAllItems"
         },
         {
-          "target": "com.azure.marketplace#PostPrivateStoreCollection"
-        },
-        {
-          "target": "com.azure.marketplace#PostPrivateStoreCollectionOffer"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreAnyExistingOffersInTheCollections"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreBillingAccounts"
+          "target": "com.azure.marketplace#DeletePrivateStoreCollection"
         },
         {
           "target": "com.azure.marketplace#PrivateStoreCollectionCreateOrUpdate"
         },
         {
-          "target": "com.azure.marketplace#PrivateStoreCollectionDisableApproveAllItems"
+          "target": "com.azure.marketplace#PostPrivateStoreCollection"
         },
         {
-          "target": "com.azure.marketplace#PrivateStoreCollectionOfferContextsView"
+          "target": "com.azure.marketplace#GetPrivateStoreCollection"
         },
         {
-          "target": "com.azure.marketplace#PrivateStoreCollectionOfferCreateOrUpdate"
+          "target": "com.azure.marketplace#ListPrivateStoreCollection"
         },
         {
-          "target": "com.azure.marketplace#PrivateStoreCollectionsToSubscriptionsMapping"
+          "target": "com.azure.marketplace#BulkPrivateStoreCollectionsAction"
         },
         {
-          "target": "com.azure.marketplace#PrivateStoreCreateOrUpdate"
+          "target": "com.azure.marketplace#PrivateStoreBillingAccounts"
         },
         {
-          "target": "com.azure.marketplace#PrivateStoreGetApprovalRequestsList"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreListStopSellOffersPlansNotifications"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreQueryApprovedPlans"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreQueryNotificationsState"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreQueryOffers"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreQueryRequestApproval"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreQueryUserOffers"
-        },
-        {
-          "target": "com.azure.marketplace#PrivateStoreWithdrawPlan"
-        },
-        {
-          "target": "com.azure.marketplace#QueryRules"
-        },
-        {
-          "target": "com.azure.marketplace#QueryUserRules"
-        },
-        {
-          "target": "com.azure.marketplace#SetCollectionRules"
-        },
-        {
-          "target": "com.azure.marketplace#TransferPrivateStoreCollectionOffers"
+          "target": "com.azure.marketplace#PrivateStoreAnyExistingOffersInTheCollections"
         },
         {
           "target": "com.azure.marketplace#UpdatePrivateStoreAdminRequestApproval"
         },
         {
-          "target": "com.azure.marketplace#UpsertPrivateStoreCollectionOfferOfferWithMultiContext"
+          "target": "com.azure.marketplace#GetPrivateStoreAdminRequestApproval"
+        },
+        {
+          "target": "com.azure.marketplace#ListPrivateStoreAdminRequestApprovals"
+        },
+        {
+          "target": "com.azure.marketplace#DeletePrivateStore"
+        },
+        {
+          "target": "com.azure.marketplace#PrivateStoreCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.marketplace#GetPrivateStore"
+        },
+        {
+          "target": "com.azure.marketplace#ListPrivateStore"
+        },
+        {
+          "target": "com.azure.marketplace#ListOperations"
         }
       ],
       "traits": {

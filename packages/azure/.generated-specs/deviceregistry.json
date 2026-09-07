@@ -13471,178 +13471,178 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#AssetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteAssetEndpointProfile"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteSchema"
-        },
-        {
-          "target": "com.azure.deviceregistry#DeleteSchemaRegistry"
-        },
-        {
           "target": "com.azure.deviceregistry#DeleteSchemaVersion"
-        },
-        {
-          "target": "com.azure.deviceregistry#ExecuteNamespaceAssetAction"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetAssetEndpointProfile"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetBillingContainer"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespace"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredAsset"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredDevice"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetSchema"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetSchemaRegistry"
-        },
-        {
-          "target": "com.azure.deviceregistry#GetSchemaVersion"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListAssetByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListAssetBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListAssetEndpointProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListAssetEndpointProfileBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListBillingContainerBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceAssetByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceDeviceByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredAssetByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredDeviceByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListOperations"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaBySchemaRegistry"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaRegistryByResourceGroup"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaRegistryBySubscription"
-        },
-        {
-          "target": "com.azure.deviceregistry#ListSchemaVersionBySchema"
-        },
-        {
-          "target": "com.azure.deviceregistry#MigrateNamespace"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespaceAssetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespaceDevicesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#NamespacesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#SchemaRegistriesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.deviceregistry#SchemasCreateOrReplace"
         },
         {
           "target": "com.azure.deviceregistry#SchemaVersionsCreateOrReplace"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateAsset"
+          "target": "com.azure.deviceregistry#GetSchemaVersion"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateAssetEndpointProfile"
+          "target": "com.azure.deviceregistry#ListSchemaVersionBySchema"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateNamespace"
+          "target": "com.azure.deviceregistry#DeleteSchema"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateNamespaceAsset"
+          "target": "com.azure.deviceregistry#SchemasCreateOrReplace"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateNamespaceDevice"
+          "target": "com.azure.deviceregistry#GetSchema"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredAsset"
+          "target": "com.azure.deviceregistry#ListSchemaBySchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteSchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateSchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#SchemaRegistriesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetSchemaRegistry"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListSchemaRegistryByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#MigrateNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredDevice"
         },
         {
           "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredDevice"
         },
         {
-          "target": "com.azure.deviceregistry#UpdateSchemaRegistry"
+          "target": "com.azure.deviceregistry#NamespaceDiscoveredDevicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredDeviceByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceDiscoveredAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceDiscoveredAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceDiscoveredAssetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceDiscoveredAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceDiscoveredAssetByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceDevicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceDevice"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceDeviceByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ExecuteNamespaceAssetAction"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespaceAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespaceAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespaceAssetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespaceAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceAssetByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#NamespacesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetNamespace"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#AssetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetAsset"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListAssetByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#DeleteAssetEndpointProfile"
+        },
+        {
+          "target": "com.azure.deviceregistry#UpdateAssetEndpointProfile"
+        },
+        {
+          "target": "com.azure.deviceregistry#AssetEndpointProfilesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetAssetEndpointProfile"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListAssetEndpointProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListSchemaRegistryBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListNamespaceBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.deviceregistry#GetBillingContainer"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListBillingContainerBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListAssetBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListAssetEndpointProfileBySubscription"
+        },
+        {
+          "target": "com.azure.deviceregistry#ListOperations"
         }
       ],
       "traits": {

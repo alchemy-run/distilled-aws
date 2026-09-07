@@ -287,22 +287,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.webhook#AddWebhookTokenEnvironment"
-        },
-        {
           "target": "com.modal.webhook#CreateWebhookToken"
         },
         {
           "target": "com.modal.webhook#DeleteWebhookToken"
         },
         {
-          "target": "com.modal.webhook#ListWebhookToken"
+          "target": "com.modal.webhook#AddWebhookTokenEnvironment"
         },
         {
           "target": "com.modal.webhook#ListWebhookTokenEnvironment"
         },
         {
           "target": "com.modal.webhook#RemoveWebhookTokenEnvironment"
+        },
+        {
+          "target": "com.modal.webhook#ListWebhookToken"
         },
         {
           "target": "com.modal.webhook#WebhookTokenListForEnvironment"

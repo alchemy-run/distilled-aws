@@ -7451,160 +7451,160 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.scvmm#AvailabilitySetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.scvmm#CloudsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.scvmm#CreateGuestAgent"
+          "target": "com.azure.scvmm#DeleteInventoryItem"
         },
         {
           "target": "com.azure.scvmm#CreateInventoryItem"
         },
         {
-          "target": "com.azure.scvmm#CreateVirtualMachineInstanceCheckpoint"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteAvailabilitySet"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteCloud"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteGuestAgent"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteInventoryItem"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteVirtualMachineInstanceCheckpoint"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteVirtualNetwork"
-        },
-        {
-          "target": "com.azure.scvmm#DeleteVmmServer"
-        },
-        {
-          "target": "com.azure.scvmm#GetAvailabilitySet"
-        },
-        {
-          "target": "com.azure.scvmm#GetCloud"
-        },
-        {
-          "target": "com.azure.scvmm#GetGuestAgent"
-        },
-        {
           "target": "com.azure.scvmm#GetInventoryItem"
-        },
-        {
-          "target": "com.azure.scvmm#GetVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#GetVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.scvmm#GetVirtualNetwork"
-        },
-        {
-          "target": "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatas"
-        },
-        {
-          "target": "com.azure.scvmm#GetVmmServer"
-        },
-        {
-          "target": "com.azure.scvmm#ListAvailabilitySetByResourceGroup"
-        },
-        {
-          "target": "com.azure.scvmm#ListAvailabilitySetBySubscription"
-        },
-        {
-          "target": "com.azure.scvmm#ListCloudByResourceGroup"
-        },
-        {
-          "target": "com.azure.scvmm#ListCloudBySubscription"
-        },
-        {
-          "target": "com.azure.scvmm#ListGuestAgentByVirtualMachineInstance"
         },
         {
           "target": "com.azure.scvmm#ListInventoryItemByVmmServer"
         },
         {
-          "target": "com.azure.scvmm#ListOperations"
-        },
-        {
-          "target": "com.azure.scvmm#ListVirtualMachineInstances"
-        },
-        {
-          "target": "com.azure.scvmm#ListVirtualMachineTemplateByResourceGroup"
-        },
-        {
-          "target": "com.azure.scvmm#ListVirtualMachineTemplateBySubscription"
-        },
-        {
-          "target": "com.azure.scvmm#ListVirtualNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.scvmm#ListVirtualNetworkBySubscription"
-        },
-        {
-          "target": "com.azure.scvmm#ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#ListVmmServerByResourceGroup"
-        },
-        {
-          "target": "com.azure.scvmm#ListVmmServerBySubscription"
-        },
-        {
-          "target": "com.azure.scvmm#RestartVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#RestoreVirtualMachineInstanceCheckpoint"
-        },
-        {
-          "target": "com.azure.scvmm#StartVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#StopVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#UpdateAvailabilitySet"
-        },
-        {
-          "target": "com.azure.scvmm#UpdateCloud"
-        },
-        {
-          "target": "com.azure.scvmm#UpdateVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.scvmm#UpdateVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.scvmm#UpdateVirtualNetwork"
+          "target": "com.azure.scvmm#DeleteVmmServer"
         },
         {
           "target": "com.azure.scvmm#UpdateVmmServer"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesCreateOrUpdate"
+          "target": "com.azure.scvmm#VmmServersCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesCreateOrUpdate"
+          "target": "com.azure.scvmm#GetVmmServer"
+        },
+        {
+          "target": "com.azure.scvmm#ListVmmServerByResourceGroup"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteVirtualNetwork"
+        },
+        {
+          "target": "com.azure.scvmm#UpdateVirtualNetwork"
         },
         {
           "target": "com.azure.scvmm#VirtualNetworksCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#VmmServersCreateOrUpdate"
+          "target": "com.azure.scvmm#GetVirtualNetwork"
+        },
+        {
+          "target": "com.azure.scvmm#ListVirtualNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.scvmm#UpdateVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.scvmm#VirtualMachineTemplatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scvmm#GetVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.scvmm#ListVirtualMachineTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteCloud"
+        },
+        {
+          "target": "com.azure.scvmm#UpdateCloud"
+        },
+        {
+          "target": "com.azure.scvmm#CloudsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scvmm#GetCloud"
+        },
+        {
+          "target": "com.azure.scvmm#ListCloudByResourceGroup"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteAvailabilitySet"
+        },
+        {
+          "target": "com.azure.scvmm#UpdateAvailabilitySet"
+        },
+        {
+          "target": "com.azure.scvmm#AvailabilitySetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scvmm#GetAvailabilitySet"
+        },
+        {
+          "target": "com.azure.scvmm#ListAvailabilitySetByResourceGroup"
+        },
+        {
+          "target": "com.azure.scvmm#ListVmmServerBySubscription"
+        },
+        {
+          "target": "com.azure.scvmm#ListVirtualNetworkBySubscription"
+        },
+        {
+          "target": "com.azure.scvmm#ListVirtualMachineTemplateBySubscription"
+        },
+        {
+          "target": "com.azure.scvmm#ListCloudBySubscription"
+        },
+        {
+          "target": "com.azure.scvmm#ListAvailabilitySetBySubscription"
+        },
+        {
+          "target": "com.azure.scvmm#ListOperations"
+        },
+        {
+          "target": "com.azure.scvmm#StopVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#StartVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#RestoreVirtualMachineInstanceCheckpoint"
+        },
+        {
+          "target": "com.azure.scvmm#RestartVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatas"
+        },
+        {
+          "target": "com.azure.scvmm#ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteGuestAgent"
+        },
+        {
+          "target": "com.azure.scvmm#CreateGuestAgent"
+        },
+        {
+          "target": "com.azure.scvmm#GetGuestAgent"
+        },
+        {
+          "target": "com.azure.scvmm#ListGuestAgentByVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteVirtualMachineInstanceCheckpoint"
+        },
+        {
+          "target": "com.azure.scvmm#CreateVirtualMachineInstanceCheckpoint"
+        },
+        {
+          "target": "com.azure.scvmm#DeleteVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#UpdateVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#VirtualMachineInstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scvmm#GetVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.scvmm#ListVirtualMachineInstances"
         }
       ],
       "traits": {

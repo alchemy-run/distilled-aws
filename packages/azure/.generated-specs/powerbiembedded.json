@@ -946,40 +946,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.powerbiembedded#CheckWorkspaceCollectionNameAvailability"
-        },
-        {
-          "target": "com.azure.powerbiembedded#CreateWorkspaceCollection"
-        },
-        {
-          "target": "com.azure.powerbiembedded#DeleteWorkspaceCollection"
-        },
-        {
-          "target": "com.azure.powerbiembedded#GetAvailableOperations"
-        },
-        {
-          "target": "com.azure.powerbiembedded#GetWorkspaceCollectionAccessKeys"
-        },
-        {
-          "target": "com.azure.powerbiembedded#GetWorkspaceCollectionByName"
-        },
-        {
-          "target": "com.azure.powerbiembedded#ListWorkspaceCollectionByResourceGroup"
-        },
-        {
-          "target": "com.azure.powerbiembedded#ListWorkspaceCollectionBySubscription"
+          "target": "com.azure.powerbiembedded#MigrateWorkspaceCollection"
         },
         {
           "target": "com.azure.powerbiembedded#ListWorkspaces"
         },
         {
-          "target": "com.azure.powerbiembedded#MigrateWorkspaceCollection"
+          "target": "com.azure.powerbiembedded#GetAvailableOperations"
         },
         {
           "target": "com.azure.powerbiembedded#RegenerateWorkspaceCollectionKey"
         },
         {
+          "target": "com.azure.powerbiembedded#GetWorkspaceCollectionAccessKeys"
+        },
+        {
+          "target": "com.azure.powerbiembedded#ListWorkspaceCollectionBySubscription"
+        },
+        {
+          "target": "com.azure.powerbiembedded#ListWorkspaceCollectionByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbiembedded#CheckWorkspaceCollectionNameAvailability"
+        },
+        {
+          "target": "com.azure.powerbiembedded#DeleteWorkspaceCollection"
+        },
+        {
           "target": "com.azure.powerbiembedded#UpdateWorkspaceCollection"
+        },
+        {
+          "target": "com.azure.powerbiembedded#CreateWorkspaceCollection"
+        },
+        {
+          "target": "com.azure.powerbiembedded#GetWorkspaceCollectionByName"
         }
       ],
       "traits": {

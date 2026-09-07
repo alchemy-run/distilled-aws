@@ -587,25 +587,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.file_system_shortcut#ListFileSystemShortcut"
+        },
+        {
           "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcut"
         },
         {
-          "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcutReorder"
-        },
-        {
-          "target": "com.posthog.file_system_shortcut#FileSystemShortcutDestroy"
-        },
-        {
           "target": "com.posthog.file_system_shortcut#GetFileSystemShortcut"
-        },
-        {
-          "target": "com.posthog.file_system_shortcut#ListFileSystemShortcut"
         },
         {
           "target": "com.posthog.file_system_shortcut#UpdateFileSystemShortcut"
         },
         {
           "target": "com.posthog.file_system_shortcut#UpdateFileSystemShortcutPartial"
+        },
+        {
+          "target": "com.posthog.file_system_shortcut#FileSystemShortcutDestroy"
+        },
+        {
+          "target": "com.posthog.file_system_shortcut#CreateFileSystemShortcutReorder"
         }
       ],
       "traits": {

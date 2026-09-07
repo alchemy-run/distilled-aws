@@ -1354,19 +1354,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.iotcentral#AppsCreateOrUpdate"
+          "target": "com.azure.iotcentral#ListOperations"
         },
         {
-          "target": "com.azure.iotcentral#CheckAppNameAvailability"
+          "target": "com.azure.iotcentral#ListAppTemplates"
         },
         {
           "target": "com.azure.iotcentral#CheckAppSubdomainAvailability"
         },
         {
-          "target": "com.azure.iotcentral#DeleteApp"
-        },
-        {
-          "target": "com.azure.iotcentral#GetApp"
+          "target": "com.azure.iotcentral#CheckAppNameAvailability"
         },
         {
           "target": "com.azure.iotcentral#ListAppByResourceGroup"
@@ -1375,13 +1372,16 @@
           "target": "com.azure.iotcentral#ListAppBySubscription"
         },
         {
-          "target": "com.azure.iotcentral#ListAppTemplates"
-        },
-        {
-          "target": "com.azure.iotcentral#ListOperations"
+          "target": "com.azure.iotcentral#DeleteApp"
         },
         {
           "target": "com.azure.iotcentral#UpdateApp"
+        },
+        {
+          "target": "com.azure.iotcentral#AppsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotcentral#GetApp"
         }
       ],
       "traits": {

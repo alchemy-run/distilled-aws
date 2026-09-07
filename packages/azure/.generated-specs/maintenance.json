@@ -6834,37 +6834,88 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdate"
+          "target": "com.azure.maintenance#ListUpdates"
         },
         {
-          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdateParent"
+          "target": "com.azure.maintenance#ListUpdateParent"
         },
         {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdateParent"
-        },
-        {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#DeleteConfigurationAssignment"
-        },
-        {
-          "target": "com.azure.maintenance#DeleteConfigurationAssignmentParent"
+          "target": "com.azure.maintenance#ListOperations"
         },
         {
           "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForResourceGroup"
         },
         {
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroup"
+        },
+        {
+          "target": "com.azure.maintenance#ConfigurationAssignmentsForResourceGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroup"
+        },
+        {
           "target": "com.azure.maintenance#DeleteConfigurationAssignmentsForSubscription"
         },
         {
+          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscription"
+        },
+        {
+          "target": "com.azure.maintenance#ConfigurationAssignmentsForSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscription"
+        },
+        {
+          "target": "com.azure.maintenance#ListConfigurationAssignmentsWithinSubscription"
+        },
+        {
+          "target": "com.azure.maintenance#ListMaintenanceConfigurationsForResourceGroup"
+        },
+        {
+          "target": "com.azure.maintenance#ListMaintenanceConfigurations"
+        },
+        {
           "target": "com.azure.maintenance#DeleteMaintenanceConfiguration"
+        },
+        {
+          "target": "com.azure.maintenance#UpdateMaintenanceConfiguration"
+        },
+        {
+          "target": "com.azure.maintenance#MaintenanceConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#GetMaintenanceConfiguration"
+        },
+        {
+          "target": "com.azure.maintenance#ListConfigurationAssignments"
+        },
+        {
+          "target": "com.azure.maintenance#ListConfigurationAssignmentParent"
+        },
+        {
+          "target": "com.azure.maintenance#DeleteConfigurationAssignment"
+        },
+        {
+          "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignment"
+        },
+        {
+          "target": "com.azure.maintenance#DeleteConfigurationAssignmentParent"
+        },
+        {
+          "target": "com.azure.maintenance#ConfigurationAssignmentsCreateOrUpdateParent"
+        },
+        {
+          "target": "com.azure.maintenance#GetConfigurationAssignmentParent"
+        },
+        {
+          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maintenance#ApplyUpdatesCreateOrUpdateParent"
         },
         {
           "target": "com.azure.maintenance#GetApplyUpdate"
@@ -6873,61 +6924,10 @@
           "target": "com.azure.maintenance#GetApplyUpdateParent"
         },
         {
-          "target": "com.azure.maintenance#GetConfigurationAssignment"
-        },
-        {
-          "target": "com.azure.maintenance#GetConfigurationAssignmentParent"
-        },
-        {
-          "target": "com.azure.maintenance#GetConfigurationAssignmentsForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#GetConfigurationAssignmentsForSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#GetMaintenanceConfiguration"
-        },
-        {
           "target": "com.azure.maintenance#GetPublicMaintenanceConfiguration"
         },
         {
-          "target": "com.azure.maintenance#ListConfigurationAssignmentParent"
-        },
-        {
-          "target": "com.azure.maintenance#ListConfigurationAssignments"
-        },
-        {
-          "target": "com.azure.maintenance#ListConfigurationAssignmentsWithinSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#ListMaintenanceConfigurations"
-        },
-        {
-          "target": "com.azure.maintenance#ListMaintenanceConfigurationsForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#ListOperations"
-        },
-        {
           "target": "com.azure.maintenance#ListPublicMaintenanceConfigurations"
-        },
-        {
-          "target": "com.azure.maintenance#ListUpdateParent"
-        },
-        {
-          "target": "com.azure.maintenance#ListUpdates"
-        },
-        {
-          "target": "com.azure.maintenance#MaintenanceConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForResourceGroup"
-        },
-        {
-          "target": "com.azure.maintenance#UpdateConfigurationAssignmentsForSubscription"
-        },
-        {
-          "target": "com.azure.maintenance#UpdateMaintenanceConfiguration"
         }
       ],
       "traits": {

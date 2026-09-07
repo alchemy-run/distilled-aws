@@ -2448,10 +2448,25 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.scheduler#ListJobJobHistory"
+        },
+        {
+          "target": "com.azure.scheduler#ListJobs"
+        },
+        {
+          "target": "com.azure.scheduler#RunJob"
+        },
+        {
           "target": "com.azure.scheduler#DeleteJob"
         },
         {
-          "target": "com.azure.scheduler#DeleteJobCollection"
+          "target": "com.azure.scheduler#PatchJob"
+        },
+        {
+          "target": "com.azure.scheduler#JobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.scheduler#GetJob"
         },
         {
           "target": "com.azure.scheduler#DisableJobCollection"
@@ -2460,37 +2475,22 @@
           "target": "com.azure.scheduler#EnableJobCollection"
         },
         {
-          "target": "com.azure.scheduler#GetJob"
+          "target": "com.azure.scheduler#DeleteJobCollection"
         },
         {
-          "target": "com.azure.scheduler#GetJobCollection"
+          "target": "com.azure.scheduler#PatchJobCollection"
         },
         {
           "target": "com.azure.scheduler#JobCollectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.scheduler#JobsCreateOrUpdate"
+          "target": "com.azure.scheduler#GetJobCollection"
         },
         {
           "target": "com.azure.scheduler#ListJobCollectionByResourceGroup"
         },
         {
           "target": "com.azure.scheduler#ListJobCollectionBySubscription"
-        },
-        {
-          "target": "com.azure.scheduler#ListJobJobHistory"
-        },
-        {
-          "target": "com.azure.scheduler#ListJobs"
-        },
-        {
-          "target": "com.azure.scheduler#PatchJob"
-        },
-        {
-          "target": "com.azure.scheduler#PatchJobCollection"
-        },
-        {
-          "target": "com.azure.scheduler#RunJob"
         }
       ],
       "traits": {

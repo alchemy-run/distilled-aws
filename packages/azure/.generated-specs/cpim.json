@@ -1521,46 +1521,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cpim#CheckB2CTenantNameAvailability"
-        },
-        {
-          "target": "com.azure.cpim#CreateB2CTenant"
-        },
-        {
-          "target": "com.azure.cpim#CreateGuestUsage"
-        },
-        {
-          "target": "com.azure.cpim#DeleteB2CTenant"
-        },
-        {
-          "target": "com.azure.cpim#DeleteGuestUsage"
-        },
-        {
-          "target": "com.azure.cpim#GetB2CTenant"
-        },
-        {
-          "target": "com.azure.cpim#GetGuestUsage"
-        },
-        {
-          "target": "com.azure.cpim#ListB2CTenantByResourceGroup"
-        },
-        {
-          "target": "com.azure.cpim#ListB2CTenantBySubscription"
-        },
-        {
           "target": "com.azure.cpim#ListGuestUsageByResourceGroup"
         },
         {
           "target": "com.azure.cpim#ListGuestUsageBySubscription"
         },
         {
+          "target": "com.azure.cpim#DeleteGuestUsage"
+        },
+        {
+          "target": "com.azure.cpim#UpdateGuestUsage"
+        },
+        {
+          "target": "com.azure.cpim#CreateGuestUsage"
+        },
+        {
+          "target": "com.azure.cpim#GetGuestUsage"
+        },
+        {
           "target": "com.azure.cpim#ListOperations"
+        },
+        {
+          "target": "com.azure.cpim#DeleteB2CTenant"
         },
         {
           "target": "com.azure.cpim#UpdateB2CTenant"
         },
         {
-          "target": "com.azure.cpim#UpdateGuestUsage"
+          "target": "com.azure.cpim#CreateB2CTenant"
+        },
+        {
+          "target": "com.azure.cpim#GetB2CTenant"
+        },
+        {
+          "target": "com.azure.cpim#ListB2CTenantBySubscription"
+        },
+        {
+          "target": "com.azure.cpim#ListB2CTenantByResourceGroup"
+        },
+        {
+          "target": "com.azure.cpim#CheckB2CTenantNameAvailability"
         }
       ],
       "traits": {

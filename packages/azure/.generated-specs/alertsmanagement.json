@@ -5043,43 +5043,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.alertsmanagement#AlertsChangeState"
-        },
-        {
-          "target": "com.azure.alertsmanagement#AlertsMetaData2"
-        },
-        {
           "target": "com.azure.alertsmanagement#DeleteAlertProcessingRule"
         },
         {
-          "target": "com.azure.alertsmanagement#DeletePrometheusRuleGroup"
+          "target": "com.azure.alertsmanagement#UpdateAlertProcessingRule"
         },
         {
-          "target": "com.azure.alertsmanagement#DeleteSmartDetectorAlertRule"
-        },
-        {
-          "target": "com.azure.alertsmanagement#GetAlertAll"
-        },
-        {
-          "target": "com.azure.alertsmanagement#GetAlertById"
-        },
-        {
-          "target": "com.azure.alertsmanagement#GetAlertHistory"
+          "target": "com.azure.alertsmanagement#AlertProcessingRulesCreateOrUpdate"
         },
         {
           "target": "com.azure.alertsmanagement#GetAlertProcessingRuleByName"
-        },
-        {
-          "target": "com.azure.alertsmanagement#GetAlertSummary"
-        },
-        {
-          "target": "com.azure.alertsmanagement#GetPrometheusRuleGroup"
-        },
-        {
-          "target": "com.azure.alertsmanagement#GetSmartDetectorAlertRule"
         },
         {
           "target": "com.azure.alertsmanagement#ListAlertProcessingRuleByResourceGroup"
@@ -5088,13 +5061,37 @@
           "target": "com.azure.alertsmanagement#ListAlertProcessingRuleBySubscription"
         },
         {
+          "target": "com.azure.alertsmanagement#GetAlertSummary"
+        },
+        {
+          "target": "com.azure.alertsmanagement#GetAlertHistory"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsChangeState"
+        },
+        {
+          "target": "com.azure.alertsmanagement#GetAlertById"
+        },
+        {
+          "target": "com.azure.alertsmanagement#GetAlertAll"
+        },
+        {
+          "target": "com.azure.alertsmanagement#AlertsMetaData2"
+        },
+        {
           "target": "com.azure.alertsmanagement#ListOperations"
         },
         {
-          "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupByResourceGroup"
+          "target": "com.azure.alertsmanagement#DeleteSmartDetectorAlertRule"
         },
         {
-          "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupBySubscription"
+          "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRule"
+        },
+        {
+          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.alertsmanagement#GetSmartDetectorAlertRule"
         },
         {
           "target": "com.azure.alertsmanagement#ListSmartDetectorAlertRuleByResourceGroup"
@@ -5103,19 +5100,22 @@
           "target": "com.azure.alertsmanagement#ListSmartDetectorAlertRules"
         },
         {
-          "target": "com.azure.alertsmanagement#PatchSmartDetectorAlertRule"
+          "target": "com.azure.alertsmanagement#DeletePrometheusRuleGroup"
+        },
+        {
+          "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroup"
         },
         {
           "target": "com.azure.alertsmanagement#PrometheusRuleGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.alertsmanagement#SmartDetectorAlertRulesCreateOrUpdate"
+          "target": "com.azure.alertsmanagement#GetPrometheusRuleGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#UpdateAlertProcessingRule"
+          "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupByResourceGroup"
         },
         {
-          "target": "com.azure.alertsmanagement#UpdatePrometheusRuleGroup"
+          "target": "com.azure.alertsmanagement#ListPrometheusRuleGroupBySubscription"
         }
       ],
       "traits": {

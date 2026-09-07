@@ -439,16 +439,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.ai_gateway#CreateAiGatewayRule"
-        },
-        {
-          "target": "com.vercel.ai_gateway#DeleteAiGatewayRule"
-        },
-        {
           "target": "com.vercel.ai_gateway#ListAiGatewayRules"
         },
         {
+          "target": "com.vercel.ai_gateway#CreateAiGatewayRule"
+        },
+        {
           "target": "com.vercel.ai_gateway#UpdateAiGatewayRule"
+        },
+        {
+          "target": "com.vercel.ai_gateway#DeleteAiGatewayRule"
         }
       ],
       "traits": {

@@ -1262,25 +1262,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.custom_property_definitions#ListCustomPropertyDefinitions"
+        },
+        {
           "target": "com.posthog.custom_property_definitions#CreateCustomPropertyDefinition"
         },
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroy"
-        },
-        {
           "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinition"
-        },
-        {
-          "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionsValue"
-        },
-        {
-          "target": "com.posthog.custom_property_definitions#ListCustomPropertyDefinitions"
         },
         {
           "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinition"
         },
         {
           "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartial"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroy"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionsValue"
         }
       ],
       "traits": {

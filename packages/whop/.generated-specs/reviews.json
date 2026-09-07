@@ -734,10 +734,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.reviews#GetReview"
+          "target": "com.whop.reviews#ListReview"
         },
         {
-          "target": "com.whop.reviews#ListReview"
+          "target": "com.whop.reviews#GetReview"
         }
       ],
       "traits": {

@@ -29698,16 +29698,25 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.security#AddBypassIp"
+          "target": "com.vercel.security#UpdateAttackChallengeMode"
         },
         {
-          "target": "com.vercel.security#CreateSecurityFirewallConfigByConfigVersionActivate"
+          "target": "com.vercel.security#GetSecurityFirewallConfig"
+        },
+        {
+          "target": "com.vercel.security#PutFirewallConfig"
+        },
+        {
+          "target": "com.vercel.security#UpdateFirewallConfig"
+        },
+        {
+          "target": "com.vercel.security#GetFirewallConfig"
         },
         {
           "target": "com.vercel.security#DeleteSecurityFirewallConfigByConfigVersion"
         },
         {
-          "target": "com.vercel.security#GenerateFirewallRule"
+          "target": "com.vercel.security#CreateSecurityFirewallConfigByConfigVersionActivate"
         },
         {
           "target": "com.vercel.security#GetActiveAttackStatus"
@@ -29716,25 +29725,16 @@
           "target": "com.vercel.security#GetBypassIp"
         },
         {
-          "target": "com.vercel.security#GetFirewallConfig"
-        },
-        {
-          "target": "com.vercel.security#GetSecurityFirewallConfig"
-        },
-        {
-          "target": "com.vercel.security#GetSecurityFirewallEvents"
-        },
-        {
-          "target": "com.vercel.security#PutFirewallConfig"
+          "target": "com.vercel.security#AddBypassIp"
         },
         {
           "target": "com.vercel.security#RemoveBypassIp"
         },
         {
-          "target": "com.vercel.security#UpdateAttackChallengeMode"
+          "target": "com.vercel.security#GetSecurityFirewallEvents"
         },
         {
-          "target": "com.vercel.security#UpdateFirewallConfig"
+          "target": "com.vercel.security#GenerateFirewallRule"
         }
       ],
       "traits": {

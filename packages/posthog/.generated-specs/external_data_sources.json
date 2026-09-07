@@ -12422,28 +12422,100 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.external_data_sources#ListExternalDataSources"
+        },
+        {
           "target": "com.posthog.external_data_sources#CreateExternalDataSource"
         },
         {
-          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesCheckCdcPrerequisite"
+          "target": "com.posthog.external_data_sources#GetExternalDataSource"
+        },
+        {
+          "target": "com.posthog.external_data_sources#UpdateExternalDataSource"
+        },
+        {
+          "target": "com.posthog.external_data_sources#UpdateExternalDataSourcesPartial"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesDestroy"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesBulkUpdateSchemasPartialUpdate"
+        },
+        {
+          "target": "com.posthog.external_data_sources#GetExternalDataSourcesCdcStatus"
         },
         {
           "target": "com.posthog.external_data_sources#CreateExternalDataSourcesCheckCdcPrerequisitesForSource"
         },
         {
-          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesDatabaseSchema"
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesCreateWebhookCreate"
         },
         {
-          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesDraftCustomManifest"
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesDeleteWebhookCreate"
         },
         {
-          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesPreviewResource"
+          "target": "com.posthog.external_data_sources#GetExternalDataSourcesDestination"
+        },
+        {
+          "target": "com.posthog.external_data_sources#UpdateExternalDataSourcesDestinationsPartial"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesDisableCdcCreate"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesEnableCdcCreate"
+        },
+        {
+          "target": "com.posthog.external_data_sources#GetExternalDataSourcesJob"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesRefreshSchemasCreate"
         },
         {
           "target": "com.posthog.external_data_sources#CreateExternalDataSourcesReload"
         },
         {
           "target": "com.posthog.external_data_sources#CreateExternalDataSourcesRepairCdc"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesResumeCdcCreate"
+        },
+        {
+          "target": "com.posthog.external_data_sources#UpdateExternalDataSourcesRevenueAnalyticsConfigPartial"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesUpdateCdcSettingsCreate"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesUpdateWebhookInputsCreate"
+        },
+        {
+          "target": "com.posthog.external_data_sources#GetExternalDataSourcesWebhookInfo"
+        },
+        {
+          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesCheckCdcPrerequisite"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ExternalDataSourcesConnectLinkRetrieve"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ListExternalDataSourcesConnections"
+        },
+        {
+          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesDatabaseSchema"
+        },
+        {
+          "target": "com.posthog.external_data_sources#ListExternalDataSourcesDirectConnectionOptions"
+        },
+        {
+          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesDraftCustomManifest"
+        },
+        {
+          "target": "com.posthog.external_data_sources#GetExternalDataSourcesOauthAccount"
+        },
+        {
+          "target": "com.posthog.external_data_sources#CreateExternalDataSourcesPreviewResource"
         },
         {
           "target": "com.posthog.external_data_sources#CreateExternalDataSourcesSetup"
@@ -12455,82 +12527,10 @@
           "target": "com.posthog.external_data_sources#CreateExternalDataSourcesStoreCredentials"
         },
         {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesBulkUpdateSchemasPartialUpdate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesConnectLinkRetrieve"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesCreateWebhookCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesDeleteWebhookCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesDestroy"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesDisableCdcCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesEnableCdcCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesRefreshSchemasCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesResumeCdcCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesUpdateCdcSettingsCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ExternalDataSourcesUpdateWebhookInputsCreate"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSource"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSourcesCdcStatus"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSourcesDestination"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSourcesJob"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSourcesOauthAccount"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSourcesWebhookInfo"
-        },
-        {
-          "target": "com.posthog.external_data_sources#GetExternalDataSourcesWizard"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ListExternalDataSources"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ListExternalDataSourcesConnections"
-        },
-        {
-          "target": "com.posthog.external_data_sources#ListExternalDataSourcesDirectConnectionOptions"
-        },
-        {
           "target": "com.posthog.external_data_sources#ListExternalDataSourcesStoredCredentials"
         },
         {
-          "target": "com.posthog.external_data_sources#UpdateExternalDataSource"
-        },
-        {
-          "target": "com.posthog.external_data_sources#UpdateExternalDataSourcesDestinationsPartial"
-        },
-        {
-          "target": "com.posthog.external_data_sources#UpdateExternalDataSourcesPartial"
-        },
-        {
-          "target": "com.posthog.external_data_sources#UpdateExternalDataSourcesRevenueAnalyticsConfigPartial"
+          "target": "com.posthog.external_data_sources#GetExternalDataSourcesWizard"
         }
       ],
       "traits": {

@@ -3762,16 +3762,16 @@
           "target": "com.huggingface.papers#GetDailyPapers"
         },
         {
-          "target": "com.huggingface.papers#GetPaper"
+          "target": "com.huggingface.papers#ListPapers"
+        },
+        {
+          "target": "com.huggingface.papers#SearchPapers"
         },
         {
           "target": "com.huggingface.papers#ListPaper"
         },
         {
-          "target": "com.huggingface.papers#ListPapers"
-        },
-        {
-          "target": "com.huggingface.papers#SearchPapers"
+          "target": "com.huggingface.papers#GetPaper"
         },
         {
           "target": "com.huggingface.papers#UpdatePaperLinks"

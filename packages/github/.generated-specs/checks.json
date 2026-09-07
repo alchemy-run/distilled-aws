@@ -4013,37 +4013,37 @@
           "target": "com.github.checks#Create"
         },
         {
-          "target": "com.github.checks#CreateSuite"
-        },
-        {
           "target": "com.github.checks#Get"
         },
         {
-          "target": "com.github.checks#GetSuite"
+          "target": "com.github.checks#Update"
         },
         {
           "target": "com.github.checks#ListAnnotations"
         },
         {
-          "target": "com.github.checks#ListForRef"
-        },
-        {
-          "target": "com.github.checks#ListForSuite"
-        },
-        {
-          "target": "com.github.checks#ListSuitesForRef"
-        },
-        {
-          "target": "com.github.checks#RerequestSuite"
-        },
-        {
           "target": "com.github.checks#RunRerequest"
+        },
+        {
+          "target": "com.github.checks#CreateSuite"
         },
         {
           "target": "com.github.checks#SetSuitesPreferences"
         },
         {
-          "target": "com.github.checks#Update"
+          "target": "com.github.checks#GetSuite"
+        },
+        {
+          "target": "com.github.checks#ListForSuite"
+        },
+        {
+          "target": "com.github.checks#RerequestSuite"
+        },
+        {
+          "target": "com.github.checks#ListForRef"
+        },
+        {
+          "target": "com.github.checks#ListSuitesForRef"
         }
       ],
       "traits": {

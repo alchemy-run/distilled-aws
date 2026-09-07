@@ -1722,22 +1722,22 @@
       "version": "1.1.4",
       "operations": [
         {
+          "target": "com.github.private_registries#ListOrgPrivateRegistries"
+        },
+        {
           "target": "com.github.private_registries#CreateOrgPrivateRegistry"
-        },
-        {
-          "target": "com.github.private_registries#DeleteOrgPrivateRegistry"
-        },
-        {
-          "target": "com.github.private_registries#GetOrgPrivateRegistry"
         },
         {
           "target": "com.github.private_registries#GetOrgPublicKey"
         },
         {
-          "target": "com.github.private_registries#ListOrgPrivateRegistries"
+          "target": "com.github.private_registries#GetOrgPrivateRegistry"
         },
         {
           "target": "com.github.private_registries#UpdateOrgPrivateRegistry"
+        },
+        {
+          "target": "com.github.private_registries#DeleteOrgPrivateRegistry"
         }
       ],
       "traits": {

@@ -1970,28 +1970,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.monitor#DeleteScheduledQueryRule"
-        },
-        {
           "target": "com.azure.monitor#FetchDataCollectionRuleConfigurationMetadata"
         },
         {
-          "target": "com.azure.monitor#GetScheduledQueryRule"
+          "target": "com.azure.monitor#ListOperations"
         },
         {
-          "target": "com.azure.monitor#ListOperations"
+          "target": "com.azure.monitor#DeleteScheduledQueryRule"
+        },
+        {
+          "target": "com.azure.monitor#UpdateScheduledQueryRule"
+        },
+        {
+          "target": "com.azure.monitor#ScheduledQueryRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.monitor#GetScheduledQueryRule"
         },
         {
           "target": "com.azure.monitor#ListScheduledQueryRuleByResourceGroup"
         },
         {
           "target": "com.azure.monitor#ListScheduledQueryRuleBySubscription"
-        },
-        {
-          "target": "com.azure.monitor#ScheduledQueryRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.monitor#UpdateScheduledQueryRule"
         }
       ],
       "traits": {

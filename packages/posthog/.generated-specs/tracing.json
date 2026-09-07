@@ -2699,16 +2699,25 @@
           "target": "com.posthog.tracing#CreateTracingSpansAttributeBreakdown"
         },
         {
+          "target": "com.posthog.tracing#GetTracingSpansAttribute"
+        },
+        {
           "target": "com.posthog.tracing#CreateTracingSpansCount"
         },
         {
           "target": "com.posthog.tracing#CreateTracingSpansDurationHistogram"
         },
         {
+          "target": "com.posthog.tracing#GetTracingSpansHasSpan"
+        },
+        {
           "target": "com.posthog.tracing#CreateTracingSpansLatencyHeatmap"
         },
         {
           "target": "com.posthog.tracing#CreateTracingSpansQuery"
+        },
+        {
+          "target": "com.posthog.tracing#GetTracingSpansServiceName"
         },
         {
           "target": "com.posthog.tracing#CreateTracingSpansSparkline"
@@ -2723,34 +2732,25 @@
           "target": "com.posthog.tracing#CreateTracingSpansTree"
         },
         {
-          "target": "com.posthog.tracing#CreateTracingView"
-        },
-        {
-          "target": "com.posthog.tracing#GetTracingSpansAttribute"
-        },
-        {
-          "target": "com.posthog.tracing#GetTracingSpansHasSpan"
-        },
-        {
-          "target": "com.posthog.tracing#GetTracingSpansServiceName"
-        },
-        {
           "target": "com.posthog.tracing#GetTracingSpansValue"
-        },
-        {
-          "target": "com.posthog.tracing#GetTracingView"
         },
         {
           "target": "com.posthog.tracing#ListTracingViews"
         },
         {
-          "target": "com.posthog.tracing#TracingViewsDestroy"
+          "target": "com.posthog.tracing#CreateTracingView"
+        },
+        {
+          "target": "com.posthog.tracing#GetTracingView"
         },
         {
           "target": "com.posthog.tracing#UpdateTracingView"
         },
         {
           "target": "com.posthog.tracing#UpdateTracingViewsPartial"
+        },
+        {
+          "target": "com.posthog.tracing#TracingViewsDestroy"
         }
       ],
       "traits": {

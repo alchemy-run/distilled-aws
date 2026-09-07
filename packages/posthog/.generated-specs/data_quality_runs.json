@@ -295,13 +295,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.data_quality_runs#ListDataQualityRuns"
+        },
+        {
           "target": "com.posthog.data_quality_runs#CreateDataQualityRun"
         },
         {
           "target": "com.posthog.data_quality_runs#GetDataQualityRun"
-        },
-        {
-          "target": "com.posthog.data_quality_runs#ListDataQualityRuns"
         }
       ],
       "traits": {

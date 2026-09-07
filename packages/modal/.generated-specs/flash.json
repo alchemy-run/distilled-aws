@@ -205,13 +205,13 @@
           "target": "com.modal.flash#FlashContainerDeregister"
         },
         {
-          "target": "com.modal.flash#FlashSetTargetSlotsMetrics"
-        },
-        {
           "target": "com.modal.flash#ListFlashContainer"
         },
         {
           "target": "com.modal.flash#RegisterFlashContainer"
+        },
+        {
+          "target": "com.modal.flash#FlashSetTargetSlotsMetrics"
         }
       ],
       "traits": {

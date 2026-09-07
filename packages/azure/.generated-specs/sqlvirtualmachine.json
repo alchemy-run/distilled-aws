@@ -4437,34 +4437,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersCreateOrUpdate"
+          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineTroubleshootTroubleshoot"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#DeleteAvailabilityGroupListener"
+          "target": "com.azure.sqlvirtualmachine#StartSqlVirtualMachineAssessment"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachine"
-        },
-        {
-          "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineGroup"
+          "target": "com.azure.sqlvirtualmachine#RedeploySqlVirtualMachine"
         },
         {
           "target": "com.azure.sqlvirtualmachine#FetchSqlVirtualMachineDCAssessment"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#GetAvailabilityGroupListener"
+          "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachine"
+        },
+        {
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachine"
+        },
+        {
+          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesCreateOrUpdate"
         },
         {
           "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachine"
-        },
-        {
-          "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroup"
-        },
-        {
-          "target": "com.azure.sqlvirtualmachine#ListAvailabilityGroupListenerByGroup"
-        },
-        {
-          "target": "com.azure.sqlvirtualmachine#ListOperations"
         },
         {
           "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineByResourceGroup"
@@ -4473,34 +4467,40 @@
           "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineBySqlVmGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupByResourceGroup"
+          "target": "com.azure.sqlvirtualmachine#DeleteAvailabilityGroupListener"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroups"
+          "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersCreateOrUpdate"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachines"
+          "target": "com.azure.sqlvirtualmachine#GetAvailabilityGroupListener"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#RedeploySqlVirtualMachine"
+          "target": "com.azure.sqlvirtualmachine#ListAvailabilityGroupListenerByGroup"
+        },
+        {
+          "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineGroup"
+        },
+        {
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroup"
         },
         {
           "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesCreateOrUpdate"
+          "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineTroubleshootTroubleshoot"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupByResourceGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#StartSqlVirtualMachineAssessment"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachines"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachine"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroups"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroup"
+          "target": "com.azure.sqlvirtualmachine#ListOperations"
         }
       ],
       "traits": {

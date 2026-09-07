@@ -3377,10 +3377,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.users#CheckUserAccess"
+          "target": "com.whop.users#ListUsers"
+        },
+        {
+          "target": "com.whop.users#ListOauthGrants"
         },
         {
           "target": "com.whop.users#CreateOauthGrant"
+        },
+        {
+          "target": "com.whop.users#ListPasskeys"
         },
         {
           "target": "com.whop.users#CreatePasskey"
@@ -3392,16 +3398,13 @@
           "target": "com.whop.users#DeletePasskey"
         },
         {
-          "target": "com.whop.users#GetUser"
-        },
-        {
           "target": "com.whop.users#GetUserPreferences"
         },
         {
-          "target": "com.whop.users#ListOauthGrants"
+          "target": "com.whop.users#UpdateUserPreferences"
         },
         {
-          "target": "com.whop.users#ListPasskeys"
+          "target": "com.whop.users#SetUserNotificationPreferences"
         },
         {
           "target": "com.whop.users#ListUserNotificationExperiencePreferences"
@@ -3410,19 +3413,16 @@
           "target": "com.whop.users#ListUserNotificationTopicPreferences"
         },
         {
-          "target": "com.whop.users#ListUserRecommendedActions"
-        },
-        {
-          "target": "com.whop.users#ListUsers"
-        },
-        {
-          "target": "com.whop.users#SetUserNotificationPreferences"
+          "target": "com.whop.users#GetUser"
         },
         {
           "target": "com.whop.users#UpdateUser"
         },
         {
-          "target": "com.whop.users#UpdateUserPreferences"
+          "target": "com.whop.users#CheckUserAccess"
+        },
+        {
+          "target": "com.whop.users#ListUserRecommendedActions"
         }
       ],
       "traits": {

@@ -8704,118 +8704,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.vision#CreateVisionAlert"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionAlertsDestination"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionObservationsLabel"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScanner"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersAffectedCohort"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersBackfill"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersBackfillsEstimate"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersDraft"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersEstimate"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersInlineScan"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersObservationsLabel"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersObserve"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersPromptSuggestionsDismiss"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersPromptSuggestionsEvaluate"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersScout"
-        },
-        {
-          "target": "com.posthog.vision#CreateVisionScannersSuggestTag"
-        },
-        {
-          "target": "com.posthog.vision#GetEnvironmentVisionQuota"
-        },
-        {
-          "target": "com.posthog.vision#GetEnvironmentVisionQuotaSpendSeries"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionAlert"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionObservation"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScanner"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersBackfill"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersCreator"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersImpact"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersObservation"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersObservationsStat"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersPromptSuggestionsCurrent"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersScoutReport"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersSelfDrivingStat"
-        },
-        {
-          "target": "com.posthog.vision#GetVisionScannersStat"
-        },
-        {
           "target": "com.posthog.vision#ListVisionAlerts"
         },
         {
-          "target": "com.posthog.vision#ListVisionAlertsEvents"
+          "target": "com.posthog.vision#CreateVisionAlert"
         },
         {
-          "target": "com.posthog.vision#ListVisionObservations"
-        },
-        {
-          "target": "com.posthog.vision#ListVisionScanners"
-        },
-        {
-          "target": "com.posthog.vision#ListVisionScannersBackfills"
-        },
-        {
-          "target": "com.posthog.vision#ListVisionScannersObservations"
-        },
-        {
-          "target": "com.posthog.vision#ListVisionScannersPromptSuggestions"
-        },
-        {
-          "target": "com.posthog.vision#ListVisionScannersScoutReports"
+          "target": "com.posthog.vision#GetVisionAlert"
         },
         {
           "target": "com.posthog.vision#UpdateVisionAlert"
@@ -8824,19 +8719,31 @@
           "target": "com.posthog.vision#UpdateVisionAlertsPartial"
         },
         {
-          "target": "com.posthog.vision#UpdateVisionScannersPartial"
+          "target": "com.posthog.vision#VisionAlertsDestroy"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionAlertsDestination"
         },
         {
           "target": "com.posthog.vision#VisionAlertsDestinationsDeleteCreate"
         },
         {
-          "target": "com.posthog.vision#VisionAlertsDestroy"
+          "target": "com.posthog.vision#ListVisionAlertsEvents"
         },
         {
           "target": "com.posthog.vision#VisionAlertsResetCreate"
         },
         {
+          "target": "com.posthog.vision#ListVisionObservations"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionObservation"
+        },
+        {
           "target": "com.posthog.vision#VisionObservationsCreateTaskCreate"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionObservationsLabel"
         },
         {
           "target": "com.posthog.vision#VisionObservationsLabelDestroy"
@@ -8848,22 +8755,73 @@
           "target": "com.posthog.vision#VisionObservationsSearchRetrieve"
         },
         {
+          "target": "com.posthog.vision#GetEnvironmentVisionQuota"
+        },
+        {
+          "target": "com.posthog.vision#GetEnvironmentVisionQuotaSpendSeries"
+        },
+        {
+          "target": "com.posthog.vision#ListVisionScanners"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScanner"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScanner"
+        },
+        {
+          "target": "com.posthog.vision#UpdateVisionScannersPartial"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersDestroy"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersAffectedCohort"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersBulkObserveCreate"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersDuplicateCreate"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersImpact"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersObserve"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersSelfDrivingStat"
+        },
+        {
+          "target": "com.posthog.vision#ListVisionScannersBackfills"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersBackfill"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersBackfill"
+        },
+        {
           "target": "com.posthog.vision#VisionScannersBackfillsCancelCreate"
         },
         {
           "target": "com.posthog.vision#VisionScannersBackfillsResumeCreate"
         },
         {
-          "target": "com.posthog.vision#VisionScannersBulkObserveCreate"
+          "target": "com.posthog.vision#CreateVisionScannersBackfillsEstimate"
         },
         {
-          "target": "com.posthog.vision#VisionScannersDestroy"
+          "target": "com.posthog.vision#ListVisionScannersObservations"
         },
         {
-          "target": "com.posthog.vision#VisionScannersDuplicateCreate"
+          "target": "com.posthog.vision#GetVisionScannersObservation"
         },
         {
           "target": "com.posthog.vision#VisionScannersObservationsCreateTaskCreate"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersObservationsLabel"
         },
         {
           "target": "com.posthog.vision#VisionScannersObservationsLabelDestroy"
@@ -8872,10 +8830,52 @@
           "target": "com.posthog.vision#VisionScannersObservationsRetryCreate"
         },
         {
+          "target": "com.posthog.vision#GetVisionScannersObservationsStat"
+        },
+        {
+          "target": "com.posthog.vision#ListVisionScannersPromptSuggestions"
+        },
+        {
           "target": "com.posthog.vision#VisionScannersPromptSuggestionsApplyCreate"
         },
         {
+          "target": "com.posthog.vision#CreateVisionScannersPromptSuggestionsDismiss"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersPromptSuggestionsEvaluate"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersPromptSuggestionsCurrent"
+        },
+        {
           "target": "com.posthog.vision#VisionScannersPromptSuggestionsGenerateCreate"
+        },
+        {
+          "target": "com.posthog.vision#ListVisionScannersScoutReports"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersScoutReport"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersScout"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersCreator"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersDraft"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersEstimate"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersInlineScan"
+        },
+        {
+          "target": "com.posthog.vision#GetVisionScannersStat"
+        },
+        {
+          "target": "com.posthog.vision#CreateVisionScannersSuggestTag"
         }
       ],
       "traits": {

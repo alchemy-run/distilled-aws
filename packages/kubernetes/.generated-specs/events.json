@@ -2438,15 +2438,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.events#CreateEventsV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.events#DeleteEventsV1CollectionNamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.events#DeleteEventsV1NamespacedEvent"
-        },
-        {
           "target": "com.kubernetes.events#GetEventsAPIGroup"
         },
         {
@@ -2459,7 +2450,10 @@
           "target": "com.kubernetes.events#ListEventsV1NamespacedEvent"
         },
         {
-          "target": "com.kubernetes.events#PatchEventsV1NamespacedEvent"
+          "target": "com.kubernetes.events#CreateEventsV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.events#DeleteEventsV1CollectionNamespacedEvent"
         },
         {
           "target": "com.kubernetes.events#ReadEventsV1NamespacedEvent"
@@ -2468,13 +2462,19 @@
           "target": "com.kubernetes.events#ReplaceEventsV1NamespacedEvent"
         },
         {
+          "target": "com.kubernetes.events#PatchEventsV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.events#DeleteEventsV1NamespacedEvent"
+        },
+        {
           "target": "com.kubernetes.events#WatchEventsV1EventListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.events#WatchEventsV1NamespacedEvent"
+          "target": "com.kubernetes.events#WatchEventsV1NamespacedEventList"
         },
         {
-          "target": "com.kubernetes.events#WatchEventsV1NamespacedEventList"
+          "target": "com.kubernetes.events#WatchEventsV1NamespacedEvent"
         }
       ],
       "traits": {

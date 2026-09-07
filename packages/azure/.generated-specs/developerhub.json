@@ -2012,37 +2012,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.developerhub#DeleteWorkflow"
-        },
-        {
           "target": "com.azure.developerhub#GeneratePreviewArtifacts"
         },
         {
-          "target": "com.azure.developerhub#GetWorkflow"
-        },
-        {
-          "target": "com.azure.developerhub#GitHubOAuth"
-        },
-        {
-          "target": "com.azure.developerhub#GitHubOAuthCallback"
-        },
-        {
-          "target": "com.azure.developerhub#ListGitHubOAuth"
-        },
-        {
-          "target": "com.azure.developerhub#ListOperations"
-        },
-        {
-          "target": "com.azure.developerhub#ListWorkflow"
-        },
-        {
-          "target": "com.azure.developerhub#ListWorkflowByResourceGroup"
+          "target": "com.azure.developerhub#DeleteWorkflow"
         },
         {
           "target": "com.azure.developerhub#UpdateWorkflowTags"
         },
         {
           "target": "com.azure.developerhub#WorkflowCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.developerhub#GetWorkflow"
+        },
+        {
+          "target": "com.azure.developerhub#ListWorkflowByResourceGroup"
+        },
+        {
+          "target": "com.azure.developerhub#ListWorkflow"
+        },
+        {
+          "target": "com.azure.developerhub#ListGitHubOAuth"
+        },
+        {
+          "target": "com.azure.developerhub#GitHubOAuthCallback"
+        },
+        {
+          "target": "com.azure.developerhub#GitHubOAuth"
+        },
+        {
+          "target": "com.azure.developerhub#ListOperations"
         }
       ],
       "traits": {

@@ -1704,19 +1704,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.primary_ips#CreatePrimaryIp"
+          "target": "com.hetzner.primary_ips#ListPrimaryIps"
         },
         {
-          "target": "com.hetzner.primary_ips#DeletePrimaryIp"
+          "target": "com.hetzner.primary_ips#CreatePrimaryIp"
         },
         {
           "target": "com.hetzner.primary_ips#GetPrimaryIp"
         },
         {
-          "target": "com.hetzner.primary_ips#ListPrimaryIps"
+          "target": "com.hetzner.primary_ips#UpdatePrimaryIp"
         },
         {
-          "target": "com.hetzner.primary_ips#UpdatePrimaryIp"
+          "target": "com.hetzner.primary_ips#DeletePrimaryIp"
         }
       ],
       "traits": {

@@ -3160,37 +3160,64 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.durabletask#DeleteRetentionPolicy"
-        },
-        {
-          "target": "com.azure.durabletask#DeleteScheduler"
-        },
-        {
-          "target": "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.durabletask#DeleteTaskHub"
         },
         {
-          "target": "com.azure.durabletask#GetRetentionPolicy"
-        },
-        {
-          "target": "com.azure.durabletask#GetScheduler"
-        },
-        {
-          "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.durabletask#GetSchedulerPrivateLink"
+          "target": "com.azure.durabletask#TaskHubsCreateOrUpdate"
         },
         {
           "target": "com.azure.durabletask#GetTaskHub"
         },
         {
-          "target": "com.azure.durabletask#ListOperations"
+          "target": "com.azure.durabletask#ListTaskHubByScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#DeleteRetentionPolicy"
+        },
+        {
+          "target": "com.azure.durabletask#UpdateRetentionPolicy"
+        },
+        {
+          "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.durabletask#GetRetentionPolicy"
         },
         {
           "target": "com.azure.durabletask#ListRetentionPolicyByScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#GetSchedulerPrivateLink"
+        },
+        {
+          "target": "com.azure.durabletask#ListSchedulerPrivateLinks"
+        },
+        {
+          "target": "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.durabletask#ListSchedulerPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.durabletask#DeleteScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#UpdateScheduler"
+        },
+        {
+          "target": "com.azure.durabletask#SchedulersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.durabletask#GetScheduler"
         },
         {
           "target": "com.azure.durabletask#ListSchedulerByResourceGroup"
@@ -3199,34 +3226,7 @@
           "target": "com.azure.durabletask#ListSchedulerBySubscription"
         },
         {
-          "target": "com.azure.durabletask#ListSchedulerPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.durabletask#ListSchedulerPrivateLinks"
-        },
-        {
-          "target": "com.azure.durabletask#ListTaskHubByScheduler"
-        },
-        {
-          "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.durabletask#SchedulersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.durabletask#TaskHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.durabletask#UpdateRetentionPolicy"
-        },
-        {
-          "target": "com.azure.durabletask#UpdateScheduler"
-        },
-        {
-          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnection"
+          "target": "com.azure.durabletask#ListOperations"
         }
       ],
       "traits": {

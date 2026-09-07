@@ -16248,9 +16248,6 @@
           "target": "com.cloudflare.ai_gateway#DeleteLog"
         },
         {
-          "target": "com.cloudflare.ai_gateway#DeleteProviderConfig"
-        },
-        {
           "target": "com.cloudflare.ai_gateway#GetAiGateway"
         },
         {
@@ -16339,6 +16336,9 @@
         },
         {
           "target": "com.cloudflare.ai_gateway#UsageHistoryBilling"
+        },
+        {
+          "target": "com.cloudflare.ai_gateway#DeleteProviderConfig"
         }
       ],
       "traits": {

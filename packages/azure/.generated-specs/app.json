@@ -33515,454 +33515,328 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.app#ActivateContainerAppsRevisionRevision"
+          "target": "com.azure.app#DeleteContainerAppsSessionPool"
         },
         {
-          "target": "com.azure.app#AgentsConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#AgentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#AgentSpacesConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#AgentSpacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#CertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#CheckConnectedEnvironmentNameAvailability"
-        },
-        {
-          "target": "com.azure.app#CheckManagedEnvironmentMigrationEligibility"
-        },
-        {
-          "target": "com.azure.app#CheckNamespaceNameAvailability"
-        },
-        {
-          "target": "com.azure.app#ConnectedEnvironmentsCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ConnectedEnvironmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ConnectedEnvironmentsDaprComponentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ConnectedEnvironmentsStoragesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ContainerAppPrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ContainerAppsAuthConfigsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ContainerAppsCreateOrUpdate"
+          "target": "com.azure.app#UpdateContainerAppsSessionPool"
         },
         {
           "target": "com.azure.app#ContainerAppsSessionPoolsCreateOrUpdate"
         },
         {
-          "target": "com.azure.app#ContainerAppsSourceControlsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#DaprComponentResiliencyPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#DaprComponentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#DeactivateContainerAppsRevisionRevision"
-        },
-        {
-          "target": "com.azure.app#DeleteAgent"
-        },
-        {
-          "target": "com.azure.app#DeleteAgentsConnector"
-        },
-        {
-          "target": "com.azure.app#DeleteAgentSpace"
-        },
-        {
-          "target": "com.azure.app#DeleteAgentSpacesConnector"
-        },
-        {
-          "target": "com.azure.app#DeleteCertificate"
-        },
-        {
-          "target": "com.azure.app#DeleteConnectedEnvironment"
-        },
-        {
-          "target": "com.azure.app#DeleteConnectedEnvironmentsCertificate"
-        },
-        {
-          "target": "com.azure.app#DeleteConnectedEnvironmentsDaprComponent"
-        },
-        {
-          "target": "com.azure.app#DeleteConnectedEnvironmentsStorage"
-        },
-        {
-          "target": "com.azure.app#DeleteContainerApp"
-        },
-        {
-          "target": "com.azure.app#DeleteContainerAppPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.app#DeleteContainerAppsAuthConfig"
-        },
-        {
-          "target": "com.azure.app#DeleteContainerAppsLabelHistoryLabelHistory"
-        },
-        {
-          "target": "com.azure.app#DeleteContainerAppsSessionPool"
-        },
-        {
-          "target": "com.azure.app#DeleteContainerAppsSourceControl"
-        },
-        {
-          "target": "com.azure.app#DeleteDaprComponent"
-        },
-        {
-          "target": "com.azure.app#DeleteDaprComponentResiliencyPolicy"
-        },
-        {
-          "target": "com.azure.app#DeleteDotNetComponent"
-        },
-        {
-          "target": "com.azure.app#DeleteHttpRouteConfig"
-        },
-        {
-          "target": "com.azure.app#DeleteJavaComponent"
-        },
-        {
-          "target": "com.azure.app#DeleteJob"
-        },
-        {
-          "target": "com.azure.app#DeleteLogicApp"
-        },
-        {
-          "target": "com.azure.app#DeleteMaintenanceConfiguration"
-        },
-        {
-          "target": "com.azure.app#DeleteManagedCertificate"
-        },
-        {
-          "target": "com.azure.app#DeleteManagedEnvironment"
-        },
-        {
-          "target": "com.azure.app#DeleteManagedEnvironmentPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.app#DeleteManagedEnvironmentsStorage"
-        },
-        {
-          "target": "com.azure.app#DeleteSandboxGroup"
-        },
-        {
-          "target": "com.azure.app#DeleteVnetConnection"
-        },
-        {
-          "target": "com.azure.app#DotNetComponentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#GetAgent"
-        },
-        {
-          "target": "com.azure.app#GetAgentsConnector"
-        },
-        {
-          "target": "com.azure.app#GetAgentSpace"
-        },
-        {
-          "target": "com.azure.app#GetAgentSpacesConnector"
-        },
-        {
-          "target": "com.azure.app#GetAvailableWorkloadProfile"
-        },
-        {
-          "target": "com.azure.app#GetBillingMeter"
-        },
-        {
-          "target": "com.azure.app#GetCertificate"
-        },
-        {
-          "target": "com.azure.app#GetConnectedEnvironment"
-        },
-        {
-          "target": "com.azure.app#GetConnectedEnvironmentsCertificate"
-        },
-        {
-          "target": "com.azure.app#GetConnectedEnvironmentsDaprComponent"
-        },
-        {
-          "target": "com.azure.app#GetConnectedEnvironmentsStorage"
-        },
-        {
-          "target": "com.azure.app#GetContainerApp"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppAuthToken"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsAuthConfig"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsDiagnosticDetector"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsDiagnosticRevision"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsDiagnosticRoot"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsFunction"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsLabelHistoryLabelHistory"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsRevisionFunction"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsRevisionReplicasReplica"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsRevisionRevision"
-        },
-        {
           "target": "com.azure.app#GetContainerAppsSessionPool"
-        },
-        {
-          "target": "com.azure.app#GetContainerAppsSourceControl"
-        },
-        {
-          "target": "com.azure.app#GetCustomDomainVerificationId"
-        },
-        {
-          "target": "com.azure.app#GetDaprComponent"
-        },
-        {
-          "target": "com.azure.app#GetDaprComponentResiliencyPolicy"
-        },
-        {
-          "target": "com.azure.app#GetDotNetComponent"
-        },
-        {
-          "target": "com.azure.app#GetHttpRouteConfig"
-        },
-        {
-          "target": "com.azure.app#GetJavaComponent"
-        },
-        {
-          "target": "com.azure.app#GetJob"
-        },
-        {
-          "target": "com.azure.app#GetJobDetector"
-        },
-        {
-          "target": "com.azure.app#GetJobsProxy"
-        },
-        {
-          "target": "com.azure.app#GetLogicApp"
-        },
-        {
-          "target": "com.azure.app#GetLogicAppWorkflow"
-        },
-        {
-          "target": "com.azure.app#GetMaintenanceConfiguration"
-        },
-        {
-          "target": "com.azure.app#GetManagedCertificate"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironment"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironmentAuthToken"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironmentDiagnosticDetector"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironmentPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironmentPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironmentsDiagnosticRoot"
-        },
-        {
-          "target": "com.azure.app#GetManagedEnvironmentsStorage"
-        },
-        {
-          "target": "com.azure.app#GetSandboxGroup"
-        },
-        {
-          "target": "com.azure.app#GetVnetConnection"
-        },
-        {
-          "target": "com.azure.app#HttpRouteConfigCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#InvokeFunctionsExtensionFunctionsHost"
-        },
-        {
-          "target": "com.azure.app#JavaComponentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#JobExecution2"
-        },
-        {
-          "target": "com.azure.app#JobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.app#ListAgentByResourceGroup"
-        },
-        {
-          "target": "com.azure.app#ListAgentBySubscription"
-        },
-        {
-          "target": "com.azure.app#ListAgentsConnectorByAgent"
-        },
-        {
-          "target": "com.azure.app#ListAgentsConnectorSecrets"
-        },
-        {
-          "target": "com.azure.app#ListAgentsConnectorWithSecretsByAgent"
-        },
-        {
-          "target": "com.azure.app#ListAgentSpaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.app#ListAgentSpaceBySubscription"
-        },
-        {
-          "target": "com.azure.app#ListAgentSpacesConnectorAllSecrets"
-        },
-        {
-          "target": "com.azure.app#ListAgentSpacesConnectorByAgentSpace"
-        },
-        {
-          "target": "com.azure.app#ListAgentSpacesConnectorSecrets"
-        },
-        {
-          "target": "com.azure.app#ListAvailableEnvironmentModes"
-        },
-        {
-          "target": "com.azure.app#ListCertificates"
-        },
-        {
-          "target": "com.azure.app#ListConnectedEnvironmentByResourceGroup"
-        },
-        {
-          "target": "com.azure.app#ListConnectedEnvironmentBySubscription"
-        },
-        {
-          "target": "com.azure.app#ListConnectedEnvironmentsCertificates"
-        },
-        {
-          "target": "com.azure.app#ListConnectedEnvironmentsDaprComponents"
-        },
-        {
-          "target": "com.azure.app#ListConnectedEnvironmentsDaprComponentSecrets"
-        },
-        {
-          "target": "com.azure.app#ListConnectedEnvironmentsStorages"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppByResourceGroup"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppBySubscription"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppCustomHostNameAnalysis"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsAuthConfigByContainerApp"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsDiagnosticDetectors"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsDiagnosticRevisions"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppSecrets"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsFunctions"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsLabelHistoryLabelHistory"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsRevisionFunctions"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsRevisionReplicasReplicas"
-        },
-        {
-          "target": "com.azure.app#ListContainerAppsRevisionRevisions"
         },
         {
           "target": "com.azure.app#ListContainerAppsSessionPoolByResourceGroup"
         },
         {
-          "target": "com.azure.app#ListContainerAppsSessionPoolBySubscription"
+          "target": "com.azure.app#DeleteVnetConnection"
         },
         {
-          "target": "com.azure.app#ListContainerAppsSourceControlByContainerApp"
+          "target": "com.azure.app#VnetConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.app#ListDaprComponentResiliencyPolicies"
+          "target": "com.azure.app#GetVnetConnection"
         },
         {
-          "target": "com.azure.app#ListDaprComponents"
+          "target": "com.azure.app#ListVnetConnectionBySandboxGroup"
         },
         {
-          "target": "com.azure.app#ListDaprComponentSecrets"
+          "target": "com.azure.app#DeleteSandboxGroup"
         },
         {
-          "target": "com.azure.app#ListDotNetComponents"
+          "target": "com.azure.app#UpdateSandboxGroup"
         },
         {
-          "target": "com.azure.app#ListHttpRouteConfig"
+          "target": "com.azure.app#SandboxGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetSandboxGroup"
+        },
+        {
+          "target": "com.azure.app#ListSandboxGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentWorkloadProfileStates"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentUsages"
+        },
+        {
+          "target": "com.azure.app#DeleteManagedEnvironmentsStorage"
+        },
+        {
+          "target": "com.azure.app#ManagedEnvironmentsStoragesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironmentsStorage"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentsStorages"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironmentPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.app#DeleteManagedEnvironmentPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.app#ManagedEnvironmentPrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironmentPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.app#DeleteManagedCertificate"
+        },
+        {
+          "target": "com.azure.app#UpdateManagedCertificate"
+        },
+        {
+          "target": "com.azure.app#ManagedCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetManagedCertificate"
+        },
+        {
+          "target": "com.azure.app#ListManagedCertificates"
+        },
+        {
+          "target": "com.azure.app#DeleteMaintenanceConfiguration"
+        },
+        {
+          "target": "com.azure.app#MaintenanceConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetMaintenanceConfiguration"
+        },
+        {
+          "target": "com.azure.app#ListMaintenanceConfigurations"
+        },
+        {
+          "target": "com.azure.app#DeleteJavaComponent"
+        },
+        {
+          "target": "com.azure.app#UpdateJavaComponent"
+        },
+        {
+          "target": "com.azure.app#JavaComponentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetJavaComponent"
         },
         {
           "target": "com.azure.app#ListJavaComponents"
         },
         {
-          "target": "com.azure.app#ListJobByResourceGroup"
+          "target": "com.azure.app#DeleteHttpRouteConfig"
         },
         {
-          "target": "com.azure.app#ListJobBySubscription"
+          "target": "com.azure.app#UpdateHttpRouteConfig"
         },
         {
-          "target": "com.azure.app#ListJobDetectors"
+          "target": "com.azure.app#HttpRouteConfigCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetHttpRouteConfig"
+        },
+        {
+          "target": "com.azure.app#ListHttpRouteConfig"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironmentAuthToken"
+        },
+        {
+          "target": "com.azure.app#DeleteDotNetComponent"
+        },
+        {
+          "target": "com.azure.app#UpdateDotNetComponent"
+        },
+        {
+          "target": "com.azure.app#DotNetComponentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetDotNetComponent"
+        },
+        {
+          "target": "com.azure.app#ListDotNetComponents"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironmentDiagnosticDetector"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentDiagnosticDetectors"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironmentsDiagnosticRoot"
+        },
+        {
+          "target": "com.azure.app#DeleteDaprComponentResiliencyPolicy"
+        },
+        {
+          "target": "com.azure.app#DaprComponentResiliencyPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetDaprComponentResiliencyPolicy"
+        },
+        {
+          "target": "com.azure.app#ListDaprComponentResiliencyPolicies"
+        },
+        {
+          "target": "com.azure.app#ListDaprComponentSecrets"
+        },
+        {
+          "target": "com.azure.app#DeleteDaprComponent"
+        },
+        {
+          "target": "com.azure.app#DaprComponentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetDaprComponent"
+        },
+        {
+          "target": "com.azure.app#ListDaprComponents"
+        },
+        {
+          "target": "com.azure.app#CheckNamespaceNameAvailability"
+        },
+        {
+          "target": "com.azure.app#CheckManagedEnvironmentMigrationEligibility"
+        },
+        {
+          "target": "com.azure.app#DeleteCertificate"
+        },
+        {
+          "target": "com.azure.app#UpdateCertificate"
+        },
+        {
+          "target": "com.azure.app#CertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetCertificate"
+        },
+        {
+          "target": "com.azure.app#ListCertificates"
+        },
+        {
+          "target": "com.azure.app#DeleteManagedEnvironment"
+        },
+        {
+          "target": "com.azure.app#UpdateManagedEnvironment"
+        },
+        {
+          "target": "com.azure.app#ManagedEnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetManagedEnvironment"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentByResourceGroup"
+        },
+        {
+          "target": "com.azure.app#SuspendJob"
+        },
+        {
+          "target": "com.azure.app#StopJobMultipleExecutions"
+        },
+        {
+          "target": "com.azure.app#StartJob"
+        },
+        {
+          "target": "com.azure.app#ResumeJob"
         },
         {
           "target": "com.azure.app#ListJobSecrets"
         },
         {
+          "target": "com.azure.app#StopJobExecution"
+        },
+        {
+          "target": "com.azure.app#JobExecution2"
+        },
+        {
           "target": "com.azure.app#ListJobsExecutions"
+        },
+        {
+          "target": "com.azure.app#GetJobDetector"
+        },
+        {
+          "target": "com.azure.app#ListJobDetectors"
+        },
+        {
+          "target": "com.azure.app#GetJobsProxy"
+        },
+        {
+          "target": "com.azure.app#DeleteJob"
+        },
+        {
+          "target": "com.azure.app#UpdateJob"
+        },
+        {
+          "target": "com.azure.app#JobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetJob"
+        },
+        {
+          "target": "com.azure.app#ListJobByResourceGroup"
+        },
+        {
+          "target": "com.azure.app#StopContainerApp"
+        },
+        {
+          "target": "com.azure.app#StartContainerApp"
+        },
+        {
+          "target": "com.azure.app#DeleteContainerAppsSourceControl"
+        },
+        {
+          "target": "com.azure.app#ContainerAppsSourceControlsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetContainerAppsSourceControl"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppsSourceControlByContainerApp"
+        },
+        {
+          "target": "com.azure.app#RestartContainerAppsRevisionRevision"
+        },
+        {
+          "target": "com.azure.app#GetContainerAppsRevisionReplicasReplica"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppsRevisionReplicasReplicas"
+        },
+        {
+          "target": "com.azure.app#InvokeFunctionsExtensionFunctionsHost"
+        },
+        {
+          "target": "com.azure.app#GetContainerAppsRevisionFunction"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppsRevisionFunctions"
+        },
+        {
+          "target": "com.azure.app#DeactivateContainerAppsRevisionRevision"
+        },
+        {
+          "target": "com.azure.app#ActivateContainerAppsRevisionRevision"
+        },
+        {
+          "target": "com.azure.app#GetContainerAppsRevisionRevision"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppsRevisionRevisions"
+        },
+        {
+          "target": "com.azure.app#GetLogicAppWorkflow"
         },
         {
           "target": "com.azure.app#ListLogicAppWorkflows"
@@ -33971,148 +33845,274 @@
           "target": "com.azure.app#ListLogicAppWorkflowsConnections"
         },
         {
-          "target": "com.azure.app#ListMaintenanceConfigurations"
-        },
-        {
-          "target": "com.azure.app#ListManagedCertificates"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentByResourceGroup"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentBySubscription"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentDiagnosticDetectors"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentsStorages"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentUsages"
-        },
-        {
-          "target": "com.azure.app#ListManagedEnvironmentWorkloadProfileStates"
-        },
-        {
-          "target": "com.azure.app#ListOperations"
-        },
-        {
-          "target": "com.azure.app#ListSandboxGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.app#ListSandboxGroupBySubscription"
-        },
-        {
-          "target": "com.azure.app#ListSupportedAgentModelByLocation"
-        },
-        {
-          "target": "com.azure.app#ListUsages"
-        },
-        {
-          "target": "com.azure.app#ListVnetConnectionBySandboxGroup"
+          "target": "com.azure.app#DeleteLogicApp"
         },
         {
           "target": "com.azure.app#LogicAppsCreateOrUpdate"
         },
         {
-          "target": "com.azure.app#MaintenanceConfigurationsCreateOrUpdate"
+          "target": "com.azure.app#GetLogicApp"
         },
         {
-          "target": "com.azure.app#ManagedCertificatesCreateOrUpdate"
+          "target": "com.azure.app#GetContainerAppPrivateLinkResource"
         },
         {
-          "target": "com.azure.app#ManagedEnvironmentPrivateEndpointConnectionsCreateOrUpdate"
+          "target": "com.azure.app#ListContainerAppPrivateLinkResources"
         },
         {
-          "target": "com.azure.app#ManagedEnvironmentsCreateOrUpdate"
+          "target": "com.azure.app#DeleteContainerAppPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.app#ManagedEnvironmentsStoragesCreateOrUpdate"
+          "target": "com.azure.app#ContainerAppPrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.app#RestartContainerAppsRevisionRevision"
+          "target": "com.azure.app#GetContainerAppPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.app#ResumeJob"
+          "target": "com.azure.app#ListContainerAppPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.app#SandboxGroupsCreateOrUpdate"
+          "target": "com.azure.app#ListContainerAppSecrets"
         },
         {
-          "target": "com.azure.app#StartAgent"
+          "target": "com.azure.app#ListContainerAppCustomHostNameAnalysis"
         },
         {
-          "target": "com.azure.app#StartContainerApp"
+          "target": "com.azure.app#DeleteContainerAppsLabelHistoryLabelHistory"
         },
         {
-          "target": "com.azure.app#StartJob"
+          "target": "com.azure.app#GetContainerAppsLabelHistoryLabelHistory"
         },
         {
-          "target": "com.azure.app#StopAgent"
+          "target": "com.azure.app#ListContainerAppsLabelHistoryLabelHistory"
         },
         {
-          "target": "com.azure.app#StopContainerApp"
+          "target": "com.azure.app#GetContainerAppAuthToken"
         },
         {
-          "target": "com.azure.app#StopJobExecution"
+          "target": "com.azure.app#GetContainerAppsFunction"
         },
         {
-          "target": "com.azure.app#StopJobMultipleExecutions"
+          "target": "com.azure.app#ListContainerAppsFunctions"
         },
         {
-          "target": "com.azure.app#SuspendJob"
+          "target": "com.azure.app#GetContainerAppsDiagnosticDetector"
         },
         {
-          "target": "com.azure.app#UpdateAgent"
+          "target": "com.azure.app#ListContainerAppsDiagnosticDetectors"
         },
         {
-          "target": "com.azure.app#UpdateAgentSpace"
+          "target": "com.azure.app#GetContainerAppsDiagnosticRoot"
         },
         {
-          "target": "com.azure.app#UpdateCertificate"
+          "target": "com.azure.app#ListContainerAppsDiagnosticRevisions"
         },
         {
-          "target": "com.azure.app#UpdateConnectedEnvironment"
+          "target": "com.azure.app#GetContainerAppsDiagnosticRevision"
         },
         {
-          "target": "com.azure.app#UpdateConnectedEnvironmentsCertificate"
+          "target": "com.azure.app#DeleteContainerAppsAuthConfig"
+        },
+        {
+          "target": "com.azure.app#ContainerAppsAuthConfigsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetContainerAppsAuthConfig"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppsAuthConfigByContainerApp"
+        },
+        {
+          "target": "com.azure.app#DeleteContainerApp"
         },
         {
           "target": "com.azure.app#UpdateContainerApp"
         },
         {
-          "target": "com.azure.app#UpdateContainerAppsSessionPool"
+          "target": "com.azure.app#ContainerAppsCreateOrUpdate"
         },
         {
-          "target": "com.azure.app#UpdateDotNetComponent"
+          "target": "com.azure.app#GetContainerApp"
         },
         {
-          "target": "com.azure.app#UpdateHttpRouteConfig"
+          "target": "com.azure.app#ListContainerAppByResourceGroup"
         },
         {
-          "target": "com.azure.app#UpdateJavaComponent"
+          "target": "com.azure.app#DeleteConnectedEnvironmentsStorage"
         },
         {
-          "target": "com.azure.app#UpdateJob"
+          "target": "com.azure.app#ConnectedEnvironmentsStoragesCreateOrUpdate"
         },
         {
-          "target": "com.azure.app#UpdateManagedCertificate"
+          "target": "com.azure.app#GetConnectedEnvironmentsStorage"
         },
         {
-          "target": "com.azure.app#UpdateManagedEnvironment"
+          "target": "com.azure.app#ListConnectedEnvironmentsStorages"
         },
         {
-          "target": "com.azure.app#UpdateSandboxGroup"
+          "target": "com.azure.app#ListConnectedEnvironmentsDaprComponentSecrets"
         },
         {
-          "target": "com.azure.app#VnetConnectionsCreateOrUpdate"
+          "target": "com.azure.app#DeleteConnectedEnvironmentsDaprComponent"
+        },
+        {
+          "target": "com.azure.app#ConnectedEnvironmentsDaprComponentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetConnectedEnvironmentsDaprComponent"
+        },
+        {
+          "target": "com.azure.app#ListConnectedEnvironmentsDaprComponents"
+        },
+        {
+          "target": "com.azure.app#CheckConnectedEnvironmentNameAvailability"
+        },
+        {
+          "target": "com.azure.app#DeleteConnectedEnvironmentsCertificate"
+        },
+        {
+          "target": "com.azure.app#UpdateConnectedEnvironmentsCertificate"
+        },
+        {
+          "target": "com.azure.app#ConnectedEnvironmentsCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetConnectedEnvironmentsCertificate"
+        },
+        {
+          "target": "com.azure.app#ListConnectedEnvironmentsCertificates"
+        },
+        {
+          "target": "com.azure.app#DeleteConnectedEnvironment"
+        },
+        {
+          "target": "com.azure.app#UpdateConnectedEnvironment"
+        },
+        {
+          "target": "com.azure.app#ConnectedEnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetConnectedEnvironment"
+        },
+        {
+          "target": "com.azure.app#ListConnectedEnvironmentByResourceGroup"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppsSessionPoolBySubscription"
+        },
+        {
+          "target": "com.azure.app#ListSandboxGroupBySubscription"
+        },
+        {
+          "target": "com.azure.app#ListManagedEnvironmentBySubscription"
+        },
+        {
+          "target": "com.azure.app#ListUsages"
+        },
+        {
+          "target": "com.azure.app#GetBillingMeter"
+        },
+        {
+          "target": "com.azure.app#GetAvailableWorkloadProfile"
+        },
+        {
+          "target": "com.azure.app#ListAvailableEnvironmentModes"
+        },
+        {
+          "target": "com.azure.app#ListJobBySubscription"
+        },
+        {
+          "target": "com.azure.app#GetCustomDomainVerificationId"
+        },
+        {
+          "target": "com.azure.app#ListContainerAppBySubscription"
+        },
+        {
+          "target": "com.azure.app#ListConnectedEnvironmentBySubscription"
+        },
+        {
+          "target": "com.azure.app#ListOperations"
+        },
+        {
+          "target": "com.azure.app#StopAgent"
+        },
+        {
+          "target": "com.azure.app#StartAgent"
+        },
+        {
+          "target": "com.azure.app#ListAgentsConnectorWithSecretsByAgent"
+        },
+        {
+          "target": "com.azure.app#ListAgentsConnectorSecrets"
+        },
+        {
+          "target": "com.azure.app#DeleteAgentsConnector"
+        },
+        {
+          "target": "com.azure.app#AgentsConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetAgentsConnector"
+        },
+        {
+          "target": "com.azure.app#ListAgentsConnectorByAgent"
+        },
+        {
+          "target": "com.azure.app#DeleteAgent"
+        },
+        {
+          "target": "com.azure.app#UpdateAgent"
+        },
+        {
+          "target": "com.azure.app#AgentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetAgent"
+        },
+        {
+          "target": "com.azure.app#ListAgentByResourceGroup"
+        },
+        {
+          "target": "com.azure.app#ListAgentSpacesConnectorAllSecrets"
+        },
+        {
+          "target": "com.azure.app#ListAgentSpacesConnectorSecrets"
+        },
+        {
+          "target": "com.azure.app#DeleteAgentSpacesConnector"
+        },
+        {
+          "target": "com.azure.app#AgentSpacesConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetAgentSpacesConnector"
+        },
+        {
+          "target": "com.azure.app#ListAgentSpacesConnectorByAgentSpace"
+        },
+        {
+          "target": "com.azure.app#DeleteAgentSpace"
+        },
+        {
+          "target": "com.azure.app#UpdateAgentSpace"
+        },
+        {
+          "target": "com.azure.app#AgentSpacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.app#GetAgentSpace"
+        },
+        {
+          "target": "com.azure.app#ListAgentSpaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.app#ListSupportedAgentModelByLocation"
+        },
+        {
+          "target": "com.azure.app#ListAgentBySubscription"
+        },
+        {
+          "target": "com.azure.app#ListAgentSpaceBySubscription"
         }
       ],
       "traits": {

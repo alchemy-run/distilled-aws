@@ -2385,25 +2385,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fluidrelay#DeleteFluidRelayContainer"
-        },
-        {
-          "target": "com.azure.fluidrelay#DeleteFluidRelayServer"
-        },
-        {
-          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.fluidrelay#GetFluidRelayContainer"
-        },
-        {
-          "target": "com.azure.fluidrelay#GetFluidRelayServer"
-        },
-        {
           "target": "com.azure.fluidrelay#ListFluidRelayContainerByFluidRelayServers"
         },
         {
-          "target": "com.azure.fluidrelay#ListFluidRelayOperations"
+          "target": "com.azure.fluidrelay#DeleteFluidRelayContainer"
+        },
+        {
+          "target": "com.azure.fluidrelay#GetFluidRelayContainer"
         },
         {
           "target": "com.azure.fluidrelay#ListFluidRelayServerByResourceGroup"
@@ -2418,7 +2406,19 @@
           "target": "com.azure.fluidrelay#RegenerateFluidRelayServerKey"
         },
         {
+          "target": "com.azure.fluidrelay#DeleteFluidRelayServer"
+        },
+        {
           "target": "com.azure.fluidrelay#UpdateFluidRelayServer"
+        },
+        {
+          "target": "com.azure.fluidrelay#FluidRelayServersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.fluidrelay#GetFluidRelayServer"
+        },
+        {
+          "target": "com.azure.fluidrelay#ListFluidRelayOperations"
         }
       ],
       "traits": {

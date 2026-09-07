@@ -12848,13 +12848,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datamigration#CancelDatabaseMigrationsSqlDb"
+          "target": "com.azure.datamigration#ReadFileWrite"
         },
         {
-          "target": "com.azure.datamigration#CancelDatabaseMigrationsSqlMi"
+          "target": "com.azure.datamigration#ReadFile"
         },
         {
-          "target": "com.azure.datamigration#CancelDatabaseMigrationsSqlVm"
+          "target": "com.azure.datamigration#DeleteFile"
+        },
+        {
+          "target": "com.azure.datamigration#UpdateFile"
+        },
+        {
+          "target": "com.azure.datamigration#FilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetFile"
+        },
+        {
+          "target": "com.azure.datamigration#ListFiles"
+        },
+        {
+          "target": "com.azure.datamigration#ListUsages"
+        },
+        {
+          "target": "com.azure.datamigration#CheckServiceNameAvailability"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteProject"
+        },
+        {
+          "target": "com.azure.datamigration#UpdateProject"
+        },
+        {
+          "target": "com.azure.datamigration#ProjectsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetProject"
+        },
+        {
+          "target": "com.azure.datamigration#ListProjects"
+        },
+        {
+          "target": "com.azure.datamigration#TasksCommand"
         },
         {
           "target": "com.azure.datamigration#CancelServiceTask"
@@ -12863,151 +12899,85 @@
           "target": "com.azure.datamigration#CancelTask"
         },
         {
-          "target": "com.azure.datamigration#CheckServiceChildrenNameAvailability"
-        },
-        {
-          "target": "com.azure.datamigration#CheckServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.datamigration#CheckServiceStatus"
-        },
-        {
-          "target": "com.azure.datamigration#CreateDatabaseMigrationsMongoToCosmosDbRUMongo"
-        },
-        {
-          "target": "com.azure.datamigration#CreateDatabaseMigrationsMongoToCosmosDbvCoreMongo"
-        },
-        {
-          "target": "com.azure.datamigration#DatabaseMigrationsSqlDbCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#DatabaseMigrationsSqlMiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#DatabaseMigrationsSqlMiCutover"
-        },
-        {
-          "target": "com.azure.datamigration#DatabaseMigrationsSqlVmCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#DatabaseMigrationsSqlVmCutover"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteDatabaseMigrationsMongoToCosmosDbRUMongo"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteDatabaseMigrationsMongoToCosmosDbvCoreMongo"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteDatabaseMigrationsSqlDb"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteDatabaseMigrationsSqlMi"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteDatabaseMigrationsSqlVm"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteFile"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteMigrationService"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteProject"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteService"
-        },
-        {
           "target": "com.azure.datamigration#DeleteServiceTask"
         },
         {
-          "target": "com.azure.datamigration#DeleteSqlMigrationService"
+          "target": "com.azure.datamigration#UpdateServiceTask"
         },
         {
-          "target": "com.azure.datamigration#DeleteSqlMigrationServiceNode"
-        },
-        {
-          "target": "com.azure.datamigration#DeleteTask"
-        },
-        {
-          "target": "com.azure.datamigration#FilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbRUMongo"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbRUMongoForScope"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbvCoreMongo"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbvCoreMongoForScope"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsSqlDb"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsSqlMi"
-        },
-        {
-          "target": "com.azure.datamigration#GetDatabaseMigrationsSqlVm"
-        },
-        {
-          "target": "com.azure.datamigration#GetFile"
-        },
-        {
-          "target": "com.azure.datamigration#GetMigrationService"
-        },
-        {
-          "target": "com.azure.datamigration#GetProject"
-        },
-        {
-          "target": "com.azure.datamigration#GetService"
+          "target": "com.azure.datamigration#ServiceTasksCreateOrUpdate"
         },
         {
           "target": "com.azure.datamigration#GetServiceTask"
         },
         {
-          "target": "com.azure.datamigration#GetSqlMigrationService"
+          "target": "com.azure.datamigration#DeleteTask"
+        },
+        {
+          "target": "com.azure.datamigration#UpdateTask"
+        },
+        {
+          "target": "com.azure.datamigration#TasksCreateOrUpdate"
         },
         {
           "target": "com.azure.datamigration#GetTask"
         },
         {
-          "target": "com.azure.datamigration#ListFiles"
-        },
-        {
-          "target": "com.azure.datamigration#ListMigrationServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.datamigration#ListMigrationServiceBySubscription"
-        },
-        {
-          "target": "com.azure.datamigration#ListMigrationServiceMigrations"
-        },
-        {
-          "target": "com.azure.datamigration#ListOperations"
-        },
-        {
-          "target": "com.azure.datamigration#ListProjects"
-        },
-        {
-          "target": "com.azure.datamigration#ListResourceSkusSkus"
+          "target": "com.azure.datamigration#ListServices"
         },
         {
           "target": "com.azure.datamigration#ListServiceByResourceGroup"
         },
         {
-          "target": "com.azure.datamigration#ListServices"
+          "target": "com.azure.datamigration#CheckServiceChildrenNameAvailability"
+        },
+        {
+          "target": "com.azure.datamigration#ListServiceTasks"
+        },
+        {
+          "target": "com.azure.datamigration#ListTasks"
         },
         {
           "target": "com.azure.datamigration#ListServiceSkus"
         },
         {
-          "target": "com.azure.datamigration#ListServiceTasks"
+          "target": "com.azure.datamigration#StopService"
+        },
+        {
+          "target": "com.azure.datamigration#StartService"
+        },
+        {
+          "target": "com.azure.datamigration#CheckServiceStatus"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteService"
+        },
+        {
+          "target": "com.azure.datamigration#UpdateService"
+        },
+        {
+          "target": "com.azure.datamigration#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetService"
+        },
+        {
+          "target": "com.azure.datamigration#ListResourceSkusSkus"
+        },
+        {
+          "target": "com.azure.datamigration#ListSqlMigrationServiceBySubscription"
+        },
+        {
+          "target": "com.azure.datamigration#ListSqlMigrationServiceMonitoringData"
+        },
+        {
+          "target": "com.azure.datamigration#ListSqlMigrationServiceMigrations"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteSqlMigrationServiceNode"
+        },
+        {
+          "target": "com.azure.datamigration#RegenerateSqlMigrationServiceAuthKeys"
         },
         {
           "target": "com.azure.datamigration#ListSqlMigrationServiceAuthKeys"
@@ -13016,79 +12986,109 @@
           "target": "com.azure.datamigration#ListSqlMigrationServiceByResourceGroup"
         },
         {
-          "target": "com.azure.datamigration#ListSqlMigrationServiceBySubscription"
-        },
-        {
-          "target": "com.azure.datamigration#ListSqlMigrationServiceMigrations"
-        },
-        {
-          "target": "com.azure.datamigration#ListSqlMigrationServiceMonitoringData"
-        },
-        {
-          "target": "com.azure.datamigration#ListTasks"
-        },
-        {
-          "target": "com.azure.datamigration#ListUsages"
-        },
-        {
-          "target": "com.azure.datamigration#MigrationServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#ProjectsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#ReadFile"
-        },
-        {
-          "target": "com.azure.datamigration#ReadFileWrite"
-        },
-        {
-          "target": "com.azure.datamigration#RegenerateSqlMigrationServiceAuthKeys"
-        },
-        {
-          "target": "com.azure.datamigration#RetryDatabaseMigrationsSqlDb"
-        },
-        {
-          "target": "com.azure.datamigration#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#ServiceTasksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#SqlMigrationServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#StartService"
-        },
-        {
-          "target": "com.azure.datamigration#StopService"
-        },
-        {
-          "target": "com.azure.datamigration#TasksCommand"
-        },
-        {
-          "target": "com.azure.datamigration#TasksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datamigration#UpdateFile"
-        },
-        {
-          "target": "com.azure.datamigration#UpdateMigrationService"
-        },
-        {
-          "target": "com.azure.datamigration#UpdateProject"
-        },
-        {
-          "target": "com.azure.datamigration#UpdateService"
-        },
-        {
-          "target": "com.azure.datamigration#UpdateServiceTask"
+          "target": "com.azure.datamigration#DeleteSqlMigrationService"
         },
         {
           "target": "com.azure.datamigration#UpdateSqlMigrationService"
         },
         {
-          "target": "com.azure.datamigration#UpdateTask"
+          "target": "com.azure.datamigration#SqlMigrationServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetSqlMigrationService"
+        },
+        {
+          "target": "com.azure.datamigration#ListMigrationServiceMigrations"
+        },
+        {
+          "target": "com.azure.datamigration#ListMigrationServiceBySubscription"
+        },
+        {
+          "target": "com.azure.datamigration#ListMigrationServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteMigrationService"
+        },
+        {
+          "target": "com.azure.datamigration#UpdateMigrationService"
+        },
+        {
+          "target": "com.azure.datamigration#MigrationServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetMigrationService"
+        },
+        {
+          "target": "com.azure.datamigration#ListOperations"
+        },
+        {
+          "target": "com.azure.datamigration#DatabaseMigrationsSqlVmCutover"
+        },
+        {
+          "target": "com.azure.datamigration#CancelDatabaseMigrationsSqlVm"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteDatabaseMigrationsSqlVm"
+        },
+        {
+          "target": "com.azure.datamigration#DatabaseMigrationsSqlVmCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsSqlVm"
+        },
+        {
+          "target": "com.azure.datamigration#DatabaseMigrationsSqlMiCutover"
+        },
+        {
+          "target": "com.azure.datamigration#CancelDatabaseMigrationsSqlMi"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteDatabaseMigrationsSqlMi"
+        },
+        {
+          "target": "com.azure.datamigration#DatabaseMigrationsSqlMiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsSqlMi"
+        },
+        {
+          "target": "com.azure.datamigration#RetryDatabaseMigrationsSqlDb"
+        },
+        {
+          "target": "com.azure.datamigration#CancelDatabaseMigrationsSqlDb"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteDatabaseMigrationsSqlDb"
+        },
+        {
+          "target": "com.azure.datamigration#DatabaseMigrationsSqlDbCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsSqlDb"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbvCoreMongoForScope"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteDatabaseMigrationsMongoToCosmosDbvCoreMongo"
+        },
+        {
+          "target": "com.azure.datamigration#CreateDatabaseMigrationsMongoToCosmosDbvCoreMongo"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbvCoreMongo"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbRUMongoForScope"
+        },
+        {
+          "target": "com.azure.datamigration#DeleteDatabaseMigrationsMongoToCosmosDbRUMongo"
+        },
+        {
+          "target": "com.azure.datamigration#CreateDatabaseMigrationsMongoToCosmosDbRUMongo"
+        },
+        {
+          "target": "com.azure.datamigration#GetDatabaseMigrationsMongoToCosmosDbRUMongo"
         }
       ],
       "traits": {

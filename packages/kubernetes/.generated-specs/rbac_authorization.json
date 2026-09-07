@@ -5742,58 +5742,94 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1ClusterRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1ClusterRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1NamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1NamespacedRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1ClusterRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1ClusterRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionClusterRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionClusterRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionNamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionNamespacedRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1NamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1NamespacedRoleBinding"
-        },
-        {
           "target": "com.kubernetes.rbac_authorization#GetRbacAuthorizationAPIGroup"
         },
         {
           "target": "com.kubernetes.rbac_authorization#GetRbacAuthorizationV1APIResources"
         },
         {
+          "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1ClusterRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1ClusterRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionClusterRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1ClusterRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1ClusterRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1ClusterRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1ClusterRoleBinding"
+        },
+        {
           "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1ClusterRole"
         },
         {
-          "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1ClusterRoleBinding"
+          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1ClusterRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionClusterRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1ClusterRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1ClusterRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1ClusterRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1ClusterRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1NamespacedRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1NamespacedRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionNamespacedRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1NamespacedRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1NamespacedRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1NamespacedRoleBinding"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1NamespacedRoleBinding"
         },
         {
           "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1NamespacedRole"
         },
         {
-          "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1NamespacedRoleBinding"
+          "target": "com.kubernetes.rbac_authorization#CreateRbacAuthorizationV1NamespacedRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1CollectionNamespacedRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1NamespacedRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1NamespacedRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1NamespacedRole"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#DeleteRbacAuthorizationV1NamespacedRole"
         },
         {
           "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1RoleBindingForAllNamespaces"
@@ -5802,64 +5838,28 @@
           "target": "com.kubernetes.rbac_authorization#ListRbacAuthorizationV1RoleForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1ClusterRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1ClusterRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1NamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#PatchRbacAuthorizationV1NamespacedRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1ClusterRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1ClusterRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1NamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReadRbacAuthorizationV1NamespacedRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1ClusterRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1ClusterRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1NamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#ReplaceRbacAuthorizationV1NamespacedRoleBinding"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1ClusterRole"
+          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1ClusterRoleBindingList"
         },
         {
           "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1ClusterRoleBinding"
         },
         {
-          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1ClusterRoleBindingList"
-        },
-        {
           "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1ClusterRoleList"
         },
         {
-          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1NamespacedRole"
-        },
-        {
-          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1NamespacedRoleBinding"
+          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1ClusterRole"
         },
         {
           "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1NamespacedRoleBindingList"
         },
         {
+          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1NamespacedRoleBinding"
+        },
+        {
           "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1NamespacedRoleList"
+        },
+        {
+          "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1NamespacedRole"
         },
         {
           "target": "com.kubernetes.rbac_authorization#WatchRbacAuthorizationV1RoleBindingListForAllNamespaces"

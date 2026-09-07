@@ -29268,6 +29268,24 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.huggingface.collections#GetCollection"
+        },
+        {
+          "target": "com.huggingface.collections#UpdateCollection"
+        },
+        {
+          "target": "com.huggingface.collections#DeleteCollection"
+        },
+        {
+          "target": "com.huggingface.collections#GetCollectionBySlug"
+        },
+        {
+          "target": "com.huggingface.collections#UpdateCollectionBySlug"
+        },
+        {
+          "target": "com.huggingface.collections#DeleteCollectionBySlug"
+        },
+        {
           "target": "com.huggingface.collections#AddItem"
         },
         {
@@ -29280,52 +29298,34 @@
           "target": "com.huggingface.collections#BatchUpdateItemsBySlug"
         },
         {
-          "target": "com.huggingface.collections#CreateCollection"
-        },
-        {
-          "target": "com.huggingface.collections#DeleteCollection"
-        },
-        {
-          "target": "com.huggingface.collections#DeleteCollectionBySlug"
+          "target": "com.huggingface.collections#UpdateItem"
         },
         {
           "target": "com.huggingface.collections#DeleteItem"
         },
         {
+          "target": "com.huggingface.collections#UpdateItemBySlug"
+        },
+        {
           "target": "com.huggingface.collections#DeleteItemBySlug"
-        },
-        {
-          "target": "com.huggingface.collections#GetCollection"
-        },
-        {
-          "target": "com.huggingface.collections#GetCollectionBySlug"
-        },
-        {
-          "target": "com.huggingface.collections#GetCollectionResourceGroup"
-        },
-        {
-          "target": "com.huggingface.collections#GetCollectionResourceGroupBySlug"
         },
         {
           "target": "com.huggingface.collections#GetCollections"
         },
         {
+          "target": "com.huggingface.collections#CreateCollection"
+        },
+        {
+          "target": "com.huggingface.collections#GetCollectionResourceGroup"
+        },
+        {
           "target": "com.huggingface.collections#SetCollectionResourceGroup"
         },
         {
+          "target": "com.huggingface.collections#GetCollectionResourceGroupBySlug"
+        },
+        {
           "target": "com.huggingface.collections#SetCollectionResourceGroupBySlug"
-        },
-        {
-          "target": "com.huggingface.collections#UpdateCollection"
-        },
-        {
-          "target": "com.huggingface.collections#UpdateCollectionBySlug"
-        },
-        {
-          "target": "com.huggingface.collections#UpdateItem"
-        },
-        {
-          "target": "com.huggingface.collections#UpdateItemBySlug"
         }
       ],
       "traits": {

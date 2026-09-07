@@ -2591,15 +2591,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
-          "target": "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudget"
-        },
-        {
-          "target": "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
           "target": "com.kubernetes.policy#GetPolicyAPIGroup"
         },
         {
@@ -2609,31 +2600,40 @@
           "target": "com.kubernetes.policy#ListPolicyV1NamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespaces"
+          "target": "com.kubernetes.policy#CreatePolicyV1NamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudget"
-        },
-        {
-          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatus"
+          "target": "com.kubernetes.policy#DeletePolicyV1CollectionNamespacedPodDisruptionBudget"
         },
         {
           "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatus"
+          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudget"
         },
         {
-          "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudget"
+          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#DeletePolicyV1NamespacedPodDisruptionBudget"
+        },
+        {
+          "target": "com.kubernetes.policy#ReadPolicyV1NamespacedPodDisruptionBudgetStatus"
         },
         {
           "target": "com.kubernetes.policy#ReplacePolicyV1NamespacedPodDisruptionBudgetStatus"
         },
         {
-          "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudget"
+          "target": "com.kubernetes.policy#PatchPolicyV1NamespacedPodDisruptionBudgetStatus"
+        },
+        {
+          "target": "com.kubernetes.policy#ListPolicyV1PodDisruptionBudgetForAllNamespaces"
         },
         {
           "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudgetList"
+        },
+        {
+          "target": "com.kubernetes.policy#WatchPolicyV1NamespacedPodDisruptionBudget"
         },
         {
           "target": "com.kubernetes.policy#WatchPolicyV1PodDisruptionBudgetListForAllNamespaces"

@@ -63434,628 +63434,319 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.migrate#CreateAksAssessmentOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateAssessmentProjectsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateAssessmentsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateAvsAssessmentsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateGroupsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateHypervClusterControllerCluster"
-        },
-        {
-          "target": "com.azure.migrate#CreateHypervCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateHypervHostController"
-        },
-        {
-          "target": "com.azure.migrate#CreateHypervSitesController"
-        },
-        {
-          "target": "com.azure.migrate#CreateImportCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateImportSitesController"
-        },
-        {
-          "target": "com.azure.migrate#CreateMasterSitesController"
-        },
-        {
-          "target": "com.azure.migrate#CreatePrivateEndpointConnectionController"
-        },
-        {
-          "target": "com.azure.migrate#CreatePrivateEndpointConnectionProxyController"
-        },
-        {
-          "target": "com.azure.migrate#CreateServerCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateServerSitesController"
-        },
-        {
-          "target": "com.azure.migrate#CreateSitesController"
-        },
-        {
-          "target": "com.azure.migrate#CreateSolutionsController"
-        },
-        {
-          "target": "com.azure.migrate#CreateSqlAssessmentV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#CreateSqlCollectorOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateSqlDiscoverySiteDataSourceController"
-        },
-        {
-          "target": "com.azure.migrate#CreateSqlSitesController"
-        },
-        {
-          "target": "com.azure.migrate#CreateVcenterController"
-        },
-        {
-          "target": "com.azure.migrate#CreateVmwareCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#CreateWebAppAssessmentV2Operation"
+          "target": "com.azure.migrate#DeleteWebAppCollectorOperation"
         },
         {
           "target": "com.azure.migrate#CreateWebAppCollectorOperation"
         },
         {
-          "target": "com.azure.migrate#CreateWebAppDiscoverySiteDataSourcesController"
+          "target": "com.azure.migrate#GetWebAppCollectorOperation"
         },
         {
-          "target": "com.azure.migrate#CreateWebAppSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteAksAssessmentOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteAssessmentProjectsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteAssessmentsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteAvsAssessmentsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteEventsController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteGroupsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteHypervClusterController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteHypervCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteHypervHostController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteHypervSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteImportCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteImportMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteImportSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteImportSitesControllerImportedMachines"
-        },
-        {
-          "target": "com.azure.migrate#DeleteMasterSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeletePrivateEndpointConnectionController"
-        },
-        {
-          "target": "com.azure.migrate#DeletePrivateEndpointConnectionControllerPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.migrate#DeletePrivateEndpointConnectionOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeletePrivateEndpointConnectionProxyController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteServerCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteServersControllerMachine"
-        },
-        {
-          "target": "com.azure.migrate#DeleteServerSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteSolutionsControllerSolution"
-        },
-        {
-          "target": "com.azure.migrate#DeleteSqlAssessmentV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteSqlCollectorOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteSqlDiscoverySiteDataSourceController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteSqlSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteVcenterController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteVmwareCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteWebAppAssessmentV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteWebAppCollectorOperation"
-        },
-        {
-          "target": "com.azure.migrate#DeleteWebAppDiscoverySiteDataSourcesController"
-        },
-        {
-          "target": "com.azure.migrate#DeleteWebAppSitesController"
-        },
-        {
-          "target": "com.azure.migrate#DependencyMapControllerClientGroupMembers"
-        },
-        {
-          "target": "com.azure.migrate#DependencyMapControllerServerGroupMembers"
-        },
-        {
-          "target": "com.azure.migrate#DownloadAksAssessmentOperationUrl"
-        },
-        {
-          "target": "com.azure.migrate#DownloadAssessmentsOperationUrl"
-        },
-        {
-          "target": "com.azure.migrate#DownloadAvsAssessmentsOperationUrl"
-        },
-        {
-          "target": "com.azure.migrate#DownloadSqlAssessmentV2OperationUrl"
-        },
-        {
-          "target": "com.azure.migrate#DownloadWebAppAssessmentV2OperationUrl"
-        },
-        {
-          "target": "com.azure.migrate#ExportDependencyMapControllerDependencies"
-        },
-        {
-          "target": "com.azure.migrate#ExportHypervDependencyMapControllerDependencies"
-        },
-        {
-          "target": "com.azure.migrate#ExportHypervSitesControllerApplications"
-        },
-        {
-          "target": "com.azure.migrate#ExportHypervSitesControllerMachineErrors"
-        },
-        {
-          "target": "com.azure.migrate#ExportImportSitesControllerUri"
-        },
-        {
-          "target": "com.azure.migrate#ExportServerDependencyMapControllerDependencies"
-        },
-        {
-          "target": "com.azure.migrate#ExportServerSitesControllerApplications"
-        },
-        {
-          "target": "com.azure.migrate#ExportServerSitesControllerMachineErrors"
-        },
-        {
-          "target": "com.azure.migrate#ExportSitesControllerApplications"
-        },
-        {
-          "target": "com.azure.migrate#ExportSitesControllerMachineErrors"
-        },
-        {
-          "target": "com.azure.migrate#ExportSitesControllerMachines"
-        },
-        {
-          "target": "com.azure.migrate#ExportSqlSitesControllerSqlServerErrors"
-        },
-        {
-          "target": "com.azure.migrate#ExportSqlSitesControllerSqlServers"
-        },
-        {
-          "target": "com.azure.migrate#ExportWebAppSitesControllerInventory"
-        },
-        {
-          "target": "com.azure.migrate#GenerateDependencyMapControllerCoarseMap"
-        },
-        {
-          "target": "com.azure.migrate#GenerateDependencyMapControllerDetailedMap"
-        },
-        {
-          "target": "com.azure.migrate#GenerateHypervDependencyMapControllerCoarseMap"
-        },
-        {
-          "target": "com.azure.migrate#GenerateHypervDependencyMapControllerDetailedMap"
-        },
-        {
-          "target": "com.azure.migrate#GenerateServerDependencyMapControllerCoarseMap"
-        },
-        {
-          "target": "com.azure.migrate#GenerateServerDependencyMapControllerDetailedMap"
-        },
-        {
-          "target": "com.azure.migrate#GetAksAssessmentOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAksClusterOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAksOptionsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAksSummaryOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedMachinesOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedSqlDatabaseV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedSqlInstanceV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedSqlMachinesOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedSqlRecommendedEntityOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedWebApplicationOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessedWebAppV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessmentOptionsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessmentProjectsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessmentProjectSummaryOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAssessmentsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAvsAssessedMachinesOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAvsAssessmentOptionsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetAvsAssessmentsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetDatabaseInstancesControllerDatabaseInstance"
-        },
-        {
-          "target": "com.azure.migrate#GetDatabasesControllerDatabase"
-        },
-        {
-          "target": "com.azure.migrate#GetEventsControllerEvent"
-        },
-        {
-          "target": "com.azure.migrate#GetGroupsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervClusterControllerCluster"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervHostController"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervJob"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervJobsController"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervOperationsStatusControllerHypervOperationsStatus"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervRunAsAccountsController"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervSitesController"
-        },
-        {
-          "target": "com.azure.migrate#GetHypervSoftwareInventoriesControllerMachineSoftwareInventory"
-        },
-        {
-          "target": "com.azure.migrate#GetIisWebApplicationsController"
-        },
-        {
-          "target": "com.azure.migrate#GetIisWebServersController"
-        },
-        {
-          "target": "com.azure.migrate#GetImportCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetImportJobsController"
-        },
-        {
-          "target": "com.azure.migrate#GetImportJobsControllerDeletejob"
-        },
-        {
-          "target": "com.azure.migrate#GetImportJobsControllerExportjob"
-        },
-        {
-          "target": "com.azure.migrate#GetImportJobsControllerImportjob"
-        },
-        {
-          "target": "com.azure.migrate#GetImportMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#GetImportSitesController"
-        },
-        {
-          "target": "com.azure.migrate#GetMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#GetMachinesControllerMachine"
-        },
-        {
-          "target": "com.azure.migrate#GetMachinesOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetMasterSitesController"
-        },
-        {
-          "target": "com.azure.migrate#GetMasterSitesOperationsStatusControllerVmwareOperationStatus"
-        },
-        {
-          "target": "com.azure.migrate#GetMigrateProjectsControllerToolRegistrationDetails"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateEndpointConnectionController"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateEndpointConnectionControllerPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateEndpointConnectionOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateEndpointConnectionProxyController"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateEndpointConnectionsControllerPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateLinkResourceControllerPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateLinkResourceControllerPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateLinkResourceOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetPrivateLinkResourcesController"
-        },
-        {
-          "target": "com.azure.migrate#GetRunAsAccountsController"
-        },
-        {
-          "target": "com.azure.migrate#GetServerCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetServerJobsController"
-        },
-        {
-          "target": "com.azure.migrate#GetServerOperationsStatusControllerServerSiteOperationsStatus"
-        },
-        {
-          "target": "com.azure.migrate#GetServerRunAsAccountsController"
-        },
-        {
-          "target": "com.azure.migrate#GetServersControllerMachine"
-        },
-        {
-          "target": "com.azure.migrate#GetServerSitesController"
-        },
-        {
-          "target": "com.azure.migrate#GetServerSoftwareInventoriesControllerMachineSoftwareInventory"
-        },
-        {
-          "target": "com.azure.migrate#GetSitesController"
-        },
-        {
-          "target": "com.azure.migrate#GetSolutionsControllerConfig"
-        },
-        {
-          "target": "com.azure.migrate#GetSolutionsControllerSolution"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlAssessmentOptionsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlAssessmentV2Operation"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlAssessmentV2SummaryOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlAvailabilityGroupsController"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlCollectorOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlDatabasesController"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlDiscoverySiteDataSourceController"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlJobsController"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlOperationsStatusControllerSqlOperationStatus"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlRunAsAccountsController"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlServersController"
-        },
-        {
-          "target": "com.azure.migrate#GetSqlSitesController"
-        },
-        {
-          "target": "com.azure.migrate#GetTomcatWebApplicationsController"
-        },
-        {
-          "target": "com.azure.migrate#GetTomcatWebServersController"
-        },
-        {
-          "target": "com.azure.migrate#GetVcenterController"
-        },
-        {
-          "target": "com.azure.migrate#GetVirtualDesktopUserControllerVirtualDesktopUser"
-        },
-        {
-          "target": "com.azure.migrate#GetVmwareCollectorsOperation"
-        },
-        {
-          "target": "com.azure.migrate#GetVmwareHostController"
-        },
-        {
-          "target": "com.azure.migrate#GetVmwareOperationsStatusVmwareOperationStatus"
-        },
-        {
-          "target": "com.azure.migrate#GetVmwareSoftwareInventoriesControllerMachineSoftwareInventory"
+          "target": "com.azure.migrate#ListWebAppCollectorOperationByAssessmentProject"
         },
         {
           "target": "com.azure.migrate#GetWebAppAssessmentOptionsOperation"
         },
         {
-          "target": "com.azure.migrate#GetWebAppAssessmentV2Operation"
+          "target": "com.azure.migrate#ListWebAppAssessmentOptionsOperationByAssessmentProject"
         },
         {
-          "target": "com.azure.migrate#GetWebAppAssessmentV2SummaryOperation"
+          "target": "com.azure.migrate#DeleteVmwareCollectorsOperation"
         },
         {
-          "target": "com.azure.migrate#GetWebAppCollectorOperation"
+          "target": "com.azure.migrate#CreateVmwareCollectorsOperation"
         },
         {
-          "target": "com.azure.migrate#GetWebAppDiscoverySiteDataSourcesController"
+          "target": "com.azure.migrate#GetVmwareCollectorsOperation"
         },
         {
-          "target": "com.azure.migrate#GetWebAppExtendedMachinesController"
+          "target": "com.azure.migrate#ListVmwareCollectorsOperationByAssessmentProject"
         },
         {
-          "target": "com.azure.migrate#GetWebAppRunAsAccountsController"
+          "target": "com.azure.migrate#DeleteSqlCollectorOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateSqlCollectorOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlCollectorOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlCollectorOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlAssessmentOptionsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlAssessmentOptionsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#DeleteServerCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateServerCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetServerCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListServerCollectorsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessmentProjectSummaryOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessmentProjectSummaryOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetPrivateLinkResourceOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListPrivateLinkResourceOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#DeletePrivateEndpointConnectionOperation"
+        },
+        {
+          "target": "com.azure.migrate#UpdatePrivateEndpointConnectionOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetPrivateEndpointConnectionOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListPrivateEndpointConnectionOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetMachinesOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListMachinesOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#DeleteImportCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateImportCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetImportCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListImportCollectorsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#DeleteHypervCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateHypervCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervCollectorsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervCollectorsOperationByAssessmentProject"
         },
         {
           "target": "com.azure.migrate#GetWebAppServicePlanV2Operation"
         },
         {
-          "target": "com.azure.migrate#GetWebAppSitesController"
+          "target": "com.azure.migrate#ListWebAppServicePlanV2OperationByWebAppAssessmentV2"
         },
         {
-          "target": "com.azure.migrate#GetWebServersControllerWebServer"
+          "target": "com.azure.migrate#GetWebAppAssessmentV2SummaryOperation"
         },
         {
-          "target": "com.azure.migrate#GetWebSitesControllerWebSite"
+          "target": "com.azure.migrate#ListWebAppAssessmentV2SummaryOperationByWebAppAssessmentV2"
         },
         {
-          "target": "com.azure.migrate#HypervDependencyMapControllerClientGroupMembers"
+          "target": "com.azure.migrate#DownloadWebAppAssessmentV2OperationUrl"
         },
         {
-          "target": "com.azure.migrate#HypervDependencyMapControllerServerGroupMembers"
-        },
-        {
-          "target": "com.azure.migrate#HypervSitesControllerComputeErrorSummary"
-        },
-        {
-          "target": "com.azure.migrate#HypervSitesControllerComputeusage"
-        },
-        {
-          "target": "com.azure.migrate#HypervSitesControllerSummary"
-        },
-        {
-          "target": "com.azure.migrate#ImportImportSitesControllerUri"
-        },
-        {
-          "target": "com.azure.migrate#ImportJobsControllerListByImportSite"
-        },
-        {
-          "target": "com.azure.migrate#ImportMachinesControllerListByImportSite"
-        },
-        {
-          "target": "com.azure.migrate#ListAksAssessmentOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListAksClusterOperationByAksAssessment"
-        },
-        {
-          "target": "com.azure.migrate#ListAksCostDetailOperationByAksAssessment"
-        },
-        {
-          "target": "com.azure.migrate#ListAksOptionsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListAksSummaryOperationByAksAssessment"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessedMachinesOperationByAssessment"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessedSqlDatabaseV2OperationBySqlAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessedSqlInstanceV2OperationBySqlAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessedSqlMachinesOperationBySqlAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessedSqlRecommendedEntityOperationBySqlAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessedWebApplicationOperationByAksAssessment"
+          "target": "com.azure.migrate#GetAssessedWebAppV2Operation"
         },
         {
           "target": "com.azure.migrate#ListAssessedWebAppV2OperationByWebAppAssessmentV2"
         },
         {
+          "target": "com.azure.migrate#DeleteWebAppAssessmentV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#CreateWebAppAssessmentV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#GetWebAppAssessmentV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#ListWebAppAssessmentV2OperationByGroup"
+        },
+        {
+          "target": "com.azure.migrate#UpdateGroupsOperationMachines"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlAssessmentV2SummaryOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlAssessmentV2SummaryOperationBySqlAssessmentV2"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessedSqlRecommendedEntityOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessedSqlRecommendedEntityOperationBySqlAssessmentV2"
+        },
+        {
+          "target": "com.azure.migrate#DownloadSqlAssessmentV2OperationUrl"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessedSqlMachinesOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessedSqlMachinesOperationBySqlAssessmentV2"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessedSqlInstanceV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessedSqlInstanceV2OperationBySqlAssessmentV2"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessedSqlDatabaseV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessedSqlDatabaseV2OperationBySqlAssessmentV2"
+        },
+        {
+          "target": "com.azure.migrate#DeleteSqlAssessmentV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#CreateSqlAssessmentV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlAssessmentV2Operation"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlAssessmentV2OperationByGroup"
+        },
+        {
+          "target": "com.azure.migrate#DownloadAvsAssessmentsOperationUrl"
+        },
+        {
+          "target": "com.azure.migrate#GetAvsAssessedMachinesOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAvsAssessedMachinesOperationByAvsAssessment"
+        },
+        {
+          "target": "com.azure.migrate#DeleteAvsAssessmentsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateAvsAssessmentsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetAvsAssessmentsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAvsAssessmentsOperationByGroup"
+        },
+        {
+          "target": "com.azure.migrate#DownloadAssessmentsOperationUrl"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessedMachinesOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessedMachinesOperationByAssessment"
+        },
+        {
+          "target": "com.azure.migrate#DeleteAssessmentsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateAssessmentsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessmentsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessmentsOperationByGroup"
+        },
+        {
+          "target": "com.azure.migrate#DeleteGroupsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateGroupsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetGroupsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListGroupsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetAvsAssessmentOptionsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAvsAssessmentOptionsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessmentOptionsOperation"
+        },
+        {
           "target": "com.azure.migrate#ListAssessmentOptionsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetAksSummaryOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAksSummaryOperationByAksAssessment"
+        },
+        {
+          "target": "com.azure.migrate#DownloadAksAssessmentOperationUrl"
+        },
+        {
+          "target": "com.azure.migrate#ListAksCostDetailOperationByAksAssessment"
+        },
+        {
+          "target": "com.azure.migrate#GetAksClusterOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAksClusterOperationByAksAssessment"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessedWebApplicationOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAssessedWebApplicationOperationByAksAssessment"
+        },
+        {
+          "target": "com.azure.migrate#DeleteAksAssessmentOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateAksAssessmentOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetAksAssessmentOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAksAssessmentOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#GetAksOptionsOperation"
+        },
+        {
+          "target": "com.azure.migrate#ListAksOptionsOperationByAssessmentProject"
+        },
+        {
+          "target": "com.azure.migrate#DeleteAssessmentProjectsOperation"
+        },
+        {
+          "target": "com.azure.migrate#UpdateAssessmentProjectsOperation"
+        },
+        {
+          "target": "com.azure.migrate#CreateAssessmentProjectsOperation"
+        },
+        {
+          "target": "com.azure.migrate#GetAssessmentProjectsOperation"
         },
         {
           "target": "com.azure.migrate#ListAssessmentProjectsOperationByResourceGroup"
@@ -64064,268 +63755,46 @@
           "target": "com.azure.migrate#ListAssessmentProjectsOperationBySubscription"
         },
         {
-          "target": "com.azure.migrate#ListAssessmentProjectSummaryOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListAssessmentsOperationByGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListAvsAssessedMachinesOperationByAvsAssessment"
-        },
-        {
-          "target": "com.azure.migrate#ListAvsAssessmentOptionsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListAvsAssessmentsOperationByGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListDatabaseInstancesControllerDatabaseInstances"
-        },
-        {
-          "target": "com.azure.migrate#ListDatabasesControllerDatabases"
-        },
-        {
-          "target": "com.azure.migrate#ListEventsControllerEvents"
-        },
-        {
-          "target": "com.azure.migrate#ListGroupsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervClusterControllerByHypervSite"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervCollectorsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervHostControllerByHypervSite"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervJobByHypervSite"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervJobsControllerByVmwareSite"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervMachinesControllerByHypervSite"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervRunAsAccountsControllerByHypervSite"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervSiteByResourceGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervSiteBySubscription"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervSitesControllerHealthSummary"
-        },
-        {
-          "target": "com.azure.migrate#ListHypervSoftwareInventoriesControllerByHypervMachine"
-        },
-        {
-          "target": "com.azure.migrate#ListIisWebApplicationsControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListIisWebServersControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListImportCollectorsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListImportJobsControllerDeletejobs"
-        },
-        {
-          "target": "com.azure.migrate#ListImportJobsControllerExportjobs"
-        },
-        {
-          "target": "com.azure.migrate#ListImportJobsControllerImportjobs"
-        },
-        {
-          "target": "com.azure.migrate#ListImportSitesControllerByResourceGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListImportSitesControllerBySubscription"
-        },
-        {
-          "target": "com.azure.migrate#ListMachinesControllerByVmwareSite"
-        },
-        {
-          "target": "com.azure.migrate#ListMachinesControllerMachines"
-        },
-        {
-          "target": "com.azure.migrate#ListMachinesOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListMasterSitesControllerByResourceGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListMasterSitesControllerBySubscription"
-        },
-        {
           "target": "com.azure.migrate#ListOperations"
         },
         {
-          "target": "com.azure.migrate#ListPrivateEndpointConnectionControllerByMasterSite"
+          "target": "com.azure.migrate#GetPrivateLinkResourceControllerPrivateLinkResources"
         },
         {
-          "target": "com.azure.migrate#ListPrivateEndpointConnectionOperationByAssessmentProject"
+          "target": "com.azure.migrate#GetPrivateLinkResourceControllerPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.migrate#ValidatePrivateEndpointConnectionProxyController"
+        },
+        {
+          "target": "com.azure.migrate#DeletePrivateEndpointConnectionProxyController"
+        },
+        {
+          "target": "com.azure.migrate#CreatePrivateEndpointConnectionProxyController"
+        },
+        {
+          "target": "com.azure.migrate#GetPrivateEndpointConnectionProxyController"
         },
         {
           "target": "com.azure.migrate#ListPrivateEndpointConnectionProxyControllerPrivateEndpointConnectionProxies"
         },
         {
-          "target": "com.azure.migrate#ListPrivateLinkResourceOperationByAssessmentProject"
+          "target": "com.azure.migrate#DeletePrivateEndpointConnectionControllerPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.migrate#ListPrivateLinkResourcesControllerByMasterSite"
+          "target": "com.azure.migrate#PutPrivateEndpointConnectionControllerPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.migrate#ListProjectBySubscription"
+          "target": "com.azure.migrate#GetPrivateEndpointConnectionControllerPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.migrate#ListProjects"
+          "target": "com.azure.migrate#GetPrivateEndpointConnectionsControllerPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.migrate#ListRunAsAccountsControllerByVmwareSite"
-        },
-        {
-          "target": "com.azure.migrate#ListServerCollectorsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListServerJobsControllerByServerSiteResource"
-        },
-        {
-          "target": "com.azure.migrate#ListServerRunAsAccountsControllerByServerSiteResource"
-        },
-        {
-          "target": "com.azure.migrate#ListServersControllerByServerSiteResource"
-        },
-        {
-          "target": "com.azure.migrate#ListServerSitesControllerByResourceGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListServerSitesControllerBySubscription"
-        },
-        {
-          "target": "com.azure.migrate#ListServerSitesControllerHealthSummary"
-        },
-        {
-          "target": "com.azure.migrate#ListServerSoftwareInventoriesControllerByServer"
-        },
-        {
-          "target": "com.azure.migrate#ListSitesControllerByResourceGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListSitesControllerBySubscription"
-        },
-        {
-          "target": "com.azure.migrate#ListSitesControllerHealthSummary"
-        },
-        {
-          "target": "com.azure.migrate#ListSolutionsControllerSolutions"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlAssessmentOptionsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlAssessmentV2OperationByGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlAssessmentV2SummaryOperationBySqlAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlAvailabilityGroupsControllerBySqlSite"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlCollectorOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlDatabasesControllerBySqlSite"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlDiscoverySiteDataSourceControllerBySqlSite"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlJobsControllerBySqlSite"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlRunAsAccountsControllerBySqlSite"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlServersControllerBySqlSite"
-        },
-        {
-          "target": "com.azure.migrate#ListSqlSitesControllerByMasterSite"
-        },
-        {
-          "target": "com.azure.migrate#ListTomcatWebApplicationsControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListTomcatWebServersControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListVcenterControllerByVmwareSite"
-        },
-        {
-          "target": "com.azure.migrate#ListVirtualDesktopUserControllerVirtualDesktopUsers"
-        },
-        {
-          "target": "com.azure.migrate#ListVmwareCollectorsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListVmwareHostControllerByVmwareSite"
-        },
-        {
-          "target": "com.azure.migrate#ListVmwareSoftwareInventoriesControllerByMachineResource"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppAssessmentOptionsOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppAssessmentV2OperationByGroup"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppAssessmentV2SummaryOperationByWebAppAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppCollectorOperationByAssessmentProject"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppDiscoverySiteDataSourcesControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppExtendedMachinesControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListWebApplicationsControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppRunAsAccountsControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppServicePlanV2OperationByWebAppAssessmentV2"
-        },
-        {
-          "target": "com.azure.migrate#ListWebAppSitesControllerByMasterSite"
-        },
-        {
-          "target": "com.azure.migrate#ListWebServersControllerByWebAppSite"
-        },
-        {
-          "target": "com.azure.migrate#ListWebServersControllerWebServers"
-        },
-        {
-          "target": "com.azure.migrate#ListWebSitesControllerWebSites"
-        },
-        {
-          "target": "com.azure.migrate#MasterSitesControllerErrorSummary"
+          "target": "com.azure.migrate#GetMigrateProjectsControllerToolRegistrationDetails"
         },
         {
           "target": "com.azure.migrate#MigrateProjectsControllerDeleteMigrateProject"
-        },
-        {
-          "target": "com.azure.migrate#MigrateProjectsControllerGetMigrateProject"
         },
         {
           "target": "com.azure.migrate#MigrateProjectsControllerPatchMigrateProject"
@@ -64334,148 +63803,679 @@
           "target": "com.azure.migrate#MigrateProjectsControllerPutMigrateProject"
         },
         {
-          "target": "com.azure.migrate#PutPrivateEndpointConnectionControllerPrivateEndpointConnection"
+          "target": "com.azure.migrate#MigrateProjectsControllerGetMigrateProject"
         },
         {
-          "target": "com.azure.migrate#RefreshMigrateProjectsControllerSummary"
+          "target": "com.azure.migrate#ListProjects"
         },
         {
-          "target": "com.azure.migrate#RefreshServerSitesControllerSite"
+          "target": "com.azure.migrate#ListProjectBySubscription"
         },
         {
-          "target": "com.azure.migrate#RefreshSqlSitesController"
+          "target": "com.azure.migrate#GetWebSitesControllerWebSite"
         },
         {
-          "target": "com.azure.migrate#RefreshWebAppSitesController"
+          "target": "com.azure.migrate#ListWebSitesControllerWebSites"
         },
         {
-          "target": "com.azure.migrate#RegisterMigrateProjectsControllerTool"
+          "target": "com.azure.migrate#GetWebServersControllerWebServer"
         },
         {
-          "target": "com.azure.migrate#ServerDependencyMapControllerClientGroupMembers"
+          "target": "com.azure.migrate#ListWebServersControllerWebServers"
         },
         {
-          "target": "com.azure.migrate#ServerDependencyMapControllerServerGroupMembers"
+          "target": "com.azure.migrate#GetVirtualDesktopUserControllerVirtualDesktopUser"
         },
         {
-          "target": "com.azure.migrate#ServerSitesControllerComputeErrorSummary"
-        },
-        {
-          "target": "com.azure.migrate#ServerSitesControllerComputeusage"
-        },
-        {
-          "target": "com.azure.migrate#ServerSitesControllerSummary"
-        },
-        {
-          "target": "com.azure.migrate#SitesControllerComputeErrorSummary"
-        },
-        {
-          "target": "com.azure.migrate#SitesControllerComputeusage"
-        },
-        {
-          "target": "com.azure.migrate#SitesControllerSummary"
+          "target": "com.azure.migrate#ListVirtualDesktopUserControllerVirtualDesktopUsers"
         },
         {
           "target": "com.azure.migrate#SolutionsControllerCleanupData"
         },
         {
-          "target": "com.azure.migrate#SqlSitesControllerErrorSummary"
+          "target": "com.azure.migrate#GetSolutionsControllerConfig"
         },
         {
-          "target": "com.azure.migrate#SqlSitesControllerSummary"
+          "target": "com.azure.migrate#ListSolutionsControllerSolutions"
         },
         {
-          "target": "com.azure.migrate#StartMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#StopMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateAssessmentProjectsOperation"
-        },
-        {
-          "target": "com.azure.migrate#UpdateGroupsOperationMachines"
-        },
-        {
-          "target": "com.azure.migrate#UpdateHypervDependencyMapControllerDependencyMapStatus"
-        },
-        {
-          "target": "com.azure.migrate#UpdateHypervMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateHypervMachinesControllerProperties"
-        },
-        {
-          "target": "com.azure.migrate#UpdateHypervSitesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateIisWebApplicationsController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateImportSitesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateMachinesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateMasterSitesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdatePrivateEndpointConnectionOperation"
-        },
-        {
-          "target": "com.azure.migrate#UpdateServersControllerMachine"
-        },
-        {
-          "target": "com.azure.migrate#UpdateServerSitesController"
-        },
-        {
-          "target": "com.azure.migrate#UpdateServerSitesControllerDependencyMapStatus"
-        },
-        {
-          "target": "com.azure.migrate#UpdateServerSitesControllerProperties"
-        },
-        {
-          "target": "com.azure.migrate#UpdateSitesController"
+          "target": "com.azure.migrate#DeleteSolutionsControllerSolution"
         },
         {
           "target": "com.azure.migrate#UpdateSolutionsController"
         },
         {
-          "target": "com.azure.migrate#UpdateSqlServersController"
+          "target": "com.azure.migrate#CreateSolutionsController"
         },
         {
-          "target": "com.azure.migrate#UpdateSqlSitesController"
+          "target": "com.azure.migrate#GetSolutionsControllerSolution"
         },
         {
-          "target": "com.azure.migrate#UpdateTomcatWebApplicationsController"
+          "target": "com.azure.migrate#RefreshMigrateProjectsControllerSummary"
         },
         {
-          "target": "com.azure.migrate#UpdateVmwarePropertiesControllerDependencyMapStatus"
+          "target": "com.azure.migrate#RegisterMigrateProjectsControllerTool"
         },
         {
-          "target": "com.azure.migrate#UpdateVmwarePropertiesControllerProperties"
+          "target": "com.azure.migrate#GetMachinesControllerMachine"
         },
         {
-          "target": "com.azure.migrate#UpdateVmwarePropertiesControllerRunAsAccount"
+          "target": "com.azure.migrate#ListMachinesControllerMachines"
+        },
+        {
+          "target": "com.azure.migrate#DeleteEventsController"
+        },
+        {
+          "target": "com.azure.migrate#GetEventsControllerEvent"
+        },
+        {
+          "target": "com.azure.migrate#ListEventsControllerEvents"
+        },
+        {
+          "target": "com.azure.migrate#GetDatabasesControllerDatabase"
+        },
+        {
+          "target": "com.azure.migrate#ListDatabasesControllerDatabases"
+        },
+        {
+          "target": "com.azure.migrate#GetDatabaseInstancesControllerDatabaseInstance"
+        },
+        {
+          "target": "com.azure.migrate#ListDatabaseInstancesControllerDatabaseInstances"
+        },
+        {
+          "target": "com.azure.migrate#DeleteVcenterController"
+        },
+        {
+          "target": "com.azure.migrate#CreateVcenterController"
+        },
+        {
+          "target": "com.azure.migrate#GetVcenterController"
+        },
+        {
+          "target": "com.azure.migrate#ListVcenterControllerByVmwareSite"
         },
         {
           "target": "com.azure.migrate#UpdateVmwarePropertiesControllerTags"
         },
         {
+          "target": "com.azure.migrate#UpdateVmwarePropertiesControllerRunAsAccount"
+        },
+        {
+          "target": "com.azure.migrate#UpdateVmwarePropertiesControllerProperties"
+        },
+        {
+          "target": "com.azure.migrate#UpdateVmwarePropertiesControllerDependencyMapStatus"
+        },
+        {
+          "target": "com.azure.migrate#SitesControllerSummary"
+        },
+        {
+          "target": "com.azure.migrate#DependencyMapControllerServerGroupMembers"
+        },
+        {
+          "target": "com.azure.migrate#GetRunAsAccountsController"
+        },
+        {
+          "target": "com.azure.migrate#ListRunAsAccountsControllerByVmwareSite"
+        },
+        {
+          "target": "com.azure.migrate#GetVmwareOperationsStatusVmwareOperationStatus"
+        },
+        {
+          "target": "com.azure.migrate#StopMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#StartMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#ListVmwareSoftwareInventoriesControllerByMachineResource"
+        },
+        {
+          "target": "com.azure.migrate#GetVmwareSoftwareInventoriesControllerMachineSoftwareInventory"
+        },
+        {
+          "target": "com.azure.migrate#UpdateMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#GetMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#ListMachinesControllerByVmwareSite"
+        },
+        {
+          "target": "com.azure.migrate#ListSitesControllerHealthSummary"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervJobsController"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervJobsControllerByVmwareSite"
+        },
+        {
+          "target": "com.azure.migrate#GetVmwareHostController"
+        },
+        {
+          "target": "com.azure.migrate#ListVmwareHostControllerByVmwareSite"
+        },
+        {
+          "target": "com.azure.migrate#GenerateDependencyMapControllerDetailedMap"
+        },
+        {
+          "target": "com.azure.migrate#GenerateDependencyMapControllerCoarseMap"
+        },
+        {
+          "target": "com.azure.migrate#ExportSitesControllerMachines"
+        },
+        {
+          "target": "com.azure.migrate#ExportSitesControllerMachineErrors"
+        },
+        {
+          "target": "com.azure.migrate#ExportDependencyMapControllerDependencies"
+        },
+        {
+          "target": "com.azure.migrate#ExportSitesControllerApplications"
+        },
+        {
+          "target": "com.azure.migrate#SitesControllerComputeusage"
+        },
+        {
+          "target": "com.azure.migrate#SitesControllerComputeErrorSummary"
+        },
+        {
+          "target": "com.azure.migrate#DependencyMapControllerClientGroupMembers"
+        },
+        {
+          "target": "com.azure.migrate#DeleteSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListSitesControllerByResourceGroup"
+        },
+        {
+          "target": "com.azure.migrate#UpdateServerSitesControllerProperties"
+        },
+        {
+          "target": "com.azure.migrate#UpdateServerSitesControllerDependencyMapStatus"
+        },
+        {
+          "target": "com.azure.migrate#ServerSitesControllerSummary"
+        },
+        {
+          "target": "com.azure.migrate#ServerDependencyMapControllerServerGroupMembers"
+        },
+        {
+          "target": "com.azure.migrate#GetServerRunAsAccountsController"
+        },
+        {
+          "target": "com.azure.migrate#ListServerRunAsAccountsControllerByServerSiteResource"
+        },
+        {
+          "target": "com.azure.migrate#RefreshServerSitesControllerSite"
+        },
+        {
+          "target": "com.azure.migrate#GetServerOperationsStatusControllerServerSiteOperationsStatus"
+        },
+        {
+          "target": "com.azure.migrate#ListServerSoftwareInventoriesControllerByServer"
+        },
+        {
+          "target": "com.azure.migrate#GetServerSoftwareInventoriesControllerMachineSoftwareInventory"
+        },
+        {
+          "target": "com.azure.migrate#DeleteServersControllerMachine"
+        },
+        {
+          "target": "com.azure.migrate#UpdateServersControllerMachine"
+        },
+        {
+          "target": "com.azure.migrate#GetServersControllerMachine"
+        },
+        {
+          "target": "com.azure.migrate#ListServersControllerByServerSiteResource"
+        },
+        {
+          "target": "com.azure.migrate#ListServerSitesControllerHealthSummary"
+        },
+        {
+          "target": "com.azure.migrate#GetServerJobsController"
+        },
+        {
+          "target": "com.azure.migrate#ListServerJobsControllerByServerSiteResource"
+        },
+        {
+          "target": "com.azure.migrate#GenerateServerDependencyMapControllerDetailedMap"
+        },
+        {
+          "target": "com.azure.migrate#GenerateServerDependencyMapControllerCoarseMap"
+        },
+        {
+          "target": "com.azure.migrate#ExportServerSitesControllerMachineErrors"
+        },
+        {
+          "target": "com.azure.migrate#ExportServerDependencyMapControllerDependencies"
+        },
+        {
+          "target": "com.azure.migrate#ExportServerSitesControllerApplications"
+        },
+        {
+          "target": "com.azure.migrate#ServerSitesControllerComputeusage"
+        },
+        {
+          "target": "com.azure.migrate#ServerSitesControllerComputeErrorSummary"
+        },
+        {
+          "target": "com.azure.migrate#ServerDependencyMapControllerClientGroupMembers"
+        },
+        {
+          "target": "com.azure.migrate#DeleteServerSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateServerSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateServerSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetServerSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListServerSitesControllerByResourceGroup"
+        },
+        {
+          "target": "com.azure.migrate#ListWebServersControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#ListWebApplicationsControllerByWebAppSite"
+        },
+        {
           "target": "com.azure.migrate#UpdateWebAppPropertiesControllerProperties"
         },
         {
-          "target": "com.azure.migrate#UpdateWebAppSitesController"
+          "target": "com.azure.migrate#GetTomcatWebServersController"
         },
         {
-          "target": "com.azure.migrate#ValidatePrivateEndpointConnectionProxyController"
+          "target": "com.azure.migrate#ListTomcatWebServersControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#UpdateTomcatWebApplicationsController"
+        },
+        {
+          "target": "com.azure.migrate#GetTomcatWebApplicationsController"
+        },
+        {
+          "target": "com.azure.migrate#ListTomcatWebApplicationsControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#WebAppSitesControllerSummary"
+        },
+        {
+          "target": "com.azure.migrate#GetWebAppRunAsAccountsController"
+        },
+        {
+          "target": "com.azure.migrate#ListWebAppRunAsAccountsControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#RefreshWebAppSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetIisWebServersController"
+        },
+        {
+          "target": "com.azure.migrate#ListIisWebServersControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#UpdateIisWebApplicationsController"
+        },
+        {
+          "target": "com.azure.migrate#GetIisWebApplicationsController"
+        },
+        {
+          "target": "com.azure.migrate#ListIisWebApplicationsControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#GetWebAppExtendedMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#ListWebAppExtendedMachinesControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#ExportWebAppSitesControllerInventory"
         },
         {
           "target": "com.azure.migrate#WebAppSitesControllerErrorSummary"
         },
         {
-          "target": "com.azure.migrate#WebAppSitesControllerSummary"
+          "target": "com.azure.migrate#DeleteWebAppDiscoverySiteDataSourcesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateWebAppDiscoverySiteDataSourcesController"
+        },
+        {
+          "target": "com.azure.migrate#GetWebAppDiscoverySiteDataSourcesController"
+        },
+        {
+          "target": "com.azure.migrate#ListWebAppDiscoverySiteDataSourcesControllerByWebAppSite"
+        },
+        {
+          "target": "com.azure.migrate#DeleteWebAppSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateWebAppSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateWebAppSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetWebAppSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListWebAppSitesControllerByMasterSite"
+        },
+        {
+          "target": "com.azure.migrate#SqlSitesControllerSummary"
+        },
+        {
+          "target": "com.azure.migrate#UpdateSqlServersController"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlServersController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlServersControllerBySqlSite"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlDatabasesController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlDatabasesControllerBySqlSite"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlAvailabilityGroupsController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlAvailabilityGroupsControllerBySqlSite"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlRunAsAccountsController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlRunAsAccountsControllerBySqlSite"
+        },
+        {
+          "target": "com.azure.migrate#RefreshSqlSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlOperationsStatusControllerSqlOperationStatus"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlJobsController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlJobsControllerBySqlSite"
+        },
+        {
+          "target": "com.azure.migrate#ExportSqlSitesControllerSqlServers"
+        },
+        {
+          "target": "com.azure.migrate#ExportSqlSitesControllerSqlServerErrors"
+        },
+        {
+          "target": "com.azure.migrate#SqlSitesControllerErrorSummary"
+        },
+        {
+          "target": "com.azure.migrate#DeleteSqlDiscoverySiteDataSourceController"
+        },
+        {
+          "target": "com.azure.migrate#CreateSqlDiscoverySiteDataSourceController"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlDiscoverySiteDataSourceController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlDiscoverySiteDataSourceControllerBySqlSite"
+        },
+        {
+          "target": "com.azure.migrate#DeleteSqlSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateSqlSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateSqlSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetSqlSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListSqlSitesControllerByMasterSite"
+        },
+        {
+          "target": "com.azure.migrate#GetPrivateLinkResourcesController"
+        },
+        {
+          "target": "com.azure.migrate#ListPrivateLinkResourcesControllerByMasterSite"
+        },
+        {
+          "target": "com.azure.migrate#DeletePrivateEndpointConnectionController"
+        },
+        {
+          "target": "com.azure.migrate#CreatePrivateEndpointConnectionController"
+        },
+        {
+          "target": "com.azure.migrate#GetPrivateEndpointConnectionController"
+        },
+        {
+          "target": "com.azure.migrate#ListPrivateEndpointConnectionControllerByMasterSite"
+        },
+        {
+          "target": "com.azure.migrate#GetMasterSitesOperationsStatusControllerVmwareOperationStatus"
+        },
+        {
+          "target": "com.azure.migrate#MasterSitesControllerErrorSummary"
+        },
+        {
+          "target": "com.azure.migrate#DeleteMasterSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateMasterSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateMasterSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetMasterSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListMasterSitesControllerByResourceGroup"
+        },
+        {
+          "target": "com.azure.migrate#DeleteImportMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#GetImportMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#ImportMachinesControllerListByImportSite"
+        },
+        {
+          "target": "com.azure.migrate#GetImportJobsController"
+        },
+        {
+          "target": "com.azure.migrate#ImportJobsControllerListByImportSite"
+        },
+        {
+          "target": "com.azure.migrate#ImportImportSitesControllerUri"
+        },
+        {
+          "target": "com.azure.migrate#GetImportJobsControllerImportjob"
+        },
+        {
+          "target": "com.azure.migrate#ListImportJobsControllerImportjobs"
+        },
+        {
+          "target": "com.azure.migrate#ExportImportSitesControllerUri"
+        },
+        {
+          "target": "com.azure.migrate#GetImportJobsControllerExportjob"
+        },
+        {
+          "target": "com.azure.migrate#ListImportJobsControllerExportjobs"
+        },
+        {
+          "target": "com.azure.migrate#GetImportJobsControllerDeletejob"
+        },
+        {
+          "target": "com.azure.migrate#ListImportJobsControllerDeletejobs"
+        },
+        {
+          "target": "com.azure.migrate#DeleteImportSitesControllerImportedMachines"
+        },
+        {
+          "target": "com.azure.migrate#DeleteImportSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateImportSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateImportSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetImportSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListImportSitesControllerByResourceGroup"
+        },
+        {
+          "target": "com.azure.migrate#UpdateHypervMachinesControllerProperties"
+        },
+        {
+          "target": "com.azure.migrate#UpdateHypervDependencyMapControllerDependencyMapStatus"
+        },
+        {
+          "target": "com.azure.migrate#HypervSitesControllerSummary"
+        },
+        {
+          "target": "com.azure.migrate#HypervDependencyMapControllerServerGroupMembers"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervRunAsAccountsController"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervRunAsAccountsControllerByHypervSite"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervOperationsStatusControllerHypervOperationsStatus"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervSoftwareInventoriesControllerByHypervMachine"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervSoftwareInventoriesControllerMachineSoftwareInventory"
+        },
+        {
+          "target": "com.azure.migrate#UpdateHypervMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervMachinesController"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervMachinesControllerByHypervSite"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervSitesControllerHealthSummary"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervJob"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervJobByHypervSite"
+        },
+        {
+          "target": "com.azure.migrate#DeleteHypervHostController"
+        },
+        {
+          "target": "com.azure.migrate#CreateHypervHostController"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervHostController"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervHostControllerByHypervSite"
+        },
+        {
+          "target": "com.azure.migrate#GenerateHypervDependencyMapControllerDetailedMap"
+        },
+        {
+          "target": "com.azure.migrate#GenerateHypervDependencyMapControllerCoarseMap"
+        },
+        {
+          "target": "com.azure.migrate#ExportHypervSitesControllerMachineErrors"
+        },
+        {
+          "target": "com.azure.migrate#ExportHypervDependencyMapControllerDependencies"
+        },
+        {
+          "target": "com.azure.migrate#ExportHypervSitesControllerApplications"
+        },
+        {
+          "target": "com.azure.migrate#HypervSitesControllerComputeusage"
+        },
+        {
+          "target": "com.azure.migrate#HypervSitesControllerComputeErrorSummary"
+        },
+        {
+          "target": "com.azure.migrate#DeleteHypervClusterController"
+        },
+        {
+          "target": "com.azure.migrate#CreateHypervClusterControllerCluster"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervClusterControllerCluster"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervClusterControllerByHypervSite"
+        },
+        {
+          "target": "com.azure.migrate#HypervDependencyMapControllerClientGroupMembers"
+        },
+        {
+          "target": "com.azure.migrate#DeleteHypervSitesController"
+        },
+        {
+          "target": "com.azure.migrate#UpdateHypervSitesController"
+        },
+        {
+          "target": "com.azure.migrate#CreateHypervSitesController"
+        },
+        {
+          "target": "com.azure.migrate#GetHypervSitesController"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervSiteByResourceGroup"
+        },
+        {
+          "target": "com.azure.migrate#ListSitesControllerBySubscription"
+        },
+        {
+          "target": "com.azure.migrate#ListServerSitesControllerBySubscription"
+        },
+        {
+          "target": "com.azure.migrate#ListMasterSitesControllerBySubscription"
+        },
+        {
+          "target": "com.azure.migrate#ListImportSitesControllerBySubscription"
+        },
+        {
+          "target": "com.azure.migrate#ListHypervSiteBySubscription"
         }
       ],
       "traits": {

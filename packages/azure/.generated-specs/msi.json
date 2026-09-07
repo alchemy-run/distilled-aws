@@ -1466,25 +1466,25 @@
           "target": "com.azure.msi#DeleteFederatedIdentityCredentials"
         },
         {
-          "target": "com.azure.msi#DeleteUserAssignedIdentity"
-        },
-        {
           "target": "com.azure.msi#FederatedIdentityCredentialsCreateOrUpdate"
         },
         {
           "target": "com.azure.msi#GetFederatedIdentityCredentials"
         },
         {
-          "target": "com.azure.msi#GetSystemAssignedIdentityByScope"
-        },
-        {
-          "target": "com.azure.msi#GetUserAssignedIdentity"
-        },
-        {
           "target": "com.azure.msi#ListFederatedIdentityCredentials"
         },
         {
-          "target": "com.azure.msi#ListOperations"
+          "target": "com.azure.msi#DeleteUserAssignedIdentity"
+        },
+        {
+          "target": "com.azure.msi#UpdateUserAssignedIdentity"
+        },
+        {
+          "target": "com.azure.msi#UserAssignedIdentitiesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.msi#GetUserAssignedIdentity"
         },
         {
           "target": "com.azure.msi#ListUserAssignedIdentityByResourceGroup"
@@ -1493,10 +1493,10 @@
           "target": "com.azure.msi#ListUserAssignedIdentityBySubscription"
         },
         {
-          "target": "com.azure.msi#UpdateUserAssignedIdentity"
+          "target": "com.azure.msi#ListOperations"
         },
         {
-          "target": "com.azure.msi#UserAssignedIdentitiesCreateOrUpdate"
+          "target": "com.azure.msi#GetSystemAssignedIdentityByScope"
         }
       ],
       "traits": {

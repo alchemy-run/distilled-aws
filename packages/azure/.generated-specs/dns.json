@@ -2425,16 +2425,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dns#DeleteRecordSet"
-        },
-        {
-          "target": "com.azure.dns#DeleteZone"
+          "target": "com.azure.dns#ListZones"
         },
         {
           "target": "com.azure.dns#GetDnsResourceReferenceByTargetResources"
         },
         {
-          "target": "com.azure.dns#GetRecordSet"
+          "target": "com.azure.dns#ListZoneByResourceGroup"
+        },
+        {
+          "target": "com.azure.dns#DeleteZone"
+        },
+        {
+          "target": "com.azure.dns#UpdateZone"
+        },
+        {
+          "target": "com.azure.dns#ZonesCreateOrUpdate"
         },
         {
           "target": "com.azure.dns#GetZone"
@@ -2449,22 +2455,16 @@
           "target": "com.azure.dns#ListRecordSetByType"
         },
         {
-          "target": "com.azure.dns#ListZoneByResourceGroup"
-        },
-        {
-          "target": "com.azure.dns#ListZones"
-        },
-        {
-          "target": "com.azure.dns#RecordSetsCreateOrUpdate"
+          "target": "com.azure.dns#DeleteRecordSet"
         },
         {
           "target": "com.azure.dns#UpdateRecordSet"
         },
         {
-          "target": "com.azure.dns#UpdateZone"
+          "target": "com.azure.dns#RecordSetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dns#ZonesCreateOrUpdate"
+          "target": "com.azure.dns#GetRecordSet"
         }
       ],
       "traits": {

@@ -8545,151 +8545,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.connectedvmware#CreateCluster"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateDatastore"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateHost"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateInventoryItem"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateResourcePool"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateVCenter"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateVirtualNetwork"
-        },
-        {
-          "target": "com.azure.connectedvmware#CreateVMInstanceGuestAgent"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteCluster"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteDatastore"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteHost"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteInventoryItem"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteResourcePool"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteVCenter"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.connectedvmware#DeleteVirtualNetwork"
+          "target": "com.azure.connectedvmware#ListVMInstanceGuestAgents"
         },
         {
           "target": "com.azure.connectedvmware#DeleteVMInstanceGuestAgent"
         },
         {
-          "target": "com.azure.connectedvmware#GetCluster"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetDatastore"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetHost"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetInventoryItem"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetResourcePool"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetVCenter"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.connectedvmware#GetVirtualNetwork"
+          "target": "com.azure.connectedvmware#CreateVMInstanceGuestAgent"
         },
         {
           "target": "com.azure.connectedvmware#GetVMInstanceGuestAgent"
         },
         {
-          "target": "com.azure.connectedvmware#GetVmInstanceHybridIdentityMetadata"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListClusters"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListDatastoreByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListDatastores"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListHostByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListHosts"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListInventoryItemByVCenter"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListOperations"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListResourcePoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListResourcePools"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVCenterByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVCenters"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVirtualMachineInstances"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVirtualMachineTemplateByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVirtualMachineTemplates"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVirtualNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVirtualNetworks"
-        },
-        {
-          "target": "com.azure.connectedvmware#ListVMInstanceGuestAgents"
-        },
-        {
           "target": "com.azure.connectedvmware#ListVmInstanceHybridIdentityMetadata"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetVmInstanceHybridIdentityMetadata"
         },
         {
           "target": "com.azure.connectedvmware#RestartVirtualMachineInstance"
@@ -8701,31 +8572,160 @@
           "target": "com.azure.connectedvmware#StopVirtualMachineInstance"
         },
         {
-          "target": "com.azure.connectedvmware#UpdateCluster"
+          "target": "com.azure.connectedvmware#ListVirtualMachineInstances"
         },
         {
-          "target": "com.azure.connectedvmware#UpdateDatastore"
-        },
-        {
-          "target": "com.azure.connectedvmware#UpdateHost"
-        },
-        {
-          "target": "com.azure.connectedvmware#UpdateResourcePool"
-        },
-        {
-          "target": "com.azure.connectedvmware#UpdateVCenter"
+          "target": "com.azure.connectedvmware#DeleteVirtualMachineInstance"
         },
         {
           "target": "com.azure.connectedvmware#UpdateVirtualMachineInstance"
         },
         {
-          "target": "com.azure.connectedvmware#UpdateVirtualMachineTemplate"
+          "target": "com.azure.connectedvmware#VirtualMachineInstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListInventoryItemByVCenter"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteInventoryItem"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateInventoryItem"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetInventoryItem"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListVirtualNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListVirtualNetworks"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteVirtualNetwork"
         },
         {
           "target": "com.azure.connectedvmware#UpdateVirtualNetwork"
         },
         {
-          "target": "com.azure.connectedvmware#VirtualMachineInstancesCreateOrUpdate"
+          "target": "com.azure.connectedvmware#CreateVirtualNetwork"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetVirtualNetwork"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListVirtualMachineTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListVirtualMachineTemplates"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.connectedvmware#UpdateVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListVCenterByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListVCenters"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteVCenter"
+        },
+        {
+          "target": "com.azure.connectedvmware#UpdateVCenter"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateVCenter"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetVCenter"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListDatastoreByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListDatastores"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteDatastore"
+        },
+        {
+          "target": "com.azure.connectedvmware#UpdateDatastore"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateDatastore"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetDatastore"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListHostByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListHosts"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteHost"
+        },
+        {
+          "target": "com.azure.connectedvmware#UpdateHost"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateHost"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetHost"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListClusters"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteCluster"
+        },
+        {
+          "target": "com.azure.connectedvmware#UpdateCluster"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateCluster"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetCluster"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListResourcePoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListResourcePools"
+        },
+        {
+          "target": "com.azure.connectedvmware#DeleteResourcePool"
+        },
+        {
+          "target": "com.azure.connectedvmware#UpdateResourcePool"
+        },
+        {
+          "target": "com.azure.connectedvmware#CreateResourcePool"
+        },
+        {
+          "target": "com.azure.connectedvmware#GetResourcePool"
+        },
+        {
+          "target": "com.azure.connectedvmware#ListOperations"
         }
       ],
       "traits": {

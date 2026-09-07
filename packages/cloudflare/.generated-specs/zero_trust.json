@@ -90826,6 +90826,60 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.zero_trust#GetCasbApplication"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListCasbApplications"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListCasbApplicationsSetupFlows"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#CreateCasbIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#DeleteCasbIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#GetCasbIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListCasbIntegrations"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#PauseCasbIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ResumeCasbIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#UpdateCasbIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#CreateDlpCustomEntry"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#DeleteDlpCustomEntry"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#GetDlpCustomEntry"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListDlpCustomEntries"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#GetDlpEntriesIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListDlpEntriesIntegration"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#GetDlpEntriesPredefined"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListDlpEntriesPredefined"
+        },
+        {
           "target": "com.cloudflare.zero_trust#ActivateGatewayCertificate"
         },
         {
@@ -90913,9 +90967,6 @@
           "target": "com.cloudflare.zero_trust#CreateAccessUser"
         },
         {
-          "target": "com.cloudflare.zero_trust#CreateCasbIntegration"
-        },
-        {
           "target": "com.cloudflare.zero_trust#CreateDeviceDeploymentGroup"
         },
         {
@@ -90950,9 +91001,6 @@
         },
         {
           "target": "com.cloudflare.zero_trust#CreateDexRule"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#CreateDlpCustomEntry"
         },
         {
           "target": "com.cloudflare.zero_trust#CreateDlpCustomPromptTopic"
@@ -91135,9 +91183,6 @@
           "target": "com.cloudflare.zero_trust#DeleteAccessUser"
         },
         {
-          "target": "com.cloudflare.zero_trust#DeleteCasbIntegration"
-        },
-        {
           "target": "com.cloudflare.zero_trust#DeleteDeviceDeploymentGroup"
         },
         {
@@ -91169,9 +91214,6 @@
         },
         {
           "target": "com.cloudflare.zero_trust#DeleteDexRule"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#DeleteDlpCustomEntry"
         },
         {
           "target": "com.cloudflare.zero_trust#DeleteDlpCustomPromptTopic"
@@ -91348,12 +91390,6 @@
           "target": "com.cloudflare.zero_trust#GetAccessUserLastSeenIdentity"
         },
         {
-          "target": "com.cloudflare.zero_trust#GetCasbApplication"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#GetCasbIntegration"
-        },
-        {
           "target": "com.cloudflare.zero_trust#GetConnectivitySetting"
         },
         {
@@ -91447,9 +91483,6 @@
           "target": "com.cloudflare.zero_trust#GetDexWarpChangeEvent"
         },
         {
-          "target": "com.cloudflare.zero_trust#GetDlpCustomEntry"
-        },
-        {
           "target": "com.cloudflare.zero_trust#GetDlpCustomPromptTopic"
         },
         {
@@ -91469,12 +91502,6 @@
         },
         {
           "target": "com.cloudflare.zero_trust#GetDlpEmailRule"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#GetDlpEntriesIntegration"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#GetDlpEntriesPredefined"
         },
         {
           "target": "com.cloudflare.zero_trust#GetDlpEntry"
@@ -91612,9 +91639,6 @@
           "target": "com.cloudflare.zero_trust#GetTunnelWarpConnectorToken"
         },
         {
-          "target": "com.cloudflare.zero_trust#ListAccessAiControlMcpPortals"
-        },
-        {
           "target": "com.cloudflare.zero_trust#ListAccessAiControlMcpServers"
         },
         {
@@ -91702,15 +91726,6 @@
           "target": "com.cloudflare.zero_trust#ListAccessUsers"
         },
         {
-          "target": "com.cloudflare.zero_trust#ListCasbApplications"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#ListCasbApplicationsSetupFlows"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#ListCasbIntegrations"
-        },
-        {
           "target": "com.cloudflare.zero_trust#ListDeviceDeploymentGroups"
         },
         {
@@ -91768,9 +91783,6 @@
           "target": "com.cloudflare.zero_trust#ListDexTestUniqueDevices"
         },
         {
-          "target": "com.cloudflare.zero_trust#ListDlpCustomEntries"
-        },
-        {
           "target": "com.cloudflare.zero_trust#ListDlpCustomPromptTopics"
         },
         {
@@ -91790,12 +91802,6 @@
         },
         {
           "target": "com.cloudflare.zero_trust#ListDlpEntries"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#ListDlpEntriesIntegration"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#ListDlpEntriesPredefined"
         },
         {
           "target": "com.cloudflare.zero_trust#ListDlpLimits"
@@ -91894,6 +91900,9 @@
           "target": "com.cloudflare.zero_trust#LiveDexFleetStatus"
         },
         {
+          "target": "com.cloudflare.zero_trust#TestNetworkPathDexTraceroute"
+        },
+        {
           "target": "com.cloudflare.zero_trust#OverTimeDexFleetStatus"
         },
         {
@@ -91969,7 +91978,7 @@
           "target": "com.cloudflare.zero_trust#PatchTunnelWarpConnector"
         },
         {
-          "target": "com.cloudflare.zero_trust#PauseCasbIntegration"
+          "target": "com.cloudflare.zero_trust#TestPercentilesDexTraceroute"
         },
         {
           "target": "com.cloudflare.zero_trust#PutAccessApplicationSettingForAccount"
@@ -92059,9 +92068,6 @@
           "target": "com.cloudflare.zero_trust#ResetRiskScoring"
         },
         {
-          "target": "com.cloudflare.zero_trust#ResumeCasbIntegration"
-        },
-        {
           "target": "com.cloudflare.zero_trust#RevokeDeviceDevices"
         },
         {
@@ -92093,12 +92099,6 @@
         },
         {
           "target": "com.cloudflare.zero_trust#SyncAccessAiControlMcpServer"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#TestNetworkPathDexTraceroute"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#TestPercentilesDexTraceroute"
         },
         {
           "target": "com.cloudflare.zero_trust#UnrevokeDeviceRegistration"
@@ -92156,9 +92156,6 @@
         },
         {
           "target": "com.cloudflare.zero_trust#UpdateAccessUser"
-        },
-        {
-          "target": "com.cloudflare.zero_trust#UpdateCasbIntegration"
         },
         {
           "target": "com.cloudflare.zero_trust#UpdateDeviceDexTest"
@@ -92237,6 +92234,9 @@
         },
         {
           "target": "com.cloudflare.zero_trust#ValidateDlpPattern"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#ListAccessAiControlMcpPortals"
         }
       ],
       "traits": {

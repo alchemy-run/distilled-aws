@@ -4298,6 +4298,15 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActions"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersAction"
+        },
+        {
+          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActions"
+        },
+        {
           "target": "com.hetzner.load_balancer_actions#AddLoadBalancerService"
         },
         {
@@ -4329,15 +4338,6 @@
         },
         {
           "target": "com.hetzner.load_balancer_actions#EnableLoadBalancerPublicInterface"
-        },
-        {
-          "target": "com.hetzner.load_balancer_actions#GetLoadBalancersAction"
-        },
-        {
-          "target": "com.hetzner.load_balancer_actions#ListLoadBalancerActions"
-        },
-        {
-          "target": "com.hetzner.load_balancer_actions#ListLoadBalancersActions"
         },
         {
           "target": "com.hetzner.load_balancer_actions#RemoveLoadBalancerTarget"

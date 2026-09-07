@@ -25481,220 +25481,112 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.resource#CreateResourceV1alpha3DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1beta2ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#CreateResourceV1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1alpha3CollectionDeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1alpha3CollectionResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1alpha3DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionDeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionNamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionNamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionDeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionDeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionNamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionNamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1beta2ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1CollectionDeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1CollectionDeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1CollectionNamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1CollectionNamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1CollectionResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#DeleteResourceV1ResourceSlice"
-        },
-        {
           "target": "com.kubernetes.resource#GetResourceAPIGroup"
-        },
-        {
-          "target": "com.kubernetes.resource#GetResourceV1alpha3APIResources"
         },
         {
           "target": "com.kubernetes.resource#GetResourceV1APIResources"
         },
         {
-          "target": "com.kubernetes.resource#GetResourceV1beta1APIResources"
-        },
-        {
-          "target": "com.kubernetes.resource#GetResourceV1beta2APIResources"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1alpha3DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta1ResourceClaimForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta1ResourceClaimTemplateForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2ResourceClaimForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2ResourceClaimTemplateForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#ListResourceV1beta2ResourceSlice"
-        },
-        {
           "target": "com.kubernetes.resource#ListResourceV1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1CollectionDeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1DeviceClass"
         },
         {
           "target": "com.kubernetes.resource#ListResourceV1DeviceTaintRule"
         },
         {
+          "target": "com.kubernetes.resource#CreateResourceV1DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1CollectionDeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1DeviceTaintRuleStatus"
+        },
+        {
           "target": "com.kubernetes.resource#ListResourceV1NamespacedResourceClaim"
         },
         {
+          "target": "com.kubernetes.resource#CreateResourceV1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1CollectionNamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1NamespacedResourceClaimStatus"
+        },
+        {
           "target": "com.kubernetes.resource#ListResourceV1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1CollectionNamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1NamespacedResourceClaimTemplate"
         },
         {
           "target": "com.kubernetes.resource#ListResourceV1ResourceClaimForAllNamespaces"
@@ -25706,313 +25598,46 @@
           "target": "com.kubernetes.resource#ListResourceV1ResourceSlice"
         },
         {
-          "target": "com.kubernetes.resource#PatchResourceV1alpha3DeviceTaintRule"
+          "target": "com.kubernetes.resource#CreateResourceV1ResourceSlice"
         },
         {
-          "target": "com.kubernetes.resource#PatchResourceV1alpha3DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1alpha3ResourcePoolStatusRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta1NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1beta2ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#PatchResourceV1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1alpha3DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1alpha3DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1alpha3ResourcePoolStatusRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta1NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1beta2ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReadResourceV1NamespacedResourceClaimTemplate"
+          "target": "com.kubernetes.resource#DeleteResourceV1CollectionResourceSlice"
         },
         {
           "target": "com.kubernetes.resource#ReadResourceV1ResourceSlice"
         },
         {
-          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3ResourcePoolStatusRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta1NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1beta2ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1DeviceTaintRuleStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1NamespacedResourceClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.resource#ReplaceResourceV1NamespacedResourceClaimTemplate"
-        },
-        {
           "target": "com.kubernetes.resource#ReplaceResourceV1ResourceSlice"
         },
         {
-          "target": "com.kubernetes.resource#WatchResourceV1alpha3DeviceTaintRule"
+          "target": "com.kubernetes.resource#PatchResourceV1ResourceSlice"
         },
         {
-          "target": "com.kubernetes.resource#WatchResourceV1alpha3DeviceTaintRuleList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1alpha3ResourcePoolStatusRequest"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1alpha3ResourcePoolStatusRequestList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1DeviceClassList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaimList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaimTemplateList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceClaimListForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceClaimTemplateListForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceSliceList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceClass"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceClassList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceTaintRule"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceTaintRuleList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaim"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaimList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaimTemplate"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaimTemplateList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceClaimListForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceClaimTemplateListForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceSlice"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceSliceList"
-        },
-        {
-          "target": "com.kubernetes.resource#WatchResourceV1DeviceClass"
+          "target": "com.kubernetes.resource#DeleteResourceV1ResourceSlice"
         },
         {
           "target": "com.kubernetes.resource#WatchResourceV1DeviceClassList"
         },
         {
-          "target": "com.kubernetes.resource#WatchResourceV1DeviceTaintRule"
+          "target": "com.kubernetes.resource#WatchResourceV1DeviceClass"
         },
         {
           "target": "com.kubernetes.resource#WatchResourceV1DeviceTaintRuleList"
         },
         {
-          "target": "com.kubernetes.resource#WatchResourceV1NamespacedResourceClaim"
+          "target": "com.kubernetes.resource#WatchResourceV1DeviceTaintRule"
         },
         {
           "target": "com.kubernetes.resource#WatchResourceV1NamespacedResourceClaimList"
         },
         {
-          "target": "com.kubernetes.resource#WatchResourceV1NamespacedResourceClaimTemplate"
+          "target": "com.kubernetes.resource#WatchResourceV1NamespacedResourceClaim"
         },
         {
           "target": "com.kubernetes.resource#WatchResourceV1NamespacedResourceClaimTemplateList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1NamespacedResourceClaimTemplate"
         },
         {
           "target": "com.kubernetes.resource#WatchResourceV1ResourceClaimListForAllNamespaces"
@@ -26021,10 +25646,385 @@
           "target": "com.kubernetes.resource#WatchResourceV1ResourceClaimTemplateListForAllNamespaces"
         },
         {
+          "target": "com.kubernetes.resource#WatchResourceV1ResourceSliceList"
+        },
+        {
           "target": "com.kubernetes.resource#WatchResourceV1ResourceSlice"
         },
         {
-          "target": "com.kubernetes.resource#WatchResourceV1ResourceSliceList"
+          "target": "com.kubernetes.resource#GetResourceV1alpha3APIResources"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1alpha3CollectionDeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1alpha3DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1alpha3DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1alpha3CollectionResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1alpha3ResourcePoolStatusRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1alpha3ResourcePoolStatusRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1alpha3ResourcePoolStatusRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1alpha3DeviceTaintRuleList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1alpha3DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1alpha3ResourcePoolStatusRequestList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1alpha3ResourcePoolStatusRequest"
+        },
+        {
+          "target": "com.kubernetes.resource#GetResourceV1beta1APIResources"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionDeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionNamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta1NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta1NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta1NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionNamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta1ResourceClaimForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta1ResourceClaimTemplateForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1CollectionResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1DeviceClassList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaimList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaimTemplateList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceClaimListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceClaimTemplateListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceSliceList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta1ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#GetResourceV1beta2APIResources"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionDeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionDeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2DeviceTaintRuleStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionNamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2NamespacedResourceClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionNamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2ResourceClaimForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2ResourceClaimTemplateForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#ListResourceV1beta2ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#CreateResourceV1beta2ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2CollectionResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#ReadResourceV1beta2ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#ReplaceResourceV1beta2ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#PatchResourceV1beta2ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#DeleteResourceV1beta2ResourceSlice"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceClassList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceClass"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceTaintRuleList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2DeviceTaintRule"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaimList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaim"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaimTemplateList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2NamespacedResourceClaimTemplate"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceClaimListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceClaimTemplateListForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceSliceList"
+        },
+        {
+          "target": "com.kubernetes.resource#WatchResourceV1beta2ResourceSlice"
         }
       ],
       "traits": {

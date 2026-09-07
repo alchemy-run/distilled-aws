@@ -1583,22 +1583,22 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.vercel.authentication#ExchangeSsoToken"
+        },
+        {
           "target": "com.vercel.authentication#CreateApiKeys"
+        },
+        {
+          "target": "com.vercel.authentication#ListAuthTokens"
         },
         {
           "target": "com.vercel.authentication#CreateAuthToken"
         },
         {
-          "target": "com.vercel.authentication#DeleteAuthToken"
-        },
-        {
-          "target": "com.vercel.authentication#ExchangeSsoToken"
-        },
-        {
           "target": "com.vercel.authentication#GetAuthToken"
         },
         {
-          "target": "com.vercel.authentication#ListAuthTokens"
+          "target": "com.vercel.authentication#DeleteAuthToken"
         }
       ],
       "traits": {

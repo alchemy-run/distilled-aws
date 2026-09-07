@@ -284,6 +284,12 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.content_scanning#Update"
+        },
+        {
+          "target": "com.cloudflare.content_scanning#GetSettings"
+        },
+        {
           "target": "com.cloudflare.content_scanning#CreateContentScanning"
         },
         {
@@ -302,13 +308,7 @@
           "target": "com.cloudflare.content_scanning#GetContentScanning"
         },
         {
-          "target": "com.cloudflare.content_scanning#GetSettings"
-        },
-        {
           "target": "com.cloudflare.content_scanning#ListPayloads"
-        },
-        {
-          "target": "com.cloudflare.content_scanning#Update"
         }
       ],
       "traits": {

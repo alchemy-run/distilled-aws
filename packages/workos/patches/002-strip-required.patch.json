@@ -115,14 +115,6 @@
     },
     {
       "op": "remove",
-      "path": "/components/schemas/OrganizationDto/required"
-    },
-    {
-      "op": "remove",
-      "path": "/components/schemas/GenerateLinkDto/required"
-    },
-    {
-      "op": "remove",
       "path": "/components/schemas/CreateRedirectUriDto/required"
     },
     {

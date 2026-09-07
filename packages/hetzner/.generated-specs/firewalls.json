@@ -2172,19 +2172,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.firewalls#CreateFirewall"
+          "target": "com.hetzner.firewalls#ListFirewalls"
         },
         {
-          "target": "com.hetzner.firewalls#DeleteFirewall"
+          "target": "com.hetzner.firewalls#CreateFirewall"
         },
         {
           "target": "com.hetzner.firewalls#GetFirewall"
         },
         {
-          "target": "com.hetzner.firewalls#ListFirewalls"
+          "target": "com.hetzner.firewalls#UpdateFirewall"
         },
         {
-          "target": "com.hetzner.firewalls#UpdateFirewall"
+          "target": "com.hetzner.firewalls#DeleteFirewall"
         }
       ],
       "traits": {

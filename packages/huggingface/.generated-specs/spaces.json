@@ -5971,82 +5971,79 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.spaces#AddResourceGroup"
-        },
-        {
-          "target": "com.huggingface.spaces#CheckUploadMethod"
-        },
-        {
-          "target": "com.huggingface.spaces#Commit"
-        },
-        {
-          "target": "com.huggingface.spaces#CreateBranch"
-        },
-        {
-          "target": "com.huggingface.spaces#CreateTag"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteBranch"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteLargeFile"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteLargeFiles"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteSecret"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteSpaceVolumes"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteTag"
-        },
-        {
-          "target": "com.huggingface.spaces#DeleteVariable"
-        },
-        {
-          "target": "com.huggingface.spaces#DuplicateXetFiles"
-        },
-        {
-          "target": "com.huggingface.spaces#GenerateJwt"
-        },
-        {
-          "target": "com.huggingface.spaces#GetCompareRev"
-        },
-        {
           "target": "com.huggingface.spaces#GetFolderSize"
-        },
-        {
-          "target": "com.huggingface.spaces#GetNotebookUrl"
-        },
-        {
-          "target": "com.huggingface.spaces#GetResourceGroup"
-        },
-        {
-          "target": "com.huggingface.spaces#GetSecurityStatus"
-        },
-        {
-          "target": "com.huggingface.spaces#GetZeroGPUQuota"
-        },
-        {
-          "target": "com.huggingface.spaces#ListCommits"
-        },
-        {
-          "target": "com.huggingface.spaces#ListFolderContent"
         },
         {
           "target": "com.huggingface.spaces#ListLargeFiles"
         },
         {
-          "target": "com.huggingface.spaces#ListPathsInfo"
+          "target": "com.huggingface.spaces#DeleteLargeFiles"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteLargeFile"
+        },
+        {
+          "target": "com.huggingface.spaces#DuplicateXetFiles"
+        },
+        {
+          "target": "com.huggingface.spaces#ListCommits"
         },
         {
           "target": "com.huggingface.spaces#ListReferences"
         },
         {
-          "target": "com.huggingface.spaces#ListSecrets"
+          "target": "com.huggingface.spaces#GetCompareRev"
+        },
+        {
+          "target": "com.huggingface.spaces#ListPathsInfo"
+        },
+        {
+          "target": "com.huggingface.spaces#CheckUploadMethod"
+        },
+        {
+          "target": "com.huggingface.spaces#XetWriteToken"
+        },
+        {
+          "target": "com.huggingface.spaces#XetReadToken"
+        },
+        {
+          "target": "com.huggingface.spaces#Commit"
+        },
+        {
+          "target": "com.huggingface.spaces#CreateTag"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteTag"
+        },
+        {
+          "target": "com.huggingface.spaces#CreateBranch"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteBranch"
+        },
+        {
+          "target": "com.huggingface.spaces#GetResourceGroup"
+        },
+        {
+          "target": "com.huggingface.spaces#AddResourceGroup"
+        },
+        {
+          "target": "com.huggingface.spaces#SquashRef"
+        },
+        {
+          "target": "com.huggingface.spaces#UpdateRepoSettings"
+        },
+        {
+          "target": "com.huggingface.spaces#ListFolderContent"
+        },
+        {
+          "target": "com.huggingface.spaces#GetNotebookUrl"
+        },
+        {
+          "target": "com.huggingface.spaces#GetSecurityStatus"
+        },
+        {
+          "target": "com.huggingface.spaces#GenerateJwt"
         },
         {
           "target": "com.huggingface.spaces#ListSpaceHardware"
@@ -6055,7 +6052,25 @@
           "target": "com.huggingface.spaces#ListSpaceTemplates"
         },
         {
+          "target": "com.huggingface.spaces#GetZeroGPUQuota"
+        },
+        {
+          "target": "com.huggingface.spaces#ListSecrets"
+        },
+        {
+          "target": "com.huggingface.spaces#UpsertSecret"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteSecret"
+        },
+        {
           "target": "com.huggingface.spaces#ListVariables"
+        },
+        {
+          "target": "com.huggingface.spaces#UpsertVariable"
+        },
+        {
+          "target": "com.huggingface.spaces#DeleteVariable"
         },
         {
           "target": "com.huggingface.spaces#ResolveFile"
@@ -6067,31 +6082,16 @@
           "target": "com.huggingface.spaces#SetSpaceVolumes"
         },
         {
-          "target": "com.huggingface.spaces#SquashRef"
-        },
-        {
-          "target": "com.huggingface.spaces#StreamEvents"
+          "target": "com.huggingface.spaces#DeleteSpaceVolumes"
         },
         {
           "target": "com.huggingface.spaces#StreamLogs"
         },
         {
+          "target": "com.huggingface.spaces#StreamEvents"
+        },
+        {
           "target": "com.huggingface.spaces#StreamMetrics"
-        },
-        {
-          "target": "com.huggingface.spaces#UpdateRepoSettings"
-        },
-        {
-          "target": "com.huggingface.spaces#UpsertSecret"
-        },
-        {
-          "target": "com.huggingface.spaces#UpsertVariable"
-        },
-        {
-          "target": "com.huggingface.spaces#XetReadToken"
-        },
-        {
-          "target": "com.huggingface.spaces#XetWriteToken"
         }
       ],
       "traits": {

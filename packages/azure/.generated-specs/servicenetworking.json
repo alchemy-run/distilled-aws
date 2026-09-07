@@ -4283,61 +4283,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicenetworking#AssociationsInterfaceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicenetworking#DeleteAssociationsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#DeleteFrontendsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#DeletePrivateEndpointConnectionsInterface"
-        },
-        {
           "target": "com.azure.servicenetworking#DeleteSecurityPoliciesInterface"
         },
         {
-          "target": "com.azure.servicenetworking#DeleteTrafficControllerInterface"
+          "target": "com.azure.servicenetworking#UpdateSecurityPoliciesInterface"
         },
         {
-          "target": "com.azure.servicenetworking#FrontendsInterfaceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicenetworking#GetAssociationsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#GetFrontendsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#GetPrivateEndpointConnectionsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#GetPrivateLinkResourcesInterface"
+          "target": "com.azure.servicenetworking#SecurityPoliciesInterfaceCreateOrUpdate"
         },
         {
           "target": "com.azure.servicenetworking#GetSecurityPoliciesInterface"
         },
         {
-          "target": "com.azure.servicenetworking#GetTrafficControllerInterface"
+          "target": "com.azure.servicenetworking#ListSecurityPoliciesInterfaceByTrafficController"
         },
         {
-          "target": "com.azure.servicenetworking#ListAssociationsInterfaceByTrafficController"
-        },
-        {
-          "target": "com.azure.servicenetworking#ListFrontendsInterfaceByTrafficController"
-        },
-        {
-          "target": "com.azure.servicenetworking#ListOperations"
-        },
-        {
-          "target": "com.azure.servicenetworking#ListPrivateEndpointConnectionsInterfaceByTrafficController"
+          "target": "com.azure.servicenetworking#GetPrivateLinkResourcesInterface"
         },
         {
           "target": "com.azure.servicenetworking#ListPrivateLinkResourcesInterfaceByTrafficController"
         },
         {
-          "target": "com.azure.servicenetworking#ListSecurityPoliciesInterfaceByTrafficController"
+          "target": "com.azure.servicenetworking#DeletePrivateEndpointConnectionsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#UpdatePrivateEndpointConnectionsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#GetPrivateEndpointConnectionsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#ListPrivateEndpointConnectionsInterfaceByTrafficController"
+        },
+        {
+          "target": "com.azure.servicenetworking#DeleteFrontendsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#UpdateFrontendsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#FrontendsInterfaceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicenetworking#GetFrontendsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#ListFrontendsInterfaceByTrafficController"
+        },
+        {
+          "target": "com.azure.servicenetworking#DeleteAssociationsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#UpdateAssociationsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#AssociationsInterfaceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicenetworking#GetAssociationsInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#ListAssociationsInterfaceByTrafficController"
+        },
+        {
+          "target": "com.azure.servicenetworking#DeleteTrafficControllerInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#UpdateTrafficControllerInterface"
+        },
+        {
+          "target": "com.azure.servicenetworking#TrafficControllerInterfaceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicenetworking#GetTrafficControllerInterface"
         },
         {
           "target": "com.azure.servicenetworking#ListTrafficControllerInterfaceByResourceGroup"
@@ -4346,25 +4364,7 @@
           "target": "com.azure.servicenetworking#ListTrafficControllerInterfaceBySubscription"
         },
         {
-          "target": "com.azure.servicenetworking#SecurityPoliciesInterfaceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicenetworking#TrafficControllerInterfaceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicenetworking#UpdateAssociationsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#UpdateFrontendsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#UpdatePrivateEndpointConnectionsInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#UpdateSecurityPoliciesInterface"
-        },
-        {
-          "target": "com.azure.servicenetworking#UpdateTrafficControllerInterface"
+          "target": "com.azure.servicenetworking#ListOperations"
         }
       ],
       "traits": {

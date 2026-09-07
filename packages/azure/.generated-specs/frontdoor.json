@@ -8233,118 +8233,118 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.frontdoor#CheckFrontDoorNameAvailability"
-        },
-        {
-          "target": "com.azure.frontdoor#CheckFrontDoorNameAvailabilityWithSubscription"
-        },
-        {
-          "target": "com.azure.frontdoor#DeleteExperiment"
-        },
-        {
-          "target": "com.azure.frontdoor#DeleteFrontDoor"
-        },
-        {
-          "target": "com.azure.frontdoor#DeleteNetworkExperimentProfile"
-        },
-        {
-          "target": "com.azure.frontdoor#DeletePolicy"
+          "target": "com.azure.frontdoor#ValidateFrontDoorCustomDomain"
         },
         {
           "target": "com.azure.frontdoor#DeleteRulesEngine"
         },
         {
-          "target": "com.azure.frontdoor#DisableFrontendEndpointHttps"
-        },
-        {
-          "target": "com.azure.frontdoor#EnableFrontendEndpointHttps"
-        },
-        {
-          "target": "com.azure.frontdoor#ExperimentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.frontdoor#FrontDoorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.frontdoor#GetExperiment"
-        },
-        {
-          "target": "com.azure.frontdoor#GetFrontDoor"
-        },
-        {
-          "target": "com.azure.frontdoor#GetFrontendEndpoint"
-        },
-        {
-          "target": "com.azure.frontdoor#GetNetworkExperimentProfile"
-        },
-        {
-          "target": "com.azure.frontdoor#GetPolicy"
-        },
-        {
-          "target": "com.azure.frontdoor#GetReportLatencyScorecards"
-        },
-        {
-          "target": "com.azure.frontdoor#GetReportTimeseries"
+          "target": "com.azure.frontdoor#RulesEnginesCreateOrUpdate"
         },
         {
           "target": "com.azure.frontdoor#GetRulesEngine"
         },
         {
-          "target": "com.azure.frontdoor#ListExperimentByProfile"
-        },
-        {
-          "target": "com.azure.frontdoor#ListFrontDoorByResourceGroup"
-        },
-        {
-          "target": "com.azure.frontdoor#ListFrontDoors"
-        },
-        {
-          "target": "com.azure.frontdoor#ListFrontendEndpointByFrontDoor"
-        },
-        {
-          "target": "com.azure.frontdoor#ListManagedRuleSets"
-        },
-        {
-          "target": "com.azure.frontdoor#ListNetworkExperimentProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.frontdoor#ListNetworkExperimentProfiles"
-        },
-        {
-          "target": "com.azure.frontdoor#ListPolicies"
-        },
-        {
-          "target": "com.azure.frontdoor#ListPolicyBySubscription"
-        },
-        {
-          "target": "com.azure.frontdoor#ListPreconfiguredEndpoints"
-        },
-        {
           "target": "com.azure.frontdoor#ListRulesEngineByFrontDoor"
-        },
-        {
-          "target": "com.azure.frontdoor#NetworkExperimentProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.frontdoor#PoliciesCreateOrUpdate"
         },
         {
           "target": "com.azure.frontdoor#PurgeEndpointContent"
         },
         {
-          "target": "com.azure.frontdoor#RulesEnginesCreateOrUpdate"
+          "target": "com.azure.frontdoor#EnableFrontendEndpointHttps"
+        },
+        {
+          "target": "com.azure.frontdoor#DisableFrontendEndpointHttps"
+        },
+        {
+          "target": "com.azure.frontdoor#GetFrontendEndpoint"
+        },
+        {
+          "target": "com.azure.frontdoor#ListFrontendEndpointByFrontDoor"
+        },
+        {
+          "target": "com.azure.frontdoor#DeleteFrontDoor"
+        },
+        {
+          "target": "com.azure.frontdoor#FrontDoorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.frontdoor#GetFrontDoor"
+        },
+        {
+          "target": "com.azure.frontdoor#ListFrontDoorByResourceGroup"
+        },
+        {
+          "target": "com.azure.frontdoor#ListPreconfiguredEndpoints"
+        },
+        {
+          "target": "com.azure.frontdoor#GetReportTimeseries"
+        },
+        {
+          "target": "com.azure.frontdoor#GetReportLatencyScorecards"
+        },
+        {
+          "target": "com.azure.frontdoor#DeleteExperiment"
         },
         {
           "target": "com.azure.frontdoor#UpdateExperiment"
         },
         {
+          "target": "com.azure.frontdoor#ExperimentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.frontdoor#GetExperiment"
+        },
+        {
+          "target": "com.azure.frontdoor#ListExperimentByProfile"
+        },
+        {
+          "target": "com.azure.frontdoor#DeleteNetworkExperimentProfile"
+        },
+        {
           "target": "com.azure.frontdoor#UpdateNetworkExperimentProfile"
+        },
+        {
+          "target": "com.azure.frontdoor#NetworkExperimentProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.frontdoor#GetNetworkExperimentProfile"
+        },
+        {
+          "target": "com.azure.frontdoor#ListNetworkExperimentProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.frontdoor#DeletePolicy"
         },
         {
           "target": "com.azure.frontdoor#UpdatePolicy"
         },
         {
-          "target": "com.azure.frontdoor#ValidateFrontDoorCustomDomain"
+          "target": "com.azure.frontdoor#PoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.frontdoor#GetPolicy"
+        },
+        {
+          "target": "com.azure.frontdoor#ListPolicies"
+        },
+        {
+          "target": "com.azure.frontdoor#ListFrontDoors"
+        },
+        {
+          "target": "com.azure.frontdoor#ListManagedRuleSets"
+        },
+        {
+          "target": "com.azure.frontdoor#CheckFrontDoorNameAvailabilityWithSubscription"
+        },
+        {
+          "target": "com.azure.frontdoor#ListNetworkExperimentProfiles"
+        },
+        {
+          "target": "com.azure.frontdoor#ListPolicyBySubscription"
+        },
+        {
+          "target": "com.azure.frontdoor#CheckFrontDoorNameAvailability"
         }
       ],
       "traits": {

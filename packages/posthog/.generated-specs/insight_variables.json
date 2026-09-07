@@ -630,22 +630,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.insight_variables#ListInsightVariables"
+        },
+        {
           "target": "com.posthog.insight_variables#CreateInsightVariable"
         },
         {
           "target": "com.posthog.insight_variables#GetInsightVariable"
         },
         {
-          "target": "com.posthog.insight_variables#InsightVariablesDestroy"
-        },
-        {
-          "target": "com.posthog.insight_variables#ListInsightVariables"
-        },
-        {
           "target": "com.posthog.insight_variables#UpdateInsightVariable"
         },
         {
           "target": "com.posthog.insight_variables#UpdateInsightVariablesPartial"
+        },
+        {
+          "target": "com.posthog.insight_variables#InsightVariablesDestroy"
         }
       ],
       "traits": {

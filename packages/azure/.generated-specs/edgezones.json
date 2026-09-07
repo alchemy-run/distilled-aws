@@ -800,6 +800,12 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.edgezones#UnregisterExtendedZone"
+        },
+        {
+          "target": "com.azure.edgezones#RegisterExtendedZone"
+        },
+        {
           "target": "com.azure.edgezones#GetExtendedZone"
         },
         {
@@ -807,12 +813,6 @@
         },
         {
           "target": "com.azure.edgezones#ListOperations"
-        },
-        {
-          "target": "com.azure.edgezones#RegisterExtendedZone"
-        },
-        {
-          "target": "com.azure.edgezones#UnregisterExtendedZone"
         }
       ],
       "traits": {

@@ -4126,79 +4126,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.chaos#CancelExperiment"
-        },
-        {
-          "target": "com.azure.chaos#CapabilitiesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.chaos#DeleteCapability"
-        },
-        {
-          "target": "com.azure.chaos#DeleteExperiment"
-        },
-        {
-          "target": "com.azure.chaos#DeleteTarget"
-        },
-        {
-          "target": "com.azure.chaos#ExperimentsCreateOrUpdate"
+          "target": "com.azure.chaos#StartExperiment"
         },
         {
           "target": "com.azure.chaos#ExperimentsExecutionDetails"
         },
         {
-          "target": "com.azure.chaos#GetCapability"
-        },
-        {
-          "target": "com.azure.chaos#GetCapabilityType"
-        },
-        {
-          "target": "com.azure.chaos#GetExperiment"
-        },
-        {
           "target": "com.azure.chaos#GetExperimentExecution"
-        },
-        {
-          "target": "com.azure.chaos#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.chaos#GetTarget"
-        },
-        {
-          "target": "com.azure.chaos#GetTargetType"
-        },
-        {
-          "target": "com.azure.chaos#ListCapabilities"
-        },
-        {
-          "target": "com.azure.chaos#ListCapabilityTypes"
-        },
-        {
-          "target": "com.azure.chaos#ListExperimentAll"
         },
         {
           "target": "com.azure.chaos#ListExperimentAllExecutions"
         },
         {
+          "target": "com.azure.chaos#CancelExperiment"
+        },
+        {
+          "target": "com.azure.chaos#DeleteExperiment"
+        },
+        {
+          "target": "com.azure.chaos#UpdateExperiment"
+        },
+        {
+          "target": "com.azure.chaos#ExperimentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.chaos#GetExperiment"
+        },
+        {
           "target": "com.azure.chaos#ListExperiments"
         },
         {
-          "target": "com.azure.chaos#ListOperationAll"
+          "target": "com.azure.chaos#DeleteCapability"
         },
         {
-          "target": "com.azure.chaos#ListTargets"
+          "target": "com.azure.chaos#CapabilitiesCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#ListTargetTypes"
+          "target": "com.azure.chaos#GetCapability"
         },
         {
-          "target": "com.azure.chaos#StartExperiment"
+          "target": "com.azure.chaos#ListCapabilities"
+        },
+        {
+          "target": "com.azure.chaos#DeleteTarget"
         },
         {
           "target": "com.azure.chaos#TargetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.chaos#UpdateExperiment"
+          "target": "com.azure.chaos#GetTarget"
+        },
+        {
+          "target": "com.azure.chaos#ListTargets"
+        },
+        {
+          "target": "com.azure.chaos#GetCapabilityType"
+        },
+        {
+          "target": "com.azure.chaos#ListCapabilityTypes"
+        },
+        {
+          "target": "com.azure.chaos#GetTargetType"
+        },
+        {
+          "target": "com.azure.chaos#ListTargetTypes"
+        },
+        {
+          "target": "com.azure.chaos#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.chaos#ListExperimentAll"
+        },
+        {
+          "target": "com.azure.chaos#ListOperationAll"
         }
       ],
       "traits": {

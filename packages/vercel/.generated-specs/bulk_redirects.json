@@ -1787,22 +1787,22 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.bulk_redirects#DeleteRedirects"
+          "target": "com.vercel.bulk_redirects#GetRedirects"
+        },
+        {
+          "target": "com.vercel.bulk_redirects#StageRedirects"
         },
         {
           "target": "com.vercel.bulk_redirects#EditRedirect"
         },
         {
-          "target": "com.vercel.bulk_redirects#GetRedirects"
-        },
-        {
-          "target": "com.vercel.bulk_redirects#GetVersions"
+          "target": "com.vercel.bulk_redirects#DeleteRedirects"
         },
         {
           "target": "com.vercel.bulk_redirects#RestoreRedirects"
         },
         {
-          "target": "com.vercel.bulk_redirects#StageRedirects"
+          "target": "com.vercel.bulk_redirects#GetVersions"
         },
         {
           "target": "com.vercel.bulk_redirects#UpdateVersion"

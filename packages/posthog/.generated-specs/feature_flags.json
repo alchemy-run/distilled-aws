@@ -4794,22 +4794,64 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.feature_flags#ListFeatureFlags"
+        },
+        {
           "target": "com.posthog.feature_flags#CreateFeatureFlag"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlag"
+        },
+        {
+          "target": "com.posthog.feature_flags#UpdateFeatureFlag"
+        },
+        {
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagsPartial"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsDestroy"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlagsActivity"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsArchiveCreate"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsCreateStaticCohortForFlagCreate"
         },
         {
           "target": "com.posthog.feature_flags#CreateFeatureFlagsDashboard"
         },
         {
+          "target": "com.posthog.feature_flags#ListFeatureFlagsDependentFlags"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsDisableCreate"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsEnableCreate"
+        },
+        {
           "target": "com.posthog.feature_flags#CreateFeatureFlagsEnrichUsageDashboard"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlagsRemoteConfig"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlagsStatus"
         },
         {
           "target": "com.posthog.feature_flags#CreateFeatureFlagsTestEvaluation"
         },
         {
-          "target": "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadius"
+          "target": "com.posthog.feature_flags#FeatureFlagsUnarchiveCreate"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsArchiveCreate"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsVersion"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlagsAllActivity"
         },
         {
           "target": "com.posthog.feature_flags#FeatureFlagsBulkDeleteCreate"
@@ -4821,30 +4863,6 @@
           "target": "com.posthog.feature_flags#FeatureFlagsBulkUpdateTagsCreate"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsCreateStaticCohortForFlagCreate"
-        },
-        {
-          "target": "com.posthog.feature_flags#FeatureFlagsDestroy"
-        },
-        {
-          "target": "com.posthog.feature_flags#FeatureFlagsDisableCreate"
-        },
-        {
-          "target": "com.posthog.feature_flags#FeatureFlagsEnableCreate"
-        },
-        {
-          "target": "com.posthog.feature_flags#FeatureFlagsUnarchiveCreate"
-        },
-        {
-          "target": "com.posthog.feature_flags#GetFeatureFlag"
-        },
-        {
-          "target": "com.posthog.feature_flags#GetFeatureFlagsActivity"
-        },
-        {
-          "target": "com.posthog.feature_flags#GetFeatureFlagsAllActivity"
-        },
-        {
           "target": "com.posthog.feature_flags#GetFeatureFlagsEvaluationReason"
         },
         {
@@ -4854,25 +4872,7 @@
           "target": "com.posthog.feature_flags#GetFeatureFlagsMyFlag"
         },
         {
-          "target": "com.posthog.feature_flags#GetFeatureFlagsRemoteConfig"
-        },
-        {
-          "target": "com.posthog.feature_flags#GetFeatureFlagsStatus"
-        },
-        {
-          "target": "com.posthog.feature_flags#GetFeatureFlagsVersion"
-        },
-        {
-          "target": "com.posthog.feature_flags#ListFeatureFlags"
-        },
-        {
-          "target": "com.posthog.feature_flags#ListFeatureFlagsDependentFlags"
-        },
-        {
-          "target": "com.posthog.feature_flags#UpdateFeatureFlag"
-        },
-        {
-          "target": "com.posthog.feature_flags#UpdateFeatureFlagsPartial"
+          "target": "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadius"
         }
       ],
       "traits": {

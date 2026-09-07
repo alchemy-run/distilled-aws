@@ -765,13 +765,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.leads#ListLead"
+        },
+        {
           "target": "com.whop.leads#CreateLead"
         },
         {
           "target": "com.whop.leads#GetLead"
-        },
-        {
-          "target": "com.whop.leads#ListLead"
         },
         {
           "target": "com.whop.leads#UpdateLead"

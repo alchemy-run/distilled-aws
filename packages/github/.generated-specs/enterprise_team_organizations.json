@@ -482,7 +482,7 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.enterprise_team_organizations#Add"
+          "target": "com.github.enterprise_team_organizations#GetAssignments"
         },
         {
           "target": "com.github.enterprise_team_organizations#BulkAdd"
@@ -491,13 +491,13 @@
           "target": "com.github.enterprise_team_organizations#BulkRemove"
         },
         {
-          "target": "com.github.enterprise_team_organizations#Delete"
-        },
-        {
           "target": "com.github.enterprise_team_organizations#GetAssignment"
         },
         {
-          "target": "com.github.enterprise_team_organizations#GetAssignments"
+          "target": "com.github.enterprise_team_organizations#Add"
+        },
+        {
+          "target": "com.github.enterprise_team_organizations#Delete"
         }
       ],
       "traits": {

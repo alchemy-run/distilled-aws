@@ -3076,61 +3076,61 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.standbypool#DeleteStandbyContainerGroupPool"
-        },
-        {
-          "target": "com.azure.standbypool#DeleteStandbyVirtualMachinePool"
-        },
-        {
-          "target": "com.azure.standbypool#GetStandbyContainerGroupPool"
-        },
-        {
-          "target": "com.azure.standbypool#GetStandbyContainerGroupPoolRuntimeView"
-        },
-        {
           "target": "com.azure.standbypool#GetStandbyVirtualMachine"
-        },
-        {
-          "target": "com.azure.standbypool#GetStandbyVirtualMachinePool"
-        },
-        {
-          "target": "com.azure.standbypool#GetStandbyVirtualMachinePoolRuntimeView"
-        },
-        {
-          "target": "com.azure.standbypool#ListOperations"
-        },
-        {
-          "target": "com.azure.standbypool#ListStandbyContainerGroupPoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.standbypool#ListStandbyContainerGroupPoolBySubscription"
-        },
-        {
-          "target": "com.azure.standbypool#ListStandbyContainerGroupPoolRuntimeViewByStandbyPool"
         },
         {
           "target": "com.azure.standbypool#ListStandbyVirtualMachineByStandbyVirtualMachinePoolResource"
         },
         {
-          "target": "com.azure.standbypool#ListStandbyVirtualMachinePoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.standbypool#ListStandbyVirtualMachinePoolBySubscription"
+          "target": "com.azure.standbypool#GetStandbyVirtualMachinePoolRuntimeView"
         },
         {
           "target": "com.azure.standbypool#ListStandbyVirtualMachinePoolRuntimeViewByStandbyPool"
         },
         {
-          "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdate"
+          "target": "com.azure.standbypool#DeleteStandbyVirtualMachinePool"
+        },
+        {
+          "target": "com.azure.standbypool#UpdateStandbyVirtualMachinePool"
         },
         {
           "target": "com.azure.standbypool#StandbyVirtualMachinePoolsCreateOrUpdate"
         },
         {
+          "target": "com.azure.standbypool#GetStandbyVirtualMachinePool"
+        },
+        {
+          "target": "com.azure.standbypool#ListStandbyVirtualMachinePoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.standbypool#GetStandbyContainerGroupPoolRuntimeView"
+        },
+        {
+          "target": "com.azure.standbypool#ListStandbyContainerGroupPoolRuntimeViewByStandbyPool"
+        },
+        {
+          "target": "com.azure.standbypool#DeleteStandbyContainerGroupPool"
+        },
+        {
           "target": "com.azure.standbypool#UpdateStandbyContainerGroupPool"
         },
         {
-          "target": "com.azure.standbypool#UpdateStandbyVirtualMachinePool"
+          "target": "com.azure.standbypool#StandbyContainerGroupPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.standbypool#GetStandbyContainerGroupPool"
+        },
+        {
+          "target": "com.azure.standbypool#ListStandbyContainerGroupPoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.standbypool#ListStandbyVirtualMachinePoolBySubscription"
+        },
+        {
+          "target": "com.azure.standbypool#ListStandbyContainerGroupPoolBySubscription"
+        },
+        {
+          "target": "com.azure.standbypool#ListOperations"
         }
       ],
       "traits": {

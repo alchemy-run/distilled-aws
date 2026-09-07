@@ -4665,34 +4665,34 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.webhooks#ListWebhooks"
+        },
+        {
           "target": "com.whop.webhooks#CreateWebhook"
-        },
-        {
-          "target": "com.whop.webhooks#DeleteWebhook"
-        },
-        {
-          "target": "com.whop.webhooks#DeliveriesWebhook"
         },
         {
           "target": "com.whop.webhooks#GetWebhook"
         },
         {
+          "target": "com.whop.webhooks#UpdateWebhook"
+        },
+        {
+          "target": "com.whop.webhooks#DeleteWebhook"
+        },
+        {
           "target": "com.whop.webhooks#ListWebhookDeliveries"
-        },
-        {
-          "target": "com.whop.webhooks#ListWebhooks"
-        },
-        {
-          "target": "com.whop.webhooks#ReplayWebhook"
         },
         {
           "target": "com.whop.webhooks#ReplayWebhookDelivery"
         },
         {
+          "target": "com.whop.webhooks#ReplayWebhook"
+        },
+        {
           "target": "com.whop.webhooks#TestWebhook"
         },
         {
-          "target": "com.whop.webhooks#UpdateWebhook"
+          "target": "com.whop.webhooks#DeliveriesWebhook"
         }
       ],
       "traits": {

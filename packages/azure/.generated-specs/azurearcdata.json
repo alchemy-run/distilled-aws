@@ -18284,133 +18284,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabases"
+          "target": "com.azure.azurearcdata#DeletePostgresInstance"
         },
         {
-          "target": "com.azure.azurearcdata#CreateActiveDirectoryConnector"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateFailoverGroup"
+          "target": "com.azure.azurearcdata#UpdatePostgresInstance"
         },
         {
           "target": "com.azure.azurearcdata#CreatePostgresInstance"
         },
         {
-          "target": "com.azure.azurearcdata#CreateSqlManagedInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLink"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerDatabase"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerEsuLicense"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#CreateSqlServerLicense"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteActiveDirectoryConnector"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteDataControllerDataController"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteFailoverGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeletePostgresInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlManagedInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupMiLink"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlServerDatabase"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlServerEsuLicense"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlServerInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#DeleteSqlServerLicense"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetActiveDirectoryConnector"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetDataControllerDataController"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetFailoverGroup"
-        },
-        {
           "target": "com.azure.azurearcdata#GetPostgresInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlManagedInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerDatabase"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerEsuLicense"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerInstanceAllAvailabilityGroups"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessment"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerInstanceJobsStatus"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetry"
-        },
-        {
-          "target": "com.azure.azurearcdata#GetSqlServerLicense"
-        },
-        {
-          "target": "com.azure.azurearcdata#ListActiveDirectoryConnectors"
-        },
-        {
-          "target": "com.azure.azurearcdata#ListDataControllerInGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#ListDataControllerInSubscription"
-        },
-        {
-          "target": "com.azure.azurearcdata#ListFailoverGroups"
-        },
-        {
-          "target": "com.azure.azurearcdata#ListOperations"
         },
         {
           "target": "com.azure.azurearcdata#ListPostgresInstanceByResourceGroup"
@@ -18419,28 +18302,46 @@
           "target": "com.azure.azurearcdata#ListPostgresInstances"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroup"
+          "target": "com.azure.azurearcdata#DeleteActiveDirectoryConnector"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlManagedInstances"
+          "target": "com.azure.azurearcdata#CreateActiveDirectoryConnector"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlServerAvailabilityGroups"
+          "target": "com.azure.azurearcdata#GetActiveDirectoryConnector"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlServerDatabases"
+          "target": "com.azure.azurearcdata#ListActiveDirectoryConnectors"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlServerEsuLicenseByResourceGroup"
+          "target": "com.azure.azurearcdata#DeleteDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlServerEsuLicenses"
+          "target": "com.azure.azurearcdata#PatchDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroup"
+          "target": "com.azure.azurearcdata#PutDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#ListSqlServerInstances"
+          "target": "com.azure.azurearcdata#GetDataControllerDataController"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListDataControllerInGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListDataControllerInSubscription"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteSqlServerLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#UpdateSqlServerLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlServerLicense"
         },
         {
           "target": "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroup"
@@ -18449,61 +18350,160 @@
           "target": "com.azure.azurearcdata#ListSqlServerLicenses"
         },
         {
-          "target": "com.azure.azurearcdata#PatchDataControllerDataController"
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessment"
         },
         {
           "target": "com.azure.azurearcdata#PostSqlServerInstanceUpgrade"
         },
         {
-          "target": "com.azure.azurearcdata#PutDataControllerDataController"
+          "target": "com.azure.azurearcdata#SqlServerInstancesPreUpgrade"
         },
         {
-          "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabases"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceJobsStatus"
         },
         {
           "target": "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessment"
-        },
-        {
           "target": "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDetailView"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsFailover"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetry"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsFailoverMiLink"
-        },
-        {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsForceFailoverAllowDataLoss"
-        },
-        {
-          "target": "com.azure.azurearcdata#SqlServerInstancesPreUpgrade"
-        },
-        {
-          "target": "com.azure.azurearcdata#UpdatePostgresInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#UpdateSqlManagedInstance"
-        },
-        {
-          "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.azurearcdata#UpdateSqlServerDatabase"
-        },
-        {
-          "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicense"
+          "target": "com.azure.azurearcdata#DeleteSqlServerInstance"
         },
         {
           "target": "com.azure.azurearcdata#UpdateSqlServerInstance"
         },
         {
-          "target": "com.azure.azurearcdata#UpdateSqlServerLicense"
+          "target": "com.azure.azurearcdata#CreateSqlServerInstance"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlServerInstance"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlServerInstances"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteFailoverGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateFailoverGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetFailoverGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListFailoverGroups"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteSqlManagedInstance"
+        },
+        {
+          "target": "com.azure.azurearcdata#UpdateSqlManagedInstance"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlManagedInstance"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlManagedInstance"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlManagedInstances"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListOperations"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlServerAvailabilityGroups"
+        },
+        {
+          "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabases"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupMiLink"
+        },
+        {
+          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsFailoverMiLink"
+        },
+        {
+          "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabases"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLink"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsForceFailoverAllowDataLoss"
+        },
+        {
+          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsFailover"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceAllAvailabilityGroups"
+        },
+        {
+          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDetailView"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlServerAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlServerDatabases"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteSqlServerDatabase"
+        },
+        {
+          "target": "com.azure.azurearcdata#UpdateSqlServerDatabase"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerDatabase"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlServerDatabase"
+        },
+        {
+          "target": "com.azure.azurearcdata#DeleteSqlServerEsuLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#CreateSqlServerEsuLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#GetSqlServerEsuLicense"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlServerEsuLicenseByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurearcdata#ListSqlServerEsuLicenses"
         }
       ],
       "traits": {

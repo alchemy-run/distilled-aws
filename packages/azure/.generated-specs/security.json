@@ -581,10 +581,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.security#DataScannersCreateOrUpdate"
+          "target": "com.azure.security#DeleteDataScanner"
         },
         {
-          "target": "com.azure.security#DeleteDataScanner"
+          "target": "com.azure.security#DataScannersCreateOrUpdate"
         },
         {
           "target": "com.azure.security#GetDataScanner"

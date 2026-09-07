@@ -2442,19 +2442,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.billing#ListBilling"
+        },
+        {
+          "target": "com.posthog.billing#BillingActivateCreate"
+        },
+        {
           "target": "com.posthog.billing#BillingActivateAuthorizeCreate"
         },
         {
           "target": "com.posthog.billing#BillingActivateAuthorizeStatusCreate"
         },
         {
-          "target": "com.posthog.billing#BillingActivateCreate"
+          "target": "com.posthog.billing#CreateBillingCouponsClaim"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsDestinationsDeleteCreate"
+          "target": "com.posthog.billing#GetBillingCouponsOverview"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsDestroy"
+          "target": "com.posthog.billing#GetBillingCreditsOverview"
+        },
+        {
+          "target": "com.posthog.billing#CreateBillingCreditsPurchase"
         },
         {
           "target": "com.posthog.billing#BillingDeactivateCreate"
@@ -2463,40 +2472,7 @@
           "target": "com.posthog.billing#BillingGetInvoicesRetrieve"
         },
         {
-          "target": "com.posthog.billing#BillingStartupsApplyCreate"
-        },
-        {
-          "target": "com.posthog.billing#BillingTrialsActivateCreate"
-        },
-        {
-          "target": "com.posthog.billing#BillingTrialsCancelCreate"
-        },
-        {
-          "target": "com.posthog.billing#CreateBillingAlert"
-        },
-        {
-          "target": "com.posthog.billing#CreateBillingAlertsCheckNow"
-        },
-        {
-          "target": "com.posthog.billing#CreateBillingAlertsDestination"
-        },
-        {
-          "target": "com.posthog.billing#CreateBillingCouponsClaim"
-        },
-        {
-          "target": "com.posthog.billing#CreateBillingCreditsPurchase"
-        },
-        {
-          "target": "com.posthog.billing#CreateBillingSubscriptionSwitchPlan"
-        },
-        {
-          "target": "com.posthog.billing#GetBillingAlert"
-        },
-        {
-          "target": "com.posthog.billing#GetBillingCouponsOverview"
-        },
-        {
-          "target": "com.posthog.billing#GetBillingCreditsOverview"
+          "target": "com.posthog.billing#UpdateBillingLicensePartial"
         },
         {
           "target": "com.posthog.billing#GetBillingPeriod"
@@ -2508,16 +2484,28 @@
           "target": "com.posthog.billing#GetBillingSpend"
         },
         {
-          "target": "com.posthog.billing#GetBillingUsage"
+          "target": "com.posthog.billing#BillingStartupsApplyCreate"
         },
         {
-          "target": "com.posthog.billing#ListBilling"
+          "target": "com.posthog.billing#CreateBillingSubscriptionSwitchPlan"
+        },
+        {
+          "target": "com.posthog.billing#BillingTrialsActivateCreate"
+        },
+        {
+          "target": "com.posthog.billing#BillingTrialsCancelCreate"
+        },
+        {
+          "target": "com.posthog.billing#GetBillingUsage"
         },
         {
           "target": "com.posthog.billing#ListBillingAlerts"
         },
         {
-          "target": "com.posthog.billing#ListBillingAlertsEvents"
+          "target": "com.posthog.billing#CreateBillingAlert"
+        },
+        {
+          "target": "com.posthog.billing#GetBillingAlert"
         },
         {
           "target": "com.posthog.billing#UpdateBillingAlert"
@@ -2526,7 +2514,19 @@
           "target": "com.posthog.billing#UpdateBillingAlertsPartial"
         },
         {
-          "target": "com.posthog.billing#UpdateBillingLicensePartial"
+          "target": "com.posthog.billing#BillingAlertsDestroy"
+        },
+        {
+          "target": "com.posthog.billing#CreateBillingAlertsCheckNow"
+        },
+        {
+          "target": "com.posthog.billing#CreateBillingAlertsDestination"
+        },
+        {
+          "target": "com.posthog.billing#BillingAlertsDestinationsDeleteCreate"
+        },
+        {
+          "target": "com.posthog.billing#ListBillingAlertsEvents"
         }
       ],
       "traits": {

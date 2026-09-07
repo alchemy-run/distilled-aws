@@ -41963,9 +41963,6 @@
           "target": "com.cloudflare.workers#CreateScriptDeployment"
         },
         {
-          "target": "com.cloudflare.workers#CreateScriptEdgePreview"
-        },
-        {
           "target": "com.cloudflare.workers#CreateScriptSubdomain"
         },
         {
@@ -41973,15 +41970,6 @@
         },
         {
           "target": "com.cloudflare.workers#CreateScriptVersion"
-        },
-        {
-          "target": "com.cloudflare.workers#CreateServiceEdgePreview"
-        },
-        {
-          "target": "com.cloudflare.workers#CreateSubdomainEdgePreviewSession"
-        },
-        {
-          "target": "com.cloudflare.workers#CreateZoneEdgePreviewSession"
         },
         {
           "target": "com.cloudflare.workers#DeleteBetaWorker"
@@ -42153,6 +42141,18 @@
         },
         {
           "target": "com.cloudflare.workers#ValuesObservabilityTelemetry"
+        },
+        {
+          "target": "com.cloudflare.workers#CreateScriptEdgePreview"
+        },
+        {
+          "target": "com.cloudflare.workers#CreateServiceEdgePreview"
+        },
+        {
+          "target": "com.cloudflare.workers#CreateSubdomainEdgePreviewSession"
+        },
+        {
+          "target": "com.cloudflare.workers#CreateZoneEdgePreviewSession"
         }
       ],
       "traits": {

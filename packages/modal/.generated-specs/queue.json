@@ -572,12 +572,6 @@
           "target": "com.modal.queue#GetQueue"
         },
         {
-          "target": "com.modal.queue#ListQueue"
-        },
-        {
-          "target": "com.modal.queue#PutQueue"
-        },
-        {
           "target": "com.modal.queue#QueueGetById"
         },
         {
@@ -590,7 +584,13 @@
           "target": "com.modal.queue#QueueLen"
         },
         {
+          "target": "com.modal.queue#ListQueue"
+        },
+        {
           "target": "com.modal.queue#QueueNextItems"
+        },
+        {
+          "target": "com.modal.queue#PutQueue"
         }
       ],
       "traits": {

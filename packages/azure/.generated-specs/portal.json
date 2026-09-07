@@ -1538,22 +1538,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.portal#CreateTenantConfiguration"
+          "target": "com.azure.portal#DeleteDashboard"
+        },
+        {
+          "target": "com.azure.portal#UpdateDashboard"
         },
         {
           "target": "com.azure.portal#DashboardsCreateOrUpdate"
         },
         {
-          "target": "com.azure.portal#DeleteDashboard"
-        },
-        {
-          "target": "com.azure.portal#DeleteTenantConfiguration"
-        },
-        {
           "target": "com.azure.portal#GetDashboard"
-        },
-        {
-          "target": "com.azure.portal#GetTenantConfiguration"
         },
         {
           "target": "com.azure.portal#ListDashboardByResourceGroup"
@@ -1562,16 +1556,22 @@
           "target": "com.azure.portal#ListDashboardBySubscription"
         },
         {
-          "target": "com.azure.portal#ListListTenantConfigurationViolations"
+          "target": "com.azure.portal#ListOperations"
         },
         {
-          "target": "com.azure.portal#ListOperations"
+          "target": "com.azure.portal#DeleteTenantConfiguration"
+        },
+        {
+          "target": "com.azure.portal#CreateTenantConfiguration"
+        },
+        {
+          "target": "com.azure.portal#GetTenantConfiguration"
         },
         {
           "target": "com.azure.portal#ListTenantConfigurations"
         },
         {
-          "target": "com.azure.portal#UpdateDashboard"
+          "target": "com.azure.portal#ListListTenantConfigurationViolations"
         }
       ],
       "traits": {

@@ -3218,70 +3218,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdate"
+          "target": "com.azure.timeseriesinsights#ListAccessPolicyByEnvironment"
         },
         {
           "target": "com.azure.timeseriesinsights#DeleteAccessPolicy"
         },
         {
-          "target": "com.azure.timeseriesinsights#DeleteEnvironment"
+          "target": "com.azure.timeseriesinsights#UpdateAccessPolicy"
         },
         {
-          "target": "com.azure.timeseriesinsights#DeleteEventSource"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#DeleteReferenceDataSet"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdate"
+          "target": "com.azure.timeseriesinsights#AccessPoliciesCreateOrUpdate"
         },
         {
           "target": "com.azure.timeseriesinsights#GetAccessPolicy"
         },
         {
-          "target": "com.azure.timeseriesinsights#GetEnvironment"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#GetEventSource"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#GetReferenceDataSet"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListAccessPolicyByEnvironment"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListEnvironmentByResourceGroup"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListEnvironmentBySubscription"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListEventSourceByEnvironment"
-        },
-        {
-          "target": "com.azure.timeseriesinsights#ListOperations"
-        },
-        {
           "target": "com.azure.timeseriesinsights#ListReferenceDataSetByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#DeleteReferenceDataSet"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#UpdateReferenceDataSet"
         },
         {
           "target": "com.azure.timeseriesinsights#ReferenceDataSetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.timeseriesinsights#UpdateAccessPolicy"
+          "target": "com.azure.timeseriesinsights#GetReferenceDataSet"
         },
         {
-          "target": "com.azure.timeseriesinsights#UpdateEnvironment"
+          "target": "com.azure.timeseriesinsights#ListEventSourceByEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#DeleteEventSource"
         },
         {
           "target": "com.azure.timeseriesinsights#UpdateEventSource"
         },
         {
-          "target": "com.azure.timeseriesinsights#UpdateReferenceDataSet"
+          "target": "com.azure.timeseriesinsights#EventSourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#GetEventSource"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListEnvironmentBySubscription"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListEnvironmentByResourceGroup"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#DeleteEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#UpdateEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#EnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#GetEnvironment"
+        },
+        {
+          "target": "com.azure.timeseriesinsights#ListOperations"
         }
       ],
       "traits": {

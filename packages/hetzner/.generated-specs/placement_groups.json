@@ -994,19 +994,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.placement_groups#CreatePlacementGroup"
+          "target": "com.hetzner.placement_groups#ListPlacementGroups"
         },
         {
-          "target": "com.hetzner.placement_groups#DeletePlacementGroup"
+          "target": "com.hetzner.placement_groups#CreatePlacementGroup"
         },
         {
           "target": "com.hetzner.placement_groups#GetPlacementGroup"
         },
         {
-          "target": "com.hetzner.placement_groups#ListPlacementGroups"
+          "target": "com.hetzner.placement_groups#UpdatePlacementGroup"
         },
         {
-          "target": "com.hetzner.placement_groups#UpdatePlacementGroup"
+          "target": "com.hetzner.placement_groups#DeletePlacementGroup"
         }
       ],
       "traits": {

@@ -1222,13 +1222,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.comments#CommentsDestroy"
-        },
-        {
-          "target": "com.posthog.comments#CommentsSendToSlackCreate"
+          "target": "com.posthog.comments#ListComments"
         },
         {
           "target": "com.posthog.comments#CreateComment"
+        },
+        {
+          "target": "com.posthog.comments#GetComment"
+        },
+        {
+          "target": "com.posthog.comments#UpdateComment"
+        },
+        {
+          "target": "com.posthog.comments#UpdateCommentsPartial"
+        },
+        {
+          "target": "com.posthog.comments#CommentsDestroy"
         },
         {
           "target": "com.posthog.comments#CreateCommentsComplete"
@@ -1237,22 +1246,13 @@
           "target": "com.posthog.comments#CreateCommentsReopen"
         },
         {
-          "target": "com.posthog.comments#GetComment"
-        },
-        {
-          "target": "com.posthog.comments#GetCommentsCount"
+          "target": "com.posthog.comments#CommentsSendToSlackCreate"
         },
         {
           "target": "com.posthog.comments#GetCommentsThread"
         },
         {
-          "target": "com.posthog.comments#ListComments"
-        },
-        {
-          "target": "com.posthog.comments#UpdateComment"
-        },
-        {
-          "target": "com.posthog.comments#UpdateCommentsPartial"
+          "target": "com.posthog.comments#GetCommentsCount"
         }
       ],
       "traits": {

@@ -4856,67 +4856,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservices#CheckRecoveryServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.recoveryservices#CreateVaultCertificate"
-        },
-        {
-          "target": "com.azure.recoveryservices#DeleteRegisteredIdentity"
-        },
-        {
-          "target": "com.azure.recoveryservices#DeleteVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetDeletedVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetDeletedVaultOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#GetVaultExtendedInfo"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListDeletedVaultBySubscriptionId"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListOperations"
-        },
-        {
-          "target": "com.azure.recoveryservices#ListPrivateLinkResources"
+          "target": "com.azure.recoveryservices#ListUsageByVaults"
         },
         {
           "target": "com.azure.recoveryservices#ListReplicationUsages"
         },
         {
-          "target": "com.azure.recoveryservices#ListUsageByVaults"
+          "target": "com.azure.recoveryservices#DeleteRegisteredIdentity"
         },
         {
-          "target": "com.azure.recoveryservices#ListVaultByResourceGroup"
+          "target": "com.azure.recoveryservices#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.recoveryservices#ListVaultBySubscriptionId"
+          "target": "com.azure.recoveryservices#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.recoveryservices#RecoveryServicesCapabilities"
+          "target": "com.azure.recoveryservices#GetOperationStatus"
         },
         {
-          "target": "com.azure.recoveryservices#UndeleteDeletedVault"
-        },
-        {
-          "target": "com.azure.recoveryservices#UpdateVault"
+          "target": "com.azure.recoveryservices#GetOperationResult"
         },
         {
           "target": "com.azure.recoveryservices#UpdateVaultExtendedInfo"
@@ -4925,7 +4883,49 @@
           "target": "com.azure.recoveryservices#VaultExtendedInfoCreateOrUpdate"
         },
         {
+          "target": "com.azure.recoveryservices#GetVaultExtendedInfo"
+        },
+        {
+          "target": "com.azure.recoveryservices#CreateVaultCertificate"
+        },
+        {
+          "target": "com.azure.recoveryservices#DeleteVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#UpdateVault"
+        },
+        {
           "target": "com.azure.recoveryservices#VaultsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListVaultByResourceGroup"
+        },
+        {
+          "target": "com.azure.recoveryservices#CheckRecoveryServiceNameAvailability"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListVaultBySubscriptionId"
+        },
+        {
+          "target": "com.azure.recoveryservices#UndeleteDeletedVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetDeletedVaultOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservices#GetDeletedVault"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListDeletedVaultBySubscriptionId"
+        },
+        {
+          "target": "com.azure.recoveryservices#RecoveryServicesCapabilities"
+        },
+        {
+          "target": "com.azure.recoveryservices#ListOperations"
         }
       ],
       "traits": {

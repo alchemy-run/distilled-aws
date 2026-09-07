@@ -2184,31 +2184,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.metrics#CreateMetricsCharacterize"
-        },
-        {
-          "target": "com.posthog.metrics#CreateMetricsExplain"
-        },
-        {
-          "target": "com.posthog.metrics#CreateMetricsQuery"
-        },
-        {
-          "target": "com.posthog.metrics#CreateMetricsSample"
+          "target": "com.posthog.metrics#GetMetricsAttributeValue"
         },
         {
           "target": "com.posthog.metrics#GetMetricsAttribute"
         },
         {
-          "target": "com.posthog.metrics#GetMetricsAttributeValue"
+          "target": "com.posthog.metrics#CreateMetricsCharacterize"
         },
         {
           "target": "com.posthog.metrics#GetMetricsErrorSpike"
+        },
+        {
+          "target": "com.posthog.metrics#CreateMetricsExplain"
         },
         {
           "target": "com.posthog.metrics#GetMetricsHasMetrics"
         },
         {
           "target": "com.posthog.metrics#GetMetricsOverview"
+        },
+        {
+          "target": "com.posthog.metrics#CreateMetricsQuery"
+        },
+        {
+          "target": "com.posthog.metrics#CreateMetricsSample"
         },
         {
           "target": "com.posthog.metrics#GetMetricsValue"

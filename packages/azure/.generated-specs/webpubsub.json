@@ -6123,58 +6123,121 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.webpubsub#CheckWebPubSubNameAvailability"
-        },
-        {
-          "target": "com.azure.webpubsub#DeleteWebPubSub"
-        },
-        {
-          "target": "com.azure.webpubsub#DeleteWebPubSubCustomCertificate"
-        },
-        {
-          "target": "com.azure.webpubsub#DeleteWebPubSubCustomDomain"
-        },
-        {
-          "target": "com.azure.webpubsub#DeleteWebPubSubHub"
-        },
-        {
-          "target": "com.azure.webpubsub#DeleteWebPubSubPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.webpubsub#DeleteWebPubSubReplicas"
+          "target": "com.azure.webpubsub#ListWebPubSubSkus"
         },
         {
           "target": "com.azure.webpubsub#DeleteWebPubSubSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.webpubsub#GetWebPubSub"
-        },
-        {
-          "target": "com.azure.webpubsub#GetWebPubSubCustomCertificate"
-        },
-        {
-          "target": "com.azure.webpubsub#GetWebPubSubCustomDomain"
-        },
-        {
-          "target": "com.azure.webpubsub#GetWebPubSubHub"
-        },
-        {
-          "target": "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.webpubsub#GetWebPubSubReplicas"
-        },
-        {
-          "target": "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResource"
+          "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesCreateOrUpdate"
         },
         {
           "target": "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.webpubsub#ListOperations"
+          "target": "com.azure.webpubsub#ListWebPubSubSharedPrivateLinkResources"
         },
         {
-          "target": "com.azure.webpubsub#ListUsages"
+          "target": "com.azure.webpubsub#RestartWebPubSub"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubReplicaSkus"
+        },
+        {
+          "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubReplicaSharedPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.webpubsub#RestartWebPubSubReplicas"
+        },
+        {
+          "target": "com.azure.webpubsub#DeleteWebPubSubReplicas"
+        },
+        {
+          "target": "com.azure.webpubsub#UpdateWebPubSubReplicas"
+        },
+        {
+          "target": "com.azure.webpubsub#WebPubSubReplicasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSubReplicas"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubReplicas"
+        },
+        {
+          "target": "com.azure.webpubsub#RegenerateWebPubSubKey"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.webpubsub#DeleteWebPubSubPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubKeys"
+        },
+        {
+          "target": "com.azure.webpubsub#DeleteWebPubSubHub"
+        },
+        {
+          "target": "com.azure.webpubsub#WebPubSubHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSubHub"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubHubs"
+        },
+        {
+          "target": "com.azure.webpubsub#DeleteWebPubSubCustomDomain"
+        },
+        {
+          "target": "com.azure.webpubsub#WebPubSubCustomDomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSubCustomDomain"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubCustomDomains"
+        },
+        {
+          "target": "com.azure.webpubsub#DeleteWebPubSubCustomCertificate"
+        },
+        {
+          "target": "com.azure.webpubsub#WebPubSubCustomCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSubCustomCertificate"
+        },
+        {
+          "target": "com.azure.webpubsub#ListWebPubSubCustomCertificates"
+        },
+        {
+          "target": "com.azure.webpubsub#DeleteWebPubSub"
+        },
+        {
+          "target": "com.azure.webpubsub#UpdateWebPubSub"
+        },
+        {
+          "target": "com.azure.webpubsub#WebPubSubCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.webpubsub#GetWebPubSub"
         },
         {
           "target": "com.azure.webpubsub#ListWebPubSubByResourceGroup"
@@ -6183,76 +6246,13 @@
           "target": "com.azure.webpubsub#ListWebPubSubBySubscription"
         },
         {
-          "target": "com.azure.webpubsub#ListWebPubSubCustomCertificates"
+          "target": "com.azure.webpubsub#ListUsages"
         },
         {
-          "target": "com.azure.webpubsub#ListWebPubSubCustomDomains"
+          "target": "com.azure.webpubsub#CheckWebPubSubNameAvailability"
         },
         {
-          "target": "com.azure.webpubsub#ListWebPubSubHubs"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubKeys"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubReplicas"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubReplicaSharedPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubReplicaSkus"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubSharedPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.webpubsub#ListWebPubSubSkus"
-        },
-        {
-          "target": "com.azure.webpubsub#RegenerateWebPubSubKey"
-        },
-        {
-          "target": "com.azure.webpubsub#RestartWebPubSub"
-        },
-        {
-          "target": "com.azure.webpubsub#RestartWebPubSubReplicas"
-        },
-        {
-          "target": "com.azure.webpubsub#UpdateWebPubSub"
-        },
-        {
-          "target": "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.webpubsub#UpdateWebPubSubReplicas"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubCustomCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubCustomDomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubReplicasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesCreateOrUpdate"
+          "target": "com.azure.webpubsub#ListOperations"
         }
       ],
       "traits": {

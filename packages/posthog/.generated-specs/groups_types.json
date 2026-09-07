@@ -1120,28 +1120,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.groups_types#CreateGroupsTypesMetrics"
-        },
-        {
-          "target": "com.posthog.groups_types#GetGroupsTypesMetrics"
-        },
-        {
-          "target": "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdate"
+          "target": "com.posthog.groups_types#ListGroupsTypes"
         },
         {
           "target": "com.posthog.groups_types#GroupsTypesDestroy"
         },
         {
-          "target": "com.posthog.groups_types#GroupsTypesMetricsDestroy"
-        },
-        {
-          "target": "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdate"
-        },
-        {
-          "target": "com.posthog.groups_types#ListGroupsTypes"
-        },
-        {
           "target": "com.posthog.groups_types#ListGroupsTypesMetrics"
+        },
+        {
+          "target": "com.posthog.groups_types#CreateGroupsTypesMetrics"
+        },
+        {
+          "target": "com.posthog.groups_types#GetGroupsTypesMetrics"
         },
         {
           "target": "com.posthog.groups_types#UpdateGroupsTypesMetrics"
@@ -1150,7 +1141,16 @@
           "target": "com.posthog.groups_types#UpdateGroupsTypesMetricsPartial"
         },
         {
+          "target": "com.posthog.groups_types#GroupsTypesMetricsDestroy"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesCreateDetailDashboardUpdate"
+        },
+        {
           "target": "com.posthog.groups_types#UpdateGroupsTypesSetDefaultColumn"
+        },
+        {
+          "target": "com.posthog.groups_types#GroupsTypesUpdateMetadataPartialUpdate"
         }
       ],
       "traits": {

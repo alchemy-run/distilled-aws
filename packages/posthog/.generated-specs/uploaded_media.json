@@ -478,10 +478,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.uploaded_media#CreateUploadedMedia"
+          "target": "com.posthog.uploaded_media#ListUploadedMedia"
         },
         {
-          "target": "com.posthog.uploaded_media#ListUploadedMedia"
+          "target": "com.posthog.uploaded_media#CreateUploadedMedia"
         },
         {
           "target": "com.posthog.uploaded_media#UploadedMediaCompleteUploadCreate"

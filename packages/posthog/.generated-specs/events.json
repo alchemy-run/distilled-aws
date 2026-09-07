@@ -1014,13 +1014,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.events#ListEvents"
+        },
+        {
           "target": "com.posthog.events#GetEvent"
         },
         {
           "target": "com.posthog.events#GetEventsValue"
-        },
-        {
-          "target": "com.posthog.events#ListEvents"
         }
       ],
       "traits": {

@@ -7622,43 +7622,43 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.connect#CreateConnector"
-        },
-        {
-          "target": "com.vercel.connect#CreateConnectorAuthorizationRequest"
-        },
-        {
-          "target": "com.vercel.connect#DeleteConnector"
-        },
-        {
-          "target": "com.vercel.connect#DeleteConnectorProjectConnection"
+          "target": "com.vercel.connect#ListConnectors"
         },
         {
           "target": "com.vercel.connect#GetConnector"
         },
         {
-          "target": "com.vercel.connect#GetConnectorProjectConnection"
+          "target": "com.vercel.connect#DeleteConnector"
         },
         {
-          "target": "com.vercel.connect#GetConnectorToken"
-        },
-        {
-          "target": "com.vercel.connect#ListConnectorProjectConnections"
-        },
-        {
-          "target": "com.vercel.connect#ListConnectors"
-        },
-        {
-          "target": "com.vercel.connect#ListProjectConnectorConnections"
-        },
-        {
-          "target": "com.vercel.connect#ReplaceConnectorTriggerDestinations"
+          "target": "com.vercel.connect#CreateConnector"
         },
         {
           "target": "com.vercel.connect#UpdateConnector"
         },
         {
+          "target": "com.vercel.connect#ReplaceConnectorTriggerDestinations"
+        },
+        {
+          "target": "com.vercel.connect#ListConnectorProjectConnections"
+        },
+        {
+          "target": "com.vercel.connect#GetConnectorProjectConnection"
+        },
+        {
           "target": "com.vercel.connect#UpsertConnectorProjectConnection"
+        },
+        {
+          "target": "com.vercel.connect#DeleteConnectorProjectConnection"
+        },
+        {
+          "target": "com.vercel.connect#ListProjectConnectorConnections"
+        },
+        {
+          "target": "com.vercel.connect#GetConnectorToken"
+        },
+        {
+          "target": "com.vercel.connect#CreateConnectorAuthorizationRequest"
         }
       ],
       "traits": {

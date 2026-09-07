@@ -1999,7 +1999,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.firewall_actions#ApplyFirewallToResources"
+          "target": "com.hetzner.firewall_actions#ListFirewallsActions"
         },
         {
           "target": "com.hetzner.firewall_actions#GetFirewallsAction"
@@ -2008,7 +2008,7 @@
           "target": "com.hetzner.firewall_actions#ListFirewallActions"
         },
         {
-          "target": "com.hetzner.firewall_actions#ListFirewallsActions"
+          "target": "com.hetzner.firewall_actions#ApplyFirewallToResources"
         },
         {
           "target": "com.hetzner.firewall_actions#RemoveFirewallFromResources"

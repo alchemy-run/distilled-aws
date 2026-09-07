@@ -1487,10 +1487,49 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.task_channels#ListTaskChannels"
+        },
+        {
           "target": "com.posthog.task_channels#CreateTaskChannel"
         },
         {
+          "target": "com.posthog.task_channels#ListTaskChannelsFeed"
+        },
+        {
           "target": "com.posthog.task_channels#CreateTaskChannelsFeed"
+        },
+        {
+          "target": "com.posthog.task_channels#GetTaskChannel"
+        },
+        {
+          "target": "com.posthog.task_channels#UpdateTaskChannelsPartial"
+        },
+        {
+          "target": "com.posthog.task_channels#TaskChannelsDestroy"
+        },
+        {
+          "target": "com.posthog.task_channels#GetTaskChannelsContextGeneration"
+        },
+        {
+          "target": "com.posthog.task_channels#UpdateTaskChannelsContextGeneration"
+        },
+        {
+          "target": "com.posthog.task_channels#GetTaskChannelsInstruction"
+        },
+        {
+          "target": "com.posthog.task_channels#UpdateTaskChannelsInstruction"
+        },
+        {
+          "target": "com.posthog.task_channels#UpdateTaskChannelsInstructionsPartial"
+        },
+        {
+          "target": "com.posthog.task_channels#TaskChannelsInstructionsDestroy"
+        },
+        {
+          "target": "com.posthog.task_channels#GetTaskChannelsInstructionsVersion"
+        },
+        {
+          "target": "com.posthog.task_channels#CreateTaskChannelsStar"
         },
         {
           "target": "com.posthog.task_channels#CreateTaskChannelsOnboardingSession"
@@ -1502,46 +1541,7 @@
           "target": "com.posthog.task_channels#CreateTaskChannelsProvisionDefault"
         },
         {
-          "target": "com.posthog.task_channels#CreateTaskChannelsStar"
-        },
-        {
           "target": "com.posthog.task_channels#CreateTaskChannelsTeachingCanvasTest"
-        },
-        {
-          "target": "com.posthog.task_channels#GetTaskChannel"
-        },
-        {
-          "target": "com.posthog.task_channels#GetTaskChannelsContextGeneration"
-        },
-        {
-          "target": "com.posthog.task_channels#GetTaskChannelsInstruction"
-        },
-        {
-          "target": "com.posthog.task_channels#GetTaskChannelsInstructionsVersion"
-        },
-        {
-          "target": "com.posthog.task_channels#ListTaskChannels"
-        },
-        {
-          "target": "com.posthog.task_channels#ListTaskChannelsFeed"
-        },
-        {
-          "target": "com.posthog.task_channels#TaskChannelsDestroy"
-        },
-        {
-          "target": "com.posthog.task_channels#TaskChannelsInstructionsDestroy"
-        },
-        {
-          "target": "com.posthog.task_channels#UpdateTaskChannelsContextGeneration"
-        },
-        {
-          "target": "com.posthog.task_channels#UpdateTaskChannelsInstruction"
-        },
-        {
-          "target": "com.posthog.task_channels#UpdateTaskChannelsInstructionsPartial"
-        },
-        {
-          "target": "com.posthog.task_channels#UpdateTaskChannelsPartial"
         }
       ],
       "traits": {

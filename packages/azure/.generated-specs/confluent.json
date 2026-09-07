@@ -6560,100 +6560,118 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.confluent#AccessListRoleBindingNameList"
+          "target": "com.azure.confluent#ValidateValidationOrganizationV2"
         },
         {
-          "target": "com.azure.confluent#ClusterCreateOrUpdate"
+          "target": "com.azure.confluent#ValidateValidationOrganization"
         },
         {
-          "target": "com.azure.confluent#ConnectorCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.confluent#CreateAccessRoleBinding"
-        },
-        {
-          "target": "com.azure.confluent#CreateMarketplaceAgreement"
-        },
-        {
-          "target": "com.azure.confluent#CreateOrganization"
-        },
-        {
-          "target": "com.azure.confluent#CreateOrganizationAPIKey"
-        },
-        {
-          "target": "com.azure.confluent#CreateTopic"
-        },
-        {
-          "target": "com.azure.confluent#DeleteAccessRoleBinding"
-        },
-        {
-          "target": "com.azure.confluent#DeleteCluster"
-        },
-        {
-          "target": "com.azure.confluent#DeleteConnector"
-        },
-        {
-          "target": "com.azure.confluent#DeleteEnvironment"
-        },
-        {
-          "target": "com.azure.confluent#DeleteOrganization"
-        },
-        {
-          "target": "com.azure.confluent#DeleteOrganizationClusterAPIKey"
-        },
-        {
-          "target": "com.azure.confluent#DeleteTopic"
-        },
-        {
-          "target": "com.azure.confluent#EnvironmentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.confluent#GetConnector"
-        },
-        {
-          "target": "com.azure.confluent#GetOrganization"
-        },
-        {
-          "target": "com.azure.confluent#GetOrganizationClusterAPIKey"
-        },
-        {
-          "target": "com.azure.confluent#GetOrganizationClusterById"
-        },
-        {
-          "target": "com.azure.confluent#GetOrganizationEnvironmentById"
+          "target": "com.azure.confluent#ListOrganizationRegions"
         },
         {
           "target": "com.azure.confluent#GetOrganizationSchemaRegistryClusterById"
         },
         {
+          "target": "com.azure.confluent#ListOrganizationSchemaRegistryClusters"
+        },
+        {
+          "target": "com.azure.confluent#DeleteTopic"
+        },
+        {
+          "target": "com.azure.confluent#CreateTopic"
+        },
+        {
           "target": "com.azure.confluent#GetTopic"
         },
         {
-          "target": "com.azure.confluent#InviteAccessUser"
+          "target": "com.azure.confluent#ListTopics"
         },
         {
-          "target": "com.azure.confluent#ListAccessClusters"
+          "target": "com.azure.confluent#CreateOrganizationAPIKey"
         },
         {
-          "target": "com.azure.confluent#ListAccessEnvironments"
+          "target": "com.azure.confluent#DeleteConnector"
         },
         {
-          "target": "com.azure.confluent#ListAccessInvitations"
+          "target": "com.azure.confluent#ConnectorCreateOrUpdate"
         },
         {
-          "target": "com.azure.confluent#ListAccessRoleBindings"
-        },
-        {
-          "target": "com.azure.confluent#ListAccessServiceAccounts"
-        },
-        {
-          "target": "com.azure.confluent#ListAccessUsers"
+          "target": "com.azure.confluent#GetConnector"
         },
         {
           "target": "com.azure.confluent#ListConnector"
         },
         {
-          "target": "com.azure.confluent#ListMarketplaceAgreements"
+          "target": "com.azure.confluent#DeleteCluster"
+        },
+        {
+          "target": "com.azure.confluent#ClusterCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.confluent#GetOrganizationClusterById"
+        },
+        {
+          "target": "com.azure.confluent#ListOrganizationClusters"
+        },
+        {
+          "target": "com.azure.confluent#DeleteEnvironment"
+        },
+        {
+          "target": "com.azure.confluent#EnvironmentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.confluent#GetOrganizationEnvironmentById"
+        },
+        {
+          "target": "com.azure.confluent#ListOrganizationEnvironments"
+        },
+        {
+          "target": "com.azure.confluent#DeleteOrganizationClusterAPIKey"
+        },
+        {
+          "target": "com.azure.confluent#GetOrganizationClusterAPIKey"
+        },
+        {
+          "target": "com.azure.confluent#ListAccessUsers"
+        },
+        {
+          "target": "com.azure.confluent#ListAccessServiceAccounts"
+        },
+        {
+          "target": "com.azure.confluent#ListAccessRoleBindings"
+        },
+        {
+          "target": "com.azure.confluent#AccessListRoleBindingNameList"
+        },
+        {
+          "target": "com.azure.confluent#ListAccessInvitations"
+        },
+        {
+          "target": "com.azure.confluent#ListAccessEnvironments"
+        },
+        {
+          "target": "com.azure.confluent#ListAccessClusters"
+        },
+        {
+          "target": "com.azure.confluent#DeleteAccessRoleBinding"
+        },
+        {
+          "target": "com.azure.confluent#CreateAccessRoleBinding"
+        },
+        {
+          "target": "com.azure.confluent#InviteAccessUser"
+        },
+        {
+          "target": "com.azure.confluent#DeleteOrganization"
+        },
+        {
+          "target": "com.azure.confluent#UpdateOrganization"
+        },
+        {
+          "target": "com.azure.confluent#CreateOrganization"
+        },
+        {
+          "target": "com.azure.confluent#GetOrganization"
         },
         {
           "target": "com.azure.confluent#ListOrganizationByResourceGroup"
@@ -6662,31 +6680,13 @@
           "target": "com.azure.confluent#ListOrganizationBySubscription"
         },
         {
-          "target": "com.azure.confluent#ListOrganizationClusters"
+          "target": "com.azure.confluent#CreateMarketplaceAgreement"
         },
         {
-          "target": "com.azure.confluent#ListOrganizationEnvironments"
+          "target": "com.azure.confluent#ListMarketplaceAgreements"
         },
         {
           "target": "com.azure.confluent#ListOrganizationOperations"
-        },
-        {
-          "target": "com.azure.confluent#ListOrganizationRegions"
-        },
-        {
-          "target": "com.azure.confluent#ListOrganizationSchemaRegistryClusters"
-        },
-        {
-          "target": "com.azure.confluent#ListTopics"
-        },
-        {
-          "target": "com.azure.confluent#UpdateOrganization"
-        },
-        {
-          "target": "com.azure.confluent#ValidateValidationOrganization"
-        },
-        {
-          "target": "com.azure.confluent#ValidateValidationOrganizationV2"
         }
       ],
       "traits": {

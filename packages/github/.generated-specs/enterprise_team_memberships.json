@@ -764,7 +764,10 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.enterprise_team_memberships#Add"
+          "target": "com.github.enterprise_team_memberships#ListTeamsForUser"
+        },
+        {
+          "target": "com.github.enterprise_team_memberships#List"
         },
         {
           "target": "com.github.enterprise_team_memberships#BulkAdd"
@@ -776,10 +779,7 @@
           "target": "com.github.enterprise_team_memberships#Get"
         },
         {
-          "target": "com.github.enterprise_team_memberships#List"
-        },
-        {
-          "target": "com.github.enterprise_team_memberships#ListTeamsForUser"
+          "target": "com.github.enterprise_team_memberships#Add"
         },
         {
           "target": "com.github.enterprise_team_memberships#Remove"

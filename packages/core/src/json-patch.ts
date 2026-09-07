@@ -165,10 +165,23 @@ export function removeValueAtPath(obj: unknown, pointer: string): void {
     );
   }
 
+  // RFC 6902 §4.2: the target location MUST exist.
   if (Array.isArray(current)) {
-    current.splice(parseInt(lastSegment, 10), 1);
+    const index = parseInt(lastSegment, 10);
+    if (Number.isNaN(index) || index < 0 || index >= current.length) {
+      throw new StaleTargetError(
+        `JSON pointer ${pointer} missing index '${lastSegment}'`,
+      );
+    }
+    current.splice(index, 1);
   } else {
-    delete (current as Record<string, unknown>)[lastSegment];
+    const record = current as Record<string, unknown>;
+    if (!Object.prototype.hasOwnProperty.call(record, lastSegment)) {
+      throw new StaleTargetError(
+        `JSON pointer ${pointer} missing key '${lastSegment}'`,
+      );
+    }
+    delete record[lastSegment];
   }
 }
 

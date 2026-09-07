@@ -6906,79 +6906,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.iothub#CertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iothub#CheckIotHubResourceNameAvailability"
-        },
-        {
-          "target": "com.azure.iothub#CreateIotHubResourceEventHubConsumerGroup"
-        },
-        {
-          "target": "com.azure.iothub#DeleteCertificate"
-        },
-        {
-          "target": "com.azure.iothub#DeleteIotHubResource"
-        },
-        {
-          "target": "com.azure.iothub#DeleteIotHubResourceEventHubConsumerGroup"
-        },
-        {
           "target": "com.azure.iothub#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.iothub#ExportIotHubResourceDevices"
-        },
-        {
-          "target": "com.azure.iothub#GenerateCertificateVerificationCode"
-        },
-        {
-          "target": "com.azure.iothub#GetCertificate"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResource"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceEndpointHealth"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceEventHubConsumerGroup"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceJob"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceKeysForKeyName"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceQuotaMetrics"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceStats"
-        },
-        {
-          "target": "com.azure.iothub#GetIotHubResourceValidSkus"
+          "target": "com.azure.iothub#UpdatePrivateEndpointConnection"
         },
         {
           "target": "com.azure.iothub#GetPrivateEndpointConnection"
         },
         {
+          "target": "com.azure.iothub#ListPrivateEndpointConnections"
+        },
+        {
           "target": "com.azure.iothub#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.iothub#GetResourceProviderCommonSubscriptionQuota"
-        },
-        {
-          "target": "com.azure.iothub#ImportIotHubResourceDevices"
+          "target": "com.azure.iothub#ListPrivateLinkResources"
         },
         {
           "target": "com.azure.iothub#IotHubManualFailover"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceCreateOrUpdate"
+          "target": "com.azure.iothub#VerifyCertificate"
+        },
+        {
+          "target": "com.azure.iothub#GenerateCertificateVerificationCode"
+        },
+        {
+          "target": "com.azure.iothub#DeleteCertificate"
+        },
+        {
+          "target": "com.azure.iothub#CertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iothub#GetCertificate"
         },
         {
           "target": "com.azure.iothub#ListCertificateByIotHub"
+        },
+        {
+          "target": "com.azure.iothub#ImportIotHubResourceDevices"
+        },
+        {
+          "target": "com.azure.iothub#ExportIotHubResourceDevices"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceKeysForKeyName"
+        },
+        {
+          "target": "com.azure.iothub#ListIotHubResourceKeys"
+        },
+        {
+          "target": "com.azure.iothub#TestIotHubResourceRoute"
+        },
+        {
+          "target": "com.azure.iothub#TestIotHubResourceAllRoutes"
+        },
+        {
+          "target": "com.azure.iothub#GetResourceProviderCommonSubscriptionQuota"
+        },
+        {
+          "target": "com.azure.iothub#CheckIotHubResourceNameAvailability"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceEndpointHealth"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceQuotaMetrics"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceJob"
+        },
+        {
+          "target": "com.azure.iothub#ListIotHubResourceJobs"
+        },
+        {
+          "target": "com.azure.iothub#DeleteIotHubResourceEventHubConsumerGroup"
+        },
+        {
+          "target": "com.azure.iothub#CreateIotHubResourceEventHubConsumerGroup"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceEventHubConsumerGroup"
+        },
+        {
+          "target": "com.azure.iothub#ListIotHubResourceEventHubConsumerGroups"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceValidSkus"
+        },
+        {
+          "target": "com.azure.iothub#GetIotHubResourceStats"
         },
         {
           "target": "com.azure.iothub#ListIotHubResourceByResourceGroup"
@@ -6987,37 +7005,19 @@
           "target": "com.azure.iothub#ListIotHubResourceBySubscription"
         },
         {
-          "target": "com.azure.iothub#ListIotHubResourceEventHubConsumerGroups"
-        },
-        {
-          "target": "com.azure.iothub#ListIotHubResourceJobs"
-        },
-        {
-          "target": "com.azure.iothub#ListIotHubResourceKeys"
-        },
-        {
-          "target": "com.azure.iothub#ListOperations"
-        },
-        {
-          "target": "com.azure.iothub#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.iothub#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.iothub#TestIotHubResourceAllRoutes"
-        },
-        {
-          "target": "com.azure.iothub#TestIotHubResourceRoute"
+          "target": "com.azure.iothub#DeleteIotHubResource"
         },
         {
           "target": "com.azure.iothub#UpdateIotHubResource"
         },
         {
-          "target": "com.azure.iothub#UpdatePrivateEndpointConnection"
+          "target": "com.azure.iothub#IotHubResourceCreateOrUpdate"
         },
         {
-          "target": "com.azure.iothub#VerifyCertificate"
+          "target": "com.azure.iothub#GetIotHubResource"
+        },
+        {
+          "target": "com.azure.iothub#ListOperations"
         }
       ],
       "traits": {

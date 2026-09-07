@@ -787,25 +787,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.reverse_proxy#CreateProxyRecord"
+          "target": "com.posthog.reverse_proxy#ListProxyRecords"
         },
         {
-          "target": "com.posthog.reverse_proxy#CreateProxyRecordsDiagnose"
+          "target": "com.posthog.reverse_proxy#CreateProxyRecord"
         },
         {
           "target": "com.posthog.reverse_proxy#GetProxyRecord"
         },
         {
-          "target": "com.posthog.reverse_proxy#ListProxyRecords"
+          "target": "com.posthog.reverse_proxy#UpdateProxyRecordsPartial"
         },
         {
           "target": "com.posthog.reverse_proxy#ProxyRecordsDestroy"
         },
         {
-          "target": "com.posthog.reverse_proxy#ProxyRecordsRetryCreate"
+          "target": "com.posthog.reverse_proxy#CreateProxyRecordsDiagnose"
         },
         {
-          "target": "com.posthog.reverse_proxy#UpdateProxyRecordsPartial"
+          "target": "com.posthog.reverse_proxy#ProxyRecordsRetryCreate"
         }
       ],
       "traits": {

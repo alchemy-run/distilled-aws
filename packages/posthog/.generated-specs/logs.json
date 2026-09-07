@@ -10405,10 +10405,34 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.logs#ListLogsAlerts"
+        },
+        {
           "target": "com.posthog.logs#CreateLogsAlert"
         },
         {
+          "target": "com.posthog.logs#GetLogsAlert"
+        },
+        {
+          "target": "com.posthog.logs#UpdateLogsAlert"
+        },
+        {
+          "target": "com.posthog.logs#UpdateLogsAlertsPartial"
+        },
+        {
+          "target": "com.posthog.logs#LogsAlertsDestroy"
+        },
+        {
           "target": "com.posthog.logs#CreateLogsAlertsDestination"
+        },
+        {
+          "target": "com.posthog.logs#LogsAlertsDestinationsDeleteCreate"
+        },
+        {
+          "target": "com.posthog.logs#ListLogsAlertsEvents"
+        },
+        {
+          "target": "com.posthog.logs#LogsAlertsResetCreate"
         },
         {
           "target": "com.posthog.logs#CreateLogsAlertsSimulate"
@@ -10420,6 +10444,9 @@
           "target": "com.posthog.logs#CreateLogsAnomaliesSeriesBand"
         },
         {
+          "target": "com.posthog.logs#GetLogsAttribute"
+        },
+        {
           "target": "com.posthog.logs#CreateLogsCount"
         },
         {
@@ -10429,13 +10456,34 @@
           "target": "com.posthog.logs#CreateLogsExplainLogWithAI"
         },
         {
+          "target": "com.posthog.logs#LogsExportCreate"
+        },
+        {
           "target": "com.posthog.logs#CreateLogsFacetValue"
         },
         {
           "target": "com.posthog.logs#CreateLogsGroupBy"
         },
         {
+          "target": "com.posthog.logs#GetLogsHasLog"
+        },
+        {
+          "target": "com.posthog.logs#ListLogsMetricRules"
+        },
+        {
           "target": "com.posthog.logs#CreateLogsMetricRule"
+        },
+        {
+          "target": "com.posthog.logs#GetLogsMetricRule"
+        },
+        {
+          "target": "com.posthog.logs#UpdateLogsMetricRule"
+        },
+        {
+          "target": "com.posthog.logs#UpdateLogsMetricRulesPartial"
+        },
+        {
+          "target": "com.posthog.logs#LogsMetricRulesDestroy"
         },
         {
           "target": "com.posthog.logs#CreateLogsPattern"
@@ -10447,109 +10495,13 @@
           "target": "com.posthog.logs#CreateLogsQuery"
         },
         {
-          "target": "com.posthog.logs#CreateLogsRetentionRule"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsRetentionRulesReorder"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsRetentionRulesSuggestName"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsSamplingRule"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsSamplingRulesReorder"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsSamplingRulesSimulate"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsService"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsSparkline"
-        },
-        {
-          "target": "com.posthog.logs#CreateLogsView"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsAlert"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsAttribute"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsHasLog"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsMetricRule"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsRetentionRule"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsSamplingRule"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsValue"
-        },
-        {
-          "target": "com.posthog.logs#GetLogsView"
-        },
-        {
-          "target": "com.posthog.logs#ListLogsAlerts"
-        },
-        {
-          "target": "com.posthog.logs#ListLogsAlertsEvents"
-        },
-        {
-          "target": "com.posthog.logs#ListLogsMetricRules"
-        },
-        {
           "target": "com.posthog.logs#ListLogsRetentionRules"
         },
         {
-          "target": "com.posthog.logs#ListLogsSamplingRules"
+          "target": "com.posthog.logs#CreateLogsRetentionRule"
         },
         {
-          "target": "com.posthog.logs#ListLogsViews"
-        },
-        {
-          "target": "com.posthog.logs#LogsAlertsDestinationsDeleteCreate"
-        },
-        {
-          "target": "com.posthog.logs#LogsAlertsDestroy"
-        },
-        {
-          "target": "com.posthog.logs#LogsAlertsResetCreate"
-        },
-        {
-          "target": "com.posthog.logs#LogsExportCreate"
-        },
-        {
-          "target": "com.posthog.logs#LogsMetricRulesDestroy"
-        },
-        {
-          "target": "com.posthog.logs#LogsRetentionRulesDestroy"
-        },
-        {
-          "target": "com.posthog.logs#LogsSamplingRulesDestroy"
-        },
-        {
-          "target": "com.posthog.logs#LogsViewsDestroy"
-        },
-        {
-          "target": "com.posthog.logs#UpdateLogsAlert"
-        },
-        {
-          "target": "com.posthog.logs#UpdateLogsAlertsPartial"
-        },
-        {
-          "target": "com.posthog.logs#UpdateLogsMetricRule"
-        },
-        {
-          "target": "com.posthog.logs#UpdateLogsMetricRulesPartial"
+          "target": "com.posthog.logs#GetLogsRetentionRule"
         },
         {
           "target": "com.posthog.logs#UpdateLogsRetentionRule"
@@ -10558,16 +10510,64 @@
           "target": "com.posthog.logs#UpdateLogsRetentionRulesPartial"
         },
         {
+          "target": "com.posthog.logs#LogsRetentionRulesDestroy"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsRetentionRulesReorder"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsRetentionRulesSuggestName"
+        },
+        {
+          "target": "com.posthog.logs#ListLogsSamplingRules"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsSamplingRule"
+        },
+        {
+          "target": "com.posthog.logs#GetLogsSamplingRule"
+        },
+        {
           "target": "com.posthog.logs#UpdateLogsSamplingRule"
         },
         {
           "target": "com.posthog.logs#UpdateLogsSamplingRulesPartial"
         },
         {
+          "target": "com.posthog.logs#LogsSamplingRulesDestroy"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsSamplingRulesSimulate"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsSamplingRulesReorder"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsService"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsSparkline"
+        },
+        {
+          "target": "com.posthog.logs#GetLogsValue"
+        },
+        {
+          "target": "com.posthog.logs#ListLogsViews"
+        },
+        {
+          "target": "com.posthog.logs#CreateLogsView"
+        },
+        {
+          "target": "com.posthog.logs#GetLogsView"
+        },
+        {
           "target": "com.posthog.logs#UpdateLogsView"
         },
         {
           "target": "com.posthog.logs#UpdateLogsViewsPartial"
+        },
+        {
+          "target": "com.posthog.logs#LogsViewsDestroy"
         }
       ],
       "traits": {

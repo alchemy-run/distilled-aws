@@ -6470,13 +6470,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.consumption#BudgetsCreateOrUpdate"
+          "target": "com.azure.consumption#GetPriceSheet"
         },
         {
-          "target": "com.azure.consumption#DeleteBudget"
-        },
-        {
-          "target": "com.azure.consumption#DownloadPriceSheetByBillingAccountPeriod"
+          "target": "com.azure.consumption#GetPriceSheetByBillingPeriod"
         },
         {
           "target": "com.azure.consumption#GetAggregatedCostByManagementGroup"
@@ -6485,85 +6482,88 @@
           "target": "com.azure.consumption#GetAggregatedCostForBillingPeriodByManagementGroup"
         },
         {
-          "target": "com.azure.consumption#GetBalanceByBillingAccount"
-        },
-        {
-          "target": "com.azure.consumption#GetBalanceForBillingPeriodByBillingAccount"
-        },
-        {
-          "target": "com.azure.consumption#GetBudget"
-        },
-        {
-          "target": "com.azure.consumption#GetCredit"
-        },
-        {
-          "target": "com.azure.consumption#GetPriceSheet"
-        },
-        {
-          "target": "com.azure.consumption#GetPriceSheetByBillingPeriod"
-        },
-        {
-          "target": "com.azure.consumption#GetReservationRecommendationDetail"
-        },
-        {
-          "target": "com.azure.consumption#GetTag"
-        },
-        {
-          "target": "com.azure.consumption#ListBudgets"
-        },
-        {
-          "target": "com.azure.consumption#ListCharges"
-        },
-        {
-          "target": "com.azure.consumption#ListEventByBillingAccount"
-        },
-        {
-          "target": "com.azure.consumption#ListEventByBillingProfile"
-        },
-        {
-          "target": "com.azure.consumption#ListLotByBillingAccount"
-        },
-        {
-          "target": "com.azure.consumption#ListLotByBillingProfile"
-        },
-        {
-          "target": "com.azure.consumption#ListLotByCustomer"
-        },
-        {
-          "target": "com.azure.consumption#ListMarketplaces"
-        },
-        {
           "target": "com.azure.consumption#ListOperations"
         },
         {
-          "target": "com.azure.consumption#ListReservationRecommendations"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationsDetailByReservationOrder"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationsDetails"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationsSummaries"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationsSummaryByReservationOrder"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationTransactionByBillingProfile"
-        },
-        {
-          "target": "com.azure.consumption#ListReservationTransactions"
-        },
-        {
-          "target": "com.azure.consumption#ListUsageDetails"
+          "target": "com.azure.consumption#ReservationsSummariesListByReservationOrderAndReservation"
         },
         {
           "target": "com.azure.consumption#ReservationsDetailsListByReservationOrderAndReservation"
         },
         {
-          "target": "com.azure.consumption#ReservationsSummariesListByReservationOrderAndReservation"
+          "target": "com.azure.consumption#ListReservationsSummaryByReservationOrder"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsDetailByReservationOrder"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationTransactions"
+        },
+        {
+          "target": "com.azure.consumption#ListLotByBillingAccount"
+        },
+        {
+          "target": "com.azure.consumption#ListEventByBillingAccount"
+        },
+        {
+          "target": "com.azure.consumption#GetBalanceByBillingAccount"
+        },
+        {
+          "target": "com.azure.consumption#ListLotByCustomer"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationTransactionByBillingProfile"
+        },
+        {
+          "target": "com.azure.consumption#ListLotByBillingProfile"
+        },
+        {
+          "target": "com.azure.consumption#ListEventByBillingProfile"
+        },
+        {
+          "target": "com.azure.consumption#GetCredit"
+        },
+        {
+          "target": "com.azure.consumption#DownloadPriceSheetByBillingAccountPeriod"
+        },
+        {
+          "target": "com.azure.consumption#GetBalanceForBillingPeriodByBillingAccount"
+        },
+        {
+          "target": "com.azure.consumption#ListUsageDetails"
+        },
+        {
+          "target": "com.azure.consumption#GetTag"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsSummaries"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationRecommendations"
+        },
+        {
+          "target": "com.azure.consumption#GetReservationRecommendationDetail"
+        },
+        {
+          "target": "com.azure.consumption#ListReservationsDetails"
+        },
+        {
+          "target": "com.azure.consumption#ListMarketplaces"
+        },
+        {
+          "target": "com.azure.consumption#ListCharges"
+        },
+        {
+          "target": "com.azure.consumption#DeleteBudget"
+        },
+        {
+          "target": "com.azure.consumption#BudgetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.consumption#GetBudget"
+        },
+        {
+          "target": "com.azure.consumption#ListBudgets"
         }
       ],
       "traits": {

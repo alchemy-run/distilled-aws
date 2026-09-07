@@ -365,6 +365,9 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.data_modeling_jobs#ListDataModelingJobs"
+        },
+        {
           "target": "com.posthog.data_modeling_jobs#GetDataModelingJob"
         },
         {
@@ -372,9 +375,6 @@
         },
         {
           "target": "com.posthog.data_modeling_jobs#GetDataModelingJobsRunning"
-        },
-        {
-          "target": "com.posthog.data_modeling_jobs#ListDataModelingJobs"
         }
       ],
       "traits": {

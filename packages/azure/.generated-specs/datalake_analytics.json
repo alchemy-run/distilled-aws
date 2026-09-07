@@ -5055,97 +5055,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datalake_analytics#AddDataLakeStoreAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#AddStorageAccount"
-        },
-        {
           "target": "com.azure.datalake_analytics#CheckAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datalake_analytics#CreateAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteComputePolicy"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteDataLakeStoreAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.datalake_analytics#DeleteStorageAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetComputePolicy"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetDataLakeStoreAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#GetFirewallRule"
         },
         {
           "target": "com.azure.datalake_analytics#GetLocationCapability"
         },
         {
-          "target": "com.azure.datalake_analytics#GetStorageAccount"
+          "target": "com.azure.datalake_analytics#ListOperations"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_analytics#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListFirewallRuleByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteComputePolicy"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateComputePolicy"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ComputePoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetComputePolicy"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListComputePolicyByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListStorageAccountSasTokens"
         },
         {
           "target": "com.azure.datalake_analytics#GetStorageAccountStorageContainer"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListStorageAccountStorageContainers"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteStorageAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateStorageAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AddStorageAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetStorageAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListStorageAccountByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteDataLakeStoreAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#AddDataLakeStoreAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetDataLakeStoreAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#ListDataLakeStoreAccountByAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#DeleteAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#UpdateAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#CreateAccount"
+        },
+        {
+          "target": "com.azure.datalake_analytics#GetAccount"
         },
         {
           "target": "com.azure.datalake_analytics#ListAccountByResourceGroup"
         },
         {
           "target": "com.azure.datalake_analytics#ListAccounts"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListComputePolicyByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListDataLakeStoreAccountByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListFirewallRuleByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListOperations"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListStorageAccountByAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListStorageAccountSasTokens"
-        },
-        {
-          "target": "com.azure.datalake_analytics#ListStorageAccountStorageContainers"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateAccount"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateComputePolicy"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateFirewallRule"
-        },
-        {
-          "target": "com.azure.datalake_analytics#UpdateStorageAccount"
         }
       ],
       "traits": {

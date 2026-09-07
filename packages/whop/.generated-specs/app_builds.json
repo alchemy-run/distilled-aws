@@ -795,13 +795,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.app_builds#ListAppBuilds"
+        },
+        {
           "target": "com.whop.app_builds#CreateAppBuild"
         },
         {
           "target": "com.whop.app_builds#GetAppBuild"
-        },
-        {
-          "target": "com.whop.app_builds#ListAppBuilds"
         },
         {
           "target": "com.whop.app_builds#PromoteAppBuild"

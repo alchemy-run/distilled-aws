@@ -2528,10 +2528,19 @@
           "target": "com.cloudflare.organizations#CreateMember"
         },
         {
-          "target": "com.cloudflare.organizations#CreateOrganization"
+          "target": "com.cloudflare.organizations#DeleteMember"
         },
         {
-          "target": "com.cloudflare.organizations#DeleteMember"
+          "target": "com.cloudflare.organizations#GetMember"
+        },
+        {
+          "target": "com.cloudflare.organizations#ListMembers"
+        },
+        {
+          "target": "com.cloudflare.organizations#GetOrganizationAccount"
+        },
+        {
+          "target": "com.cloudflare.organizations#CreateOrganization"
         },
         {
           "target": "com.cloudflare.organizations#DeleteOrganization"
@@ -2540,22 +2549,13 @@
           "target": "com.cloudflare.organizations#GetBillingUsage"
         },
         {
-          "target": "com.cloudflare.organizations#GetMember"
-        },
-        {
           "target": "com.cloudflare.organizations#GetOrganization"
-        },
-        {
-          "target": "com.cloudflare.organizations#GetOrganizationAccount"
         },
         {
           "target": "com.cloudflare.organizations#GetOrganizationProfile"
         },
         {
           "target": "com.cloudflare.organizations#ListLogAudits"
-        },
-        {
-          "target": "com.cloudflare.organizations#ListMembers"
         },
         {
           "target": "com.cloudflare.organizations#ListOrganizations"

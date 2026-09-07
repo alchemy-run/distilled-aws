@@ -2081,16 +2081,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.checkout_configurations#CreateCheckoutConfiguration"
+          "target": "com.whop.checkout_configurations#ListCheckoutConfigurations"
         },
         {
-          "target": "com.whop.checkout_configurations#DeleteCheckoutConfiguration"
+          "target": "com.whop.checkout_configurations#CreateCheckoutConfiguration"
         },
         {
           "target": "com.whop.checkout_configurations#GetCheckoutConfiguration"
         },
         {
-          "target": "com.whop.checkout_configurations#ListCheckoutConfigurations"
+          "target": "com.whop.checkout_configurations#DeleteCheckoutConfiguration"
         }
       ],
       "traits": {

@@ -1063,22 +1063,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.notifications#GetNotification"
+          "target": "com.whop.notifications#ListNotifications"
+        },
+        {
+          "target": "com.whop.notifications#SendNotification"
         },
         {
           "target": "com.whop.notifications#ListNotificationBadges"
         },
         {
-          "target": "com.whop.notifications#ListNotifications"
+          "target": "com.whop.notifications#ReadMarkNotification"
         },
         {
           "target": "com.whop.notifications#ListNotificationTopics"
         },
         {
-          "target": "com.whop.notifications#ReadMarkNotification"
-        },
-        {
-          "target": "com.whop.notifications#SendNotification"
+          "target": "com.whop.notifications#GetNotification"
         }
       ],
       "traits": {

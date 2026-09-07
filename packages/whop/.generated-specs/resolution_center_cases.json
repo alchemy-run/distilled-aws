@@ -2154,28 +2154,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.resolution_center_cases#ListResolutionCenterCases"
+        },
+        {
+          "target": "com.whop.resolution_center_cases#CreateResolutionCenterCase"
+        },
+        {
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummary"
+        },
+        {
+          "target": "com.whop.resolution_center_cases#GetResolutionCenterCase"
+        },
+        {
           "target": "com.whop.resolution_center_cases#AcceptResolutionCenterCase"
         },
         {
           "target": "com.whop.resolution_center_cases#AppealResolutionCenterCase"
         },
         {
-          "target": "com.whop.resolution_center_cases#CreateResolutionCenterCase"
-        },
-        {
           "target": "com.whop.resolution_center_cases#DenyResolutionCenterCase"
         },
         {
-          "target": "com.whop.resolution_center_cases#GetResolutionCenterCase"
-        },
-        {
-          "target": "com.whop.resolution_center_cases#GetResolutionCenterCaseSummary"
-        },
-        {
           "target": "com.whop.resolution_center_cases#ListResolutionCenterCaseEvents"
-        },
-        {
-          "target": "com.whop.resolution_center_cases#ListResolutionCenterCases"
         },
         {
           "target": "com.whop.resolution_center_cases#ReplyToResolutionCenterCase"

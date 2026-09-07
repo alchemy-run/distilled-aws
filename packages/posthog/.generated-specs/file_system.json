@@ -754,25 +754,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.file_system#ListFileSystem"
+        },
+        {
           "target": "com.posthog.file_system#CreateFileSystem"
         },
         {
-          "target": "com.posthog.file_system#FileSystemDestroy"
-        },
-        {
-          "target": "com.posthog.file_system#FileSystemUndoDeleteCreate"
-        },
-        {
           "target": "com.posthog.file_system#GetFileSystem"
-        },
-        {
-          "target": "com.posthog.file_system#ListFileSystem"
         },
         {
           "target": "com.posthog.file_system#UpdateFileSystem"
         },
         {
           "target": "com.posthog.file_system#UpdateFileSystemPartial"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemDestroy"
+        },
+        {
+          "target": "com.posthog.file_system#FileSystemUndoDeleteCreate"
         }
       ],
       "traits": {

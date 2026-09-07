@@ -1252,31 +1252,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.pulse#CreatePulseBriefConfig"
-        },
-        {
-          "target": "com.posthog.pulse#GetPulseBrief"
-        },
-        {
-          "target": "com.posthog.pulse#GetPulseBriefConfig"
-        },
-        {
           "target": "com.posthog.pulse#ListPulseBriefConfigs"
         },
         {
-          "target": "com.posthog.pulse#ListPulseBriefs"
+          "target": "com.posthog.pulse#CreatePulseBriefConfig"
         },
         {
-          "target": "com.posthog.pulse#PulseBriefConfigsDestroy"
-        },
-        {
-          "target": "com.posthog.pulse#PulseBriefsGenerateCreate"
+          "target": "com.posthog.pulse#GetPulseBriefConfig"
         },
         {
           "target": "com.posthog.pulse#UpdatePulseBriefConfig"
         },
         {
           "target": "com.posthog.pulse#UpdatePulseBriefConfigsPartial"
+        },
+        {
+          "target": "com.posthog.pulse#PulseBriefConfigsDestroy"
+        },
+        {
+          "target": "com.posthog.pulse#ListPulseBriefs"
+        },
+        {
+          "target": "com.posthog.pulse#GetPulseBrief"
+        },
+        {
+          "target": "com.posthog.pulse#PulseBriefsGenerateCreate"
         }
       ],
       "traits": {

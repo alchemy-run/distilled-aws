@@ -1498,67 +1498,67 @@
       "version": "v2",
       "operations": [
         {
-          "target": "com.flyio.mpg#CreateAttachment"
-        },
-        {
-          "target": "com.flyio.mpg#CreateBackup"
+          "target": "com.flyio.mpg#ListClusters"
         },
         {
           "target": "com.flyio.mpg#CreateCluster"
         },
         {
-          "target": "com.flyio.mpg#CreateDatabase"
-        },
-        {
-          "target": "com.flyio.mpg#CreateUser"
-        },
-        {
-          "target": "com.flyio.mpg#DeleteAttachment"
-        },
-        {
-          "target": "com.flyio.mpg#DeleteUser"
+          "target": "com.flyio.mpg#GetCluster"
         },
         {
           "target": "com.flyio.mpg#DestroyCluster"
         },
         {
-          "target": "com.flyio.mpg#DisableExtension"
-        },
-        {
-          "target": "com.flyio.mpg#EnableExtension"
-        },
-        {
-          "target": "com.flyio.mpg#GetCluster"
+          "target": "com.flyio.mpg#ListRegions"
         },
         {
           "target": "com.flyio.mpg#GetClusterById"
         },
         {
+          "target": "com.flyio.mpg#ListUsers"
+        },
+        {
+          "target": "com.flyio.mpg#CreateUser"
+        },
+        {
+          "target": "com.flyio.mpg#UpdateUserRole"
+        },
+        {
+          "target": "com.flyio.mpg#DeleteUser"
+        },
+        {
           "target": "com.flyio.mpg#GetUserCredentials"
-        },
-        {
-          "target": "com.flyio.mpg#ListBackups"
-        },
-        {
-          "target": "com.flyio.mpg#ListClusters"
         },
         {
           "target": "com.flyio.mpg#ListDatabases"
         },
         {
+          "target": "com.flyio.mpg#CreateDatabase"
+        },
+        {
           "target": "com.flyio.mpg#ListExtensions"
         },
         {
-          "target": "com.flyio.mpg#ListRegions"
+          "target": "com.flyio.mpg#EnableExtension"
         },
         {
-          "target": "com.flyio.mpg#ListUsers"
+          "target": "com.flyio.mpg#DisableExtension"
+        },
+        {
+          "target": "com.flyio.mpg#CreateAttachment"
+        },
+        {
+          "target": "com.flyio.mpg#DeleteAttachment"
+        },
+        {
+          "target": "com.flyio.mpg#ListBackups"
+        },
+        {
+          "target": "com.flyio.mpg#CreateBackup"
         },
         {
           "target": "com.flyio.mpg#RestoreBackup"
-        },
-        {
-          "target": "com.flyio.mpg#UpdateUserRole"
         }
       ],
       "traits": {

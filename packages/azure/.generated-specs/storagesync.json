@@ -7775,139 +7775,139 @@
           "target": "com.azure.storagesync#AbortWorkflow"
         },
         {
-          "target": "com.azure.storagesync#CheckStorageSyncServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.storagesync#CloudEndpointsAfsShareMetadataCertificatePublicKeys"
-        },
-        {
-          "target": "com.azure.storagesync#CloudEndpointsPostRestore"
-        },
-        {
-          "target": "com.azure.storagesync#CloudEndpointsPreBackup"
-        },
-        {
-          "target": "com.azure.storagesync#CloudEndpointsRestoreheartbeat"
-        },
-        {
-          "target": "com.azure.storagesync#CreateCloudEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.storagesync#CreateRegisteredServer"
-        },
-        {
-          "target": "com.azure.storagesync#CreateServerEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#CreateStorageSyncService"
-        },
-        {
-          "target": "com.azure.storagesync#CreateSyncGroup"
-        },
-        {
-          "target": "com.azure.storagesync#DeleteCloudEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.storagesync#DeleteRegisteredServer"
-        },
-        {
-          "target": "com.azure.storagesync#DeleteServerEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#DeleteStorageSyncService"
-        },
-        {
-          "target": "com.azure.storagesync#DeleteSyncGroup"
-        },
-        {
-          "target": "com.azure.storagesync#GetCloudEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.storagesync#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.storagesync#GetRegisteredServer"
-        },
-        {
-          "target": "com.azure.storagesync#GetServerEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#GetStorageSyncService"
-        },
-        {
-          "target": "com.azure.storagesync#GetSyncGroup"
-        },
-        {
           "target": "com.azure.storagesync#GetWorkflow"
-        },
-        {
-          "target": "com.azure.storagesync#ListCloudEndpointBySyncGroup"
-        },
-        {
-          "target": "com.azure.storagesync#ListOperations"
-        },
-        {
-          "target": "com.azure.storagesync#ListPrivateEndpointConnectionByStorageSyncService"
-        },
-        {
-          "target": "com.azure.storagesync#ListPrivateLinkResourceByStorageSyncService"
-        },
-        {
-          "target": "com.azure.storagesync#ListRegisteredServerByStorageSyncService"
-        },
-        {
-          "target": "com.azure.storagesync#ListServerEndpointBySyncGroup"
-        },
-        {
-          "target": "com.azure.storagesync#ListStorageSyncServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.storagesync#ListStorageSyncServiceBySubscription"
-        },
-        {
-          "target": "com.azure.storagesync#ListSyncGroupByStorageSyncService"
         },
         {
           "target": "com.azure.storagesync#ListWorkflowByStorageSyncService"
         },
         {
-          "target": "com.azure.storagesync#LocationOperationStatus2"
-        },
-        {
-          "target": "com.azure.storagesync#PostCloudEndpointBackup"
-        },
-        {
-          "target": "com.azure.storagesync#RestoreCloudEndpointsPre"
-        },
-        {
           "target": "com.azure.storagesync#ServerEndpointsRecallAction"
         },
         {
-          "target": "com.azure.storagesync#TriggerCloudEndpointChangeDetection"
-        },
-        {
-          "target": "com.azure.storagesync#TriggerRegisteredServerRollover"
-        },
-        {
-          "target": "com.azure.storagesync#UpdateCloudEndpoint"
-        },
-        {
-          "target": "com.azure.storagesync#UpdateRegisteredServer"
+          "target": "com.azure.storagesync#DeleteServerEndpoint"
         },
         {
           "target": "com.azure.storagesync#UpdateServerEndpoint"
         },
         {
+          "target": "com.azure.storagesync#CreateServerEndpoint"
+        },
+        {
+          "target": "com.azure.storagesync#GetServerEndpoint"
+        },
+        {
+          "target": "com.azure.storagesync#ListServerEndpointBySyncGroup"
+        },
+        {
+          "target": "com.azure.storagesync#TriggerCloudEndpointChangeDetection"
+        },
+        {
+          "target": "com.azure.storagesync#CloudEndpointsRestoreheartbeat"
+        },
+        {
+          "target": "com.azure.storagesync#RestoreCloudEndpointsPre"
+        },
+        {
+          "target": "com.azure.storagesync#CloudEndpointsPreBackup"
+        },
+        {
+          "target": "com.azure.storagesync#CloudEndpointsPostRestore"
+        },
+        {
+          "target": "com.azure.storagesync#PostCloudEndpointBackup"
+        },
+        {
+          "target": "com.azure.storagesync#CloudEndpointsAfsShareMetadataCertificatePublicKeys"
+        },
+        {
+          "target": "com.azure.storagesync#DeleteCloudEndpoint"
+        },
+        {
+          "target": "com.azure.storagesync#UpdateCloudEndpoint"
+        },
+        {
+          "target": "com.azure.storagesync#CreateCloudEndpoint"
+        },
+        {
+          "target": "com.azure.storagesync#GetCloudEndpoint"
+        },
+        {
+          "target": "com.azure.storagesync#ListCloudEndpointBySyncGroup"
+        },
+        {
+          "target": "com.azure.storagesync#DeleteSyncGroup"
+        },
+        {
+          "target": "com.azure.storagesync#CreateSyncGroup"
+        },
+        {
+          "target": "com.azure.storagesync#GetSyncGroup"
+        },
+        {
+          "target": "com.azure.storagesync#ListSyncGroupByStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#TriggerRegisteredServerRollover"
+        },
+        {
+          "target": "com.azure.storagesync#DeleteRegisteredServer"
+        },
+        {
+          "target": "com.azure.storagesync#UpdateRegisteredServer"
+        },
+        {
+          "target": "com.azure.storagesync#CreateRegisteredServer"
+        },
+        {
+          "target": "com.azure.storagesync#GetRegisteredServer"
+        },
+        {
+          "target": "com.azure.storagesync#ListRegisteredServerByStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#ListPrivateLinkResourceByStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.storagesync#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.storagesync#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.storagesync#ListPrivateEndpointConnectionByStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#DeleteStorageSyncService"
+        },
+        {
           "target": "com.azure.storagesync#UpdateStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#CreateStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#GetStorageSyncService"
+        },
+        {
+          "target": "com.azure.storagesync#ListStorageSyncServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.storagesync#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.storagesync#ListStorageSyncServiceBySubscription"
+        },
+        {
+          "target": "com.azure.storagesync#LocationOperationStatus2"
+        },
+        {
+          "target": "com.azure.storagesync#CheckStorageSyncServiceNameAvailability"
+        },
+        {
+          "target": "com.azure.storagesync#ListOperations"
         }
       ],
       "traits": {

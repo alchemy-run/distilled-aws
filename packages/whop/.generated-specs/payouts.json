@@ -4894,31 +4894,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payouts#CancelPayout"
+          "target": "com.whop.payouts#ListPayouts"
         },
         {
           "target": "com.whop.payouts#CreatePayout"
         },
         {
+          "target": "com.whop.payouts#ListPayoutMethods"
+        },
+        {
           "target": "com.whop.payouts#CreatePayoutMethod"
+        },
+        {
+          "target": "com.whop.payouts#UpdatePayoutMethod"
         },
         {
           "target": "com.whop.payouts#DeletePayoutMethod"
         },
         {
-          "target": "com.whop.payouts#GetPayout"
-        },
-        {
-          "target": "com.whop.payouts#ListPayoutMethods"
-        },
-        {
-          "target": "com.whop.payouts#ListPayouts"
-        },
-        {
           "target": "com.whop.payouts#ListSupportedPayoutMethods"
         },
         {
-          "target": "com.whop.payouts#UpdatePayoutMethod"
+          "target": "com.whop.payouts#GetPayout"
+        },
+        {
+          "target": "com.whop.payouts#CancelPayout"
         }
       ],
       "traits": {

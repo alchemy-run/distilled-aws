@@ -2189,15 +2189,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.apiregistration#CreateApiregistrationV1APIService"
-        },
-        {
-          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1APIService"
-        },
-        {
-          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionAPIService"
-        },
-        {
           "target": "com.kubernetes.apiregistration#GetApiregistrationAPIGroup"
         },
         {
@@ -2207,28 +2198,37 @@
           "target": "com.kubernetes.apiregistration#ListApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIService"
+          "target": "com.kubernetes.apiregistration#CreateApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceStatus"
+          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1CollectionAPIService"
         },
         {
           "target": "com.kubernetes.apiregistration#ReadApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#ReadApiregistrationV1APIServiceStatus"
+          "target": "com.kubernetes.apiregistration#ReplaceApiregistrationV1APIService"
         },
         {
-          "target": "com.kubernetes.apiregistration#ReplaceApiregistrationV1APIService"
+          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIService"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#DeleteApiregistrationV1APIService"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#ReadApiregistrationV1APIServiceStatus"
         },
         {
           "target": "com.kubernetes.apiregistration#ReplaceApiregistrationV1APIServiceStatus"
         },
         {
-          "target": "com.kubernetes.apiregistration#WatchApiregistrationV1APIService"
+          "target": "com.kubernetes.apiregistration#PatchApiregistrationV1APIServiceStatus"
         },
         {
           "target": "com.kubernetes.apiregistration#WatchApiregistrationV1APIServiceList"
+        },
+        {
+          "target": "com.kubernetes.apiregistration#WatchApiregistrationV1APIService"
         }
       ],
       "traits": {

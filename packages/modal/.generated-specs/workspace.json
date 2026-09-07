@@ -436,6 +436,12 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.modal.workspace#WorkspaceBillingRates"
+        },
+        {
+          "target": "com.modal.workspace#WorkspaceBillingSummary"
+        },
+        {
           "target": "com.modal.workspace#GetWorkspaceDashboardUrl"
         },
         {
@@ -443,12 +449,6 @@
         },
         {
           "target": "com.modal.workspace#LookupWorkspaceName"
-        },
-        {
-          "target": "com.modal.workspace#WorkspaceBillingRates"
-        },
-        {
-          "target": "com.modal.workspace#WorkspaceBillingSummary"
         },
         {
           "target": "com.modal.workspace#WorkspaceSetDefaultEnvironment"

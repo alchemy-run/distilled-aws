@@ -3246,64 +3246,64 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.domainregistration#CheckDomainAvailability"
-        },
-        {
-          "target": "com.azure.domainregistration#DeleteDomain"
-        },
-        {
-          "target": "com.azure.domainregistration#DeleteDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#DomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#GetDomain"
-        },
-        {
-          "target": "com.azure.domainregistration#GetDomainControlCenterSsoRequest"
-        },
-        {
-          "target": "com.azure.domainregistration#GetDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.domainregistration#GetTopLevelDomain"
-        },
-        {
-          "target": "com.azure.domainregistration#ListDomainByResourceGroup"
-        },
-        {
-          "target": "com.azure.domainregistration#ListDomainOwnershipIdentifiers"
-        },
-        {
-          "target": "com.azure.domainregistration#ListDomainRecommendations"
-        },
-        {
-          "target": "com.azure.domainregistration#ListDomainRegistrationProviderOperations"
-        },
-        {
-          "target": "com.azure.domainregistration#ListDomains"
-        },
-        {
-          "target": "com.azure.domainregistration#ListTopLevelDomainAgreements"
-        },
-        {
-          "target": "com.azure.domainregistration#ListTopLevelDomains"
+          "target": "com.azure.domainregistration#TransferDomainOut"
         },
         {
           "target": "com.azure.domainregistration#RenewDomain"
         },
         {
-          "target": "com.azure.domainregistration#TransferDomainOut"
+          "target": "com.azure.domainregistration#DeleteDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#UpdateDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdateOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#GetDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.domainregistration#ListDomainOwnershipIdentifiers"
+        },
+        {
+          "target": "com.azure.domainregistration#DeleteDomain"
         },
         {
           "target": "com.azure.domainregistration#UpdateDomain"
         },
         {
-          "target": "com.azure.domainregistration#UpdateDomainOwnershipIdentifier"
+          "target": "com.azure.domainregistration#DomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.domainregistration#GetDomain"
+        },
+        {
+          "target": "com.azure.domainregistration#ListDomainByResourceGroup"
+        },
+        {
+          "target": "com.azure.domainregistration#ListTopLevelDomainAgreements"
+        },
+        {
+          "target": "com.azure.domainregistration#GetTopLevelDomain"
+        },
+        {
+          "target": "com.azure.domainregistration#ListTopLevelDomains"
+        },
+        {
+          "target": "com.azure.domainregistration#ListDomainRecommendations"
+        },
+        {
+          "target": "com.azure.domainregistration#GetDomainControlCenterSsoRequest"
+        },
+        {
+          "target": "com.azure.domainregistration#ListDomains"
+        },
+        {
+          "target": "com.azure.domainregistration#CheckDomainAvailability"
+        },
+        {
+          "target": "com.azure.domainregistration#ListDomainRegistrationProviderOperations"
         }
       ],
       "traits": {

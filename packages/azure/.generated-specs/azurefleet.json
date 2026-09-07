@@ -5640,7 +5640,13 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.azurefleet#ListFleetVirtualMachineScaleSets"
+        },
+        {
           "target": "com.azure.azurefleet#DeleteFleet"
+        },
+        {
+          "target": "com.azure.azurefleet#UpdateFleet"
         },
         {
           "target": "com.azure.azurefleet#FleetsCreateOrUpdate"
@@ -5655,13 +5661,7 @@
           "target": "com.azure.azurefleet#ListFleetBySubscription"
         },
         {
-          "target": "com.azure.azurefleet#ListFleetVirtualMachineScaleSets"
-        },
-        {
           "target": "com.azure.azurefleet#ListOperations"
-        },
-        {
-          "target": "com.azure.azurefleet#UpdateFleet"
         }
       ],
       "traits": {

@@ -1947,10 +1947,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.user_interview_topics#ListUserInterviewTopics"
+        },
+        {
           "target": "com.posthog.user_interview_topics#CreateUserInterviewTopic"
         },
         {
-          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsInterviewee"
+          "target": "com.posthog.user_interview_topics#GetUserInterviewTopic"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopic"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartial"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsDestroy"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsAddIntervieweeCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreate"
         },
         {
           "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsLinksCsv"
@@ -1959,25 +1977,28 @@
           "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsPreviewInvite"
         },
         {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreate"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreate"
+        },
+        {
           "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsSharedLink"
         },
         {
-          "target": "com.posthog.user_interview_topics#GetUserInterviewTopic"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsInterviewee"
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkDestroy"
         },
         {
           "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsTestLink"
         },
         {
-          "target": "com.posthog.user_interview_topics#ListUserInterviewTopics"
-        },
-        {
           "target": "com.posthog.user_interview_topics#ListUserInterviewTopicsInterviewees"
         },
         {
-          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopic"
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsInterviewee"
+        },
+        {
+          "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsInterviewee"
         },
         {
           "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsInterviewee"
@@ -1986,31 +2007,10 @@
           "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweesPartial"
         },
         {
-          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartial"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsAddIntervieweeCreate"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsDestroy"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreate"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreate"
-        },
-        {
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesDestroy"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreate"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreate"
-        },
-        {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkDestroy"
+          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesBulkCreate"
         }
       ],
       "traits": {

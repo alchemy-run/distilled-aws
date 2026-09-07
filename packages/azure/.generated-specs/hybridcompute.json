@@ -13134,199 +13134,199 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridcompute#DeleteGateways"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeleteLicense"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeleteLicenseProfile"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeleteMachine"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeleteMachineExtension"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeleteMachineRunCommand"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hybridcompute#DeletePrivateLinkScope"
-        },
-        {
-          "target": "com.azure.hybridcompute#GatewaysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetExtensionMetadata"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetExtensionMetadataV2"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetGateways"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetLicense"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetLicenseProfile"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetMachine"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetMachineExtension"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetMachineRunCommand"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetNetworkProfile"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScope"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetPrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.hybridcompute#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetPrivateLinkScope"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetails"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsForMachine"
-        },
-        {
-          "target": "com.azure.hybridcompute#GetSettings"
-        },
-        {
-          "target": "com.azure.hybridcompute#InstallMachinePatches"
-        },
-        {
-          "target": "com.azure.hybridcompute#LicenseProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridcompute#LicensesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListExtensionMetadata"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListExtensionMetadataV2"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListExtensionPublisher"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListExtensionType"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListGatewaysByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListGatewaysBySubscription"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListLicenseByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListLicenseBySubscription"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListLicenseProfiles"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListMachineByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListMachineBySubscription"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListMachineExtensions"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListMachineRunCommands"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListNetworkSecurityPerimeterConfigurationByPrivateLinkScope"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListOperations"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListPrivateEndpointConnectionByPrivateLinkScope"
         },
         {
           "target": "com.azure.hybridcompute#ListPrivateLinkResourceByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#ListPrivateLinkScopeByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridcompute#ListPrivateLinkScopes"
-        },
-        {
-          "target": "com.azure.hybridcompute#MachineExtensionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridcompute#MachineRunCommandsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridcompute#MachinesAssessPatches"
-        },
-        {
-          "target": "com.azure.hybridcompute#MachinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScope"
-        },
-        {
-          "target": "com.azure.hybridcompute#PatchSettings2"
+          "target": "com.azure.hybridcompute#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.hybridcompute#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesCreateOrUpdate"
+          "target": "com.azure.hybridcompute#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.hybridcompute#SetupExtensions"
+          "target": "com.azure.hybridcompute#ListPrivateEndpointConnectionByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#UpdateGateways"
+          "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#UpdateLicense"
+          "target": "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#UpdateLicenseProfile"
+          "target": "com.azure.hybridcompute#ListNetworkSecurityPerimeterConfigurationByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#UpdateMachine"
-        },
-        {
-          "target": "com.azure.hybridcompute#UpdateMachineExtension"
+          "target": "com.azure.hybridcompute#DeletePrivateLinkScope"
         },
         {
           "target": "com.azure.hybridcompute#UpdatePrivateLinkScopeTags"
         },
         {
-          "target": "com.azure.hybridcompute#UpdateSettings"
+          "target": "com.azure.hybridcompute#PrivateLinkScopesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetPrivateLinkScope"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListPrivateLinkScopeByResourceGroup"
         },
         {
           "target": "com.azure.hybridcompute#UpgradeExtensions"
         },
         {
+          "target": "com.azure.hybridcompute#DeleteMachineRunCommand"
+        },
+        {
+          "target": "com.azure.hybridcompute#MachineRunCommandsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetMachineRunCommand"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListMachineRunCommands"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsForMachine"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetNetworkProfile"
+        },
+        {
+          "target": "com.azure.hybridcompute#DeleteLicenseProfile"
+        },
+        {
+          "target": "com.azure.hybridcompute#UpdateLicenseProfile"
+        },
+        {
+          "target": "com.azure.hybridcompute#LicenseProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetLicenseProfile"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListLicenseProfiles"
+        },
+        {
+          "target": "com.azure.hybridcompute#InstallMachinePatches"
+        },
+        {
+          "target": "com.azure.hybridcompute#DeleteMachineExtension"
+        },
+        {
+          "target": "com.azure.hybridcompute#UpdateMachineExtension"
+        },
+        {
+          "target": "com.azure.hybridcompute#MachineExtensionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetMachineExtension"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListMachineExtensions"
+        },
+        {
+          "target": "com.azure.hybridcompute#MachinesAssessPatches"
+        },
+        {
+          "target": "com.azure.hybridcompute#SetupExtensions"
+        },
+        {
+          "target": "com.azure.hybridcompute#DeleteMachine"
+        },
+        {
+          "target": "com.azure.hybridcompute#UpdateMachine"
+        },
+        {
+          "target": "com.azure.hybridcompute#MachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetMachine"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridcompute#DeleteLicense"
+        },
+        {
+          "target": "com.azure.hybridcompute#UpdateLicense"
+        },
+        {
+          "target": "com.azure.hybridcompute#LicensesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetLicense"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListLicenseByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridcompute#DeleteGateways"
+        },
+        {
+          "target": "com.azure.hybridcompute#UpdateGateways"
+        },
+        {
+          "target": "com.azure.hybridcompute#GatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetGateways"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListGatewaysByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridcompute#PatchSettings2"
+        },
+        {
+          "target": "com.azure.hybridcompute#UpdateSettings"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetSettings"
+        },
+        {
           "target": "com.azure.hybridcompute#ValidateLicenseLicense"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListPrivateLinkScopes"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListMachineBySubscription"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetExtensionMetadata"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListExtensionMetadata"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetails"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListLicenseBySubscription"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListGatewaysBySubscription"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListOperations"
+        },
+        {
+          "target": "com.azure.hybridcompute#GetExtensionMetadataV2"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListExtensionMetadataV2"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListExtensionType"
+        },
+        {
+          "target": "com.azure.hybridcompute#ListExtensionPublisher"
         }
       ],
       "traits": {

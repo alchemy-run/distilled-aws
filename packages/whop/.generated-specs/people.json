@@ -2171,10 +2171,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.people#GetPerson"
+          "target": "com.whop.people#ListPeople"
         },
         {
-          "target": "com.whop.people#ListPeople"
+          "target": "com.whop.people#GetPerson"
         }
       ],
       "traits": {

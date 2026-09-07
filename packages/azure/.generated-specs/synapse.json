@@ -24867,139 +24867,130 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.synapse#BigDataPoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#CheckOperationNameAvailability"
+          "target": "com.azure.synapse#ListAzureADOnlyAuthentications"
         },
         {
           "target": "com.azure.synapse#CreateAzureADOnlyAuthentication"
         },
         {
-          "target": "com.azure.synapse#CreateIntegrationRuntime"
+          "target": "com.azure.synapse#GetAzureADOnlyAuthentication"
         },
         {
-          "target": "com.azure.synapse#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.synapse#CreateSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#CreateSqlPoolRestorePoint"
-        },
-        {
-          "target": "com.azure.synapse#DataMaskingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#DataMaskingRulesCreateOrUpdate"
+          "target": "com.azure.synapse#ListBigDataPoolByWorkspace"
         },
         {
           "target": "com.azure.synapse#DeleteBigDataPool"
         },
         {
-          "target": "com.azure.synapse#DeleteIntegrationRuntime"
+          "target": "com.azure.synapse#UpdateBigDataPool"
         },
         {
-          "target": "com.azure.synapse#DeleteIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.synapse#DeleteIpFirewallRule"
-        },
-        {
-          "target": "com.azure.synapse#DeleteKeys"
-        },
-        {
-          "target": "com.azure.synapse#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.synapse#DeletePrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolRestorePoint"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolSensitivityLabel"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolWorkloadClassifier"
-        },
-        {
-          "target": "com.azure.synapse#DeleteSqlPoolWorkloadGroup"
-        },
-        {
-          "target": "com.azure.synapse#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#DeleteWorkspaceAadAdmin"
-        },
-        {
-          "target": "com.azure.synapse#DeleteWorkspaceManagedSqlServerVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#DeleteWorkspaceSqlAadAdmin"
-        },
-        {
-          "target": "com.azure.synapse#DisableIntegrationRuntimeInteractiveQuery"
-        },
-        {
-          "target": "com.azure.synapse#DisableSqlPoolSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.synapse#EnableIntegrationRuntimeInteractiveQuery"
-        },
-        {
-          "target": "com.azure.synapse#EnableSqlPoolSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.synapse#ExtendedSqlPoolBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#GetAzureADOnlyAuthentication"
+          "target": "com.azure.synapse#BigDataPoolsCreateOrUpdate"
         },
         {
           "target": "com.azure.synapse#GetBigDataPool"
         },
         {
-          "target": "com.azure.synapse#GetDataMaskingPolicy"
+          "target": "com.azure.synapse#CheckOperationNameAvailability"
         },
         {
-          "target": "com.azure.synapse#GetDataMaskingRule"
+          "target": "com.azure.synapse#ReplaceIpFirewallRuleAll"
         },
         {
-          "target": "com.azure.synapse#GetExtendedSqlPoolBlobAuditingPolicy"
+          "target": "com.azure.synapse#DeleteIpFirewallRule"
         },
         {
-          "target": "com.azure.synapse#GetIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeConnectionInfos"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeNodeIpAddress"
-        },
-        {
-          "target": "com.azure.synapse#GetIntegrationRuntimeStatus"
+          "target": "com.azure.synapse#IpFirewallRulesCreateOrUpdate"
         },
         {
           "target": "com.azure.synapse#GetIpFirewallRule"
         },
         {
+          "target": "com.azure.synapse#ListIpFirewallRuleByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#DisableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.synapse#EnableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.synapse#GetIntegrationRuntimeStatus"
+        },
+        {
+          "target": "com.azure.synapse#RefreshIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.synapse#StopIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeMonitoringData"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeAuthKeys"
+        },
+        {
+          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeys"
+        },
+        {
+          "target": "com.azure.synapse#StartIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#GetIntegrationRuntimeConnectionInfos"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#SyncIntegrationRuntimeCredentials"
+        },
+        {
+          "target": "com.azure.synapse#DeleteIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.synapse#UpdateIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.synapse#GetIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.synapse#ListIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.synapse#IntegrationRuntimesUpgrade"
+        },
+        {
+          "target": "com.azure.synapse#GetIntegrationRuntimeNodeIpAddress"
+        },
+        {
+          "target": "com.azure.synapse#DeleteIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#UpdateIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#CreateIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#GetIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.synapse#DeleteKeys"
+        },
+        {
+          "target": "com.azure.synapse#KeysCreateOrUpdate"
+        },
+        {
           "target": "com.azure.synapse#GetKeys"
+        },
+        {
+          "target": "com.azure.synapse#ListKeysByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListLibraryByWorkspace"
         },
         {
           "target": "com.azure.synapse#GetLibrary"
@@ -25011,385 +25002,394 @@
           "target": "com.azure.synapse#GetOperationLocationHeaderResult"
         },
         {
-          "target": "com.azure.synapse#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateLinkHub"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateLinkHubPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.synapse#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.synapse#GetRestorableDroppedSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolColumn"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolDataWarehouseUserActivity"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolGeoBackupPolicy"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowOption"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindows"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolOperationResultLocationHeaderResult"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolReplicationLinkByName"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolRestorePoint"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolSchema"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolSensitivityLabel"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolTable"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolTransparentDataEncryption"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolWorkloadClassifier"
-        },
-        {
-          "target": "com.azure.synapse#GetSqlPoolWorkloadGroup"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceAadAdmin"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettings"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerEncryptionProtector"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerExtendedBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerRecoverableSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.synapse#GetWorkspaceSqlAadAdmin"
-        },
-        {
-          "target": "com.azure.synapse#IntegrationRuntimesUpgrade"
-        },
-        {
-          "target": "com.azure.synapse#IpFirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#KeysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#ListAzureADOnlyAuthentications"
-        },
-        {
-          "target": "com.azure.synapse#ListBigDataPoolByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListDataMaskingRuleBySqlPool"
-        },
-        {
-          "target": "com.azure.synapse#ListExtendedSqlPoolBlobAuditingPolicyBySqlPool"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeAuthKeys"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeMonitoringData"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeObjectMetadata"
-        },
-        {
-          "target": "com.azure.synapse#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.synapse#ListIpFirewallRuleByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListKeysByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListLibraryByWorkspace"
-        },
-        {
           "target": "com.azure.synapse#ListOperations"
         },
         {
           "target": "com.azure.synapse#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHub"
+          "target": "com.azure.synapse#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.synapse#ListPrivateLinkHubByResourceGroup"
+          "target": "com.azure.synapse#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateLinkHubPrivateLinkResource"
         },
         {
           "target": "com.azure.synapse#ListPrivateLinkHubPrivateLinkResources"
         },
         {
-          "target": "com.azure.synapse#ListPrivateLinkHubs"
+          "target": "com.azure.synapse#GetPrivateLinkResource"
         },
         {
           "target": "com.azure.synapse#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.synapse#ListRestorableDroppedSqlPoolByWorkspace"
+          "target": "com.azure.synapse#GetPrivateEndpointConnectionsPrivateLinkHub"
         },
         {
-          "target": "com.azure.synapse#ListSqlPoolBlobAuditingPolicyBySqlPool"
+          "target": "com.azure.synapse#ListPrivateEndpointConnectionsPrivateLinkHub"
         },
         {
-          "target": "com.azure.synapse#ListSqlPoolByWorkspace"
+          "target": "com.azure.synapse#ListPrivateLinkHubs"
         },
         {
-          "target": "com.azure.synapse#ListSqlPoolGeoBackupPolicies"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolOperations"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolReplicationLinks"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolRestorePoints"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSchemas"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSecurityAlertPolicies2"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelCurrent"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelRecommended"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolTableBySchema"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolTableColumnByTableName"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolTransparentDataEncryptions"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolUsages"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessments"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessmentScans"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolWorkloadClassifier"
-        },
-        {
-          "target": "com.azure.synapse#ListSqlPoolWorkloadGroup"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerBlobAuditingPolicyByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerEncryptionProtector"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerExtendedBlobAuditingPolicyByWorkspace"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerRecoverableSqlPools"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerUsages"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerVulnerabilityAssessments"
-        },
-        {
-          "target": "com.azure.synapse#ListWorkspaces"
-        },
-        {
-          "target": "com.azure.synapse#PauseSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#PrivateLinkHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#RefreshIntegrationRuntimeObjectMetadata"
-        },
-        {
-          "target": "com.azure.synapse#RegenerateIntegrationRuntimeAuthKeys"
-        },
-        {
-          "target": "com.azure.synapse#ReplaceIpFirewallRuleAll"
-        },
-        {
-          "target": "com.azure.synapse#ResumeSqlPool"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolGeoBackupPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolMaintenanceWindowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolSensitivityLabelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolTransparentDataEncryptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansInitiateScan"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolWorkloadClassifierCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#SqlPoolWorkloadGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.synapse#StartIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#StopIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#SyncIntegrationRuntimeCredentials"
-        },
-        {
-          "target": "com.azure.synapse#UpdateBigDataPool"
-        },
-        {
-          "target": "com.azure.synapse#UpdateIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.synapse#UpdateIntegrationRuntimeNode"
+          "target": "com.azure.synapse#DeletePrivateLinkHub"
         },
         {
           "target": "com.azure.synapse#UpdatePrivateLinkHub"
         },
         {
-          "target": "com.azure.synapse#UpdateSqlPool"
+          "target": "com.azure.synapse#PrivateLinkHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetPrivateLinkHub"
+        },
+        {
+          "target": "com.azure.synapse#ListPrivateLinkHubByResourceGroup"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolWorkloadClassifierCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolWorkloadGroup"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolWorkloadGroup"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolWorkloadGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolWorkloadGroup"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolRestorePoint"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolRestorePoint"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolColumn"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolTable"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolSchema"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolBlobAuditingPolicyBySqlPool"
+        },
+        {
+          "target": "com.azure.synapse#ListDataMaskingRuleBySqlPool"
+        },
+        {
+          "target": "com.azure.synapse#DataMaskingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetDataMaskingRule"
+        },
+        {
+          "target": "com.azure.synapse#DataMaskingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetDataMaskingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListExtendedSqlPoolBlobAuditingPolicyBySqlPool"
+        },
+        {
+          "target": "com.azure.synapse#ExtendedSqlPoolBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetExtendedSqlPoolBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolSecurityAlertPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolSecurityAlertPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolSecurityAlertPolicies2"
+        },
+        {
+          "target": "com.azure.synapse#ExportSqlPoolVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolVulnerabilityAssessmentScansInitiateScan"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessmentScans"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolVulnerabilityAssessments"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolTableColumnByTableName"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolTableBySchema"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolSchemas"
+        },
+        {
+          "target": "com.azure.synapse#DisableSqlPoolSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.synapse#EnableSqlPoolSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPoolSensitivityLabel"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolSensitivityLabelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolSensitivityLabel"
         },
         {
           "target": "com.azure.synapse#UpdateSqlPoolRecommendedSensitivityLabel"
         },
         {
+          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelRecommended"
+        },
+        {
           "target": "com.azure.synapse#UpdateSqlPoolSensitivityLabel"
         },
         {
-          "target": "com.azure.synapse#UpdateWorkspace"
+          "target": "com.azure.synapse#ListSqlPoolSensitivityLabelCurrent"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolUsages"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolOperations"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolTransparentDataEncryptions"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolTransparentDataEncryptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolTransparentDataEncryption"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindowOption"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolMaintenanceWindowsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolMaintenanceWindows"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolReplicationLinkByName"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolReplicationLinks"
+        },
+        {
+          "target": "com.azure.synapse#CreateSqlPoolRestorePoint"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolRestorePoints"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolDataWarehouseUserActivity"
+        },
+        {
+          "target": "com.azure.synapse#SqlPoolGeoBackupPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolGeoBackupPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolGeoBackupPolicies"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPoolOperationResultLocationHeaderResult"
+        },
+        {
+          "target": "com.azure.synapse#ResumeSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#PauseSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#ListSqlPoolByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#DeleteSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#UpdateSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#CreateSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#GetSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
         },
         {
           "target": "com.azure.synapse#UpdateWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
         },
         {
-          "target": "com.azure.synapse#WorkspaceAadAdminsCreateOrUpdate"
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerDedicatedSQLMinimalTlsSettings"
         },
         {
-          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdate"
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerRecoverableSqlPool"
         },
         {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerBlobAuditingPoliciesCreateOrUpdate"
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerRecoverableSqlPools"
         },
         {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate"
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerUsages"
         },
         {
           "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorRevalidate"
         },
         {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate"
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerEncryptionProtector"
         },
         {
-          "target": "com.azure.synapse#WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate"
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerEncryptionProtectorCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerEncryptionProtector"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerVulnerabilityAssessments"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspaceManagedSqlServerVulnerabilityAssessment"
         },
         {
           "target": "com.azure.synapse#WorkspaceManagedSqlServerVulnerabilityAssessmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.synapse#WorkspacesCreateOrUpdate"
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerSecurityAlertPolicy"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerSecurityAlertPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerExtendedBlobAuditingPolicyByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerExtendedBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerExtendedBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceManagedSqlServerBlobAuditingPolicyByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedSqlServerBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedSqlServerBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.synapse#ListRestorableDroppedSqlPoolByWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#GetRestorableDroppedSqlPool"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceManagedIdentitySqlControlSettings"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspaceSqlAadAdmin"
         },
         {
           "target": "com.azure.synapse#WorkspaceSqlAadAdminsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceSqlAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspaceAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#WorkspaceAadAdminsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspaceAadAdmin"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaces"
+        },
+        {
+          "target": "com.azure.synapse#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.synapse#GetWorkspace"
+        },
+        {
+          "target": "com.azure.synapse#ListWorkspaceByResourceGroup"
         }
       ],
       "traits": {

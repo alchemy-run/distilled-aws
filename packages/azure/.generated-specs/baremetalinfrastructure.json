@@ -2651,22 +2651,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstance"
-        },
-        {
           "target": "com.azure.baremetalinfrastructure#DeleteAzureBareMetalStorageInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstance"
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstance"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstance"
         },
         {
           "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstance"
-        },
-        {
-          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceByResourceGroup"
-        },
-        {
-          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceBySubscription"
         },
         {
           "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceByResourceGroup"
@@ -2675,13 +2669,19 @@
           "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceBySubscription"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#ListOperations"
-        },
-        {
           "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstance"
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstance"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#ListOperations"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceBySubscription"
         }
       ],
       "traits": {

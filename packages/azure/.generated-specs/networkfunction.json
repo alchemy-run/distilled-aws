@@ -1808,22 +1808,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdate"
+          "target": "com.azure.networkfunction#DeleteCollectorPolicy"
+        },
+        {
+          "target": "com.azure.networkfunction#UpdateCollectorPolicyTags"
         },
         {
           "target": "com.azure.networkfunction#CollectorPoliciesCreateOrUpdate"
         },
         {
+          "target": "com.azure.networkfunction#GetCollectorPolicy"
+        },
+        {
+          "target": "com.azure.networkfunction#ListCollectorPolicies"
+        },
+        {
           "target": "com.azure.networkfunction#DeleteAzureTrafficCollector"
         },
         {
-          "target": "com.azure.networkfunction#DeleteCollectorPolicy"
+          "target": "com.azure.networkfunction#UpdateAzureTrafficCollectorTags"
+        },
+        {
+          "target": "com.azure.networkfunction#AzureTrafficCollectorsCreateOrUpdate"
         },
         {
           "target": "com.azure.networkfunction#GetAzureTrafficCollector"
-        },
-        {
-          "target": "com.azure.networkfunction#GetCollectorPolicy"
         },
         {
           "target": "com.azure.networkfunction#ListAzureTrafficCollectorsByResourceGroup"
@@ -1832,16 +1841,7 @@
           "target": "com.azure.networkfunction#ListAzureTrafficCollectorsBySubscription"
         },
         {
-          "target": "com.azure.networkfunction#ListCollectorPolicies"
-        },
-        {
           "target": "com.azure.networkfunction#ListNetworkFunctionOperations"
-        },
-        {
-          "target": "com.azure.networkfunction#UpdateAzureTrafficCollectorTags"
-        },
-        {
-          "target": "com.azure.networkfunction#UpdateCollectorPolicyTags"
         }
       ],
       "traits": {

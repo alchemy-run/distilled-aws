@@ -1928,37 +1928,37 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.review_hog#ListReviewHogBlindSpots"
+        },
+        {
+          "target": "com.posthog.review_hog#UpdateReviewHogBlindSpotsPartial"
+        },
+        {
+          "target": "com.posthog.review_hog#ListReviewHogPerspectives"
+        },
+        {
+          "target": "com.posthog.review_hog#UpdateReviewHogPerspectivesPartial"
+        },
+        {
+          "target": "com.posthog.review_hog#ListReviewHogResolution"
+        },
+        {
+          "target": "com.posthog.review_hog#UpdateReviewHogResolutionPartial"
+        },
+        {
+          "target": "com.posthog.review_hog#ListReviewHogReviews"
+        },
+        {
           "target": "com.posthog.review_hog#GetReviewHogReview"
         },
         {
           "target": "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStat"
         },
         {
-          "target": "com.posthog.review_hog#ListReviewHogBlindSpots"
-        },
-        {
-          "target": "com.posthog.review_hog#ListReviewHogPerspectives"
-        },
-        {
-          "target": "com.posthog.review_hog#ListReviewHogResolution"
-        },
-        {
-          "target": "com.posthog.review_hog#ListReviewHogReviews"
-        },
-        {
-          "target": "com.posthog.review_hog#ListReviewHogValidators"
-        },
-        {
           "target": "com.posthog.review_hog#ReviewHogReviewsTriggerCreate"
         },
         {
-          "target": "com.posthog.review_hog#UpdateReviewHogBlindSpotsPartial"
-        },
-        {
-          "target": "com.posthog.review_hog#UpdateReviewHogPerspectivesPartial"
-        },
-        {
-          "target": "com.posthog.review_hog#UpdateReviewHogResolutionPartial"
+          "target": "com.posthog.review_hog#ListReviewHogValidators"
         },
         {
           "target": "com.posthog.review_hog#UpdateReviewHogValidatorsPartial"

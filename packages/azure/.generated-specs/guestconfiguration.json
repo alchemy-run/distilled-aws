@@ -4301,82 +4301,82 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationAssignment"
-        },
-        {
-          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationAssignmentsVMSS"
-        },
-        {
-          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationConnectedVMwarevSphereAssignment"
-        },
-        {
-          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationHCRPAssignment"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignment"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignmentReport"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignmentReportsVMSS"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignmentsVMSS"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationConnectedVMwarevSphereAssignment"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationConnectedVMwarevSphereAssignmentsReport"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GetGuestConfigurationHCRPAssignment"
-        },
-        {
           "target": "com.azure.guestconfiguration#GetGuestConfigurationHCRPAssignmentReport"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentReports"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentReportsVMSS"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignments"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentsRG"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentsSubscription"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentsVMSS"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationConnectedVMwarevSphereAssignments"
-        },
-        {
-          "target": "com.azure.guestconfiguration#ListGuestConfigurationConnectedVMwarevSphereAssignmentsReports"
         },
         {
           "target": "com.azure.guestconfiguration#ListGuestConfigurationHCRPAssignmentReports"
         },
         {
+          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationHCRPAssignment"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationHCRPAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationHCRPAssignment"
+        },
+        {
           "target": "com.azure.guestconfiguration#ListGuestConfigurationHCRPAssignments"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentsRG"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationConnectedVMwarevSphereAssignmentsReport"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationConnectedVMwarevSphereAssignmentsReports"
+        },
+        {
+          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationConnectedVMwarevSphereAssignment"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationConnectedVMwarevSphereAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationConnectedVMwarevSphereAssignment"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationConnectedVMwarevSphereAssignments"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignmentReport"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentReports"
+        },
+        {
+          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationAssignment"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignment"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignments"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignmentReportsVMSS"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentReportsVMSS"
+        },
+        {
+          "target": "com.azure.guestconfiguration#DeleteGuestConfigurationAssignmentsVMSS"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GuestConfigurationAssignmentsVMSSCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.guestconfiguration#GetGuestConfigurationAssignmentsVMSS"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentsVMSS"
+        },
+        {
+          "target": "com.azure.guestconfiguration#ListGuestConfigurationAssignmentsSubscription"
         },
         {
           "target": "com.azure.guestconfiguration#ListOperations"

@@ -1110,28 +1110,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.experiences#AttachExperience"
+          "target": "com.whop.experiences#ListExperience"
         },
         {
           "target": "com.whop.experiences#CreateExperience"
         },
         {
+          "target": "com.whop.experiences#GetExperience"
+        },
+        {
+          "target": "com.whop.experiences#UpdateExperience"
+        },
+        {
           "target": "com.whop.experiences#DeleteExperience"
+        },
+        {
+          "target": "com.whop.experiences#AttachExperience"
         },
         {
           "target": "com.whop.experiences#DetachExperience"
         },
         {
           "target": "com.whop.experiences#DuplicateExperience"
-        },
-        {
-          "target": "com.whop.experiences#GetExperience"
-        },
-        {
-          "target": "com.whop.experiences#ListExperience"
-        },
-        {
-          "target": "com.whop.experiences#UpdateExperience"
         }
       ],
       "traits": {

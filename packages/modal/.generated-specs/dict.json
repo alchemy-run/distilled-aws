@@ -582,10 +582,13 @@
           "target": "com.modal.dict#ClearDict"
         },
         {
+          "target": "com.modal.dict#DictContains"
+        },
+        {
           "target": "com.modal.dict#DeleteDict"
         },
         {
-          "target": "com.modal.dict#DictContains"
+          "target": "com.modal.dict#GetDict"
         },
         {
           "target": "com.modal.dict#DictGetById"
@@ -600,13 +603,10 @@
           "target": "com.modal.dict#DictLen"
         },
         {
-          "target": "com.modal.dict#DictPop"
-        },
-        {
-          "target": "com.modal.dict#GetDict"
-        },
-        {
           "target": "com.modal.dict#ListDict"
+        },
+        {
+          "target": "com.modal.dict#DictPop"
         },
         {
           "target": "com.modal.dict#UpdateDict"

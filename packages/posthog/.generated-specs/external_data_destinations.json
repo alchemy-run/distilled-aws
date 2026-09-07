@@ -505,22 +505,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.external_data_destinations#ListExternalDataDestinations"
+        },
+        {
           "target": "com.posthog.external_data_destinations#CreateExternalDataDestination"
         },
         {
-          "target": "com.posthog.external_data_destinations#ExternalDataDestinationsDestroy"
-        },
-        {
           "target": "com.posthog.external_data_destinations#GetExternalDataDestination"
-        },
-        {
-          "target": "com.posthog.external_data_destinations#ListExternalDataDestinations"
         },
         {
           "target": "com.posthog.external_data_destinations#UpdateExternalDataDestination"
         },
         {
           "target": "com.posthog.external_data_destinations#UpdateExternalDataDestinationsPartial"
+        },
+        {
+          "target": "com.posthog.external_data_destinations#ExternalDataDestinationsDestroy"
         }
       ],
       "traits": {

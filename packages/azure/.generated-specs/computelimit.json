@@ -3198,88 +3198,88 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.computelimit#CreateGuestSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#CreateSharedLimit"
-        },
-        {
-          "target": "com.azure.computelimit#CreateTrustedHostSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteGuestSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteMemberCapOverride"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteSharedLimit"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteSharedLimitCap"
-        },
-        {
-          "target": "com.azure.computelimit#DeleteTrustedHostSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#DisableFeature"
-        },
-        {
-          "target": "com.azure.computelimit#EnableFeature"
-        },
-        {
-          "target": "com.azure.computelimit#GetFeature"
-        },
-        {
-          "target": "com.azure.computelimit#GetGuestSubscription"
-        },
-        {
-          "target": "com.azure.computelimit#GetMemberCapOverride"
-        },
-        {
-          "target": "com.azure.computelimit#GetSharedLimit"
-        },
-        {
-          "target": "com.azure.computelimit#GetSharedLimitCap"
-        },
-        {
-          "target": "com.azure.computelimit#GetTrustedHostSubscription"
-        },
-        {
           "target": "com.azure.computelimit#GetVmFamily"
-        },
-        {
-          "target": "com.azure.computelimit#ListFeatureBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#ListMemberCapOverrideByParent"
-        },
-        {
-          "target": "com.azure.computelimit#ListOperations"
-        },
-        {
-          "target": "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResource"
         },
         {
           "target": "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#MemberCapOverridesCreateOrUpdate"
+          "target": "com.azure.computelimit#DeleteTrustedHostSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#CreateTrustedHostSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#GetTrustedHostSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#DeleteSharedLimit"
+        },
+        {
+          "target": "com.azure.computelimit#CreateSharedLimit"
+        },
+        {
+          "target": "com.azure.computelimit#GetSharedLimit"
+        },
+        {
+          "target": "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResource"
         },
         {
           "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverrides"
         },
         {
+          "target": "com.azure.computelimit#DeleteMemberCapOverride"
+        },
+        {
+          "target": "com.azure.computelimit#MemberCapOverridesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.computelimit#GetMemberCapOverride"
+        },
+        {
+          "target": "com.azure.computelimit#ListMemberCapOverrideByParent"
+        },
+        {
+          "target": "com.azure.computelimit#DeleteSharedLimitCap"
+        },
+        {
           "target": "com.azure.computelimit#SharedLimitCapsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.computelimit#GetSharedLimitCap"
+        },
+        {
+          "target": "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#DeleteGuestSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#CreateGuestSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#GetGuestSubscription"
+        },
+        {
+          "target": "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#EnableFeature"
+        },
+        {
+          "target": "com.azure.computelimit#DisableFeature"
+        },
+        {
+          "target": "com.azure.computelimit#GetFeature"
+        },
+        {
+          "target": "com.azure.computelimit#ListFeatureBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.computelimit#ListOperations"
         }
       ],
       "traits": {

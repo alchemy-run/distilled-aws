@@ -3579,40 +3579,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.digitaltwins#CheckDigitalTwinNameAvailability"
+          "target": "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnection"
         },
         {
-          "target": "com.azure.digitaltwins#DeleteDigitalTwin"
+          "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.digitaltwins#DeleteDigitalTwinsEndpoint"
+          "target": "com.azure.digitaltwins#GetTimeSeriesDatabaseConnection"
+        },
+        {
+          "target": "com.azure.digitaltwins#ListTimeSeriesDatabaseConnections"
         },
         {
           "target": "com.azure.digitaltwins#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnection"
-        },
-        {
-          "target": "com.azure.digitaltwins#DigitalTwinsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.digitaltwins#DigitalTwinsEndpointCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.digitaltwins#GetDigitalTwin"
-        },
-        {
-          "target": "com.azure.digitaltwins#GetDigitalTwinsEndpoint"
+          "target": "com.azure.digitaltwins#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
           "target": "com.azure.digitaltwins#GetPrivateEndpointConnection"
         },
         {
+          "target": "com.azure.digitaltwins#ListPrivateEndpointConnections"
+        },
+        {
           "target": "com.azure.digitaltwins#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.digitaltwins#GetTimeSeriesDatabaseConnection"
+          "target": "com.azure.digitaltwins#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.digitaltwins#CheckDigitalTwinNameAvailability"
+        },
+        {
+          "target": "com.azure.digitaltwins#ListOperations"
         },
         {
           "target": "com.azure.digitaltwins#ListDigitalTwinByResourceGroup"
@@ -3621,28 +3621,28 @@
           "target": "com.azure.digitaltwins#ListDigitalTwins"
         },
         {
+          "target": "com.azure.digitaltwins#DeleteDigitalTwinsEndpoint"
+        },
+        {
+          "target": "com.azure.digitaltwins#DigitalTwinsEndpointCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.digitaltwins#GetDigitalTwinsEndpoint"
+        },
+        {
           "target": "com.azure.digitaltwins#ListDigitalTwinsEndpoint"
         },
         {
-          "target": "com.azure.digitaltwins#ListOperations"
-        },
-        {
-          "target": "com.azure.digitaltwins#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.digitaltwins#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.digitaltwins#ListTimeSeriesDatabaseConnections"
-        },
-        {
-          "target": "com.azure.digitaltwins#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsCreateOrUpdate"
+          "target": "com.azure.digitaltwins#DeleteDigitalTwin"
         },
         {
           "target": "com.azure.digitaltwins#UpdateDigitalTwin"
+        },
+        {
+          "target": "com.azure.digitaltwins#DigitalTwinsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.digitaltwins#GetDigitalTwin"
         }
       ],
       "traits": {

@@ -4030,28 +4030,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.canvases#CanvasesDestroy"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesEditCreate"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesLayoutPatchCreate"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesLayoutPublishCreate"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesPublishCreate"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesPublishCurrentVersionCreate"
-        },
-        {
-          "target": "com.posthog.canvases#CanvasesValidateCreate"
+          "target": "com.posthog.canvases#ListCanvases"
         },
         {
           "target": "com.posthog.canvases#CreateCanvase"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvase"
+        },
+        {
+          "target": "com.posthog.canvases#UpdateCanvasesPartial"
+        },
+        {
+          "target": "com.posthog.canvases#CanvasesDestroy"
+        },
+        {
+          "target": "com.posthog.canvases#InvokeCanvasesAction"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesBuild"
         },
         {
           "target": "com.posthog.canvases#CreateCanvasesBuildAction"
@@ -4060,10 +4057,28 @@
           "target": "com.posthog.canvases#CreateCanvasesDraft"
         },
         {
-          "target": "com.posthog.canvases#CreateCanvasesHome"
+          "target": "com.posthog.canvases#GetCanvasesDraft"
+        },
+        {
+          "target": "com.posthog.canvases#CanvasesEditCreate"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesLayout"
+        },
+        {
+          "target": "com.posthog.canvases#CanvasesLayoutPatchCreate"
+        },
+        {
+          "target": "com.posthog.canvases#CanvasesLayoutPublishCreate"
         },
         {
           "target": "com.posthog.canvases#CreateCanvasesPromote"
+        },
+        {
+          "target": "com.posthog.canvases#CanvasesPublishCreate"
+        },
+        {
+          "target": "com.posthog.canvases#CanvasesPublishCurrentVersionCreate"
         },
         {
           "target": "com.posthog.canvases#CreateCanvasesReportError"
@@ -4078,40 +4093,25 @@
           "target": "com.posthog.canvases#CreateCanvasesRevert"
         },
         {
-          "target": "com.posthog.canvases#GetCanvase"
-        },
-        {
-          "target": "com.posthog.canvases#GetCanvasesAction"
-        },
-        {
-          "target": "com.posthog.canvases#GetCanvasesBuild"
-        },
-        {
-          "target": "com.posthog.canvases#GetCanvasesDraft"
-        },
-        {
-          "target": "com.posthog.canvases#GetCanvasesLayout"
-        },
-        {
           "target": "com.posthog.canvases#GetCanvasesSource"
         },
         {
           "target": "com.posthog.canvases#GetCanvasesState"
         },
         {
-          "target": "com.posthog.canvases#GetCanvasesVersion"
-        },
-        {
-          "target": "com.posthog.canvases#InvokeCanvasesAction"
-        },
-        {
-          "target": "com.posthog.canvases#ListCanvases"
-        },
-        {
           "target": "com.posthog.canvases#SetCanvasesState"
         },
         {
-          "target": "com.posthog.canvases#UpdateCanvasesPartial"
+          "target": "com.posthog.canvases#CanvasesValidateCreate"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesVersion"
+        },
+        {
+          "target": "com.posthog.canvases#GetCanvasesAction"
+        },
+        {
+          "target": "com.posthog.canvases#CreateCanvasesHome"
         }
       ],
       "traits": {

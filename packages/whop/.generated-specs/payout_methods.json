@@ -553,10 +553,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payout_methods#GetPayoutMethod"
+          "target": "com.whop.payout_methods#ListPayoutMethod"
         },
         {
-          "target": "com.whop.payout_methods#ListPayoutMethod"
+          "target": "com.whop.payout_methods#GetPayoutMethod"
         }
       ],
       "traits": {

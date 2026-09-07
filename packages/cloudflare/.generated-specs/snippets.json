@@ -155,6 +155,9 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.snippets#ListRules"
+        },
+        {
           "target": "com.cloudflare.snippets#DeleteRule"
         },
         {
@@ -168,9 +171,6 @@
         },
         {
           "target": "com.cloudflare.snippets#GetSnippet"
-        },
-        {
-          "target": "com.cloudflare.snippets#ListRules"
         },
         {
           "target": "com.cloudflare.snippets#ListSnippets"

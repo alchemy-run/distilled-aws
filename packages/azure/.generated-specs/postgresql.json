@@ -11728,178 +11728,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.postgresql#AdministratorsMicrosoftEntraCreateOrUpdate"
+          "target": "com.azure.postgresql#DeleteVirtualEndpoint"
         },
         {
-          "target": "com.azure.postgresql#CancelMigration"
-        },
-        {
-          "target": "com.azure.postgresql#CheckBackupsLongTermRetentionPrerequisites"
-        },
-        {
-          "target": "com.azure.postgresql#CheckMigrationNameAvailability"
-        },
-        {
-          "target": "com.azure.postgresql#CheckNameAvailabilityGlobally"
-        },
-        {
-          "target": "com.azure.postgresql#CheckNameAvailabilityWithLocation"
-        },
-        {
-          "target": "com.azure.postgresql#CreateBackupsAutomaticAndOnDemand"
-        },
-        {
-          "target": "com.azure.postgresql#CreateDatabase"
-        },
-        {
-          "target": "com.azure.postgresql#CreateMigration"
+          "target": "com.azure.postgresql#UpdateVirtualEndpoint"
         },
         {
           "target": "com.azure.postgresql#CreateVirtualEndpoint"
         },
         {
-          "target": "com.azure.postgresql#DeleteAdministratorsMicrosoftEntra"
-        },
-        {
-          "target": "com.azure.postgresql#DeleteBackupsAutomaticAndOnDemand"
-        },
-        {
-          "target": "com.azure.postgresql#DeleteDatabase"
-        },
-        {
-          "target": "com.azure.postgresql#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.postgresql#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.postgresql#DeleteServer"
-        },
-        {
-          "target": "com.azure.postgresql#DeleteVirtualEndpoint"
-        },
-        {
-          "target": "com.azure.postgresql#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.postgresql#GetAdministratorsMicrosoftEntra"
-        },
-        {
-          "target": "com.azure.postgresql#GetAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.postgresql#GetBackupsAutomaticAndOnDemand"
-        },
-        {
-          "target": "com.azure.postgresql#GetBackupsLongTermRetention"
-        },
-        {
-          "target": "com.azure.postgresql#GetConfiguration"
-        },
-        {
-          "target": "com.azure.postgresql#GetDatabase"
-        },
-        {
-          "target": "com.azure.postgresql#GetFirewallRule"
-        },
-        {
-          "target": "com.azure.postgresql#GetMigration"
-        },
-        {
-          "target": "com.azure.postgresql#GetPrivateDnsZoneSuffix"
-        },
-        {
-          "target": "com.azure.postgresql#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.postgresql#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.postgresql#GetServer"
-        },
-        {
-          "target": "com.azure.postgresql#GetTuningOption"
-        },
-        {
           "target": "com.azure.postgresql#GetVirtualEndpoint"
-        },
-        {
-          "target": "com.azure.postgresql#ListAdministratorsMicrosoftEntraByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListAdvancedThreatProtectionSettingsByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListBackupsAutomaticAndOnDemandByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListBackupsLongTermRetentionByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListCapabilitiesByLocation"
-        },
-        {
-          "target": "com.azure.postgresql#ListCapabilitiesByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListCapturedLogByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListConfigurationByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListDatabaseByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListFirewallRuleByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListMigrationByTargetServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListOperations"
-        },
-        {
-          "target": "com.azure.postgresql#ListPrivateEndpointConnectionByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListPrivateLinkResourceByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListQuotaUsages"
-        },
-        {
-          "target": "com.azure.postgresql#ListReplicasByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListServerByResourceGroup"
-        },
-        {
-          "target": "com.azure.postgresql#ListServerBySubscription"
-        },
-        {
-          "target": "com.azure.postgresql#ListTuningOptionByServer"
-        },
-        {
-          "target": "com.azure.postgresql#ListTuningOptionRecommendations"
         },
         {
           "target": "com.azure.postgresql#ListVirtualEndpointByServer"
         },
         {
-          "target": "com.azure.postgresql#ListVirtualNetworkSubnetUsage"
+          "target": "com.azure.postgresql#ListTuningOptionRecommendations"
         },
         {
-          "target": "com.azure.postgresql#PutConfiguration"
+          "target": "com.azure.postgresql#GetTuningOption"
         },
         {
-          "target": "com.azure.postgresql#RestartServer"
+          "target": "com.azure.postgresql#ListTuningOptionByServer"
         },
         {
-          "target": "com.azure.postgresql#ServersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.postgresql#ServerThreatProtectionSettingsCreateOrUpdate"
+          "target": "com.azure.postgresql#StopServer"
         },
         {
           "target": "com.azure.postgresql#StartBackupsLongTermRetention"
@@ -11908,22 +11761,169 @@
           "target": "com.azure.postgresql#StartServer"
         },
         {
-          "target": "com.azure.postgresql#StopServer"
+          "target": "com.azure.postgresql#RestartServer"
         },
         {
-          "target": "com.azure.postgresql#UpdateConfiguration"
+          "target": "com.azure.postgresql#ListReplicasByServer"
         },
         {
-          "target": "com.azure.postgresql#UpdateMigration"
+          "target": "com.azure.postgresql#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.postgresql#ListPrivateLinkResourceByServer"
+        },
+        {
+          "target": "com.azure.postgresql#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.postgresql#UpdatePrivateEndpointConnection"
         },
         {
+          "target": "com.azure.postgresql#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.postgresql#ListPrivateEndpointConnectionByServer"
+        },
+        {
+          "target": "com.azure.postgresql#CancelMigration"
+        },
+        {
+          "target": "com.azure.postgresql#UpdateMigration"
+        },
+        {
+          "target": "com.azure.postgresql#CreateMigration"
+        },
+        {
+          "target": "com.azure.postgresql#GetMigration"
+        },
+        {
+          "target": "com.azure.postgresql#ListMigrationByTargetServer"
+        },
+        {
+          "target": "com.azure.postgresql#CheckBackupsLongTermRetentionPrerequisites"
+        },
+        {
+          "target": "com.azure.postgresql#GetBackupsLongTermRetention"
+        },
+        {
+          "target": "com.azure.postgresql#ListBackupsLongTermRetentionByServer"
+        },
+        {
+          "target": "com.azure.postgresql#ListCapturedLogByServer"
+        },
+        {
+          "target": "com.azure.postgresql#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.postgresql#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.postgresql#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.postgresql#ListFirewallRuleByServer"
+        },
+        {
+          "target": "com.azure.postgresql#DeleteDatabase"
+        },
+        {
+          "target": "com.azure.postgresql#CreateDatabase"
+        },
+        {
+          "target": "com.azure.postgresql#GetDatabase"
+        },
+        {
+          "target": "com.azure.postgresql#ListDatabaseByServer"
+        },
+        {
+          "target": "com.azure.postgresql#UpdateConfiguration"
+        },
+        {
+          "target": "com.azure.postgresql#PutConfiguration"
+        },
+        {
+          "target": "com.azure.postgresql#GetConfiguration"
+        },
+        {
+          "target": "com.azure.postgresql#ListConfigurationByServer"
+        },
+        {
+          "target": "com.azure.postgresql#CheckMigrationNameAvailability"
+        },
+        {
+          "target": "com.azure.postgresql#ListCapabilitiesByServer"
+        },
+        {
+          "target": "com.azure.postgresql#DeleteBackupsAutomaticAndOnDemand"
+        },
+        {
+          "target": "com.azure.postgresql#CreateBackupsAutomaticAndOnDemand"
+        },
+        {
+          "target": "com.azure.postgresql#GetBackupsAutomaticAndOnDemand"
+        },
+        {
+          "target": "com.azure.postgresql#ListBackupsAutomaticAndOnDemandByServer"
+        },
+        {
+          "target": "com.azure.postgresql#ServerThreatProtectionSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.postgresql#GetAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.postgresql#ListAdvancedThreatProtectionSettingsByServer"
+        },
+        {
+          "target": "com.azure.postgresql#DeleteAdministratorsMicrosoftEntra"
+        },
+        {
+          "target": "com.azure.postgresql#AdministratorsMicrosoftEntraCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.postgresql#GetAdministratorsMicrosoftEntra"
+        },
+        {
+          "target": "com.azure.postgresql#ListAdministratorsMicrosoftEntraByServer"
+        },
+        {
+          "target": "com.azure.postgresql#DeleteServer"
+        },
+        {
           "target": "com.azure.postgresql#UpdateServer"
         },
         {
-          "target": "com.azure.postgresql#UpdateVirtualEndpoint"
+          "target": "com.azure.postgresql#ServersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.postgresql#GetServer"
+        },
+        {
+          "target": "com.azure.postgresql#ListServerByResourceGroup"
+        },
+        {
+          "target": "com.azure.postgresql#ListQuotaUsages"
+        },
+        {
+          "target": "com.azure.postgresql#ListVirtualNetworkSubnetUsage"
+        },
+        {
+          "target": "com.azure.postgresql#CheckNameAvailabilityWithLocation"
+        },
+        {
+          "target": "com.azure.postgresql#ListCapabilitiesByLocation"
+        },
+        {
+          "target": "com.azure.postgresql#ListServerBySubscription"
+        },
+        {
+          "target": "com.azure.postgresql#CheckNameAvailabilityGlobally"
+        },
+        {
+          "target": "com.azure.postgresql#ListOperations"
+        },
+        {
+          "target": "com.azure.postgresql#GetPrivateDnsZoneSuffix"
         }
       ],
       "traits": {

@@ -352,10 +352,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.inference_endpoints#CheckEndpointAccess"
+          "target": "com.huggingface.inference_endpoints#CheckNamespaceAccess"
         },
         {
-          "target": "com.huggingface.inference_endpoints#CheckNamespaceAccess"
+          "target": "com.huggingface.inference_endpoints#CheckEndpointAccess"
         }
       ],
       "traits": {

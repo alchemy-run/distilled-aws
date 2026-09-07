@@ -1897,49 +1897,49 @@
       "version": "1.1.4",
       "operations": [
         {
+          "target": "com.github.reactions#ListForCommitComment"
+        },
+        {
           "target": "com.github.reactions#CreateForCommitComment"
-        },
-        {
-          "target": "com.github.reactions#CreateForIssue"
-        },
-        {
-          "target": "com.github.reactions#CreateForIssueComment"
-        },
-        {
-          "target": "com.github.reactions#CreateForPullRequestReviewComment"
-        },
-        {
-          "target": "com.github.reactions#CreateForRelease"
         },
         {
           "target": "com.github.reactions#DeleteForCommitComment"
         },
         {
-          "target": "com.github.reactions#DeleteForIssue"
+          "target": "com.github.reactions#ListForIssueComment"
+        },
+        {
+          "target": "com.github.reactions#CreateForIssueComment"
         },
         {
           "target": "com.github.reactions#DeleteForIssueComment"
         },
         {
-          "target": "com.github.reactions#DeleteForPullRequestComment"
-        },
-        {
-          "target": "com.github.reactions#DeleteForRelease"
-        },
-        {
-          "target": "com.github.reactions#ListForCommitComment"
-        },
-        {
           "target": "com.github.reactions#ListForIssue"
         },
         {
-          "target": "com.github.reactions#ListForIssueComment"
+          "target": "com.github.reactions#CreateForIssue"
+        },
+        {
+          "target": "com.github.reactions#DeleteForIssue"
         },
         {
           "target": "com.github.reactions#ListForPullRequestReviewComment"
         },
         {
+          "target": "com.github.reactions#CreateForPullRequestReviewComment"
+        },
+        {
+          "target": "com.github.reactions#DeleteForPullRequestComment"
+        },
+        {
           "target": "com.github.reactions#ListForRelease"
+        },
+        {
+          "target": "com.github.reactions#CreateForRelease"
+        },
+        {
+          "target": "com.github.reactions#DeleteForRelease"
         }
       ],
       "traits": {

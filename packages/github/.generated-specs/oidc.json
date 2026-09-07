@@ -589,25 +589,25 @@
       "version": "1.1.4",
       "operations": [
         {
+          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterprise"
+        },
+        {
           "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForEnterprise"
         },
         {
-          "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForOrg"
+          "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForEnterprise"
         },
         {
-          "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForEnterprise"
+          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForOrg"
+        },
+        {
+          "target": "com.github.oidc#CreateOidcCustomPropertyInclusionForOrg"
         },
         {
           "target": "com.github.oidc#DeleteOidcCustomPropertyInclusionForOrg"
         },
         {
           "target": "com.github.oidc#GetOidcCustomSubTemplateForOrg"
-        },
-        {
-          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForEnterprise"
-        },
-        {
-          "target": "com.github.oidc#ListOidcCustomPropertyInclusionsForOrg"
         },
         {
           "target": "com.github.oidc#UpdateOidcCustomSubTemplateForOrg"

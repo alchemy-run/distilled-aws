@@ -40595,523 +40595,292 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.compute#ApproveVirtualMachineScaleSetRollingUpgrade"
-        },
-        {
-          "target": "com.azure.compute#ApproveVirtualMachineScaleSetVMRollingUpgrade"
-        },
-        {
-          "target": "com.azure.compute#AvailabilitySetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#BulkVirtualMachineBulkOperationDeallocate"
+          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkStart"
         },
         {
           "target": "com.azure.compute#BulkVirtualMachineBulkOperationHibernate"
         },
         {
-          "target": "com.azure.compute#CancelAvailabilitySetMigrationToVirtualMachineScaleSet"
+          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkGetOperationsStatus"
         },
         {
-          "target": "com.azure.compute#CancelVirtualMachineScaleSetRollingUpgrade"
+          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkDelete"
         },
         {
-          "target": "com.azure.compute#CapacityReservationGroupsCreateOrUpdate"
+          "target": "com.azure.compute#BulkVirtualMachineBulkOperationDeallocate"
         },
         {
-          "target": "com.azure.compute#CapacityReservationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#CaptureVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#ContainerServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#ConvertAvailabilitySetToVirtualMachineScaleSet"
-        },
-        {
-          "target": "com.azure.compute#ConvertVirtualMachineScaleSetToSinglePlacementGroup"
-        },
-        {
-          "target": "com.azure.compute#ConvertVirtualMachineToManagedDisks"
-        },
-        {
-          "target": "com.azure.compute#CreateRestorePoint"
-        },
-        {
-          "target": "com.azure.compute#CreateSshPublicKeys"
-        },
-        {
-          "target": "com.azure.compute#DedicatedHostGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#DedicatedHostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#DeleteAvailabilitySet"
-        },
-        {
-          "target": "com.azure.compute#DeleteCapacityReservation"
-        },
-        {
-          "target": "com.azure.compute#DeleteCapacityReservationGroup"
-        },
-        {
-          "target": "com.azure.compute#DeleteContainerService"
-        },
-        {
-          "target": "com.azure.compute#DeleteDedicatedHost"
-        },
-        {
-          "target": "com.azure.compute#DeleteDedicatedHostGroup"
-        },
-        {
-          "target": "com.azure.compute#DeleteImage"
-        },
-        {
-          "target": "com.azure.compute#DeleteInterconnectBlock"
-        },
-        {
-          "target": "com.azure.compute#DeleteProximityPlacementGroup"
-        },
-        {
-          "target": "com.azure.compute#DeleteRestorePoint"
-        },
-        {
-          "target": "com.azure.compute#DeleteRestorePointCollection"
-        },
-        {
-          "target": "com.azure.compute#DeleteSshPublicKeys"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineDiagnosticRunCommand"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineExtension"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineRunCommand"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSet"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSetExtension"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSetInstances"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVM"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVMDiagnosticRunCommand"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVMExtension"
-        },
-        {
-          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVMRunCommand"
-        },
-        {
-          "target": "com.azure.compute#ExportLogAnalyticsRequestRateByInterval"
-        },
-        {
-          "target": "com.azure.compute#ExportLogAnalyticsThrottledRequests"
-        },
-        {
-          "target": "com.azure.compute#GenerateSshPublicKeysKeyPair"
-        },
-        {
-          "target": "com.azure.compute#GetAvailabilitySet"
-        },
-        {
-          "target": "com.azure.compute#GetCapacityReservation"
-        },
-        {
-          "target": "com.azure.compute#GetCapacityReservationGroup"
-        },
-        {
-          "target": "com.azure.compute#GetContainerService"
-        },
-        {
-          "target": "com.azure.compute#GetDedicatedHost"
-        },
-        {
-          "target": "com.azure.compute#GetDedicatedHostGroup"
-        },
-        {
-          "target": "com.azure.compute#GetImage"
-        },
-        {
-          "target": "com.azure.compute#GetInterconnectBlock"
-        },
-        {
-          "target": "com.azure.compute#GetProximityPlacementGroup"
-        },
-        {
-          "target": "com.azure.compute#GetRestorePoint"
-        },
-        {
-          "target": "com.azure.compute#GetRestorePointCollection"
-        },
-        {
-          "target": "com.azure.compute#GetSpotPlacementScore"
-        },
-        {
-          "target": "com.azure.compute#GetSshPublicKeys"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineBootDiagnosticsData"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineDiagnosticRunCommandByVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineExtension"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineExtensionImage"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineImage"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineImagesEdgeZone"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineRunCommand"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineRunCommandByVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSet"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetExtension"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetInstanceView"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetLifeCycleHookEvent"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetOSUpgradeHistory"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetRollingUpgradeLatest"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetVM"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetVMBootDiagnosticsData"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetVMDiagnosticRunCommand"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetVMExtension"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetVMInstanceView"
-        },
-        {
-          "target": "com.azure.compute#GetVirtualMachineScaleSetVMRunCommand"
-        },
-        {
-          "target": "com.azure.compute#ImagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#InstallVirtualMachinePatches"
-        },
-        {
-          "target": "com.azure.compute#InterconnectBlocksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#ListAvailabilitySetAvailableSizes"
-        },
-        {
-          "target": "com.azure.compute#ListAvailabilitySetBySubscription"
-        },
-        {
-          "target": "com.azure.compute#ListAvailabilitySets"
-        },
-        {
-          "target": "com.azure.compute#ListCapacityReservationByCapacityReservationGroup"
-        },
-        {
-          "target": "com.azure.compute#ListCapacityReservationGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListCapacityReservationGroupBySubscription"
-        },
-        {
-          "target": "com.azure.compute#ListContainerServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListContainerServices"
-        },
-        {
-          "target": "com.azure.compute#ListDedicatedHostAvailableSizes"
-        },
-        {
-          "target": "com.azure.compute#ListDedicatedHostByHostGroup"
-        },
-        {
-          "target": "com.azure.compute#ListDedicatedHostGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListDedicatedHostGroupBySubscription"
-        },
-        {
-          "target": "com.azure.compute#ListImageByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListImages"
-        },
-        {
-          "target": "com.azure.compute#ListInterconnectBlockByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListInterconnectBlockBySubscription"
+          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkCancel"
         },
         {
           "target": "com.azure.compute#ListOperations"
         },
         {
-          "target": "com.azure.compute#ListProximityPlacementGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListProximityPlacementGroupBySubscription"
-        },
-        {
-          "target": "com.azure.compute#ListRestorePointCollectionAll"
-        },
-        {
-          "target": "com.azure.compute#ListRestorePointCollections"
-        },
-        {
-          "target": "com.azure.compute#ListSshPublicKeysByResourceGroup"
-        },
-        {
-          "target": "com.azure.compute#ListSshPublicKeysBySubscription"
-        },
-        {
-          "target": "com.azure.compute#ListUsage"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineAll"
-        },
-        {
           "target": "com.azure.compute#ListVirtualMachineAvailableSizes"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineByLocation"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineExtensionImageTypes"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineExtensionImageVersions"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineExtensions"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImageByEdgeZone"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImageOffers"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImagePublishers"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImages"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZone"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZoneOffers"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZonePublishers"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZoneSkus"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineImageSkus"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineRunCommandByVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineRunCommands"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachines"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetAll"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetByLocation"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetExtensions"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetLifeCycleHookEvents"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSets"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetSkus"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetVMDiagnosticRunCommands"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetVMExtensions"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetVMRunCommands"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineScaleSetVMs"
-        },
-        {
-          "target": "com.azure.compute#ListVirtualMachineSizes"
-        },
-        {
-          "target": "com.azure.compute#MigrateVirtualMachineScaleSetVMAvailabilityZone"
-        },
-        {
-          "target": "com.azure.compute#MigrateVirtualMachineToVMScaleSet"
-        },
-        {
-          "target": "com.azure.compute#PostSpotPlacementScore"
-        },
-        {
-          "target": "com.azure.compute#ProximityPlacementGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#RedeployDedicatedHost"
-        },
-        {
-          "target": "com.azure.compute#RedeployVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#RedeployVirtualMachineScaleSet"
-        },
-        {
-          "target": "com.azure.compute#RedeployVirtualMachineScaleSetVM"
-        },
-        {
-          "target": "com.azure.compute#RestartDedicatedHost"
-        },
-        {
-          "target": "com.azure.compute#RestartVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#RestartVirtualMachineScaleSet"
-        },
-        {
-          "target": "com.azure.compute#RestartVirtualMachineScaleSetVM"
-        },
-        {
-          "target": "com.azure.compute#RestorePointCollectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#RunVirtualMachineCommand"
-        },
-        {
-          "target": "com.azure.compute#RunVirtualMachineScaleSetVMCommand"
-        },
-        {
-          "target": "com.azure.compute#ScaleVirtualMachineScaleSetOut"
-        },
-        {
-          "target": "com.azure.compute#SetVirtualMachineScaleSetOrchestrationServiceState"
-        },
-        {
-          "target": "com.azure.compute#StartAvailabilitySetMigrationToVirtualMachineScaleSet"
         },
         {
           "target": "com.azure.compute#StartVirtualMachine"
         },
         {
-          "target": "com.azure.compute#StartVirtualMachineScaleSet"
+          "target": "com.azure.compute#VirtualMachinesSimulateEviction"
         },
         {
-          "target": "com.azure.compute#StartVirtualMachineScaleSetRollingUpgradeExtensionUpgrade"
-        },
-        {
-          "target": "com.azure.compute#StartVirtualMachineScaleSetRollingUpgradeOSUpgrade"
-        },
-        {
-          "target": "com.azure.compute#StartVirtualMachineScaleSetVM"
-        },
-        {
-          "target": "com.azure.compute#UpdateAvailabilitySet"
-        },
-        {
-          "target": "com.azure.compute#UpdateCapacityReservation"
-        },
-        {
-          "target": "com.azure.compute#UpdateCapacityReservationGroup"
-        },
-        {
-          "target": "com.azure.compute#UpdateDedicatedHost"
-        },
-        {
-          "target": "com.azure.compute#UpdateDedicatedHostGroup"
-        },
-        {
-          "target": "com.azure.compute#UpdateImage"
-        },
-        {
-          "target": "com.azure.compute#UpdateInterconnectBlock"
-        },
-        {
-          "target": "com.azure.compute#UpdateProximityPlacementGroup"
-        },
-        {
-          "target": "com.azure.compute#UpdateRestorePointCollection"
-        },
-        {
-          "target": "com.azure.compute#UpdateSshPublicKeys"
-        },
-        {
-          "target": "com.azure.compute#UpdateVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#UpdateVirtualMachineDiagnosticRunCommand"
-        },
-        {
-          "target": "com.azure.compute#UpdateVirtualMachineExtension"
+          "target": "com.azure.compute#DeleteVirtualMachineRunCommand"
         },
         {
           "target": "com.azure.compute#UpdateVirtualMachineRunCommand"
         },
         {
-          "target": "com.azure.compute#UpdateVirtualMachineScaleSet"
+          "target": "com.azure.compute#VirtualMachineRunCommandsCreateOrUpdate"
         },
         {
-          "target": "com.azure.compute#UpdateVirtualMachineScaleSetExtension"
+          "target": "com.azure.compute#GetVirtualMachineRunCommandByVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineRunCommandByVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#RunVirtualMachineCommand"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineBootDiagnosticsData"
+        },
+        {
+          "target": "com.azure.compute#RestartVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesReimage"
+        },
+        {
+          "target": "com.azure.compute#RedeployVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesReapply"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesPowerOff"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesPerformMaintenance"
+        },
+        {
+          "target": "com.azure.compute#MigrateVirtualMachineToVMScaleSet"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesInstanceView"
+        },
+        {
+          "target": "com.azure.compute#InstallVirtualMachinePatches"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesGeneralize"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachineExtension"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachineExtension"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineExtensionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineExtension"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineExtensions"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachineDiagnosticRunCommand"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachineDiagnosticRunCommand"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineDiagnosticRunCommandsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineDiagnosticRunCommandByVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesDeallocate"
+        },
+        {
+          "target": "com.azure.compute#ConvertVirtualMachineToManagedDisks"
+        },
+        {
+          "target": "com.azure.compute#CaptureVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesAttachDetachDataDisks"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesAssessPatches"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachines"
+        },
+        {
+          "target": "com.azure.compute#StartVirtualMachineScaleSetVM"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsSimulateEviction"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVMRunCommand"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVMRunCommand"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMRunCommandsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetVMRunCommand"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetVMRunCommands"
+        },
+        {
+          "target": "com.azure.compute#RunVirtualMachineScaleSetVMCommand"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetVMBootDiagnosticsData"
+        },
+        {
+          "target": "com.azure.compute#RestartVirtualMachineScaleSetVM"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsReimageAll"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsReimage"
+        },
+        {
+          "target": "com.azure.compute#RedeployVirtualMachineScaleSetVM"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsPowerOff"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsPerformMaintenance"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetVMInstanceView"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVMExtension"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVMExtension"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMExtensionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetVMExtension"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetVMExtensions"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVMDiagnosticRunCommand"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVMDiagnosticRunCommand"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetVMDiagnosticRunCommand"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetVMDiagnosticRunCommands"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsDeallocate"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetVMsAttachDetachDataDisks"
+        },
+        {
+          "target": "com.azure.compute#ApproveVirtualMachineScaleSetVMRollingUpgrade"
+        },
+        {
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSetVM"
+        },
+        {
+          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVM"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetVM"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetVMs"
+        },
+        {
+          "target": "com.azure.compute#StartVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetSkus"
+        },
+        {
+          "target": "com.azure.compute#SetVirtualMachineScaleSetOrchestrationServiceState"
+        },
+        {
+          "target": "com.azure.compute#ScaleVirtualMachineScaleSetOut"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetRollingUpgradeLatest"
+        },
+        {
+          "target": "com.azure.compute#CancelVirtualMachineScaleSetRollingUpgrade"
+        },
+        {
+          "target": "com.azure.compute#RestartVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetsReimageAll"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetsReimage"
+        },
+        {
+          "target": "com.azure.compute#RedeployVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetsReapply"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetsPowerOff"
+        },
+        {
+          "target": "com.azure.compute#VirtualMachineScaleSetsPerformMaintenance"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineScaleSetOSUpgradeHistory"
+        },
+        {
+          "target": "com.azure.compute#StartVirtualMachineScaleSetRollingUpgradeOSUpgrade"
+        },
+        {
+          "target": "com.azure.compute#MigrateVirtualMachineScaleSetVMAvailabilityZone"
         },
         {
           "target": "com.azure.compute#UpdateVirtualMachineScaleSetInstances"
@@ -41120,133 +40889,364 @@
           "target": "com.azure.compute#UpdateVirtualMachineScaleSetLifeCycleHookEvent"
         },
         {
-          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVM"
+          "target": "com.azure.compute#GetVirtualMachineScaleSetLifeCycleHookEvent"
         },
         {
-          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVMDiagnosticRunCommand"
+          "target": "com.azure.compute#ListVirtualMachineScaleSetLifeCycleHookEvents"
         },
         {
-          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVMExtension"
-        },
-        {
-          "target": "com.azure.compute#UpdateVirtualMachineScaleSetVMRunCommand"
-        },
-        {
-          "target": "com.azure.compute#ValidateAvailabilitySetMigrationToVirtualMachineScaleSet"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkCancel"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkDelete"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkGetOperationsStatus"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineBulkOperationsBulkStart"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineDiagnosticRunCommandsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineDiagnosticRunCommandsDiagnosticListByVirtualMachine"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineExtensionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineRunCommandsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachinesAssessPatches"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachinesAttachDetachDataDisks"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineScaleSetExtensionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineScaleSetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.compute#VirtualMachineScaleSetsDeallocate"
+          "target": "com.azure.compute#GetVirtualMachineScaleSetInstanceView"
         },
         {
           "target": "com.azure.compute#VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalk"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetsPerformMaintenance"
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSetExtension"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetsPowerOff"
+          "target": "com.azure.compute#UpdateVirtualMachineScaleSetExtension"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetsReapply"
+          "target": "com.azure.compute#VirtualMachineScaleSetExtensionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetsReimage"
+          "target": "com.azure.compute#GetVirtualMachineScaleSetExtension"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetsReimageAll"
+          "target": "com.azure.compute#ListVirtualMachineScaleSetExtensions"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMDiagnosticRunCommandsCreateOrUpdate"
+          "target": "com.azure.compute#StartVirtualMachineScaleSetRollingUpgradeExtensionUpgrade"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMExtensionsCreateOrUpdate"
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSetInstances"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMRunCommandsCreateOrUpdate"
+          "target": "com.azure.compute#VirtualMachineScaleSetsDeallocate"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsAttachDetachDataDisks"
+          "target": "com.azure.compute#ConvertVirtualMachineScaleSetToSinglePlacementGroup"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsDeallocate"
+          "target": "com.azure.compute#ApproveVirtualMachineScaleSetRollingUpgrade"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsPerformMaintenance"
+          "target": "com.azure.compute#DeleteVirtualMachineScaleSet"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsPowerOff"
+          "target": "com.azure.compute#UpdateVirtualMachineScaleSet"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsReimage"
+          "target": "com.azure.compute#VirtualMachineScaleSetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsReimageAll"
+          "target": "com.azure.compute#GetVirtualMachineScaleSet"
         },
         {
-          "target": "com.azure.compute#VirtualMachineScaleSetVMsSimulateEviction"
+          "target": "com.azure.compute#ListVirtualMachineScaleSets"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesCreateOrUpdate"
+          "target": "com.azure.compute#GenerateSshPublicKeysKeyPair"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesDeallocate"
+          "target": "com.azure.compute#DeleteSshPublicKeys"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesGeneralize"
+          "target": "com.azure.compute#UpdateSshPublicKeys"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesInstanceView"
+          "target": "com.azure.compute#CreateSshPublicKeys"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesPerformMaintenance"
+          "target": "com.azure.compute#GetSshPublicKeys"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesPowerOff"
+          "target": "com.azure.compute#ListSshPublicKeysByResourceGroup"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesReapply"
+          "target": "com.azure.compute#DeleteRestorePoint"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesReimage"
+          "target": "com.azure.compute#CreateRestorePoint"
         },
         {
-          "target": "com.azure.compute#VirtualMachinesSimulateEviction"
+          "target": "com.azure.compute#GetRestorePoint"
+        },
+        {
+          "target": "com.azure.compute#DeleteRestorePointCollection"
+        },
+        {
+          "target": "com.azure.compute#UpdateRestorePointCollection"
+        },
+        {
+          "target": "com.azure.compute#RestorePointCollectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetRestorePointCollection"
+        },
+        {
+          "target": "com.azure.compute#ListRestorePointCollections"
+        },
+        {
+          "target": "com.azure.compute#DeleteProximityPlacementGroup"
+        },
+        {
+          "target": "com.azure.compute#UpdateProximityPlacementGroup"
+        },
+        {
+          "target": "com.azure.compute#ProximityPlacementGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetProximityPlacementGroup"
+        },
+        {
+          "target": "com.azure.compute#ListProximityPlacementGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.compute#DeleteInterconnectBlock"
+        },
+        {
+          "target": "com.azure.compute#UpdateInterconnectBlock"
+        },
+        {
+          "target": "com.azure.compute#InterconnectBlocksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetInterconnectBlock"
+        },
+        {
+          "target": "com.azure.compute#ListInterconnectBlockByResourceGroup"
+        },
+        {
+          "target": "com.azure.compute#DeleteImage"
+        },
+        {
+          "target": "com.azure.compute#UpdateImage"
+        },
+        {
+          "target": "com.azure.compute#ImagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetImage"
+        },
+        {
+          "target": "com.azure.compute#ListImageByResourceGroup"
+        },
+        {
+          "target": "com.azure.compute#RestartDedicatedHost"
+        },
+        {
+          "target": "com.azure.compute#RedeployDedicatedHost"
+        },
+        {
+          "target": "com.azure.compute#ListDedicatedHostAvailableSizes"
+        },
+        {
+          "target": "com.azure.compute#DeleteDedicatedHost"
+        },
+        {
+          "target": "com.azure.compute#UpdateDedicatedHost"
+        },
+        {
+          "target": "com.azure.compute#DedicatedHostsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetDedicatedHost"
+        },
+        {
+          "target": "com.azure.compute#ListDedicatedHostByHostGroup"
+        },
+        {
+          "target": "com.azure.compute#DeleteDedicatedHostGroup"
+        },
+        {
+          "target": "com.azure.compute#UpdateDedicatedHostGroup"
+        },
+        {
+          "target": "com.azure.compute#DedicatedHostGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetDedicatedHostGroup"
+        },
+        {
+          "target": "com.azure.compute#ListDedicatedHostGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.compute#DeleteCapacityReservation"
+        },
+        {
+          "target": "com.azure.compute#UpdateCapacityReservation"
+        },
+        {
+          "target": "com.azure.compute#CapacityReservationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetCapacityReservation"
+        },
+        {
+          "target": "com.azure.compute#ListCapacityReservationByCapacityReservationGroup"
+        },
+        {
+          "target": "com.azure.compute#DeleteCapacityReservationGroup"
+        },
+        {
+          "target": "com.azure.compute#UpdateCapacityReservationGroup"
+        },
+        {
+          "target": "com.azure.compute#CapacityReservationGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetCapacityReservationGroup"
+        },
+        {
+          "target": "com.azure.compute#ListCapacityReservationGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.compute#ListAvailabilitySetAvailableSizes"
+        },
+        {
+          "target": "com.azure.compute#ValidateAvailabilitySetMigrationToVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#StartAvailabilitySetMigrationToVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#ConvertAvailabilitySetToVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#CancelAvailabilitySetMigrationToVirtualMachineScaleSet"
+        },
+        {
+          "target": "com.azure.compute#DeleteAvailabilitySet"
+        },
+        {
+          "target": "com.azure.compute#UpdateAvailabilitySet"
+        },
+        {
+          "target": "com.azure.compute#AvailabilitySetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetAvailabilitySet"
+        },
+        {
+          "target": "com.azure.compute#ListAvailabilitySets"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineAll"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetAll"
+        },
+        {
+          "target": "com.azure.compute#ListSshPublicKeysBySubscription"
+        },
+        {
+          "target": "com.azure.compute#ListRestorePointCollectionAll"
+        },
+        {
+          "target": "com.azure.compute#ListProximityPlacementGroupBySubscription"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineSizes"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineByLocation"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineScaleSetByLocation"
+        },
+        {
+          "target": "com.azure.compute#ListUsage"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineRunCommand"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineRunCommands"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineImage"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImages"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImageSkus"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImageOffers"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineExtensionImage"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineExtensionImageVersions"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineExtensionImageTypes"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImagePublishers"
+        },
+        {
+          "target": "com.azure.compute#ExportLogAnalyticsThrottledRequests"
+        },
+        {
+          "target": "com.azure.compute#ExportLogAnalyticsRequestRateByInterval"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImageByEdgeZone"
+        },
+        {
+          "target": "com.azure.compute#GetVirtualMachineImagesEdgeZone"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZone"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZoneSkus"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZoneOffers"
+        },
+        {
+          "target": "com.azure.compute#ListVirtualMachineImagesEdgeZonePublishers"
+        },
+        {
+          "target": "com.azure.compute#ListInterconnectBlockBySubscription"
+        },
+        {
+          "target": "com.azure.compute#ListImages"
+        },
+        {
+          "target": "com.azure.compute#ListDedicatedHostGroupBySubscription"
+        },
+        {
+          "target": "com.azure.compute#ListCapacityReservationGroupBySubscription"
+        },
+        {
+          "target": "com.azure.compute#ListAvailabilitySetBySubscription"
+        },
+        {
+          "target": "com.azure.compute#PostSpotPlacementScore"
+        },
+        {
+          "target": "com.azure.compute#GetSpotPlacementScore"
+        },
+        {
+          "target": "com.azure.compute#ListContainerServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.compute#DeleteContainerService"
+        },
+        {
+          "target": "com.azure.compute#ContainerServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.compute#GetContainerService"
+        },
+        {
+          "target": "com.azure.compute#ListContainerServices"
         }
       ],
       "traits": {

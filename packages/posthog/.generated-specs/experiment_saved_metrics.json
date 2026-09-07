@@ -692,22 +692,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.experiment_saved_metrics#ListExperimentSavedMetrics"
+        },
+        {
           "target": "com.posthog.experiment_saved_metrics#CreateExperimentSavedMetrics"
         },
         {
-          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsDestroy"
-        },
-        {
           "target": "com.posthog.experiment_saved_metrics#GetExperimentSavedMetrics"
-        },
-        {
-          "target": "com.posthog.experiment_saved_metrics#ListExperimentSavedMetrics"
         },
         {
           "target": "com.posthog.experiment_saved_metrics#UpdateExperimentSavedMetrics"
         },
         {
           "target": "com.posthog.experiment_saved_metrics#UpdateExperimentSavedMetricsPartial"
+        },
+        {
+          "target": "com.posthog.experiment_saved_metrics#ExperimentSavedMetricsDestroy"
         }
       ],
       "traits": {

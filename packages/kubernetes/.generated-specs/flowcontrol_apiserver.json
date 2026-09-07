@@ -3860,24 +3860,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.flowcontrol_apiserver#CreateFlowcontrolApiserverV1FlowSchema"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#CreateFlowcontrolApiserverV1PriorityLevelConfiguration"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1CollectionFlowSchema"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1CollectionPriorityLevelConfiguration"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1FlowSchema"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1PriorityLevelConfiguration"
-        },
-        {
           "target": "com.kubernetes.flowcontrol_apiserver#GetFlowcontrolApiserverAPIGroup"
         },
         {
@@ -3887,55 +3869,73 @@
           "target": "com.kubernetes.flowcontrol_apiserver#ListFlowcontrolApiserverV1FlowSchema"
         },
         {
-          "target": "com.kubernetes.flowcontrol_apiserver#ListFlowcontrolApiserverV1PriorityLevelConfiguration"
+          "target": "com.kubernetes.flowcontrol_apiserver#CreateFlowcontrolApiserverV1FlowSchema"
         },
         {
-          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1FlowSchema"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1FlowSchemaStatus"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1PriorityLevelConfiguration"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1PriorityLevelConfigurationStatus"
+          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1CollectionFlowSchema"
         },
         {
           "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1FlowSchema"
         },
         {
-          "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1FlowSchemaStatus"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1PriorityLevelConfiguration"
-        },
-        {
-          "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1PriorityLevelConfigurationStatus"
-        },
-        {
           "target": "com.kubernetes.flowcontrol_apiserver#ReplaceFlowcontrolApiserverV1FlowSchema"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1FlowSchema"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1FlowSchema"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1FlowSchemaStatus"
         },
         {
           "target": "com.kubernetes.flowcontrol_apiserver#ReplaceFlowcontrolApiserverV1FlowSchemaStatus"
         },
         {
+          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1FlowSchemaStatus"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#ListFlowcontrolApiserverV1PriorityLevelConfiguration"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#CreateFlowcontrolApiserverV1PriorityLevelConfiguration"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1CollectionPriorityLevelConfiguration"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1PriorityLevelConfiguration"
+        },
+        {
           "target": "com.kubernetes.flowcontrol_apiserver#ReplaceFlowcontrolApiserverV1PriorityLevelConfiguration"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1PriorityLevelConfiguration"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#DeleteFlowcontrolApiserverV1PriorityLevelConfiguration"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#ReadFlowcontrolApiserverV1PriorityLevelConfigurationStatus"
         },
         {
           "target": "com.kubernetes.flowcontrol_apiserver#ReplaceFlowcontrolApiserverV1PriorityLevelConfigurationStatus"
         },
         {
-          "target": "com.kubernetes.flowcontrol_apiserver#WatchFlowcontrolApiserverV1FlowSchema"
+          "target": "com.kubernetes.flowcontrol_apiserver#PatchFlowcontrolApiserverV1PriorityLevelConfigurationStatus"
         },
         {
           "target": "com.kubernetes.flowcontrol_apiserver#WatchFlowcontrolApiserverV1FlowSchemaList"
         },
         {
-          "target": "com.kubernetes.flowcontrol_apiserver#WatchFlowcontrolApiserverV1PriorityLevelConfiguration"
+          "target": "com.kubernetes.flowcontrol_apiserver#WatchFlowcontrolApiserverV1FlowSchema"
         },
         {
           "target": "com.kubernetes.flowcontrol_apiserver#WatchFlowcontrolApiserverV1PriorityLevelConfigurationList"
+        },
+        {
+          "target": "com.kubernetes.flowcontrol_apiserver#WatchFlowcontrolApiserverV1PriorityLevelConfiguration"
         }
       ],
       "traits": {

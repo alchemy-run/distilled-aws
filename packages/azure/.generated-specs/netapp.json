@@ -20260,358 +20260,358 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.netapp#AccountsChangeKeyVault"
-        },
-        {
-          "target": "com.azure.netapp#AccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.netapp#AccountsTransitionToCmk"
-        },
-        {
-          "target": "com.azure.netapp#AuthorizeVolumeExternalReplication"
-        },
-        {
-          "target": "com.azure.netapp#AuthorizeVolumeReplication"
-        },
-        {
-          "target": "com.azure.netapp#BackupsGetVolumeLatestRestoreStatus"
-        },
-        {
-          "target": "com.azure.netapp#BackupVaultsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.netapp#BucketsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.netapp#CachesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.netapp#CachesPoolChange"
-        },
-        {
-          "target": "com.azure.netapp#CheckNetAppResourceFilePathAvailability"
-        },
-        {
-          "target": "com.azure.netapp#CheckNetAppResourceNameAvailability"
-        },
-        {
-          "target": "com.azure.netapp#CheckNetAppResourceQuotaAvailability"
-        },
-        {
-          "target": "com.azure.netapp#ClearRansomwareReportSuspects"
-        },
-        {
-          "target": "com.azure.netapp#CreateBackup"
-        },
-        {
-          "target": "com.azure.netapp#CreateBackupPolicy"
-        },
-        {
-          "target": "com.azure.netapp#CreateSnapshot"
-        },
-        {
-          "target": "com.azure.netapp#CreateSnapshotPolicy"
+          "target": "com.azure.netapp#DeleteVolumeGroup"
         },
         {
           "target": "com.azure.netapp#CreateVolumeGroup"
         },
         {
-          "target": "com.azure.netapp#CreateVolumeQuotaRule"
-        },
-        {
-          "target": "com.azure.netapp#DeleteAccount"
-        },
-        {
-          "target": "com.azure.netapp#DeleteBackup"
-        },
-        {
-          "target": "com.azure.netapp#DeleteBackupPolicy"
-        },
-        {
-          "target": "com.azure.netapp#DeleteBackupVault"
-        },
-        {
-          "target": "com.azure.netapp#DeleteBucket"
-        },
-        {
-          "target": "com.azure.netapp#DeleteCach"
-        },
-        {
-          "target": "com.azure.netapp#DeletePool"
-        },
-        {
-          "target": "com.azure.netapp#DeleteSnapshot"
-        },
-        {
-          "target": "com.azure.netapp#DeleteSnapshotPolicy"
-        },
-        {
-          "target": "com.azure.netapp#DeleteVolume"
-        },
-        {
-          "target": "com.azure.netapp#DeleteVolumeGroup"
-        },
-        {
-          "target": "com.azure.netapp#DeleteVolumeQuotaRule"
-        },
-        {
-          "target": "com.azure.netapp#DeleteVolumeReplication"
-        },
-        {
-          "target": "com.azure.netapp#FinalizeVolumeExternalReplication"
-        },
-        {
-          "target": "com.azure.netapp#FinalizeVolumeRelocation"
-        },
-        {
-          "target": "com.azure.netapp#GenerateBucketAkvCredentials"
-        },
-        {
-          "target": "com.azure.netapp#GenerateBucketCredentials"
-        },
-        {
-          "target": "com.azure.netapp#GetAccount"
-        },
-        {
-          "target": "com.azure.netapp#GetAccountChangeKeyVaultInformation"
-        },
-        {
-          "target": "com.azure.netapp#GetBackup"
-        },
-        {
-          "target": "com.azure.netapp#GetBackupLatestStatus"
-        },
-        {
-          "target": "com.azure.netapp#GetBackupPolicy"
-        },
-        {
-          "target": "com.azure.netapp#GetBackupVault"
-        },
-        {
-          "target": "com.azure.netapp#GetBucket"
-        },
-        {
-          "target": "com.azure.netapp#GetCach"
-        },
-        {
-          "target": "com.azure.netapp#GetNetAppResourceQuotaLimit"
-        },
-        {
-          "target": "com.azure.netapp#GetNetAppResourceQuotaLimitsAccount"
-        },
-        {
-          "target": "com.azure.netapp#GetNetAppResourceRegionInfos"
-        },
-        {
-          "target": "com.azure.netapp#GetNetAppResourceUsage"
-        },
-        {
-          "target": "com.azure.netapp#GetPool"
-        },
-        {
-          "target": "com.azure.netapp#GetRansomwareReport"
-        },
-        {
-          "target": "com.azure.netapp#GetSnapshot"
-        },
-        {
-          "target": "com.azure.netapp#GetSnapshotPolicy"
-        },
-        {
-          "target": "com.azure.netapp#GetVolume"
-        },
-        {
           "target": "com.azure.netapp#GetVolumeGroup"
-        },
-        {
-          "target": "com.azure.netapp#GetVolumeQuotaRule"
-        },
-        {
-          "target": "com.azure.netapp#ListAccountBySubscription"
-        },
-        {
-          "target": "com.azure.netapp#ListAccounts"
-        },
-        {
-          "target": "com.azure.netapp#ListBackupByVault"
-        },
-        {
-          "target": "com.azure.netapp#ListBackupPolicies"
-        },
-        {
-          "target": "com.azure.netapp#ListBackupVaultByNetAppAccount"
-        },
-        {
-          "target": "com.azure.netapp#ListBuckets"
-        },
-        {
-          "target": "com.azure.netapp#ListCaches"
-        },
-        {
-          "target": "com.azure.netapp#ListCachPeeringPassphrases"
-        },
-        {
-          "target": "com.azure.netapp#ListNetAppResourceQuotaLimits"
-        },
-        {
-          "target": "com.azure.netapp#ListNetAppResourceQuotaLimitsAccount"
-        },
-        {
-          "target": "com.azure.netapp#ListNetAppResourceRegionInfos"
-        },
-        {
-          "target": "com.azure.netapp#ListNetAppResourceUsages"
-        },
-        {
-          "target": "com.azure.netapp#ListOperations"
-        },
-        {
-          "target": "com.azure.netapp#ListPools"
-        },
-        {
-          "target": "com.azure.netapp#ListRansomwareReports"
-        },
-        {
-          "target": "com.azure.netapp#ListSnapshotPolicies"
-        },
-        {
-          "target": "com.azure.netapp#ListSnapshotPolicyVolumes"
-        },
-        {
-          "target": "com.azure.netapp#ListSnapshots"
         },
         {
           "target": "com.azure.netapp#ListVolumeGroupByNetAppAccount"
         },
         {
-          "target": "com.azure.netapp#ListVolumeQuotaReport"
+          "target": "com.azure.netapp#AccountsTransitionToCmk"
         },
         {
-          "target": "com.azure.netapp#ListVolumeQuotaRuleByVolume"
+          "target": "com.azure.netapp#ListSnapshotPolicyVolumes"
         },
         {
-          "target": "com.azure.netapp#ListVolumeReplications"
-        },
-        {
-          "target": "com.azure.netapp#ListVolumes"
-        },
-        {
-          "target": "com.azure.netapp#MigrateBackupsUnderAccountBackups"
-        },
-        {
-          "target": "com.azure.netapp#MigrateBackupsUnderVolumeBackups"
-        },
-        {
-          "target": "com.azure.netapp#NetAppResourceQueryRegionInfo"
-        },
-        {
-          "target": "com.azure.netapp#PoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.netapp#RefreshBucketCertificate"
-        },
-        {
-          "target": "com.azure.netapp#RenewAccountCredentials"
-        },
-        {
-          "target": "com.azure.netapp#ResetCachSmbPassword"
-        },
-        {
-          "target": "com.azure.netapp#ResetVolumeCifsPassword"
-        },
-        {
-          "target": "com.azure.netapp#RestoreBackupsUnderBackupVaultFiles"
-        },
-        {
-          "target": "com.azure.netapp#RestoreSnapshotFiles"
-        },
-        {
-          "target": "com.azure.netapp#SetNetAppResourceQueryNetworkSibling"
-        },
-        {
-          "target": "com.azure.netapp#TransferVolumesPerformReplication"
-        },
-        {
-          "target": "com.azure.netapp#UpdateAccount"
-        },
-        {
-          "target": "com.azure.netapp#UpdateBackup"
-        },
-        {
-          "target": "com.azure.netapp#UpdateBackupPolicy"
-        },
-        {
-          "target": "com.azure.netapp#UpdateBackupVault"
-        },
-        {
-          "target": "com.azure.netapp#UpdateBucket"
-        },
-        {
-          "target": "com.azure.netapp#UpdateCach"
-        },
-        {
-          "target": "com.azure.netapp#UpdateNetAppResourceNetworkSiblingSet"
-        },
-        {
-          "target": "com.azure.netapp#UpdatePool"
-        },
-        {
-          "target": "com.azure.netapp#UpdateSnapshot"
+          "target": "com.azure.netapp#DeleteSnapshotPolicy"
         },
         {
           "target": "com.azure.netapp#UpdateSnapshotPolicy"
         },
         {
-          "target": "com.azure.netapp#UpdateVolume"
+          "target": "com.azure.netapp#CreateSnapshotPolicy"
+        },
+        {
+          "target": "com.azure.netapp#GetSnapshotPolicy"
+        },
+        {
+          "target": "com.azure.netapp#ListSnapshotPolicies"
+        },
+        {
+          "target": "com.azure.netapp#RenewAccountCredentials"
+        },
+        {
+          "target": "com.azure.netapp#GetNetAppResourceQuotaLimitsAccount"
+        },
+        {
+          "target": "com.azure.netapp#ListNetAppResourceQuotaLimitsAccount"
+        },
+        {
+          "target": "com.azure.netapp#MigrateBackupsUnderAccountBackups"
+        },
+        {
+          "target": "com.azure.netapp#GetAccountChangeKeyVaultInformation"
+        },
+        {
+          "target": "com.azure.netapp#AccountsChangeKeyVault"
+        },
+        {
+          "target": "com.azure.netapp#DeleteVolumeQuotaRule"
         },
         {
           "target": "com.azure.netapp#UpdateVolumeQuotaRule"
         },
         {
-          "target": "com.azure.netapp#VolumesBreakFileLocks"
+          "target": "com.azure.netapp#CreateVolumeQuotaRule"
         },
         {
-          "target": "com.azure.netapp#VolumesBreakReplication"
+          "target": "com.azure.netapp#GetVolumeQuotaRule"
         },
         {
-          "target": "com.azure.netapp#VolumesCreateOrUpdate"
+          "target": "com.azure.netapp#ListVolumeQuotaRuleByVolume"
         },
         {
-          "target": "com.azure.netapp#VolumesListGetGroupIdListForLdapUser"
+          "target": "com.azure.netapp#VolumesSplitCloneFromParent"
         },
         {
-          "target": "com.azure.netapp#VolumesPeerExternalCluster"
+          "target": "com.azure.netapp#RestoreSnapshotFiles"
         },
         {
-          "target": "com.azure.netapp#VolumesPoolChange"
+          "target": "com.azure.netapp#DeleteSnapshot"
         },
         {
-          "target": "com.azure.netapp#VolumesPopulateAvailabilityZone"
+          "target": "com.azure.netapp#UpdateSnapshot"
         },
         {
-          "target": "com.azure.netapp#VolumesReestablishReplication"
+          "target": "com.azure.netapp#CreateSnapshot"
         },
         {
-          "target": "com.azure.netapp#VolumesReInitializeReplication"
+          "target": "com.azure.netapp#GetSnapshot"
         },
         {
-          "target": "com.azure.netapp#VolumesRelocate"
-        },
-        {
-          "target": "com.azure.netapp#VolumesReplicationStatus"
-        },
-        {
-          "target": "com.azure.netapp#VolumesResyncReplication"
-        },
-        {
-          "target": "com.azure.netapp#VolumesRevert"
+          "target": "com.azure.netapp#ListSnapshots"
         },
         {
           "target": "com.azure.netapp#VolumesRevertRelocation"
         },
         {
-          "target": "com.azure.netapp#VolumesSplitCloneFromParent"
+          "target": "com.azure.netapp#VolumesRevert"
+        },
+        {
+          "target": "com.azure.netapp#VolumesResyncReplication"
+        },
+        {
+          "target": "com.azure.netapp#ResetVolumeCifsPassword"
+        },
+        {
+          "target": "com.azure.netapp#VolumesReplicationStatus"
+        },
+        {
+          "target": "com.azure.netapp#VolumesRelocate"
+        },
+        {
+          "target": "com.azure.netapp#VolumesReInitializeReplication"
+        },
+        {
+          "target": "com.azure.netapp#VolumesReestablishReplication"
+        },
+        {
+          "target": "com.azure.netapp#ClearRansomwareReportSuspects"
+        },
+        {
+          "target": "com.azure.netapp#GetRansomwareReport"
+        },
+        {
+          "target": "com.azure.netapp#ListRansomwareReports"
+        },
+        {
+          "target": "com.azure.netapp#VolumesPopulateAvailabilityZone"
+        },
+        {
+          "target": "com.azure.netapp#VolumesPoolChange"
+        },
+        {
+          "target": "com.azure.netapp#TransferVolumesPerformReplication"
+        },
+        {
+          "target": "com.azure.netapp#VolumesPeerExternalCluster"
+        },
+        {
+          "target": "com.azure.netapp#MigrateBackupsUnderVolumeBackups"
+        },
+        {
+          "target": "com.azure.netapp#ListVolumeReplications"
+        },
+        {
+          "target": "com.azure.netapp#ListVolumeQuotaReport"
+        },
+        {
+          "target": "com.azure.netapp#BackupsGetVolumeLatestRestoreStatus"
+        },
+        {
+          "target": "com.azure.netapp#GetBackupLatestStatus"
+        },
+        {
+          "target": "com.azure.netapp#VolumesListGetGroupIdListForLdapUser"
+        },
+        {
+          "target": "com.azure.netapp#FinalizeVolumeRelocation"
+        },
+        {
+          "target": "com.azure.netapp#FinalizeVolumeExternalReplication"
+        },
+        {
+          "target": "com.azure.netapp#DeleteVolumeReplication"
+        },
+        {
+          "target": "com.azure.netapp#RefreshBucketCertificate"
+        },
+        {
+          "target": "com.azure.netapp#GenerateBucketCredentials"
+        },
+        {
+          "target": "com.azure.netapp#GenerateBucketAkvCredentials"
+        },
+        {
+          "target": "com.azure.netapp#DeleteBucket"
+        },
+        {
+          "target": "com.azure.netapp#UpdateBucket"
+        },
+        {
+          "target": "com.azure.netapp#BucketsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.netapp#GetBucket"
+        },
+        {
+          "target": "com.azure.netapp#ListBuckets"
+        },
+        {
+          "target": "com.azure.netapp#VolumesBreakReplication"
+        },
+        {
+          "target": "com.azure.netapp#VolumesBreakFileLocks"
+        },
+        {
+          "target": "com.azure.netapp#AuthorizeVolumeReplication"
+        },
+        {
+          "target": "com.azure.netapp#AuthorizeVolumeExternalReplication"
+        },
+        {
+          "target": "com.azure.netapp#DeleteVolume"
+        },
+        {
+          "target": "com.azure.netapp#UpdateVolume"
+        },
+        {
+          "target": "com.azure.netapp#VolumesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.netapp#GetVolume"
+        },
+        {
+          "target": "com.azure.netapp#ListVolumes"
+        },
+        {
+          "target": "com.azure.netapp#ResetCachSmbPassword"
+        },
+        {
+          "target": "com.azure.netapp#CachesPoolChange"
+        },
+        {
+          "target": "com.azure.netapp#ListCachPeeringPassphrases"
+        },
+        {
+          "target": "com.azure.netapp#DeleteCach"
+        },
+        {
+          "target": "com.azure.netapp#UpdateCach"
+        },
+        {
+          "target": "com.azure.netapp#CachesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.netapp#GetCach"
+        },
+        {
+          "target": "com.azure.netapp#ListCaches"
+        },
+        {
+          "target": "com.azure.netapp#DeletePool"
+        },
+        {
+          "target": "com.azure.netapp#UpdatePool"
+        },
+        {
+          "target": "com.azure.netapp#PoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.netapp#GetPool"
+        },
+        {
+          "target": "com.azure.netapp#ListPools"
+        },
+        {
+          "target": "com.azure.netapp#RestoreBackupsUnderBackupVaultFiles"
+        },
+        {
+          "target": "com.azure.netapp#DeleteBackup"
+        },
+        {
+          "target": "com.azure.netapp#UpdateBackup"
+        },
+        {
+          "target": "com.azure.netapp#CreateBackup"
+        },
+        {
+          "target": "com.azure.netapp#GetBackup"
+        },
+        {
+          "target": "com.azure.netapp#ListBackupByVault"
+        },
+        {
+          "target": "com.azure.netapp#DeleteBackupVault"
+        },
+        {
+          "target": "com.azure.netapp#UpdateBackupVault"
+        },
+        {
+          "target": "com.azure.netapp#BackupVaultsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.netapp#GetBackupVault"
+        },
+        {
+          "target": "com.azure.netapp#ListBackupVaultByNetAppAccount"
+        },
+        {
+          "target": "com.azure.netapp#DeleteBackupPolicy"
+        },
+        {
+          "target": "com.azure.netapp#UpdateBackupPolicy"
+        },
+        {
+          "target": "com.azure.netapp#CreateBackupPolicy"
+        },
+        {
+          "target": "com.azure.netapp#GetBackupPolicy"
+        },
+        {
+          "target": "com.azure.netapp#ListBackupPolicies"
+        },
+        {
+          "target": "com.azure.netapp#DeleteAccount"
+        },
+        {
+          "target": "com.azure.netapp#UpdateAccount"
+        },
+        {
+          "target": "com.azure.netapp#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.netapp#GetAccount"
+        },
+        {
+          "target": "com.azure.netapp#ListAccounts"
+        },
+        {
+          "target": "com.azure.netapp#ListAccountBySubscription"
+        },
+        {
+          "target": "com.azure.netapp#GetNetAppResourceUsage"
+        },
+        {
+          "target": "com.azure.netapp#ListNetAppResourceUsages"
+        },
+        {
+          "target": "com.azure.netapp#UpdateNetAppResourceNetworkSiblingSet"
+        },
+        {
+          "target": "com.azure.netapp#GetNetAppResourceRegionInfos"
+        },
+        {
+          "target": "com.azure.netapp#ListNetAppResourceRegionInfos"
+        },
+        {
+          "target": "com.azure.netapp#NetAppResourceQueryRegionInfo"
+        },
+        {
+          "target": "com.azure.netapp#GetNetAppResourceQuotaLimit"
+        },
+        {
+          "target": "com.azure.netapp#ListNetAppResourceQuotaLimits"
+        },
+        {
+          "target": "com.azure.netapp#SetNetAppResourceQueryNetworkSibling"
+        },
+        {
+          "target": "com.azure.netapp#CheckNetAppResourceQuotaAvailability"
+        },
+        {
+          "target": "com.azure.netapp#CheckNetAppResourceNameAvailability"
+        },
+        {
+          "target": "com.azure.netapp#CheckNetAppResourceFilePathAvailability"
+        },
+        {
+          "target": "com.azure.netapp#ListOperations"
         }
       ],
       "traits": {

@@ -18041,325 +18041,40 @@
       "version": "v2",
       "operations": [
         {
-          "target": "com.neon.api#AcceptProjectTransferRequest"
-        },
-        {
-          "target": "com.neon.api#AddBranchNeonAuthOauthProvider"
-        },
-        {
-          "target": "com.neon.api#AddBranchNeonAuthTrustedDomain"
-        },
-        {
-          "target": "com.neon.api#AddProjectJWKS"
-        },
-        {
-          "target": "com.neon.api#AssignOrganizationVPCEndpoint"
-        },
-        {
-          "target": "com.neon.api#AssignProjectVPCEndpoint"
-        },
-        {
-          "target": "com.neon.api#CountProjectBranches"
-        },
-        {
-          "target": "com.neon.api#CreateApiKey"
-        },
-        {
-          "target": "com.neon.api#CreateBranchNeonAuthNewUser"
-        },
-        {
-          "target": "com.neon.api#CreateCredential"
-        },
-        {
-          "target": "com.neon.api#CreateNeonAuth"
-        },
-        {
-          "target": "com.neon.api#CreateNeonAuthProviderSDKKeys"
-        },
-        {
-          "target": "com.neon.api#CreateOrganizationInvitations"
-        },
-        {
-          "target": "com.neon.api#CreateOrgApiKey"
-        },
-        {
-          "target": "com.neon.api#CreateProject"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranch"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchAnonymized"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchBucket"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchDataAPI"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchDatabase"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchFunctionDeployment"
-        },
-        {
-          "target": "com.neon.api#CreateProjectBranchRole"
-        },
-        {
-          "target": "com.neon.api#CreateProjectEndpoint"
-        },
-        {
-          "target": "com.neon.api#CreateProjectTransferRequest"
-        },
-        {
-          "target": "com.neon.api#CreateSnapshot"
-        },
-        {
-          "target": "com.neon.api#DeleteBranchNeonAuthOauthProvider"
-        },
-        {
-          "target": "com.neon.api#DeleteBranchNeonAuthTrustedDomain"
-        },
-        {
-          "target": "com.neon.api#DeleteBranchNeonAuthUser"
-        },
-        {
-          "target": "com.neon.api#DeleteOrganizationSpendingLimit"
-        },
-        {
-          "target": "com.neon.api#DeleteOrganizationVPCEndpoint"
-        },
-        {
-          "target": "com.neon.api#DeleteProject"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranch"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchBucket"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchBucketObject"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchBucketObjectsByPrefix"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchCustomDomain"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchDataAPI"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchDatabase"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchFunction"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectBranchRole"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectEndpoint"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectJWKS"
-        },
-        {
-          "target": "com.neon.api#DeleteProjectVPCEndpoint"
-        },
-        {
-          "target": "com.neon.api#DeleteSnapshot"
-        },
-        {
-          "target": "com.neon.api#DisableNeonAuth"
-        },
-        {
-          "target": "com.neon.api#FinalizeRestoreBranch"
-        },
-        {
-          "target": "com.neon.api#GetActiveRegions"
-        },
-        {
-          "target": "com.neon.api#GetAnonymizedBranchStatus"
-        },
-        {
-          "target": "com.neon.api#GetAuthDetails"
-        },
-        {
-          "target": "com.neon.api#GetAvailablePreloadLibraries"
-        },
-        {
-          "target": "com.neon.api#GetConnectionURI"
-        },
-        {
-          "target": "com.neon.api#GetConsumptionHistoryPerBranchV2"
-        },
-        {
-          "target": "com.neon.api#GetConsumptionHistoryPerProject"
-        },
-        {
-          "target": "com.neon.api#GetConsumptionHistoryPerProjectV2"
-        },
-        {
-          "target": "com.neon.api#GetCurrentUserInfo"
-        },
-        {
-          "target": "com.neon.api#GetCurrentUserOrganizations"
-        },
-        {
-          "target": "com.neon.api#GetMaskingRules"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuth"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthAllowLocalhost"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthEmailAndPasswordConfig"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthEmailProvider"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthPhoneNumberPlugin"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthPluginConfigs"
-        },
-        {
-          "target": "com.neon.api#GetNeonAuthWebhookConfig"
-        },
-        {
-          "target": "com.neon.api#GetOrganization"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationInvitations"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationMember"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationMembers"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationSpendingLimit"
-        },
-        {
-          "target": "com.neon.api#GetOrganizationVPCEndpointDetails"
-        },
-        {
-          "target": "com.neon.api#GetProject"
-        },
-        {
           "target": "com.neon.api#GetProjectAdvisorSecurityIssues"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranch"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchAiGateway"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchBucketObject"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchDataAPI"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchDatabase"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchFunction"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchRole"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchRolePassword"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchSchema"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchSchemaComparison"
-        },
-        {
-          "target": "com.neon.api#GetProjectBranchStorage"
-        },
-        {
-          "target": "com.neon.api#GetProjectEndpoint"
-        },
-        {
-          "target": "com.neon.api#GetProjectJWKS"
-        },
-        {
-          "target": "com.neon.api#GetProjectOperation"
-        },
-        {
-          "target": "com.neon.api#GetSnapshotSchedule"
-        },
-        {
-          "target": "com.neon.api#GrantPermissionToProject"
         },
         {
           "target": "com.neon.api#ListApiKeys"
         },
         {
-          "target": "com.neon.api#ListBranchNeonAuthOauthProviders"
+          "target": "com.neon.api#CreateApiKey"
         },
         {
-          "target": "com.neon.api#ListBranchNeonAuthTrustedDomains"
+          "target": "com.neon.api#RevokeApiKey"
         },
         {
-          "target": "com.neon.api#ListCredentials"
+          "target": "com.neon.api#GetProjectOperation"
         },
         {
-          "target": "com.neon.api#ListOrganizationVPCEndpoints"
+          "target": "com.neon.api#ListProjects"
         },
         {
-          "target": "com.neon.api#ListOrganizationVPCEndpointsAllRegions"
+          "target": "com.neon.api#CreateProject"
         },
         {
-          "target": "com.neon.api#ListOrgApiKeys"
+          "target": "com.neon.api#ListSharedProjects"
         },
         {
-          "target": "com.neon.api#ListProjectBranchBucketObjects"
+          "target": "com.neon.api#GetProject"
         },
         {
-          "target": "com.neon.api#ListProjectBranchBuckets"
+          "target": "com.neon.api#UpdateProject"
         },
         {
-          "target": "com.neon.api#ListProjectBranchCustomDomains"
+          "target": "com.neon.api#DeleteProject"
         },
         {
-          "target": "com.neon.api#ListProjectBranchDatabases"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchEndpoints"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranches"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchFunctions"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchLogFields"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchLogFieldValues"
-        },
-        {
-          "target": "com.neon.api#ListProjectBranchRoles"
-        },
-        {
-          "target": "com.neon.api#ListProjectEndpoints"
-        },
-        {
-          "target": "com.neon.api#ListProjectMembers"
+          "target": "com.neon.api#RecoverProject"
         },
         {
           "target": "com.neon.api#ListProjectOperations"
@@ -18368,82 +18083,250 @@
           "target": "com.neon.api#ListProjectPermissions"
         },
         {
-          "target": "com.neon.api#ListProjects"
+          "target": "com.neon.api#GrantPermissionToProject"
         },
         {
-          "target": "com.neon.api#ListProjectVPCEndpoints"
-        },
-        {
-          "target": "com.neon.api#ListSharedProjects"
-        },
-        {
-          "target": "com.neon.api#ListSnapshots"
-        },
-        {
-          "target": "com.neon.api#PresignProjectBranchBucketObject"
-        },
-        {
-          "target": "com.neon.api#QueryProjectBranchLogs"
-        },
-        {
-          "target": "com.neon.api#RecoverProject"
-        },
-        {
-          "target": "com.neon.api#RegisterProjectBranchCustomDomain"
-        },
-        {
-          "target": "com.neon.api#RemoveOrganizationMember"
-        },
-        {
-          "target": "com.neon.api#RemoveProjectMemberRole"
-        },
-        {
-          "target": "com.neon.api#ResetProjectBranchRolePassword"
-        },
-        {
-          "target": "com.neon.api#RestartProjectEndpoint"
-        },
-        {
-          "target": "com.neon.api#RestoreProjectBranch"
-        },
-        {
-          "target": "com.neon.api#RestoreSnapshot"
-        },
-        {
-          "target": "com.neon.api#RevealCredential"
-        },
-        {
-          "target": "com.neon.api#RevokeApiKey"
-        },
-        {
-          "target": "com.neon.api#RevokeCredential"
-        },
-        {
-          "target": "com.neon.api#RevokeOrgApiKey"
-        },
-        {
-          "target": "com.neon.api#RevokePermissionFromProject"
-        },
-        {
-          "target": "com.neon.api#RotateCredential"
-        },
-        {
-          "target": "com.neon.api#SendNeonAuthEmailProviderTest"
-        },
-        {
-          "target": "com.neon.api#SetDefaultProjectBranch"
-        },
-        {
-          "target": "com.neon.api#SetOrganizationSpendingLimit"
+          "target": "com.neon.api#ListProjectMembers"
         },
         {
           "target": "com.neon.api#SetProjectMemberRole"
         },
         {
-          "target": "com.neon.api#SetSnapshotSchedule"
+          "target": "com.neon.api#RemoveProjectMemberRole"
+        },
+        {
+          "target": "com.neon.api#RevokePermissionFromProject"
+        },
+        {
+          "target": "com.neon.api#GetAvailablePreloadLibraries"
+        },
+        {
+          "target": "com.neon.api#CreateProjectTransferRequest"
+        },
+        {
+          "target": "com.neon.api#AcceptProjectTransferRequest"
+        },
+        {
+          "target": "com.neon.api#GetProjectJWKS"
+        },
+        {
+          "target": "com.neon.api#AddProjectJWKS"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectJWKS"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#CreateProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchDataAPI"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuth"
+        },
+        {
+          "target": "com.neon.api#CreateNeonAuth"
+        },
+        {
+          "target": "com.neon.api#DisableNeonAuth"
+        },
+        {
+          "target": "com.neon.api#ListBranchNeonAuthTrustedDomains"
+        },
+        {
+          "target": "com.neon.api#AddBranchNeonAuthTrustedDomain"
+        },
+        {
+          "target": "com.neon.api#DeleteBranchNeonAuthTrustedDomain"
+        },
+        {
+          "target": "com.neon.api#CreateNeonAuthProviderSDKKeys"
+        },
+        {
+          "target": "com.neon.api#CreateBranchNeonAuthNewUser"
+        },
+        {
+          "target": "com.neon.api#DeleteBranchNeonAuthUser"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthUserRole"
+        },
+        {
+          "target": "com.neon.api#TransferNeonAuthProviderProject"
+        },
+        {
+          "target": "com.neon.api#ListBranchNeonAuthOauthProviders"
+        },
+        {
+          "target": "com.neon.api#AddBranchNeonAuthOauthProvider"
+        },
+        {
+          "target": "com.neon.api#UpdateBranchNeonAuthOauthProvider"
+        },
+        {
+          "target": "com.neon.api#DeleteBranchNeonAuthOauthProvider"
+        },
+        {
+          "target": "com.neon.api#SendNeonAuthEmailProviderTest"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuthEmailAndPasswordConfig"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthEmailAndPasswordConfig"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuthEmailProvider"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthEmailProvider"
+        },
+        {
+          "target": "com.neon.api#GetConnectionURI"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuthAllowLocalhost"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthAllowLocalhost"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuthPluginConfigs"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthOrganizationPlugin"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthConfig"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthMagicLinkPlugin"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuthPhoneNumberPlugin"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthPhoneNumberPlugin"
+        },
+        {
+          "target": "com.neon.api#GetNeonAuthWebhookConfig"
+        },
+        {
+          "target": "com.neon.api#UpdateNeonAuthWebhookConfig"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranches"
+        },
+        {
+          "target": "com.neon.api#CreateProjectBranch"
+        },
+        {
+          "target": "com.neon.api#CreateProjectBranchAnonymized"
+        },
+        {
+          "target": "com.neon.api#CountProjectBranches"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranch"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectBranch"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranch"
+        },
+        {
+          "target": "com.neon.api#RestoreProjectBranch"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchSchema"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchSchemaComparison"
+        },
+        {
+          "target": "com.neon.api#GetMaskingRules"
+        },
+        {
+          "target": "com.neon.api#UpdateMaskingRules"
+        },
+        {
+          "target": "com.neon.api#GetAnonymizedBranchStatus"
         },
         {
           "target": "com.neon.api#StartAnonymization"
+        },
+        {
+          "target": "com.neon.api#SetDefaultProjectBranch"
+        },
+        {
+          "target": "com.neon.api#FinalizeRestoreBranch"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchEndpoints"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchDatabases"
+        },
+        {
+          "target": "com.neon.api#CreateProjectBranchDatabase"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchDatabase"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectBranchDatabase"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchDatabase"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchRoles"
+        },
+        {
+          "target": "com.neon.api#CreateProjectBranchRole"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchRole"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchRole"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchRolePassword"
+        },
+        {
+          "target": "com.neon.api#ResetProjectBranchRolePassword"
+        },
+        {
+          "target": "com.neon.api#ListProjectVPCEndpoints"
+        },
+        {
+          "target": "com.neon.api#AssignProjectVPCEndpoint"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectVPCEndpoint"
+        },
+        {
+          "target": "com.neon.api#ListProjectEndpoints"
+        },
+        {
+          "target": "com.neon.api#CreateProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#GetProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#UpdateProjectEndpoint"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectEndpoint"
         },
         {
           "target": "com.neon.api#StartProjectEndpoint"
@@ -18452,67 +18335,184 @@
           "target": "com.neon.api#SuspendProjectEndpoint"
         },
         {
-          "target": "com.neon.api#TransferNeonAuthProviderProject"
+          "target": "com.neon.api#RestartProjectEndpoint"
         },
         {
-          "target": "com.neon.api#TransferProjectsFromOrgToOrg"
+          "target": "com.neon.api#GetConsumptionHistoryPerProject"
         },
         {
-          "target": "com.neon.api#UpdateBranchNeonAuthOauthProvider"
+          "target": "com.neon.api#GetConsumptionHistoryPerProjectV2"
         },
         {
-          "target": "com.neon.api#UpdateMaskingRules"
+          "target": "com.neon.api#GetConsumptionHistoryPerBranchV2"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthAllowLocalhost"
+          "target": "com.neon.api#GetOrganization"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthConfig"
+          "target": "com.neon.api#ListOrgApiKeys"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthEmailAndPasswordConfig"
+          "target": "com.neon.api#CreateOrgApiKey"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthEmailProvider"
+          "target": "com.neon.api#RevokeOrgApiKey"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthMagicLinkPlugin"
+          "target": "com.neon.api#GetOrganizationSpendingLimit"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthOrganizationPlugin"
+          "target": "com.neon.api#SetOrganizationSpendingLimit"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthPhoneNumberPlugin"
+          "target": "com.neon.api#DeleteOrganizationSpendingLimit"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthUserRole"
+          "target": "com.neon.api#GetOrganizationMembers"
         },
         {
-          "target": "com.neon.api#UpdateNeonAuthWebhookConfig"
+          "target": "com.neon.api#GetOrganizationMember"
         },
         {
           "target": "com.neon.api#UpdateOrganizationMember"
         },
         {
-          "target": "com.neon.api#UpdateProject"
+          "target": "com.neon.api#RemoveOrganizationMember"
         },
         {
-          "target": "com.neon.api#UpdateProjectBranch"
+          "target": "com.neon.api#GetOrganizationInvitations"
         },
         {
-          "target": "com.neon.api#UpdateProjectBranchDataAPI"
+          "target": "com.neon.api#CreateOrganizationInvitations"
         },
         {
-          "target": "com.neon.api#UpdateProjectBranchDatabase"
+          "target": "com.neon.api#TransferProjectsFromOrgToOrg"
+        },
+        {
+          "target": "com.neon.api#ListOrganizationVPCEndpointsAllRegions"
+        },
+        {
+          "target": "com.neon.api#ListOrganizationVPCEndpoints"
+        },
+        {
+          "target": "com.neon.api#GetOrganizationVPCEndpointDetails"
+        },
+        {
+          "target": "com.neon.api#AssignOrganizationVPCEndpoint"
+        },
+        {
+          "target": "com.neon.api#DeleteOrganizationVPCEndpoint"
+        },
+        {
+          "target": "com.neon.api#GetActiveRegions"
+        },
+        {
+          "target": "com.neon.api#GetCurrentUserInfo"
+        },
+        {
+          "target": "com.neon.api#GetCurrentUserOrganizations"
+        },
+        {
+          "target": "com.neon.api#GetAuthDetails"
+        },
+        {
+          "target": "com.neon.api#CreateSnapshot"
+        },
+        {
+          "target": "com.neon.api#ListSnapshots"
+        },
+        {
+          "target": "com.neon.api#UpdateSnapshot"
+        },
+        {
+          "target": "com.neon.api#DeleteSnapshot"
+        },
+        {
+          "target": "com.neon.api#RestoreSnapshot"
+        },
+        {
+          "target": "com.neon.api#GetSnapshotSchedule"
+        },
+        {
+          "target": "com.neon.api#SetSnapshotSchedule"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchBuckets"
+        },
+        {
+          "target": "com.neon.api#CreateProjectBranchBucket"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchBucket"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchStorage"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchAiGateway"
+        },
+        {
+          "target": "com.neon.api#QueryProjectBranchLogs"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchLogFields"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchLogFieldValues"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchBucketObjects"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchBucketObject"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchBucketObject"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchBucketObjectsByPrefix"
+        },
+        {
+          "target": "com.neon.api#PresignProjectBranchBucketObject"
+        },
+        {
+          "target": "com.neon.api#ListCredentials"
+        },
+        {
+          "target": "com.neon.api#CreateCredential"
+        },
+        {
+          "target": "com.neon.api#RevokeCredential"
+        },
+        {
+          "target": "com.neon.api#RevealCredential"
+        },
+        {
+          "target": "com.neon.api#RotateCredential"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchFunctions"
+        },
+        {
+          "target": "com.neon.api#GetProjectBranchFunction"
         },
         {
           "target": "com.neon.api#UpdateProjectBranchFunction"
         },
         {
-          "target": "com.neon.api#UpdateProjectEndpoint"
+          "target": "com.neon.api#DeleteProjectBranchFunction"
         },
         {
-          "target": "com.neon.api#UpdateSnapshot"
+          "target": "com.neon.api#CreateProjectBranchFunctionDeployment"
+        },
+        {
+          "target": "com.neon.api#ListProjectBranchCustomDomains"
+        },
+        {
+          "target": "com.neon.api#RegisterProjectBranchCustomDomain"
+        },
+        {
+          "target": "com.neon.api#DeleteProjectBranchCustomDomain"
         }
       ],
       "traits": {

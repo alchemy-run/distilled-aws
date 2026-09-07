@@ -605,10 +605,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.chat_channels#GetChatChannel"
+          "target": "com.whop.chat_channels#ListChatChannel"
         },
         {
-          "target": "com.whop.chat_channels#ListChatChannel"
+          "target": "com.whop.chat_channels#GetChatChannel"
         },
         {
           "target": "com.whop.chat_channels#UpdateChatChannel"

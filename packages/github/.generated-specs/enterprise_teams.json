@@ -714,19 +714,19 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.enterprise_teams#Create"
+          "target": "com.github.enterprise_teams#List"
         },
         {
-          "target": "com.github.enterprise_teams#Delete"
+          "target": "com.github.enterprise_teams#Create"
         },
         {
           "target": "com.github.enterprise_teams#Get"
         },
         {
-          "target": "com.github.enterprise_teams#List"
+          "target": "com.github.enterprise_teams#Update"
         },
         {
-          "target": "com.github.enterprise_teams#Update"
+          "target": "com.github.enterprise_teams#Delete"
         }
       ],
       "traits": {

@@ -40671,40 +40671,55 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.insights#ListInsights"
+        },
+        {
           "target": "com.posthog.insights#CreateInsight"
+        },
+        {
+          "target": "com.posthog.insights#ListInsightsSharing"
         },
         {
           "target": "com.posthog.insights#CreateInsightsSharingPassword"
         },
         {
-          "target": "com.posthog.insights#CreateInsightsSuggestion"
+          "target": "com.posthog.insights#InsightsSharingPasswordsDestroy"
         },
         {
-          "target": "com.posthog.insights#CreateInsightsViewed"
+          "target": "com.posthog.insights#InsightsSharingRefreshCreate"
         },
         {
-          "target": "com.posthog.insights#GetInsight"
-        },
-        {
-          "target": "com.posthog.insights#GetInsightsActivity"
-        },
-        {
-          "target": "com.posthog.insights#GetInsightsAllActivity"
-        },
-        {
-          "target": "com.posthog.insights#GetInsightsAnalyze"
-        },
-        {
-          "target": "com.posthog.insights#GetInsightsMyLastViewed"
-        },
-        {
-          "target": "com.posthog.insights#GetInsightsSuggestion"
+          "target": "com.posthog.insights#ListInsightsThresholds"
         },
         {
           "target": "com.posthog.insights#GetInsightsThreshold"
         },
         {
-          "target": "com.posthog.insights#GetInsightsTrending"
+          "target": "com.posthog.insights#GetInsight"
+        },
+        {
+          "target": "com.posthog.insights#UpdateInsight"
+        },
+        {
+          "target": "com.posthog.insights#UpdateInsightsPartial"
+        },
+        {
+          "target": "com.posthog.insights#InsightsDestroy"
+        },
+        {
+          "target": "com.posthog.insights#GetInsightsActivity"
+        },
+        {
+          "target": "com.posthog.insights#GetInsightsAnalyze"
+        },
+        {
+          "target": "com.posthog.insights#GetInsightsSuggestion"
+        },
+        {
+          "target": "com.posthog.insights#CreateInsightsSuggestion"
+        },
+        {
+          "target": "com.posthog.insights#GetInsightsAllActivity"
         },
         {
           "target": "com.posthog.insights#InsightsBulkDeleteCreate"
@@ -40722,31 +40737,16 @@
           "target": "com.posthog.insights#InsightsCancelCreate"
         },
         {
-          "target": "com.posthog.insights#InsightsDestroy"
-        },
-        {
           "target": "com.posthog.insights#InsightsGenerateMetadataCreate"
         },
         {
-          "target": "com.posthog.insights#InsightsSharingPasswordsDestroy"
+          "target": "com.posthog.insights#GetInsightsMyLastViewed"
         },
         {
-          "target": "com.posthog.insights#InsightsSharingRefreshCreate"
+          "target": "com.posthog.insights#GetInsightsTrending"
         },
         {
-          "target": "com.posthog.insights#ListInsights"
-        },
-        {
-          "target": "com.posthog.insights#ListInsightsSharing"
-        },
-        {
-          "target": "com.posthog.insights#ListInsightsThresholds"
-        },
-        {
-          "target": "com.posthog.insights#UpdateInsight"
-        },
-        {
-          "target": "com.posthog.insights#UpdateInsightsPartial"
+          "target": "com.posthog.insights#CreateInsightsViewed"
         }
       ],
       "traits": {

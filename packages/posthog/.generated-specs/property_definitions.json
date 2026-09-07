@@ -1031,25 +1031,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.property_definitions#GetPropertyDefinition"
-        },
-        {
-          "target": "com.posthog.property_definitions#GetPropertyDefinitionsSeenTogether"
-        },
-        {
           "target": "com.posthog.property_definitions#ListPropertyDefinitions"
         },
         {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsBulkUpdateTagsCreate"
-        },
-        {
-          "target": "com.posthog.property_definitions#PropertyDefinitionsDestroy"
+          "target": "com.posthog.property_definitions#GetPropertyDefinition"
         },
         {
           "target": "com.posthog.property_definitions#UpdatePropertyDefinition"
         },
         {
           "target": "com.posthog.property_definitions#UpdatePropertyDefinitionsPartial"
+        },
+        {
+          "target": "com.posthog.property_definitions#PropertyDefinitionsDestroy"
+        },
+        {
+          "target": "com.posthog.property_definitions#PropertyDefinitionsBulkUpdateTagsCreate"
+        },
+        {
+          "target": "com.posthog.property_definitions#GetPropertyDefinitionsSeenTogether"
         }
       ],
       "traits": {

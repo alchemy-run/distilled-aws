@@ -29739,568 +29739,568 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.billing#AcceptRecipientTransfer"
-        },
-        {
-          "target": "com.azure.billing#AddBillingAccountPaymentTerms"
-        },
-        {
-          "target": "com.azure.billing#AssociatedTenantsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.billing#BillingAccountsListInvoiceSectionsByCreateSubscriptionPermission"
-        },
-        {
-          "target": "com.azure.billing#BillingProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.billing#BillingProfilesValidateDeleteEligibility"
-        },
-        {
-          "target": "com.azure.billing#BillingRequestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsCreateOrUpdateByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsCreateOrUpdateByDepartment"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsCreateOrUpdateByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsResolveByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsResolveByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsResolveByCustomer"
-        },
-        {
-          "target": "com.azure.billing#BillingRoleAssignmentsResolveByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#BillingSubscriptionsAliasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.billing#BillingSubscriptionsSplit"
-        },
-        {
-          "target": "com.azure.billing#BillingSubscriptionsValidateMoveEligibility"
-        },
-        {
-          "target": "com.azure.billing#CancelBillingAccountPaymentTerms"
-        },
-        {
-          "target": "com.azure.billing#CancelBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#CancelPartnerTransfer"
-        },
-        {
-          "target": "com.azure.billing#CancelTransfer"
-        },
-        {
-          "target": "com.azure.billing#CheckBillingPermissionsAccessByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#CheckBillingPermissionsAccessByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#CheckBillingPermissionsAccessByCustomer"
-        },
-        {
-          "target": "com.azure.billing#CheckBillingPermissionsAccessByDepartment"
-        },
-        {
-          "target": "com.azure.billing#CheckBillingPermissionsAccessByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#CheckBillingPermissionsAccessByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ConfirmBillingAccountTransition"
-        },
-        {
-          "target": "com.azure.billing#CreateBillingRoleAssignmentByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#CreateBillingRoleAssignmentByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#CreateBillingRoleAssignmentByCustomer"
-        },
-        {
-          "target": "com.azure.billing#CreateBillingRoleAssignmentByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#DeleteAssociatedTenant"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingRoleAssignmentByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingRoleAssignmentByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingRoleAssignmentByCustomer"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingRoleAssignmentByDepartment"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingRoleAssignmentByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingRoleAssignmentByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#DeleteBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#DeleteInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#DeletePaymentMethodByUser"
-        },
-        {
-          "target": "com.azure.billing#DownloadInvoiceByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#DownloadInvoiceByBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#DownloadInvoiceDocumentsByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#DownloadInvoiceDocumentsByBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#DownloadInvoiceSummaryByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetAgreement"
-        },
-        {
-          "target": "com.azure.billing#GetAssociatedTenant"
-        },
-        {
-          "target": "com.azure.billing#GetAvailableBalanceByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetAvailableBalanceByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetBillingProperty"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRequest"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleAssignmentByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleAssignmentByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleAssignmentByCustomer"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleAssignmentByDepartment"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleAssignmentByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleAssignmentByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleDefinitionByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleDefinitionByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleDefinitionByCustomer"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleDefinitionByDepartment"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleDefinitionByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#GetBillingRoleDefinitionByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#GetBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#GetBillingSubscriptionByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetBillingSubscriptionsAlias"
-        },
-        {
-          "target": "com.azure.billing#GetCustomer"
-        },
-        {
-          "target": "com.azure.billing#GetCustomerByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetDepartment"
-        },
-        {
-          "target": "com.azure.billing#GetEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#GetEnrollmentAccountByDepartment"
-        },
-        {
-          "target": "com.azure.billing#GetInvoice"
-        },
-        {
-          "target": "com.azure.billing#GetInvoiceByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetInvoiceByBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#GetInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#GetPartnerTransfer"
-        },
-        {
-          "target": "com.azure.billing#GetPaymentMethodByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetPaymentMethodByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetPaymentMethodByUser"
-        },
-        {
-          "target": "com.azure.billing#GetPolicyByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetPolicyByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#GetPolicyByCustomer"
-        },
-        {
-          "target": "com.azure.billing#GetPolicyByCustomerAtBillingAccount"
-        },
-        {
           "target": "com.azure.billing#GetPolicyBySubscription"
-        },
-        {
-          "target": "com.azure.billing#GetProduct"
-        },
-        {
-          "target": "com.azure.billing#GetRecipientTransfer"
-        },
-        {
-          "target": "com.azure.billing#GetReservationByReservationOrder"
-        },
-        {
-          "target": "com.azure.billing#GetReservationOrderByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetSavingsPlanByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetSavingsPlanOrderByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#GetTransactionTransactionSummaryByInvoice"
-        },
-        {
-          "target": "com.azure.billing#GetTransfer"
-        },
-        {
-          "target": "com.azure.billing#InvoicesAmend"
-        },
-        {
-          "target": "com.azure.billing#InvoiceSectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.billing#InvoiceSectionsValidateDeleteEligibility"
-        },
-        {
-          "target": "com.azure.billing#ListAgreementByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListAssociatedTenantByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingAccounts"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByCustomerAtBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByDepartment"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingPermissionsByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListBillingProfileByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRequestByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRequestByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRequestByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRequestByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRequestByUser"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleAssignmentByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleAssignmentByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleAssignmentByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleAssignmentByDepartment"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleAssignmentByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleAssignmentByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleDefinitionByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleDefinitionByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleDefinitionByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleDefinitionByDepartment"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleDefinitionByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingRoleDefinitionByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionByCustomerAtBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionByEnrollmentAccount"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListBillingSubscriptionsAliasByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListCustomerByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListCustomerByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListDepartmentByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListEnrollmentAccountByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListEnrollmentAccountByDepartment"
-        },
-        {
-          "target": "com.azure.billing#ListInvoiceByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListInvoiceByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListInvoiceByBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#ListInvoiceSectionByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListOperations"
-        },
-        {
-          "target": "com.azure.billing#ListPartnerTransfers"
-        },
-        {
-          "target": "com.azure.billing#ListPaymentMethodByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListPaymentMethodByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListPaymentMethodByUser"
-        },
-        {
-          "target": "com.azure.billing#ListProductByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListProductByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListProductByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListProductByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListRecipientTransfers"
-        },
-        {
-          "target": "com.azure.billing#ListReservationByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListReservationByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListReservationByReservationOrder"
-        },
-        {
-          "target": "com.azure.billing#ListReservationOrderByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListSavingsPlanByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListSavingsPlanBySavingsPlanOrder"
-        },
-        {
-          "target": "com.azure.billing#ListSavingsPlanOrderByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ListTransactionByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#ListTransactionByCustomer"
-        },
-        {
-          "target": "com.azure.billing#ListTransactionByInvoice"
-        },
-        {
-          "target": "com.azure.billing#ListTransactionByInvoiceSection"
-        },
-        {
-          "target": "com.azure.billing#ListTransfers"
-        },
-        {
-          "target": "com.azure.billing#MergeBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#MoveBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#MoveProduct"
-        },
-        {
-          "target": "com.azure.billing#PartnerTransfersInitiate"
-        },
-        {
-          "target": "com.azure.billing#PoliciesCreateOrUpdateByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#PoliciesCreateOrUpdateByBillingProfile"
-        },
-        {
-          "target": "com.azure.billing#PoliciesCreateOrUpdateByCustomer"
-        },
-        {
-          "target": "com.azure.billing#PoliciesCreateOrUpdateByCustomerAtBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#ProductsValidateMoveEligibility"
-        },
-        {
-          "target": "com.azure.billing#RecipientTransfersDecline"
-        },
-        {
-          "target": "com.azure.billing#SavingsPlansValidateUpdateByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#TransactionsTransactionsDownloadByInvoice"
-        },
-        {
-          "target": "com.azure.billing#TransfersInitiate"
-        },
-        {
-          "target": "com.azure.billing#UpdateBillingAccount"
         },
         {
           "target": "com.azure.billing#UpdateBillingProperty"
         },
         {
-          "target": "com.azure.billing#UpdateBillingSubscription"
-        },
-        {
-          "target": "com.azure.billing#UpdateProduct"
-        },
-        {
-          "target": "com.azure.billing#UpdateReservationByBillingAccount"
-        },
-        {
-          "target": "com.azure.billing#UpdateSavingsPlanByBillingAccount"
+          "target": "com.azure.billing#GetBillingProperty"
         },
         {
           "target": "com.azure.billing#ValidateAddress"
         },
         {
+          "target": "com.azure.billing#ValidateRecipientTransfer"
+        },
+        {
+          "target": "com.azure.billing#RecipientTransfersDecline"
+        },
+        {
+          "target": "com.azure.billing#AcceptRecipientTransfer"
+        },
+        {
+          "target": "com.azure.billing#GetRecipientTransfer"
+        },
+        {
+          "target": "com.azure.billing#ListRecipientTransfers"
+        },
+        {
+          "target": "com.azure.billing#DeletePaymentMethodByUser"
+        },
+        {
+          "target": "com.azure.billing#GetPaymentMethodByUser"
+        },
+        {
+          "target": "com.azure.billing#ListPaymentMethodByUser"
+        },
+        {
+          "target": "com.azure.billing#ListOperations"
+        },
+        {
+          "target": "com.azure.billing#BillingRequestsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRequest"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRequestByUser"
+        },
+        {
+          "target": "com.azure.billing#GetInvoice"
+        },
+        {
+          "target": "com.azure.billing#DownloadInvoiceByBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#GetInvoiceByBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#ListInvoiceByBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#DownloadInvoiceDocumentsByBillingSubscription"
+        },
+        {
           "target": "com.azure.billing#ValidateBillingAccountPaymentTerms"
         },
         {
-          "target": "com.azure.billing#ValidateRecipientTransfer"
+          "target": "com.azure.billing#ListSavingsPlanByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#SavingsPlansValidateUpdateByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#UpdateSavingsPlanByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetSavingsPlanByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListSavingsPlanBySavingsPlanOrder"
+        },
+        {
+          "target": "com.azure.billing#GetSavingsPlanOrderByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListSavingsPlanOrderByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsResolveByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListReservationByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#UpdateReservationByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetReservationByReservationOrder"
+        },
+        {
+          "target": "com.azure.billing#ListReservationByReservationOrder"
+        },
+        {
+          "target": "com.azure.billing#GetReservationOrderByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListReservationOrderByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ProductsValidateMoveEligibility"
+        },
+        {
+          "target": "com.azure.billing#MoveProduct"
+        },
+        {
+          "target": "com.azure.billing#UpdateProduct"
+        },
+        {
+          "target": "com.azure.billing#GetProduct"
+        },
+        {
+          "target": "com.azure.billing#ListProductByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#PoliciesCreateOrUpdateByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetPolicyByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetPaymentMethodByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListPaymentMethodByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#BillingAccountsListInvoiceSectionsByCreateSubscriptionPermission"
+        },
+        {
+          "target": "com.azure.billing#TransactionsTransactionsDownloadByInvoice"
+        },
+        {
+          "target": "com.azure.billing#ListTransactionByInvoice"
+        },
+        {
+          "target": "com.azure.billing#GetTransactionTransactionSummaryByInvoice"
+        },
+        {
+          "target": "com.azure.billing#DownloadInvoiceSummaryByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#DownloadInvoiceByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#InvoicesAmend"
+        },
+        {
+          "target": "com.azure.billing#GetInvoiceByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListInvoiceByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#CheckBillingPermissionsAccessByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleDefinitionByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleDefinitionByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingRoleAssignmentByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsCreateOrUpdateByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleAssignmentByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleAssignmentByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#GetEnrollmentAccount"
+        },
+        {
+          "target": "com.azure.billing#ListEnrollmentAccountByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#DownloadInvoiceDocumentsByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetEnrollmentAccountByDepartment"
+        },
+        {
+          "target": "com.azure.billing#ListEnrollmentAccountByDepartment"
+        },
+        {
+          "target": "com.azure.billing#CheckBillingPermissionsAccessByDepartment"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleDefinitionByDepartment"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleDefinitionByDepartment"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingRoleAssignmentByDepartment"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsCreateOrUpdateByDepartment"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleAssignmentByDepartment"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleAssignmentByDepartment"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByDepartment"
+        },
+        {
+          "target": "com.azure.billing#GetDepartment"
+        },
+        {
+          "target": "com.azure.billing#ListDepartmentByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListProductByCustomer"
+        },
+        {
+          "target": "com.azure.billing#PoliciesCreateOrUpdateByCustomerAtBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetPolicyByCustomerAtBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionByCustomerAtBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByCustomerAtBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetCustomerByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListCustomerByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#CreateBillingRoleAssignmentByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ConfirmBillingAccountTransition"
+        },
+        {
+          "target": "com.azure.billing#CheckBillingPermissionsAccessByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#CancelBillingAccountPaymentTerms"
+        },
+        {
+          "target": "com.azure.billing#BillingSubscriptionsValidateMoveEligibility"
+        },
+        {
+          "target": "com.azure.billing#BillingSubscriptionsSplit"
+        },
+        {
+          "target": "com.azure.billing#MoveBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#MergeBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#CancelBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#UpdateBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#GetBillingSubscription"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#BillingSubscriptionsAliasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.billing#GetBillingSubscriptionsAlias"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionsAliasByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleDefinitionByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleDefinitionByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingRoleAssignmentByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsCreateOrUpdateByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleAssignmentByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleAssignmentByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRequestByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#BillingProfilesValidateDeleteEligibility"
+        },
+        {
+          "target": "com.azure.billing#ListTransactionByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsResolveByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListReservationByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListProductByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#PoliciesCreateOrUpdateByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#GetPolicyByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#GetPaymentMethodByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListPaymentMethodByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListInvoiceByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#InvoiceSectionsValidateDeleteEligibility"
+        },
+        {
+          "target": "com.azure.billing#CancelTransfer"
+        },
+        {
+          "target": "com.azure.billing#TransfersInitiate"
+        },
+        {
+          "target": "com.azure.billing#GetTransfer"
+        },
+        {
+          "target": "com.azure.billing#ListTransfers"
+        },
+        {
+          "target": "com.azure.billing#ListTransactionByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsResolveByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListProductByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#CreateBillingRoleAssignmentByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#CheckBillingPermissionsAccessByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleDefinitionByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleDefinitionByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingRoleAssignmentByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleAssignmentByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleAssignmentByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRequestByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#DeleteInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#InvoiceSectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.billing#GetInvoiceSection"
+        },
+        {
+          "target": "com.azure.billing#ListInvoiceSectionByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#CancelPartnerTransfer"
+        },
+        {
+          "target": "com.azure.billing#PartnerTransfersInitiate"
+        },
+        {
+          "target": "com.azure.billing#GetPartnerTransfer"
+        },
+        {
+          "target": "com.azure.billing#ListPartnerTransfers"
+        },
+        {
+          "target": "com.azure.billing#ListTransactionByCustomer"
+        },
+        {
+          "target": "com.azure.billing#BillingRoleAssignmentsResolveByCustomer"
+        },
+        {
+          "target": "com.azure.billing#PoliciesCreateOrUpdateByCustomer"
+        },
+        {
+          "target": "com.azure.billing#GetPolicyByCustomer"
+        },
+        {
+          "target": "com.azure.billing#CreateBillingRoleAssignmentByCustomer"
+        },
+        {
+          "target": "com.azure.billing#CheckBillingPermissionsAccessByCustomer"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionByCustomer"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleDefinitionByCustomer"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleDefinitionByCustomer"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingRoleAssignmentByCustomer"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleAssignmentByCustomer"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleAssignmentByCustomer"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRequestByCustomer"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByCustomer"
+        },
+        {
+          "target": "com.azure.billing#GetCustomer"
+        },
+        {
+          "target": "com.azure.billing#ListCustomerByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#CreateBillingRoleAssignmentByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#CheckBillingPermissionsAccessByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#GetBillingSubscriptionByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListBillingSubscriptionByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleDefinitionByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleDefinitionByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingRoleAssignmentByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#GetBillingRoleAssignmentByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRoleAssignmentByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListBillingRequestByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#GetAvailableBalanceByBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#DeleteBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#BillingProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.billing#GetBillingProfile"
+        },
+        {
+          "target": "com.azure.billing#ListBillingProfileByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingPermissionsByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetAvailableBalanceByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#DeleteAssociatedTenant"
+        },
+        {
+          "target": "com.azure.billing#AssociatedTenantsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.billing#GetAssociatedTenant"
+        },
+        {
+          "target": "com.azure.billing#ListAssociatedTenantByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetAgreement"
+        },
+        {
+          "target": "com.azure.billing#ListAgreementByBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#AddBillingAccountPaymentTerms"
+        },
+        {
+          "target": "com.azure.billing#UpdateBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#GetBillingAccount"
+        },
+        {
+          "target": "com.azure.billing#ListBillingAccounts"
         }
       ],
       "traits": {

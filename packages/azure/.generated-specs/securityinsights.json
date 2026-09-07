@@ -16521,289 +16521,289 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.securityinsights#ActionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#AlertRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#AutomationRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#BookmarksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#CreateMetadata"
-        },
-        {
-          "target": "com.azure.securityinsights#CreateSentinelOnboardingState"
-        },
-        {
-          "target": "com.azure.securityinsights#CreateSourceControl"
-        },
-        {
-          "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicator"
-        },
-        {
-          "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicator"
-        },
-        {
-          "target": "com.azure.securityinsights#DataConnectorDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#DataConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteAction"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteAlertRule"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteAutomationRule"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteBookmark"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteContentTemplate"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteDataConnector"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteDataConnectorDefinition"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteIncident"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteIncidentComment"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteIncidentRelation"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteIncidentTask"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteMetadata"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteSecurityMLAnalyticsSettings"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteSentinelOnboardingState"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteSourceControl"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteThreatIntelligenceIndicator"
-        },
-        {
-          "target": "com.azure.securityinsights#DeleteWatchlist"
-        },
-        {
           "target": "com.azure.securityinsights#DeleteWatchlistItem"
-        },
-        {
-          "target": "com.azure.securityinsights#GetAction"
-        },
-        {
-          "target": "com.azure.securityinsights#GetAlertRule"
-        },
-        {
-          "target": "com.azure.securityinsights#GetAlertRuleTemplate"
-        },
-        {
-          "target": "com.azure.securityinsights#GetAutomationRule"
-        },
-        {
-          "target": "com.azure.securityinsights#GetBookmark"
-        },
-        {
-          "target": "com.azure.securityinsights#GetContentPackage"
-        },
-        {
-          "target": "com.azure.securityinsights#GetContentTemplate"
-        },
-        {
-          "target": "com.azure.securityinsights#GetDataConnector"
-        },
-        {
-          "target": "com.azure.securityinsights#GetDataConnectorDefinition"
-        },
-        {
-          "target": "com.azure.securityinsights#GetIncident"
-        },
-        {
-          "target": "com.azure.securityinsights#GetIncidentComment"
-        },
-        {
-          "target": "com.azure.securityinsights#GetIncidentRelation"
-        },
-        {
-          "target": "com.azure.securityinsights#GetIncidentTask"
-        },
-        {
-          "target": "com.azure.securityinsights#GetMetadata"
-        },
-        {
-          "target": "com.azure.securityinsights#GetProductPackage"
-        },
-        {
-          "target": "com.azure.securityinsights#GetProductTemplate"
-        },
-        {
-          "target": "com.azure.securityinsights#GetSecurityMLAnalyticsSettings"
-        },
-        {
-          "target": "com.azure.securityinsights#GetSentinelOnboardingState"
-        },
-        {
-          "target": "com.azure.securityinsights#GetSourceControl"
-        },
-        {
-          "target": "com.azure.securityinsights#GetThreatIntelligenceIndicator"
-        },
-        {
-          "target": "com.azure.securityinsights#GetWatchlist"
-        },
-        {
-          "target": "com.azure.securityinsights#GetWatchlistItem"
-        },
-        {
-          "target": "com.azure.securityinsights#IncidentCommentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#IncidentRelationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#IncidentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#IncidentTasksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#InstallContentPackage"
-        },
-        {
-          "target": "com.azure.securityinsights#InstallContentTemplate"
-        },
-        {
-          "target": "com.azure.securityinsights#ListActionByAlertRule"
-        },
-        {
-          "target": "com.azure.securityinsights#ListAlertRules"
-        },
-        {
-          "target": "com.azure.securityinsights#ListAlertRuleTemplates"
-        },
-        {
-          "target": "com.azure.securityinsights#ListAutomationRules"
-        },
-        {
-          "target": "com.azure.securityinsights#ListBookmarks"
-        },
-        {
-          "target": "com.azure.securityinsights#ListContentPackages"
-        },
-        {
-          "target": "com.azure.securityinsights#ListContentTemplates"
-        },
-        {
-          "target": "com.azure.securityinsights#ListDataConnectorDefinitions"
-        },
-        {
-          "target": "com.azure.securityinsights#ListDataConnectors"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidentAlerts"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidentBookmarks"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidentComments"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidentEntities"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidentRelations"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidents"
-        },
-        {
-          "target": "com.azure.securityinsights#ListIncidentTasks"
-        },
-        {
-          "target": "com.azure.securityinsights#ListMetadata"
-        },
-        {
-          "target": "com.azure.securityinsights#ListOperations"
-        },
-        {
-          "target": "com.azure.securityinsights#ListProductPackages"
-        },
-        {
-          "target": "com.azure.securityinsights#ListProductTemplates"
-        },
-        {
-          "target": "com.azure.securityinsights#ListSecurityMLAnalyticsSettings"
-        },
-        {
-          "target": "com.azure.securityinsights#ListSentinelOnboardingStates"
-        },
-        {
-          "target": "com.azure.securityinsights#ListSourceControlRepositories"
-        },
-        {
-          "target": "com.azure.securityinsights#ListSourceControls"
-        },
-        {
-          "target": "com.azure.securityinsights#ListThreatIntelligenceIndicatorMetrics"
-        },
-        {
-          "target": "com.azure.securityinsights#ListThreatIntelligenceIndicators"
-        },
-        {
-          "target": "com.azure.securityinsights#ListWatchlistItems"
-        },
-        {
-          "target": "com.azure.securityinsights#ListWatchlists"
-        },
-        {
-          "target": "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTags"
-        },
-        {
-          "target": "com.azure.securityinsights#RunEntityPlaybook"
-        },
-        {
-          "target": "com.azure.securityinsights#RunIncidentPlaybook"
-        },
-        {
-          "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorAppendTags"
-        },
-        {
-          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorQueryIndicators"
-        },
-        {
-          "target": "com.azure.securityinsights#UninstallContentPackage"
-        },
-        {
-          "target": "com.azure.securityinsights#UpdateMetadata"
         },
         {
           "target": "com.azure.securityinsights#WatchlistItemsCreateOrUpdate"
         },
         {
+          "target": "com.azure.securityinsights#GetWatchlistItem"
+        },
+        {
+          "target": "com.azure.securityinsights#ListWatchlistItems"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteWatchlist"
+        },
+        {
           "target": "com.azure.securityinsights#WatchlistsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetWatchlist"
+        },
+        {
+          "target": "com.azure.securityinsights#ListWatchlists"
+        },
+        {
+          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorQueryIndicators"
+        },
+        {
+          "target": "com.azure.securityinsights#ListThreatIntelligenceIndicatorMetrics"
+        },
+        {
+          "target": "com.azure.securityinsights#ReplaceThreatIntelligenceIndicatorTags"
+        },
+        {
+          "target": "com.azure.securityinsights#ThreatIntelligenceIndicatorAppendTags"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteThreatIntelligenceIndicator"
+        },
+        {
+          "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicator"
+        },
+        {
+          "target": "com.azure.securityinsights#GetThreatIntelligenceIndicator"
+        },
+        {
+          "target": "com.azure.securityinsights#ListThreatIntelligenceIndicators"
+        },
+        {
+          "target": "com.azure.securityinsights#CreateThreatIntelligenceIndicatorIndicator"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteSourceControl"
+        },
+        {
+          "target": "com.azure.securityinsights#CreateSourceControl"
+        },
+        {
+          "target": "com.azure.securityinsights#GetSourceControl"
+        },
+        {
+          "target": "com.azure.securityinsights#ListSourceControls"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteSecurityMLAnalyticsSettings"
+        },
+        {
+          "target": "com.azure.securityinsights#SecurityMLAnalyticsSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetSecurityMLAnalyticsSettings"
+        },
+        {
+          "target": "com.azure.securityinsights#ListSecurityMLAnalyticsSettings"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteSentinelOnboardingState"
+        },
+        {
+          "target": "com.azure.securityinsights#CreateSentinelOnboardingState"
+        },
+        {
+          "target": "com.azure.securityinsights#GetSentinelOnboardingState"
+        },
+        {
+          "target": "com.azure.securityinsights#ListSentinelOnboardingStates"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteMetadata"
+        },
+        {
+          "target": "com.azure.securityinsights#UpdateMetadata"
+        },
+        {
+          "target": "com.azure.securityinsights#CreateMetadata"
+        },
+        {
+          "target": "com.azure.securityinsights#GetMetadata"
+        },
+        {
+          "target": "com.azure.securityinsights#ListMetadata"
+        },
+        {
+          "target": "com.azure.securityinsights#ListSourceControlRepositories"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteIncidentTask"
+        },
+        {
+          "target": "com.azure.securityinsights#IncidentTasksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetIncidentTask"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidentTasks"
+        },
+        {
+          "target": "com.azure.securityinsights#RunIncidentPlaybook"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteIncidentRelation"
+        },
+        {
+          "target": "com.azure.securityinsights#IncidentRelationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetIncidentRelation"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidentRelations"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidentEntities"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteIncidentComment"
+        },
+        {
+          "target": "com.azure.securityinsights#IncidentCommentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetIncidentComment"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidentComments"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidentBookmarks"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidentAlerts"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteIncident"
+        },
+        {
+          "target": "com.azure.securityinsights#IncidentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetIncident"
+        },
+        {
+          "target": "com.azure.securityinsights#ListIncidents"
+        },
+        {
+          "target": "com.azure.securityinsights#RunEntityPlaybook"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteDataConnector"
+        },
+        {
+          "target": "com.azure.securityinsights#DataConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetDataConnector"
+        },
+        {
+          "target": "com.azure.securityinsights#ListDataConnectors"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteDataConnectorDefinition"
+        },
+        {
+          "target": "com.azure.securityinsights#DataConnectorDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetDataConnectorDefinition"
+        },
+        {
+          "target": "com.azure.securityinsights#ListDataConnectorDefinitions"
+        },
+        {
+          "target": "com.azure.securityinsights#GetProductTemplate"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteContentTemplate"
+        },
+        {
+          "target": "com.azure.securityinsights#InstallContentTemplate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetContentTemplate"
+        },
+        {
+          "target": "com.azure.securityinsights#ListContentTemplates"
+        },
+        {
+          "target": "com.azure.securityinsights#ListProductTemplates"
+        },
+        {
+          "target": "com.azure.securityinsights#GetProductPackage"
+        },
+        {
+          "target": "com.azure.securityinsights#ListProductPackages"
+        },
+        {
+          "target": "com.azure.securityinsights#UninstallContentPackage"
+        },
+        {
+          "target": "com.azure.securityinsights#InstallContentPackage"
+        },
+        {
+          "target": "com.azure.securityinsights#GetContentPackage"
+        },
+        {
+          "target": "com.azure.securityinsights#ListContentPackages"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteBookmark"
+        },
+        {
+          "target": "com.azure.securityinsights#BookmarksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetBookmark"
+        },
+        {
+          "target": "com.azure.securityinsights#ListBookmarks"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteAutomationRule"
+        },
+        {
+          "target": "com.azure.securityinsights#AutomationRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetAutomationRule"
+        },
+        {
+          "target": "com.azure.securityinsights#ListAutomationRules"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteAction"
+        },
+        {
+          "target": "com.azure.securityinsights#ActionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetAction"
+        },
+        {
+          "target": "com.azure.securityinsights#ListActionByAlertRule"
+        },
+        {
+          "target": "com.azure.securityinsights#DeleteAlertRule"
+        },
+        {
+          "target": "com.azure.securityinsights#AlertRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityinsights#GetAlertRule"
+        },
+        {
+          "target": "com.azure.securityinsights#ListAlertRules"
+        },
+        {
+          "target": "com.azure.securityinsights#GetAlertRuleTemplate"
+        },
+        {
+          "target": "com.azure.securityinsights#ListAlertRuleTemplates"
+        },
+        {
+          "target": "com.azure.securityinsights#ListOperations"
         }
       ],
       "traits": {

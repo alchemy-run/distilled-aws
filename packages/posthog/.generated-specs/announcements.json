@@ -641,13 +641,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.announcements#ListAnnouncements"
+        },
+        {
           "target": "com.posthog.announcements#CreateAnnouncement"
         },
         {
           "target": "com.posthog.announcements#GetAnnouncement"
-        },
-        {
-          "target": "com.posthog.announcements#ListAnnouncements"
         },
         {
           "target": "com.posthog.announcements#ListAnnouncementsChannels"

@@ -536,19 +536,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.dm_channels#CreateDmChannel"
+          "target": "com.whop.dm_channels#ListDmChannel"
         },
         {
-          "target": "com.whop.dm_channels#DeleteDmChannel"
+          "target": "com.whop.dm_channels#CreateDmChannel"
         },
         {
           "target": "com.whop.dm_channels#GetDmChannel"
         },
         {
-          "target": "com.whop.dm_channels#ListDmChannel"
+          "target": "com.whop.dm_channels#UpdateDmChannel"
         },
         {
-          "target": "com.whop.dm_channels#UpdateDmChannel"
+          "target": "com.whop.dm_channels#DeleteDmChannel"
         }
       ],
       "traits": {

@@ -8330,19 +8330,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.kubernetesconfiguration#CreateExtension"
+          "target": "com.azure.kubernetesconfiguration#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.kubernetesconfiguration#ListExtensions"
         },
         {
           "target": "com.azure.kubernetesconfiguration#DeleteExtension"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#DeleteFluxConfiguration"
+          "target": "com.azure.kubernetesconfiguration#UpdateExtension"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#DeleteSourceControlConfiguration"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsCreateOrUpdate"
+          "target": "com.azure.kubernetesconfiguration#CreateExtension"
         },
         {
           "target": "com.azure.kubernetesconfiguration#GetExtension"
@@ -8351,37 +8351,37 @@
           "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatus"
         },
         {
+          "target": "com.azure.kubernetesconfiguration#ListFluxConfigurations"
+        },
+        {
+          "target": "com.azure.kubernetesconfiguration#DeleteFluxConfiguration"
+        },
+        {
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfiguration"
+        },
+        {
+          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.kubernetesconfiguration#GetFluxConfiguration"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#GetOperationStatus"
+          "target": "com.azure.kubernetesconfiguration#ListSourceControlConfigurations"
+        },
+        {
+          "target": "com.azure.kubernetesconfiguration#DeleteSourceControlConfiguration"
+        },
+        {
+          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsCreateOrUpdate"
         },
         {
           "target": "com.azure.kubernetesconfiguration#GetSourceControlConfiguration"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#ListExtensions"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#ListFluxConfigurations"
         },
         {
           "target": "com.azure.kubernetesconfiguration#ListOperations"
         },
         {
           "target": "com.azure.kubernetesconfiguration#ListOperationStatus"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#ListSourceControlConfigurations"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#UpdateExtension"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfiguration"
         }
       ],
       "traits": {

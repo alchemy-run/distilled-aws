@@ -1744,40 +1744,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagediscovery#DeleteStorageDiscoveryWorkspace"
-        },
-        {
           "target": "com.azure.storagediscovery#GenerateReportReport"
         },
         {
           "target": "com.azure.storagediscovery#GetReport"
         },
         {
-          "target": "com.azure.storagediscovery#GetStorageDiscoveryWorkspace"
-        },
-        {
-          "target": "com.azure.storagediscovery#ListOperations"
-        },
-        {
           "target": "com.azure.storagediscovery#ListReportByResourceGroup"
-        },
-        {
-          "target": "com.azure.storagediscovery#ListReportBySubscription"
-        },
-        {
-          "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceBySubscription"
-        },
-        {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdate"
         },
         {
           "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesReport"
         },
         {
+          "target": "com.azure.storagediscovery#DeleteStorageDiscoveryWorkspace"
+        },
+        {
           "target": "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspace"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagediscovery#GetStorageDiscoveryWorkspace"
+        },
+        {
+          "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.storagediscovery#ListReportBySubscription"
+        },
+        {
+          "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.storagediscovery#ListOperations"
         }
       ],
       "traits": {

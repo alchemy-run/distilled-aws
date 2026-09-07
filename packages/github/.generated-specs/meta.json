@@ -666,19 +666,19 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.meta#Get"
+          "target": "com.github.meta#Root2"
         },
         {
-          "target": "com.github.meta#GetAllVersions"
+          "target": "com.github.meta#Get"
         },
         {
           "target": "com.github.meta#GetOctocat"
         },
         {
-          "target": "com.github.meta#GetZen"
+          "target": "com.github.meta#GetAllVersions"
         },
         {
-          "target": "com.github.meta#Root2"
+          "target": "com.github.meta#GetZen"
         }
       ],
       "traits": {

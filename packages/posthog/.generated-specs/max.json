@@ -1731,40 +1731,40 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.max#ConversationsCancelPartialUpdate"
-        },
-        {
-          "target": "com.posthog.max#ConversationsDestroy"
-        },
-        {
-          "target": "com.posthog.max#ConversationsQueueDestroy"
+          "target": "com.posthog.max#ListConversations"
         },
         {
           "target": "com.posthog.max#CreateConversation"
         },
         {
+          "target": "com.posthog.max#GetConversation"
+        },
+        {
+          "target": "com.posthog.max#ConversationsDestroy"
+        },
+        {
           "target": "com.posthog.max#CreateConversationsAppendMessage"
+        },
+        {
+          "target": "com.posthog.max#ConversationsCancelPartialUpdate"
         },
         {
           "target": "com.posthog.max#CreateConversationsOpen"
         },
         {
-          "target": "com.posthog.max#CreateConversationsQueue"
-        },
-        {
-          "target": "com.posthog.max#CreateConversationsQueueClear"
-        },
-        {
-          "target": "com.posthog.max#GetConversation"
-        },
-        {
           "target": "com.posthog.max#GetConversationsQueue"
         },
         {
-          "target": "com.posthog.max#ListConversations"
+          "target": "com.posthog.max#CreateConversationsQueue"
         },
         {
           "target": "com.posthog.max#UpdateConversationsQueuePartial"
+        },
+        {
+          "target": "com.posthog.max#ConversationsQueueDestroy"
+        },
+        {
+          "target": "com.posthog.max#CreateConversationsQueueClear"
         }
       ],
       "traits": {

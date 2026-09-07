@@ -3828,31 +3828,34 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.hog_functions#ListHogFunctions"
+        },
+        {
           "target": "com.posthog.hog_functions#CreateHogFunction"
-        },
-        {
-          "target": "com.posthog.hog_functions#CreateHogFunctionsDiscardDraft"
-        },
-        {
-          "target": "com.posthog.hog_functions#CreateHogFunctionsInvocation"
-        },
-        {
-          "target": "com.posthog.hog_functions#CreateHogFunctionsRerun"
         },
         {
           "target": "com.posthog.hog_functions#GetHogFunction"
         },
         {
-          "target": "com.posthog.hog_functions#GetHogFunctionsIcon"
+          "target": "com.posthog.hog_functions#UpdateHogFunction"
         },
         {
-          "target": "com.posthog.hog_functions#GetHogFunctionsIcon2"
+          "target": "com.posthog.hog_functions#UpdateHogFunctionsPartial"
+        },
+        {
+          "target": "com.posthog.hog_functions#HogFunctionsDestroy"
+        },
+        {
+          "target": "com.posthog.hog_functions#CreateHogFunctionsDiscardDraft"
+        },
+        {
+          "target": "com.posthog.hog_functions#HogFunctionsEnableBackfillsCreate"
+        },
+        {
+          "target": "com.posthog.hog_functions#CreateHogFunctionsInvocation"
         },
         {
           "target": "com.posthog.hog_functions#GetHogFunctionsLog"
-        },
-        {
-          "target": "com.posthog.hog_functions#GetHogFunctionsMaskedSecret"
         },
         {
           "target": "com.posthog.hog_functions#GetHogFunctionsMetrics"
@@ -3861,31 +3864,28 @@
           "target": "com.posthog.hog_functions#GetHogFunctionsMetricsTotal"
         },
         {
-          "target": "com.posthog.hog_functions#GetHogFunctionsRevision"
-        },
-        {
-          "target": "com.posthog.hog_functions#HogFunctionsDestroy"
-        },
-        {
-          "target": "com.posthog.hog_functions#HogFunctionsEnableBackfillsCreate"
-        },
-        {
           "target": "com.posthog.hog_functions#HogFunctionsPublishCreate"
         },
         {
-          "target": "com.posthog.hog_functions#HogFunctionsRevisionsRestoreCreate"
-        },
-        {
-          "target": "com.posthog.hog_functions#ListHogFunctions"
+          "target": "com.posthog.hog_functions#CreateHogFunctionsRerun"
         },
         {
           "target": "com.posthog.hog_functions#ListHogFunctionsRevisions"
         },
         {
-          "target": "com.posthog.hog_functions#UpdateHogFunction"
+          "target": "com.posthog.hog_functions#GetHogFunctionsRevision"
         },
         {
-          "target": "com.posthog.hog_functions#UpdateHogFunctionsPartial"
+          "target": "com.posthog.hog_functions#HogFunctionsRevisionsRestoreCreate"
+        },
+        {
+          "target": "com.posthog.hog_functions#GetHogFunctionsIcon"
+        },
+        {
+          "target": "com.posthog.hog_functions#GetHogFunctionsIcon2"
+        },
+        {
+          "target": "com.posthog.hog_functions#GetHogFunctionsMaskedSecret"
         },
         {
           "target": "com.posthog.hog_functions#UpdateHogFunctionsRearrangePartial"

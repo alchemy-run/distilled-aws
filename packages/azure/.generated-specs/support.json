@@ -4446,121 +4446,121 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.support#CheckCommunicationNameAvailability"
-        },
-        {
-          "target": "com.azure.support#CheckCommunicationsNoSubscriptionNameAvailability"
-        },
-        {
-          "target": "com.azure.support#CheckSupportTicketNameAvailability"
-        },
-        {
-          "target": "com.azure.support#CheckSupportTicketsNoSubscriptionNameAvailability"
-        },
-        {
           "target": "com.azure.support#CreateCommunication"
-        },
-        {
-          "target": "com.azure.support#CreateCommunicationsNoSubscription"
-        },
-        {
-          "target": "com.azure.support#CreateFile"
-        },
-        {
-          "target": "com.azure.support#CreateFilesNoSubscription"
-        },
-        {
-          "target": "com.azure.support#CreateFileWorkspace"
-        },
-        {
-          "target": "com.azure.support#CreateFileWorkspacesNoSubscription"
-        },
-        {
-          "target": "com.azure.support#CreateSupportTicket"
-        },
-        {
-          "target": "com.azure.support#CreateSupportTicketsNoSubscription"
-        },
-        {
-          "target": "com.azure.support#GetChatTranscript"
-        },
-        {
-          "target": "com.azure.support#GetChatTranscriptsNoSubscription"
         },
         {
           "target": "com.azure.support#GetCommunication"
         },
         {
-          "target": "com.azure.support#GetCommunicationsNoSubscription"
+          "target": "com.azure.support#ListCommunications"
         },
         {
-          "target": "com.azure.support#GetFile"
+          "target": "com.azure.support#CheckCommunicationNameAvailability"
         },
         {
-          "target": "com.azure.support#GetFilesNoSubscription"
-        },
-        {
-          "target": "com.azure.support#GetFileWorkspace"
-        },
-        {
-          "target": "com.azure.support#GetFileWorkspacesNoSubscription"
-        },
-        {
-          "target": "com.azure.support#GetProblemClassification"
-        },
-        {
-          "target": "com.azure.support#GetService"
-        },
-        {
-          "target": "com.azure.support#GetSupportTicket"
-        },
-        {
-          "target": "com.azure.support#GetSupportTicketsNoSubscription"
+          "target": "com.azure.support#GetChatTranscript"
         },
         {
           "target": "com.azure.support#ListChatTranscripts"
         },
         {
-          "target": "com.azure.support#ListChatTranscriptsNoSubscription"
+          "target": "com.azure.support#UpdateSupportTicket"
         },
         {
-          "target": "com.azure.support#ListCommunications"
+          "target": "com.azure.support#CreateSupportTicket"
         },
         {
-          "target": "com.azure.support#ListCommunicationsNoSubscription"
-        },
-        {
-          "target": "com.azure.support#ListFiles"
-        },
-        {
-          "target": "com.azure.support#ListFilesNoSubscription"
-        },
-        {
-          "target": "com.azure.support#ListOperations"
-        },
-        {
-          "target": "com.azure.support#ListProblemClassifications"
-        },
-        {
-          "target": "com.azure.support#ListServices"
+          "target": "com.azure.support#GetSupportTicket"
         },
         {
           "target": "com.azure.support#ListSupportTickets"
         },
         {
-          "target": "com.azure.support#ListSupportTicketsNoSubscription"
+          "target": "com.azure.support#UploadFile"
         },
         {
-          "target": "com.azure.support#UpdateSupportTicket"
+          "target": "com.azure.support#CreateFile"
+        },
+        {
+          "target": "com.azure.support#GetFile"
+        },
+        {
+          "target": "com.azure.support#ListFiles"
+        },
+        {
+          "target": "com.azure.support#CreateFileWorkspace"
+        },
+        {
+          "target": "com.azure.support#GetFileWorkspace"
+        },
+        {
+          "target": "com.azure.support#CheckSupportTicketNameAvailability"
+        },
+        {
+          "target": "com.azure.support#CreateCommunicationsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#GetCommunicationsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#ListCommunicationsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#CheckCommunicationsNoSubscriptionNameAvailability"
+        },
+        {
+          "target": "com.azure.support#GetChatTranscriptsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#ListChatTranscriptsNoSubscription"
         },
         {
           "target": "com.azure.support#UpdateSupportTicketsNoSubscription"
         },
         {
-          "target": "com.azure.support#UploadFile"
+          "target": "com.azure.support#CreateSupportTicketsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#GetSupportTicketsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#ListSupportTicketsNoSubscription"
+        },
+        {
+          "target": "com.azure.support#GetProblemClassification"
+        },
+        {
+          "target": "com.azure.support#ListProblemClassifications"
+        },
+        {
+          "target": "com.azure.support#GetService"
+        },
+        {
+          "target": "com.azure.support#ListServices"
+        },
+        {
+          "target": "com.azure.support#ListOperations"
         },
         {
           "target": "com.azure.support#UploadFilesNoSubscription"
+        },
+        {
+          "target": "com.azure.support#CreateFilesNoSubscription"
+        },
+        {
+          "target": "com.azure.support#GetFilesNoSubscription"
+        },
+        {
+          "target": "com.azure.support#ListFilesNoSubscription"
+        },
+        {
+          "target": "com.azure.support#CreateFileWorkspacesNoSubscription"
+        },
+        {
+          "target": "com.azure.support#GetFileWorkspacesNoSubscription"
+        },
+        {
+          "target": "com.azure.support#CheckSupportTicketsNoSubscriptionNameAvailability"
         }
       ],
       "traits": {

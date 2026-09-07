@@ -1019,6 +1019,9 @@
           "target": "com.azure.widget#DeleteEmployee"
         },
         {
+          "target": "com.azure.widget#UpdateEmployee"
+        },
+        {
           "target": "com.azure.widget#EmployeesCreateOrUpdate"
         },
         {
@@ -1032,9 +1035,6 @@
         },
         {
           "target": "com.azure.widget#ListOperations"
-        },
-        {
-          "target": "com.azure.widget#UpdateEmployee"
         }
       ],
       "traits": {

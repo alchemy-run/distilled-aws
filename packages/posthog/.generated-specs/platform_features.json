@@ -1113,7 +1113,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.platform_features#ListApprovalPolicies"
+        },
+        {
+          "target": "com.posthog.platform_features#CreateApprovalPolicy"
+        },
+        {
+          "target": "com.posthog.platform_features#GetApprovalPolicy"
+        },
+        {
+          "target": "com.posthog.platform_features#UpdateApprovalPolicy"
+        },
+        {
+          "target": "com.posthog.platform_features#UpdateApprovalPoliciesPartial"
+        },
+        {
           "target": "com.posthog.platform_features#ApprovalPoliciesDestroy"
+        },
+        {
+          "target": "com.posthog.platform_features#ListChangeRequests"
+        },
+        {
+          "target": "com.posthog.platform_features#GetChangeRequest"
         },
         {
           "target": "com.posthog.platform_features#ChangeRequestsApproveCreate"
@@ -1123,27 +1144,6 @@
         },
         {
           "target": "com.posthog.platform_features#ChangeRequestsRejectCreate"
-        },
-        {
-          "target": "com.posthog.platform_features#CreateApprovalPolicy"
-        },
-        {
-          "target": "com.posthog.platform_features#GetApprovalPolicy"
-        },
-        {
-          "target": "com.posthog.platform_features#GetChangeRequest"
-        },
-        {
-          "target": "com.posthog.platform_features#ListApprovalPolicies"
-        },
-        {
-          "target": "com.posthog.platform_features#ListChangeRequests"
-        },
-        {
-          "target": "com.posthog.platform_features#UpdateApprovalPoliciesPartial"
-        },
-        {
-          "target": "com.posthog.platform_features#UpdateApprovalPolicy"
         }
       ],
       "traits": {

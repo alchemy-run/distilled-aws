@@ -2964,34 +2964,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.management#CheckNameAvailability"
+          "target": "com.azure.management#TenantBackfillStatus"
         },
         {
-          "target": "com.azure.management#CreateManagementGroupSubscription"
+          "target": "com.azure.management#StartTenantBackfill"
         },
         {
-          "target": "com.azure.management#CreateOrUpdateServiceGroup"
-        },
-        {
-          "target": "com.azure.management#DeleteHierarchySettings"
-        },
-        {
-          "target": "com.azure.management#DeleteManagementGroup"
+          "target": "com.azure.management#ListOperations"
         },
         {
           "target": "com.azure.management#DeleteManagementGroupSubscription"
         },
         {
-          "target": "com.azure.management#DeleteServiceGroup"
-        },
-        {
-          "target": "com.azure.management#GetHierarchySettings"
-        },
-        {
-          "target": "com.azure.management#GetManagementGroup"
-        },
-        {
-          "target": "com.azure.management#GetManagementGroupDescendants"
+          "target": "com.azure.management#CreateManagementGroupSubscription"
         },
         {
           "target": "com.azure.management#GetManagementGroupSubscriptionSubscription"
@@ -3000,40 +2985,55 @@
           "target": "com.azure.management#GetManagementGroupSubscriptionSubscriptionsUnderManagementGroup"
         },
         {
-          "target": "com.azure.management#GetServiceGroup"
-        },
-        {
-          "target": "com.azure.management#HierarchySettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.management#ListEntities"
-        },
-        {
-          "target": "com.azure.management#ListHierarchySettings"
-        },
-        {
-          "target": "com.azure.management#ListManagementGroups"
-        },
-        {
-          "target": "com.azure.management#ListOperations"
-        },
-        {
-          "target": "com.azure.management#ManagementGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.management#StartTenantBackfill"
-        },
-        {
-          "target": "com.azure.management#TenantBackfillStatus"
+          "target": "com.azure.management#DeleteHierarchySettings"
         },
         {
           "target": "com.azure.management#UpdateHierarchySettings"
         },
         {
+          "target": "com.azure.management#HierarchySettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.management#GetHierarchySettings"
+        },
+        {
+          "target": "com.azure.management#ListHierarchySettings"
+        },
+        {
+          "target": "com.azure.management#GetManagementGroupDescendants"
+        },
+        {
+          "target": "com.azure.management#DeleteManagementGroup"
+        },
+        {
           "target": "com.azure.management#UpdateManagementGroup"
         },
         {
+          "target": "com.azure.management#ManagementGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.management#GetManagementGroup"
+        },
+        {
+          "target": "com.azure.management#ListManagementGroups"
+        },
+        {
+          "target": "com.azure.management#ListEntities"
+        },
+        {
+          "target": "com.azure.management#CheckNameAvailability"
+        },
+        {
+          "target": "com.azure.management#DeleteServiceGroup"
+        },
+        {
           "target": "com.azure.management#UpdateServiceGroup"
+        },
+        {
+          "target": "com.azure.management#CreateOrUpdateServiceGroup"
+        },
+        {
+          "target": "com.azure.management#GetServiceGroup"
         }
       ],
       "traits": {

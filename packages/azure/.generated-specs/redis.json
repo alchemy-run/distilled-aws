@@ -6275,100 +6275,112 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.redis#AccessPolicyAssignmentCreateUpdate"
+          "target": "com.azure.redis#RegenerateRedisKey"
         },
         {
-          "target": "com.azure.redis#AccessPolicyCreateUpdate"
-        },
-        {
-          "target": "com.azure.redis#CheckRedisNameAvailability"
-        },
-        {
-          "target": "com.azure.redis#CreateLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#CreateRedis"
-        },
-        {
-          "target": "com.azure.redis#DeleteAccessPolicy"
-        },
-        {
-          "target": "com.azure.redis#DeleteAccessPolicyAssignment"
-        },
-        {
-          "target": "com.azure.redis#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.redis#DeleteLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#DeletePatchSchedule"
+          "target": "com.azure.redis#ListPrivateLinkResourceByRedisCache"
         },
         {
           "target": "com.azure.redis#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.redis#DeleteRedis"
-        },
-        {
-          "target": "com.azure.redis#ExportRedisData"
-        },
-        {
-          "target": "com.azure.redis#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.redis#FlushRedisCache"
-        },
-        {
-          "target": "com.azure.redis#GetAccessPolicy"
-        },
-        {
-          "target": "com.azure.redis#GetAccessPolicyAssignment"
-        },
-        {
-          "target": "com.azure.redis#GetAsyncOperationStatus"
-        },
-        {
-          "target": "com.azure.redis#GetFirewallRule"
-        },
-        {
-          "target": "com.azure.redis#GetLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#GetPatchSchedule"
+          "target": "com.azure.redis#PutPrivateEndpointConnection"
         },
         {
           "target": "com.azure.redis#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.redis#GetRedis"
+          "target": "com.azure.redis#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.redis#ImportRedisData"
+          "target": "com.azure.redis#DeletePatchSchedule"
         },
         {
-          "target": "com.azure.redis#ListAccessPolicy"
+          "target": "com.azure.redis#PatchSchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.redis#ListAccessPolicyAssignment"
-        },
-        {
-          "target": "com.azure.redis#ListFirewallRules"
-        },
-        {
-          "target": "com.azure.redis#ListLinkedServer"
-        },
-        {
-          "target": "com.azure.redis#ListOperations"
+          "target": "com.azure.redis#GetPatchSchedule"
         },
         {
           "target": "com.azure.redis#ListPatchScheduleByRedisResource"
         },
         {
-          "target": "com.azure.redis#ListPrivateEndpointConnections"
+          "target": "com.azure.redis#ListRedisUpgradeNotifications"
         },
         {
-          "target": "com.azure.redis#ListPrivateLinkResourceByRedisCache"
+          "target": "com.azure.redis#ListRedisKeys"
+        },
+        {
+          "target": "com.azure.redis#DeleteLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#CreateLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#GetLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#ListLinkedServer"
+        },
+        {
+          "target": "com.azure.redis#ImportRedisData"
+        },
+        {
+          "target": "com.azure.redis#RebootRedisForce"
+        },
+        {
+          "target": "com.azure.redis#FlushRedisCache"
+        },
+        {
+          "target": "com.azure.redis#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.redis#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.redis#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.redis#ListFirewallRules"
+        },
+        {
+          "target": "com.azure.redis#ExportRedisData"
+        },
+        {
+          "target": "com.azure.redis#DeleteAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redis#AccessPolicyAssignmentCreateUpdate"
+        },
+        {
+          "target": "com.azure.redis#GetAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redis#ListAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redis#DeleteAccessPolicy"
+        },
+        {
+          "target": "com.azure.redis#AccessPolicyCreateUpdate"
+        },
+        {
+          "target": "com.azure.redis#GetAccessPolicy"
+        },
+        {
+          "target": "com.azure.redis#ListAccessPolicy"
+        },
+        {
+          "target": "com.azure.redis#DeleteRedis"
+        },
+        {
+          "target": "com.azure.redis#UpdateRedis"
+        },
+        {
+          "target": "com.azure.redis#CreateRedis"
+        },
+        {
+          "target": "com.azure.redis#GetRedis"
         },
         {
           "target": "com.azure.redis#ListRedisByResourceGroup"
@@ -6377,25 +6389,13 @@
           "target": "com.azure.redis#ListRedisBySubscription"
         },
         {
-          "target": "com.azure.redis#ListRedisKeys"
+          "target": "com.azure.redis#GetAsyncOperationStatus"
         },
         {
-          "target": "com.azure.redis#ListRedisUpgradeNotifications"
+          "target": "com.azure.redis#CheckRedisNameAvailability"
         },
         {
-          "target": "com.azure.redis#PatchSchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.redis#PutPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.redis#RebootRedisForce"
-        },
-        {
-          "target": "com.azure.redis#RegenerateRedisKey"
-        },
-        {
-          "target": "com.azure.redis#UpdateRedis"
+          "target": "com.azure.redis#ListOperations"
         }
       ],
       "traits": {

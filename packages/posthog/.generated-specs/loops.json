@@ -2095,7 +2095,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.loops#ListLoops"
+        },
+        {
           "target": "com.posthog.loops#CreateLoop"
+        },
+        {
+          "target": "com.posthog.loops#GetLoop"
+        },
+        {
+          "target": "com.posthog.loops#UpdateLoopsPartial"
+        },
+        {
+          "target": "com.posthog.loops#LoopsDestroy"
         },
         {
           "target": "com.posthog.loops#CreateLoopsPreview"
@@ -2104,25 +2116,13 @@
           "target": "com.posthog.loops#CreateLoopsRun"
         },
         {
-          "target": "com.posthog.loops#GetLoop"
-        },
-        {
           "target": "com.posthog.loops#GetLoopsRun"
         },
         {
-          "target": "com.posthog.loops#ListLoops"
-        },
-        {
-          "target": "com.posthog.loops#LoopsDestroy"
+          "target": "com.posthog.loops#UpdateLoopsSkillBundle"
         },
         {
           "target": "com.posthog.loops#LoopsTriggerCreate"
-        },
-        {
-          "target": "com.posthog.loops#UpdateLoopsPartial"
-        },
-        {
-          "target": "com.posthog.loops#UpdateLoopsSkillBundle"
         }
       ],
       "traits": {

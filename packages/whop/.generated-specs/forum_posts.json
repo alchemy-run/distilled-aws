@@ -1539,13 +1539,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.forum_posts#ListForumPost"
+        },
+        {
           "target": "com.whop.forum_posts#CreateForumPost"
         },
         {
           "target": "com.whop.forum_posts#GetForumPost"
-        },
-        {
-          "target": "com.whop.forum_posts#ListForumPost"
         },
         {
           "target": "com.whop.forum_posts#UpdateForumPost"

@@ -1544,16 +1544,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.confidentialledger#CheckNameAvailability"
-        },
-        {
-          "target": "com.azure.confidentialledger#CreateLedger"
+          "target": "com.azure.confidentialledger#ExportLedgerFile"
         },
         {
           "target": "com.azure.confidentialledger#DeleteLedger"
         },
         {
-          "target": "com.azure.confidentialledger#ExportLedgerFile"
+          "target": "com.azure.confidentialledger#UpdateLedger"
+        },
+        {
+          "target": "com.azure.confidentialledger#CreateLedger"
         },
         {
           "target": "com.azure.confidentialledger#GetLedger"
@@ -1565,10 +1565,10 @@
           "target": "com.azure.confidentialledger#ListLedgerBySubscription"
         },
         {
-          "target": "com.azure.confidentialledger#ListOperations"
+          "target": "com.azure.confidentialledger#CheckNameAvailability"
         },
         {
-          "target": "com.azure.confidentialledger#UpdateLedger"
+          "target": "com.azure.confidentialledger#ListOperations"
         }
       ],
       "traits": {

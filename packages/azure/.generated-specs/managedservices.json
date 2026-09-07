@@ -2009,34 +2009,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.managedservices#DeleteRegistrationAssignment"
-        },
-        {
-          "target": "com.azure.managedservices#DeleteRegistrationDefinition"
-        },
-        {
-          "target": "com.azure.managedservices#GetMarketplaceRegistrationDefinition"
-        },
-        {
-          "target": "com.azure.managedservices#GetMarketplaceRegistrationDefinitionsWithoutScope"
-        },
-        {
-          "target": "com.azure.managedservices#GetRegistrationAssignment"
-        },
-        {
-          "target": "com.azure.managedservices#GetRegistrationDefinition"
-        },
-        {
-          "target": "com.azure.managedservices#ListMarketplaceRegistrationDefinitions"
-        },
-        {
-          "target": "com.azure.managedservices#ListMarketplaceRegistrationDefinitionsWithoutScope"
+          "target": "com.azure.managedservices#ListOperationsWithScope"
         },
         {
           "target": "com.azure.managedservices#ListOperations"
         },
         {
-          "target": "com.azure.managedservices#ListOperationsWithScope"
+          "target": "com.azure.managedservices#GetMarketplaceRegistrationDefinitionsWithoutScope"
+        },
+        {
+          "target": "com.azure.managedservices#GetMarketplaceRegistrationDefinition"
+        },
+        {
+          "target": "com.azure.managedservices#ListMarketplaceRegistrationDefinitionsWithoutScope"
+        },
+        {
+          "target": "com.azure.managedservices#ListMarketplaceRegistrationDefinitions"
         },
         {
           "target": "com.azure.managedservices#ListRegistrationAssignments"
@@ -2045,10 +2033,22 @@
           "target": "com.azure.managedservices#ListRegistrationDefinitions"
         },
         {
+          "target": "com.azure.managedservices#DeleteRegistrationAssignment"
+        },
+        {
           "target": "com.azure.managedservices#RegistrationAssignmentsCreateOrUpdate"
         },
         {
+          "target": "com.azure.managedservices#GetRegistrationAssignment"
+        },
+        {
+          "target": "com.azure.managedservices#DeleteRegistrationDefinition"
+        },
+        {
           "target": "com.azure.managedservices#RegistrationDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.managedservices#GetRegistrationDefinition"
         }
       ],
       "traits": {

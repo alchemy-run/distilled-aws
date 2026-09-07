@@ -3260,13 +3260,13 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.billing#BuyCredits"
-        },
-        {
           "target": "com.vercel.billing#ListBillingCharges"
         },
         {
           "target": "com.vercel.billing#ListContractCommitments"
+        },
+        {
+          "target": "com.vercel.billing#BuyCredits"
         }
       ],
       "traits": {

@@ -5973,10 +5973,19 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.accounts#CreateAccount"
+          "target": "com.cloudflare.accounts#CreateAccountOrganization"
         },
         {
-          "target": "com.cloudflare.accounts#CreateAccountOrganization"
+          "target": "com.cloudflare.accounts#GetAccountProfile"
+        },
+        {
+          "target": "com.cloudflare.accounts#UpdateAccountProfile"
+        },
+        {
+          "target": "com.cloudflare.accounts#ListTokensPermissionGroups"
+        },
+        {
+          "target": "com.cloudflare.accounts#CreateAccount"
         },
         {
           "target": "com.cloudflare.accounts#CreateMember"
@@ -6001,9 +6010,6 @@
         },
         {
           "target": "com.cloudflare.accounts#GetAccount"
-        },
-        {
-          "target": "com.cloudflare.accounts#GetAccountProfile"
         },
         {
           "target": "com.cloudflare.accounts#GetMember"
@@ -6036,16 +6042,10 @@
           "target": "com.cloudflare.accounts#ListTokens"
         },
         {
-          "target": "com.cloudflare.accounts#ListTokensPermissionGroups"
-        },
-        {
           "target": "com.cloudflare.accounts#PutTokenValue"
         },
         {
           "target": "com.cloudflare.accounts#UpdateAccount"
-        },
-        {
-          "target": "com.cloudflare.accounts#UpdateAccountProfile"
         },
         {
           "target": "com.cloudflare.accounts#UpdateMember"

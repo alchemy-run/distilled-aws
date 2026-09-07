@@ -569,25 +569,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.sandbox_custom_images#ListSandboxCustomImages"
+        },
+        {
           "target": "com.posthog.sandbox_custom_images#CreateSandboxCustomImage"
+        },
+        {
+          "target": "com.posthog.sandbox_custom_images#GetSandboxCustomImage"
+        },
+        {
+          "target": "com.posthog.sandbox_custom_images#UpdateSandboxCustomImagesPartial"
+        },
+        {
+          "target": "com.posthog.sandbox_custom_images#SandboxCustomImagesDestroy"
         },
         {
           "target": "com.posthog.sandbox_custom_images#CreateSandboxCustomImagesBuild"
         },
         {
           "target": "com.posthog.sandbox_custom_images#CreateSandboxCustomImagesBuilderTask"
-        },
-        {
-          "target": "com.posthog.sandbox_custom_images#GetSandboxCustomImage"
-        },
-        {
-          "target": "com.posthog.sandbox_custom_images#ListSandboxCustomImages"
-        },
-        {
-          "target": "com.posthog.sandbox_custom_images#SandboxCustomImagesDestroy"
-        },
-        {
-          "target": "com.posthog.sandbox_custom_images#UpdateSandboxCustomImagesPartial"
         }
       ],
       "traits": {

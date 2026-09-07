@@ -88008,49 +88008,130 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.sql#ListRecoverableDatabaseByServer"
+        },
+        {
+          "target": "com.azure.sql#GetRecoverableDatabase"
+        },
+        {
+          "target": "com.azure.sql#UnlinkReplicationLink"
+        },
+        {
+          "target": "com.azure.sql#ReplicationLinksFailoverAllowDataLoss"
+        },
+        {
+          "target": "com.azure.sql#ReplicationLinksFailover"
+        },
+        {
+          "target": "com.azure.sql#DeleteReplicationLink"
+        },
+        {
+          "target": "com.azure.sql#ListElasticPoolDatabaseActivityByElasticPool"
+        },
+        {
+          "target": "com.azure.sql#ListElasticPoolActivityByElasticPool"
+        },
+        {
+          "target": "com.azure.sql#ListServerUsageByServer"
+        },
+        {
+          "target": "com.azure.sql#UpdateBackupShortTermRetentionPolicy"
+        },
+        {
           "target": "com.azure.sql#BackupShortTermRetentionPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#CancelDatabaseOperation"
+          "target": "com.azure.sql#GetBackupShortTermRetentionPolicy"
         },
         {
-          "target": "com.azure.sql#CancelElasticPoolOperation"
+          "target": "com.azure.sql#ListBackupShortTermRetentionPolicyByDatabase"
         },
         {
-          "target": "com.azure.sql#CancelJobExecution"
+          "target": "com.azure.sql#ExtendedServerBlobAuditingPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#CancelManagedInstanceOperation"
+          "target": "com.azure.sql#GetExtendedServerBlobAuditingPolicy"
         },
         {
-          "target": "com.azure.sql#CancelSyncGroupSync"
+          "target": "com.azure.sql#ListExtendedServerBlobAuditingPolicyByServer"
         },
         {
-          "target": "com.azure.sql#CheckServerNameAvailability"
+          "target": "com.azure.sql#ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#CopyLongTermRetentionBackup"
+          "target": "com.azure.sql#GetExtendedDatabaseBlobAuditingPolicy"
         },
         {
-          "target": "com.azure.sql#CopyLongTermRetentionBackupByResourceGroup"
+          "target": "com.azure.sql#ListExtendedDatabaseBlobAuditingPolicyByDatabase"
         },
         {
-          "target": "com.azure.sql#CreateJobExecution"
+          "target": "com.azure.sql#DatabaseBlobAuditingPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#CreateManagedInstanceTdeCertificate"
+          "target": "com.azure.sql#GetDatabaseBlobAuditingPolicy"
         },
         {
-          "target": "com.azure.sql#CreateRestorePoint"
+          "target": "com.azure.sql#ListDatabaseBlobAuditingPolicyByDatabase"
         },
         {
-          "target": "com.azure.sql#CreateTdeCertificate"
+          "target": "com.azure.sql#ServerBlobAuditingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerBlobAuditingPolicy"
+        },
+        {
+          "target": "com.azure.sql#ListServerBlobAuditingPolicyByServer"
+        },
+        {
+          "target": "com.azure.sql#DataMaskingPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetDataMaskingPolicy"
+        },
+        {
+          "target": "com.azure.sql#DataMaskingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#ListDataMaskingRuleByDatabase"
+        },
+        {
+          "target": "com.azure.sql#GetDataWarehouseUserActivity"
+        },
+        {
+          "target": "com.azure.sql#ListDataWarehouseUserActivityByDatabase"
         },
         {
           "target": "com.azure.sql#DatabaseAdvancedThreatProtectionSettingsCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#DatabaseBlobAuditingPoliciesCreateOrUpdate"
+          "target": "com.azure.sql#GetDatabaseAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseAdvancedThreatProtectionSettingsByDatabase"
+        },
+        {
+          "target": "com.azure.sql#UpdateDatabaseAdvisor"
+        },
+        {
+          "target": "com.azure.sql#GetDatabaseAdvisor"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseAdvisorByDatabase"
+        },
+        {
+          "target": "com.azure.sql#UpdateDatabaseAutomaticTuning"
+        },
+        {
+          "target": "com.azure.sql#GetDatabaseAutomaticTuning"
+        },
+        {
+          "target": "com.azure.sql#GetDatabaseColumn"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseColumnByTable"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseColumnByDatabase"
         },
         {
           "target": "com.azure.sql#DatabaseEncryptionProtectorsRevalidate"
@@ -88062,463 +88143,637 @@
           "target": "com.azure.sql#DatabaseExtensionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#DatabasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DatabaseSecurityAlertPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DatabasesFailover"
-        },
-        {
-          "target": "com.azure.sql#DatabaseSqlVulnerabilityAssessmentBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DatabaseSqlVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DatabasesUpgradeDataWarehouse"
-        },
-        {
-          "target": "com.azure.sql#DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DatabaseVulnerabilityAssessmentScansInitiateScan"
-        },
-        {
-          "target": "com.azure.sql#DatabaseVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DataMaskingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DataMaskingRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DeleteDatabase"
-        },
-        {
-          "target": "com.azure.sql#DeleteDatabaseSqlVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.sql#DeleteDatabaseVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#DeleteDatabaseVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.sql#DeleteDistributedAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteElasticPool"
-        },
-        {
-          "target": "com.azure.sql#DeleteFailoverGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.sql#DeleteInstanceFailoverGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteInstancePool"
-        },
-        {
-          "target": "com.azure.sql#DeleteIPv6FirewallRule"
-        },
-        {
-          "target": "com.azure.sql#DeleteJob"
-        },
-        {
-          "target": "com.azure.sql#DeleteJobAgent"
-        },
-        {
-          "target": "com.azure.sql#DeleteJobCredentials"
-        },
-        {
-          "target": "com.azure.sql#DeleteJobPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.sql#DeleteJobStep"
-        },
-        {
-          "target": "com.azure.sql#DeleteJobTargetGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteLongTermRetentionBackup"
-        },
-        {
-          "target": "com.azure.sql#DeleteLongTermRetentionBackupByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteLongTermRetentionManagedInstanceBackup"
-        },
-        {
-          "target": "com.azure.sql#DeleteLongTermRetentionManagedInstanceBackupByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedDatabase"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedDatabaseSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedDatabaseVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedDatabaseVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstance"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstanceAdministrator"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstanceAzureADOnlyAuthentication"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstanceKeys"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstanceLongTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstancePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedInstanceVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#DeleteManagedServerDnsAlias"
-        },
-        {
-          "target": "com.azure.sql#DeleteOutboundFirewallRule"
-        },
-        {
-          "target": "com.azure.sql#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.sql#DeleteReplicationLink"
-        },
-        {
-          "target": "com.azure.sql#DeleteRestorePoint"
-        },
-        {
-          "target": "com.azure.sql#DeleteSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#DeleteServer"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerAzureADAdministrator"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerAzureADOnlyAuthentication"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerDnsAlias"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerKeys"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerTrustCertificate"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerTrustGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteServerVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#DeleteSqlVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#DeleteSqlVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.sql#DeleteStartStopManagedInstanceSchedule"
-        },
-        {
-          "target": "com.azure.sql#DeleteSyncAgent"
-        },
-        {
-          "target": "com.azure.sql#DeleteSyncGroup"
-        },
-        {
-          "target": "com.azure.sql#DeleteSyncMember"
-        },
-        {
-          "target": "com.azure.sql#DeleteVirtualCluster"
-        },
-        {
-          "target": "com.azure.sql#DeleteVirtualNetworkRule"
-        },
-        {
-          "target": "com.azure.sql#DeleteWorkloadClassifier"
-        },
-        {
-          "target": "com.azure.sql#DeleteWorkloadGroup"
-        },
-        {
-          "target": "com.azure.sql#DisableLedgerDigestUpload"
-        },
-        {
-          "target": "com.azure.sql#DisableManagedDatabaseSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.sql#DisableManagedLedgerDigestUpload"
-        },
-        {
-          "target": "com.azure.sql#DisableSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.sql#DistributedAvailabilityGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#DistributedAvailabilityGroupsFailover"
-        },
-        {
-          "target": "com.azure.sql#ElasticPoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ElasticPoolsFailover"
-        },
-        {
-          "target": "com.azure.sql#EnableManagedDatabaseSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.sql#EnableSensitivityLabelRecommendation"
-        },
-        {
-          "target": "com.azure.sql#EncryptionProtectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#EncryptionProtectorsRevalidate"
-        },
-        {
-          "target": "com.azure.sql#ExecuteDatabaseSqlVulnerabilityAssessmentExecuteScan"
-        },
-        {
-          "target": "com.azure.sql#ExecuteSqlVulnerabilityAssessmentExecuteScan"
-        },
-        {
-          "target": "com.azure.sql#ExportDatabase"
-        },
-        {
-          "target": "com.azure.sql#ExportDatabaseVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.sql#ExportManagedDatabaseVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.sql#ExtendedDatabaseBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ExtendedServerBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#FailoverGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#FailoverGroupsFailover"
-        },
-        {
-          "target": "com.azure.sql#FailoverGroupsForceFailoverAllowDataLoss"
-        },
-        {
-          "target": "com.azure.sql#FailoverGroupsTryPlannedBeforeForcedFailover"
-        },
-        {
-          "target": "com.azure.sql#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#GenerateSyncAgentKey"
-        },
-        {
-          "target": "com.azure.sql#GeoBackupPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#GetBackupShortTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetDatabase"
-        },
-        {
-          "target": "com.azure.sql#GetDatabaseAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.sql#GetDatabaseAdvisor"
-        },
-        {
-          "target": "com.azure.sql#GetDatabaseAutomaticTuning"
-        },
-        {
-          "target": "com.azure.sql#GetDatabaseBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetDatabaseColumn"
-        },
-        {
           "target": "com.azure.sql#GetDatabaseExtension"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseExtensionByDatabase"
+        },
+        {
+          "target": "com.azure.sql#CancelDatabaseOperation"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseOperationByDatabase"
+        },
+        {
+          "target": "com.azure.sql#UpdateDatabaseRecommendedAction"
         },
         {
           "target": "com.azure.sql#GetDatabaseRecommendedAction"
         },
         {
+          "target": "com.azure.sql#ListDatabaseRecommendedActionByDatabaseAdvisor"
+        },
+        {
           "target": "com.azure.sql#GetDatabaseSchema"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseSchemaByDatabase"
+        },
+        {
+          "target": "com.azure.sql#DatabaseSecurityAlertPoliciesCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetDatabaseSecurityAlertPolicy"
         },
         {
+          "target": "com.azure.sql#ListDatabaseSecurityAlertPolicyByDatabase"
+        },
+        {
+          "target": "com.azure.sql#DatabaseSqlVulnerabilityAssessmentBaselinesCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetDatabaseSqlVulnerabilityAssessmentBaseline"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentBaselineBySqlVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ExecuteDatabaseSqlVulnerabilityAssessmentExecuteScan"
+        },
+        {
+          "target": "com.azure.sql#DeleteDatabaseSqlVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.sql#DatabaseSqlVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetDatabaseSqlVulnerabilityAssessmentRuleBaseline"
         },
         {
-          "target": "com.azure.sql#GetDatabaseSqlVulnerabilityAssessmentScan"
+          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentRuleBaselineByBaseline"
         },
         {
           "target": "com.azure.sql#GetDatabaseSqlVulnerabilityAssessmentScanResult"
         },
         {
+          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentScanResultByScan"
+        },
+        {
+          "target": "com.azure.sql#GetDatabaseSqlVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentScanBySqlVulnerabilityAssessments"
+        },
+        {
           "target": "com.azure.sql#GetDatabaseSqlVulnerabilityAssessmentsSettings"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentsSettingsByDatabase"
         },
         {
           "target": "com.azure.sql#GetDatabaseTable"
         },
         {
-          "target": "com.azure.sql#GetDatabaseVulnerabilityAssessment"
+          "target": "com.azure.sql#ListDatabaseTableBySchema"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseUsageByDatabase"
+        },
+        {
+          "target": "com.azure.sql#DeleteDatabaseVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.sql#DatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetDatabaseVulnerabilityAssessmentRuleBaseline"
         },
         {
+          "target": "com.azure.sql#DatabaseVulnerabilityAssessmentScansInitiateScan"
+        },
+        {
+          "target": "com.azure.sql#ExportDatabaseVulnerabilityAssessmentScan"
+        },
+        {
           "target": "com.azure.sql#GetDatabaseVulnerabilityAssessmentScan"
         },
         {
-          "target": "com.azure.sql#GetDataMaskingPolicy"
+          "target": "com.azure.sql#ListDatabaseVulnerabilityAssessmentScanByDatabase"
         },
         {
-          "target": "com.azure.sql#GetDataWarehouseUserActivity"
+          "target": "com.azure.sql#DeleteDatabaseVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#DatabaseVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetDatabaseVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseVulnerabilityAssessmentByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseInaccessibleByServer"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseByElasticPool"
+        },
+        {
+          "target": "com.azure.sql#DatabasesUpgradeDataWarehouse"
+        },
+        {
+          "target": "com.azure.sql#ResumeDatabase"
+        },
+        {
+          "target": "com.azure.sql#PauseDatabase"
+        },
+        {
+          "target": "com.azure.sql#RenameDatabase"
+        },
+        {
+          "target": "com.azure.sql#ImportDatabase"
+        },
+        {
+          "target": "com.azure.sql#DatabasesFailover"
+        },
+        {
+          "target": "com.azure.sql#ExportDatabase"
+        },
+        {
+          "target": "com.azure.sql#DeleteDatabase"
+        },
+        {
+          "target": "com.azure.sql#UpdateDatabase"
+        },
+        {
+          "target": "com.azure.sql#DatabasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListDatabaseByServer"
+        },
+        {
+          "target": "com.azure.sql#RecoverDeletedServer"
         },
         {
           "target": "com.azure.sql#GetDeletedServer"
         },
         {
+          "target": "com.azure.sql#ListDeletedServerByLocation"
+        },
+        {
+          "target": "com.azure.sql#ListDeletedServers"
+        },
+        {
+          "target": "com.azure.sql#SetDistributedAvailabilityGroupRole"
+        },
+        {
+          "target": "com.azure.sql#DistributedAvailabilityGroupsFailover"
+        },
+        {
+          "target": "com.azure.sql#DeleteDistributedAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.sql#UpdateDistributedAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.sql#DistributedAvailabilityGroupsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetDistributedAvailabilityGroup"
+        },
+        {
+          "target": "com.azure.sql#ListDistributedAvailabilityGroupByInstance"
+        },
+        {
+          "target": "com.azure.sql#CancelElasticPoolOperation"
+        },
+        {
+          "target": "com.azure.sql#ListElasticPoolOperationByElasticPool"
+        },
+        {
+          "target": "com.azure.sql#ElasticPoolsFailover"
+        },
+        {
+          "target": "com.azure.sql#DeleteElasticPool"
+        },
+        {
+          "target": "com.azure.sql#UpdateElasticPool"
+        },
+        {
+          "target": "com.azure.sql#ElasticPoolsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetElasticPool"
         },
         {
+          "target": "com.azure.sql#ListElasticPoolByServer"
+        },
+        {
+          "target": "com.azure.sql#EncryptionProtectorsRevalidate"
+        },
+        {
+          "target": "com.azure.sql#EncryptionProtectorsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetEncryptionProtector"
+        },
+        {
+          "target": "com.azure.sql#ListEncryptionProtectorByServer"
         },
         {
           "target": "com.azure.sql#GetEndpointCertificate"
         },
         {
-          "target": "com.azure.sql#GetExtendedDatabaseBlobAuditingPolicy"
+          "target": "com.azure.sql#ListEndpointCertificateByInstance"
         },
         {
-          "target": "com.azure.sql#GetExtendedServerBlobAuditingPolicy"
+          "target": "com.azure.sql#FailoverGroupsTryPlannedBeforeForcedFailover"
+        },
+        {
+          "target": "com.azure.sql#FailoverGroupsForceFailoverAllowDataLoss"
+        },
+        {
+          "target": "com.azure.sql#FailoverGroupsFailover"
+        },
+        {
+          "target": "com.azure.sql#DeleteFailoverGroup"
+        },
+        {
+          "target": "com.azure.sql#UpdateFailoverGroup"
+        },
+        {
+          "target": "com.azure.sql#FailoverGroupsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetFailoverGroup"
         },
         {
+          "target": "com.azure.sql#ListFailoverGroupByServer"
+        },
+        {
+          "target": "com.azure.sql#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.sql#FirewallRulesCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.sql#ReplaceFirewallRule"
+        },
+        {
+          "target": "com.azure.sql#ListFirewallRuleByServer"
+        },
+        {
+          "target": "com.azure.sql#GeoBackupPoliciesCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetGeoBackupPolicy"
         },
         {
-          "target": "com.azure.sql#GetInstanceFailoverGroup"
+          "target": "com.azure.sql#ListGeoBackupPolicies"
         },
         {
-          "target": "com.azure.sql#GetInstancePool"
+          "target": "com.azure.sql#DeleteIPv6FirewallRule"
         },
         {
-          "target": "com.azure.sql#GetInstancePoolOperation"
+          "target": "com.azure.sql#IPv6FirewallRulesCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetIPv6FirewallRule"
         },
         {
-          "target": "com.azure.sql#GetJob"
+          "target": "com.azure.sql#ListIPv6FirewallRuleByServer"
+        },
+        {
+          "target": "com.azure.sql#InstanceFailoverGroupsForceFailoverAllowDataLoss"
+        },
+        {
+          "target": "com.azure.sql#InstanceFailoverGroupsFailover"
+        },
+        {
+          "target": "com.azure.sql#DeleteInstanceFailoverGroup"
+        },
+        {
+          "target": "com.azure.sql#InstanceFailoverGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetInstanceFailoverGroup"
+        },
+        {
+          "target": "com.azure.sql#ListInstanceFailoverGroupByLocation"
+        },
+        {
+          "target": "com.azure.sql#GetInstancePoolOperation"
+        },
+        {
+          "target": "com.azure.sql#ListInstancePoolOperationByInstancePool"
+        },
+        {
+          "target": "com.azure.sql#DeleteInstancePool"
+        },
+        {
+          "target": "com.azure.sql#UpdateInstancePool"
+        },
+        {
+          "target": "com.azure.sql#InstancePoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetInstancePool"
+        },
+        {
+          "target": "com.azure.sql#ListInstancePoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#ListInstancePools"
+        },
+        {
+          "target": "com.azure.sql#DeleteJobAgent"
+        },
+        {
+          "target": "com.azure.sql#UpdateJobAgent"
+        },
+        {
+          "target": "com.azure.sql#JobAgentsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetJobAgent"
         },
         {
+          "target": "com.azure.sql#ListJobAgentByServer"
+        },
+        {
+          "target": "com.azure.sql#DeleteJobCredentials"
+        },
+        {
+          "target": "com.azure.sql#JobCredentialsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetJobCredentials"
+        },
+        {
+          "target": "com.azure.sql#ListJobCredentialsByAgent"
+        },
+        {
+          "target": "com.azure.sql#CreateJobExecution"
+        },
+        {
+          "target": "com.azure.sql#CancelJobExecution"
+        },
+        {
+          "target": "com.azure.sql#JobExecutionsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetJobExecution"
         },
         {
+          "target": "com.azure.sql#ListJobExecutionByJob"
+        },
+        {
+          "target": "com.azure.sql#ListJobExecutionByAgent"
+        },
+        {
+          "target": "com.azure.sql#DeleteJobPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.sql#JobPrivateEndpointsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetJobPrivateEndpoint"
         },
         {
-          "target": "com.azure.sql#GetJobStep"
-        },
-        {
-          "target": "com.azure.sql#GetJobStepByVersion"
+          "target": "com.azure.sql#ListJobPrivateEndpointByAgent"
         },
         {
           "target": "com.azure.sql#GetJobStepExecution"
         },
         {
+          "target": "com.azure.sql#ListJobStepExecutionByJobExecution"
+        },
+        {
+          "target": "com.azure.sql#GetJobStepByVersion"
+        },
+        {
+          "target": "com.azure.sql#ListJobStepByVersion"
+        },
+        {
+          "target": "com.azure.sql#DeleteJobStep"
+        },
+        {
+          "target": "com.azure.sql#JobStepsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetJobStep"
+        },
+        {
+          "target": "com.azure.sql#ListJobStepByJob"
+        },
+        {
+          "target": "com.azure.sql#ListJobTargetExecutionByJobExecution"
+        },
+        {
           "target": "com.azure.sql#GetJobTargetExecution"
+        },
+        {
+          "target": "com.azure.sql#ListJobTargetExecutionByStep"
+        },
+        {
+          "target": "com.azure.sql#DeleteJobTargetGroup"
+        },
+        {
+          "target": "com.azure.sql#JobTargetGroupsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetJobTargetGroup"
         },
         {
+          "target": "com.azure.sql#ListJobTargetGroupByAgent"
+        },
+        {
           "target": "com.azure.sql#GetJobVersion"
+        },
+        {
+          "target": "com.azure.sql#ListJobVersionByJob"
+        },
+        {
+          "target": "com.azure.sql#DeleteJob"
+        },
+        {
+          "target": "com.azure.sql#JobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetJob"
+        },
+        {
+          "target": "com.azure.sql#ListJobByAgent"
+        },
+        {
+          "target": "com.azure.sql#DisableLedgerDigestUpload"
+        },
+        {
+          "target": "com.azure.sql#LedgerDigestUploadsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetLedgerDigestUpload"
         },
         {
-          "target": "com.azure.sql#GetLongTermRetentionBackup"
+          "target": "com.azure.sql#ListLedgerDigestUploadByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListCapabilityByLocation"
+        },
+        {
+          "target": "com.azure.sql#UpdateLongTermRetentionBackupByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#SetLongTermRetentionBackupLegalHoldImmutabilityByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#RemoveLongTermRetentionBackupTimeBasedImmutabilityByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#RemoveLongTermRetentionBackupLegalHoldImmutabilityByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#LockLongTermRetentionBackupTimeBasedImmutabilityByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#CopyLongTermRetentionBackupByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#LongTermRetentionBackupsChangeAccessTierByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#DeleteLongTermRetentionBackupByResourceGroup"
         },
         {
           "target": "com.azure.sql#GetLongTermRetentionBackupByResourceGroup"
         },
         {
-          "target": "com.azure.sql#GetLongTermRetentionManagedInstanceBackup"
+          "target": "com.azure.sql#ListLongTermRetentionBackupByResourceGroupDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionBackupByResourceGroupServer"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionBackupByResourceGroupLocation"
+        },
+        {
+          "target": "com.azure.sql#UpdateLongTermRetentionBackup"
+        },
+        {
+          "target": "com.azure.sql#SetLongTermRetentionBackupLegalHoldImmutability"
+        },
+        {
+          "target": "com.azure.sql#RemoveLongTermRetentionBackupTimeBasedImmutability"
+        },
+        {
+          "target": "com.azure.sql#RemoveLongTermRetentionBackupLegalHoldImmutability"
+        },
+        {
+          "target": "com.azure.sql#LockLongTermRetentionBackupTimeBasedImmutability"
+        },
+        {
+          "target": "com.azure.sql#CopyLongTermRetentionBackup"
+        },
+        {
+          "target": "com.azure.sql#LongTermRetentionBackupsChangeAccessTier"
+        },
+        {
+          "target": "com.azure.sql#DeleteLongTermRetentionBackup"
+        },
+        {
+          "target": "com.azure.sql#GetLongTermRetentionBackup"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionBackupByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionBackupByServer"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionBackupByLocation"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByResourceGroupInstance"
+        },
+        {
+          "target": "com.azure.sql#DeleteLongTermRetentionManagedInstanceBackupByResourceGroup"
         },
         {
           "target": "com.azure.sql#GetLongTermRetentionManagedInstanceBackupByResourceGroup"
         },
         {
+          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByResourceGroupDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByResourceGroupLocation"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByInstance"
+        },
+        {
+          "target": "com.azure.sql#DeleteLongTermRetentionManagedInstanceBackup"
+        },
+        {
+          "target": "com.azure.sql#GetLongTermRetentionManagedInstanceBackup"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByLocation"
+        },
+        {
+          "target": "com.azure.sql#LongTermRetentionPoliciesCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetLongTermRetentionPolicy"
+        },
+        {
+          "target": "com.azure.sql#ListLongTermRetentionPolicyByDatabase"
         },
         {
           "target": "com.azure.sql#GetMaintenanceWindowOption"
         },
         {
+          "target": "com.azure.sql#MaintenanceWindowsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.sql#GetMaintenanceWindows"
+        },
+        {
+          "target": "com.azure.sql#UpdateManagedBackupShortTermRetentionPolicy"
+        },
+        {
+          "target": "com.azure.sql#ManagedBackupShortTermRetentionPoliciesCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetManagedBackupShortTermRetentionPolicy"
         },
         {
-          "target": "com.azure.sql#GetManagedDatabase"
+          "target": "com.azure.sql#ListManagedBackupShortTermRetentionPolicyByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseAdvancedThreatProtectionSettingsCreateOrUpdate"
         },
         {
           "target": "com.azure.sql#GetManagedDatabaseAdvancedThreatProtectionSettings"
         },
         {
+          "target": "com.azure.sql#ListManagedDatabaseAdvancedThreatProtectionSettingsByDatabase"
+        },
+        {
           "target": "com.azure.sql#GetManagedDatabaseColumn"
         },
         {
+          "target": "com.azure.sql#ListManagedDatabaseColumnByTable"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseColumnByDatabase"
+        },
+        {
           "target": "com.azure.sql#GetManagedDatabaseMoveOperation"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseMoveOperationByLocation"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseQueryByQuery"
         },
         {
           "target": "com.azure.sql#GetManagedDatabaseQuery"
@@ -88530,493 +88785,13 @@
           "target": "com.azure.sql#GetManagedDatabaseSchema"
         },
         {
-          "target": "com.azure.sql#GetManagedDatabaseSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetManagedDatabaseSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#GetManagedDatabaseTable"
-        },
-        {
-          "target": "com.azure.sql#GetManagedDatabaseTransparentDataEncryption"
-        },
-        {
-          "target": "com.azure.sql#GetManagedDatabaseVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#GetManagedDatabaseVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.sql#GetManagedDatabaseVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstance"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceAdministrator"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceAzureADOnlyAuthentication"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceDtc"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceEncryptionProtector"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceKeys"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceLongTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceOperation"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstancePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstancePrivateLinkResource"
-        },
-        {
-          "target": "com.azure.sql#GetManagedInstanceVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#GetManagedLedgerDigestUpload"
-        },
-        {
-          "target": "com.azure.sql#GetManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetManagedServerDnsAlias"
-        },
-        {
-          "target": "com.azure.sql#GetManagedServerSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.sql#GetOutboundFirewallRule"
-        },
-        {
-          "target": "com.azure.sql#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.sql#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.sql#GetRecoverableDatabase"
-        },
-        {
-          "target": "com.azure.sql#GetRecoverableManagedDatabase"
-        },
-        {
-          "target": "com.azure.sql#GetReplicationLink"
-        },
-        {
-          "target": "com.azure.sql#GetRestorableDroppedDatabase"
-        },
-        {
-          "target": "com.azure.sql#GetRestorableDroppedManagedDatabase"
-        },
-        {
-          "target": "com.azure.sql#GetRestorePoint"
-        },
-        {
-          "target": "com.azure.sql#GetSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#GetServer"
-        },
-        {
-          "target": "com.azure.sql#GetServerAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.sql#GetServerAdvisor"
-        },
-        {
-          "target": "com.azure.sql#GetServerAutomaticTuning"
-        },
-        {
-          "target": "com.azure.sql#GetServerAzureADAdministrator"
-        },
-        {
-          "target": "com.azure.sql#GetServerAzureADOnlyAuthentication"
-        },
-        {
-          "target": "com.azure.sql#GetServerBlobAuditingPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetServerConfigurationOption"
-        },
-        {
-          "target": "com.azure.sql#GetServerConnectionPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetServerDevOpsAuditSettings"
-        },
-        {
-          "target": "com.azure.sql#GetServerDnsAlias"
-        },
-        {
-          "target": "com.azure.sql#GetServerKeys"
-        },
-        {
-          "target": "com.azure.sql#GetServerSecurityAlertPolicy"
-        },
-        {
-          "target": "com.azure.sql#GetServerTrustCertificate"
-        },
-        {
-          "target": "com.azure.sql#GetServerTrustGroup"
-        },
-        {
-          "target": "com.azure.sql#GetServerVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#GetSqlAgent"
-        },
-        {
-          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentBaseline"
-        },
-        {
-          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentRuleBaseline"
-        },
-        {
-          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentScan"
-        },
-        {
-          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentScanResult"
-        },
-        {
-          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentsSettings"
-        },
-        {
-          "target": "com.azure.sql#GetStartStopManagedInstanceSchedule"
-        },
-        {
-          "target": "com.azure.sql#GetSubscriptionUsage"
-        },
-        {
-          "target": "com.azure.sql#GetSyncAgent"
-        },
-        {
-          "target": "com.azure.sql#GetSyncGroup"
-        },
-        {
-          "target": "com.azure.sql#GetSyncMember"
-        },
-        {
-          "target": "com.azure.sql#GetTimeZone"
-        },
-        {
-          "target": "com.azure.sql#GetTransparentDataEncryption"
-        },
-        {
-          "target": "com.azure.sql#GetVirtualCluster"
-        },
-        {
-          "target": "com.azure.sql#GetVirtualNetworkRule"
-        },
-        {
-          "target": "com.azure.sql#GetWorkloadClassifier"
-        },
-        {
-          "target": "com.azure.sql#GetWorkloadGroup"
-        },
-        {
-          "target": "com.azure.sql#ImportDatabase"
-        },
-        {
-          "target": "com.azure.sql#ImportServerDatabase"
-        },
-        {
-          "target": "com.azure.sql#InstanceFailoverGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#InstanceFailoverGroupsFailover"
-        },
-        {
-          "target": "com.azure.sql#InstanceFailoverGroupsForceFailoverAllowDataLoss"
-        },
-        {
-          "target": "com.azure.sql#InstancePoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#IPv6FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobAgentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobCredentialsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobExecutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobPrivateEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobStepsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#JobTargetGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#LedgerDigestUploadsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ListBackupShortTermRetentionPolicyByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListCapabilityByLocation"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseAdvancedThreatProtectionSettingsByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseAdvisorByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseBlobAuditingPolicyByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseByElasticPool"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseByServer"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseColumnByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseColumnByTable"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseExtensionByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseInaccessibleByServer"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseOperationByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseRecommendedActionByDatabaseAdvisor"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSchemaByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSecurityAlertPolicyByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentBaselineBySqlVulnerabilityAssessment"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentRuleBaselineByBaseline"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentScanBySqlVulnerabilityAssessments"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentScanResultByScan"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseSqlVulnerabilityAssessmentsSettingsByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseTableBySchema"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseUsageByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseVulnerabilityAssessmentByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDatabaseVulnerabilityAssessmentScanByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDataMaskingRuleByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDataWarehouseUserActivityByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListDeletedServerByLocation"
-        },
-        {
-          "target": "com.azure.sql#ListDeletedServers"
-        },
-        {
-          "target": "com.azure.sql#ListDistributedAvailabilityGroupByInstance"
-        },
-        {
-          "target": "com.azure.sql#ListElasticPoolActivityByElasticPool"
-        },
-        {
-          "target": "com.azure.sql#ListElasticPoolByServer"
-        },
-        {
-          "target": "com.azure.sql#ListElasticPoolDatabaseActivityByElasticPool"
-        },
-        {
-          "target": "com.azure.sql#ListElasticPoolOperationByElasticPool"
-        },
-        {
-          "target": "com.azure.sql#ListEncryptionProtectorByServer"
-        },
-        {
-          "target": "com.azure.sql#ListEndpointCertificateByInstance"
-        },
-        {
-          "target": "com.azure.sql#ListExtendedDatabaseBlobAuditingPolicyByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListExtendedServerBlobAuditingPolicyByServer"
-        },
-        {
-          "target": "com.azure.sql#ListFailoverGroupByServer"
-        },
-        {
-          "target": "com.azure.sql#ListFirewallRuleByServer"
-        },
-        {
-          "target": "com.azure.sql#ListGeoBackupPolicies"
-        },
-        {
-          "target": "com.azure.sql#ListInstanceFailoverGroupByLocation"
-        },
-        {
-          "target": "com.azure.sql#ListInstancePoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#ListInstancePoolOperationByInstancePool"
-        },
-        {
-          "target": "com.azure.sql#ListInstancePools"
-        },
-        {
-          "target": "com.azure.sql#ListIPv6FirewallRuleByServer"
-        },
-        {
-          "target": "com.azure.sql#ListJobAgentByServer"
-        },
-        {
-          "target": "com.azure.sql#ListJobByAgent"
-        },
-        {
-          "target": "com.azure.sql#ListJobCredentialsByAgent"
-        },
-        {
-          "target": "com.azure.sql#ListJobExecutionByAgent"
-        },
-        {
-          "target": "com.azure.sql#ListJobExecutionByJob"
-        },
-        {
-          "target": "com.azure.sql#ListJobPrivateEndpointByAgent"
-        },
-        {
-          "target": "com.azure.sql#ListJobStepByJob"
-        },
-        {
-          "target": "com.azure.sql#ListJobStepByVersion"
-        },
-        {
-          "target": "com.azure.sql#ListJobStepExecutionByJobExecution"
-        },
-        {
-          "target": "com.azure.sql#ListJobTargetExecutionByJobExecution"
-        },
-        {
-          "target": "com.azure.sql#ListJobTargetExecutionByStep"
-        },
-        {
-          "target": "com.azure.sql#ListJobTargetGroupByAgent"
-        },
-        {
-          "target": "com.azure.sql#ListJobVersionByJob"
-        },
-        {
-          "target": "com.azure.sql#ListLedgerDigestUploadByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionBackupByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionBackupByLocation"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionBackupByResourceGroupDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionBackupByResourceGroupLocation"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionBackupByResourceGroupServer"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionBackupByServer"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByInstance"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByLocation"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByResourceGroupDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByResourceGroupInstance"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionManagedInstanceBackupByResourceGroupLocation"
-        },
-        {
-          "target": "com.azure.sql#ListLongTermRetentionPolicyByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListManagedBackupShortTermRetentionPolicyByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseAdvancedThreatProtectionSettingsByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseByInstance"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseColumnByDatabase"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseColumnByTable"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseInaccessibleByInstance"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseMoveOperationByLocation"
-        },
-        {
-          "target": "com.azure.sql#ListManagedDatabaseQueryByQuery"
-        },
-        {
           "target": "com.azure.sql#ListManagedDatabaseSchemaByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseSecurityAlertPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseSecurityAlertPolicy"
         },
         {
           "target": "com.azure.sql#ListManagedDatabaseSecurityAlertPolicyByDatabase"
@@ -89028,82 +88803,331 @@
           "target": "com.azure.sql#ListManagedDatabaseSensitivityLabelByDatabase"
         },
         {
-          "target": "com.azure.sql#ListManagedDatabaseSensitivityLabelCurrentByDatabase"
+          "target": "com.azure.sql#EnableManagedDatabaseSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.sql#DisableManagedDatabaseSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedDatabaseSensitivityLabel"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseSensitivityLabelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseSensitivityLabel"
+        },
+        {
+          "target": "com.azure.sql#UpdateManagedDatabaseRecommendedSensitivityLabel"
         },
         {
           "target": "com.azure.sql#ListManagedDatabaseSensitivityLabelRecommendedByDatabase"
         },
         {
+          "target": "com.azure.sql#UpdateManagedDatabaseSensitivityLabel"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseSensitivityLabelCurrentByDatabase"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseTable"
+        },
+        {
           "target": "com.azure.sql#ListManagedDatabaseTableBySchema"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseTransparentDataEncryptionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseTransparentDataEncryption"
         },
         {
           "target": "com.azure.sql#ListManagedDatabaseTransparentDataEncryptionByDatabase"
         },
         {
-          "target": "com.azure.sql#ListManagedDatabaseVulnerabilityAssessmentByDatabase"
+          "target": "com.azure.sql#DeleteManagedDatabaseVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseVulnerabilityAssessmentScansInitiateScan"
+        },
+        {
+          "target": "com.azure.sql#ExportManagedDatabaseVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseVulnerabilityAssessmentScan"
         },
         {
           "target": "com.azure.sql#ListManagedDatabaseVulnerabilityAssessmentScanByDatabase"
         },
         {
+          "target": "com.azure.sql#DeleteManagedDatabaseVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabaseVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseVulnerabilityAssessmentByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseInaccessibleByInstance"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabasesStartMove"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabasesReevaluateInaccessibleDatabaseState"
+        },
+        {
+          "target": "com.azure.sql#RestoreManagedDatabasesComplete"
+        },
+        {
+          "target": "com.azure.sql#MoveManagedDatabasesComplete"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabasesCancelMove"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedDatabase"
+        },
+        {
+          "target": "com.azure.sql#UpdateManagedDatabase"
+        },
+        {
+          "target": "com.azure.sql#ManagedDatabasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListManagedDatabaseByInstance"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedInstanceAdministrator"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceAdministratorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceAdministrator"
+        },
+        {
           "target": "com.azure.sql#ListManagedInstanceAdministratorByInstance"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceAdvancedThreatProtectionSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceAdvancedThreatProtectionSettings"
         },
         {
           "target": "com.azure.sql#ListManagedInstanceAdvancedThreatProtectionSettingsByInstance"
         },
         {
+          "target": "com.azure.sql#DeleteManagedInstanceAzureADOnlyAuthentication"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceAzureADOnlyAuthentication"
+        },
+        {
           "target": "com.azure.sql#ListManagedInstanceAzureADOnlyAuthenticationByInstance"
         },
         {
-          "target": "com.azure.sql#ListManagedInstanceByInstancePool"
+          "target": "com.azure.sql#ManagedInstanceDtcsCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#ListManagedInstanceByManagedInstance"
-        },
-        {
-          "target": "com.azure.sql#ListManagedInstanceByResourceGroup"
+          "target": "com.azure.sql#GetManagedInstanceDtc"
         },
         {
           "target": "com.azure.sql#ListManagedInstanceDtcByManagedInstance"
         },
         {
+          "target": "com.azure.sql#ManagedInstanceEncryptionProtectorsRevalidate"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceEncryptionProtectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceEncryptionProtector"
+        },
+        {
           "target": "com.azure.sql#ListManagedInstanceEncryptionProtectorByInstance"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedInstanceKeys"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceKeysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceKeys"
         },
         {
           "target": "com.azure.sql#ListManagedInstanceKeysByInstance"
         },
         {
+          "target": "com.azure.sql#DeleteManagedInstanceLongTermRetentionPolicy"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceLongTermRetentionPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceLongTermRetentionPolicy"
+        },
+        {
           "target": "com.azure.sql#ListManagedInstanceLongTermRetentionPolicyByDatabase"
+        },
+        {
+          "target": "com.azure.sql#CancelManagedInstanceOperation"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceOperation"
         },
         {
           "target": "com.azure.sql#ListManagedInstanceOperationByManagedInstance"
         },
         {
-          "target": "com.azure.sql#ListManagedInstanceOutboundNetworkDependenciesByManagedInstance"
+          "target": "com.azure.sql#DeleteManagedInstancePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstancePrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstancePrivateEndpointConnection"
         },
         {
           "target": "com.azure.sql#ListManagedInstancePrivateEndpointConnectionByManagedInstance"
         },
         {
+          "target": "com.azure.sql#GetManagedInstancePrivateLinkResource"
+        },
+        {
           "target": "com.azure.sql#ListManagedInstancePrivateLinkResourceByManagedInstance"
         },
         {
-          "target": "com.azure.sql#ListManagedInstances"
+          "target": "com.azure.sql#CreateManagedInstanceTdeCertificate"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedInstanceVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstanceVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstanceVulnerabilityAssessment"
         },
         {
           "target": "com.azure.sql#ListManagedInstanceVulnerabilityAssessmentByInstance"
         },
         {
+          "target": "com.azure.sql#ValidateManagedInstanceAzureKeyVaultEncryptionKey"
+        },
+        {
+          "target": "com.azure.sql#ListManagedInstanceByManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#StopManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#StartManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#RefreshManagedInstanceStatus"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstancesReevaluateInaccessibleDatabaseState"
+        },
+        {
+          "target": "com.azure.sql#ListManagedInstanceOutboundNetworkDependenciesByManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstancesFailover"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#UpdateManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#ManagedInstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedInstance"
+        },
+        {
+          "target": "com.azure.sql#ListManagedInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#ListManagedInstanceByInstancePool"
+        },
+        {
+          "target": "com.azure.sql#ListManagedInstances"
+        },
+        {
+          "target": "com.azure.sql#DisableManagedLedgerDigestUpload"
+        },
+        {
+          "target": "com.azure.sql#ManagedLedgerDigestUploadsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedLedgerDigestUpload"
+        },
+        {
           "target": "com.azure.sql#ListManagedLedgerDigestUploadByDatabase"
+        },
+        {
+          "target": "com.azure.sql#UpdateManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicy"
+        },
+        {
+          "target": "com.azure.sql#ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicy"
         },
         {
           "target": "com.azure.sql#ListManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicyByRestorableDroppedDatabase"
         },
         {
+          "target": "com.azure.sql#ManagedServerDnsAliasesAcquire"
+        },
+        {
+          "target": "com.azure.sql#DeleteManagedServerDnsAlias"
+        },
+        {
+          "target": "com.azure.sql#ManagedServerDnsAliasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedServerDnsAlias"
+        },
+        {
           "target": "com.azure.sql#ListManagedServerDnsAliasByManagedInstance"
         },
         {
+          "target": "com.azure.sql#ManagedServerSecurityAlertPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetManagedServerSecurityAlertPolicy"
+        },
+        {
           "target": "com.azure.sql#ListManagedServerSecurityAlertPolicyByInstance"
+        },
+        {
+          "target": "com.azure.sql#NetworkSecurityPerimeterConfigurationsReconcile"
+        },
+        {
+          "target": "com.azure.sql#GetNetworkSecurityPerimeterConfiguration"
         },
         {
           "target": "com.azure.sql#ListNetworkSecurityPerimeterConfigurationByServer"
@@ -89112,31 +89136,76 @@
           "target": "com.azure.sql#ListOperations"
         },
         {
+          "target": "com.azure.sql#DeleteOutboundFirewallRule"
+        },
+        {
+          "target": "com.azure.sql#OutboundFirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetOutboundFirewallRule"
+        },
+        {
           "target": "com.azure.sql#ListOutboundFirewallRuleByServer"
+        },
+        {
+          "target": "com.azure.sql#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.sql#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetPrivateEndpointConnection"
         },
         {
           "target": "com.azure.sql#ListPrivateEndpointConnectionByServer"
         },
         {
+          "target": "com.azure.sql#GetPrivateLinkResource"
+        },
+        {
           "target": "com.azure.sql#ListPrivateLinkResourceByServer"
         },
         {
-          "target": "com.azure.sql#ListRecoverableDatabaseByServer"
+          "target": "com.azure.sql#GetRecoverableManagedDatabase"
         },
         {
           "target": "com.azure.sql#ListRecoverableManagedDatabaseByInstance"
         },
         {
+          "target": "com.azure.sql#ListReplicationLinkByServer"
+        },
+        {
+          "target": "com.azure.sql#UpdateReplicationLink"
+        },
+        {
+          "target": "com.azure.sql#ReplicationLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetReplicationLink"
+        },
+        {
           "target": "com.azure.sql#ListReplicationLinkByDatabase"
         },
         {
-          "target": "com.azure.sql#ListReplicationLinkByServer"
+          "target": "com.azure.sql#GetRestorableDroppedDatabase"
         },
         {
           "target": "com.azure.sql#ListRestorableDroppedDatabaseByServer"
         },
         {
+          "target": "com.azure.sql#GetRestorableDroppedManagedDatabase"
+        },
+        {
           "target": "com.azure.sql#ListRestorableDroppedManagedDatabaseByInstance"
+        },
+        {
+          "target": "com.azure.sql#DeleteRestorePoint"
+        },
+        {
+          "target": "com.azure.sql#GetRestorePoint"
+        },
+        {
+          "target": "com.azure.sql#CreateRestorePoint"
         },
         {
           "target": "com.azure.sql#ListRestorePointByDatabase"
@@ -89145,40 +89214,130 @@
           "target": "com.azure.sql#ListSensitivityLabelByDatabase"
         },
         {
-          "target": "com.azure.sql#ListSensitivityLabelCurrentByDatabase"
+          "target": "com.azure.sql#EnableSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.sql#DisableSensitivityLabelRecommendation"
+        },
+        {
+          "target": "com.azure.sql#DeleteSensitivityLabel"
+        },
+        {
+          "target": "com.azure.sql#SensitivityLabelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSensitivityLabel"
+        },
+        {
+          "target": "com.azure.sql#UpdateRecommendedSensitivityLabel"
         },
         {
           "target": "com.azure.sql#ListSensitivityLabelRecommendedByDatabase"
         },
         {
+          "target": "com.azure.sql#UpdateSensitivityLabel"
+        },
+        {
+          "target": "com.azure.sql#ListSensitivityLabelCurrentByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ServerAdvancedThreatProtectionSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerAdvancedThreatProtectionSettings"
+        },
+        {
           "target": "com.azure.sql#ListServerAdvancedThreatProtectionSettingsByServer"
+        },
+        {
+          "target": "com.azure.sql#UpdateServerAdvisor"
+        },
+        {
+          "target": "com.azure.sql#GetServerAdvisor"
         },
         {
           "target": "com.azure.sql#ListServerAdvisorByServer"
         },
         {
+          "target": "com.azure.sql#UpdateServerAutomaticTuning"
+        },
+        {
+          "target": "com.azure.sql#GetServerAutomaticTuning"
+        },
+        {
+          "target": "com.azure.sql#DeleteServerAzureADAdministrator"
+        },
+        {
+          "target": "com.azure.sql#ServerAzureADAdministratorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerAzureADAdministrator"
+        },
+        {
           "target": "com.azure.sql#ListServerAzureADAdministratorByServer"
+        },
+        {
+          "target": "com.azure.sql#DeleteServerAzureADOnlyAuthentication"
+        },
+        {
+          "target": "com.azure.sql#ServerAzureADOnlyAuthenticationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerAzureADOnlyAuthentication"
         },
         {
           "target": "com.azure.sql#ListServerAzureADOnlyAuthenticationByServer"
         },
         {
-          "target": "com.azure.sql#ListServerBlobAuditingPolicyByServer"
+          "target": "com.azure.sql#ServerConfigurationOptionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.sql#ListServerByResourceGroup"
+          "target": "com.azure.sql#GetServerConfigurationOption"
         },
         {
           "target": "com.azure.sql#ListServerConfigurationOptionByManagedInstance"
         },
         {
+          "target": "com.azure.sql#ServerConnectionPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerConnectionPolicy"
+        },
+        {
           "target": "com.azure.sql#ListServerConnectionPolicyByServer"
+        },
+        {
+          "target": "com.azure.sql#ServerDevOpsAuditSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerDevOpsAuditSettings"
         },
         {
           "target": "com.azure.sql#ListServerDevOpsAuditSettingsByServer"
         },
         {
+          "target": "com.azure.sql#ServerDnsAliasesAcquire"
+        },
+        {
+          "target": "com.azure.sql#DeleteServerDnsAlias"
+        },
+        {
+          "target": "com.azure.sql#ServerDnsAliasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerDnsAlias"
+        },
+        {
           "target": "com.azure.sql#ListServerDnsAliasByServer"
+        },
+        {
+          "target": "com.azure.sql#DeleteServerKeys"
+        },
+        {
+          "target": "com.azure.sql#ServerKeysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerKeys"
         },
         {
           "target": "com.azure.sql#ListServerKeysByServer"
@@ -89187,10 +89346,22 @@
           "target": "com.azure.sql#ListServerOperationByServer"
         },
         {
-          "target": "com.azure.sql#ListServers"
+          "target": "com.azure.sql#ServerSecurityAlertPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerSecurityAlertPolicy"
         },
         {
           "target": "com.azure.sql#ListServerSecurityAlertPolicyByServer"
+        },
+        {
+          "target": "com.azure.sql#DeleteServerTrustCertificate"
+        },
+        {
+          "target": "com.azure.sql#ServerTrustCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerTrustCertificate"
         },
         {
           "target": "com.azure.sql#ListServerTrustCertificateByInstance"
@@ -89199,31 +89370,124 @@
           "target": "com.azure.sql#ListServerTrustGroupByInstance"
         },
         {
+          "target": "com.azure.sql#DeleteServerTrustGroup"
+        },
+        {
+          "target": "com.azure.sql#ServerTrustGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerTrustGroup"
+        },
+        {
           "target": "com.azure.sql#ListServerTrustGroupByLocation"
         },
         {
-          "target": "com.azure.sql#ListServerUsageByServer"
+          "target": "com.azure.sql#DeleteServerVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ServerVulnerabilityAssessmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServerVulnerabilityAssessment"
         },
         {
           "target": "com.azure.sql#ListServerVulnerabilityAssessmentByServer"
         },
         {
+          "target": "com.azure.sql#RefreshServerStatus"
+        },
+        {
+          "target": "com.azure.sql#ImportServerDatabase"
+        },
+        {
+          "target": "com.azure.sql#DeleteServer"
+        },
+        {
+          "target": "com.azure.sql#UpdateServer"
+        },
+        {
+          "target": "com.azure.sql#ServersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetServer"
+        },
+        {
+          "target": "com.azure.sql#ListServerByResourceGroup"
+        },
+        {
+          "target": "com.azure.sql#ListServers"
+        },
+        {
+          "target": "com.azure.sql#CheckServerNameAvailability"
+        },
+        {
+          "target": "com.azure.sql#SqlAgentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSqlAgent"
+        },
+        {
+          "target": "com.azure.sql#SqlVulnerabilityAssessmentBaselinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentBaseline"
+        },
+        {
           "target": "com.azure.sql#ListSqlVulnerabilityAssessmentBaselineBySqlVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#ExecuteSqlVulnerabilityAssessmentExecuteScan"
+        },
+        {
+          "target": "com.azure.sql#DeleteSqlVulnerabilityAssessmentRuleBaseline"
+        },
+        {
+          "target": "com.azure.sql#SqlVulnerabilityAssessmentRuleBaselineCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentRuleBaseline"
         },
         {
           "target": "com.azure.sql#ListSqlVulnerabilityAssessmentRuleBaselineByBaseline"
         },
         {
-          "target": "com.azure.sql#ListSqlVulnerabilityAssessmentScanBySqlVulnerabilityAssessments"
+          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentScanResult"
         },
         {
           "target": "com.azure.sql#ListSqlVulnerabilityAssessmentScanResultByScan"
         },
         {
+          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentScan"
+        },
+        {
+          "target": "com.azure.sql#ListSqlVulnerabilityAssessmentScanBySqlVulnerabilityAssessments"
+        },
+        {
+          "target": "com.azure.sql#DeleteSqlVulnerabilityAssessment"
+        },
+        {
+          "target": "com.azure.sql#SqlVulnerabilityAssessmentsSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSqlVulnerabilityAssessmentsSettings"
+        },
+        {
           "target": "com.azure.sql#ListSqlVulnerabilityAssessmentsSettingsByServer"
         },
         {
+          "target": "com.azure.sql#DeleteStartStopManagedInstanceSchedule"
+        },
+        {
+          "target": "com.azure.sql#StartStopManagedInstanceSchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetStartStopManagedInstanceSchedule"
+        },
+        {
           "target": "com.azure.sql#ListStartStopManagedInstanceScheduleByInstance"
+        },
+        {
+          "target": "com.azure.sql#GetSubscriptionUsage"
         },
         {
           "target": "com.azure.sql#ListSubscriptionUsageByLocation"
@@ -89232,31 +89496,97 @@
           "target": "com.azure.sql#ListSynapseLinkWorkspaceByDatabase"
         },
         {
-          "target": "com.azure.sql#ListSyncAgentByServer"
-        },
-        {
           "target": "com.azure.sql#ListSyncAgentLinkedDatabases"
         },
         {
-          "target": "com.azure.sql#ListSyncGroupByDatabase"
+          "target": "com.azure.sql#GenerateSyncAgentKey"
         },
         {
-          "target": "com.azure.sql#ListSyncGroupHubSchemas"
+          "target": "com.azure.sql#DeleteSyncAgent"
+        },
+        {
+          "target": "com.azure.sql#SyncAgentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSyncAgent"
+        },
+        {
+          "target": "com.azure.sql#ListSyncAgentByServer"
+        },
+        {
+          "target": "com.azure.sql#TriggerSyncGroupSync"
+        },
+        {
+          "target": "com.azure.sql#RefreshSyncGroupHubSchema"
         },
         {
           "target": "com.azure.sql#ListSyncGroupLogs"
         },
         {
-          "target": "com.azure.sql#ListSyncGroupSyncDatabaseIds"
+          "target": "com.azure.sql#ListSyncGroupHubSchemas"
         },
         {
-          "target": "com.azure.sql#ListSyncMemberBySyncGroup"
+          "target": "com.azure.sql#CancelSyncGroupSync"
+        },
+        {
+          "target": "com.azure.sql#DeleteSyncGroup"
+        },
+        {
+          "target": "com.azure.sql#UpdateSyncGroup"
+        },
+        {
+          "target": "com.azure.sql#SyncGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSyncGroup"
+        },
+        {
+          "target": "com.azure.sql#ListSyncGroupByDatabase"
+        },
+        {
+          "target": "com.azure.sql#ListSyncGroupSyncDatabaseIds"
         },
         {
           "target": "com.azure.sql#ListSyncMemberMemberSchemas"
         },
         {
+          "target": "com.azure.sql#RefreshSyncMemberMemberSchema"
+        },
+        {
+          "target": "com.azure.sql#DeleteSyncMember"
+        },
+        {
+          "target": "com.azure.sql#UpdateSyncMember"
+        },
+        {
+          "target": "com.azure.sql#SyncMembersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetSyncMember"
+        },
+        {
+          "target": "com.azure.sql#ListSyncMemberBySyncGroup"
+        },
+        {
+          "target": "com.azure.sql#CreateTdeCertificate"
+        },
+        {
+          "target": "com.azure.sql#GetTimeZone"
+        },
+        {
           "target": "com.azure.sql#ListTimeZoneByLocation"
+        },
+        {
+          "target": "com.azure.sql#SuspendTransparentDataEncryption"
+        },
+        {
+          "target": "com.azure.sql#ResumeTransparentDataEncryption"
+        },
+        {
+          "target": "com.azure.sql#TransparentDataEncryptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetTransparentDataEncryption"
         },
         {
           "target": "com.azure.sql#ListTransparentDataEncryptionByDatabase"
@@ -89265,391 +89595,61 @@
           "target": "com.azure.sql#ListUsageByInstancePool"
         },
         {
+          "target": "com.azure.sql#UpdateVirtualClusterDnsServers"
+        },
+        {
+          "target": "com.azure.sql#DeleteVirtualCluster"
+        },
+        {
+          "target": "com.azure.sql#UpdateVirtualCluster"
+        },
+        {
+          "target": "com.azure.sql#VirtualClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetVirtualCluster"
+        },
+        {
           "target": "com.azure.sql#ListVirtualClusterByResourceGroup"
         },
         {
           "target": "com.azure.sql#ListVirtualClusters"
         },
         {
-          "target": "com.azure.sql#ListVirtualNetworkRuleByServer"
-        },
-        {
-          "target": "com.azure.sql#ListWorkloadClassifierByWorkloadGroup"
-        },
-        {
-          "target": "com.azure.sql#ListWorkloadGroupByDatabase"
-        },
-        {
-          "target": "com.azure.sql#LockLongTermRetentionBackupTimeBasedImmutability"
-        },
-        {
-          "target": "com.azure.sql#LockLongTermRetentionBackupTimeBasedImmutabilityByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#LongTermRetentionBackupsChangeAccessTier"
-        },
-        {
-          "target": "com.azure.sql#LongTermRetentionBackupsChangeAccessTierByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#LongTermRetentionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#MaintenanceWindowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedBackupShortTermRetentionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseAdvancedThreatProtectionSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabasesCancelMove"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseSecurityAlertPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseSensitivityLabelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabasesReevaluateInaccessibleDatabaseState"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabasesStartMove"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseTransparentDataEncryptionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseVulnerabilityAssessmentRuleBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseVulnerabilityAssessmentScansInitiateScan"
-        },
-        {
-          "target": "com.azure.sql#ManagedDatabaseVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceAdministratorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceAdvancedThreatProtectionSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceAzureADOnlyAuthenticationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceDtcsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceEncryptionProtectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceEncryptionProtectorsRevalidate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceKeysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceLongTermRetentionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstancePrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstancesFailover"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstancesReevaluateInaccessibleDatabaseState"
-        },
-        {
-          "target": "com.azure.sql#ManagedInstanceVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedLedgerDigestUploadsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedServerDnsAliasesAcquire"
-        },
-        {
-          "target": "com.azure.sql#ManagedServerDnsAliasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ManagedServerSecurityAlertPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#MoveManagedDatabasesComplete"
-        },
-        {
-          "target": "com.azure.sql#NetworkSecurityPerimeterConfigurationsReconcile"
-        },
-        {
-          "target": "com.azure.sql#OutboundFirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#PauseDatabase"
-        },
-        {
-          "target": "com.azure.sql#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#RecoverDeletedServer"
-        },
-        {
-          "target": "com.azure.sql#RefreshManagedInstanceStatus"
-        },
-        {
-          "target": "com.azure.sql#RefreshServerStatus"
-        },
-        {
-          "target": "com.azure.sql#RefreshSyncGroupHubSchema"
-        },
-        {
-          "target": "com.azure.sql#RefreshSyncMemberMemberSchema"
-        },
-        {
-          "target": "com.azure.sql#RemoveLongTermRetentionBackupLegalHoldImmutability"
-        },
-        {
-          "target": "com.azure.sql#RemoveLongTermRetentionBackupLegalHoldImmutabilityByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#RemoveLongTermRetentionBackupTimeBasedImmutability"
-        },
-        {
-          "target": "com.azure.sql#RemoveLongTermRetentionBackupTimeBasedImmutabilityByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#RenameDatabase"
-        },
-        {
-          "target": "com.azure.sql#ReplaceFirewallRule"
-        },
-        {
-          "target": "com.azure.sql#ReplicationLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ReplicationLinksFailover"
-        },
-        {
-          "target": "com.azure.sql#ReplicationLinksFailoverAllowDataLoss"
-        },
-        {
-          "target": "com.azure.sql#RestoreManagedDatabasesComplete"
-        },
-        {
-          "target": "com.azure.sql#ResumeDatabase"
-        },
-        {
-          "target": "com.azure.sql#ResumeTransparentDataEncryption"
-        },
-        {
-          "target": "com.azure.sql#SensitivityLabelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerAdvancedThreatProtectionSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerAzureADAdministratorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerAzureADOnlyAuthenticationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerBlobAuditingPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerConfigurationOptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerConnectionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerDevOpsAuditSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerDnsAliasesAcquire"
-        },
-        {
-          "target": "com.azure.sql#ServerDnsAliasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerKeysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerSecurityAlertPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerTrustCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerTrustGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#ServerVulnerabilityAssessmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#SetDistributedAvailabilityGroupRole"
-        },
-        {
-          "target": "com.azure.sql#SetLongTermRetentionBackupLegalHoldImmutability"
-        },
-        {
-          "target": "com.azure.sql#SetLongTermRetentionBackupLegalHoldImmutabilityByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#SqlAgentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#SqlVulnerabilityAssessmentBaselinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#SqlVulnerabilityAssessmentRuleBaselineCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#SqlVulnerabilityAssessmentsSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#StartManagedInstance"
-        },
-        {
-          "target": "com.azure.sql#StartStopManagedInstanceSchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#StopManagedInstance"
-        },
-        {
-          "target": "com.azure.sql#SuspendTransparentDataEncryption"
-        },
-        {
-          "target": "com.azure.sql#SyncAgentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#SyncGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#SyncMembersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#TransparentDataEncryptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.sql#TriggerSyncGroupSync"
-        },
-        {
-          "target": "com.azure.sql#UnlinkReplicationLink"
-        },
-        {
-          "target": "com.azure.sql#UpdateBackupShortTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#UpdateDatabase"
-        },
-        {
-          "target": "com.azure.sql#UpdateDatabaseAdvisor"
-        },
-        {
-          "target": "com.azure.sql#UpdateDatabaseAutomaticTuning"
-        },
-        {
-          "target": "com.azure.sql#UpdateDatabaseRecommendedAction"
-        },
-        {
-          "target": "com.azure.sql#UpdateDistributedAvailabilityGroup"
-        },
-        {
-          "target": "com.azure.sql#UpdateElasticPool"
-        },
-        {
-          "target": "com.azure.sql#UpdateFailoverGroup"
-        },
-        {
-          "target": "com.azure.sql#UpdateInstancePool"
-        },
-        {
-          "target": "com.azure.sql#UpdateJobAgent"
-        },
-        {
-          "target": "com.azure.sql#UpdateLongTermRetentionBackup"
-        },
-        {
-          "target": "com.azure.sql#UpdateLongTermRetentionBackupByResourceGroup"
-        },
-        {
-          "target": "com.azure.sql#UpdateManagedBackupShortTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#UpdateManagedDatabase"
-        },
-        {
-          "target": "com.azure.sql#UpdateManagedDatabaseRecommendedSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#UpdateManagedDatabaseSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#UpdateManagedInstance"
-        },
-        {
-          "target": "com.azure.sql#UpdateManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicy"
-        },
-        {
-          "target": "com.azure.sql#UpdateRecommendedSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#UpdateReplicationLink"
-        },
-        {
-          "target": "com.azure.sql#UpdateSensitivityLabel"
-        },
-        {
-          "target": "com.azure.sql#UpdateServer"
-        },
-        {
-          "target": "com.azure.sql#UpdateServerAdvisor"
-        },
-        {
-          "target": "com.azure.sql#UpdateServerAutomaticTuning"
-        },
-        {
-          "target": "com.azure.sql#UpdateSyncGroup"
-        },
-        {
-          "target": "com.azure.sql#UpdateSyncMember"
-        },
-        {
-          "target": "com.azure.sql#UpdateVirtualCluster"
-        },
-        {
-          "target": "com.azure.sql#UpdateVirtualClusterDnsServers"
-        },
-        {
-          "target": "com.azure.sql#ValidateManagedInstanceAzureKeyVaultEncryptionKey"
-        },
-        {
-          "target": "com.azure.sql#VirtualClustersCreateOrUpdate"
+          "target": "com.azure.sql#DeleteVirtualNetworkRule"
         },
         {
           "target": "com.azure.sql#VirtualNetworkRulesCreateOrUpdate"
         },
         {
+          "target": "com.azure.sql#GetVirtualNetworkRule"
+        },
+        {
+          "target": "com.azure.sql#ListVirtualNetworkRuleByServer"
+        },
+        {
+          "target": "com.azure.sql#DeleteWorkloadClassifier"
+        },
+        {
           "target": "com.azure.sql#WorkloadClassifiersCreateOrUpdate"
         },
         {
+          "target": "com.azure.sql#GetWorkloadClassifier"
+        },
+        {
+          "target": "com.azure.sql#ListWorkloadClassifierByWorkloadGroup"
+        },
+        {
+          "target": "com.azure.sql#DeleteWorkloadGroup"
+        },
+        {
           "target": "com.azure.sql#WorkloadGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.sql#GetWorkloadGroup"
+        },
+        {
+          "target": "com.azure.sql#ListWorkloadGroupByDatabase"
         }
       ],
       "traits": {

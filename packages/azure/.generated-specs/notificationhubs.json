@@ -5531,109 +5531,109 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.notificationhubs#CheckNamespaceAvailability"
-        },
-        {
-          "target": "com.azure.notificationhubs#CheckNotificationHubNotificationHubAvailability"
-        },
-        {
-          "target": "com.azure.notificationhubs#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.notificationhubs#DeleteNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.notificationhubs#DeleteNotificationHub"
-        },
-        {
-          "target": "com.azure.notificationhubs#DeleteNotificationHubAuthorizationRule"
-        },
-        {
-          "target": "com.azure.notificationhubs#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetNamespace"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetNamespacePnsCredentials"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetNotificationHub"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetNotificationHubAuthorizationRule"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetNotificationHubPnsCredentials"
-        },
-        {
-          "target": "com.azure.notificationhubs#GetPrivateEndpointConnection"
+          "target": "com.azure.notificationhubs#ListPrivateEndpointConnectionGroupIds"
         },
         {
           "target": "com.azure.notificationhubs#GetPrivateEndpointConnectionGroupId"
         },
         {
-          "target": "com.azure.notificationhubs#ListNamespaceAll"
+          "target": "com.azure.notificationhubs#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.notificationhubs#ListNamespaceAuthorizationRules"
+          "target": "com.azure.notificationhubs#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.notificationhubs#ListNamespaceKeys"
+          "target": "com.azure.notificationhubs#UpdatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.notificationhubs#ListNamespaces"
-        },
-        {
-          "target": "com.azure.notificationhubs#ListNotificationHubAuthorizationRules"
-        },
-        {
-          "target": "com.azure.notificationhubs#ListNotificationHubKeys"
-        },
-        {
-          "target": "com.azure.notificationhubs#ListNotificationHubs"
+          "target": "com.azure.notificationhubs#GetPrivateEndpointConnection"
         },
         {
           "target": "com.azure.notificationhubs#ListOperations"
         },
         {
-          "target": "com.azure.notificationhubs#ListPrivateEndpointConnectionGroupIds"
-        },
-        {
-          "target": "com.azure.notificationhubs#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.notificationhubs#NamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.notificationhubs#NamespacesCreateOrUpdateAuthorizationRule"
-        },
-        {
-          "target": "com.azure.notificationhubs#NotificationHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.notificationhubs#NotificationHubsCreateOrUpdateAuthorizationRule"
+          "target": "com.azure.notificationhubs#GetNamespacePnsCredentials"
         },
         {
           "target": "com.azure.notificationhubs#RegenerateNamespaceKeys"
         },
         {
-          "target": "com.azure.notificationhubs#RegenerateNotificationHubKeys"
+          "target": "com.azure.notificationhubs#ListNamespaceKeys"
         },
         {
-          "target": "com.azure.notificationhubs#SendNotificationHubsDebug"
+          "target": "com.azure.notificationhubs#ListNamespaceAuthorizationRules"
+        },
+        {
+          "target": "com.azure.notificationhubs#DeleteNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.notificationhubs#NamespacesCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.notificationhubs#GetNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.notificationhubs#ListNamespaces"
+        },
+        {
+          "target": "com.azure.notificationhubs#ListNamespaceAll"
+        },
+        {
+          "target": "com.azure.notificationhubs#DeleteNamespace"
         },
         {
           "target": "com.azure.notificationhubs#UpdateNamespace"
         },
         {
+          "target": "com.azure.notificationhubs#NamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.notificationhubs#GetNamespace"
+        },
+        {
+          "target": "com.azure.notificationhubs#CheckNamespaceAvailability"
+        },
+        {
+          "target": "com.azure.notificationhubs#GetNotificationHubPnsCredentials"
+        },
+        {
+          "target": "com.azure.notificationhubs#RegenerateNotificationHubKeys"
+        },
+        {
+          "target": "com.azure.notificationhubs#ListNotificationHubKeys"
+        },
+        {
+          "target": "com.azure.notificationhubs#ListNotificationHubAuthorizationRules"
+        },
+        {
+          "target": "com.azure.notificationhubs#DeleteNotificationHubAuthorizationRule"
+        },
+        {
+          "target": "com.azure.notificationhubs#NotificationHubsCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.notificationhubs#GetNotificationHubAuthorizationRule"
+        },
+        {
+          "target": "com.azure.notificationhubs#SendNotificationHubsDebug"
+        },
+        {
+          "target": "com.azure.notificationhubs#ListNotificationHubs"
+        },
+        {
+          "target": "com.azure.notificationhubs#DeleteNotificationHub"
+        },
+        {
           "target": "com.azure.notificationhubs#UpdateNotificationHub"
         },
         {
-          "target": "com.azure.notificationhubs#UpdatePrivateEndpointConnection"
+          "target": "com.azure.notificationhubs#NotificationHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.notificationhubs#GetNotificationHub"
+        },
+        {
+          "target": "com.azure.notificationhubs#CheckNotificationHubNotificationHubAvailability"
         }
       ],
       "traits": {

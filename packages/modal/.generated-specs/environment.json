@@ -917,13 +917,13 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.modal.environment#EnvironmentBillingSummary"
+        },
+        {
           "target": "com.modal.environment#CreateEnvironment"
         },
         {
           "target": "com.modal.environment#DeleteEnvironment"
-        },
-        {
-          "target": "com.modal.environment#EnvironmentBillingSummary"
         },
         {
           "target": "com.modal.environment#EnvironmentGetBudget"
@@ -938,6 +938,12 @@
           "target": "com.modal.environment#EnvironmentGetRoles"
         },
         {
+          "target": "com.modal.environment#ListEnvironment"
+        },
+        {
+          "target": "com.modal.environment#SetEnvironmentRole"
+        },
+        {
           "target": "com.modal.environment#EnvironmentSetBudget"
         },
         {
@@ -945,12 +951,6 @@
         },
         {
           "target": "com.modal.environment#EnvironmentSetManaged"
-        },
-        {
-          "target": "com.modal.environment#ListEnvironment"
-        },
-        {
-          "target": "com.modal.environment#SetEnvironmentRole"
         },
         {
           "target": "com.modal.environment#UpdateEnvironment"

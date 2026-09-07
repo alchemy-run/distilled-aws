@@ -13908,49 +13908,223 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlow"
+          "target": "com.azure.datafactory#UnsubscribeTriggerFromEvents"
         },
         {
-          "target": "com.azure.datafactory#CancelPipelineRun"
+          "target": "com.azure.datafactory#TriggerRunsRerun"
         },
         {
           "target": "com.azure.datafactory#CancelTriggerRun"
         },
         {
-          "target": "com.azure.datafactory#ChangeDataCaptureCreateOrUpdate"
+          "target": "com.azure.datafactory#SubscribeTriggerToEvents"
         },
         {
-          "target": "com.azure.datafactory#ChangeDataCaptureStatus"
+          "target": "com.azure.datafactory#StopTrigger"
         },
         {
-          "target": "com.azure.datafactory#CreateDataFlowDebugSession"
+          "target": "com.azure.datafactory#StartTrigger"
         },
         {
-          "target": "com.azure.datafactory#CreateIntegrationRuntimeLinkedIntegrationRuntime"
+          "target": "com.azure.datafactory#GetTriggerEventSubscriptionStatus"
         },
         {
-          "target": "com.azure.datafactory#CreatePipelineRun"
+          "target": "com.azure.datafactory#DeleteTrigger"
         },
         {
-          "target": "com.azure.datafactory#CredentialOperationsCreateOrUpdate"
+          "target": "com.azure.datafactory#TriggersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetTrigger"
+        },
+        {
+          "target": "com.azure.datafactory#ListTriggerByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#TriggersQueryByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#TriggerRunsQueryByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#PipelineRunsQueryByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ExposureControlQueryFeatureValuesByFactory"
         },
         {
           "target": "com.azure.datafactory#DataFlowDebugSessionQueryByFactory"
         },
         {
-          "target": "com.azure.datafactory#DataFlowsCreateOrUpdate"
+          "target": "com.azure.datafactory#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.datafactory#DatasetsCreateOrUpdate"
+          "target": "com.azure.datafactory#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.datafactory#DeleteChangeDataCapture"
+          "target": "com.azure.datafactory#PrivateEndpointConnectionCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#DeleteCredentialOperation"
+          "target": "com.azure.datafactory#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.datafactory#DeleteDataFlow"
+          "target": "com.azure.datafactory#ListPrivateEndPointConnectionByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#CreatePipelineRun"
+        },
+        {
+          "target": "com.azure.datafactory#DeletePipeline"
+        },
+        {
+          "target": "com.azure.datafactory#PipelinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetPipeline"
+        },
+        {
+          "target": "com.azure.datafactory#ListPipelineByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#RunActivityRunsQueryByPipeline"
+        },
+        {
+          "target": "com.azure.datafactory#CancelPipelineRun"
+        },
+        {
+          "target": "com.azure.datafactory#GetPipelineRun"
+        },
+        {
+          "target": "com.azure.datafactory#DeleteManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.datafactory#ManagedPrivateEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.datafactory#ListManagedPrivateEndpointByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ManagedVirtualNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetManagedVirtualNetwork"
+        },
+        {
+          "target": "com.azure.datafactory#ListManagedVirtualNetworkByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#DeleteLinkedService"
+        },
+        {
+          "target": "com.azure.datafactory#LinkedServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetLinkedService"
+        },
+        {
+          "target": "com.azure.datafactory#ListLinkedServiceByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#IntegrationRuntimesUpgrade"
+        },
+        {
+          "target": "com.azure.datafactory#SyncIntegrationRuntimeCredentials"
+        },
+        {
+          "target": "com.azure.datafactory#StopIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#StartIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#RemoveIntegrationRuntimeLinks"
+        },
+        {
+          "target": "com.azure.datafactory#RegenerateIntegrationRuntimeAuthKey"
+        },
+        {
+          "target": "com.azure.datafactory#RefreshIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeNodeIpAddress"
+        },
+        {
+          "target": "com.azure.datafactory#DeleteIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.datafactory#UpdateIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeNode"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeMonitoringData"
+        },
+        {
+          "target": "com.azure.datafactory#ListIntegrationRuntimeAuthKeys"
+        },
+        {
+          "target": "com.azure.datafactory#CreateIntegrationRuntimeLinkedIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeStatus"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeObjectMetadata"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntimeConnectionInfo"
+        },
+        {
+          "target": "com.azure.datafactory#EnableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.datafactory#DisableIntegrationRuntimeInteractiveQuery"
+        },
+        {
+          "target": "com.azure.datafactory#DeleteIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#UpdateIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#IntegrationRuntimesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetIntegrationRuntime"
+        },
+        {
+          "target": "com.azure.datafactory#ListIntegrationRuntimeByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#DeleteGlobalParameter"
+        },
+        {
+          "target": "com.azure.datafactory#GlobalParametersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datafactory#GetGlobalParameter"
+        },
+        {
+          "target": "com.azure.datafactory#ListGlobalParameterByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#GetFactoryGitHubAccessToken"
+        },
+        {
+          "target": "com.azure.datafactory#GetExposureControlFeatureValueByFactory"
+        },
+        {
+          "target": "com.azure.datafactory#GetFactoryDataPlaneAccess"
+        },
+        {
+          "target": "com.azure.datafactory#ExecuteDataFlowDebugSessionCommand"
         },
         {
           "target": "com.azure.datafactory#DeleteDataFlowDebugSession"
@@ -13959,265 +14133,91 @@
           "target": "com.azure.datafactory#DeleteDataset"
         },
         {
-          "target": "com.azure.datafactory#DeleteFactory"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteGlobalParameter"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteLinkedService"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.datafactory#DeletePipeline"
-        },
-        {
-          "target": "com.azure.datafactory#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.datafactory#DeleteTrigger"
-        },
-        {
-          "target": "com.azure.datafactory#DisableIntegrationRuntimeInteractiveQuery"
-        },
-        {
-          "target": "com.azure.datafactory#EnableIntegrationRuntimeInteractiveQuery"
-        },
-        {
-          "target": "com.azure.datafactory#ExecuteDataFlowDebugSessionCommand"
-        },
-        {
-          "target": "com.azure.datafactory#ExposureControlQueryFeatureValuesByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#FactoriesConfigureFactoryRepo"
-        },
-        {
-          "target": "com.azure.datafactory#FactoriesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#GetChangeDataCapture"
-        },
-        {
-          "target": "com.azure.datafactory#GetCredentialOperation"
-        },
-        {
-          "target": "com.azure.datafactory#GetDataFlow"
+          "target": "com.azure.datafactory#DatasetsCreateOrUpdate"
         },
         {
           "target": "com.azure.datafactory#GetDataset"
         },
         {
-          "target": "com.azure.datafactory#GetExposureControlFeatureValue"
+          "target": "com.azure.datafactory#ListDatasetByFactory"
         },
         {
-          "target": "com.azure.datafactory#GetExposureControlFeatureValueByFactory"
+          "target": "com.azure.datafactory#DeleteDataFlow"
         },
         {
-          "target": "com.azure.datafactory#GetFactory"
+          "target": "com.azure.datafactory#DataFlowsCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#GetFactoryDataPlaneAccess"
-        },
-        {
-          "target": "com.azure.datafactory#GetFactoryGitHubAccessToken"
-        },
-        {
-          "target": "com.azure.datafactory#GetGlobalParameter"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeConnectionInfo"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeMonitoringData"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeNode"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeNodeIpAddress"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeObjectMetadata"
-        },
-        {
-          "target": "com.azure.datafactory#GetIntegrationRuntimeStatus"
-        },
-        {
-          "target": "com.azure.datafactory#GetLinkedService"
-        },
-        {
-          "target": "com.azure.datafactory#GetManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.datafactory#GetManagedVirtualNetwork"
-        },
-        {
-          "target": "com.azure.datafactory#GetPipeline"
-        },
-        {
-          "target": "com.azure.datafactory#GetPipelineRun"
-        },
-        {
-          "target": "com.azure.datafactory#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.datafactory#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.datafactory#GetTrigger"
-        },
-        {
-          "target": "com.azure.datafactory#GetTriggerEventSubscriptionStatus"
-        },
-        {
-          "target": "com.azure.datafactory#GlobalParametersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#IntegrationRuntimesUpgrade"
-        },
-        {
-          "target": "com.azure.datafactory#LinkedServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#ListChangeDataCaptureByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListCredentialOperationByFactory"
+          "target": "com.azure.datafactory#GetDataFlow"
         },
         {
           "target": "com.azure.datafactory#ListDataFlowByFactory"
         },
         {
-          "target": "com.azure.datafactory#ListDatasetByFactory"
+          "target": "com.azure.datafactory#DeleteCredentialOperation"
         },
         {
-          "target": "com.azure.datafactory#ListFactories"
+          "target": "com.azure.datafactory#CredentialOperationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#ListFactoryByResourceGroup"
+          "target": "com.azure.datafactory#GetCredentialOperation"
         },
         {
-          "target": "com.azure.datafactory#ListGlobalParameterByFactory"
+          "target": "com.azure.datafactory#ListCredentialOperationByFactory"
         },
         {
-          "target": "com.azure.datafactory#ListIntegrationRuntimeAuthKeys"
-        },
-        {
-          "target": "com.azure.datafactory#ListIntegrationRuntimeByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListIntegrationRuntimeOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.datafactory#ListLinkedServiceByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListManagedPrivateEndpointByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListManagedVirtualNetworkByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListOperations"
-        },
-        {
-          "target": "com.azure.datafactory#ListPipelineByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListPrivateEndPointConnectionByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ListTriggerByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#ManagedPrivateEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#ManagedVirtualNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#PipelineRunsQueryByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#PipelinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#PrivateEndpointConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datafactory#RefreshIntegrationRuntimeObjectMetadata"
-        },
-        {
-          "target": "com.azure.datafactory#RegenerateIntegrationRuntimeAuthKey"
-        },
-        {
-          "target": "com.azure.datafactory#RemoveIntegrationRuntimeLinks"
-        },
-        {
-          "target": "com.azure.datafactory#RunActivityRunsQueryByPipeline"
-        },
-        {
-          "target": "com.azure.datafactory#StartChangeDataCapture"
-        },
-        {
-          "target": "com.azure.datafactory#StartIntegrationRuntime"
-        },
-        {
-          "target": "com.azure.datafactory#StartTrigger"
+          "target": "com.azure.datafactory#CreateDataFlowDebugSession"
         },
         {
           "target": "com.azure.datafactory#StopChangeDataCapture"
         },
         {
-          "target": "com.azure.datafactory#StopIntegrationRuntime"
+          "target": "com.azure.datafactory#ChangeDataCaptureStatus"
         },
         {
-          "target": "com.azure.datafactory#StopTrigger"
+          "target": "com.azure.datafactory#StartChangeDataCapture"
         },
         {
-          "target": "com.azure.datafactory#SubscribeTriggerToEvents"
+          "target": "com.azure.datafactory#DeleteChangeDataCapture"
         },
         {
-          "target": "com.azure.datafactory#SyncIntegrationRuntimeCredentials"
+          "target": "com.azure.datafactory#ChangeDataCaptureCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#TriggerRunsQueryByFactory"
+          "target": "com.azure.datafactory#GetChangeDataCapture"
         },
         {
-          "target": "com.azure.datafactory#TriggerRunsRerun"
+          "target": "com.azure.datafactory#ListChangeDataCaptureByFactory"
         },
         {
-          "target": "com.azure.datafactory#TriggersCreateOrUpdate"
+          "target": "com.azure.datafactory#AddDataFlowDebugSessionDataFlow"
         },
         {
-          "target": "com.azure.datafactory#TriggersQueryByFactory"
-        },
-        {
-          "target": "com.azure.datafactory#UnsubscribeTriggerFromEvents"
+          "target": "com.azure.datafactory#DeleteFactory"
         },
         {
           "target": "com.azure.datafactory#UpdateFactory"
         },
         {
-          "target": "com.azure.datafactory#UpdateIntegrationRuntime"
+          "target": "com.azure.datafactory#FactoriesCreateOrUpdate"
         },
         {
-          "target": "com.azure.datafactory#UpdateIntegrationRuntimeNode"
+          "target": "com.azure.datafactory#GetFactory"
+        },
+        {
+          "target": "com.azure.datafactory#ListFactoryByResourceGroup"
+        },
+        {
+          "target": "com.azure.datafactory#GetExposureControlFeatureValue"
+        },
+        {
+          "target": "com.azure.datafactory#FactoriesConfigureFactoryRepo"
+        },
+        {
+          "target": "com.azure.datafactory#ListFactories"
+        },
+        {
+          "target": "com.azure.datafactory#ListOperations"
         }
       ],
       "traits": {

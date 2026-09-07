@@ -3265,22 +3265,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.users#GetAvatar"
-        },
-        {
-          "target": "com.huggingface.users#GetJobsUsage"
-        },
-        {
           "target": "com.huggingface.users#GetMcpTools"
         },
         {
-          "target": "com.huggingface.users#GetSessionInferenceUsage"
-        },
-        {
-          "target": "com.huggingface.users#GetSocialHandles"
-        },
-        {
-          "target": "com.huggingface.users#GetUserAvatar"
+          "target": "com.huggingface.users#ListUserRepositories"
         },
         {
           "target": "com.huggingface.users#GetUserUsage"
@@ -3289,31 +3277,43 @@
           "target": "com.huggingface.users#GetUserUsageV2"
         },
         {
-          "target": "com.huggingface.users#ListFollowedOrganizations"
+          "target": "com.huggingface.users#GetSessionInferenceUsage"
         },
         {
-          "target": "com.huggingface.users#ListFollowedUsers"
-        },
-        {
-          "target": "com.huggingface.users#ListUserFollowers"
-        },
-        {
-          "target": "com.huggingface.users#ListUserLikes"
-        },
-        {
-          "target": "com.huggingface.users#ListUserRepositories"
-        },
-        {
-          "target": "com.huggingface.users#StreamMetrics"
+          "target": "com.huggingface.users#GetJobsUsage"
         },
         {
           "target": "com.huggingface.users#StreamUserUsage"
+        },
+        {
+          "target": "com.huggingface.users#StreamMetrics"
         },
         {
           "target": "com.huggingface.users#StreamUserUsageByUsername"
         },
         {
           "target": "com.huggingface.users#UserOverview"
+        },
+        {
+          "target": "com.huggingface.users#GetSocialHandles"
+        },
+        {
+          "target": "com.huggingface.users#GetUserAvatar"
+        },
+        {
+          "target": "com.huggingface.users#ListUserLikes"
+        },
+        {
+          "target": "com.huggingface.users#ListUserFollowers"
+        },
+        {
+          "target": "com.huggingface.users#ListFollowedUsers"
+        },
+        {
+          "target": "com.huggingface.users#ListFollowedOrganizations"
+        },
+        {
+          "target": "com.huggingface.users#GetAvatar"
         }
       ],
       "traits": {

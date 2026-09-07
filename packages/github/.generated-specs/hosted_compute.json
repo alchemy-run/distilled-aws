@@ -572,22 +572,22 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrg"
+          "target": "com.github.hosted_compute#ListNetworkConfigurationsForOrg"
         },
         {
-          "target": "com.github.hosted_compute#DeleteNetworkConfigurationFromOrg"
+          "target": "com.github.hosted_compute#CreateNetworkConfigurationForOrg"
         },
         {
           "target": "com.github.hosted_compute#GetNetworkConfigurationForOrg"
         },
         {
-          "target": "com.github.hosted_compute#GetNetworkSettingsForOrg"
-        },
-        {
-          "target": "com.github.hosted_compute#ListNetworkConfigurationsForOrg"
-        },
-        {
           "target": "com.github.hosted_compute#UpdateNetworkConfigurationForOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#DeleteNetworkConfigurationFromOrg"
+        },
+        {
+          "target": "com.github.hosted_compute#GetNetworkSettingsForOrg"
         }
       ],
       "traits": {

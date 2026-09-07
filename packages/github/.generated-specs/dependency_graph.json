@@ -776,9 +776,6 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.dependency_graph#CreateRepositorySnapshot"
-        },
-        {
           "target": "com.github.dependency_graph#DiffRange"
         },
         {
@@ -786,6 +783,9 @@
         },
         {
           "target": "com.github.dependency_graph#GenerateSbomReport"
+        },
+        {
+          "target": "com.github.dependency_graph#CreateRepositorySnapshot"
         }
       ],
       "traits": {

@@ -7761,55 +7761,124 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.certificates#CreateCertificatesV1beta1ClusterTrustBundle"
+          "target": "com.kubernetes.certificates#GetCertificatesAPIGroup"
         },
         {
-          "target": "com.kubernetes.certificates#CreateCertificatesV1beta1NamespacedPodCertificateRequest"
+          "target": "com.kubernetes.certificates#GetCertificatesV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.certificates#ListCertificatesV1CertificateSigningRequest"
         },
         {
           "target": "com.kubernetes.certificates#CreateCertificatesV1CertificateSigningRequest"
         },
         {
-          "target": "com.kubernetes.certificates#CreateCertificatesV1ClusterTrustBundle"
+          "target": "com.kubernetes.certificates#DeleteCertificatesV1CollectionCertificateSigningRequest"
         },
         {
-          "target": "com.kubernetes.certificates#CreateCertificatesV1NamespacedPodCertificateRequest"
+          "target": "com.kubernetes.certificates#ReadCertificatesV1CertificateSigningRequest"
         },
         {
-          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1ClusterTrustBundle"
+          "target": "com.kubernetes.certificates#ReplaceCertificatesV1CertificateSigningRequest"
         },
         {
-          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1CollectionClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1CollectionNamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1NamespacedPodCertificateRequest"
+          "target": "com.kubernetes.certificates#PatchCertificatesV1CertificateSigningRequest"
         },
         {
           "target": "com.kubernetes.certificates#DeleteCertificatesV1CertificateSigningRequest"
         },
         {
-          "target": "com.kubernetes.certificates#DeleteCertificatesV1ClusterTrustBundle"
+          "target": "com.kubernetes.certificates#ReadCertificatesV1CertificateSigningRequestApproval"
         },
         {
-          "target": "com.kubernetes.certificates#DeleteCertificatesV1CollectionCertificateSigningRequest"
+          "target": "com.kubernetes.certificates#ReplaceCertificatesV1CertificateSigningRequestApproval"
+        },
+        {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1CertificateSigningRequestApproval"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReadCertificatesV1CertificateSigningRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReplaceCertificatesV1CertificateSigningRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1CertificateSigningRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.certificates#ListCertificatesV1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#CreateCertificatesV1ClusterTrustBundle"
         },
         {
           "target": "com.kubernetes.certificates#DeleteCertificatesV1CollectionClusterTrustBundle"
         },
         {
+          "target": "com.kubernetes.certificates#ReadCertificatesV1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReplaceCertificatesV1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#DeleteCertificatesV1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#ListCertificatesV1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#CreateCertificatesV1NamespacedPodCertificateRequest"
+        },
+        {
           "target": "com.kubernetes.certificates#DeleteCertificatesV1CollectionNamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReadCertificatesV1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReplaceCertificatesV1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1NamespacedPodCertificateRequest"
         },
         {
           "target": "com.kubernetes.certificates#DeleteCertificatesV1NamespacedPodCertificateRequest"
         },
         {
-          "target": "com.kubernetes.certificates#GetCertificatesAPIGroup"
+          "target": "com.kubernetes.certificates#ReadCertificatesV1NamespacedPodCertificateRequestStatus"
         },
         {
-          "target": "com.kubernetes.certificates#GetCertificatesV1APIResources"
+          "target": "com.kubernetes.certificates#ReplaceCertificatesV1NamespacedPodCertificateRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1NamespacedPodCertificateRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.certificates#ListCertificatesV1PodCertificateRequestForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1CertificateSigningRequestList"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1CertificateSigningRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1ClusterTrustBundleList"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1NamespacedPodCertificateRequestList"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1PodCertificateRequestListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.certificates#GetCertificatesV1beta1APIResources"
@@ -7818,139 +7887,70 @@
           "target": "com.kubernetes.certificates#ListCertificatesV1beta1ClusterTrustBundle"
         },
         {
-          "target": "com.kubernetes.certificates#ListCertificatesV1beta1NamespacedPodCertificateRequest"
+          "target": "com.kubernetes.certificates#CreateCertificatesV1beta1ClusterTrustBundle"
         },
         {
-          "target": "com.kubernetes.certificates#ListCertificatesV1beta1PodCertificateRequestForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.certificates#ListCertificatesV1CertificateSigningRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#ListCertificatesV1ClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#ListCertificatesV1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#ListCertificatesV1PodCertificateRequestForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1beta1ClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1beta1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1beta1NamespacedPodCertificateRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1CertificateSigningRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1CertificateSigningRequestApproval"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1CertificateSigningRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1ClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#PatchCertificatesV1NamespacedPodCertificateRequestStatus"
+          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1CollectionClusterTrustBundle"
         },
         {
           "target": "com.kubernetes.certificates#ReadCertificatesV1beta1ClusterTrustBundle"
         },
         {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1beta1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1beta1NamespacedPodCertificateRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1CertificateSigningRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1CertificateSigningRequestApproval"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1CertificateSigningRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1ClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReadCertificatesV1NamespacedPodCertificateRequestStatus"
-        },
-        {
           "target": "com.kubernetes.certificates#ReplaceCertificatesV1beta1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1beta1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1ClusterTrustBundle"
+        },
+        {
+          "target": "com.kubernetes.certificates#ListCertificatesV1beta1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#CreateCertificatesV1beta1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1CollectionNamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReadCertificatesV1beta1NamespacedPodCertificateRequest"
         },
         {
           "target": "com.kubernetes.certificates#ReplaceCertificatesV1beta1NamespacedPodCertificateRequest"
         },
         {
+          "target": "com.kubernetes.certificates#PatchCertificatesV1beta1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#DeleteCertificatesV1beta1NamespacedPodCertificateRequest"
+        },
+        {
+          "target": "com.kubernetes.certificates#ReadCertificatesV1beta1NamespacedPodCertificateRequestStatus"
+        },
+        {
           "target": "com.kubernetes.certificates#ReplaceCertificatesV1beta1NamespacedPodCertificateRequestStatus"
         },
         {
-          "target": "com.kubernetes.certificates#ReplaceCertificatesV1CertificateSigningRequest"
+          "target": "com.kubernetes.certificates#PatchCertificatesV1beta1NamespacedPodCertificateRequestStatus"
         },
         {
-          "target": "com.kubernetes.certificates#ReplaceCertificatesV1CertificateSigningRequestApproval"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReplaceCertificatesV1CertificateSigningRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReplaceCertificatesV1ClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReplaceCertificatesV1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#ReplaceCertificatesV1NamespacedPodCertificateRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1beta1ClusterTrustBundle"
+          "target": "com.kubernetes.certificates#ListCertificatesV1beta1PodCertificateRequestForAllNamespaces"
         },
         {
           "target": "com.kubernetes.certificates#WatchCertificatesV1beta1ClusterTrustBundleList"
         },
         {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1beta1NamespacedPodCertificateRequest"
+          "target": "com.kubernetes.certificates#WatchCertificatesV1beta1ClusterTrustBundle"
         },
         {
           "target": "com.kubernetes.certificates#WatchCertificatesV1beta1NamespacedPodCertificateRequestList"
         },
         {
+          "target": "com.kubernetes.certificates#WatchCertificatesV1beta1NamespacedPodCertificateRequest"
+        },
+        {
           "target": "com.kubernetes.certificates#WatchCertificatesV1beta1PodCertificateRequestListForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1CertificateSigningRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1CertificateSigningRequestList"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1ClusterTrustBundle"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1ClusterTrustBundleList"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1NamespacedPodCertificateRequest"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1NamespacedPodCertificateRequestList"
-        },
-        {
-          "target": "com.kubernetes.certificates#WatchCertificatesV1PodCertificateRequestListForAllNamespaces"
         }
       ],
       "traits": {

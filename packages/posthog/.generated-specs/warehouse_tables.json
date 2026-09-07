@@ -11129,67 +11129,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.warehouse_tables#ListWarehouseTables"
+        },
+        {
           "target": "com.posthog.warehouse_tables#CreateWarehouseTable"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesCheck"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesChecksRun"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesChecksRunAll"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesFile"
         },
         {
           "target": "com.posthog.warehouse_tables#GetWarehouseTable"
         },
         {
-          "target": "com.posthog.warehouse_tables#GetWarehouseTablesCheck"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#GetWarehouseTablesChecksHealth"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#GetWarehouseTablesCheckSuiteRun"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#ListWarehouseTables"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#ListWarehouseTablesChecks"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#ListWarehouseTablesChecksCheckTypes"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#ListWarehouseTablesChecksRuns"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#ListWarehouseTablesCheckSuiteRuns"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#ListWarehouseTablesCheckSuiteRunsCheckRuns"
-        },
-        {
           "target": "com.posthog.warehouse_tables#UpdateWarehouseTable"
         },
         {
-          "target": "com.posthog.warehouse_tables#UpdateWarehouseTablesCheck"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#UpdateWarehouseTablesChecksPartial"
-        },
-        {
           "target": "com.posthog.warehouse_tables#UpdateWarehouseTablesPartial"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#WarehouseTablesChecksDestroy"
-        },
-        {
-          "target": "com.posthog.warehouse_tables#WarehouseTablesCreateFromUploadCreate"
         },
         {
           "target": "com.posthog.warehouse_tables#WarehouseTablesDestroy"
@@ -11199,6 +11151,54 @@
         },
         {
           "target": "com.posthog.warehouse_tables#WarehouseTablesUpdateSchemaCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#ListWarehouseTablesCheckSuiteRuns"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#GetWarehouseTablesCheckSuiteRun"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#ListWarehouseTablesCheckSuiteRunsCheckRuns"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#ListWarehouseTablesChecks"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesCheck"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#GetWarehouseTablesCheck"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#UpdateWarehouseTablesCheck"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#UpdateWarehouseTablesChecksPartial"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#WarehouseTablesChecksDestroy"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesChecksRun"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#ListWarehouseTablesChecksRuns"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#ListWarehouseTablesChecksCheckTypes"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#GetWarehouseTablesChecksHealth"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesChecksRunAll"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#WarehouseTablesCreateFromUploadCreate"
+        },
+        {
+          "target": "com.posthog.warehouse_tables#CreateWarehouseTablesFile"
         },
         {
           "target": "com.posthog.warehouse_tables#WarehouseTablesUploadFileCreate"

@@ -580,22 +580,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.data_color_themes#ListDataColorThemes"
+        },
+        {
           "target": "com.posthog.data_color_themes#CreateDataColorTheme"
         },
         {
-          "target": "com.posthog.data_color_themes#DataColorThemesDestroy"
-        },
-        {
           "target": "com.posthog.data_color_themes#GetDataColorTheme"
-        },
-        {
-          "target": "com.posthog.data_color_themes#ListDataColorThemes"
         },
         {
           "target": "com.posthog.data_color_themes#UpdateDataColorTheme"
         },
         {
           "target": "com.posthog.data_color_themes#UpdateDataColorThemesPartial"
+        },
+        {
+          "target": "com.posthog.data_color_themes#DataColorThemesDestroy"
         }
       ],
       "traits": {

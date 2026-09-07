@@ -6044,55 +6044,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.streamanalytics#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.streamanalytics#DeleteCluster"
-        },
-        {
-          "target": "com.azure.streamanalytics#DeleteFunction"
-        },
-        {
-          "target": "com.azure.streamanalytics#DeleteInput"
-        },
-        {
-          "target": "com.azure.streamanalytics#DeleteOutput"
-        },
-        {
-          "target": "com.azure.streamanalytics#DeletePrivateEndpoint"
-        },
-        {
-          "target": "com.azure.streamanalytics#DeleteStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#FunctionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetCluster"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetFunction"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetFunctionDefaultDefinition"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetInput"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetOutput"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#GetTransformation"
-        },
-        {
-          "target": "com.azure.streamanalytics#InputsCreateOrReplace"
+          "target": "com.azure.streamanalytics#ListClusterStreamingJobs"
         },
         {
           "target": "com.azure.streamanalytics#ListClusterByResourceGroup"
@@ -6101,79 +6053,127 @@
           "target": "com.azure.streamanalytics#ListClusterBySubscription"
         },
         {
-          "target": "com.azure.streamanalytics#ListClusterStreamingJobs"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListFunctionByStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListInputByStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListOperations"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListOutputByStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListPrivateEndpointByCluster"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListStreamingJobByResourceGroup"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListStreamingJobs"
-        },
-        {
-          "target": "com.azure.streamanalytics#ListSubscriptionQuotas"
-        },
-        {
-          "target": "com.azure.streamanalytics#OutputsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.streamanalytics#PrivateEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.streamanalytics#ScaleStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#StartStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#StopStreamingJob"
-        },
-        {
-          "target": "com.azure.streamanalytics#StreamingJobsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.streamanalytics#TestFunction"
-        },
-        {
-          "target": "com.azure.streamanalytics#TestInput"
-        },
-        {
-          "target": "com.azure.streamanalytics#TestOutput"
-        },
-        {
-          "target": "com.azure.streamanalytics#TransformationsCreateOrReplace"
+          "target": "com.azure.streamanalytics#DeleteCluster"
         },
         {
           "target": "com.azure.streamanalytics#UpdateCluster"
         },
         {
+          "target": "com.azure.streamanalytics#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetCluster"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetFunctionDefaultDefinition"
+        },
+        {
+          "target": "com.azure.streamanalytics#TestFunction"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListFunctionByStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#DeleteFunction"
+        },
+        {
           "target": "com.azure.streamanalytics#UpdateFunction"
+        },
+        {
+          "target": "com.azure.streamanalytics#FunctionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetFunction"
+        },
+        {
+          "target": "com.azure.streamanalytics#TestInput"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListInputByStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#DeleteInput"
         },
         {
           "target": "com.azure.streamanalytics#UpdateInput"
         },
         {
+          "target": "com.azure.streamanalytics#InputsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetInput"
+        },
+        {
+          "target": "com.azure.streamanalytics#TestOutput"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListOutputByStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#DeleteOutput"
+        },
+        {
           "target": "com.azure.streamanalytics#UpdateOutput"
+        },
+        {
+          "target": "com.azure.streamanalytics#OutputsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetOutput"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListPrivateEndpointByCluster"
+        },
+        {
+          "target": "com.azure.streamanalytics#DeletePrivateEndpoint"
+        },
+        {
+          "target": "com.azure.streamanalytics#PrivateEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.streamanalytics#ScaleStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#StopStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#StartStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListStreamingJobs"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListStreamingJobByResourceGroup"
+        },
+        {
+          "target": "com.azure.streamanalytics#DeleteStreamingJob"
         },
         {
           "target": "com.azure.streamanalytics#UpdateStreamingJob"
         },
         {
+          "target": "com.azure.streamanalytics#StreamingJobsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetStreamingJob"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListOperations"
+        },
+        {
+          "target": "com.azure.streamanalytics#ListSubscriptionQuotas"
+        },
+        {
           "target": "com.azure.streamanalytics#UpdateTransformation"
+        },
+        {
+          "target": "com.azure.streamanalytics#TransformationsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.streamanalytics#GetTransformation"
         }
       ],
       "traits": {

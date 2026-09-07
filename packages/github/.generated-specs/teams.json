@@ -4357,52 +4357,52 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.teams#AddOrUpdateMembershipForUserInOrg"
-        },
-        {
-          "target": "com.github.teams#AddOrUpdateRepoPermissionsInOrg"
-        },
-        {
-          "target": "com.github.teams#CheckPermissionsForRepoInOrg"
+          "target": "com.github.teams#List"
         },
         {
           "target": "com.github.teams#Create"
         },
         {
+          "target": "com.github.teams#GetByName"
+        },
+        {
+          "target": "com.github.teams#UpdateInOrg"
+        },
+        {
           "target": "com.github.teams#DeleteInOrg"
         },
         {
-          "target": "com.github.teams#GetByName"
+          "target": "com.github.teams#ListPendingInvitationsInOrg"
+        },
+        {
+          "target": "com.github.teams#ListMembersInOrg"
         },
         {
           "target": "com.github.teams#GetMembershipForUserInOrg"
         },
         {
-          "target": "com.github.teams#List"
+          "target": "com.github.teams#AddOrUpdateMembershipForUserInOrg"
+        },
+        {
+          "target": "com.github.teams#RemoveMembershipForUserInOrg"
+        },
+        {
+          "target": "com.github.teams#ListReposInOrg"
+        },
+        {
+          "target": "com.github.teams#CheckPermissionsForRepoInOrg"
+        },
+        {
+          "target": "com.github.teams#AddOrUpdateRepoPermissionsInOrg"
+        },
+        {
+          "target": "com.github.teams#RemoveRepoInOrg"
         },
         {
           "target": "com.github.teams#ListChildInOrg"
         },
         {
           "target": "com.github.teams#ListForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.teams#ListMembersInOrg"
-        },
-        {
-          "target": "com.github.teams#ListPendingInvitationsInOrg"
-        },
-        {
-          "target": "com.github.teams#ListReposInOrg"
-        },
-        {
-          "target": "com.github.teams#RemoveMembershipForUserInOrg"
-        },
-        {
-          "target": "com.github.teams#RemoveRepoInOrg"
-        },
-        {
-          "target": "com.github.teams#UpdateInOrg"
         }
       ],
       "traits": {

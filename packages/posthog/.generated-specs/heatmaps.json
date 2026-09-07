@@ -570,10 +570,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.heatmaps#GetHeatmapsEvent"
+          "target": "com.posthog.heatmaps#ListHeatmaps"
         },
         {
-          "target": "com.posthog.heatmaps#ListHeatmaps"
+          "target": "com.posthog.heatmaps#GetHeatmapsEvent"
         }
       ],
       "traits": {

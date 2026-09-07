@@ -5677,13 +5677,94 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.communication#DeleteSuppressionListAddress"
+        },
+        {
+          "target": "com.azure.communication#SuppressionListAddressesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#GetSuppressionListAddress"
+        },
+        {
+          "target": "com.azure.communication#ListSuppressionListAddresses"
+        },
+        {
+          "target": "com.azure.communication#DeleteSuppressionList"
+        },
+        {
+          "target": "com.azure.communication#SuppressionListsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#GetSuppressionList"
+        },
+        {
+          "target": "com.azure.communication#ListSuppressionListByDomain"
+        },
+        {
+          "target": "com.azure.communication#DeleteSenderUsername"
+        },
+        {
+          "target": "com.azure.communication#SenderUsernamesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#GetSenderUsername"
+        },
+        {
+          "target": "com.azure.communication#ListSenderUsernameByDomains"
+        },
+        {
+          "target": "com.azure.communication#DomainsInitiateVerification"
+        },
+        {
           "target": "com.azure.communication#CancelDomainVerification"
         },
         {
-          "target": "com.azure.communication#CheckCommunicationServiceNameAvailability"
+          "target": "com.azure.communication#DeleteDomain"
         },
         {
-          "target": "com.azure.communication#CommunicationServicesCreateOrUpdate"
+          "target": "com.azure.communication#UpdateDomain"
+        },
+        {
+          "target": "com.azure.communication#DomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#GetDomain"
+        },
+        {
+          "target": "com.azure.communication#ListDomainByEmailServiceResource"
+        },
+        {
+          "target": "com.azure.communication#DeleteEmailService"
+        },
+        {
+          "target": "com.azure.communication#UpdateEmailService"
+        },
+        {
+          "target": "com.azure.communication#EmailServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#GetEmailService"
+        },
+        {
+          "target": "com.azure.communication#ListEmailServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.communication#DeleteSmtpUsername"
+        },
+        {
+          "target": "com.azure.communication#SmtpUsernamesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.communication#GetSmtpUsername"
+        },
+        {
+          "target": "com.azure.communication#ListSmtpUsernames"
+        },
+        {
+          "target": "com.azure.communication#RegenerateCommunicationServiceKey"
+        },
+        {
+          "target": "com.azure.communication#ListCommunicationServiceKeys"
         },
         {
           "target": "com.azure.communication#CommunicationServicesLinkNotificationHub"
@@ -5692,112 +5773,31 @@
           "target": "com.azure.communication#DeleteCommunicationService"
         },
         {
-          "target": "com.azure.communication#DeleteDomain"
+          "target": "com.azure.communication#UpdateCommunicationService"
         },
         {
-          "target": "com.azure.communication#DeleteEmailService"
-        },
-        {
-          "target": "com.azure.communication#DeleteSenderUsername"
-        },
-        {
-          "target": "com.azure.communication#DeleteSmtpUsername"
-        },
-        {
-          "target": "com.azure.communication#DeleteSuppressionList"
-        },
-        {
-          "target": "com.azure.communication#DeleteSuppressionListAddress"
-        },
-        {
-          "target": "com.azure.communication#DomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#DomainsInitiateVerification"
-        },
-        {
-          "target": "com.azure.communication#EmailServicesCreateOrUpdate"
+          "target": "com.azure.communication#CommunicationServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.communication#GetCommunicationService"
         },
         {
-          "target": "com.azure.communication#GetDomain"
-        },
-        {
-          "target": "com.azure.communication#GetEmailService"
-        },
-        {
-          "target": "com.azure.communication#GetSenderUsername"
-        },
-        {
-          "target": "com.azure.communication#GetSmtpUsername"
-        },
-        {
-          "target": "com.azure.communication#GetSuppressionList"
-        },
-        {
-          "target": "com.azure.communication#GetSuppressionListAddress"
-        },
-        {
           "target": "com.azure.communication#ListCommunicationServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.communication#ListCommunicationServiceBySubscription"
-        },
-        {
-          "target": "com.azure.communication#ListCommunicationServiceKeys"
-        },
-        {
-          "target": "com.azure.communication#ListDomainByEmailServiceResource"
-        },
-        {
-          "target": "com.azure.communication#ListEmailServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.communication#ListEmailServiceBySubscription"
         },
         {
           "target": "com.azure.communication#ListEmailServiceVerifiedExchangeOnlineDomains"
         },
         {
+          "target": "com.azure.communication#ListEmailServiceBySubscription"
+        },
+        {
+          "target": "com.azure.communication#ListCommunicationServiceBySubscription"
+        },
+        {
+          "target": "com.azure.communication#CheckCommunicationServiceNameAvailability"
+        },
+        {
           "target": "com.azure.communication#ListOperations"
-        },
-        {
-          "target": "com.azure.communication#ListSenderUsernameByDomains"
-        },
-        {
-          "target": "com.azure.communication#ListSmtpUsernames"
-        },
-        {
-          "target": "com.azure.communication#ListSuppressionListAddresses"
-        },
-        {
-          "target": "com.azure.communication#ListSuppressionListByDomain"
-        },
-        {
-          "target": "com.azure.communication#RegenerateCommunicationServiceKey"
-        },
-        {
-          "target": "com.azure.communication#SenderUsernamesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#SmtpUsernamesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#SuppressionListAddressesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#SuppressionListsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.communication#UpdateCommunicationService"
-        },
-        {
-          "target": "com.azure.communication#UpdateDomain"
-        },
-        {
-          "target": "com.azure.communication#UpdateEmailService"
         }
       ],
       "traits": {

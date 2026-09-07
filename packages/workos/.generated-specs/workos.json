@@ -36395,415 +36395,121 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.workos.api#AcceptUserlandUserInvitesController"
-        },
-        {
-          "target": "com.workos.api#AddAuthorizationOrganizationRolePermissionsControllerPermission"
-        },
-        {
-          "target": "com.workos.api#AddAuthorizationRolePermissionsControllerPermission"
-        },
-        {
-          "target": "com.workos.api#AddGroupMembershipsControllerMember"
-        },
-        {
-          "target": "com.workos.api#AgentAdminControllerLinkClaimAttemptToExternalUser"
-        },
-        {
-          "target": "com.workos.api#AgentBlueprintsTokenControllerMintToken"
-        },
-        {
-          "target": "com.workos.api#ApiKeysControllerExpire"
-        },
-        {
-          "target": "com.workos.api#ApplicationsControllerFind"
-        },
-        {
-          "target": "com.workos.api#ApproveWaitlistEntriesController"
-        },
-        {
-          "target": "com.workos.api#AssignAuthorizationRoleAssignmentsControllerRole"
-        },
-        {
-          "target": "com.workos.api#AuditLogExportsControllerExports"
-        },
-        {
-          "target": "com.workos.api#AuditLogsRetentionControllerAuditLogsRetention"
-        },
-        {
-          "target": "com.workos.api#AuditLogValidatorVersionsControllerSchemas"
-        },
-        {
-          "target": "com.workos.api#AuthenticationFactorsControllerChallenge"
-        },
-        {
-          "target": "com.workos.api#AuthorizationPermissionsControllerFind"
-        },
-        {
-          "target": "com.workos.api#AuthorizationResourcesControllerFindById"
-        },
-        {
-          "target": "com.workos.api#AuthorizeSsoController"
-        },
-        {
-          "target": "com.workos.api#AuthorizeUserlandSsoController"
-        },
-        {
-          "target": "com.workos.api#CheckAuthorizationController"
-        },
-        {
-          "target": "com.workos.api#ClientApiTokenControllerIssueClientApiToken"
-        },
-        {
-          "target": "com.workos.api#CompleteExternalAuthControllerLogin"
-        },
-        {
-          "target": "com.workos.api#ConfirmUserlandUsersControllerEmailChange"
-        },
-        {
-          "target": "com.workos.api#ConnectionsControllerFind"
+          "target": "com.workos.api#ListAgentBlueprintsController"
         },
         {
           "target": "com.workos.api#CreateAgentBlueprintsController"
         },
         {
-          "target": "com.workos.api#CreateApplicationCredentialsController"
+          "target": "com.workos.api#GetAgentBlueprintsController"
         },
         {
-          "target": "com.workos.api#CreateApplicationsController"
-        },
-        {
-          "target": "com.workos.api#CreateAuditLogEventsController"
-        },
-        {
-          "target": "com.workos.api#CreateAuditLogValidatorVersionsController"
-        },
-        {
-          "target": "com.workos.api#CreateAuthenticationFactorsController"
-        },
-        {
-          "target": "com.workos.api#CreateAuthorizationGroupRoleAssignmentsController"
-        },
-        {
-          "target": "com.workos.api#CreateAuthorizationOrganizationRolesController"
-        },
-        {
-          "target": "com.workos.api#CreateAuthorizationPermissionsController"
-        },
-        {
-          "target": "com.workos.api#CreateAuthorizationResourcesController"
-        },
-        {
-          "target": "com.workos.api#CreateAuthorizationRolesController"
-        },
-        {
-          "target": "com.workos.api#CreateConnectionsController"
-        },
-        {
-          "target": "com.workos.api#CreateCorsOriginsControllerCorsOrigin"
-        },
-        {
-          "target": "com.workos.api#CreateDataIntegrationsManagementControllerDataIntegration"
-        },
-        {
-          "target": "com.workos.api#CreateDataIntegrationsUserManagementControllerUserDataInstallation"
-        },
-        {
-          "target": "com.workos.api#CreateFlagTargetsControllerTarget"
-        },
-        {
-          "target": "com.workos.api#CreateGroupsController"
-        },
-        {
-          "target": "com.workos.api#CreateItContactsController"
-        },
-        {
-          "target": "com.workos.api#CreateJumpWireWebDataVaultController"
-        },
-        {
-          "target": "com.workos.api#CreateOrganizationApiKeysController"
-        },
-        {
-          "target": "com.workos.api#CreateOrganizationDomainsController"
-        },
-        {
-          "target": "com.workos.api#CreateOrganizationsController"
-        },
-        {
-          "target": "com.workos.api#CreatePortalSessionsController"
-        },
-        {
-          "target": "com.workos.api#CreateRedirectUrisController"
-        },
-        {
-          "target": "com.workos.api#CreateSamlIdpSigningCertificatesController"
-        },
-        {
-          "target": "com.workos.api#CreateSamlSpEncryptionCertificatesController"
-        },
-        {
-          "target": "com.workos.api#CreateSamlSpSigningCertificatesController"
-        },
-        {
-          "target": "com.workos.api#CreateTeamsControllerTeam"
-        },
-        {
-          "target": "com.workos.api#CreateUserApiKeysController"
-        },
-        {
-          "target": "com.workos.api#CreateUserlandUserInvitesController"
-        },
-        {
-          "target": "com.workos.api#CreateUserlandUserOrganizationMembershipsController"
-        },
-        {
-          "target": "com.workos.api#CreateWaitlistsControllerEntry"
-        },
-        {
-          "target": "com.workos.api#CreateWebhookEndpointsController"
-        },
-        {
-          "target": "com.workos.api#DataIntegrationsControllerGetDataIntegrationAuthorizeUrl"
-        },
-        {
-          "target": "com.workos.api#DataIntegrationsControllerVendCredentials"
-        },
-        {
-          "target": "com.workos.api#DeactivateUserlandUserOrganizationMembershipsController"
-        },
-        {
-          "target": "com.workos.api#DecryptJumpWireWebKeyController"
+          "target": "com.workos.api#UpdateAgentBlueprintsController"
         },
         {
           "target": "com.workos.api#DeleteAgentBlueprintsController"
         },
         {
-          "target": "com.workos.api#DeleteAgentInstancesController"
+          "target": "com.workos.api#AgentBlueprintsTokenControllerMintToken"
         },
         {
-          "target": "com.workos.api#DeleteApiKeysController"
+          "target": "com.workos.api#ValidateAgentBlueprintsTokenControllerToken"
         },
         {
-          "target": "com.workos.api#DeleteApplicationCredentialsController"
+          "target": "com.workos.api#AgentAdminControllerLinkClaimAttemptToExternalUser"
         },
         {
-          "target": "com.workos.api#DeleteApplicationsController"
-        },
-        {
-          "target": "com.workos.api#DeleteAuthenticationFactorsController"
-        },
-        {
-          "target": "com.workos.api#DeleteAuthorizationOrganizationRolesController"
-        },
-        {
-          "target": "com.workos.api#DeleteAuthorizationPermissionsController"
-        },
-        {
-          "target": "com.workos.api#DeleteAuthorizationResourcesByExternalIdControllerByExternalId"
-        },
-        {
-          "target": "com.workos.api#DeleteAuthorizationResourcesController"
-        },
-        {
-          "target": "com.workos.api#DeleteAuthorizedApplicationsController"
-        },
-        {
-          "target": "com.workos.api#DeleteConnectionsController"
-        },
-        {
-          "target": "com.workos.api#DeleteDataIntegrationsManagementControllerDataIntegration"
-        },
-        {
-          "target": "com.workos.api#DeleteDataIntegrationsUserManagementControllerUserDataInstallation"
-        },
-        {
-          "target": "com.workos.api#DeleteDirectoriesControllerDirectory"
-        },
-        {
-          "target": "com.workos.api#DeleteFlagTargetsControllerTarget"
-        },
-        {
-          "target": "com.workos.api#DeleteGroupsController"
-        },
-        {
-          "target": "com.workos.api#DeleteItContactsController"
-        },
-        {
-          "target": "com.workos.api#DeleteJumpWireWebDataVaultController"
-        },
-        {
-          "target": "com.workos.api#DeleteOrganizationDomainsController"
-        },
-        {
-          "target": "com.workos.api#DeleteOrganizationsControllerOrganization"
-        },
-        {
-          "target": "com.workos.api#DeleteRedirectUrisController"
-        },
-        {
-          "target": "com.workos.api#DeleteSamlIdpSigningCertificatesController"
-        },
-        {
-          "target": "com.workos.api#DeleteSamlSpEncryptionCertificatesController"
-        },
-        {
-          "target": "com.workos.api#DeleteSamlSpSigningCertificatesController"
-        },
-        {
-          "target": "com.workos.api#DeleteUserlandUserOrganizationMembershipsController"
-        },
-        {
-          "target": "com.workos.api#DeleteWaitlistEntriesController"
-        },
-        {
-          "target": "com.workos.api#DeleteWebhookEndpointsController"
-        },
-        {
-          "target": "com.workos.api#DescribeJumpWireWebDataVaultController"
-        },
-        {
-          "target": "com.workos.api#DirectoriesControllerFind"
-        },
-        {
-          "target": "com.workos.api#DirectoryGroupsControllerFind"
-        },
-        {
-          "target": "com.workos.api#DirectoryUsersControllerFind"
-        },
-        {
-          "target": "com.workos.api#DisableFeatureFlagsControllerFlag"
-        },
-        {
-          "target": "com.workos.api#EnableFeatureFlagsControllerFlag"
-        },
-        {
-          "target": "com.workos.api#ExportAuditLogExportsController"
-        },
-        {
-          "target": "com.workos.api#FeatureFlagsControllerFindBySlug"
-        },
-        {
-          "target": "com.workos.api#GetAgentAdminControllerRegistration"
-        },
-        {
-          "target": "com.workos.api#GetAgentBlueprintsController"
-        },
-        {
-          "target": "com.workos.api#GetAgentInstancesController"
-        },
-        {
-          "target": "com.workos.api#GetAgentInstanceSessionsController"
-        },
-        {
-          "target": "com.workos.api#GetAuthenticationFactorsController"
-        },
-        {
-          "target": "com.workos.api#GetAuthorizationGroupRoleAssignmentsController"
-        },
-        {
-          "target": "com.workos.api#GetAuthorizationOrganizationRolesController"
-        },
-        {
-          "target": "com.workos.api#GetAuthorizationResourcesByExternalIdControllerByExternalId"
-        },
-        {
-          "target": "com.workos.api#GetAuthorizationRolesController"
-        },
-        {
-          "target": "com.workos.api#GetDataIntegrationsControllerUserlandUserToken"
-        },
-        {
-          "target": "com.workos.api#GetDataIntegrationsManagementControllerDataIntegration"
-        },
-        {
-          "target": "com.workos.api#GetDataIntegrationsUserManagementControllerUserDataInstallation"
-        },
-        {
-          "target": "com.workos.api#GetDataIntegrationsUserManagementControllerUserDataIntegrations"
-        },
-        {
-          "target": "com.workos.api#GetGroupsController"
-        },
-        {
-          "target": "com.workos.api#GetJwtTemplatesControllerJwtTemplate"
-        },
-        {
-          "target": "com.workos.api#GetOrganizationDomainsController"
-        },
-        {
-          "target": "com.workos.api#GetOrganizationsControllerAuditLogConfiguration"
-        },
-        {
-          "target": "com.workos.api#GetOrganizationsControllerByExternalId"
-        },
-        {
-          "target": "com.workos.api#GetPublicRadarChallengesController"
-        },
-        {
-          "target": "com.workos.api#GetSamlSpSigningCertificatesController"
-        },
-        {
-          "target": "com.workos.api#GetSsoControllerProfile"
-        },
-        {
-          "target": "com.workos.api#GetTeamsControllerTeam"
-        },
-        {
-          "target": "com.workos.api#GetUserlandMagicAuthController"
-        },
-        {
-          "target": "com.workos.api#GetUserlandUserIdentitiesController"
-        },
-        {
-          "target": "com.workos.api#GetUserlandUserInvitesController"
-        },
-        {
-          "target": "com.workos.api#GetUserlandUserInvitesControllerByToken"
-        },
-        {
-          "target": "com.workos.api#GetUserlandUserOrganizationMembershipsController"
-        },
-        {
-          "target": "com.workos.api#GetUserlandUsersControllerByExternalId"
-        },
-        {
-          "target": "com.workos.api#GetUserlandUsersControllerEmailVerification"
-        },
-        {
-          "target": "com.workos.api#InviteItContactsController"
-        },
-        {
-          "target": "com.workos.api#JumpWireWebDataVaultControllerShowById"
-        },
-        {
-          "target": "com.workos.api#JumpWireWebDataVaultControllerShowByName"
-        },
-        {
-          "target": "com.workos.api#JumpWireWebDataVaultControllerVersions"
-        },
-        {
-          "target": "com.workos.api#JumpWireWebKeyControllerCreateDataKey"
-        },
-        {
-          "target": "com.workos.api#JumpWireWebKeyControllerRekey"
-        },
-        {
-          "target": "com.workos.api#ListAgentBlueprintsController"
+          "target": "com.workos.api#ValidateAgentAdminControllerCredential"
         },
         {
           "target": "com.workos.api#ListAgentInstancesController"
         },
         {
+          "target": "com.workos.api#GetAgentInstancesController"
+        },
+        {
+          "target": "com.workos.api#DeleteAgentInstancesController"
+        },
+        {
+          "target": "com.workos.api#GetAgentAdminControllerRegistration"
+        },
+        {
           "target": "com.workos.api#ListAgentInstanceSessionsController"
         },
         {
-          "target": "com.workos.api#ListApplicationCredentialsController"
+          "target": "com.workos.api#GetAgentInstanceSessionsController"
         },
         {
-          "target": "com.workos.api#ListApplicationsController"
+          "target": "com.workos.api#RevokeAgentInstanceSessionsController"
+        },
+        {
+          "target": "com.workos.api#ValidateApiKeysControllerApiKey"
+        },
+        {
+          "target": "com.workos.api#DeleteApiKeysController"
+        },
+        {
+          "target": "com.workos.api#ApiKeysControllerExpire"
         },
         {
           "target": "com.workos.api#ListAuditLogValidatorsController"
+        },
+        {
+          "target": "com.workos.api#AuditLogValidatorVersionsControllerSchemas"
+        },
+        {
+          "target": "com.workos.api#CreateAuditLogValidatorVersionsController"
+        },
+        {
+          "target": "com.workos.api#CreateAuditLogEventsController"
+        },
+        {
+          "target": "com.workos.api#AuditLogExportsControllerExports"
+        },
+        {
+          "target": "com.workos.api#ExportAuditLogExportsController"
+        },
+        {
+          "target": "com.workos.api#VerifyAuthenticationChallengesController"
+        },
+        {
+          "target": "com.workos.api#CreateAuthenticationFactorsController"
+        },
+        {
+          "target": "com.workos.api#GetAuthenticationFactorsController"
+        },
+        {
+          "target": "com.workos.api#DeleteAuthenticationFactorsController"
+        },
+        {
+          "target": "com.workos.api#AuthenticationFactorsControllerChallenge"
+        },
+        {
+          "target": "com.workos.api#CompleteExternalAuthControllerLogin"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationGroupRoleAssignmentsController"
+        },
+        {
+          "target": "com.workos.api#CreateAuthorizationGroupRoleAssignmentsController"
+        },
+        {
+          "target": "com.workos.api#ReplaceAuthorizationGroupRoleAssignmentsControllerGroupRoleAssignments"
+        },
+        {
+          "target": "com.workos.api#RemoveAuthorizationGroupRoleAssignmentsControllerGroupRoleAssignments"
+        },
+        {
+          "target": "com.workos.api#GetAuthorizationGroupRoleAssignmentsController"
+        },
+        {
+          "target": "com.workos.api#RemoveAuthorizationGroupRoleAssignmentsControllerGroupRoleAssignment"
+        },
+        {
+          "target": "com.workos.api#CheckAuthorizationController"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationControllerResourcesForMembership"
         },
         {
           "target": "com.workos.api#ListAuthorizationControllerEffectivePermissions"
@@ -36812,160 +36518,10 @@
           "target": "com.workos.api#ListAuthorizationControllerEffectivePermissionsByExternalId"
         },
         {
-          "target": "com.workos.api#ListAuthorizationControllerResourcesForMembership"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationGroupRoleAssignmentsController"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationOrganizationRolesController"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationPermissionsController"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationResourcesByExternalIdControllerOrganizationMembershipsForResourceByExternalId"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationResourcesController"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationResourcesControllerOrganizationMembershipsForResource"
-        },
-        {
           "target": "com.workos.api#ListAuthorizationRoleAssignmentsControllerRoleAssignments"
         },
         {
-          "target": "com.workos.api#ListAuthorizationRoleAssignmentsControllerRoleAssignmentsForResource"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationRoleAssignmentsControllerRoleAssignmentsForResourceByExternalId"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizationRolesController"
-        },
-        {
-          "target": "com.workos.api#ListAuthorizedApplicationsController"
-        },
-        {
-          "target": "com.workos.api#ListConnectionsController"
-        },
-        {
-          "target": "com.workos.api#ListCorsOriginsController"
-        },
-        {
-          "target": "com.workos.api#ListDataIntegrationsManagementControllerDataIntegrations"
-        },
-        {
-          "target": "com.workos.api#ListDirectoriesController"
-        },
-        {
-          "target": "com.workos.api#ListDirectoryGroupsController"
-        },
-        {
-          "target": "com.workos.api#ListDirectoryUsersController"
-        },
-        {
-          "target": "com.workos.api#ListEventsController"
-        },
-        {
-          "target": "com.workos.api#ListFeatureFlagsController"
-        },
-        {
-          "target": "com.workos.api#ListGroupMembershipsControllerMembers"
-        },
-        {
-          "target": "com.workos.api#ListGroupsController"
-        },
-        {
-          "target": "com.workos.api#ListItContactsController"
-        },
-        {
-          "target": "com.workos.api#ListJumpWireWebDataVaultController"
-        },
-        {
-          "target": "com.workos.api#ListOrganizationApiKeysController"
-        },
-        {
-          "target": "com.workos.api#ListOrganizationAuthorizedApplicationsController"
-        },
-        {
-          "target": "com.workos.api#ListOrganizationFeatureFlagsController"
-        },
-        {
-          "target": "com.workos.api#ListOrganizationMembershipGroupsControllerGroups"
-        },
-        {
-          "target": "com.workos.api#ListOrganizationsController"
-        },
-        {
-          "target": "com.workos.api#ListProviderControllerForOrganization"
-        },
-        {
-          "target": "com.workos.api#ListRedirectUrisController"
-        },
-        {
-          "target": "com.workos.api#ListSamlIdpSigningCertificatesController"
-        },
-        {
-          "target": "com.workos.api#ListSamlSpEncryptionCertificatesController"
-        },
-        {
-          "target": "com.workos.api#ListUserApiKeysController"
-        },
-        {
-          "target": "com.workos.api#ListUserlandUserFeatureFlagsController"
-        },
-        {
-          "target": "com.workos.api#ListUserlandUserInvitesController"
-        },
-        {
-          "target": "com.workos.api#ListUserlandUserOrganizationMembershipsController"
-        },
-        {
-          "target": "com.workos.api#ListUserlandUserSessionsController"
-        },
-        {
-          "target": "com.workos.api#ListWaitlistsController"
-        },
-        {
-          "target": "com.workos.api#ListWaitlistsControllerEntries"
-        },
-        {
-          "target": "com.workos.api#ListWebhookEndpointsController"
-        },
-        {
-          "target": "com.workos.api#LogoutSsoController"
-        },
-        {
-          "target": "com.workos.api#LogoutUserlandSessionsController"
-        },
-        {
-          "target": "com.workos.api#OrganizationsControllerFind"
-        },
-        {
-          "target": "com.workos.api#PatchConnectionsController"
-        },
-        {
-          "target": "com.workos.api#ProviderControllerConfigure"
-        },
-        {
-          "target": "com.workos.api#RadarStandaloneControllerAssess"
-        },
-        {
-          "target": "com.workos.api#RadarStandaloneControllerDeleteRadarListEntry"
-        },
-        {
-          "target": "com.workos.api#RadarStandaloneControllerUpdateRadarList"
-        },
-        {
-          "target": "com.workos.api#RemoveAuthorizationGroupRoleAssignmentsControllerGroupRoleAssignment"
-        },
-        {
-          "target": "com.workos.api#RemoveAuthorizationGroupRoleAssignmentsControllerGroupRoleAssignments"
-        },
-        {
-          "target": "com.workos.api#RemoveAuthorizationOrganizationRolePermissionsControllerPermission"
+          "target": "com.workos.api#AssignAuthorizationRoleAssignmentsControllerRole"
         },
         {
           "target": "com.workos.api#RemoveAuthorizationRoleAssignmentsControllerRoleByCriteria"
@@ -36974,172 +36530,616 @@
           "target": "com.workos.api#RemoveAuthorizationRoleAssignmentsControllerRoleById"
         },
         {
-          "target": "com.workos.api#RemoveGroupMembershipsControllerMember"
+          "target": "com.workos.api#ListAuthorizationOrganizationRolesController"
         },
         {
-          "target": "com.workos.api#ReplaceAuthorizationGroupRoleAssignmentsControllerGroupRoleAssignments"
+          "target": "com.workos.api#CreateAuthorizationOrganizationRolesController"
         },
         {
-          "target": "com.workos.api#ResendUserlandUserInvitesController"
-        },
-        {
-          "target": "com.workos.api#ResetUserlandUsersControllerPassword0"
-        },
-        {
-          "target": "com.workos.api#RevokeAgentInstanceSessionsController"
-        },
-        {
-          "target": "com.workos.api#RevokeItContactsController"
-        },
-        {
-          "target": "com.workos.api#RevokeUserlandSessionsControllerSession"
-        },
-        {
-          "target": "com.workos.api#RevokeUserlandUserInvitesController"
-        },
-        {
-          "target": "com.workos.api#SendPublicRadarChallengesControllerRadarSmsChallenge"
-        },
-        {
-          "target": "com.workos.api#SendUserlandUsersControllerEmailChange"
-        },
-        {
-          "target": "com.workos.api#SendUserlandUsersControllerVerificationEmail0"
-        },
-        {
-          "target": "com.workos.api#SetAuthorizationOrganizationRolePermissionsControllerPermissions"
-        },
-        {
-          "target": "com.workos.api#SetAuthorizationRolePermissionsControllerPermissions"
-        },
-        {
-          "target": "com.workos.api#SsoControllerJsonWebKeySet"
-        },
-        {
-          "target": "com.workos.api#SsoControllerLogoutAuthorize"
-        },
-        {
-          "target": "com.workos.api#SsoControllerToken"
-        },
-        {
-          "target": "com.workos.api#UpdateAgentBlueprintsController"
-        },
-        {
-          "target": "com.workos.api#UpdateApplicationsController"
-        },
-        {
-          "target": "com.workos.api#UpdateAuditLogsRetentionControllerAuditLogsRetention"
+          "target": "com.workos.api#GetAuthorizationOrganizationRolesController"
         },
         {
           "target": "com.workos.api#UpdateAuthorizationOrganizationRolesController"
         },
         {
-          "target": "com.workos.api#UpdateAuthorizationPermissionsController"
+          "target": "com.workos.api#DeleteAuthorizationOrganizationRolesController"
+        },
+        {
+          "target": "com.workos.api#AddAuthorizationOrganizationRolePermissionsControllerPermission"
+        },
+        {
+          "target": "com.workos.api#SetAuthorizationOrganizationRolePermissionsControllerPermissions"
+        },
+        {
+          "target": "com.workos.api#RemoveAuthorizationOrganizationRolePermissionsControllerPermission"
+        },
+        {
+          "target": "com.workos.api#GetAuthorizationResourcesByExternalIdControllerByExternalId"
         },
         {
           "target": "com.workos.api#UpdateAuthorizationResourcesByExternalIdControllerByExternalId"
         },
         {
+          "target": "com.workos.api#DeleteAuthorizationResourcesByExternalIdControllerByExternalId"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationResourcesByExternalIdControllerOrganizationMembershipsForResourceByExternalId"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationRoleAssignmentsControllerRoleAssignmentsForResourceByExternalId"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationPermissionsController"
+        },
+        {
+          "target": "com.workos.api#CreateAuthorizationPermissionsController"
+        },
+        {
+          "target": "com.workos.api#AuthorizationPermissionsControllerFind"
+        },
+        {
+          "target": "com.workos.api#UpdateAuthorizationPermissionsController"
+        },
+        {
+          "target": "com.workos.api#DeleteAuthorizationPermissionsController"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationResourcesController"
+        },
+        {
+          "target": "com.workos.api#CreateAuthorizationResourcesController"
+        },
+        {
+          "target": "com.workos.api#AuthorizationResourcesControllerFindById"
+        },
+        {
           "target": "com.workos.api#UpdateAuthorizationResourcesController"
+        },
+        {
+          "target": "com.workos.api#DeleteAuthorizationResourcesController"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationResourcesControllerOrganizationMembershipsForResource"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationRoleAssignmentsControllerRoleAssignmentsForResource"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizationRolesController"
+        },
+        {
+          "target": "com.workos.api#CreateAuthorizationRolesController"
+        },
+        {
+          "target": "com.workos.api#GetAuthorizationRolesController"
         },
         {
           "target": "com.workos.api#UpdateAuthorizationRolesController"
         },
         {
+          "target": "com.workos.api#AddAuthorizationRolePermissionsControllerPermission"
+        },
+        {
+          "target": "com.workos.api#SetAuthorizationRolePermissionsControllerPermissions"
+        },
+        {
+          "target": "com.workos.api#ClientApiTokenControllerIssueClientApiToken"
+        },
+        {
+          "target": "com.workos.api#ListApplicationsController"
+        },
+        {
+          "target": "com.workos.api#CreateApplicationsController"
+        },
+        {
+          "target": "com.workos.api#ApplicationsControllerFind"
+        },
+        {
+          "target": "com.workos.api#UpdateApplicationsController"
+        },
+        {
+          "target": "com.workos.api#DeleteApplicationsController"
+        },
+        {
+          "target": "com.workos.api#ListApplicationCredentialsController"
+        },
+        {
+          "target": "com.workos.api#CreateApplicationCredentialsController"
+        },
+        {
+          "target": "com.workos.api#DeleteApplicationCredentialsController"
+        },
+        {
+          "target": "com.workos.api#ListConnectionsController"
+        },
+        {
+          "target": "com.workos.api#CreateConnectionsController"
+        },
+        {
+          "target": "com.workos.api#ListSamlIdpSigningCertificatesController"
+        },
+        {
+          "target": "com.workos.api#CreateSamlIdpSigningCertificatesController"
+        },
+        {
+          "target": "com.workos.api#DeleteSamlIdpSigningCertificatesController"
+        },
+        {
+          "target": "com.workos.api#ListSamlSpEncryptionCertificatesController"
+        },
+        {
+          "target": "com.workos.api#CreateSamlSpEncryptionCertificatesController"
+        },
+        {
+          "target": "com.workos.api#DeleteSamlSpEncryptionCertificatesController"
+        },
+        {
+          "target": "com.workos.api#GetSamlSpSigningCertificatesController"
+        },
+        {
+          "target": "com.workos.api#CreateSamlSpSigningCertificatesController"
+        },
+        {
+          "target": "com.workos.api#DeleteSamlSpSigningCertificatesController"
+        },
+        {
+          "target": "com.workos.api#ConnectionsControllerFind"
+        },
+        {
+          "target": "com.workos.api#PatchConnectionsController"
+        },
+        {
+          "target": "com.workos.api#DeleteConnectionsController"
+        },
+        {
+          "target": "com.workos.api#ListDataIntegrationsManagementControllerDataIntegrations"
+        },
+        {
+          "target": "com.workos.api#CreateDataIntegrationsManagementControllerDataIntegration"
+        },
+        {
+          "target": "com.workos.api#GetDataIntegrationsManagementControllerDataIntegration"
+        },
+        {
           "target": "com.workos.api#UpdateDataIntegrationsManagementControllerDataIntegration"
         },
         {
-          "target": "com.workos.api#UpdateDataIntegrationsUserManagementControllerUserDataInstallation"
-        },
-        {
-          "target": "com.workos.api#UpdateGroupsController"
-        },
-        {
-          "target": "com.workos.api#UpdateJumpWireWebDataVaultController"
-        },
-        {
-          "target": "com.workos.api#UpdateJwtTemplatesControllerJwtTemplate"
-        },
-        {
-          "target": "com.workos.api#UpdateOrganizationsControllerOrganization"
-        },
-        {
-          "target": "com.workos.api#UpdateRadarStandaloneControllerRadarAttempt"
-        },
-        {
-          "target": "com.workos.api#UpdateUserlandUserOrganizationMembershipsController"
-        },
-        {
-          "target": "com.workos.api#UpdateWebhookEndpointsController"
+          "target": "com.workos.api#DeleteDataIntegrationsManagementControllerDataIntegration"
         },
         {
           "target": "com.workos.api#UpsertDataIntegrationsControllerApiKey"
         },
         {
+          "target": "com.workos.api#DataIntegrationsControllerGetDataIntegrationAuthorizeUrl"
+        },
+        {
           "target": "com.workos.api#UpsertDataIntegrationsControllerClientCredentials"
         },
         {
-          "target": "com.workos.api#UserlandMagicAuthControllerSendMagicAuthCodeAndReturn"
+          "target": "com.workos.api#DataIntegrationsControllerVendCredentials"
         },
         {
-          "target": "com.workos.api#UserlandSessionsControllerAuthenticate0"
+          "target": "com.workos.api#GetDataIntegrationsControllerUserlandUserToken"
         },
         {
-          "target": "com.workos.api#UserlandSsoControllerDeviceAuthorization"
+          "target": "com.workos.api#ListDirectoriesController"
         },
         {
-          "target": "com.workos.api#UserlandUserAuthenticationFactorsControllerCreate0"
+          "target": "com.workos.api#DirectoriesControllerFind"
         },
         {
-          "target": "com.workos.api#UserlandUserAuthenticationFactorsControllerList0"
+          "target": "com.workos.api#DeleteDirectoriesControllerDirectory"
         },
         {
-          "target": "com.workos.api#UserlandUserOrganizationMembershipsControllerReactivate"
+          "target": "com.workos.api#ListDirectoryGroupsController"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerCreate0"
+          "target": "com.workos.api#DirectoryGroupsControllerFind"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerCreatePasswordResetToken"
+          "target": "com.workos.api#ListDirectoryUsersController"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerDelete0"
+          "target": "com.workos.api#DirectoryUsersControllerFind"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerEmailVerification0"
+          "target": "com.workos.api#ListEventsController"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerGet0"
+          "target": "com.workos.api#ListFeatureFlagsController"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerGetPasswordReset"
+          "target": "com.workos.api#FeatureFlagsControllerFindBySlug"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerList0"
+          "target": "com.workos.api#DisableFeatureFlagsControllerFlag"
         },
         {
-          "target": "com.workos.api#UserlandUsersControllerUpdate0"
+          "target": "com.workos.api#EnableFeatureFlagsControllerFlag"
         },
         {
-          "target": "com.workos.api#ValidateAgentAdminControllerCredential"
+          "target": "com.workos.api#CreateFlagTargetsControllerTarget"
         },
         {
-          "target": "com.workos.api#ValidateAgentBlueprintsTokenControllerToken"
+          "target": "com.workos.api#DeleteFlagTargetsControllerTarget"
         },
         {
-          "target": "com.workos.api#ValidateApiKeysControllerApiKey"
+          "target": "com.workos.api#CreateOrganizationDomainsController"
         },
         {
-          "target": "com.workos.api#VerifyAuthenticationChallengesController"
+          "target": "com.workos.api#GetOrganizationDomainsController"
+        },
+        {
+          "target": "com.workos.api#DeleteOrganizationDomainsController"
         },
         {
           "target": "com.workos.api#VerifyOrganizationDomainsController"
         },
         {
+          "target": "com.workos.api#ListOrganizationsController"
+        },
+        {
+          "target": "com.workos.api#CreateOrganizationsController"
+        },
+        {
+          "target": "com.workos.api#GetOrganizationsControllerByExternalId"
+        },
+        {
+          "target": "com.workos.api#OrganizationsControllerFind"
+        },
+        {
+          "target": "com.workos.api#UpdateOrganizationsControllerOrganization"
+        },
+        {
+          "target": "com.workos.api#DeleteOrganizationsControllerOrganization"
+        },
+        {
+          "target": "com.workos.api#GetOrganizationsControllerAuditLogConfiguration"
+        },
+        {
+          "target": "com.workos.api#AuditLogsRetentionControllerAuditLogsRetention"
+        },
+        {
+          "target": "com.workos.api#UpdateAuditLogsRetentionControllerAuditLogsRetention"
+        },
+        {
+          "target": "com.workos.api#ListOrganizationApiKeysController"
+        },
+        {
+          "target": "com.workos.api#CreateOrganizationApiKeysController"
+        },
+        {
+          "target": "com.workos.api#ListProviderControllerForOrganization"
+        },
+        {
+          "target": "com.workos.api#ProviderControllerConfigure"
+        },
+        {
+          "target": "com.workos.api#ListOrganizationFeatureFlagsController"
+        },
+        {
+          "target": "com.workos.api#ListGroupsController"
+        },
+        {
+          "target": "com.workos.api#CreateGroupsController"
+        },
+        {
+          "target": "com.workos.api#GetGroupsController"
+        },
+        {
+          "target": "com.workos.api#UpdateGroupsController"
+        },
+        {
+          "target": "com.workos.api#DeleteGroupsController"
+        },
+        {
+          "target": "com.workos.api#ListGroupMembershipsControllerMembers"
+        },
+        {
+          "target": "com.workos.api#AddGroupMembershipsControllerMember"
+        },
+        {
+          "target": "com.workos.api#RemoveGroupMembershipsControllerMember"
+        },
+        {
+          "target": "com.workos.api#ListOrganizationAuthorizedApplicationsController"
+        },
+        {
+          "target": "com.workos.api#ListItContactsController"
+        },
+        {
+          "target": "com.workos.api#CreateItContactsController"
+        },
+        {
+          "target": "com.workos.api#DeleteItContactsController"
+        },
+        {
+          "target": "com.workos.api#InviteItContactsController"
+        },
+        {
+          "target": "com.workos.api#RevokeItContactsController"
+        },
+        {
+          "target": "com.workos.api#CreateTeamsControllerTeam"
+        },
+        {
+          "target": "com.workos.api#GetTeamsControllerTeam"
+        },
+        {
+          "target": "com.workos.api#CreatePortalSessionsController"
+        },
+        {
+          "target": "com.workos.api#RadarStandaloneControllerAssess"
+        },
+        {
+          "target": "com.workos.api#UpdateRadarStandaloneControllerRadarAttempt"
+        },
+        {
+          "target": "com.workos.api#RadarStandaloneControllerUpdateRadarList"
+        },
+        {
+          "target": "com.workos.api#RadarStandaloneControllerDeleteRadarListEntry"
+        },
+        {
+          "target": "com.workos.api#AuthorizeSsoController"
+        },
+        {
+          "target": "com.workos.api#SsoControllerJsonWebKeySet"
+        },
+        {
+          "target": "com.workos.api#LogoutSsoController"
+        },
+        {
+          "target": "com.workos.api#SsoControllerLogoutAuthorize"
+        },
+        {
+          "target": "com.workos.api#GetSsoControllerProfile"
+        },
+        {
+          "target": "com.workos.api#SsoControllerToken"
+        },
+        {
+          "target": "com.workos.api#UserlandSessionsControllerAuthenticate0"
+        },
+        {
+          "target": "com.workos.api#AuthorizeUserlandSsoController"
+        },
+        {
+          "target": "com.workos.api#UserlandSsoControllerDeviceAuthorization"
+        },
+        {
+          "target": "com.workos.api#ListCorsOriginsController"
+        },
+        {
+          "target": "com.workos.api#CreateCorsOriginsControllerCorsOrigin"
+        },
+        {
+          "target": "com.workos.api#GetUserlandUsersControllerEmailVerification"
+        },
+        {
+          "target": "com.workos.api#ListUserlandUserInvitesController"
+        },
+        {
+          "target": "com.workos.api#CreateUserlandUserInvitesController"
+        },
+        {
+          "target": "com.workos.api#GetUserlandUserInvitesControllerByToken"
+        },
+        {
+          "target": "com.workos.api#GetUserlandUserInvitesController"
+        },
+        {
+          "target": "com.workos.api#AcceptUserlandUserInvitesController"
+        },
+        {
+          "target": "com.workos.api#ResendUserlandUserInvitesController"
+        },
+        {
+          "target": "com.workos.api#RevokeUserlandUserInvitesController"
+        },
+        {
+          "target": "com.workos.api#GetJwtTemplatesControllerJwtTemplate"
+        },
+        {
+          "target": "com.workos.api#UpdateJwtTemplatesControllerJwtTemplate"
+        },
+        {
+          "target": "com.workos.api#UserlandMagicAuthControllerSendMagicAuthCodeAndReturn"
+        },
+        {
+          "target": "com.workos.api#GetUserlandMagicAuthController"
+        },
+        {
+          "target": "com.workos.api#ListUserlandUserOrganizationMembershipsController"
+        },
+        {
+          "target": "com.workos.api#CreateUserlandUserOrganizationMembershipsController"
+        },
+        {
+          "target": "com.workos.api#GetUserlandUserOrganizationMembershipsController"
+        },
+        {
+          "target": "com.workos.api#UpdateUserlandUserOrganizationMembershipsController"
+        },
+        {
+          "target": "com.workos.api#DeleteUserlandUserOrganizationMembershipsController"
+        },
+        {
+          "target": "com.workos.api#DeactivateUserlandUserOrganizationMembershipsController"
+        },
+        {
+          "target": "com.workos.api#UserlandUserOrganizationMembershipsControllerReactivate"
+        },
+        {
+          "target": "com.workos.api#ListOrganizationMembershipGroupsControllerGroups"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerCreatePasswordResetToken"
+        },
+        {
+          "target": "com.workos.api#ResetUserlandUsersControllerPassword0"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerGetPasswordReset"
+        },
+        {
+          "target": "com.workos.api#SendPublicRadarChallengesControllerRadarSmsChallenge"
+        },
+        {
+          "target": "com.workos.api#GetPublicRadarChallengesController"
+        },
+        {
+          "target": "com.workos.api#ListRedirectUrisController"
+        },
+        {
+          "target": "com.workos.api#CreateRedirectUrisController"
+        },
+        {
+          "target": "com.workos.api#DeleteRedirectUrisController"
+        },
+        {
+          "target": "com.workos.api#LogoutUserlandSessionsController"
+        },
+        {
+          "target": "com.workos.api#RevokeUserlandSessionsControllerSession"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerList0"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerCreate0"
+        },
+        {
+          "target": "com.workos.api#GetUserlandUsersControllerByExternalId"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerGet0"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerUpdate0"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerDelete0"
+        },
+        {
+          "target": "com.workos.api#ConfirmUserlandUsersControllerEmailChange"
+        },
+        {
+          "target": "com.workos.api#SendUserlandUsersControllerEmailChange"
+        },
+        {
+          "target": "com.workos.api#UserlandUsersControllerEmailVerification0"
+        },
+        {
+          "target": "com.workos.api#SendUserlandUsersControllerVerificationEmail0"
+        },
+        {
+          "target": "com.workos.api#GetUserlandUserIdentitiesController"
+        },
+        {
+          "target": "com.workos.api#ListUserlandUserSessionsController"
+        },
+        {
+          "target": "com.workos.api#ListUserApiKeysController"
+        },
+        {
+          "target": "com.workos.api#CreateUserApiKeysController"
+        },
+        {
+          "target": "com.workos.api#ListUserlandUserFeatureFlagsController"
+        },
+        {
+          "target": "com.workos.api#ListAuthorizedApplicationsController"
+        },
+        {
+          "target": "com.workos.api#DeleteAuthorizedApplicationsController"
+        },
+        {
+          "target": "com.workos.api#GetDataIntegrationsUserManagementControllerUserDataInstallation"
+        },
+        {
+          "target": "com.workos.api#CreateDataIntegrationsUserManagementControllerUserDataInstallation"
+        },
+        {
+          "target": "com.workos.api#UpdateDataIntegrationsUserManagementControllerUserDataInstallation"
+        },
+        {
+          "target": "com.workos.api#DeleteDataIntegrationsUserManagementControllerUserDataInstallation"
+        },
+        {
+          "target": "com.workos.api#GetDataIntegrationsUserManagementControllerUserDataIntegrations"
+        },
+        {
+          "target": "com.workos.api#UserlandUserAuthenticationFactorsControllerList0"
+        },
+        {
+          "target": "com.workos.api#UserlandUserAuthenticationFactorsControllerCreate0"
+        },
+        {
+          "target": "com.workos.api#DeleteWaitlistEntriesController"
+        },
+        {
+          "target": "com.workos.api#ApproveWaitlistEntriesController"
+        },
+        {
           "target": "com.workos.api#WaitlistEntriesControllerDeny"
         },
         {
+          "target": "com.workos.api#ListWaitlistsController"
+        },
+        {
           "target": "com.workos.api#WaitlistsControllerFind"
+        },
+        {
+          "target": "com.workos.api#ListWaitlistsControllerEntries"
+        },
+        {
+          "target": "com.workos.api#CreateWaitlistsControllerEntry"
+        },
+        {
+          "target": "com.workos.api#JumpWireWebKeyControllerCreateDataKey"
+        },
+        {
+          "target": "com.workos.api#DecryptJumpWireWebKeyController"
+        },
+        {
+          "target": "com.workos.api#JumpWireWebKeyControllerRekey"
+        },
+        {
+          "target": "com.workos.api#ListJumpWireWebDataVaultController"
+        },
+        {
+          "target": "com.workos.api#CreateJumpWireWebDataVaultController"
+        },
+        {
+          "target": "com.workos.api#JumpWireWebDataVaultControllerShowByName"
+        },
+        {
+          "target": "com.workos.api#JumpWireWebDataVaultControllerShowById"
+        },
+        {
+          "target": "com.workos.api#UpdateJumpWireWebDataVaultController"
+        },
+        {
+          "target": "com.workos.api#DeleteJumpWireWebDataVaultController"
+        },
+        {
+          "target": "com.workos.api#DescribeJumpWireWebDataVaultController"
+        },
+        {
+          "target": "com.workos.api#JumpWireWebDataVaultControllerVersions"
+        },
+        {
+          "target": "com.workos.api#ListWebhookEndpointsController"
+        },
+        {
+          "target": "com.workos.api#CreateWebhookEndpointsController"
+        },
+        {
+          "target": "com.workos.api#UpdateWebhookEndpointsController"
+        },
+        {
+          "target": "com.workos.api#DeleteWebhookEndpointsController"
         },
         {
           "target": "com.workos.api#WidgetsPublicControllerIssueWidgetSessionToken"

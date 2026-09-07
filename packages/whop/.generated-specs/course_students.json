@@ -501,10 +501,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_students#GetCourseStudent"
+          "target": "com.whop.course_students#ListCourseStudent"
         },
         {
-          "target": "com.whop.course_students#ListCourseStudent"
+          "target": "com.whop.course_students#GetCourseStudent"
         }
       ],
       "traits": {

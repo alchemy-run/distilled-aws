@@ -4872,25 +4872,25 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.log_drains#CreateConfigurableLogDrain"
-        },
-        {
-          "target": "com.vercel.log_drains#CreateLogDrain"
+          "target": "com.vercel.log_drains#GetConfigurableLogDrain"
         },
         {
           "target": "com.vercel.log_drains#DeleteConfigurableLogDrain"
         },
         {
-          "target": "com.vercel.log_drains#DeleteIntegrationLogDrain"
-        },
-        {
           "target": "com.vercel.log_drains#GetAllLogDrains"
         },
         {
-          "target": "com.vercel.log_drains#GetConfigurableLogDrain"
+          "target": "com.vercel.log_drains#CreateConfigurableLogDrain"
         },
         {
           "target": "com.vercel.log_drains#GetIntegrationLogDrains"
+        },
+        {
+          "target": "com.vercel.log_drains#CreateLogDrain"
+        },
+        {
+          "target": "com.vercel.log_drains#DeleteIntegrationLogDrain"
         }
       ],
       "traits": {

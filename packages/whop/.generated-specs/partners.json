@@ -3552,16 +3552,16 @@
           "target": "com.whop.partners#CreateReferralPartner"
         },
         {
-          "target": "com.whop.partners#GetPartnerBusiness"
+          "target": "com.whop.partners#ListPartnerBusinesses"
         },
         {
-          "target": "com.whop.partners#GetPartnerLeaderboard"
+          "target": "com.whop.partners#GetPartnerBusiness"
         },
         {
           "target": "com.whop.partners#ListPartnerBusinessEarnings"
         },
         {
-          "target": "com.whop.partners#ListPartnerBusinesses"
+          "target": "com.whop.partners#GetPartnerLeaderboard"
         },
         {
           "target": "com.whop.partners#ListReferredUsers"

@@ -18948,226 +18948,226 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsAdtAPI"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsComp"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsForEDM"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsForMIPPolicySync"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsForSCCPowershell"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsSec"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForM365ComplianceCenter"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForM365SecurityCenter"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForMIPPolicySync"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForO365ManagementActivityAPI"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForSCCPowershell"
-        },
-        {
-          "target": "com.azure.securityandcompliance#DeleteService"
-        },
-        {
           "target": "com.azure.securityandcompliance#GetOperationResult"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsAdtAPI"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsComp"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsForEDM"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsForMIPPolicySync"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsForSCCPowershell"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsSec"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesAdtAPI"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesComp"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesForMIPPolicySync"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesForSCCPowershell"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesSec"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForEDMUpload"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForM365ComplianceCenter"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForM365SecurityCenter"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForMIPPolicySync"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForO365ManagementActivityAPI"
-        },
-        {
-          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForSCCPowershell"
         },
         {
           "target": "com.azure.securityandcompliance#ListOperations"
         },
         {
-          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsAdtAPIByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsCompByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsForEDMByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsForMIPPolicySyncByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsForSCCPowershellByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsSecByService"
+          "target": "com.azure.securityandcompliance#GetPrivateLinkResource"
         },
         {
           "target": "com.azure.securityandcompliance#ListPrivateLinkResourceByService"
         },
         {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesAdtAPIByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesCompByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesForMIPPolicySyncByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesForSCCPowershellByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesSecByService"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForEDMUpload"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForEDMUploadByResourceGroup"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365ComplianceCenter"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365ComplianceCenterByResourceGroup"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365SecurityCenter"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365SecurityCenterByResourceGroup"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForMIPPolicySync"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForMIPPolicySyncByResourceGroup"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForO365ManagementActivityAPI"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroup"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForSCCPowershell"
-        },
-        {
-          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForSCCPowershellByResourceGroup"
-        },
-        {
-          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsAdtAPICreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsCompCreateOrUpdate"
+          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsForEDM"
         },
         {
           "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsForEDMCreateOrUpdate"
         },
         {
-          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdate"
+          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsForEDM"
         },
         {
-          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsForSCCPowershellCreateOrUpdate"
+          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsForEDMByService"
         },
         {
-          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsSecCreateOrUpdate"
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForEDMUploadByResourceGroup"
         },
         {
-          "target": "com.azure.securityandcompliance#PrivateLinkServicesForEDMUploadCreateOrUpdate"
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForEDMUpload"
         },
         {
-          "target": "com.azure.securityandcompliance#PrivateLinkServicesForM365ComplianceCenterCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityandcompliance#PrivateLinkServicesForM365SecurityCenterCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityandcompliance#PrivateLinkServicesForMIPPolicySyncCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityandcompliance#PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdate"
-        },
-        {
-          "target": "com.azure.securityandcompliance#PrivateLinkServicesForSCCPowershellCreateOrUpdate"
+          "target": "com.azure.securityandcompliance#DeleteService"
         },
         {
           "target": "com.azure.securityandcompliance#UpdatePrivateLinkServicesForEDMUpload"
         },
         {
+          "target": "com.azure.securityandcompliance#PrivateLinkServicesForEDMUploadCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForEDMUpload"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesComp"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesCompByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsComp"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsCompCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsComp"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsCompByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365ComplianceCenterByResourceGroup"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365ComplianceCenter"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForM365ComplianceCenter"
+        },
+        {
           "target": "com.azure.securityandcompliance#UpdatePrivateLinkServicesForM365ComplianceCenter"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateLinkServicesForM365ComplianceCenterCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForM365ComplianceCenter"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesSec"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesSecByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsSec"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsSecCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsSec"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsSecByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365SecurityCenterByResourceGroup"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForM365SecurityCenter"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForM365SecurityCenter"
         },
         {
           "target": "com.azure.securityandcompliance#UpdatePrivateLinkServicesForM365SecurityCenter"
         },
         {
+          "target": "com.azure.securityandcompliance#PrivateLinkServicesForM365SecurityCenterCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForM365SecurityCenter"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesForMIPPolicySync"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesForMIPPolicySyncByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsForMIPPolicySync"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsForMIPPolicySyncCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsForMIPPolicySync"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsForMIPPolicySyncByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForMIPPolicySyncByResourceGroup"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForMIPPolicySync"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForMIPPolicySync"
+        },
+        {
           "target": "com.azure.securityandcompliance#UpdatePrivateLinkServicesForMIPPolicySync"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateLinkServicesForMIPPolicySyncCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForMIPPolicySync"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesAdtAPI"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesAdtAPIByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsAdtAPI"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsAdtAPICreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsAdtAPI"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsAdtAPIByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForO365ManagementActivityAPIByResourceGroup"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForO365ManagementActivityAPI"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForO365ManagementActivityAPI"
         },
         {
           "target": "com.azure.securityandcompliance#UpdatePrivateLinkServicesForO365ManagementActivityAPI"
         },
         {
+          "target": "com.azure.securityandcompliance#PrivateLinkServicesForO365ManagementActivityAPICreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForO365ManagementActivityAPI"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkResourcesForSCCPowershell"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkResourcesForSCCPowershellByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateEndpointConnectionsForSCCPowershell"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateEndpointConnectionsForSCCPowershellCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateEndpointConnectionsForSCCPowershell"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateEndpointConnectionsForSCCPowershellByService"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForSCCPowershellByResourceGroup"
+        },
+        {
+          "target": "com.azure.securityandcompliance#ListPrivateLinkServicesForSCCPowershell"
+        },
+        {
+          "target": "com.azure.securityandcompliance#DeletePrivateLinkServicesForSCCPowershell"
+        },
+        {
           "target": "com.azure.securityandcompliance#UpdatePrivateLinkServicesForSCCPowershell"
+        },
+        {
+          "target": "com.azure.securityandcompliance#PrivateLinkServicesForSCCPowershellCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.securityandcompliance#GetPrivateLinkServicesForSCCPowershell"
         }
       ],
       "traits": {

@@ -3119,61 +3119,61 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.conversations#ListConversationsTickets"
+        },
+        {
+          "target": "com.posthog.conversations#GetConversationsTicket"
+        },
+        {
+          "target": "com.posthog.conversations#UpdateConversationsTicket"
+        },
+        {
+          "target": "com.posthog.conversations#UpdateConversationsTicketsPartial"
+        },
+        {
+          "target": "com.posthog.conversations#ConversationsTicketsDestroy"
+        },
+        {
+          "target": "com.posthog.conversations#CreateConversationsTicketsAiFeedback"
+        },
+        {
+          "target": "com.posthog.conversations#ListConversationsTicketsMessages"
+        },
+        {
+          "target": "com.posthog.conversations#GetConversationsTicketsMessagesFullEmail"
+        },
+        {
+          "target": "com.posthog.conversations#UpdateConversationsTicketsNotesPartial"
+        },
+        {
+          "target": "com.posthog.conversations#ConversationsTicketsNotesDestroy"
+        },
+        {
+          "target": "com.posthog.conversations#CreateConversationsTicketsReply"
+        },
+        {
           "target": "com.posthog.conversations#ConversationsTicketsBulkUpdateStatusCreate"
         },
         {
           "target": "com.posthog.conversations#ConversationsTicketsBulkUpdateTagsCreate"
         },
         {
-          "target": "com.posthog.conversations#ConversationsTicketsDestroy"
-        },
-        {
-          "target": "com.posthog.conversations#ConversationsTicketsNotesDestroy"
-        },
-        {
-          "target": "com.posthog.conversations#ConversationsViewsDestroy"
-        },
-        {
-          "target": "com.posthog.conversations#CreateConversationsTicketsAiFeedback"
-        },
-        {
           "target": "com.posthog.conversations#CreateConversationsTicketsCompose"
-        },
-        {
-          "target": "com.posthog.conversations#CreateConversationsTicketsReply"
-        },
-        {
-          "target": "com.posthog.conversations#CreateConversationsView"
-        },
-        {
-          "target": "com.posthog.conversations#GetConversationsTicket"
-        },
-        {
-          "target": "com.posthog.conversations#GetConversationsTicketsMessagesFullEmail"
-        },
-        {
-          "target": "com.posthog.conversations#GetConversationsView"
-        },
-        {
-          "target": "com.posthog.conversations#ListConversationsTickets"
-        },
-        {
-          "target": "com.posthog.conversations#ListConversationsTicketsMessages"
         },
         {
           "target": "com.posthog.conversations#ListConversationsViews"
         },
         {
-          "target": "com.posthog.conversations#UpdateConversationsTicket"
+          "target": "com.posthog.conversations#CreateConversationsView"
         },
         {
-          "target": "com.posthog.conversations#UpdateConversationsTicketsNotesPartial"
-        },
-        {
-          "target": "com.posthog.conversations#UpdateConversationsTicketsPartial"
+          "target": "com.posthog.conversations#GetConversationsView"
         },
         {
           "target": "com.posthog.conversations#UpdateConversationsViewsPartial"
+        },
+        {
+          "target": "com.posthog.conversations#ConversationsViewsDestroy"
         }
       ],
       "traits": {

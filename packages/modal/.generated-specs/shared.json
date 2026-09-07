@@ -517,9 +517,6 @@
           "target": "com.modal.shared#DeleteSharedVolume"
         },
         {
-          "target": "com.modal.shared#ListSharedVolume"
-        },
-        {
           "target": "com.modal.shared#SharedVolumeGetFile"
         },
         {
@@ -527,6 +524,9 @@
         },
         {
           "target": "com.modal.shared#SharedVolumeHeartbeat"
+        },
+        {
+          "target": "com.modal.shared#ListSharedVolume"
         },
         {
           "target": "com.modal.shared#SharedVolumeListFiles"

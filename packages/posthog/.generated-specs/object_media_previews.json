@@ -525,25 +525,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.object_media_previews#ListObjectMediaPreviews"
+        },
+        {
           "target": "com.posthog.object_media_previews#CreateObjectMediaPreview"
         },
         {
           "target": "com.posthog.object_media_previews#GetObjectMediaPreview"
         },
         {
-          "target": "com.posthog.object_media_previews#GetObjectMediaPreviewsPreferredForEvent"
+          "target": "com.posthog.object_media_previews#UpdateObjectMediaPreview"
         },
         {
-          "target": "com.posthog.object_media_previews#ListObjectMediaPreviews"
+          "target": "com.posthog.object_media_previews#UpdateObjectMediaPreviewsPartial"
         },
         {
           "target": "com.posthog.object_media_previews#ObjectMediaPreviewsDestroy"
         },
         {
-          "target": "com.posthog.object_media_previews#UpdateObjectMediaPreview"
-        },
-        {
-          "target": "com.posthog.object_media_previews#UpdateObjectMediaPreviewsPartial"
+          "target": "com.posthog.object_media_previews#GetObjectMediaPreviewsPreferredForEvent"
         }
       ],
       "traits": {

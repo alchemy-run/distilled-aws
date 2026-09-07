@@ -4109,10 +4109,13 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.rolling_release#ApproveRollingReleaseStage"
+          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatus"
         },
         {
-          "target": "com.vercel.rolling_release#CompleteRollingRelease"
+          "target": "com.vercel.rolling_release#GetRollingReleaseConfig"
+        },
+        {
+          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfig"
         },
         {
           "target": "com.vercel.rolling_release#DeleteRollingReleaseConfig"
@@ -4121,16 +4124,13 @@
           "target": "com.vercel.rolling_release#GetRollingRelease"
         },
         {
-          "target": "com.vercel.rolling_release#GetRollingReleaseBillingStatus"
-        },
-        {
-          "target": "com.vercel.rolling_release#GetRollingReleaseConfig"
+          "target": "com.vercel.rolling_release#ApproveRollingReleaseStage"
         },
         {
           "target": "com.vercel.rolling_release#StartRollingRelease"
         },
         {
-          "target": "com.vercel.rolling_release#UpdateRollingReleaseConfig"
+          "target": "com.vercel.rolling_release#CompleteRollingRelease"
         }
       ],
       "traits": {

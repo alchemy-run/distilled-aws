@@ -27808,6 +27808,144 @@
       "version": "2.0.0",
       "operations": [
         {
+          "target": "com.coinbase.cdp#ListFoundationAccounts"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateFoundationAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#GetFoundationAccountById"
+        },
+        {
+          "target": "com.coinbase.cdp#ListBalances"
+        },
+        {
+          "target": "com.coinbase.cdp#GetBalanceByAsset"
+        },
+        {
+          "target": "com.coinbase.cdp#ListCoinbaseAccountBalances"
+        },
+        {
+          "target": "com.coinbase.cdp#ListCustomers"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateCustomer"
+        },
+        {
+          "target": "com.coinbase.cdp#GetCustomerById"
+        },
+        {
+          "target": "com.coinbase.cdp#UpdateCustomerById"
+        },
+        {
+          "target": "com.coinbase.cdp#DeleteCustomerById"
+        },
+        {
+          "target": "com.coinbase.cdp#ListDepositDestinations"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateDepositDestination"
+        },
+        {
+          "target": "com.coinbase.cdp#GetDepositDestinationById"
+        },
+        {
+          "target": "com.coinbase.cdp#ListTransfers"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateTransfer"
+        },
+        {
+          "target": "com.coinbase.cdp#GetTransferById"
+        },
+        {
+          "target": "com.coinbase.cdp#ExecuteFundTransfer"
+        },
+        {
+          "target": "com.coinbase.cdp#SubmitDepositTravelRule"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPaymentSessions"
+        },
+        {
+          "target": "com.coinbase.cdp#CreatePaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#CancelPaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#GetWalletAuthorizationOptions"
+        },
+        {
+          "target": "com.coinbase.cdp#AuthorizeWalletPaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#AuthorizeX402PaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#AuthorizeCoinbasePaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPaymentSessionAuthorizations"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPaymentSessionAuthorization"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPaymentSessionCaptures"
+        },
+        {
+          "target": "com.coinbase.cdp#CapturePaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPaymentSessionCapture"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPaymentSessionVoids"
+        },
+        {
+          "target": "com.coinbase.cdp#VoidPaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPaymentSessionVoid"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPaymentSessionRefunds"
+        },
+        {
+          "target": "com.coinbase.cdp#RefundPaymentSession"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPaymentSessionRefund"
+        },
+        {
+          "target": "com.coinbase.cdp#ListDisbursements"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateDisbursement"
+        },
+        {
+          "target": "com.coinbase.cdp#GetDisbursement"
+        },
+        {
+          "target": "com.coinbase.cdp#ListEndUsers"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateEndUser"
+        },
+        {
+          "target": "com.coinbase.cdp#ValidateEndUserAccessToken"
+        },
+        {
+          "target": "com.coinbase.cdp#GetEndUser"
+        },
+        {
+          "target": "com.coinbase.cdp#LookupEndUser"
+        },
+        {
           "target": "com.coinbase.cdp#AddEndUserEvmAccount"
         },
         {
@@ -27817,388 +27955,46 @@
           "target": "com.coinbase.cdp#AddEndUserSolanaAccount"
         },
         {
-          "target": "com.coinbase.cdp#AuthorizeCoinbasePaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#AuthorizeWalletPaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#AuthorizeX402PaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#CancelPaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#CapturePaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateCustomer"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateDelegationForEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateDepositDestination"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateDisbursement"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateEndUser"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateEvmAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateEvmEip7702Delegation"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateEvmEip7702DelegationWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateEvmSmartAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateEvmSwapQuote"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateFoundationAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateOnrampOrder"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateOnrampSession"
-        },
-        {
-          "target": "com.coinbase.cdp#CreatePaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#CreatePolicy"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateSolanaAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateSpendPermission"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateTransfer"
-        },
-        {
-          "target": "com.coinbase.cdp#CreateWebhookSubscription"
-        },
-        {
-          "target": "com.coinbase.cdp#DeleteCustomerById"
-        },
-        {
-          "target": "com.coinbase.cdp#DeletePolicy"
-        },
-        {
-          "target": "com.coinbase.cdp#DeleteWebhookSubscription"
-        },
-        {
-          "target": "com.coinbase.cdp#ExecuteFundTransfer"
-        },
-        {
-          "target": "com.coinbase.cdp#ExportEvmAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#ExportEvmAccountByName"
-        },
-        {
-          "target": "com.coinbase.cdp#ExportSolanaAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#ExportSolanaAccountByName"
-        },
-        {
-          "target": "com.coinbase.cdp#GetBalanceByAsset"
-        },
-        {
-          "target": "com.coinbase.cdp#GetCustomerById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetDelegationForEndUser"
-        },
-        {
-          "target": "com.coinbase.cdp#GetDelegationForEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#GetDepositDestinationById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetDisbursement"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEndUser"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEvmAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEvmAccountByName"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEvmEip7702DelegationOperationById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEvmSmartAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEvmSmartAccountByName"
-        },
-        {
-          "target": "com.coinbase.cdp#GetEvmSwapPrice"
-        },
-        {
-          "target": "com.coinbase.cdp#GetFoundationAccountById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetOnrampOrderById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetOnrampUserLimits"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPaymentMethod"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPaymentSessionAuthorization"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPaymentSessionCapture"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPaymentSessionRefund"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPaymentSessionVoid"
-        },
-        {
-          "target": "com.coinbase.cdp#GetPolicyById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetSolanaAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#GetSolanaAccountByName"
-        },
-        {
-          "target": "com.coinbase.cdp#GetSQLGrammar"
-        },
-        {
-          "target": "com.coinbase.cdp#GetSQLSchema"
-        },
-        {
-          "target": "com.coinbase.cdp#GetTransferById"
-        },
-        {
-          "target": "com.coinbase.cdp#GetUserOperation"
-        },
-        {
-          "target": "com.coinbase.cdp#GetWalletAuthorizationOptions"
-        },
-        {
-          "target": "com.coinbase.cdp#GetWebhookSubscription"
-        },
-        {
-          "target": "com.coinbase.cdp#GetX402Bundle"
-        },
-        {
           "target": "com.coinbase.cdp#ImportEndUser"
-        },
-        {
-          "target": "com.coinbase.cdp#ImportEvmAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#ImportSolanaAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#InitiateOnrampVerification"
-        },
-        {
-          "target": "com.coinbase.cdp#ListBalances"
-        },
-        {
-          "target": "com.coinbase.cdp#ListCoinbaseAccountBalances"
-        },
-        {
-          "target": "com.coinbase.cdp#ListCustomers"
-        },
-        {
-          "target": "com.coinbase.cdp#ListDataTokenBalances"
-        },
-        {
-          "target": "com.coinbase.cdp#ListDepositDestinations"
-        },
-        {
-          "target": "com.coinbase.cdp#ListDisbursements"
-        },
-        {
-          "target": "com.coinbase.cdp#ListEndUsers"
-        },
-        {
-          "target": "com.coinbase.cdp#ListEvmAccounts"
-        },
-        {
-          "target": "com.coinbase.cdp#ListEvmSmartAccounts"
-        },
-        {
-          "target": "com.coinbase.cdp#ListEvmTokenBalances"
-        },
-        {
-          "target": "com.coinbase.cdp#ListFoundationAccounts"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPaymentMethods"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPaymentSessionAuthorizations"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPaymentSessionCaptures"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPaymentSessionRefunds"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPaymentSessions"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPaymentSessionVoids"
-        },
-        {
-          "target": "com.coinbase.cdp#ListPolicies"
-        },
-        {
-          "target": "com.coinbase.cdp#ListSolanaAccounts"
-        },
-        {
-          "target": "com.coinbase.cdp#ListSolanaTokenBalances"
-        },
-        {
-          "target": "com.coinbase.cdp#ListSpendPermissions"
-        },
-        {
-          "target": "com.coinbase.cdp#ListTokensForAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#ListTransfers"
-        },
-        {
-          "target": "com.coinbase.cdp#ListWebhookSubscriptionEvents"
-        },
-        {
-          "target": "com.coinbase.cdp#ListWebhookSubscriptions"
-        },
-        {
-          "target": "com.coinbase.cdp#ListX402Bundles"
-        },
-        {
-          "target": "com.coinbase.cdp#ListX402DiscoveryMerchant"
-        },
-        {
-          "target": "com.coinbase.cdp#ListX402DiscoveryResources"
-        },
-        {
-          "target": "com.coinbase.cdp#LookupEndUser"
-        },
-        {
-          "target": "com.coinbase.cdp#PostX402DiscoveryMcp"
-        },
-        {
-          "target": "com.coinbase.cdp#PrepareAndSendUserOperation"
-        },
-        {
-          "target": "com.coinbase.cdp#PrepareUserOperation"
-        },
-        {
-          "target": "com.coinbase.cdp#RefundPaymentSession"
-        },
-        {
-          "target": "com.coinbase.cdp#RequestEvmFaucet"
-        },
-        {
-          "target": "com.coinbase.cdp#RequestLimitsUpgrade"
-        },
-        {
-          "target": "com.coinbase.cdp#RequestSolanaFaucet"
-        },
-        {
-          "target": "com.coinbase.cdp#RevokeDelegationForEndUser"
-        },
-        {
-          "target": "com.coinbase.cdp#RevokeDelegationForEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#RevokeSpendPermission"
-        },
-        {
-          "target": "com.coinbase.cdp#RunSQLQuery"
-        },
-        {
-          "target": "com.coinbase.cdp#SearchX402Resources"
-        },
-        {
-          "target": "com.coinbase.cdp#SendEvmAssetWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SendEvmTransaction"
-        },
-        {
-          "target": "com.coinbase.cdp#SendEvmTransactionWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SendSolanaAssetWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SendSolanaTransaction"
-        },
-        {
-          "target": "com.coinbase.cdp#SendSolanaTransactionWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SendUserOperation"
-        },
-        {
-          "target": "com.coinbase.cdp#SendUserOperationWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SettleX402Payment"
-        },
-        {
-          "target": "com.coinbase.cdp#SignEvmHash"
-        },
-        {
-          "target": "com.coinbase.cdp#SignEvmMessage"
-        },
-        {
-          "target": "com.coinbase.cdp#SignEvmMessageWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SignEvmTransaction"
         },
         {
           "target": "com.coinbase.cdp#SignEvmTransactionWithEndUserAccount"
         },
         {
-          "target": "com.coinbase.cdp#SignEvmTypedData"
+          "target": "com.coinbase.cdp#SendEvmTransactionWithEndUserAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#SendEvmAssetWithEndUserAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#SignEvmMessageWithEndUserAccount"
         },
         {
           "target": "com.coinbase.cdp#SignEvmTypedDataWithEndUserAccount"
         },
         {
-          "target": "com.coinbase.cdp#SignSolanaMessage"
+          "target": "com.coinbase.cdp#GetDelegationForEndUser"
+        },
+        {
+          "target": "com.coinbase.cdp#RevokeDelegationForEndUser"
+        },
+        {
+          "target": "com.coinbase.cdp#GetDelegationForEndUserAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateDelegationForEndUserAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#RevokeDelegationForEndUserAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateEvmEip7702DelegationWithEndUserAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#SendUserOperationWithEndUserAccount"
         },
         {
           "target": "com.coinbase.cdp#SignSolanaMessageWithEndUserAccount"
-        },
-        {
-          "target": "com.coinbase.cdp#SignSolanaTransaction"
         },
         {
           "target": "com.coinbase.cdp#SignSolanaTransactionWithEndUserAccount"
@@ -28207,43 +28003,247 @@
           "target": "com.coinbase.cdp#SignSolanaX402PaymentWithEndUserAccount"
         },
         {
-          "target": "com.coinbase.cdp#SubmitDepositTravelRule"
+          "target": "com.coinbase.cdp#SendSolanaTransactionWithEndUserAccount"
         },
         {
-          "target": "com.coinbase.cdp#SubmitOnrampVerification"
+          "target": "com.coinbase.cdp#SendSolanaAssetWithEndUserAccount"
         },
         {
-          "target": "com.coinbase.cdp#SupportedX402PaymentKinds"
+          "target": "com.coinbase.cdp#ListEvmAccounts"
         },
         {
-          "target": "com.coinbase.cdp#UpdateCustomerById"
+          "target": "com.coinbase.cdp#CreateEvmAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#GetEvmAccount"
         },
         {
           "target": "com.coinbase.cdp#UpdateEvmAccount"
         },
         {
+          "target": "com.coinbase.cdp#GetEvmAccountByName"
+        },
+        {
+          "target": "com.coinbase.cdp#SendEvmTransaction"
+        },
+        {
+          "target": "com.coinbase.cdp#SignEvmTransaction"
+        },
+        {
+          "target": "com.coinbase.cdp#SignEvmHash"
+        },
+        {
+          "target": "com.coinbase.cdp#SignEvmMessage"
+        },
+        {
+          "target": "com.coinbase.cdp#SignEvmTypedData"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateEvmEip7702Delegation"
+        },
+        {
+          "target": "com.coinbase.cdp#GetEvmEip7702DelegationOperationById"
+        },
+        {
+          "target": "com.coinbase.cdp#ListEvmSmartAccounts"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateEvmSmartAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#GetEvmSmartAccountByName"
+        },
+        {
+          "target": "com.coinbase.cdp#ImportEvmAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#ExportEvmAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#ExportEvmAccountByName"
+        },
+        {
+          "target": "com.coinbase.cdp#GetEvmSmartAccount"
+        },
+        {
           "target": "com.coinbase.cdp#UpdateEvmSmartAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#PrepareUserOperation"
+        },
+        {
+          "target": "com.coinbase.cdp#PrepareAndSendUserOperation"
+        },
+        {
+          "target": "com.coinbase.cdp#GetUserOperation"
+        },
+        {
+          "target": "com.coinbase.cdp#SendUserOperation"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateSpendPermission"
+        },
+        {
+          "target": "com.coinbase.cdp#ListSpendPermissions"
+        },
+        {
+          "target": "com.coinbase.cdp#RevokeSpendPermission"
+        },
+        {
+          "target": "com.coinbase.cdp#GetEvmSwapPrice"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateEvmSwapQuote"
+        },
+        {
+          "target": "com.coinbase.cdp#ListEvmTokenBalances"
+        },
+        {
+          "target": "com.coinbase.cdp#RequestEvmFaucet"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPolicies"
+        },
+        {
+          "target": "com.coinbase.cdp#CreatePolicy"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPolicyById"
         },
         {
           "target": "com.coinbase.cdp#UpdatePolicy"
         },
         {
+          "target": "com.coinbase.cdp#DeletePolicy"
+        },
+        {
+          "target": "com.coinbase.cdp#ListSolanaAccounts"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateSolanaAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#GetSolanaAccount"
+        },
+        {
           "target": "com.coinbase.cdp#UpdateSolanaAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#GetSolanaAccountByName"
+        },
+        {
+          "target": "com.coinbase.cdp#ImportSolanaAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#ExportSolanaAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#ExportSolanaAccountByName"
+        },
+        {
+          "target": "com.coinbase.cdp#SignSolanaTransaction"
+        },
+        {
+          "target": "com.coinbase.cdp#SignSolanaMessage"
+        },
+        {
+          "target": "com.coinbase.cdp#SendSolanaTransaction"
+        },
+        {
+          "target": "com.coinbase.cdp#RequestSolanaFaucet"
+        },
+        {
+          "target": "com.coinbase.cdp#ListSolanaTokenBalances"
+        },
+        {
+          "target": "com.coinbase.cdp#RunSQLQuery"
+        },
+        {
+          "target": "com.coinbase.cdp#GetSQLGrammar"
+        },
+        {
+          "target": "com.coinbase.cdp#GetSQLSchema"
+        },
+        {
+          "target": "com.coinbase.cdp#ListTokensForAccount"
+        },
+        {
+          "target": "com.coinbase.cdp#ListDataTokenBalances"
+        },
+        {
+          "target": "com.coinbase.cdp#ListWebhookSubscriptions"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateWebhookSubscription"
+        },
+        {
+          "target": "com.coinbase.cdp#GetWebhookSubscription"
         },
         {
           "target": "com.coinbase.cdp#UpdateWebhookSubscription"
         },
         {
-          "target": "com.coinbase.cdp#ValidateEndUserAccessToken"
+          "target": "com.coinbase.cdp#DeleteWebhookSubscription"
         },
         {
-          "target": "com.coinbase.cdp#ValidateX402Resource"
+          "target": "com.coinbase.cdp#ListWebhookSubscriptionEvents"
         },
         {
           "target": "com.coinbase.cdp#VerifyX402Payment"
         },
         {
-          "target": "com.coinbase.cdp#VoidPaymentSession"
+          "target": "com.coinbase.cdp#SettleX402Payment"
+        },
+        {
+          "target": "com.coinbase.cdp#SupportedX402PaymentKinds"
+        },
+        {
+          "target": "com.coinbase.cdp#ListX402DiscoveryResources"
+        },
+        {
+          "target": "com.coinbase.cdp#ListX402DiscoveryMerchant"
+        },
+        {
+          "target": "com.coinbase.cdp#SearchX402Resources"
+        },
+        {
+          "target": "com.coinbase.cdp#PostX402DiscoveryMcp"
+        },
+        {
+          "target": "com.coinbase.cdp#ListX402Bundles"
+        },
+        {
+          "target": "com.coinbase.cdp#GetX402Bundle"
+        },
+        {
+          "target": "com.coinbase.cdp#ValidateX402Resource"
+        },
+        {
+          "target": "com.coinbase.cdp#InitiateOnrampVerification"
+        },
+        {
+          "target": "com.coinbase.cdp#SubmitOnrampVerification"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateOnrampOrder"
+        },
+        {
+          "target": "com.coinbase.cdp#GetOnrampOrderById"
+        },
+        {
+          "target": "com.coinbase.cdp#CreateOnrampSession"
+        },
+        {
+          "target": "com.coinbase.cdp#GetOnrampUserLimits"
+        },
+        {
+          "target": "com.coinbase.cdp#RequestLimitsUpgrade"
+        },
+        {
+          "target": "com.coinbase.cdp#ListPaymentMethods"
+        },
+        {
+          "target": "com.coinbase.cdp#GetPaymentMethod"
         }
       ],
       "traits": {

@@ -2678,43 +2678,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.redhatopenshift#DeleteOpenShiftCluster"
-        },
-        {
-          "target": "com.azure.redhatopenshift#GetOpenShiftCluster"
-        },
-        {
-          "target": "com.azure.redhatopenshift#GetOpenShiftVersion"
-        },
-        {
-          "target": "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSet"
+          "target": "com.azure.redhatopenshift#ListOpenShiftClusterCredentials"
         },
         {
           "target": "com.azure.redhatopenshift#ListOpenShiftClusterAdminCredentials"
         },
         {
+          "target": "com.azure.redhatopenshift#DeleteOpenShiftCluster"
+        },
+        {
+          "target": "com.azure.redhatopenshift#UpdateOpenShiftCluster"
+        },
+        {
+          "target": "com.azure.redhatopenshift#OpenShiftClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.redhatopenshift#GetOpenShiftCluster"
+        },
+        {
           "target": "com.azure.redhatopenshift#ListOpenShiftClusterByResourceGroup"
         },
         {
-          "target": "com.azure.redhatopenshift#ListOpenShiftClusterCredentials"
+          "target": "com.azure.redhatopenshift#ListOpenShiftClusters"
         },
         {
-          "target": "com.azure.redhatopenshift#ListOpenShiftClusters"
+          "target": "com.azure.redhatopenshift#GetPlatformWorkloadIdentityRoleSet"
+        },
+        {
+          "target": "com.azure.redhatopenshift#ListPlatformWorkloadIdentityRoleSets"
+        },
+        {
+          "target": "com.azure.redhatopenshift#GetOpenShiftVersion"
         },
         {
           "target": "com.azure.redhatopenshift#ListOpenShiftVersions"
         },
         {
           "target": "com.azure.redhatopenshift#ListOperations"
-        },
-        {
-          "target": "com.azure.redhatopenshift#ListPlatformWorkloadIdentityRoleSets"
-        },
-        {
-          "target": "com.azure.redhatopenshift#OpenShiftClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.redhatopenshift#UpdateOpenShiftCluster"
         }
       ],
       "traits": {

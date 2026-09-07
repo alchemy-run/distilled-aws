@@ -1503,19 +1503,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.courses#CreateCourse"
+          "target": "com.whop.courses#ListCourse"
         },
         {
-          "target": "com.whop.courses#DeleteCourse"
+          "target": "com.whop.courses#CreateCourse"
         },
         {
           "target": "com.whop.courses#GetCourse"
         },
         {
-          "target": "com.whop.courses#ListCourse"
+          "target": "com.whop.courses#UpdateCourse"
         },
         {
-          "target": "com.whop.courses#UpdateCourse"
+          "target": "com.whop.courses#DeleteCourse"
         }
       ],
       "traits": {

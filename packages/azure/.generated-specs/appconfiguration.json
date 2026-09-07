@@ -4700,73 +4700,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appconfiguration#CheckOperationNameAvailability"
-        },
-        {
-          "target": "com.azure.appconfiguration#CreateConfigurationStore"
-        },
-        {
-          "target": "com.azure.appconfiguration#CreateReplicas"
-        },
-        {
           "target": "com.azure.appconfiguration#CreateSnapshot"
-        },
-        {
-          "target": "com.azure.appconfiguration#DeleteConfigurationStore"
-        },
-        {
-          "target": "com.azure.appconfiguration#DeleteKeyValue"
-        },
-        {
-          "target": "com.azure.appconfiguration#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.appconfiguration#DeleteReplicas"
-        },
-        {
-          "target": "com.azure.appconfiguration#GetConfigurationStore"
-        },
-        {
-          "target": "com.azure.appconfiguration#GetConfigurationStoreDeleted"
-        },
-        {
-          "target": "com.azure.appconfiguration#GetKeyValue"
-        },
-        {
-          "target": "com.azure.appconfiguration#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.appconfiguration#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.appconfiguration#GetReplicas"
         },
         {
           "target": "com.azure.appconfiguration#GetSnapshot"
         },
         {
-          "target": "com.azure.appconfiguration#KeyValuesCreateOrUpdate"
+          "target": "com.azure.appconfiguration#DeleteReplicas"
         },
         {
-          "target": "com.azure.appconfiguration#ListConfigurationStoreByResourceGroup"
+          "target": "com.azure.appconfiguration#CreateReplicas"
         },
         {
-          "target": "com.azure.appconfiguration#ListConfigurationStoreDeleted"
-        },
-        {
-          "target": "com.azure.appconfiguration#ListConfigurationStoreKeys"
-        },
-        {
-          "target": "com.azure.appconfiguration#ListConfigurationStores"
-        },
-        {
-          "target": "com.azure.appconfiguration#ListOperations"
-        },
-        {
-          "target": "com.azure.appconfiguration#ListPrivateEndpointConnectionByConfigurationStore"
-        },
-        {
-          "target": "com.azure.appconfiguration#ListPrivateLinkResourceByConfigurationStore"
+          "target": "com.azure.appconfiguration#GetReplicas"
         },
         {
           "target": "com.azure.appconfiguration#ListReplicasByConfigurationStore"
@@ -4775,16 +4721,70 @@
           "target": "com.azure.appconfiguration#OperationsRegionalCheckNameAvailability"
         },
         {
+          "target": "com.azure.appconfiguration#PurgeConfigurationStoreDeleted"
+        },
+        {
+          "target": "com.azure.appconfiguration#GetConfigurationStoreDeleted"
+        },
+        {
+          "target": "com.azure.appconfiguration#ListConfigurationStoreDeleted"
+        },
+        {
+          "target": "com.azure.appconfiguration#DeleteKeyValue"
+        },
+        {
+          "target": "com.azure.appconfiguration#KeyValuesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appconfiguration#GetKeyValue"
+        },
+        {
+          "target": "com.azure.appconfiguration#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.appconfiguration#ListPrivateLinkResourceByConfigurationStore"
+        },
+        {
+          "target": "com.azure.appconfiguration#DeletePrivateEndpointConnection"
+        },
+        {
           "target": "com.azure.appconfiguration#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appconfiguration#PurgeConfigurationStoreDeleted"
+          "target": "com.azure.appconfiguration#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.appconfiguration#ListPrivateEndpointConnectionByConfigurationStore"
+        },
+        {
+          "target": "com.azure.appconfiguration#ListOperations"
         },
         {
           "target": "com.azure.appconfiguration#RegenerateConfigurationStoreKey"
         },
         {
+          "target": "com.azure.appconfiguration#ListConfigurationStoreKeys"
+        },
+        {
+          "target": "com.azure.appconfiguration#CheckOperationNameAvailability"
+        },
+        {
+          "target": "com.azure.appconfiguration#DeleteConfigurationStore"
+        },
+        {
           "target": "com.azure.appconfiguration#UpdateConfigurationStore"
+        },
+        {
+          "target": "com.azure.appconfiguration#CreateConfigurationStore"
+        },
+        {
+          "target": "com.azure.appconfiguration#GetConfigurationStore"
+        },
+        {
+          "target": "com.azure.appconfiguration#ListConfigurationStoreByResourceGroup"
+        },
+        {
+          "target": "com.azure.appconfiguration#ListConfigurationStores"
         }
       ],
       "traits": {

@@ -1999,42 +1999,6 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.customer_analytics#AccountsNotebooksDestroy"
-        },
-        {
-          "target": "com.posthog.customer_analytics#AccountsRelationshipsDestroy"
-        },
-        {
-          "target": "com.posthog.customer_analytics#CreateAccountsCustomPropertyValue"
-        },
-        {
-          "target": "com.posthog.customer_analytics#CreateAccountsNotebook"
-        },
-        {
-          "target": "com.posthog.customer_analytics#CreateAccountsRelationship"
-        },
-        {
-          "target": "com.posthog.customer_analytics#CreateAccountsRelationshipsEnd"
-        },
-        {
-          "target": "com.posthog.customer_analytics#CreateEventStream"
-        },
-        {
-          "target": "com.posthog.customer_analytics#EventStreamsAddAccountCreate"
-        },
-        {
-          "target": "com.posthog.customer_analytics#EventStreamsDestroy"
-        },
-        {
-          "target": "com.posthog.customer_analytics#EventStreamsRemoveAccountCreate"
-        },
-        {
-          "target": "com.posthog.customer_analytics#EventStreamsSendTestMessageCreate"
-        },
-        {
-          "target": "com.posthog.customer_analytics#GetAccountsNotebook"
-        },
-        {
           "target": "com.posthog.customer_analytics#GetCustomerAnalyticsExternalAccount"
         },
         {
@@ -2044,19 +2008,55 @@
           "target": "com.posthog.customer_analytics#ListAccountsCustomPropertyValues"
         },
         {
+          "target": "com.posthog.customer_analytics#CreateAccountsCustomPropertyValue"
+        },
+        {
           "target": "com.posthog.customer_analytics#ListAccountsNotebooks"
+        },
+        {
+          "target": "com.posthog.customer_analytics#CreateAccountsNotebook"
+        },
+        {
+          "target": "com.posthog.customer_analytics#GetAccountsNotebook"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsNotebooksDestroy"
         },
         {
           "target": "com.posthog.customer_analytics#ListAccountsRelationships"
         },
         {
+          "target": "com.posthog.customer_analytics#CreateAccountsRelationship"
+        },
+        {
+          "target": "com.posthog.customer_analytics#AccountsRelationshipsDestroy"
+        },
+        {
+          "target": "com.posthog.customer_analytics#CreateAccountsRelationshipsEnd"
+        },
+        {
           "target": "com.posthog.customer_analytics#ListEventStreams"
+        },
+        {
+          "target": "com.posthog.customer_analytics#CreateEventStream"
         },
         {
           "target": "com.posthog.customer_analytics#UpdateEventStream"
         },
         {
           "target": "com.posthog.customer_analytics#UpdateEventStreamsPartial"
+        },
+        {
+          "target": "com.posthog.customer_analytics#EventStreamsDestroy"
+        },
+        {
+          "target": "com.posthog.customer_analytics#EventStreamsAddAccountCreate"
+        },
+        {
+          "target": "com.posthog.customer_analytics#EventStreamsRemoveAccountCreate"
+        },
+        {
+          "target": "com.posthog.customer_analytics#EventStreamsSendTestMessageCreate"
         }
       ],
       "traits": {

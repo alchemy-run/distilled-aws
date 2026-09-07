@@ -1960,40 +1960,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.playwrighttesting#AccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.playwrighttesting#CheckAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.playwrighttesting#DeleteAccount"
-        },
-        {
-          "target": "com.azure.playwrighttesting#GetAccount"
-        },
-        {
           "target": "com.azure.playwrighttesting#GetAccountQuotas"
-        },
-        {
-          "target": "com.azure.playwrighttesting#GetQuotas"
-        },
-        {
-          "target": "com.azure.playwrighttesting#ListAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.playwrighttesting#ListAccountBySubscription"
         },
         {
           "target": "com.azure.playwrighttesting#ListAccountQuotasByAccount"
         },
         {
-          "target": "com.azure.playwrighttesting#ListOperations"
+          "target": "com.azure.playwrighttesting#DeleteAccount"
+        },
+        {
+          "target": "com.azure.playwrighttesting#UpdateAccount"
+        },
+        {
+          "target": "com.azure.playwrighttesting#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.playwrighttesting#GetAccount"
+        },
+        {
+          "target": "com.azure.playwrighttesting#ListAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.playwrighttesting#GetQuotas"
         },
         {
           "target": "com.azure.playwrighttesting#ListQuotasBySubscription"
         },
         {
-          "target": "com.azure.playwrighttesting#UpdateAccount"
+          "target": "com.azure.playwrighttesting#CheckAccountNameAvailability"
+        },
+        {
+          "target": "com.azure.playwrighttesting#ListAccountBySubscription"
+        },
+        {
+          "target": "com.azure.playwrighttesting#ListOperations"
         }
       ],
       "traits": {

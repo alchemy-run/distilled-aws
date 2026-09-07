@@ -1742,40 +1742,40 @@
           "target": "com.github.git#CreateBlob"
         },
         {
-          "target": "com.github.git#CreateCommit"
-        },
-        {
-          "target": "com.github.git#CreateRef"
-        },
-        {
-          "target": "com.github.git#CreateTag"
-        },
-        {
-          "target": "com.github.git#CreateTree"
-        },
-        {
-          "target": "com.github.git#DeleteRef"
-        },
-        {
           "target": "com.github.git#GetBlob"
+        },
+        {
+          "target": "com.github.git#CreateCommit"
         },
         {
           "target": "com.github.git#GetCommit"
         },
         {
+          "target": "com.github.git#ListMatchingRefs"
+        },
+        {
           "target": "com.github.git#GetRef"
+        },
+        {
+          "target": "com.github.git#CreateRef"
+        },
+        {
+          "target": "com.github.git#UpdateRef"
+        },
+        {
+          "target": "com.github.git#DeleteRef"
+        },
+        {
+          "target": "com.github.git#CreateTag"
         },
         {
           "target": "com.github.git#GetTag"
         },
         {
+          "target": "com.github.git#CreateTree"
+        },
+        {
           "target": "com.github.git#GetTree"
-        },
-        {
-          "target": "com.github.git#ListMatchingRefs"
-        },
-        {
-          "target": "com.github.git#UpdateRef"
         }
       ],
       "traits": {

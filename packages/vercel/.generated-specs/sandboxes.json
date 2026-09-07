@@ -12532,91 +12532,91 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.sandboxes#CreateSandboxesByNameForkV2"
-        },
-        {
-          "target": "com.vercel.sandboxes#CreateSandboxesByNameForkV3"
-        },
-        {
-          "target": "com.vercel.sandboxes#CreateSandboxesSessionsBySessionIdSnapshotV2"
-        },
-        {
-          "target": "com.vercel.sandboxes#CreateSandboxesSessionsBySessionIdSnapshotV3"
-        },
-        {
           "target": "com.vercel.sandboxes#CreateSandboxesV2"
-        },
-        {
-          "target": "com.vercel.sandboxes#CreateSandboxesV3"
-        },
-        {
-          "target": "com.vercel.sandboxes#CreateSandboxesV4"
-        },
-        {
-          "target": "com.vercel.sandboxes#CreateSessionDirectory"
-        },
-        {
-          "target": "com.vercel.sandboxes#DeleteDrive"
-        },
-        {
-          "target": "com.vercel.sandboxes#DeleteSandbox"
-        },
-        {
-          "target": "com.vercel.sandboxes#DeleteSessionSnapshot"
-        },
-        {
-          "target": "com.vercel.sandboxes#ExtendSessionTimeout"
-        },
-        {
-          "target": "com.vercel.sandboxes#GetNamedSandbox"
-        },
-        {
-          "target": "com.vercel.sandboxes#GetOrCreateDrive"
-        },
-        {
-          "target": "com.vercel.sandboxes#GetSession"
-        },
-        {
-          "target": "com.vercel.sandboxes#GetSessionCommand"
-        },
-        {
-          "target": "com.vercel.sandboxes#GetSessionCommandLogs"
-        },
-        {
-          "target": "com.vercel.sandboxes#GetSessionSnapshot"
-        },
-        {
-          "target": "com.vercel.sandboxes#KillSessionCommand"
         },
         {
           "target": "com.vercel.sandboxes#ListDrives"
         },
         {
-          "target": "com.vercel.sandboxes#ListSessionCommands"
+          "target": "com.vercel.sandboxes#GetOrCreateDrive"
         },
         {
-          "target": "com.vercel.sandboxes#ListSessions"
+          "target": "com.vercel.sandboxes#DeleteDrive"
         },
         {
           "target": "com.vercel.sandboxes#ListSessionSnapshots"
         },
         {
-          "target": "com.vercel.sandboxes#ReadSessionFile"
+          "target": "com.vercel.sandboxes#GetSessionSnapshot"
         },
         {
-          "target": "com.vercel.sandboxes#RunSessionCommand"
+          "target": "com.vercel.sandboxes#DeleteSessionSnapshot"
         },
         {
-          "target": "com.vercel.sandboxes#StopSession"
+          "target": "com.vercel.sandboxes#ListSessions"
+        },
+        {
+          "target": "com.vercel.sandboxes#GetSession"
+        },
+        {
+          "target": "com.vercel.sandboxes#GetNamedSandbox"
         },
         {
           "target": "com.vercel.sandboxes#UpdateSandbox"
         },
         {
+          "target": "com.vercel.sandboxes#DeleteSandbox"
+        },
+        {
+          "target": "com.vercel.sandboxes#ListSessionCommands"
+        },
+        {
+          "target": "com.vercel.sandboxes#RunSessionCommand"
+        },
+        {
+          "target": "com.vercel.sandboxes#GetSessionCommand"
+        },
+        {
+          "target": "com.vercel.sandboxes#KillSessionCommand"
+        },
+        {
+          "target": "com.vercel.sandboxes#GetSessionCommandLogs"
+        },
+        {
+          "target": "com.vercel.sandboxes#StopSession"
+        },
+        {
+          "target": "com.vercel.sandboxes#ExtendSessionTimeout"
+        },
+        {
           "target": "com.vercel.sandboxes#UpdateSessionNetworkPolicy"
         },
         {
+          "target": "com.vercel.sandboxes#ReadSessionFile"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSessionDirectory"
+        },
+        {
           "target": "com.vercel.sandboxes#WriteSessionFiles"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSandboxesSessionsBySessionIdSnapshotV2"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSandboxesByNameForkV2"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSandboxesV3"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSandboxesSessionsBySessionIdSnapshotV3"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSandboxesByNameForkV3"
+        },
+        {
+          "target": "com.vercel.sandboxes#CreateSandboxesV4"
         }
       ],
       "traits": {

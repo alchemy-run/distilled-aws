@@ -1727,34 +1727,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.stamphog#CreateStamphogRepoConfig"
-        },
-        {
-          "target": "com.posthog.stamphog#CreateStamphogRepoConfigsSyncInstallation"
+          "target": "com.posthog.stamphog#ListStamphogDigestRuns"
         },
         {
           "target": "com.posthog.stamphog#GetStamphogDigestRun"
         },
         {
-          "target": "com.posthog.stamphog#GetStamphogPullRequest"
-        },
-        {
-          "target": "com.posthog.stamphog#GetStamphogRepoConfig"
-        },
-        {
-          "target": "com.posthog.stamphog#GetStamphogReviewRun"
-        },
-        {
-          "target": "com.posthog.stamphog#ListStamphogDigestRuns"
-        },
-        {
           "target": "com.posthog.stamphog#ListStamphogPullRequests"
+        },
+        {
+          "target": "com.posthog.stamphog#GetStamphogPullRequest"
         },
         {
           "target": "com.posthog.stamphog#ListStamphogRepoConfigs"
         },
         {
-          "target": "com.posthog.stamphog#ListStamphogReviewRuns"
+          "target": "com.posthog.stamphog#CreateStamphogRepoConfig"
+        },
+        {
+          "target": "com.posthog.stamphog#GetStamphogRepoConfig"
+        },
+        {
+          "target": "com.posthog.stamphog#UpdateStamphogRepoConfig"
+        },
+        {
+          "target": "com.posthog.stamphog#UpdateStamphogRepoConfigsPartial"
         },
         {
           "target": "com.posthog.stamphog#StamphogRepoConfigsDestroy"
@@ -1763,10 +1760,13 @@
           "target": "com.posthog.stamphog#StamphogRepoConfigsInstallInfoRetrieve"
         },
         {
-          "target": "com.posthog.stamphog#UpdateStamphogRepoConfig"
+          "target": "com.posthog.stamphog#CreateStamphogRepoConfigsSyncInstallation"
         },
         {
-          "target": "com.posthog.stamphog#UpdateStamphogRepoConfigsPartial"
+          "target": "com.posthog.stamphog#ListStamphogReviewRuns"
+        },
+        {
+          "target": "com.posthog.stamphog#GetStamphogReviewRun"
         }
       ],
       "traits": {

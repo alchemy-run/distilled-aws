@@ -8486,25 +8486,52 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.batch_exports#BatchExportsBackfillsCancelCreate"
-        },
-        {
-          "target": "com.posthog.batch_exports#BatchExportsDestroy"
-        },
-        {
-          "target": "com.posthog.batch_exports#BatchExportsRunsCancelCreate"
-        },
-        {
-          "target": "com.posthog.batch_exports#BatchExportsRunsRetryCreate"
-        },
-        {
-          "target": "com.posthog.batch_exports#BatchExportsUnpauseCreate"
+          "target": "com.posthog.batch_exports#ListBatchExports"
         },
         {
           "target": "com.posthog.batch_exports#CreateBatchExport"
         },
         {
+          "target": "com.posthog.batch_exports#ListBatchExportsBackfills"
+        },
+        {
           "target": "com.posthog.batch_exports#CreateBatchExportsBackfill"
+        },
+        {
+          "target": "com.posthog.batch_exports#GetBatchExportsBackfill"
+        },
+        {
+          "target": "com.posthog.batch_exports#BatchExportsBackfillsCancelCreate"
+        },
+        {
+          "target": "com.posthog.batch_exports#ListBatchExportsRuns"
+        },
+        {
+          "target": "com.posthog.batch_exports#GetBatchExportsRun"
+        },
+        {
+          "target": "com.posthog.batch_exports#BatchExportsRunsCancelCreate"
+        },
+        {
+          "target": "com.posthog.batch_exports#GetBatchExportsRunsLog"
+        },
+        {
+          "target": "com.posthog.batch_exports#BatchExportsRunsRetryCreate"
+        },
+        {
+          "target": "com.posthog.batch_exports#GetBatchExport"
+        },
+        {
+          "target": "com.posthog.batch_exports#UpdateBatchExport"
+        },
+        {
+          "target": "com.posthog.batch_exports#UpdateBatchExportsPartial"
+        },
+        {
+          "target": "com.posthog.batch_exports#BatchExportsDestroy"
+        },
+        {
+          "target": "com.posthog.batch_exports#GetBatchExportsLog"
         },
         {
           "target": "com.posthog.batch_exports#CreateBatchExportsPause"
@@ -8513,61 +8540,34 @@
           "target": "com.posthog.batch_exports#CreateBatchExportsRunTestStep"
         },
         {
+          "target": "com.posthog.batch_exports#BatchExportsUnpauseCreate"
+        },
+        {
           "target": "com.posthog.batch_exports#CreateBatchExportsRunTestStepNew"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsCancelCreate"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsCountRowsCreate"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsCreate"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsDownloadRetrieve"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsList"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsLogsRetrieve"
-        },
-        {
-          "target": "com.posthog.batch_exports#FileDownloadBatchExportsRetrieve"
-        },
-        {
-          "target": "com.posthog.batch_exports#GetBatchExport"
-        },
-        {
-          "target": "com.posthog.batch_exports#GetBatchExportsBackfill"
-        },
-        {
-          "target": "com.posthog.batch_exports#GetBatchExportsLog"
-        },
-        {
-          "target": "com.posthog.batch_exports#GetBatchExportsRun"
-        },
-        {
-          "target": "com.posthog.batch_exports#GetBatchExportsRunsLog"
         },
         {
           "target": "com.posthog.batch_exports#GetBatchExportsTest"
         },
         {
-          "target": "com.posthog.batch_exports#ListBatchExports"
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsList"
         },
         {
-          "target": "com.posthog.batch_exports#ListBatchExportsBackfills"
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsCreate"
         },
         {
-          "target": "com.posthog.batch_exports#ListBatchExportsRuns"
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsRetrieve"
         },
         {
-          "target": "com.posthog.batch_exports#UpdateBatchExport"
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsCancelCreate"
         },
         {
-          "target": "com.posthog.batch_exports#UpdateBatchExportsPartial"
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsDownloadRetrieve"
+        },
+        {
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsLogsRetrieve"
+        },
+        {
+          "target": "com.posthog.batch_exports#FileDownloadBatchExportsCountRowsCreate"
         }
       ],
       "traits": {

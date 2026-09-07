@@ -4556,16 +4556,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.webhooks#CreateWebhook"
+          "target": "com.vercel.webhooks#GetWebhooks"
         },
         {
-          "target": "com.vercel.webhooks#DeleteWebhook"
+          "target": "com.vercel.webhooks#CreateWebhook"
         },
         {
           "target": "com.vercel.webhooks#GetWebhook"
         },
         {
-          "target": "com.vercel.webhooks#GetWebhooks"
+          "target": "com.vercel.webhooks#DeleteWebhook"
         }
       ],
       "traits": {

@@ -2428,40 +2428,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdown"
-        },
-        {
-          "target": "com.azure.azurelargeinstance#GetAzureLargeInstance"
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstance"
         },
         {
           "target": "com.azure.azurelargeinstance#GetAzureLargeStorageInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceByResourceGroup"
-        },
-        {
-          "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceBySubscription"
-        },
-        {
           "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceByResourceGroup"
-        },
-        {
-          "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceBySubscription"
-        },
-        {
-          "target": "com.azure.azurelargeinstance#ListOperations"
-        },
-        {
-          "target": "com.azure.azurelargeinstance#RestartAzureLargeInstance"
         },
         {
           "target": "com.azure.azurelargeinstance#StartAzureLargeInstance"
         },
         {
+          "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdown"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#RestartAzureLargeInstance"
+        },
+        {
           "target": "com.azure.azurelargeinstance#UpdateAzureLargeInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstance"
+          "target": "com.azure.azurelargeinstance#GetAzureLargeInstance"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.azurelargeinstance#ListOperations"
         }
       ],
       "traits": {

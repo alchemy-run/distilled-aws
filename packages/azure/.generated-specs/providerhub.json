@@ -13512,178 +13512,178 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.providerhub#AuthorizedApplicationsCreateOrUpdate"
+          "target": "com.azure.providerhub#DeleteProviderMonitorSettings"
         },
         {
-          "target": "com.azure.providerhub#CheckinManifest"
+          "target": "com.azure.providerhub#UpdateProviderMonitorSettings"
         },
         {
           "target": "com.azure.providerhub#CreateProviderMonitorSettings"
         },
         {
-          "target": "com.azure.providerhub#CustomRolloutsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.providerhub#DefaultRolloutsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteAuthorizedApplication"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteCustomRollout"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteDefaultRollout"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteNotificationRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteOperation"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteProviderMonitorSettings"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteResourceActionResources"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteResourceTypeRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteSkus"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteSkusNestedResourceTypeFirst"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteSkusNestedResourceTypeSecond"
-        },
-        {
-          "target": "com.azure.providerhub#DeleteSkusNestedResourceTypeThird"
-        },
-        {
-          "target": "com.azure.providerhub#GenerateManifest"
-        },
-        {
-          "target": "com.azure.providerhub#GenerateProviderRegistrationOperations"
-        },
-        {
-          "target": "com.azure.providerhub#GetAuthorizedApplication"
-        },
-        {
-          "target": "com.azure.providerhub#GetCustomRollout"
-        },
-        {
-          "target": "com.azure.providerhub#GetDefaultRollout"
-        },
-        {
-          "target": "com.azure.providerhub#GetManifest"
-        },
-        {
-          "target": "com.azure.providerhub#GetNotificationRegistration"
-        },
-        {
           "target": "com.azure.providerhub#GetProviderMonitorSettings"
-        },
-        {
-          "target": "com.azure.providerhub#GetProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#GetResourceTypeRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#GetSkus"
-        },
-        {
-          "target": "com.azure.providerhub#GetSkusNestedResourceTypeFirst"
-        },
-        {
-          "target": "com.azure.providerhub#GetSkusNestedResourceTypeSecond"
-        },
-        {
-          "target": "com.azure.providerhub#GetSkusNestedResourceTypeThird"
-        },
-        {
-          "target": "com.azure.providerhub#ListAuthorizedApplications"
-        },
-        {
-          "target": "com.azure.providerhub#ListCustomRolloutByProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#ListDefaultRolloutByProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#ListNotificationRegistrationByProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#ListOperationByProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#ListOperations"
         },
         {
           "target": "com.azure.providerhub#ListProviderMonitorSettingsByResourceGroup"
         },
         {
-          "target": "com.azure.providerhub#ListProviderMonitorSettingsBySubscription"
-        },
-        {
-          "target": "com.azure.providerhub#ListProviderRegistrations"
-        },
-        {
-          "target": "com.azure.providerhub#ListResourceTypeRegistrationByProviderRegistration"
-        },
-        {
-          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrations"
-        },
-        {
-          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrationsNestedResourceTypeFirst"
-        },
-        {
-          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrationsNestedResourceTypeSecond"
-        },
-        {
-          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrationsNestedResourceTypeThird"
-        },
-        {
-          "target": "com.azure.providerhub#ManifestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.providerhub#NotificationRegistrationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.providerhub#OperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.providerhub#ProviderRegistrationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.providerhub#ResourceTypeRegistrationsCreateOrUpdate"
+          "target": "com.azure.providerhub#DeleteSkus"
         },
         {
           "target": "com.azure.providerhub#SkusCreateOrUpdate"
         },
         {
+          "target": "com.azure.providerhub#GetSkus"
+        },
+        {
+          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrations"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteSkusNestedResourceTypeFirst"
+        },
+        {
           "target": "com.azure.providerhub#SkusCreateOrUpdateNestedResourceTypeFirst"
+        },
+        {
+          "target": "com.azure.providerhub#GetSkusNestedResourceTypeFirst"
+        },
+        {
+          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrationsNestedResourceTypeFirst"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteSkusNestedResourceTypeSecond"
         },
         {
           "target": "com.azure.providerhub#SkusCreateOrUpdateNestedResourceTypeSecond"
         },
         {
+          "target": "com.azure.providerhub#GetSkusNestedResourceTypeSecond"
+        },
+        {
+          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrationsNestedResourceTypeSecond"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteSkusNestedResourceTypeThird"
+        },
+        {
           "target": "com.azure.providerhub#SkusCreateOrUpdateNestedResourceTypeThird"
         },
         {
-          "target": "com.azure.providerhub#StopCustomRollout"
+          "target": "com.azure.providerhub#GetSkusNestedResourceTypeThird"
+        },
+        {
+          "target": "com.azure.providerhub#ListSkusByResourceTypeRegistrationsNestedResourceTypeThird"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteResourceTypeRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#ResourceTypeRegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetResourceTypeRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#ListResourceTypeRegistrationByProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteResourceActionResources"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteOperation"
+        },
+        {
+          "target": "com.azure.providerhub#OperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#ListOperationByProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteNotificationRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#NotificationRegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetNotificationRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#ListNotificationRegistrationByProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#ManifestsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetManifest"
+        },
+        {
+          "target": "com.azure.providerhub#GenerateProviderRegistrationOperations"
+        },
+        {
+          "target": "com.azure.providerhub#GenerateManifest"
         },
         {
           "target": "com.azure.providerhub#StopDefaultRollout"
         },
         {
-          "target": "com.azure.providerhub#UpdateProviderMonitorSettings"
+          "target": "com.azure.providerhub#DeleteDefaultRollout"
+        },
+        {
+          "target": "com.azure.providerhub#DefaultRolloutsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetDefaultRollout"
+        },
+        {
+          "target": "com.azure.providerhub#ListDefaultRolloutByProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#StopCustomRollout"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteCustomRollout"
+        },
+        {
+          "target": "com.azure.providerhub#CustomRolloutsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetCustomRollout"
+        },
+        {
+          "target": "com.azure.providerhub#ListCustomRolloutByProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#CheckinManifest"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteAuthorizedApplication"
+        },
+        {
+          "target": "com.azure.providerhub#AuthorizedApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetAuthorizedApplication"
+        },
+        {
+          "target": "com.azure.providerhub#ListAuthorizedApplications"
+        },
+        {
+          "target": "com.azure.providerhub#DeleteProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#ProviderRegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.providerhub#GetProviderRegistration"
+        },
+        {
+          "target": "com.azure.providerhub#ListProviderRegistrations"
+        },
+        {
+          "target": "com.azure.providerhub#ListProviderMonitorSettingsBySubscription"
+        },
+        {
+          "target": "com.azure.providerhub#ListOperations"
         }
       ],
       "traits": {

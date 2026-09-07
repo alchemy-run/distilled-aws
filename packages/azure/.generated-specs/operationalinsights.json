@@ -13370,259 +13370,259 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.operationalinsights#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#DataExportsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#DataSourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteCluster"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteDataExport"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteDataSource"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteGateways"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteLinkedService"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteLinkedStorageAccount"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteQuery"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteQueryPack"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteSavedSearch"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteStorageInsightConfig"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteSummaryLog"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteTable"
-        },
-        {
-          "target": "com.azure.operationalinsights#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#DisableIntelligencePack"
-        },
-        {
-          "target": "com.azure.operationalinsights#EnableIntelligencePack"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetCluster"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetDataExport"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetDataSource"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetLinkedService"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetLinkedStorageAccount"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetQuery"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetQueryPack"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetSavedSearch"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetSchema"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetSharedKeysSharedKeys"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetStorageInsightConfig"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetSummaryLog"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetTable"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#GetWorkspaceNSP"
-        },
-        {
-          "target": "com.azure.operationalinsights#LinkedServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#LinkedStorageAccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListAvailableServiceTierByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListClusters"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListDataExportByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListDataSourceByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListDeletedWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListDeletedWorkspaces"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListIntelligencePacks"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListLinkedServiceByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListLinkedStorageAccountByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListManagementGroups"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListOperations"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListQueries"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListQueryPackByResourceGroup"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListQueryPacks"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListSavedSearchByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListStorageInsightConfigByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListSummaryLogByWorkspace"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListTableByWorkspace"
-        },
-        {
           "target": "com.azure.operationalinsights#ListUsages"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListWorkspaceNSP"
-        },
-        {
-          "target": "com.azure.operationalinsights#ListWorkspaces"
         },
         {
           "target": "com.azure.operationalinsights#MigrateTable"
         },
         {
-          "target": "com.azure.operationalinsights#PurgeWorkspacePurge"
-        },
-        {
-          "target": "com.azure.operationalinsights#PurgeWorkspacePurgeLakeData"
-        },
-        {
-          "target": "com.azure.operationalinsights#PutQuery"
-        },
-        {
-          "target": "com.azure.operationalinsights#QueryPacksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#QueryPacksCreateOrUpdateWithoutName"
-        },
-        {
-          "target": "com.azure.operationalinsights#RegenerateSharedKeys"
-        },
-        {
-          "target": "com.azure.operationalinsights#RetrySummaryLogBin"
-        },
-        {
-          "target": "com.azure.operationalinsights#SavedSearchesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#SearchQuery"
-        },
-        {
-          "target": "com.azure.operationalinsights#StartSummaryLog"
-        },
-        {
-          "target": "com.azure.operationalinsights#StopSummaryLog"
-        },
-        {
-          "target": "com.azure.operationalinsights#StorageInsightConfigsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#SummaryLogsCreateOrUpdate"
-        },
-        {
           "target": "com.azure.operationalinsights#TablesCancelSearch"
         },
         {
-          "target": "com.azure.operationalinsights#TablesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.operationalinsights#UpdateCluster"
-        },
-        {
-          "target": "com.azure.operationalinsights#UpdateQuery"
-        },
-        {
-          "target": "com.azure.operationalinsights#UpdateQueryPackTags"
+          "target": "com.azure.operationalinsights#DeleteTable"
         },
         {
           "target": "com.azure.operationalinsights#UpdateTable"
         },
         {
-          "target": "com.azure.operationalinsights#UpdateWorkspace"
+          "target": "com.azure.operationalinsights#TablesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetTable"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListTableByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#StopSummaryLog"
+        },
+        {
+          "target": "com.azure.operationalinsights#StartSummaryLog"
+        },
+        {
+          "target": "com.azure.operationalinsights#RetrySummaryLogBin"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteSummaryLog"
+        },
+        {
+          "target": "com.azure.operationalinsights#SummaryLogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetSummaryLog"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListSummaryLogByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteStorageInsightConfig"
+        },
+        {
+          "target": "com.azure.operationalinsights#StorageInsightConfigsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetStorageInsightConfig"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListStorageInsightConfigByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetSharedKeysSharedKeys"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetSchema"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteSavedSearch"
+        },
+        {
+          "target": "com.azure.operationalinsights#SavedSearchesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetSavedSearch"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListSavedSearchByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#RegenerateSharedKeys"
+        },
+        {
+          "target": "com.azure.operationalinsights#PurgeWorkspacePurgeLakeData"
+        },
+        {
+          "target": "com.azure.operationalinsights#PurgeWorkspacePurge"
         },
         {
           "target": "com.azure.operationalinsights#WorkspacePurgeGetPurgeStatus"
         },
         {
-          "target": "com.azure.operationalinsights#WorkspacesCreateOrUpdate"
+          "target": "com.azure.operationalinsights#WorkspacesReconcileNSP"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetWorkspaceNSP"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListWorkspaceNSP"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListManagementGroups"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteLinkedStorageAccount"
+        },
+        {
+          "target": "com.azure.operationalinsights#LinkedStorageAccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetLinkedStorageAccount"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListLinkedStorageAccountByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteLinkedService"
+        },
+        {
+          "target": "com.azure.operationalinsights#LinkedServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetLinkedService"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListLinkedServiceByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#EnableIntelligencePack"
+        },
+        {
+          "target": "com.azure.operationalinsights#DisableIntelligencePack"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListIntelligencePacks"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteGateways"
         },
         {
           "target": "com.azure.operationalinsights#WorkspacesFailback"
         },
         {
+          "target": "com.azure.operationalinsights#DeleteDataSource"
+        },
+        {
+          "target": "com.azure.operationalinsights#DataSourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetDataSource"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListDataSourceByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteDataExport"
+        },
+        {
+          "target": "com.azure.operationalinsights#DataExportsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetDataExport"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListDataExportByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListAvailableServiceTierByWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetWorkspace"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.operationalinsights#SearchQuery"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteQuery"
+        },
+        {
+          "target": "com.azure.operationalinsights#UpdateQuery"
+        },
+        {
+          "target": "com.azure.operationalinsights#PutQuery"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetQuery"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListQueries"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteQueryPack"
+        },
+        {
+          "target": "com.azure.operationalinsights#UpdateQueryPackTags"
+        },
+        {
+          "target": "com.azure.operationalinsights#QueryPacksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetQueryPack"
+        },
+        {
+          "target": "com.azure.operationalinsights#QueryPacksCreateOrUpdateWithoutName"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListQueryPackByResourceGroup"
+        },
+        {
           "target": "com.azure.operationalinsights#WorkspacesFailover"
         },
         {
-          "target": "com.azure.operationalinsights#WorkspacesReconcileNSP"
+          "target": "com.azure.operationalinsights#ListDeletedWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.operationalinsights#DeleteCluster"
+        },
+        {
+          "target": "com.azure.operationalinsights#UpdateCluster"
+        },
+        {
+          "target": "com.azure.operationalinsights#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetCluster"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListWorkspaces"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListQueryPacks"
+        },
+        {
+          "target": "com.azure.operationalinsights#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListDeletedWorkspaces"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListClusters"
+        },
+        {
+          "target": "com.azure.operationalinsights#ListOperations"
         }
       ],
       "traits": {

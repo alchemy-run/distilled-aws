@@ -1331,16 +1331,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.event_definitions#ListEventDefinitions"
+        },
+        {
           "target": "com.posthog.event_definitions#CreateEventDefinition"
         },
         {
-          "target": "com.posthog.event_definitions#EventDefinitionsBulkUpdateVerifiedCreate"
+          "target": "com.posthog.event_definitions#GetEventDefinition"
+        },
+        {
+          "target": "com.posthog.event_definitions#UpdateEventDefinition"
+        },
+        {
+          "target": "com.posthog.event_definitions#UpdateEventDefinitionsPartial"
         },
         {
           "target": "com.posthog.event_definitions#EventDefinitionsDestroy"
         },
         {
-          "target": "com.posthog.event_definitions#GetEventDefinition"
+          "target": "com.posthog.event_definitions#EventDefinitionsBulkUpdateVerifiedCreate"
         },
         {
           "target": "com.posthog.event_definitions#GetEventDefinitionsByName"
@@ -1356,15 +1365,6 @@
         },
         {
           "target": "com.posthog.event_definitions#GetEventDefinitionsTypescript"
-        },
-        {
-          "target": "com.posthog.event_definitions#ListEventDefinitions"
-        },
-        {
-          "target": "com.posthog.event_definitions#UpdateEventDefinition"
-        },
-        {
-          "target": "com.posthog.event_definitions#UpdateEventDefinitionsPartial"
         }
       ],
       "traits": {

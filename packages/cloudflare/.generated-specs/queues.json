@@ -4474,6 +4474,9 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.queues#PurgeStatus"
+        },
+        {
           "target": "com.cloudflare.queues#AckMessage"
         },
         {
@@ -4526,9 +4529,6 @@
         },
         {
           "target": "com.cloudflare.queues#PullMessage"
-        },
-        {
-          "target": "com.cloudflare.queues#PurgeStatus"
         },
         {
           "target": "com.cloudflare.queues#PushMessage"

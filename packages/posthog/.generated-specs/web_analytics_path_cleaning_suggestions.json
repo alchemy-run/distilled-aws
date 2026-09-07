@@ -328,10 +328,10 @@
           "target": "com.posthog.web_analytics_path_cleaning_suggestions#ApplyWebAnalyticsPathCleaningSuggestion"
         },
         {
-          "target": "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticsPathCleaningSuggestion"
+          "target": "com.posthog.web_analytics_path_cleaning_suggestions#PreviewWebAnalyticsPathCleaningSuggestion"
         },
         {
-          "target": "com.posthog.web_analytics_path_cleaning_suggestions#PreviewWebAnalyticsPathCleaningSuggestion"
+          "target": "com.posthog.web_analytics_path_cleaning_suggestions#GenerateWebAnalyticsPathCleaningSuggestion"
         }
       ],
       "traits": {

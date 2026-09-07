@@ -13205,148 +13205,223 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databoxedge#AddonsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#BandwidthSchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#CheckDeviceCapacityCheckResourceCreationFeasibility"
-        },
-        {
-          "target": "com.azure.databoxedge#ContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteAddon"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteBandwidthSchedule"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteContainer"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteMonitoringConfig"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteOrder"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteRole"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteShare"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteStorageAccount"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteStorageAccountCredentials"
-        },
-        {
-          "target": "com.azure.databoxedge#DeleteTrigger"
-        },
-        {
           "target": "com.azure.databoxedge#DeleteUser"
         },
         {
-          "target": "com.azure.databoxedge#DevicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#DevicesCreateOrUpdateSecuritySettings"
-        },
-        {
-          "target": "com.azure.databoxedge#DevicesGetUpdateSummary"
-        },
-        {
-          "target": "com.azure.databoxedge#DevicesScanForUpdates"
-        },
-        {
-          "target": "com.azure.databoxedge#DownloadDeviceUpdates"
-        },
-        {
-          "target": "com.azure.databoxedge#GenerateDeviceCertificate"
-        },
-        {
-          "target": "com.azure.databoxedge#GetAddon"
-        },
-        {
-          "target": "com.azure.databoxedge#GetAlert"
-        },
-        {
-          "target": "com.azure.databoxedge#GetBandwidthSchedule"
-        },
-        {
-          "target": "com.azure.databoxedge#GetContainer"
-        },
-        {
-          "target": "com.azure.databoxedge#GetDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfo"
-        },
-        {
-          "target": "com.azure.databoxedge#GetDeviceExtendedInformation"
-        },
-        {
-          "target": "com.azure.databoxedge#GetDeviceNetworkSettings"
-        },
-        {
-          "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettings"
-        },
-        {
-          "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettings"
-        },
-        {
-          "target": "com.azure.databoxedge#GetJob"
-        },
-        {
-          "target": "com.azure.databoxedge#GetMonitoringConfig"
-        },
-        {
-          "target": "com.azure.databoxedge#GetOperationsStatus"
-        },
-        {
-          "target": "com.azure.databoxedge#GetOrder"
-        },
-        {
-          "target": "com.azure.databoxedge#GetRole"
-        },
-        {
-          "target": "com.azure.databoxedge#GetShare"
-        },
-        {
-          "target": "com.azure.databoxedge#GetStorageAccount"
-        },
-        {
-          "target": "com.azure.databoxedge#GetStorageAccountCredentials"
-        },
-        {
-          "target": "com.azure.databoxedge#GetTrigger"
+          "target": "com.azure.databoxedge#UsersCreateOrUpdate"
         },
         {
           "target": "com.azure.databoxedge#GetUser"
         },
         {
-          "target": "com.azure.databoxedge#InstallDeviceUpdates"
+          "target": "com.azure.databoxedge#ListUserByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#UploadDeviceCertificate"
+        },
+        {
+          "target": "com.azure.databoxedge#DevicesGetUpdateSummary"
+        },
+        {
+          "target": "com.azure.databoxedge#UpdateDeviceExtendedInformation"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteTrigger"
+        },
+        {
+          "target": "com.azure.databoxedge#TriggersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetTrigger"
+        },
+        {
+          "target": "com.azure.databoxedge#ListTriggerByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#TriggerSupportPackageSupportPackage"
+        },
+        {
+          "target": "com.azure.databoxedge#RefreshContainer"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteContainer"
+        },
+        {
+          "target": "com.azure.databoxedge#ContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetContainer"
+        },
+        {
+          "target": "com.azure.databoxedge#ListContainerByStorageAccount"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteStorageAccount"
+        },
+        {
+          "target": "com.azure.databoxedge#StorageAccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetStorageAccount"
+        },
+        {
+          "target": "com.azure.databoxedge#ListStorageAccountByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteStorageAccountCredentials"
+        },
+        {
+          "target": "com.azure.databoxedge#StorageAccountCredentialsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetStorageAccountCredentials"
+        },
+        {
+          "target": "com.azure.databoxedge#ListStorageAccountCredentialsByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#RefreshShare"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteShare"
+        },
+        {
+          "target": "com.azure.databoxedge#SharesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetShare"
+        },
+        {
+          "target": "com.azure.databoxedge#ListShareByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#DevicesCreateOrUpdateSecuritySettings"
+        },
+        {
+          "target": "com.azure.databoxedge#DevicesScanForUpdates"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteMonitoringConfig"
+        },
+        {
+          "target": "com.azure.databoxedge#MonitoringConfigCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetMonitoringConfig"
+        },
+        {
+          "target": "com.azure.databoxedge#ListMonitoringConfig"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteAddon"
+        },
+        {
+          "target": "com.azure.databoxedge#AddonsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetAddon"
         },
         {
           "target": "com.azure.databoxedge#ListAddonByRole"
         },
         {
-          "target": "com.azure.databoxedge#ListAlertByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#DeleteRole"
         },
         {
-          "target": "com.azure.databoxedge#ListAvailableSkus"
+          "target": "com.azure.databoxedge#RolesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetRole"
+        },
+        {
+          "target": "com.azure.databoxedge#ListRoleByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#ListOrderDCAccessCode"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteOrder"
+        },
+        {
+          "target": "com.azure.databoxedge#OrdersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetOrder"
+        },
+        {
+          "target": "com.azure.databoxedge#ListOrderByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#GetOperationsStatus"
+        },
+        {
+          "target": "com.azure.databoxedge#ListNodeByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#GetDeviceNetworkSettings"
+        },
+        {
+          "target": "com.azure.databoxedge#GetJob"
+        },
+        {
+          "target": "com.azure.databoxedge#InstallDeviceUpdates"
+        },
+        {
+          "target": "com.azure.databoxedge#GetDeviceExtendedInformation"
+        },
+        {
+          "target": "com.azure.databoxedge#GenerateDeviceCertificate"
+        },
+        {
+          "target": "com.azure.databoxedge#DownloadDeviceUpdates"
+        },
+        {
+          "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettings"
+        },
+        {
+          "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettings"
+        },
+        {
+          "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettings"
+        },
+        {
+          "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettings"
+        },
+        {
+          "target": "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfo"
+        },
+        {
+          "target": "com.azure.databoxedge#CheckDeviceCapacityCheckResourceCreationFeasibility"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteBandwidthSchedule"
+        },
+        {
+          "target": "com.azure.databoxedge#BandwidthSchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetBandwidthSchedule"
         },
         {
           "target": "com.azure.databoxedge#ListBandwidthScheduleByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#ListContainerByStorageAccount"
+          "target": "com.azure.databoxedge#GetAlert"
+        },
+        {
+          "target": "com.azure.databoxedge#ListAlertByDataBoxEdgeDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#DeleteDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#UpdateDevice"
+        },
+        {
+          "target": "com.azure.databoxedge#DevicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databoxedge#GetDevice"
         },
         {
           "target": "com.azure.databoxedge#ListDeviceByResourceGroup"
@@ -13355,85 +13430,10 @@
           "target": "com.azure.databoxedge#ListDeviceBySubscription"
         },
         {
-          "target": "com.azure.databoxedge#ListMonitoringConfig"
-        },
-        {
-          "target": "com.azure.databoxedge#ListNodeByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListAvailableSkus"
         },
         {
           "target": "com.azure.databoxedge#ListOperations"
-        },
-        {
-          "target": "com.azure.databoxedge#ListOrderByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#ListOrderDCAccessCode"
-        },
-        {
-          "target": "com.azure.databoxedge#ListRoleByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#ListShareByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#ListStorageAccountByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#ListStorageAccountCredentialsByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#ListTriggerByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#ListUserByDataBoxEdgeDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#MonitoringConfigCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#OrdersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#RefreshContainer"
-        },
-        {
-          "target": "com.azure.databoxedge#RefreshShare"
-        },
-        {
-          "target": "com.azure.databoxedge#RolesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#SharesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#StorageAccountCredentialsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#StorageAccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#TriggersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databoxedge#TriggerSupportPackageSupportPackage"
-        },
-        {
-          "target": "com.azure.databoxedge#UpdateDevice"
-        },
-        {
-          "target": "com.azure.databoxedge#UpdateDeviceExtendedInformation"
-        },
-        {
-          "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettings"
-        },
-        {
-          "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettings"
-        },
-        {
-          "target": "com.azure.databoxedge#UploadDeviceCertificate"
-        },
-        {
-          "target": "com.azure.databoxedge#UsersCreateOrUpdate"
         }
       ],
       "traits": {

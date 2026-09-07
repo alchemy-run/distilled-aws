@@ -6587,6 +6587,12 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsBrokenTests"
         },
         {
+          "target": "com.posthog.engineering_analytics#GetEngineeringAnalyticsCiSignalsConfig"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#UpdateEngineeringAnalyticsCiSignalsConfig"
+        },
+        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsCiCards"
         },
         {
@@ -6629,7 +6635,13 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsRepoOverview"
         },
         {
+          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsRepoActivity"
+        },
+        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsResolveBranch"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsFailureLogs"
         },
         {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsSources"
@@ -6641,6 +6653,9 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsTeamCiHealth"
         },
         {
+          "target": "com.posthog.engineering_analytics#MergeEngineeringAnalyticsTeamTrend"
+        },
+        {
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsTrunkQuarantine"
         },
         {
@@ -6650,31 +6665,16 @@
           "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobs"
         },
         {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCosts"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRuns"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#GetEngineeringAnalyticsCiSignalsConfig"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#MergeEngineeringAnalyticsTeamTrend"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsFailureLogs"
-        },
-        {
-          "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsRepoActivity"
-        },
-        {
           "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflow"
         },
         {
           "target": "com.posthog.engineering_analytics#RunEngineeringAnalyticsWorkflowActivity"
         },
         {
-          "target": "com.posthog.engineering_analytics#UpdateEngineeringAnalyticsCiSignalsConfig"
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCosts"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRuns"
         }
       ],
       "traits": {

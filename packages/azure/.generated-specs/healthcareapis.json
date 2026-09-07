@@ -10146,103 +10146,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.healthcareapis#CheckServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteDicomService"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteFhirService"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteIotConnectorFhirDestination"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteService"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#DeleteWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthcareapis#DicomServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#FhirServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetDicomService"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetFhirService"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetIotConnectorFhirDestination"
-        },
-        {
           "target": "com.azure.healthcareapis#GetOperationResult"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetService"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResource"
-        },
-        {
-          "target": "com.azure.healthcareapis#IotConnectorFhirDestinationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#IotConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListDicomServiceByWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListFhirDestinationByIotConnector"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListFhirServiceByWorkspace"
-        },
-        {
-          "target": "com.azure.healthcareapis#ListIotConnectorByWorkspace"
         },
         {
           "target": "com.azure.healthcareapis#ListOperations2"
         },
         {
-          "target": "com.azure.healthcareapis#ListPrivateEndpointConnectionByService"
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateLinkResource"
         },
         {
-          "target": "com.azure.healthcareapis#ListPrivateLinkResourceByService"
+          "target": "com.azure.healthcareapis#ListWorkspacePrivateLinkResourceByWorkspace"
         },
         {
-          "target": "com.azure.healthcareapis#ListServiceByResourceGroup"
+          "target": "com.azure.healthcareapis#DeleteWorkspacePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.healthcareapis#ListServices"
+          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetWorkspacePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListWorkspacePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteFhirService"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateFhirService"
+        },
+        {
+          "target": "com.azure.healthcareapis#FhirServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetFhirService"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListFhirServiceByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteIotConnectorFhirDestination"
+        },
+        {
+          "target": "com.azure.healthcareapis#IotConnectorFhirDestinationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetIotConnectorFhirDestination"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListFhirDestinationByIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#IotConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetIotConnector"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListIotConnectorByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteDicomService"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateDicomService"
+        },
+        {
+          "target": "com.azure.healthcareapis#DicomServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetDicomService"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListDicomServiceByWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.healthcareapis#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.healthcareapis#GetWorkspace"
         },
         {
           "target": "com.azure.healthcareapis#ListWorkspaceByResourceGroup"
@@ -10251,37 +10245,43 @@
           "target": "com.azure.healthcareapis#ListWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.healthcareapis#ListWorkspacePrivateEndpointConnectionByWorkspace"
+          "target": "com.azure.healthcareapis#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.healthcareapis#ListWorkspacePrivateLinkResourceByWorkspace"
+          "target": "com.azure.healthcareapis#ListPrivateLinkResourceByService"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.healthcareapis#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.healthcareapis#ServicesCreateOrUpdate"
+          "target": "com.azure.healthcareapis#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.healthcareapis#UpdateDicomService"
+          "target": "com.azure.healthcareapis#ListPrivateEndpointConnectionByService"
         },
         {
-          "target": "com.azure.healthcareapis#UpdateFhirService"
+          "target": "com.azure.healthcareapis#CheckServiceNameAvailability"
         },
         {
-          "target": "com.azure.healthcareapis#UpdateIotConnector"
+          "target": "com.azure.healthcareapis#ListServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.healthcareapis#ListServices"
+        },
+        {
+          "target": "com.azure.healthcareapis#DeleteService"
         },
         {
           "target": "com.azure.healthcareapis#UpdateService"
         },
         {
-          "target": "com.azure.healthcareapis#UpdateWorkspace"
+          "target": "com.azure.healthcareapis#ServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.healthcareapis#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.healthcareapis#WorkspacesCreateOrUpdate"
+          "target": "com.azure.healthcareapis#GetService"
         }
       ],
       "traits": {

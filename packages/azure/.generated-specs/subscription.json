@@ -1608,49 +1608,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.subscription#AcceptSubscriptionOwnership"
-        },
-        {
-          "target": "com.azure.subscription#AcceptSubscriptionOwnershipStatus"
-        },
-        {
-          "target": "com.azure.subscription#CancelSubscription"
-        },
-        {
-          "target": "com.azure.subscription#CreateAlias"
-        },
-        {
-          "target": "com.azure.subscription#DeleteAlias"
-        },
-        {
-          "target": "com.azure.subscription#EnableSubscription"
-        },
-        {
-          "target": "com.azure.subscription#GetAlias"
-        },
-        {
           "target": "com.azure.subscription#GetBillingAccountPolicy"
-        },
-        {
-          "target": "com.azure.subscription#GetSubscriptionOperation"
-        },
-        {
-          "target": "com.azure.subscription#GetSubscriptionPolicyPolicyForTenant"
-        },
-        {
-          "target": "com.azure.subscription#ListAlias"
-        },
-        {
-          "target": "com.azure.subscription#ListOperations"
         },
         {
           "target": "com.azure.subscription#ListSubscriptionPolicyPolicyForTenant"
         },
         {
+          "target": "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenant"
+        },
+        {
+          "target": "com.azure.subscription#GetSubscriptionPolicyPolicyForTenant"
+        },
+        {
+          "target": "com.azure.subscription#AcceptSubscriptionOwnershipStatus"
+        },
+        {
+          "target": "com.azure.subscription#AcceptSubscriptionOwnership"
+        },
+        {
+          "target": "com.azure.subscription#ListAlias"
+        },
+        {
+          "target": "com.azure.subscription#DeleteAlias"
+        },
+        {
+          "target": "com.azure.subscription#CreateAlias"
+        },
+        {
+          "target": "com.azure.subscription#GetAlias"
+        },
+        {
+          "target": "com.azure.subscription#ListOperations"
+        },
+        {
+          "target": "com.azure.subscription#GetSubscriptionOperation"
+        },
+        {
+          "target": "com.azure.subscription#EnableSubscription"
+        },
+        {
           "target": "com.azure.subscription#RenameSubscription"
         },
         {
-          "target": "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenant"
+          "target": "com.azure.subscription#CancelSubscription"
         }
       ],
       "traits": {

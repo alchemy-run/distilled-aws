@@ -1682,10 +1682,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.extendedlocation#CustomLocationsCreateOrUpdate"
+          "target": "com.azure.extendedlocation#ListCustomLocationEnabledResourceTypes"
         },
         {
           "target": "com.azure.extendedlocation#DeleteCustomLocation"
+        },
+        {
+          "target": "com.azure.extendedlocation#UpdateCustomLocation"
+        },
+        {
+          "target": "com.azure.extendedlocation#CustomLocationsCreateOrUpdate"
         },
         {
           "target": "com.azure.extendedlocation#GetCustomLocation"
@@ -1697,13 +1703,7 @@
           "target": "com.azure.extendedlocation#ListCustomLocationBySubscription"
         },
         {
-          "target": "com.azure.extendedlocation#ListCustomLocationEnabledResourceTypes"
-        },
-        {
           "target": "com.azure.extendedlocation#ListCustomLocationOperations"
-        },
-        {
-          "target": "com.azure.extendedlocation#UpdateCustomLocation"
         }
       ],
       "traits": {

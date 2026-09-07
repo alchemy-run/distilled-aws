@@ -14050,115 +14050,142 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.workloads#CreateMonitor"
+          "target": "com.azure.workloads#StopSAPDatabaseInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#CreateProviderInstance"
+          "target": "com.azure.workloads#StartSAPDatabaseInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSapApplicationServerInstance"
+          "target": "com.azure.workloads#StopSAPApplicationServerInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSAPApplicationServerInstance"
+          "target": "com.azure.workloads#StartSAPApplicationServerInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSAPCentralInstance"
+          "target": "com.azure.workloads#StopSAPCentralInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSapCentralServerInstance"
+          "target": "com.azure.workloads#StartSAPCentralInstanceInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSapDatabaseInstance"
+          "target": "com.azure.workloads#StopSAPVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSAPDatabaseInstance"
+          "target": "com.azure.workloads#StartSAPVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#CreateSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#CreateSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#CreateSAPVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteMonitor"
-        },
-        {
-          "target": "com.azure.workloads#DeleteProviderInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapApplicationServerInstance"
+          "target": "com.azure.workloads#ListSAPApplicationServerInstances"
         },
         {
           "target": "com.azure.workloads#DeleteSAPApplicationServerInstance"
         },
         {
-          "target": "com.azure.workloads#DeleteSAPCentralInstance"
+          "target": "com.azure.workloads#UpdateSAPApplicationServerInstance"
         },
         {
-          "target": "com.azure.workloads#DeleteSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSAPDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#DeleteSAPVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetMonitor"
-        },
-        {
-          "target": "com.azure.workloads#GetProviderInstance"
-        },
-        {
-          "target": "com.azure.workloads#GetSapApplicationServerInstance"
+          "target": "com.azure.workloads#CreateSAPApplicationServerInstance"
         },
         {
           "target": "com.azure.workloads#GetSAPApplicationServerInstance"
         },
         {
-          "target": "com.azure.workloads#GetSAPCentralInstance"
+          "target": "com.azure.workloads#ListSAPDatabaseInstances"
         },
         {
-          "target": "com.azure.workloads#GetSapCentralServerInstance"
+          "target": "com.azure.workloads#DeleteSAPDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#GetSapDatabaseInstance"
+          "target": "com.azure.workloads#UpdateSAPDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSAPDatabaseInstance"
         },
         {
           "target": "com.azure.workloads#GetSAPDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#GetSapLandscapeMonitor"
+          "target": "com.azure.workloads#ListSAPCentralInstances"
         },
         {
-          "target": "com.azure.workloads#GetSapVirtualInstance"
+          "target": "com.azure.workloads#DeleteSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSAPCentralInstance"
+        },
+        {
+          "target": "com.azure.workloads#ListSAPVirtualInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.workloads#ListSAPVirtualInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSAPVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSAPVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSAPVirtualInstance"
         },
         {
           "target": "com.azure.workloads#GetSAPVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#InvokeSapVirtualInstanceAvailabilityZoneDetails"
+          "target": "com.azure.workloads#SAPAvailabilityZoneDetails"
         },
         {
-          "target": "com.azure.workloads#InvokeSapVirtualInstanceDiskConfigurations"
+          "target": "com.azure.workloads#SAPDiskConfigurations"
         },
         {
-          "target": "com.azure.workloads#InvokeSapVirtualInstanceSapSupportedSku"
+          "target": "com.azure.workloads#SAPSupportedSku2"
         },
         {
-          "target": "com.azure.workloads#InvokeSapVirtualInstanceSizingRecommendations"
+          "target": "com.azure.workloads#SAPSizingRecommendations"
+        },
+        {
+          "target": "com.azure.workloads#ListSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#GetSapLandscapeMonitor"
+        },
+        {
+          "target": "com.azure.workloads#DeleteProviderInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateProviderInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetProviderInstance"
+        },
+        {
+          "target": "com.azure.workloads#ListProviderInstances"
+        },
+        {
+          "target": "com.azure.workloads#DeleteMonitor"
+        },
+        {
+          "target": "com.azure.workloads#UpdateMonitor"
+        },
+        {
+          "target": "com.azure.workloads#CreateMonitor"
+        },
+        {
+          "target": "com.azure.workloads#GetMonitor"
         },
         {
           "target": "com.azure.workloads#ListMonitorByResourceGroup"
@@ -14170,130 +14197,103 @@
           "target": "com.azure.workloads#ListOperations"
         },
         {
-          "target": "com.azure.workloads#ListProviderInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSapApplicationServerInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSAPApplicationServerInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSAPCentralInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSapCentralServerInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSapDatabaseInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSAPDatabaseInstances"
-        },
-        {
-          "target": "com.azure.workloads#ListSapLandscapeMonitor"
-        },
-        {
-          "target": "com.azure.workloads#ListSapVirtualInstanceByResourceGroup"
-        },
-        {
-          "target": "com.azure.workloads#ListSAPVirtualInstanceByResourceGroup"
-        },
-        {
-          "target": "com.azure.workloads#ListSapVirtualInstanceBySubscription"
-        },
-        {
-          "target": "com.azure.workloads#ListSAPVirtualInstanceBySubscription"
-        },
-        {
-          "target": "com.azure.workloads#SAPAvailabilityZoneDetails"
-        },
-        {
-          "target": "com.azure.workloads#SAPDiskConfigurations"
-        },
-        {
-          "target": "com.azure.workloads#SAPSizingRecommendations"
-        },
-        {
-          "target": "com.azure.workloads#SAPSupportedSku2"
-        },
-        {
-          "target": "com.azure.workloads#StartSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSAPApplicationServerInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSAPCentralInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapCentralServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSapDatabaseInstance"
-        },
-        {
-          "target": "com.azure.workloads#StartSAPDatabaseInstanceInstance"
+          "target": "com.azure.workloads#StopSapVirtualInstance"
         },
         {
           "target": "com.azure.workloads#StartSapVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#StartSAPVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSAPApplicationServerInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSAPCentralInstanceInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSapCentralServerInstance"
-        },
-        {
           "target": "com.azure.workloads#StopSapDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#StopSAPDatabaseInstanceInstance"
+          "target": "com.azure.workloads#StartSapDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#StopSapVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#StopSAPVirtualInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateMonitor"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSAPApplicationServerInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSAPCentralInstance"
-        },
-        {
-          "target": "com.azure.workloads#UpdateSapCentralServerInstance"
+          "target": "com.azure.workloads#DeleteSapDatabaseInstance"
         },
         {
           "target": "com.azure.workloads#UpdateSapDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#UpdateSAPDatabaseInstance"
+          "target": "com.azure.workloads#CreateSapDatabaseInstance"
         },
         {
-          "target": "com.azure.workloads#UpdateSapLandscapeMonitor"
+          "target": "com.azure.workloads#GetSapDatabaseInstance"
+        },
+        {
+          "target": "com.azure.workloads#ListSapDatabaseInstances"
+        },
+        {
+          "target": "com.azure.workloads#StopSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#StartSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapCentralServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#ListSapCentralServerInstances"
+        },
+        {
+          "target": "com.azure.workloads#StopSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#StartSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#UpdateSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#CreateSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapApplicationServerInstance"
+        },
+        {
+          "target": "com.azure.workloads#ListSapApplicationServerInstances"
+        },
+        {
+          "target": "com.azure.workloads#DeleteSapVirtualInstance"
         },
         {
           "target": "com.azure.workloads#UpdateSapVirtualInstance"
         },
         {
-          "target": "com.azure.workloads#UpdateSAPVirtualInstance"
+          "target": "com.azure.workloads#CreateSapVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#GetSapVirtualInstance"
+        },
+        {
+          "target": "com.azure.workloads#ListSapVirtualInstanceByResourceGroup"
+        },
+        {
+          "target": "com.azure.workloads#ListSapVirtualInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceSizingRecommendations"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceSapSupportedSku"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceDiskConfigurations"
+        },
+        {
+          "target": "com.azure.workloads#InvokeSapVirtualInstanceAvailabilityZoneDetails"
         }
       ],
       "traits": {

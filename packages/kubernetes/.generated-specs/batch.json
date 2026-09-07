@@ -9411,24 +9411,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.batch#CreateBatchV1NamespacedCronJob"
-        },
-        {
-          "target": "com.kubernetes.batch#CreateBatchV1NamespacedJob"
-        },
-        {
-          "target": "com.kubernetes.batch#DeleteBatchV1CollectionNamespacedCronJob"
-        },
-        {
-          "target": "com.kubernetes.batch#DeleteBatchV1CollectionNamespacedJob"
-        },
-        {
-          "target": "com.kubernetes.batch#DeleteBatchV1NamespacedCronJob"
-        },
-        {
-          "target": "com.kubernetes.batch#DeleteBatchV1NamespacedJob"
-        },
-        {
           "target": "com.kubernetes.batch#GetBatchAPIGroup"
         },
         {
@@ -9444,43 +9426,61 @@
           "target": "com.kubernetes.batch#ListBatchV1NamespacedCronJob"
         },
         {
-          "target": "com.kubernetes.batch#ListBatchV1NamespacedJob"
+          "target": "com.kubernetes.batch#CreateBatchV1NamespacedCronJob"
         },
         {
-          "target": "com.kubernetes.batch#PatchBatchV1NamespacedCronJob"
-        },
-        {
-          "target": "com.kubernetes.batch#PatchBatchV1NamespacedCronJobStatus"
-        },
-        {
-          "target": "com.kubernetes.batch#PatchBatchV1NamespacedJob"
-        },
-        {
-          "target": "com.kubernetes.batch#PatchBatchV1NamespacedJobStatus"
+          "target": "com.kubernetes.batch#DeleteBatchV1CollectionNamespacedCronJob"
         },
         {
           "target": "com.kubernetes.batch#ReadBatchV1NamespacedCronJob"
         },
         {
-          "target": "com.kubernetes.batch#ReadBatchV1NamespacedCronJobStatus"
-        },
-        {
-          "target": "com.kubernetes.batch#ReadBatchV1NamespacedJob"
-        },
-        {
-          "target": "com.kubernetes.batch#ReadBatchV1NamespacedJobStatus"
-        },
-        {
           "target": "com.kubernetes.batch#ReplaceBatchV1NamespacedCronJob"
+        },
+        {
+          "target": "com.kubernetes.batch#PatchBatchV1NamespacedCronJob"
+        },
+        {
+          "target": "com.kubernetes.batch#DeleteBatchV1NamespacedCronJob"
+        },
+        {
+          "target": "com.kubernetes.batch#ReadBatchV1NamespacedCronJobStatus"
         },
         {
           "target": "com.kubernetes.batch#ReplaceBatchV1NamespacedCronJobStatus"
         },
         {
+          "target": "com.kubernetes.batch#PatchBatchV1NamespacedCronJobStatus"
+        },
+        {
+          "target": "com.kubernetes.batch#ListBatchV1NamespacedJob"
+        },
+        {
+          "target": "com.kubernetes.batch#CreateBatchV1NamespacedJob"
+        },
+        {
+          "target": "com.kubernetes.batch#DeleteBatchV1CollectionNamespacedJob"
+        },
+        {
+          "target": "com.kubernetes.batch#ReadBatchV1NamespacedJob"
+        },
+        {
           "target": "com.kubernetes.batch#ReplaceBatchV1NamespacedJob"
         },
         {
+          "target": "com.kubernetes.batch#PatchBatchV1NamespacedJob"
+        },
+        {
+          "target": "com.kubernetes.batch#DeleteBatchV1NamespacedJob"
+        },
+        {
+          "target": "com.kubernetes.batch#ReadBatchV1NamespacedJobStatus"
+        },
+        {
           "target": "com.kubernetes.batch#ReplaceBatchV1NamespacedJobStatus"
+        },
+        {
+          "target": "com.kubernetes.batch#PatchBatchV1NamespacedJobStatus"
         },
         {
           "target": "com.kubernetes.batch#WatchBatchV1CronJobListForAllNamespaces"
@@ -9489,16 +9489,16 @@
           "target": "com.kubernetes.batch#WatchBatchV1JobListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.batch#WatchBatchV1NamespacedCronJob"
-        },
-        {
           "target": "com.kubernetes.batch#WatchBatchV1NamespacedCronJobList"
         },
         {
-          "target": "com.kubernetes.batch#WatchBatchV1NamespacedJob"
+          "target": "com.kubernetes.batch#WatchBatchV1NamespacedCronJob"
         },
         {
           "target": "com.kubernetes.batch#WatchBatchV1NamespacedJobList"
+        },
+        {
+          "target": "com.kubernetes.batch#WatchBatchV1NamespacedJob"
         }
       ],
       "traits": {

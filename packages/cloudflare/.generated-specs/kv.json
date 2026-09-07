@@ -757,6 +757,15 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.kv#NamespacesKeysBulkDelete"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespacesKeysBulkGet"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespacesKeysBulkUpdate"
+        },
+        {
           "target": "com.cloudflare.kv#BulkDeleteNamespaces"
         },
         {
@@ -788,15 +797,6 @@
         },
         {
           "target": "com.cloudflare.kv#ListNamespaces"
-        },
-        {
-          "target": "com.cloudflare.kv#NamespacesKeysBulkDelete"
-        },
-        {
-          "target": "com.cloudflare.kv#NamespacesKeysBulkGet"
-        },
-        {
-          "target": "com.cloudflare.kv#NamespacesKeysBulkUpdate"
         },
         {
           "target": "com.cloudflare.kv#PutNamespaceValue"

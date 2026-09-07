@@ -1873,13 +1873,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.volume_actions#AttachVolume"
-        },
-        {
-          "target": "com.hetzner.volume_actions#ChangeVolumeProtection"
-        },
-        {
-          "target": "com.hetzner.volume_actions#DetachVolume"
+          "target": "com.hetzner.volume_actions#ListVolumesActions"
         },
         {
           "target": "com.hetzner.volume_actions#GetVolumesAction"
@@ -1888,7 +1882,13 @@
           "target": "com.hetzner.volume_actions#ListVolumeActions"
         },
         {
-          "target": "com.hetzner.volume_actions#ListVolumesActions"
+          "target": "com.hetzner.volume_actions#AttachVolume"
+        },
+        {
+          "target": "com.hetzner.volume_actions#ChangeVolumeProtection"
+        },
+        {
+          "target": "com.hetzner.volume_actions#DetachVolume"
         },
         {
           "target": "com.hetzner.volume_actions#ResizeVolume"

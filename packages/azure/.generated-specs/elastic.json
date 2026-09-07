@@ -5333,118 +5333,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.elastic#AssociateTrafficFilterAssociate"
+          "target": "com.azure.elastic#VMIngestionDetails"
         },
         {
-          "target": "com.azure.elastic#CreateCreateAndAssociateIPFilter"
-        },
-        {
-          "target": "com.azure.elastic#CreateCreateAndAssociatePLFilter"
-        },
-        {
-          "target": "com.azure.elastic#CreateMonitor"
-        },
-        {
-          "target": "com.azure.elastic#DeleteDetachAndDeleteTrafficFilter"
-        },
-        {
-          "target": "com.azure.elastic#DeleteMonitor"
-        },
-        {
-          "target": "com.azure.elastic#DeleteMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.elastic#DeleteOpenAI"
-        },
-        {
-          "target": "com.azure.elastic#DeleteTagRule"
-        },
-        {
-          "target": "com.azure.elastic#DeleteTrafficFilter"
-        },
-        {
-          "target": "com.azure.elastic#ExternalUserCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.elastic#GetBillingInfo"
-        },
-        {
-          "target": "com.azure.elastic#GetMonitor"
-        },
-        {
-          "target": "com.azure.elastic#GetMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.elastic#GetOpenAI"
-        },
-        {
-          "target": "com.azure.elastic#GetOpenAIStatus"
-        },
-        {
-          "target": "com.azure.elastic#GetOrganizationApiKey"
-        },
-        {
-          "target": "com.azure.elastic#GetOrganizationElasticToAzureSubscriptionMapping"
-        },
-        {
-          "target": "com.azure.elastic#GetTagRule"
-        },
-        {
-          "target": "com.azure.elastic#ListAllTrafficFilters"
-        },
-        {
-          "target": "com.azure.elastic#ListConnectedPartnerResources"
-        },
-        {
-          "target": "com.azure.elastic#ListDeploymentInfo"
-        },
-        {
-          "target": "com.azure.elastic#ListElasticVersions"
-        },
-        {
-          "target": "com.azure.elastic#ListListAssociatedTrafficFilters"
-        },
-        {
-          "target": "com.azure.elastic#ListMonitorByResourceGroup"
-        },
-        {
-          "target": "com.azure.elastic#ListMonitoredResources"
-        },
-        {
-          "target": "com.azure.elastic#ListMonitoredSubscriptions"
-        },
-        {
-          "target": "com.azure.elastic#ListMonitors"
-        },
-        {
-          "target": "com.azure.elastic#ListOpenAI"
-        },
-        {
-          "target": "com.azure.elastic#ListOperations"
-        },
-        {
-          "target": "com.azure.elastic#ListTagRules"
-        },
-        {
-          "target": "com.azure.elastic#ListVMHost"
+          "target": "com.azure.elastic#UpdateVMCollection"
         },
         {
           "target": "com.azure.elastic#MonitorUpgrade"
         },
         {
-          "target": "com.azure.elastic#OpenAICreateOrUpdate"
-        },
-        {
-          "target": "com.azure.elastic#OrganizationsResubscribe"
+          "target": "com.azure.elastic#DeleteTagRule"
         },
         {
           "target": "com.azure.elastic#TagRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.elastic#UpdateDetachTrafficFilter"
+          "target": "com.azure.elastic#GetTagRule"
         },
         {
-          "target": "com.azure.elastic#UpdateMonitor"
+          "target": "com.azure.elastic#ListTagRules"
+        },
+        {
+          "target": "com.azure.elastic#OrganizationsResubscribe"
+        },
+        {
+          "target": "com.azure.elastic#GetOpenAIStatus"
+        },
+        {
+          "target": "com.azure.elastic#DeleteOpenAI"
+        },
+        {
+          "target": "com.azure.elastic#OpenAICreateOrUpdate"
+        },
+        {
+          "target": "com.azure.elastic#GetOpenAI"
+        },
+        {
+          "target": "com.azure.elastic#ListOpenAI"
+        },
+        {
+          "target": "com.azure.elastic#DeleteMonitoredSubscription"
         },
         {
           "target": "com.azure.elastic#UpdateMonitoredSubscription"
@@ -5453,13 +5381,85 @@
           "target": "com.azure.elastic#UpdateMonitoredSubscriptionsCreateor"
         },
         {
-          "target": "com.azure.elastic#UpdateVMCollection"
+          "target": "com.azure.elastic#GetMonitoredSubscription"
+        },
+        {
+          "target": "com.azure.elastic#ListMonitoredSubscriptions"
+        },
+        {
+          "target": "com.azure.elastic#ListVMHost"
         },
         {
           "target": "com.azure.elastic#UpgradableVersionsDetails"
         },
         {
-          "target": "com.azure.elastic#VMIngestionDetails"
+          "target": "com.azure.elastic#ListMonitoredResources"
+        },
+        {
+          "target": "com.azure.elastic#ListDeploymentInfo"
+        },
+        {
+          "target": "com.azure.elastic#ListConnectedPartnerResources"
+        },
+        {
+          "target": "com.azure.elastic#ListListAssociatedTrafficFilters"
+        },
+        {
+          "target": "com.azure.elastic#ListAllTrafficFilters"
+        },
+        {
+          "target": "com.azure.elastic#GetBillingInfo"
+        },
+        {
+          "target": "com.azure.elastic#UpdateDetachTrafficFilter"
+        },
+        {
+          "target": "com.azure.elastic#DeleteDetachAndDeleteTrafficFilter"
+        },
+        {
+          "target": "com.azure.elastic#DeleteTrafficFilter"
+        },
+        {
+          "target": "com.azure.elastic#ExternalUserCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.elastic#CreateCreateAndAssociatePLFilter"
+        },
+        {
+          "target": "com.azure.elastic#CreateCreateAndAssociateIPFilter"
+        },
+        {
+          "target": "com.azure.elastic#AssociateTrafficFilterAssociate"
+        },
+        {
+          "target": "com.azure.elastic#DeleteMonitor"
+        },
+        {
+          "target": "com.azure.elastic#UpdateMonitor"
+        },
+        {
+          "target": "com.azure.elastic#CreateMonitor"
+        },
+        {
+          "target": "com.azure.elastic#GetMonitor"
+        },
+        {
+          "target": "com.azure.elastic#ListMonitorByResourceGroup"
+        },
+        {
+          "target": "com.azure.elastic#ListMonitors"
+        },
+        {
+          "target": "com.azure.elastic#GetOrganizationApiKey"
+        },
+        {
+          "target": "com.azure.elastic#GetOrganizationElasticToAzureSubscriptionMapping"
+        },
+        {
+          "target": "com.azure.elastic#ListElasticVersions"
+        },
+        {
+          "target": "com.azure.elastic#ListOperations"
         }
       ],
       "traits": {

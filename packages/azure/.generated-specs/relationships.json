@@ -1625,16 +1625,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.relationships#DeleteDependencyOfRelationship"
+          "target": "com.azure.relationships#ListContainsRelationshipByResourceGroup"
+        },
+        {
+          "target": "com.azure.relationships#ListContainsRelationshipBySubscription"
+        },
+        {
+          "target": "com.azure.relationships#ListOperations"
         },
         {
           "target": "com.azure.relationships#DeleteDependencyOfRelationshipsByServiceGroup"
         },
         {
+          "target": "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroup"
+        },
+        {
+          "target": "com.azure.relationships#ListDependencyOfRelationshipsByServiceGroup"
+        },
+        {
           "target": "com.azure.relationships#DeleteServiceGroupMemberRelationship"
         },
         {
-          "target": "com.azure.relationships#DependencyOfRelationshipsByServiceGroupCreateOrUpdate"
+          "target": "com.azure.relationships#ServiceGroupMemberRelationshipsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.relationships#GetServiceGroupMemberRelationship"
+        },
+        {
+          "target": "com.azure.relationships#ListServiceGroupMemberRelationshipByParent"
+        },
+        {
+          "target": "com.azure.relationships#DeleteDependencyOfRelationship"
         },
         {
           "target": "com.azure.relationships#DependencyOfRelationshipsCreateOrUpdate"
@@ -1643,31 +1667,7 @@
           "target": "com.azure.relationships#GetDependencyOfRelationship"
         },
         {
-          "target": "com.azure.relationships#GetDependencyOfRelationshipsByServiceGroup"
-        },
-        {
-          "target": "com.azure.relationships#GetServiceGroupMemberRelationship"
-        },
-        {
-          "target": "com.azure.relationships#ListContainsRelationshipByResourceGroup"
-        },
-        {
-          "target": "com.azure.relationships#ListContainsRelationshipBySubscription"
-        },
-        {
           "target": "com.azure.relationships#ListDependencyOfRelationshipByParent"
-        },
-        {
-          "target": "com.azure.relationships#ListDependencyOfRelationshipsByServiceGroup"
-        },
-        {
-          "target": "com.azure.relationships#ListOperations"
-        },
-        {
-          "target": "com.azure.relationships#ListServiceGroupMemberRelationshipByParent"
-        },
-        {
-          "target": "com.azure.relationships#ServiceGroupMemberRelationshipsCreateOrUpdate"
         }
       ],
       "traits": {

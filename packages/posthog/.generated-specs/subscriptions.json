@@ -2248,34 +2248,34 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.subscriptions#CreateSubscription"
-        },
-        {
-          "target": "com.posthog.subscriptions#CreateSubscriptionsTestDelivery"
-        },
-        {
-          "target": "com.posthog.subscriptions#GetSubscription"
-        },
-        {
-          "target": "com.posthog.subscriptions#GetSubscriptionsDelivery"
-        },
-        {
-          "target": "com.posthog.subscriptions#GetSubscriptionsSummaryQuota"
-        },
-        {
           "target": "com.posthog.subscriptions#ListSubscriptions"
         },
         {
-          "target": "com.posthog.subscriptions#ListSubscriptionsDeliveries"
+          "target": "com.posthog.subscriptions#CreateSubscription"
         },
         {
-          "target": "com.posthog.subscriptions#SubscriptionsDestroy"
+          "target": "com.posthog.subscriptions#GetSubscription"
         },
         {
           "target": "com.posthog.subscriptions#UpdateSubscription"
         },
         {
           "target": "com.posthog.subscriptions#UpdateSubscriptionsPartial"
+        },
+        {
+          "target": "com.posthog.subscriptions#SubscriptionsDestroy"
+        },
+        {
+          "target": "com.posthog.subscriptions#CreateSubscriptionsTestDelivery"
+        },
+        {
+          "target": "com.posthog.subscriptions#ListSubscriptionsDeliveries"
+        },
+        {
+          "target": "com.posthog.subscriptions#GetSubscriptionsDelivery"
+        },
+        {
+          "target": "com.posthog.subscriptions#GetSubscriptionsSummaryQuota"
         }
       ],
       "traits": {

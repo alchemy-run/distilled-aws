@@ -309,10 +309,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.property_access_controls#CreatePropertyAccessControl"
+          "target": "com.posthog.property_access_controls#GetPropertyAccessControl"
         },
         {
-          "target": "com.posthog.property_access_controls#GetPropertyAccessControl"
+          "target": "com.posthog.property_access_controls#CreatePropertyAccessControl"
         },
         {
           "target": "com.posthog.property_access_controls#PropertyAccessControlsDestroy"

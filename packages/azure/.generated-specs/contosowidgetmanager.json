@@ -1019,6 +1019,9 @@
           "target": "com.azure.contosowidgetmanager#DeleteEmployee"
         },
         {
+          "target": "com.azure.contosowidgetmanager#UpdateEmployee"
+        },
+        {
           "target": "com.azure.contosowidgetmanager#EmployeesCreateOrUpdate"
         },
         {
@@ -1032,9 +1035,6 @@
         },
         {
           "target": "com.azure.contosowidgetmanager#ListOperations"
-        },
-        {
-          "target": "com.azure.contosowidgetmanager#UpdateEmployee"
         }
       ],
       "traits": {

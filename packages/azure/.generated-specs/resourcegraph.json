@@ -1337,10 +1337,13 @@
           "target": "com.azure.resourcegraph#DeleteGraphQuery"
         },
         {
-          "target": "com.azure.resourcegraph#GetGraphQuery"
+          "target": "com.azure.resourcegraph#UpdateGraphQuery"
         },
         {
           "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resourcegraph#GetGraphQuery"
         },
         {
           "target": "com.azure.resourcegraph#ListGraphQuery"
@@ -1349,13 +1352,10 @@
           "target": "com.azure.resourcegraph#ListGraphQueryBySubscription"
         },
         {
-          "target": "com.azure.resourcegraph#ListOperations"
-        },
-        {
           "target": "com.azure.resourcegraph#Resources"
         },
         {
-          "target": "com.azure.resourcegraph#UpdateGraphQuery"
+          "target": "com.azure.resourcegraph#ListOperations"
         }
       ],
       "traits": {

@@ -1671,25 +1671,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.products#CreateProduct"
+          "target": "com.whop.products#ListProducts"
         },
         {
-          "target": "com.whop.products#DeleteProduct"
+          "target": "com.whop.products#CreateProduct"
         },
         {
           "target": "com.whop.products#GetProduct"
         },
         {
-          "target": "com.whop.products#ListProducts"
+          "target": "com.whop.products#UpdateProduct"
+        },
+        {
+          "target": "com.whop.products#DeleteProduct"
         },
         {
           "target": "com.whop.products#PublishProduct"
         },
         {
           "target": "com.whop.products#UnpublishProduct"
-        },
-        {
-          "target": "com.whop.products#UpdateProduct"
         }
       ],
       "traits": {

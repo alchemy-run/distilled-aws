@@ -1634,10 +1634,13 @@
           "target": "com.azure.liftrweightsandbiases#DeleteInstance"
         },
         {
-          "target": "com.azure.liftrweightsandbiases#GetInstance"
+          "target": "com.azure.liftrweightsandbiases#UpdateInstance"
         },
         {
           "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#GetInstance"
         },
         {
           "target": "com.azure.liftrweightsandbiases#ListInstanceByResourceGroup"
@@ -1647,9 +1650,6 @@
         },
         {
           "target": "com.azure.liftrweightsandbiases#ListOperations"
-        },
-        {
-          "target": "com.azure.liftrweightsandbiases#UpdateInstance"
         }
       ],
       "traits": {

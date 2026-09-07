@@ -745,10 +745,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.softwareplan#CreateHybridUseBenefit"
+          "target": "com.azure.softwareplan#ListOperations"
+        },
+        {
+          "target": "com.azure.softwareplan#ListHybridUseBenefitRevision"
         },
         {
           "target": "com.azure.softwareplan#DeleteHybridUseBenefit"
+        },
+        {
+          "target": "com.azure.softwareplan#UpdateHybridUseBenefit"
+        },
+        {
+          "target": "com.azure.softwareplan#CreateHybridUseBenefit"
         },
         {
           "target": "com.azure.softwareplan#GetHybridUseBenefit"
@@ -757,16 +766,7 @@
           "target": "com.azure.softwareplan#ListHybridUseBenefit"
         },
         {
-          "target": "com.azure.softwareplan#ListHybridUseBenefitRevision"
-        },
-        {
-          "target": "com.azure.softwareplan#ListOperations"
-        },
-        {
           "target": "com.azure.softwareplan#RegisterSoftwarePlan"
-        },
-        {
-          "target": "com.azure.softwareplan#UpdateHybridUseBenefit"
         }
       ],
       "traits": {

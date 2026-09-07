@@ -578,10 +578,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.marketplacenotifications#GetNotification"
+          "target": "com.azure.marketplacenotifications#GetNotificationOperations"
         },
         {
-          "target": "com.azure.marketplacenotifications#GetNotificationOperations"
+          "target": "com.azure.marketplacenotifications#GetNotification"
         },
         {
           "target": "com.azure.marketplacenotifications#ListNotifications"

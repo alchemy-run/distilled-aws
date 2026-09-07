@@ -1367,22 +1367,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.experiment_holdouts#ListExperimentHoldouts"
+        },
+        {
           "target": "com.posthog.experiment_holdouts#CreateExperimentHoldout"
         },
         {
-          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsDestroy"
-        },
-        {
           "target": "com.posthog.experiment_holdouts#GetExperimentHoldout"
-        },
-        {
-          "target": "com.posthog.experiment_holdouts#ListExperimentHoldouts"
         },
         {
           "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldout"
         },
         {
           "target": "com.posthog.experiment_holdouts#UpdateExperimentHoldoutsPartial"
+        },
+        {
+          "target": "com.posthog.experiment_holdouts#ExperimentHoldoutsDestroy"
         }
       ],
       "traits": {

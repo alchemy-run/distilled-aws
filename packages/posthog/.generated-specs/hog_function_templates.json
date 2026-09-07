@@ -431,10 +431,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.hog_function_templates#GetHogFunctionTemplate"
+          "target": "com.posthog.hog_function_templates#ListHogFunctionTemplates"
         },
         {
-          "target": "com.posthog.hog_function_templates#ListHogFunctionTemplates"
+          "target": "com.posthog.hog_function_templates#GetHogFunctionTemplate"
         },
         {
           "target": "com.posthog.hog_function_templates#ListPublicHogFunctionTemplates"

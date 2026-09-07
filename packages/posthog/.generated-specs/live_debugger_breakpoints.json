@@ -819,28 +819,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.live_debugger_breakpoints#ListLiveDebuggerBreakpoints"
+        },
+        {
           "target": "com.posthog.live_debugger_breakpoints#CreateLiveDebuggerBreakpoint"
         },
         {
           "target": "com.posthog.live_debugger_breakpoints#GetLiveDebuggerBreakpoint"
         },
         {
-          "target": "com.posthog.live_debugger_breakpoints#GetLiveDebuggerBreakpointsActive"
+          "target": "com.posthog.live_debugger_breakpoints#UpdateLiveDebuggerBreakpoint"
         },
         {
-          "target": "com.posthog.live_debugger_breakpoints#GetLiveDebuggerBreakpointsBreakpointHit"
-        },
-        {
-          "target": "com.posthog.live_debugger_breakpoints#ListLiveDebuggerBreakpoints"
+          "target": "com.posthog.live_debugger_breakpoints#UpdateLiveDebuggerBreakpointsPartial"
         },
         {
           "target": "com.posthog.live_debugger_breakpoints#LiveDebuggerBreakpointsDestroy"
         },
         {
-          "target": "com.posthog.live_debugger_breakpoints#UpdateLiveDebuggerBreakpoint"
+          "target": "com.posthog.live_debugger_breakpoints#GetLiveDebuggerBreakpointsActive"
         },
         {
-          "target": "com.posthog.live_debugger_breakpoints#UpdateLiveDebuggerBreakpointsPartial"
+          "target": "com.posthog.live_debugger_breakpoints#GetLiveDebuggerBreakpointsBreakpointHit"
         }
       ],
       "traits": {

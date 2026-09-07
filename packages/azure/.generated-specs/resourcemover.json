@@ -2668,46 +2668,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resourcemover#CommitMoveCollection"
-        },
-        {
-          "target": "com.azure.resourcemover#CreateMoveCollection"
-        },
-        {
-          "target": "com.azure.resourcemover#CreateMoveResource"
-        },
-        {
-          "target": "com.azure.resourcemover#DeleteMoveCollection"
-        },
-        {
-          "target": "com.azure.resourcemover#DeleteMoveResource"
-        },
-        {
-          "target": "com.azure.resourcemover#GetMoveCollection"
-        },
-        {
-          "target": "com.azure.resourcemover#GetMoveResource"
-        },
-        {
-          "target": "com.azure.resourcemover#GetOperationsDiscovery"
-        },
-        {
-          "target": "com.azure.resourcemover#GetUnresolvedDependency"
-        },
-        {
           "target": "com.azure.resourcemover#ListMoveCollectionRequiredFor"
-        },
-        {
-          "target": "com.azure.resourcemover#ListMoveResources"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsBulkRemove"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsDiscard"
-        },
-        {
-          "target": "com.azure.resourcemover#MoveCollectionsInitiateMove"
         },
         {
           "target": "com.azure.resourcemover#MoveCollectionsListMoveCollectionsByResourceGroup"
@@ -2716,13 +2677,52 @@
           "target": "com.azure.resourcemover#MoveCollectionsListMoveCollectionsBySubscription"
         },
         {
-          "target": "com.azure.resourcemover#MoveCollectionsPrepare"
+          "target": "com.azure.resourcemover#GetOperationsDiscovery"
+        },
+        {
+          "target": "com.azure.resourcemover#DeleteMoveResource"
+        },
+        {
+          "target": "com.azure.resourcemover#CreateMoveResource"
+        },
+        {
+          "target": "com.azure.resourcemover#GetMoveResource"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsBulkRemove"
+        },
+        {
+          "target": "com.azure.resourcemover#GetUnresolvedDependency"
+        },
+        {
+          "target": "com.azure.resourcemover#ListMoveResources"
         },
         {
           "target": "com.azure.resourcemover#MoveCollectionsResolveDependencies"
         },
         {
+          "target": "com.azure.resourcemover#MoveCollectionsDiscard"
+        },
+        {
+          "target": "com.azure.resourcemover#CommitMoveCollection"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsInitiateMove"
+        },
+        {
+          "target": "com.azure.resourcemover#MoveCollectionsPrepare"
+        },
+        {
+          "target": "com.azure.resourcemover#DeleteMoveCollection"
+        },
+        {
           "target": "com.azure.resourcemover#UpdateMoveCollection"
+        },
+        {
+          "target": "com.azure.resourcemover#CreateMoveCollection"
+        },
+        {
+          "target": "com.azure.resourcemover#GetMoveCollection"
         }
       ],
       "traits": {

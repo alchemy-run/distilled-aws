@@ -12285,250 +12285,250 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservicesbackup#BMSTriggerDataMove"
+          "target": "com.azure.recoveryservicesbackup#GetPrivateEndpointOperationStatus"
         },
         {
           "target": "com.azure.recoveryservicesbackup#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.recoveryservicesbackup#DeleteProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#DeleteProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#DeleteProtectionPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#DeleteResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ExecuteConfigureSourceScan"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ExportJob"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupEngine"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupResourceEncryptionConfig"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupResourceStorageConfigsNonCRR"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupResourceVaultConfig"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBackupStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetBMSPrepareDataMoveOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetExportJobsOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetGetTieringCostOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetJobDetail"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetJobOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetOperationStatus"
+          "target": "com.azure.recoveryservicesbackup#PutPrivateEndpointConnection"
         },
         {
           "target": "com.azure.recoveryservicesbackup#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.recoveryservicesbackup#GetPrivateEndpointOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectedItemOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectedItemOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionContainerOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionContainerRefreshOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionPolicyOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetProtectionPolicyOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetResourceGuardProxy2"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetSecurityPIN"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetTieringCostOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetValidateOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#GetValidateOperationStatus"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupEngines"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupJobs"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupPolicies"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupProtectableItems"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupUsageSummaries"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListBackupWorkloadItems"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListDeletedProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListOperations"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListProtectableContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListRecoveryPoints"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ListRecoveryPointsRecommendedForMove"
+          "target": "com.azure.recoveryservicesbackup#BMSTriggerDataMove"
         },
         {
           "target": "com.azure.recoveryservicesbackup#MoveBMSPrepareData"
         },
         {
-          "target": "com.azure.recoveryservicesbackup#MoveRecoveryPoint"
+          "target": "com.azure.recoveryservicesbackup#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBMSPrepareDataMoveOperationResult"
         },
         {
           "target": "com.azure.recoveryservicesbackup#PatchBackupResourceStorageConfigsNonCRR"
         },
         {
-          "target": "com.azure.recoveryservicesbackup#PostFetchTieringCost"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ProtectedItemsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ProtectionContainersInquire"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ProtectionIntentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ProtectionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ProvisionItemLevelRecoveryConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#PutBackupResourceVaultConfig"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#PutPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#PutResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#RefreshProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#RegisterProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#ResourceGuardProxyUnlockDelete"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#RevokeItemLevelRecoveryConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#TriggerBackup"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#TriggerJobCancellation"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#TriggerRestore"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#TriggerValidateOperation"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#UnregisterProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicesbackup#UpdateBackupResourceEncryptionConfig"
-        },
-        {
           "target": "com.azure.recoveryservicesbackup#UpdateBackupResourceStorageConfigsNonCRR"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupResourceStorageConfigsNonCRR"
         },
         {
           "target": "com.azure.recoveryservicesbackup#UpdateBackupResourceVaultConfig"
         },
         {
-          "target": "com.azure.recoveryservicesbackup#ValidateFeatureSupport"
+          "target": "com.azure.recoveryservicesbackup#PutBackupResourceVaultConfig"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupResourceVaultConfig"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetValidateOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetValidateOperationResult"
         },
         {
           "target": "com.azure.recoveryservicesbackup#ValidateOperation"
         },
         {
+          "target": "com.azure.recoveryservicesbackup#ListBackupUsageSummaries"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#TriggerValidateOperation"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetTieringCostOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetGetTieringCostOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#PostFetchTieringCost"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetSecurityPIN"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ResourceGuardProxyUnlockDelete"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#DeleteResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#PutResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetResourceGuardProxy2"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupProtectableItems"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionPolicyOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionPolicyOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#DeleteProtectionPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ProtectionPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupPolicies"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ExportJob"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetExportJobsOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetJobOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#TriggerJobCancellation"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetJobDetail"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupJobs"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#RefreshProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListRecoveryPointsRecommendedForMove"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#RevokeItemLevelRecoveryConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#TriggerRestore"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ProvisionItemLevelRecoveryConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#MoveRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListItemLevelRecoveryConnectionInstantItemRecoveryOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListRecoveryPoints"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectedItemOperationStatus"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectedItemOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ExecuteConfigureSourceScan"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#TriggerBackup"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#DeleteProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ProtectedItemsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionContainerOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupWorkloadItems"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ProtectionContainersInquire"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#UnregisterProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#RegisterProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListProtectableContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionContainerRefreshOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#DeleteProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ProtectionIntentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupEngine"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListBackupEngines"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#UpdateBackupResourceEncryptionConfig"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupResourceEncryptionConfig"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListDeletedProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ValidateFeatureSupport"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#GetBackupStatus"
+        },
+        {
           "target": "com.azure.recoveryservicesbackup#ValidateProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicesbackup#ListOperations"
         }
       ],
       "traits": {

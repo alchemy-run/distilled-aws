@@ -8805,124 +8805,124 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azuredatatransfer#ApprovePipelineConnection"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ConnectionsLink"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#DeleteConnection"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#DeleteFlow"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#DeletePipeline"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#DisableFlow"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#EnableFlow"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ExecutePipelineAction"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#FlowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#FlowsLink"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GenerateFlowPassphrase"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetConnection"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetFlow"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetFlowDestinationEndpointPorts"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetFlowDestinationEndpoints"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetFlowSourceAddresses"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetFlowStreamConnectionString"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#GetPipeline"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListAzureDataTransferApprovedSchemas"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListConnectionByResourceGroup"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListConnectionBySubscription"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListFlowByConnection"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListListFlowsByPipeline"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListListPendingConnections"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#ListListPendingFlows"
+          "target": "com.azure.azuredatatransfer#RejectPipelineConnection"
         },
         {
           "target": "com.azure.azuredatatransfer#ListListSchemas"
         },
         {
-          "target": "com.azure.azuredatatransfer#ListOperations"
+          "target": "com.azure.azuredatatransfer#ListListFlowsByPipeline"
         },
         {
-          "target": "com.azure.azuredatatransfer#ListPipelineByResourceGroup"
+          "target": "com.azure.azuredatatransfer#ExecutePipelineAction"
         },
         {
-          "target": "com.azure.azuredatatransfer#ListPipelineBySubscription"
+          "target": "com.azure.azuredatatransfer#ApprovePipelineConnection"
         },
         {
-          "target": "com.azure.azuredatatransfer#PipelinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#RejectPipelineConnection"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#SetFlowDestinationEndpointPorts"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#SetFlowDestinationEndpoints"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#SetFlowPassphrase"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#SetFlowSourceAddresses"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#UpdateConnection"
-        },
-        {
-          "target": "com.azure.azuredatatransfer#UpdateFlow"
+          "target": "com.azure.azuredatatransfer#DeletePipeline"
         },
         {
           "target": "com.azure.azuredatatransfer#UpdatePipeline"
         },
         {
+          "target": "com.azure.azuredatatransfer#PipelinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetPipeline"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListPipelineByResourceGroup"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListListPendingFlows"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListListPendingConnections"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ConnectionsLink"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#SetFlowSourceAddresses"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#SetFlowPassphrase"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#SetFlowDestinationEndpoints"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#SetFlowDestinationEndpointPorts"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#FlowsLink"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetFlowStreamConnectionString"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetFlowSourceAddresses"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetFlowDestinationEndpoints"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetFlowDestinationEndpointPorts"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GenerateFlowPassphrase"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#EnableFlow"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#DisableFlow"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#DeleteFlow"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#UpdateFlow"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#FlowsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetFlow"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListFlowByConnection"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#DeleteConnection"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#UpdateConnection"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#GetConnection"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListConnectionByResourceGroup"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListPipelineBySubscription"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListConnectionBySubscription"
+        },
+        {
           "target": "com.azure.azuredatatransfer#ValidateAzureDataTransferSchema"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListOperations"
+        },
+        {
+          "target": "com.azure.azuredatatransfer#ListAzureDataTransferApprovedSchemas"
         }
       ],
       "traits": {

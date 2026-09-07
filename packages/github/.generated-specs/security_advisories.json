@@ -3814,25 +3814,10 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.security_advisories#CreateFork"
-        },
-        {
-          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReport"
-        },
-        {
-          "target": "com.github.security_advisories#CreateRepositoryAdvisory"
-        },
-        {
-          "target": "com.github.security_advisories#CreateRepositoryAdvisoryCveRequest"
+          "target": "com.github.security_advisories#ListGlobalAdvisories"
         },
         {
           "target": "com.github.security_advisories#GetGlobalAdvisory"
-        },
-        {
-          "target": "com.github.security_advisories#GetRepositoryAdvisory"
-        },
-        {
-          "target": "com.github.security_advisories#ListGlobalAdvisories"
         },
         {
           "target": "com.github.security_advisories#ListOrgRepositoryAdvisories"
@@ -3841,7 +3826,22 @@
           "target": "com.github.security_advisories#ListRepositoryAdvisories"
         },
         {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisory"
+        },
+        {
+          "target": "com.github.security_advisories#CreatePrivateVulnerabilityReport"
+        },
+        {
+          "target": "com.github.security_advisories#GetRepositoryAdvisory"
+        },
+        {
           "target": "com.github.security_advisories#UpdateRepositoryAdvisory"
+        },
+        {
+          "target": "com.github.security_advisories#CreateRepositoryAdvisoryCveRequest"
+        },
+        {
+          "target": "com.github.security_advisories#CreateFork"
         }
       ],
       "traits": {

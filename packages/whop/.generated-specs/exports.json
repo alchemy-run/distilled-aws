@@ -1202,13 +1202,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.exports#ListExports"
+        },
+        {
           "target": "com.whop.exports#CreateExport"
         },
         {
           "target": "com.whop.exports#GetExport"
-        },
-        {
-          "target": "com.whop.exports#ListExports"
         }
       ],
       "traits": {

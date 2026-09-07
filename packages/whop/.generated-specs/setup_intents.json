@@ -3890,10 +3890,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.setup_intents#CreateSetupIntent"
-        },
-        {
-          "target": "com.whop.setup_intents#GetSetupIntent"
+          "target": "com.whop.setup_intents#UpdateReturnUrlSetupIntent"
         },
         {
           "target": "com.whop.setup_intents#GetStatusSetupIntent"
@@ -3902,7 +3899,10 @@
           "target": "com.whop.setup_intents#ListSetupIntent"
         },
         {
-          "target": "com.whop.setup_intents#UpdateReturnUrlSetupIntent"
+          "target": "com.whop.setup_intents#CreateSetupIntent"
+        },
+        {
+          "target": "com.whop.setup_intents#GetSetupIntent"
         }
       ],
       "traits": {

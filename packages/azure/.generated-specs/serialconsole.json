@@ -955,25 +955,25 @@
           "target": "com.azure.serialconsole#CreateSerialPort"
         },
         {
-          "target": "com.azure.serialconsole#DisableConsole"
-        },
-        {
-          "target": "com.azure.serialconsole#EnableConsole"
-        },
-        {
-          "target": "com.azure.serialconsole#GetConsoleStatus"
-        },
-        {
           "target": "com.azure.serialconsole#GetSerialPort"
         },
         {
-          "target": "com.azure.serialconsole#ListOperations"
+          "target": "com.azure.serialconsole#ListSerialPorts"
         },
         {
           "target": "com.azure.serialconsole#ListSerialPortBySubscriptions"
         },
         {
-          "target": "com.azure.serialconsole#ListSerialPorts"
+          "target": "com.azure.serialconsole#EnableConsole"
+        },
+        {
+          "target": "com.azure.serialconsole#DisableConsole"
+        },
+        {
+          "target": "com.azure.serialconsole#GetConsoleStatus"
+        },
+        {
+          "target": "com.azure.serialconsole#ListOperations"
         }
       ],
       "traits": {

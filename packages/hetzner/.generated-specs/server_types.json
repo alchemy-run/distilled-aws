@@ -969,10 +969,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.server_types#GetServerType"
+          "target": "com.hetzner.server_types#ListServerTypes"
         },
         {
-          "target": "com.hetzner.server_types#ListServerTypes"
+          "target": "com.hetzner.server_types#GetServerType"
         }
       ],
       "traits": {

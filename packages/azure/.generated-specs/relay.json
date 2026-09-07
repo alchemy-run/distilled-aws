@@ -4987,130 +4987,130 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.relay#CheckNamespaceNameAvailability"
-        },
-        {
-          "target": "com.azure.relay#DeleteHybridConnection"
-        },
-        {
-          "target": "com.azure.relay#DeleteHybridConnectionAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.relay#DeleteNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.relay#DeleteWCFRelays"
-        },
-        {
-          "target": "com.azure.relay#DeleteWCFRelaysAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#GetHybridConnection"
-        },
-        {
-          "target": "com.azure.relay#GetHybridConnectionAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#GetNamespace"
-        },
-        {
-          "target": "com.azure.relay#GetNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#GetNamespaceNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.relay#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.relay#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.relay#GetWCFRelays"
-        },
-        {
-          "target": "com.azure.relay#GetWCFRelaysAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#HybridConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.relay#HybridConnectionsCreateOrUpdateAuthorizationRule"
-        },
-        {
-          "target": "com.azure.relay#ListHybridConnectionAuthorizationRules"
-        },
-        {
-          "target": "com.azure.relay#ListHybridConnectionByNamespace"
-        },
-        {
-          "target": "com.azure.relay#ListHybridConnectionKeys"
-        },
-        {
-          "target": "com.azure.relay#ListNamespaceAuthorizationRules"
-        },
-        {
-          "target": "com.azure.relay#ListNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.relay#ListNamespaceKeys"
-        },
-        {
-          "target": "com.azure.relay#ListNamespaces"
-        },
-        {
-          "target": "com.azure.relay#ListOperations"
-        },
-        {
-          "target": "com.azure.relay#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.relay#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.relay#ListWCFRelaysAuthorizationRules"
-        },
-        {
-          "target": "com.azure.relay#ListWCFRelaysByNamespace"
+          "target": "com.azure.relay#RegenerateWCFRelaysKeys"
         },
         {
           "target": "com.azure.relay#ListWCFRelaysKeys"
         },
         {
-          "target": "com.azure.relay#NamespacesCreateOrUpdate"
+          "target": "com.azure.relay#DeleteWCFRelaysAuthorizationRule"
         },
         {
-          "target": "com.azure.relay#NamespacesCreateOrUpdateAuthorizationRule"
+          "target": "com.azure.relay#WCFRelaysCreateOrUpdateAuthorizationRule"
         },
         {
-          "target": "com.azure.relay#NamespacesCreateOrUpdateNetworkRuleSet"
+          "target": "com.azure.relay#GetWCFRelaysAuthorizationRule"
         },
         {
-          "target": "com.azure.relay#PrivateEndpointConnectionsCreateOrUpdate"
+          "target": "com.azure.relay#ListWCFRelaysAuthorizationRules"
         },
         {
-          "target": "com.azure.relay#RegenerateHybridConnectionKeys"
-        },
-        {
-          "target": "com.azure.relay#RegenerateNamespaceKeys"
-        },
-        {
-          "target": "com.azure.relay#RegenerateWCFRelaysKeys"
-        },
-        {
-          "target": "com.azure.relay#UpdateNamespace"
+          "target": "com.azure.relay#DeleteWCFRelays"
         },
         {
           "target": "com.azure.relay#WCFRelaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.relay#WCFRelaysCreateOrUpdateAuthorizationRule"
+          "target": "com.azure.relay#GetWCFRelays"
+        },
+        {
+          "target": "com.azure.relay#ListWCFRelaysByNamespace"
+        },
+        {
+          "target": "com.azure.relay#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.relay#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.relay#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.relay#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.relay#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.relay#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.relay#NamespacesCreateOrUpdateNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.relay#GetNamespaceNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.relay#RegenerateHybridConnectionKeys"
+        },
+        {
+          "target": "com.azure.relay#ListHybridConnectionKeys"
+        },
+        {
+          "target": "com.azure.relay#DeleteHybridConnectionAuthorizationRule"
+        },
+        {
+          "target": "com.azure.relay#HybridConnectionsCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.relay#GetHybridConnectionAuthorizationRule"
+        },
+        {
+          "target": "com.azure.relay#ListHybridConnectionAuthorizationRules"
+        },
+        {
+          "target": "com.azure.relay#DeleteHybridConnection"
+        },
+        {
+          "target": "com.azure.relay#HybridConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.relay#GetHybridConnection"
+        },
+        {
+          "target": "com.azure.relay#ListHybridConnectionByNamespace"
+        },
+        {
+          "target": "com.azure.relay#RegenerateNamespaceKeys"
+        },
+        {
+          "target": "com.azure.relay#ListNamespaceKeys"
+        },
+        {
+          "target": "com.azure.relay#DeleteNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.relay#NamespacesCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.relay#GetNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.relay#ListNamespaceAuthorizationRules"
+        },
+        {
+          "target": "com.azure.relay#DeleteNamespace"
+        },
+        {
+          "target": "com.azure.relay#UpdateNamespace"
+        },
+        {
+          "target": "com.azure.relay#NamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.relay#GetNamespace"
+        },
+        {
+          "target": "com.azure.relay#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.relay#ListNamespaces"
+        },
+        {
+          "target": "com.azure.relay#CheckNamespaceNameAvailability"
+        },
+        {
+          "target": "com.azure.relay#ListOperations"
         }
       ],
       "traits": {

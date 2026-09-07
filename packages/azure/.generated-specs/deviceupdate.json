@@ -5333,40 +5333,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.deviceupdate#CheckNameAvailability"
-        },
-        {
-          "target": "com.azure.deviceupdate#CreateAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#CreateInstance"
-        },
-        {
-          "target": "com.azure.deviceupdate#DeleteAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#DeleteInstance"
-        },
-        {
-          "target": "com.azure.deviceupdate#DeletePrivateEndpointConnection"
+          "target": "com.azure.deviceupdate#ListOperations"
         },
         {
           "target": "com.azure.deviceupdate#DeletePrivateEndpointConnectionProxy"
         },
         {
-          "target": "com.azure.deviceupdate#GetAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#GetInstance"
-        },
-        {
-          "target": "com.azure.deviceupdate#GetPrivateEndpointConnection"
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdate"
         },
         {
           "target": "com.azure.deviceupdate#GetPrivateEndpointConnectionProxy"
         },
         {
+          "target": "com.azure.deviceupdate#UpdatePrivateEndpointConnectionProxyPrivateEndpointProperties"
+        },
+        {
+          "target": "com.azure.deviceupdate#ValidatePrivateEndpointConnectionProxy"
+        },
+        {
+          "target": "com.azure.deviceupdate#ListPrivateEndpointConnectionProxyByAccount"
+        },
+        {
           "target": "com.azure.deviceupdate#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.deviceupdate#ListPrivateLinkResourceByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.deviceupdate#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.deviceupdate#ListPrivateEndpointConnectionByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#DeleteInstance"
+        },
+        {
+          "target": "com.azure.deviceupdate#UpdateInstance"
+        },
+        {
+          "target": "com.azure.deviceupdate#CreateInstance"
+        },
+        {
+          "target": "com.azure.deviceupdate#GetInstance"
+        },
+        {
+          "target": "com.azure.deviceupdate#ListInstanceByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#DeleteAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#UpdateAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#CreateAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#GetAccount"
         },
         {
           "target": "com.azure.deviceupdate#ListAccountByResourceGroup"
@@ -5375,37 +5405,7 @@
           "target": "com.azure.deviceupdate#ListAccountBySubscription"
         },
         {
-          "target": "com.azure.deviceupdate#ListInstanceByAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#ListOperations"
-        },
-        {
-          "target": "com.azure.deviceupdate#ListPrivateEndpointConnectionByAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#ListPrivateEndpointConnectionProxyByAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#ListPrivateLinkResourceByAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.deviceupdate#UpdateAccount"
-        },
-        {
-          "target": "com.azure.deviceupdate#UpdateInstance"
-        },
-        {
-          "target": "com.azure.deviceupdate#UpdatePrivateEndpointConnectionProxyPrivateEndpointProperties"
-        },
-        {
-          "target": "com.azure.deviceupdate#ValidatePrivateEndpointConnectionProxy"
+          "target": "com.azure.deviceupdate#CheckNameAvailability"
         }
       ],
       "traits": {

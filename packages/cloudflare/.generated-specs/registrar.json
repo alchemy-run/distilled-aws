@@ -1775,19 +1775,22 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.registrar#CheckRegistrar"
-        },
-        {
           "target": "com.cloudflare.registrar#CreateRegistration"
         },
         {
           "target": "com.cloudflare.registrar#EditRegistration"
         },
         {
-          "target": "com.cloudflare.registrar#GetDomain"
+          "target": "com.cloudflare.registrar#GetRegistration"
         },
         {
-          "target": "com.cloudflare.registrar#GetRegistration"
+          "target": "com.cloudflare.registrar#ListRegistrations"
+        },
+        {
+          "target": "com.cloudflare.registrar#CheckRegistrar"
+        },
+        {
+          "target": "com.cloudflare.registrar#GetDomain"
         },
         {
           "target": "com.cloudflare.registrar#GetRegistrationStatus"
@@ -1797,9 +1800,6 @@
         },
         {
           "target": "com.cloudflare.registrar#ListDomains"
-        },
-        {
-          "target": "com.cloudflare.registrar#ListRegistrations"
         },
         {
           "target": "com.cloudflare.registrar#PutDomain"

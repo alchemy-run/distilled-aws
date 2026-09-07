@@ -2172,37 +2172,37 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.mcp_analytics#ListMcpAnalyticsFeedback"
+        },
+        {
           "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsFeedback"
-        },
-        {
-          "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsMissingCapability"
-        },
-        {
-          "target": "com.posthog.mcp_analytics#GenerateMcpAnalyticsSessionIntent"
         },
         {
           "target": "com.posthog.mcp_analytics#GetMcpAnalyticsIntentCluster"
         },
         {
-          "target": "com.posthog.mcp_analytics#ListMcpAnalyticsFeedback"
+          "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRecompute"
         },
         {
           "target": "com.posthog.mcp_analytics#ListMcpAnalyticsMissingCapabilities"
         },
         {
+          "target": "com.posthog.mcp_analytics#CreateMcpAnalyticsMissingCapability"
+        },
+        {
           "target": "com.posthog.mcp_analytics#ListMcpAnalyticsSessions"
         },
         {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsIntentClustersRecompute"
+          "target": "com.posthog.mcp_analytics#GenerateMcpAnalyticsSessionIntent"
+        },
+        {
+          "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsToolCalls"
         },
         {
           "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsActivityOverview"
         },
         {
           "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsIntentDigest"
-        },
-        {
-          "target": "com.posthog.mcp_analytics#McpAnalyticsSessionsToolCalls"
         }
       ],
       "traits": {

@@ -862,6 +862,18 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.vercel.artifacts#RecordEvents"
+        },
+        {
+          "target": "com.vercel.artifacts#Status"
+        },
+        {
+          "target": "com.vercel.artifacts#DownloadArtifact"
+        },
+        {
+          "target": "com.vercel.artifacts#UploadArtifact"
+        },
+        {
           "target": "com.vercel.artifacts#ArtifactExists"
         },
         {
@@ -869,18 +881,6 @@
         },
         {
           "target": "com.vercel.artifacts#DeleteAllArtifacts"
-        },
-        {
-          "target": "com.vercel.artifacts#DownloadArtifact"
-        },
-        {
-          "target": "com.vercel.artifacts#RecordEvents"
-        },
-        {
-          "target": "com.vercel.artifacts#Status"
-        },
-        {
-          "target": "com.vercel.artifacts#UploadArtifact"
         }
       ],
       "traits": {

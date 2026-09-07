@@ -2212,10 +2212,10 @@
           "target": "com.cloudflare.bot_management#CreateFeedback"
         },
         {
-          "target": "com.cloudflare.bot_management#GetBotManagement"
+          "target": "com.cloudflare.bot_management#ListFeedback"
         },
         {
-          "target": "com.cloudflare.bot_management#ListFeedback"
+          "target": "com.cloudflare.bot_management#GetBotManagement"
         },
         {
           "target": "com.cloudflare.bot_management#PutBotManagement"

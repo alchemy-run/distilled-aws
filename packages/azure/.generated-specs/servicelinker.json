@@ -3990,88 +3990,88 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicelinker#ConnectorCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicelinker#CreateConnectorDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#CreateLinkerDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#DeleteConnector"
-        },
-        {
-          "target": "com.azure.servicelinker#DeleteConnectorDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#DeleteLinker"
-        },
-        {
-          "target": "com.azure.servicelinker#DeleteLinkerDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#GenerateConnectorConfigurations"
-        },
-        {
-          "target": "com.azure.servicelinker#GenerateLinkerConfigurations"
-        },
-        {
-          "target": "com.azure.servicelinker#GetConnector"
-        },
-        {
-          "target": "com.azure.servicelinker#GetConnectorDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#GetLinker"
-        },
-        {
-          "target": "com.azure.servicelinker#GetLinkerDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#LinkerCreateOrUpdate"
+          "target": "com.azure.servicelinker#ListLinkerDaprConfigurations"
         },
         {
           "target": "com.azure.servicelinker#ListConfigurationNames"
         },
         {
-          "target": "com.azure.servicelinker#ListConnector"
-        },
-        {
-          "target": "com.azure.servicelinker#ListConnectorDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#ListLinker"
-        },
-        {
-          "target": "com.azure.servicelinker#ListLinkerConfigurations"
-        },
-        {
-          "target": "com.azure.servicelinker#ListLinkerDaprConfigurations"
-        },
-        {
-          "target": "com.azure.servicelinker#ListLinkerDryrun"
-        },
-        {
           "target": "com.azure.servicelinker#ListOperations"
         },
         {
-          "target": "com.azure.servicelinker#UpdateConnector"
+          "target": "com.azure.servicelinker#GenerateLinkerConfigurations"
         },
         {
-          "target": "com.azure.servicelinker#UpdateConnectorDryrun"
-        },
-        {
-          "target": "com.azure.servicelinker#UpdateLinker"
+          "target": "com.azure.servicelinker#DeleteLinkerDryrun"
         },
         {
           "target": "com.azure.servicelinker#UpdateLinkerDryrun"
         },
         {
-          "target": "com.azure.servicelinker#ValidateConnector"
+          "target": "com.azure.servicelinker#CreateLinkerDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#GetLinkerDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ListLinkerDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ListLinkerConfigurations"
         },
         {
           "target": "com.azure.servicelinker#ValidateLinker"
+        },
+        {
+          "target": "com.azure.servicelinker#DeleteLinker"
+        },
+        {
+          "target": "com.azure.servicelinker#UpdateLinker"
+        },
+        {
+          "target": "com.azure.servicelinker#LinkerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicelinker#GetLinker"
+        },
+        {
+          "target": "com.azure.servicelinker#ListLinker"
+        },
+        {
+          "target": "com.azure.servicelinker#GenerateConnectorConfigurations"
+        },
+        {
+          "target": "com.azure.servicelinker#ValidateConnector"
+        },
+        {
+          "target": "com.azure.servicelinker#DeleteConnector"
+        },
+        {
+          "target": "com.azure.servicelinker#UpdateConnector"
+        },
+        {
+          "target": "com.azure.servicelinker#ConnectorCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicelinker#GetConnector"
+        },
+        {
+          "target": "com.azure.servicelinker#ListConnector"
+        },
+        {
+          "target": "com.azure.servicelinker#DeleteConnectorDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#UpdateConnectorDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#CreateConnectorDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#GetConnectorDryrun"
+        },
+        {
+          "target": "com.azure.servicelinker#ListConnectorDryrun"
         }
       ],
       "traits": {

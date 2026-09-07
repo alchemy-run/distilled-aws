@@ -2204,13 +2204,13 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.vercel.storage#GetStorageStoresById"
+        },
+        {
           "target": "com.vercel.storage#CreateStorageStoresBlob"
         },
         {
           "target": "com.vercel.storage#DeleteStorageStoresBlobById"
-        },
-        {
-          "target": "com.vercel.storage#GetStorageStoresById"
         }
       ],
       "traits": {

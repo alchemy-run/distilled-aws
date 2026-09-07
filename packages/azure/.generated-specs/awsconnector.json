@@ -131453,892 +131453,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.awsconnector#AccessAnalyzerAnalyzersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#AcmCertificateSummariesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ApiGatewayRestApisCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ApiGatewayStagesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#AppSyncGraphqlApisCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#AutoScalingAutoScalingGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CloudFormationStacksCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CloudFormationStackSetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CloudFrontDistributionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CloudTrailTrailsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CloudWatchAlarmsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CodeBuildProjectsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#CodeBuildSourceCredentialsInfosCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ConfigServiceConfigurationRecordersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ConfigServiceConfigurationRecorderStatusesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ConfigServiceDeliveryChannelsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#DatabaseMigrationServiceReplicationInstancesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#DaxClustersCreateOrReplace"
-        },
-        {
           "target": "com.azure.awsconnector#DeleteAccessAnalyzerAnalyzer"
         },
         {
-          "target": "com.azure.awsconnector#DeleteAcmCertificateSummary"
+          "target": "com.azure.awsconnector#UpdateAccessAnalyzerAnalyzer"
         },
         {
-          "target": "com.azure.awsconnector#DeleteApiGatewayRestApis"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteApiGatewayStage"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteAppSyncGraphqlApis"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteAutoScalingAutoScalingGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCloudFormationStack"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCloudFormationStackSet"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCloudFrontDistribution"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCloudTrailTrail"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCloudWatchAlarm"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCodeBuildProject"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteCodeBuildSourceCredentialsInfos"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteConfigServiceConfigurationRecorder"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteConfigServiceConfigurationRecorderStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteConfigServiceDeliveryChannel"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteDatabaseMigrationServiceReplicationInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteDaxCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteDynamoDbContinuousBackupsDescription"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteDynamoDbTable"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2AccountAttribute"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Address"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2FlowLog"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Image"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Instance"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2InstanceStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Ipam"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2KeyPair"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2NetworkAcl"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2NetworkInterface"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2RouteTable"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2SecurityGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Snapshot"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Subnet"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Volume"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2Vpc"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2VpcEndpoint"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEc2VpcPeeringConnection"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEcrImageDetail"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEcrRepository"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEcsCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEcsService"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEcsTaskDefinition"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEfsFileSystem"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEfsMountTarget"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEksCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEksNodegroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticBeanstalkApplication"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticBeanstalkConfigurationTemplate"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticBeanstalkEnvironment"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingV2Listener"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingV2LoadBalancer"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingV2TargetGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingv2TargetHealthDescription"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteEmrCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteGuardDutyDetector"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamAccessKeyLastUsed"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamAccessKeyMetadataInfo"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamInstanceProfile"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamMfaDevice"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamPasswordPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamPolicyVersion"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamRole"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamServerCertificate"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteIamVirtualMfaDevice"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteKmsAlias"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteKmsKeys"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLambdaFunction"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLambdaFunctionCodeLocation"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLightsailBucket"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLightsailInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLogsLogGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLogsLogStream"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLogsMetricFilter"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteLogsSubscriptionFilter"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteMacie2JobSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteMacieAllowList"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteNetworkFirewallFirewall"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteNetworkFirewallFirewallPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteNetworkFirewallRuleGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteOpenSearchDomainStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteOrganizationsAccount"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteOrganizationsOrganization"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRdsDbCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRdsDbInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRdsDbSnapshot"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRdsDbSnapshotAttributesResult"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRdsEventSubscription"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRdsExportTask"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRedshiftCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRedshiftClusterParameterGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRoute53DomainsDomainSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRoute53HostedZone"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteRoute53ResourceRecordSet"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteS3AccessControlPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteS3AccessPoint"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteS3Bucket"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteS3BucketPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteS3ControlMultiRegionAccessPointPolicyDocument"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSageMakerApp"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSageMakerNotebookInstanceSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSecretsManagerResourcePolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSecretsManagerSecret"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSnsSubscription"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSnsTopic"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSqsQueue"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSsmInstanceInformation"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSsmParameter"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteSsmResourceComplianceSummaryItem"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteWafv2LoggingConfiguration"
-        },
-        {
-          "target": "com.azure.awsconnector#DeleteWafWebAclSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#DynamoDbContinuousBackupsDescriptionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#DynamoDbTablesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2AccountAttributesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2AddressesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2FlowLogsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2ImagesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2InstancesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2InstanceStatusesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2IpamsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2KeyPairsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2NetworkAclsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2NetworkInterfacesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2RouteTablesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2SecurityGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2SnapshotsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2SubnetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2VolumesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2VpcEndpointsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2VpcPeeringConnectionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Ec2VpcsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EcrImageDetailsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EcrRepositoriesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EcsClustersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EcsServicesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EcsTaskDefinitionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EfsFileSystemsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EfsMountTargetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EksClustersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EksNodegroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticBeanstalkApplicationsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticBeanstalkConfigurationTemplatesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticBeanstalkEnvironmentsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticLoadBalancingV2ListenersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticLoadBalancingV2LoadBalancersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticLoadBalancingV2TargetGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#ElasticLoadBalancingv2TargetHealthDescriptionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#EmrClustersCreateOrReplace"
+          "target": "com.azure.awsconnector#AccessAnalyzerAnalyzersCreateOrReplace"
         },
         {
           "target": "com.azure.awsconnector#GetAccessAnalyzerAnalyzer"
-        },
-        {
-          "target": "com.azure.awsconnector#GetAcmCertificateSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#GetApiGatewayRestApis"
-        },
-        {
-          "target": "com.azure.awsconnector#GetApiGatewayStage"
-        },
-        {
-          "target": "com.azure.awsconnector#GetAppSyncGraphqlApis"
-        },
-        {
-          "target": "com.azure.awsconnector#GetAutoScalingAutoScalingGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCloudFormationStack"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCloudFormationStackSet"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCloudFrontDistribution"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCloudTrailTrail"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCloudWatchAlarm"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCodeBuildProject"
-        },
-        {
-          "target": "com.azure.awsconnector#GetCodeBuildSourceCredentialsInfos"
-        },
-        {
-          "target": "com.azure.awsconnector#GetConfigServiceConfigurationRecorder"
-        },
-        {
-          "target": "com.azure.awsconnector#GetConfigServiceConfigurationRecorderStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#GetConfigServiceDeliveryChannel"
-        },
-        {
-          "target": "com.azure.awsconnector#GetDatabaseMigrationServiceReplicationInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#GetDaxCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#GetDynamoDbContinuousBackupsDescription"
-        },
-        {
-          "target": "com.azure.awsconnector#GetDynamoDbTable"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2AccountAttribute"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Address"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2FlowLog"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Image"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Instance"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2InstanceStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Ipam"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2KeyPair"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2NetworkAcl"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2NetworkInterface"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2RouteTable"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2SecurityGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Snapshot"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Subnet"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Volume"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2Vpc"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2VpcEndpoint"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEc2VpcPeeringConnection"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEcrImageDetail"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEcrRepository"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEcsCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEcsService"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEcsTaskDefinition"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEfsFileSystem"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEfsMountTarget"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEksCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEksNodegroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticBeanstalkApplication"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticBeanstalkConfigurationTemplate"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticBeanstalkEnvironment"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticLoadBalancingV2Listener"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticLoadBalancingV2LoadBalancer"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticLoadBalancingV2TargetGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetElasticLoadBalancingv2TargetHealthDescription"
-        },
-        {
-          "target": "com.azure.awsconnector#GetEmrCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#GetGuardDutyDetector"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamAccessKeyLastUsed"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamAccessKeyMetadataInfo"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamInstanceProfile"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamMfaDevice"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamPasswordPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamPolicyVersion"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamRole"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamServerCertificate"
-        },
-        {
-          "target": "com.azure.awsconnector#GetIamVirtualMfaDevice"
-        },
-        {
-          "target": "com.azure.awsconnector#GetKmsAlias"
-        },
-        {
-          "target": "com.azure.awsconnector#GetKmsKeys"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLambdaFunction"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLambdaFunctionCodeLocation"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLightsailBucket"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLightsailInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLogsLogGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLogsLogStream"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLogsMetricFilter"
-        },
-        {
-          "target": "com.azure.awsconnector#GetLogsSubscriptionFilter"
-        },
-        {
-          "target": "com.azure.awsconnector#GetMacie2JobSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#GetMacieAllowList"
-        },
-        {
-          "target": "com.azure.awsconnector#GetNetworkFirewallFirewall"
-        },
-        {
-          "target": "com.azure.awsconnector#GetNetworkFirewallFirewallPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#GetNetworkFirewallRuleGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetOpenSearchDomainStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#GetOrganizationsAccount"
-        },
-        {
-          "target": "com.azure.awsconnector#GetOrganizationsOrganization"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRdsDbCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRdsDbInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRdsDbSnapshot"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRdsDbSnapshotAttributesResult"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRdsEventSubscription"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRdsExportTask"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRedshiftCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRedshiftClusterParameterGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRoute53DomainsDomainSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRoute53HostedZone"
-        },
-        {
-          "target": "com.azure.awsconnector#GetRoute53ResourceRecordSet"
-        },
-        {
-          "target": "com.azure.awsconnector#GetS3AccessControlPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#GetS3AccessPoint"
-        },
-        {
-          "target": "com.azure.awsconnector#GetS3Bucket"
-        },
-        {
-          "target": "com.azure.awsconnector#GetS3BucketPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#GetS3ControlMultiRegionAccessPointPolicyDocument"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSageMakerApp"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSageMakerNotebookInstanceSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSecretsManagerResourcePolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSecretsManagerSecret"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSnsSubscription"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSnsTopic"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSqsQueue"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSsmInstanceInformation"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSsmParameter"
-        },
-        {
-          "target": "com.azure.awsconnector#GetSsmResourceComplianceSummaryItem"
-        },
-        {
-          "target": "com.azure.awsconnector#GetWafv2LoggingConfiguration"
-        },
-        {
-          "target": "com.azure.awsconnector#GetWafWebAclSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#GuardDutyDetectorsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamAccessKeyLastUsedsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamAccessKeyMetadataInfoCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamInstanceProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.awsconnector#IamMfaDevicesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamPasswordPoliciesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamPolicyVersionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamRolesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamServerCertificatesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#IamVirtualMfaDevicesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#KmsAliasesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#KmsKeysCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LambdaFunctionCodeLocationsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LambdaFunctionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LightsailBucketsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LightsailInstancesCreateOrReplace"
         },
         {
           "target": "com.azure.awsconnector#ListAccessAnalyzerAnalyzerByResourceGroup"
@@ -132347,10 +131471,34 @@
           "target": "com.azure.awsconnector#ListAccessAnalyzerAnalyzerBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteAcmCertificateSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateAcmCertificateSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#AcmCertificateSummariesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetAcmCertificateSummary"
+        },
+        {
           "target": "com.azure.awsconnector#ListAcmCertificateSummaryByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListAcmCertificateSummaryBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteApiGatewayRestApis"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateApiGatewayRestApis"
+        },
+        {
+          "target": "com.azure.awsconnector#ApiGatewayRestApisCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetApiGatewayRestApis"
         },
         {
           "target": "com.azure.awsconnector#ListApiGatewayRestApisByResourceGroup"
@@ -132359,10 +131507,34 @@
           "target": "com.azure.awsconnector#ListApiGatewayRestApisBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteApiGatewayStage"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateApiGatewayStage"
+        },
+        {
+          "target": "com.azure.awsconnector#ApiGatewayStagesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetApiGatewayStage"
+        },
+        {
           "target": "com.azure.awsconnector#ListApiGatewayStageByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListApiGatewayStageBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteAppSyncGraphqlApis"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateAppSyncGraphqlApis"
+        },
+        {
+          "target": "com.azure.awsconnector#AppSyncGraphqlApisCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetAppSyncGraphqlApis"
         },
         {
           "target": "com.azure.awsconnector#ListAppSyncGraphqlApisByResourceGroup"
@@ -132371,10 +131543,34 @@
           "target": "com.azure.awsconnector#ListAppSyncGraphqlApisBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteAutoScalingAutoScalingGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateAutoScalingAutoScalingGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#AutoScalingAutoScalingGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetAutoScalingAutoScalingGroup"
+        },
+        {
           "target": "com.azure.awsconnector#ListAutoScalingAutoScalingGroupByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListAutoScalingAutoScalingGroupBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteCloudFormationStack"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCloudFormationStack"
+        },
+        {
+          "target": "com.azure.awsconnector#CloudFormationStacksCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCloudFormationStack"
         },
         {
           "target": "com.azure.awsconnector#ListCloudFormationStackByResourceGroup"
@@ -132383,10 +131579,34 @@
           "target": "com.azure.awsconnector#ListCloudFormationStackBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteCloudFormationStackSet"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCloudFormationStackSet"
+        },
+        {
+          "target": "com.azure.awsconnector#CloudFormationStackSetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCloudFormationStackSet"
+        },
+        {
           "target": "com.azure.awsconnector#ListCloudFormationStackSetByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListCloudFormationStackSetBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteCloudFrontDistribution"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCloudFrontDistribution"
+        },
+        {
+          "target": "com.azure.awsconnector#CloudFrontDistributionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCloudFrontDistribution"
         },
         {
           "target": "com.azure.awsconnector#ListCloudFrontDistributionByResourceGroup"
@@ -132395,10 +131615,34 @@
           "target": "com.azure.awsconnector#ListCloudFrontDistributionBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteCloudTrailTrail"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCloudTrailTrail"
+        },
+        {
+          "target": "com.azure.awsconnector#CloudTrailTrailsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCloudTrailTrail"
+        },
+        {
           "target": "com.azure.awsconnector#ListCloudTrailTrailByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListCloudTrailTrailBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteCloudWatchAlarm"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCloudWatchAlarm"
+        },
+        {
+          "target": "com.azure.awsconnector#CloudWatchAlarmsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCloudWatchAlarm"
         },
         {
           "target": "com.azure.awsconnector#ListCloudWatchAlarmByResourceGroup"
@@ -132407,10 +131651,34 @@
           "target": "com.azure.awsconnector#ListCloudWatchAlarmBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteCodeBuildProject"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCodeBuildProject"
+        },
+        {
+          "target": "com.azure.awsconnector#CodeBuildProjectsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCodeBuildProject"
+        },
+        {
           "target": "com.azure.awsconnector#ListCodeBuildProjectByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListCodeBuildProjectBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteCodeBuildSourceCredentialsInfos"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateCodeBuildSourceCredentialsInfos"
+        },
+        {
+          "target": "com.azure.awsconnector#CodeBuildSourceCredentialsInfosCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetCodeBuildSourceCredentialsInfos"
         },
         {
           "target": "com.azure.awsconnector#ListCodeBuildSourceCredentialsInfosByResourceGroup"
@@ -132419,10 +131687,34 @@
           "target": "com.azure.awsconnector#ListCodeBuildSourceCredentialsInfosBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteConfigServiceConfigurationRecorder"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateConfigServiceConfigurationRecorder"
+        },
+        {
+          "target": "com.azure.awsconnector#ConfigServiceConfigurationRecordersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetConfigServiceConfigurationRecorder"
+        },
+        {
           "target": "com.azure.awsconnector#ListConfigServiceConfigurationRecorderByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListConfigServiceConfigurationRecorderBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteConfigServiceConfigurationRecorderStatus"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateConfigServiceConfigurationRecorderStatus"
+        },
+        {
+          "target": "com.azure.awsconnector#ConfigServiceConfigurationRecorderStatusesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetConfigServiceConfigurationRecorderStatus"
         },
         {
           "target": "com.azure.awsconnector#ListConfigServiceConfigurationRecorderStatusByResourceGroup"
@@ -132431,10 +131723,34 @@
           "target": "com.azure.awsconnector#ListConfigServiceConfigurationRecorderStatusBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteConfigServiceDeliveryChannel"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateConfigServiceDeliveryChannel"
+        },
+        {
+          "target": "com.azure.awsconnector#ConfigServiceDeliveryChannelsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetConfigServiceDeliveryChannel"
+        },
+        {
           "target": "com.azure.awsconnector#ListConfigServiceDeliveryChannelByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListConfigServiceDeliveryChannelBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteDatabaseMigrationServiceReplicationInstance"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateDatabaseMigrationServiceReplicationInstance"
+        },
+        {
+          "target": "com.azure.awsconnector#DatabaseMigrationServiceReplicationInstancesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetDatabaseMigrationServiceReplicationInstance"
         },
         {
           "target": "com.azure.awsconnector#ListDatabaseMigrationServiceReplicationInstanceByResourceGroup"
@@ -132443,10 +131759,34 @@
           "target": "com.azure.awsconnector#ListDatabaseMigrationServiceReplicationInstanceBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteDaxCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateDaxCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#DaxClustersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetDaxCluster"
+        },
+        {
           "target": "com.azure.awsconnector#ListDaxClusterByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListDaxClusterBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteDynamoDbContinuousBackupsDescription"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateDynamoDbContinuousBackupsDescription"
+        },
+        {
+          "target": "com.azure.awsconnector#DynamoDbContinuousBackupsDescriptionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetDynamoDbContinuousBackupsDescription"
         },
         {
           "target": "com.azure.awsconnector#ListDynamoDbContinuousBackupsDescriptionByResourceGroup"
@@ -132455,10 +131795,34 @@
           "target": "com.azure.awsconnector#ListDynamoDbContinuousBackupsDescriptionBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteDynamoDbTable"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateDynamoDbTable"
+        },
+        {
+          "target": "com.azure.awsconnector#DynamoDbTablesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetDynamoDbTable"
+        },
+        {
           "target": "com.azure.awsconnector#ListDynamoDbTableByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListDynamoDbTableBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2AccountAttribute"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2AccountAttribute"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2AccountAttributesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2AccountAttribute"
         },
         {
           "target": "com.azure.awsconnector#ListEc2AccountAttributeByResourceGroup"
@@ -132467,10 +131831,34 @@
           "target": "com.azure.awsconnector#ListEc2AccountAttributeBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2Address"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Address"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2AddressesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Address"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2AddressByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2AddressBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2FlowLog"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2FlowLog"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2FlowLogsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2FlowLog"
         },
         {
           "target": "com.azure.awsconnector#ListEc2FlowLogByResourceGroup"
@@ -132479,13 +131867,52 @@
           "target": "com.azure.awsconnector#ListEc2FlowLogBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2Image"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Image"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2ImagesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Image"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2ImageByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2ImageBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#StopEc2Instance"
+        },
+        {
+          "target": "com.azure.awsconnector#StartEc2Instance"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2Instance"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2InstancesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Instance"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2Instances"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2InstanceStatus"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2InstanceStatus"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2InstanceStatusesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2InstanceStatus"
         },
         {
           "target": "com.azure.awsconnector#ListEc2InstanceStatusByResourceGroup"
@@ -132494,10 +131921,34 @@
           "target": "com.azure.awsconnector#ListEc2InstanceStatusBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2Ipam"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Ipam"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2IpamsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Ipam"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2IpamByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2IpamBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2KeyPair"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2KeyPair"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2KeyPairsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2KeyPair"
         },
         {
           "target": "com.azure.awsconnector#ListEc2KeyPairByResourceGroup"
@@ -132506,10 +131957,34 @@
           "target": "com.azure.awsconnector#ListEc2KeyPairBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2NetworkAcl"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2NetworkAcl"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2NetworkAclsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2NetworkAcl"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2NetworkAclByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2NetworkAclBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2NetworkInterface"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2NetworkInterface"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2NetworkInterfacesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2NetworkInterface"
         },
         {
           "target": "com.azure.awsconnector#ListEc2NetworkInterfaceByResourceGroup"
@@ -132518,10 +131993,34 @@
           "target": "com.azure.awsconnector#ListEc2NetworkInterfaceBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2RouteTable"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2RouteTable"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2RouteTablesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2RouteTable"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2RouteTableByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2RouteTableBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2SecurityGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2SecurityGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2SecurityGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2SecurityGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2SecurityGroupByResourceGroup"
@@ -132530,10 +132029,34 @@
           "target": "com.azure.awsconnector#ListEc2SecurityGroupBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2Snapshot"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Snapshot"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2SnapshotsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Snapshot"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2SnapshotByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2SnapshotBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2Subnet"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Subnet"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2SubnetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Subnet"
         },
         {
           "target": "com.azure.awsconnector#ListEc2SubnetByResourceGroup"
@@ -132542,16 +132065,16 @@
           "target": "com.azure.awsconnector#ListEc2SubnetBySubscription"
         },
         {
-          "target": "com.azure.awsconnector#ListEc2VolumeByResourceGroup"
+          "target": "com.azure.awsconnector#DeleteEc2VpcEndpoint"
         },
         {
-          "target": "com.azure.awsconnector#ListEc2VolumeBySubscription"
+          "target": "com.azure.awsconnector#UpdateEc2VpcEndpoint"
         },
         {
-          "target": "com.azure.awsconnector#ListEc2VpcByResourceGroup"
+          "target": "com.azure.awsconnector#Ec2VpcEndpointsCreateOrReplace"
         },
         {
-          "target": "com.azure.awsconnector#ListEc2VpcBySubscription"
+          "target": "com.azure.awsconnector#GetEc2VpcEndpoint"
         },
         {
           "target": "com.azure.awsconnector#ListEc2VpcEndpointByResourceGroup"
@@ -132560,10 +132083,70 @@
           "target": "com.azure.awsconnector#ListEc2VpcEndpointBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEc2VpcPeeringConnection"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2VpcPeeringConnection"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2VpcPeeringConnectionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2VpcPeeringConnection"
+        },
+        {
           "target": "com.azure.awsconnector#ListEc2VpcPeeringConnectionByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEc2VpcPeeringConnectionBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2Volume"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Volume"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2VolumesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Volume"
+        },
+        {
+          "target": "com.azure.awsconnector#ListEc2VolumeByResourceGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#ListEc2VolumeBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEc2Vpc"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEc2Vpc"
+        },
+        {
+          "target": "com.azure.awsconnector#Ec2VpcsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEc2Vpc"
+        },
+        {
+          "target": "com.azure.awsconnector#ListEc2VpcByResourceGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#ListEc2VpcBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEcrImageDetail"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEcrImageDetail"
+        },
+        {
+          "target": "com.azure.awsconnector#EcrImageDetailsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEcrImageDetail"
         },
         {
           "target": "com.azure.awsconnector#ListEcrImageDetailByResourceGroup"
@@ -132572,10 +132155,34 @@
           "target": "com.azure.awsconnector#ListEcrImageDetailBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEcrRepository"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEcrRepository"
+        },
+        {
+          "target": "com.azure.awsconnector#EcrRepositoriesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEcrRepository"
+        },
+        {
           "target": "com.azure.awsconnector#ListEcrRepositoryByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEcrRepositoryBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEcsCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEcsCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#EcsClustersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEcsCluster"
         },
         {
           "target": "com.azure.awsconnector#ListEcsClusterByResourceGroup"
@@ -132584,10 +132191,34 @@
           "target": "com.azure.awsconnector#ListEcsClusterBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEcsService"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEcsService"
+        },
+        {
+          "target": "com.azure.awsconnector#EcsServicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEcsService"
+        },
+        {
           "target": "com.azure.awsconnector#ListEcsServiceByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEcsServiceBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEcsTaskDefinition"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEcsTaskDefinition"
+        },
+        {
+          "target": "com.azure.awsconnector#EcsTaskDefinitionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEcsTaskDefinition"
         },
         {
           "target": "com.azure.awsconnector#ListEcsTaskDefinitionByResourceGroup"
@@ -132596,10 +132227,34 @@
           "target": "com.azure.awsconnector#ListEcsTaskDefinitionBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEfsFileSystem"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEfsFileSystem"
+        },
+        {
+          "target": "com.azure.awsconnector#EfsFileSystemsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEfsFileSystem"
+        },
+        {
           "target": "com.azure.awsconnector#ListEfsFileSystemByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListEfsFileSystemBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEfsMountTarget"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEfsMountTarget"
+        },
+        {
+          "target": "com.azure.awsconnector#EfsMountTargetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEfsMountTarget"
         },
         {
           "target": "com.azure.awsconnector#ListEfsMountTargetByResourceGroup"
@@ -132608,7 +132263,28 @@
           "target": "com.azure.awsconnector#ListEfsMountTargetBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteEksCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#EksClustersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEksCluster"
+        },
+        {
           "target": "com.azure.awsconnector#ListEksClusters"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEksNodegroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEksNodegroup"
+        },
+        {
+          "target": "com.azure.awsconnector#EksNodegroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEksNodegroup"
         },
         {
           "target": "com.azure.awsconnector#ListEksNodegroupByResourceGroup"
@@ -132617,10 +132293,34 @@
           "target": "com.azure.awsconnector#ListEksNodegroupBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteElasticBeanstalkApplication"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticBeanstalkApplication"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticBeanstalkApplicationsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticBeanstalkApplication"
+        },
+        {
           "target": "com.azure.awsconnector#ListElasticBeanstalkApplicationByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListElasticBeanstalkApplicationBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteElasticBeanstalkConfigurationTemplate"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticBeanstalkConfigurationTemplate"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticBeanstalkConfigurationTemplatesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticBeanstalkConfigurationTemplate"
         },
         {
           "target": "com.azure.awsconnector#ListElasticBeanstalkConfigurationTemplateByResourceGroup"
@@ -132629,10 +132329,34 @@
           "target": "com.azure.awsconnector#ListElasticBeanstalkConfigurationTemplateBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteElasticBeanstalkEnvironment"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticBeanstalkEnvironment"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticBeanstalkEnvironmentsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticBeanstalkEnvironment"
+        },
+        {
           "target": "com.azure.awsconnector#ListElasticBeanstalkEnvironmentByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListElasticBeanstalkEnvironmentBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingV2Listener"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingV2Listener"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticLoadBalancingV2ListenersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticLoadBalancingV2Listener"
         },
         {
           "target": "com.azure.awsconnector#ListElasticLoadBalancingV2ListenerByResourceGroup"
@@ -132641,10 +132365,34 @@
           "target": "com.azure.awsconnector#ListElasticLoadBalancingV2ListenerBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingV2LoadBalancer"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingV2LoadBalancer"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticLoadBalancingV2LoadBalancersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticLoadBalancingV2LoadBalancer"
+        },
+        {
           "target": "com.azure.awsconnector#ListElasticLoadBalancingV2LoadBalancerByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListElasticLoadBalancingV2LoadBalancerBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingV2TargetGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingV2TargetGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticLoadBalancingV2TargetGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticLoadBalancingV2TargetGroup"
         },
         {
           "target": "com.azure.awsconnector#ListElasticLoadBalancingV2TargetGroupByResourceGroup"
@@ -132653,10 +132401,34 @@
           "target": "com.azure.awsconnector#ListElasticLoadBalancingV2TargetGroupBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteElasticLoadBalancingv2TargetHealthDescription"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingv2TargetHealthDescription"
+        },
+        {
+          "target": "com.azure.awsconnector#ElasticLoadBalancingv2TargetHealthDescriptionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetElasticLoadBalancingv2TargetHealthDescription"
+        },
+        {
           "target": "com.azure.awsconnector#ListElasticLoadBalancingv2TargetHealthDescriptionByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListElasticLoadBalancingv2TargetHealthDescriptionBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteEmrCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateEmrCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#EmrClustersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetEmrCluster"
         },
         {
           "target": "com.azure.awsconnector#ListEmrClusterByResourceGroup"
@@ -132665,10 +132437,34 @@
           "target": "com.azure.awsconnector#ListEmrClusterBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteGuardDutyDetector"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateGuardDutyDetector"
+        },
+        {
+          "target": "com.azure.awsconnector#GuardDutyDetectorsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetGuardDutyDetector"
+        },
+        {
           "target": "com.azure.awsconnector#ListGuardDutyDetectorByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListGuardDutyDetectorBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteIamAccessKeyLastUsed"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamAccessKeyLastUsed"
+        },
+        {
+          "target": "com.azure.awsconnector#IamAccessKeyLastUsedsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamAccessKeyLastUsed"
         },
         {
           "target": "com.azure.awsconnector#ListIamAccessKeyLastUsedByResourceGroup"
@@ -132677,10 +132473,34 @@
           "target": "com.azure.awsconnector#ListIamAccessKeyLastUsedBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteIamAccessKeyMetadataInfo"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamAccessKeyMetadataInfo"
+        },
+        {
+          "target": "com.azure.awsconnector#IamAccessKeyMetadataInfoCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamAccessKeyMetadataInfo"
+        },
+        {
           "target": "com.azure.awsconnector#ListIamAccessKeyMetadataInfoByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListIamAccessKeyMetadataInfoBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteIamGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#IamGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamGroup"
         },
         {
           "target": "com.azure.awsconnector#ListIamGroupByResourceGroup"
@@ -132689,10 +132509,34 @@
           "target": "com.azure.awsconnector#ListIamGroupBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteIamInstanceProfile"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamInstanceProfile"
+        },
+        {
+          "target": "com.azure.awsconnector#IamInstanceProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamInstanceProfile"
+        },
+        {
           "target": "com.azure.awsconnector#ListIamInstanceProfileByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListIamInstanceProfileBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteIamMfaDevice"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamMfaDevice"
+        },
+        {
+          "target": "com.azure.awsconnector#IamMfaDevicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamMfaDevice"
         },
         {
           "target": "com.azure.awsconnector#ListIamMfaDeviceByResourceGroup"
@@ -132701,10 +132545,34 @@
           "target": "com.azure.awsconnector#ListIamMfaDeviceBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteIamPasswordPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamPasswordPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#IamPasswordPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamPasswordPolicy"
+        },
+        {
           "target": "com.azure.awsconnector#ListIamPasswordPolicyByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListIamPasswordPolicyBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteIamPolicyVersion"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamPolicyVersion"
+        },
+        {
+          "target": "com.azure.awsconnector#IamPolicyVersionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamPolicyVersion"
         },
         {
           "target": "com.azure.awsconnector#ListIamPolicyVersionByResourceGroup"
@@ -132713,10 +132581,34 @@
           "target": "com.azure.awsconnector#ListIamPolicyVersionBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteIamRole"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamRole"
+        },
+        {
+          "target": "com.azure.awsconnector#IamRolesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamRole"
+        },
+        {
           "target": "com.azure.awsconnector#ListIamRoleByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListIamRoleBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteIamServerCertificate"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamServerCertificate"
+        },
+        {
+          "target": "com.azure.awsconnector#IamServerCertificatesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamServerCertificate"
         },
         {
           "target": "com.azure.awsconnector#ListIamServerCertificateByResourceGroup"
@@ -132725,10 +132617,34 @@
           "target": "com.azure.awsconnector#ListIamServerCertificateBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteIamVirtualMfaDevice"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateIamVirtualMfaDevice"
+        },
+        {
+          "target": "com.azure.awsconnector#IamVirtualMfaDevicesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetIamVirtualMfaDevice"
+        },
+        {
           "target": "com.azure.awsconnector#ListIamVirtualMfaDeviceByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListIamVirtualMfaDeviceBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteKmsAlias"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateKmsAlias"
+        },
+        {
+          "target": "com.azure.awsconnector#KmsAliasesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetKmsAlias"
         },
         {
           "target": "com.azure.awsconnector#ListKmsAliasByResourceGroup"
@@ -132737,10 +132653,34 @@
           "target": "com.azure.awsconnector#ListKmsAliasBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteKmsKeys"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateKmsKeys"
+        },
+        {
+          "target": "com.azure.awsconnector#KmsKeysCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetKmsKeys"
+        },
+        {
           "target": "com.azure.awsconnector#ListKmsKeysByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListKmsKeysBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteLambdaFunction"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLambdaFunction"
+        },
+        {
+          "target": "com.azure.awsconnector#LambdaFunctionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLambdaFunction"
         },
         {
           "target": "com.azure.awsconnector#ListLambdaFunctionByResourceGroup"
@@ -132749,10 +132689,34 @@
           "target": "com.azure.awsconnector#ListLambdaFunctionBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteLambdaFunctionCodeLocation"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLambdaFunctionCodeLocation"
+        },
+        {
+          "target": "com.azure.awsconnector#LambdaFunctionCodeLocationsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLambdaFunctionCodeLocation"
+        },
+        {
           "target": "com.azure.awsconnector#ListLambdaFunctionCodeLocationByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListLambdaFunctionCodeLocationBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteLightsailBucket"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLightsailBucket"
+        },
+        {
+          "target": "com.azure.awsconnector#LightsailBucketsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLightsailBucket"
         },
         {
           "target": "com.azure.awsconnector#ListLightsailBucketByResourceGroup"
@@ -132761,10 +132725,34 @@
           "target": "com.azure.awsconnector#ListLightsailBucketBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteLightsailInstance"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLightsailInstance"
+        },
+        {
+          "target": "com.azure.awsconnector#LightsailInstancesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLightsailInstance"
+        },
+        {
           "target": "com.azure.awsconnector#ListLightsailInstanceByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListLightsailInstanceBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteLogsLogGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLogsLogGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#LogsLogGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLogsLogGroup"
         },
         {
           "target": "com.azure.awsconnector#ListLogsLogGroupByResourceGroup"
@@ -132773,10 +132761,34 @@
           "target": "com.azure.awsconnector#ListLogsLogGroupBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteLogsLogStream"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLogsLogStream"
+        },
+        {
+          "target": "com.azure.awsconnector#LogsLogStreamsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLogsLogStream"
+        },
+        {
           "target": "com.azure.awsconnector#ListLogsLogStreamByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListLogsLogStreamBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteLogsMetricFilter"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLogsMetricFilter"
+        },
+        {
+          "target": "com.azure.awsconnector#LogsMetricFiltersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLogsMetricFilter"
         },
         {
           "target": "com.azure.awsconnector#ListLogsMetricFilterByResourceGroup"
@@ -132785,10 +132797,34 @@
           "target": "com.azure.awsconnector#ListLogsMetricFilterBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteLogsSubscriptionFilter"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateLogsSubscriptionFilter"
+        },
+        {
+          "target": "com.azure.awsconnector#LogsSubscriptionFiltersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetLogsSubscriptionFilter"
+        },
+        {
           "target": "com.azure.awsconnector#ListLogsSubscriptionFilterByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListLogsSubscriptionFilterBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteMacie2JobSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateMacie2JobSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#Macie2JobSummariesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetMacie2JobSummary"
         },
         {
           "target": "com.azure.awsconnector#ListMacie2JobSummaryByResourceGroup"
@@ -132797,10 +132833,34 @@
           "target": "com.azure.awsconnector#ListMacie2JobSummaryBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteMacieAllowList"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateMacieAllowList"
+        },
+        {
+          "target": "com.azure.awsconnector#MacieAllowListsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetMacieAllowList"
+        },
+        {
           "target": "com.azure.awsconnector#ListMacieAllowListByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListMacieAllowListBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteNetworkFirewallFirewall"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateNetworkFirewallFirewall"
+        },
+        {
+          "target": "com.azure.awsconnector#NetworkFirewallFirewallsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetNetworkFirewallFirewall"
         },
         {
           "target": "com.azure.awsconnector#ListNetworkFirewallFirewallByResourceGroup"
@@ -132809,16 +132869,52 @@
           "target": "com.azure.awsconnector#ListNetworkFirewallFirewallBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteNetworkFirewallFirewallPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateNetworkFirewallFirewallPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#NetworkFirewallFirewallPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetNetworkFirewallFirewallPolicy"
+        },
+        {
           "target": "com.azure.awsconnector#ListNetworkFirewallFirewallPolicyByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListNetworkFirewallFirewallPolicyBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteNetworkFirewallRuleGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateNetworkFirewallRuleGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#NetworkFirewallRuleGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetNetworkFirewallRuleGroup"
+        },
+        {
           "target": "com.azure.awsconnector#ListNetworkFirewallRuleGroupByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListNetworkFirewallRuleGroupBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteOpenSearchDomainStatus"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateOpenSearchDomainStatus"
+        },
+        {
+          "target": "com.azure.awsconnector#OpenSearchDomainStatusesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetOpenSearchDomainStatus"
         },
         {
           "target": "com.azure.awsconnector#ListOpenSearchDomainStatusByResourceGroup"
@@ -132830,10 +132926,34 @@
           "target": "com.azure.awsconnector#ListOperations"
         },
         {
+          "target": "com.azure.awsconnector#DeleteOrganizationsAccount"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateOrganizationsAccount"
+        },
+        {
+          "target": "com.azure.awsconnector#OrganizationsAccountsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetOrganizationsAccount"
+        },
+        {
           "target": "com.azure.awsconnector#ListOrganizationsAccountByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListOrganizationsAccountBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteOrganizationsOrganization"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateOrganizationsOrganization"
+        },
+        {
+          "target": "com.azure.awsconnector#OrganizationsOrganizationsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetOrganizationsOrganization"
         },
         {
           "target": "com.azure.awsconnector#ListOrganizationsOrganizationByResourceGroup"
@@ -132842,10 +132962,34 @@
           "target": "com.azure.awsconnector#ListOrganizationsOrganizationBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteRdsDbCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRdsDbCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#RdsDbClustersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRdsDbCluster"
+        },
+        {
           "target": "com.azure.awsconnector#ListRdsDbClusterByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListRdsDbClusterBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteRdsDbInstance"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRdsDbInstance"
+        },
+        {
+          "target": "com.azure.awsconnector#RdsDbInstancesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRdsDbInstance"
         },
         {
           "target": "com.azure.awsconnector#ListRdsDbInstanceByResourceGroup"
@@ -132854,10 +132998,16 @@
           "target": "com.azure.awsconnector#ListRdsDbInstanceBySubscription"
         },
         {
-          "target": "com.azure.awsconnector#ListRdsDbSnapshotAttributesResultByResourceGroup"
+          "target": "com.azure.awsconnector#DeleteRdsDbSnapshot"
         },
         {
-          "target": "com.azure.awsconnector#ListRdsDbSnapshotAttributesResultBySubscription"
+          "target": "com.azure.awsconnector#UpdateRdsDbSnapshot"
+        },
+        {
+          "target": "com.azure.awsconnector#RdsDbSnapshotsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRdsDbSnapshot"
         },
         {
           "target": "com.azure.awsconnector#ListRdsDbSnapshotByResourceGroup"
@@ -132866,10 +133016,52 @@
           "target": "com.azure.awsconnector#ListRdsDbSnapshotBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteRdsDbSnapshotAttributesResult"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRdsDbSnapshotAttributesResult"
+        },
+        {
+          "target": "com.azure.awsconnector#RdsDbSnapshotAttributesResultsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRdsDbSnapshotAttributesResult"
+        },
+        {
+          "target": "com.azure.awsconnector#ListRdsDbSnapshotAttributesResultByResourceGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#ListRdsDbSnapshotAttributesResultBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteRdsEventSubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRdsEventSubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#RdsEventSubscriptionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRdsEventSubscription"
+        },
+        {
           "target": "com.azure.awsconnector#ListRdsEventSubscriptionByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListRdsEventSubscriptionBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteRdsExportTask"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRdsExportTask"
+        },
+        {
+          "target": "com.azure.awsconnector#RdsExportTasksCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRdsExportTask"
         },
         {
           "target": "com.azure.awsconnector#ListRdsExportTaskByResourceGroup"
@@ -132878,10 +133070,34 @@
           "target": "com.azure.awsconnector#ListRdsExportTaskBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteRedshiftCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRedshiftCluster"
+        },
+        {
+          "target": "com.azure.awsconnector#RedshiftClustersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRedshiftCluster"
+        },
+        {
           "target": "com.azure.awsconnector#ListRedshiftClusterByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListRedshiftClusterBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteRedshiftClusterParameterGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRedshiftClusterParameterGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#RedshiftClusterParameterGroupsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRedshiftClusterParameterGroup"
         },
         {
           "target": "com.azure.awsconnector#ListRedshiftClusterParameterGroupByResourceGroup"
@@ -132890,10 +133106,34 @@
           "target": "com.azure.awsconnector#ListRedshiftClusterParameterGroupBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteRoute53DomainsDomainSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRoute53DomainsDomainSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#Route53DomainsDomainSummariesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRoute53DomainsDomainSummary"
+        },
+        {
           "target": "com.azure.awsconnector#ListRoute53DomainsDomainSummaryByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListRoute53DomainsDomainSummaryBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteRoute53HostedZone"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRoute53HostedZone"
+        },
+        {
+          "target": "com.azure.awsconnector#Route53HostedZonesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRoute53HostedZone"
         },
         {
           "target": "com.azure.awsconnector#ListRoute53HostedZoneByResourceGroup"
@@ -132902,10 +133142,34 @@
           "target": "com.azure.awsconnector#ListRoute53HostedZoneBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteRoute53ResourceRecordSet"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateRoute53ResourceRecordSet"
+        },
+        {
+          "target": "com.azure.awsconnector#Route53ResourceRecordSetsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetRoute53ResourceRecordSet"
+        },
+        {
           "target": "com.azure.awsconnector#ListRoute53ResourceRecordSetByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListRoute53ResourceRecordSetBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteS3AccessControlPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateS3AccessControlPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#S3AccessControlPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetS3AccessControlPolicy"
         },
         {
           "target": "com.azure.awsconnector#ListS3AccessControlPolicyByResourceGroup"
@@ -132914,10 +133178,34 @@
           "target": "com.azure.awsconnector#ListS3AccessControlPolicyBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteS3AccessPoint"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateS3AccessPoint"
+        },
+        {
+          "target": "com.azure.awsconnector#S3AccessPointsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetS3AccessPoint"
+        },
+        {
           "target": "com.azure.awsconnector#ListS3AccessPointByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListS3AccessPointBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteS3Bucket"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateS3Bucket"
+        },
+        {
+          "target": "com.azure.awsconnector#S3BucketsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetS3Bucket"
         },
         {
           "target": "com.azure.awsconnector#ListS3BucketByResourceGroup"
@@ -132926,10 +133214,34 @@
           "target": "com.azure.awsconnector#ListS3BucketBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteS3BucketPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateS3BucketPolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#S3BucketPoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetS3BucketPolicy"
+        },
+        {
           "target": "com.azure.awsconnector#ListS3BucketPolicyByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListS3BucketPolicyBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteS3ControlMultiRegionAccessPointPolicyDocument"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateS3ControlMultiRegionAccessPointPolicyDocument"
+        },
+        {
+          "target": "com.azure.awsconnector#S3ControlMultiRegionAccessPointPolicyDocumentsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetS3ControlMultiRegionAccessPointPolicyDocument"
         },
         {
           "target": "com.azure.awsconnector#ListS3ControlMultiRegionAccessPointPolicyDocumentByResourceGroup"
@@ -132938,10 +133250,34 @@
           "target": "com.azure.awsconnector#ListS3ControlMultiRegionAccessPointPolicyDocumentBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteSageMakerApp"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSageMakerApp"
+        },
+        {
+          "target": "com.azure.awsconnector#SageMakerAppsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSageMakerApp"
+        },
+        {
           "target": "com.azure.awsconnector#ListSageMakerAppByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListSageMakerAppBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteSageMakerNotebookInstanceSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSageMakerNotebookInstanceSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#SageMakerNotebookInstanceSummariesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSageMakerNotebookInstanceSummary"
         },
         {
           "target": "com.azure.awsconnector#ListSageMakerNotebookInstanceSummaryByResourceGroup"
@@ -132950,10 +133286,34 @@
           "target": "com.azure.awsconnector#ListSageMakerNotebookInstanceSummaryBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteSecretsManagerResourcePolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSecretsManagerResourcePolicy"
+        },
+        {
+          "target": "com.azure.awsconnector#SecretsManagerResourcePoliciesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSecretsManagerResourcePolicy"
+        },
+        {
           "target": "com.azure.awsconnector#ListSecretsManagerResourcePolicyByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListSecretsManagerResourcePolicyBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteSecretsManagerSecret"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSecretsManagerSecret"
+        },
+        {
+          "target": "com.azure.awsconnector#SecretsManagerSecretsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSecretsManagerSecret"
         },
         {
           "target": "com.azure.awsconnector#ListSecretsManagerSecretByResourceGroup"
@@ -132962,10 +133322,34 @@
           "target": "com.azure.awsconnector#ListSecretsManagerSecretBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteSnsSubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSnsSubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#SnsSubscriptionsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSnsSubscription"
+        },
+        {
           "target": "com.azure.awsconnector#ListSnsSubscriptionByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListSnsSubscriptionBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteSnsTopic"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSnsTopic"
+        },
+        {
+          "target": "com.azure.awsconnector#SnsTopicsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSnsTopic"
         },
         {
           "target": "com.azure.awsconnector#ListSnsTopicByResourceGroup"
@@ -132974,10 +133358,34 @@
           "target": "com.azure.awsconnector#ListSnsTopicBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteSqsQueue"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSqsQueue"
+        },
+        {
+          "target": "com.azure.awsconnector#SqsQueuesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSqsQueue"
+        },
+        {
           "target": "com.azure.awsconnector#ListSqsQueueByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListSqsQueueBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteSsmInstanceInformation"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSsmInstanceInformation"
+        },
+        {
+          "target": "com.azure.awsconnector#SsmInstanceInformationsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSsmInstanceInformation"
         },
         {
           "target": "com.azure.awsconnector#ListSsmInstanceInformationByResourceGroup"
@@ -132986,10 +133394,34 @@
           "target": "com.azure.awsconnector#ListSsmInstanceInformationBySubscription"
         },
         {
+          "target": "com.azure.awsconnector#DeleteSsmParameter"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSsmParameter"
+        },
+        {
+          "target": "com.azure.awsconnector#SsmParametersCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSsmParameter"
+        },
+        {
           "target": "com.azure.awsconnector#ListSsmParameterByResourceGroup"
         },
         {
           "target": "com.azure.awsconnector#ListSsmParameterBySubscription"
+        },
+        {
+          "target": "com.azure.awsconnector#DeleteSsmResourceComplianceSummaryItem"
+        },
+        {
+          "target": "com.azure.awsconnector#UpdateSsmResourceComplianceSummaryItem"
+        },
+        {
+          "target": "com.azure.awsconnector#SsmResourceComplianceSummaryItemsCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetSsmResourceComplianceSummaryItem"
         },
         {
           "target": "com.azure.awsconnector#ListSsmResourceComplianceSummaryItemByResourceGroup"
@@ -132998,10 +133430,16 @@
           "target": "com.azure.awsconnector#ListSsmResourceComplianceSummaryItemBySubscription"
         },
         {
-          "target": "com.azure.awsconnector#ListWafv2LoggingConfigurationByResourceGroup"
+          "target": "com.azure.awsconnector#DeleteWafWebAclSummary"
         },
         {
-          "target": "com.azure.awsconnector#ListWafv2LoggingConfigurationBySubscription"
+          "target": "com.azure.awsconnector#UpdateWafWebAclSummary"
+        },
+        {
+          "target": "com.azure.awsconnector#WafWebAclSummariesCreateOrReplace"
+        },
+        {
+          "target": "com.azure.awsconnector#GetWafWebAclSummary"
         },
         {
           "target": "com.azure.awsconnector#ListWafWebAclSummaryByResourceGroup"
@@ -133010,460 +133448,22 @@
           "target": "com.azure.awsconnector#ListWafWebAclSummaryBySubscription"
         },
         {
-          "target": "com.azure.awsconnector#LogsLogGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LogsLogStreamsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LogsMetricFiltersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#LogsSubscriptionFiltersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Macie2JobSummariesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#MacieAllowListsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#NetworkFirewallFirewallPoliciesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#NetworkFirewallFirewallsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#NetworkFirewallRuleGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#OpenSearchDomainStatusesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#OrganizationsAccountsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#OrganizationsOrganizationsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RdsDbClustersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RdsDbInstancesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RdsDbSnapshotAttributesResultsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RdsDbSnapshotsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RdsEventSubscriptionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RdsExportTasksCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RedshiftClusterParameterGroupsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#RedshiftClustersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Route53DomainsDomainSummariesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Route53HostedZonesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#Route53ResourceRecordSetsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#S3AccessControlPoliciesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#S3AccessPointsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#S3BucketPoliciesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#S3BucketsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#S3ControlMultiRegionAccessPointPolicyDocumentsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SageMakerAppsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SageMakerNotebookInstanceSummariesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SecretsManagerResourcePoliciesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SecretsManagerSecretsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SnsSubscriptionsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SnsTopicsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SqsQueuesCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SsmInstanceInformationsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SsmParametersCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#SsmResourceComplianceSummaryItemsCreateOrReplace"
-        },
-        {
-          "target": "com.azure.awsconnector#StartEc2Instance"
-        },
-        {
-          "target": "com.azure.awsconnector#StopEc2Instance"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateAccessAnalyzerAnalyzer"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateAcmCertificateSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateApiGatewayRestApis"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateApiGatewayStage"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateAppSyncGraphqlApis"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateAutoScalingAutoScalingGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCloudFormationStack"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCloudFormationStackSet"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCloudFrontDistribution"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCloudTrailTrail"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCloudWatchAlarm"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCodeBuildProject"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateCodeBuildSourceCredentialsInfos"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateConfigServiceConfigurationRecorder"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateConfigServiceConfigurationRecorderStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateConfigServiceDeliveryChannel"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateDatabaseMigrationServiceReplicationInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateDaxCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateDynamoDbContinuousBackupsDescription"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateDynamoDbTable"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2AccountAttribute"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Address"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2FlowLog"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Image"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2InstanceStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Ipam"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2KeyPair"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2NetworkAcl"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2NetworkInterface"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2RouteTable"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2SecurityGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Snapshot"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Subnet"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Volume"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2Vpc"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2VpcEndpoint"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEc2VpcPeeringConnection"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEcrImageDetail"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEcrRepository"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEcsCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEcsService"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEcsTaskDefinition"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEfsFileSystem"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEfsMountTarget"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEksNodegroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticBeanstalkApplication"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticBeanstalkConfigurationTemplate"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticBeanstalkEnvironment"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingV2Listener"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingV2LoadBalancer"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingV2TargetGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateElasticLoadBalancingv2TargetHealthDescription"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateEmrCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateGuardDutyDetector"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamAccessKeyLastUsed"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamAccessKeyMetadataInfo"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamInstanceProfile"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamMfaDevice"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamPasswordPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamPolicyVersion"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamRole"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamServerCertificate"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateIamVirtualMfaDevice"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateKmsAlias"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateKmsKeys"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLambdaFunction"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLambdaFunctionCodeLocation"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLightsailBucket"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLightsailInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLogsLogGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLogsLogStream"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLogsMetricFilter"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateLogsSubscriptionFilter"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateMacie2JobSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateMacieAllowList"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateNetworkFirewallFirewall"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateNetworkFirewallFirewallPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateNetworkFirewallRuleGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateOpenSearchDomainStatus"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateOrganizationsAccount"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateOrganizationsOrganization"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRdsDbCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRdsDbInstance"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRdsDbSnapshot"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRdsDbSnapshotAttributesResult"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRdsEventSubscription"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRdsExportTask"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRedshiftCluster"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRedshiftClusterParameterGroup"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRoute53DomainsDomainSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRoute53HostedZone"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateRoute53ResourceRecordSet"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateS3AccessControlPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateS3AccessPoint"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateS3Bucket"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateS3BucketPolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateS3ControlMultiRegionAccessPointPolicyDocument"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSageMakerApp"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSageMakerNotebookInstanceSummary"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSecretsManagerResourcePolicy"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSecretsManagerSecret"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSnsSubscription"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSnsTopic"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSqsQueue"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSsmInstanceInformation"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSsmParameter"
-        },
-        {
-          "target": "com.azure.awsconnector#UpdateSsmResourceComplianceSummaryItem"
+          "target": "com.azure.awsconnector#DeleteWafv2LoggingConfiguration"
         },
         {
           "target": "com.azure.awsconnector#UpdateWafv2LoggingConfiguration"
         },
         {
-          "target": "com.azure.awsconnector#UpdateWafWebAclSummary"
-        },
-        {
           "target": "com.azure.awsconnector#Wafv2LoggingConfigurationsCreateOrReplace"
         },
         {
-          "target": "com.azure.awsconnector#WafWebAclSummariesCreateOrReplace"
+          "target": "com.azure.awsconnector#GetWafv2LoggingConfiguration"
+        },
+        {
+          "target": "com.azure.awsconnector#ListWafv2LoggingConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.awsconnector#ListWafv2LoggingConfigurationBySubscription"
         }
       ],
       "traits": {

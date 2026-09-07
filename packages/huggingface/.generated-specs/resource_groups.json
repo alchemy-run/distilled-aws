@@ -4712,31 +4712,31 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.huggingface.resource_groups#GetResourceGroup"
+        },
+        {
+          "target": "com.huggingface.resource_groups#UpdateResourceGroup"
+        },
+        {
+          "target": "com.huggingface.resource_groups#DeleteResourceGroup"
+        },
+        {
+          "target": "com.huggingface.resource_groups#JoinConfigureAuto"
+        },
+        {
           "target": "com.huggingface.resource_groups#AddUsers"
         },
         {
           "target": "com.huggingface.resource_groups#ChangeUserRole"
         },
         {
-          "target": "com.huggingface.resource_groups#CreateResourceGroup"
-        },
-        {
-          "target": "com.huggingface.resource_groups#DeleteResourceGroup"
-        },
-        {
-          "target": "com.huggingface.resource_groups#GetResourceGroup"
+          "target": "com.huggingface.resource_groups#RemoveUser"
         },
         {
           "target": "com.huggingface.resource_groups#GetResourceGroups"
         },
         {
-          "target": "com.huggingface.resource_groups#JoinConfigureAuto"
-        },
-        {
-          "target": "com.huggingface.resource_groups#RemoveUser"
-        },
-        {
-          "target": "com.huggingface.resource_groups#UpdateResourceGroup"
+          "target": "com.huggingface.resource_groups#CreateResourceGroup"
         }
       ],
       "traits": {

@@ -8388,235 +8388,235 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.adhybridhealthservice#AddAddsService"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#AddAddsServicesServiceMember"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#AddAddsServicesUserPreference"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#AddConfiguration"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#AddService"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#AddServiceAlertFeedback"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#AddServiceMember"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#DeleteAddsService"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#DeleteAddsServiceMember"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#DeleteAddsServicesUserPreference"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#DeleteService"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#DeleteServiceMember"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#DeleteServiceMemberData"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsService"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServiceForestSummary"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServiceMember"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadata"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataForGroup"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetrics"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServicesReplicationStatus"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetAddsServicesUserPreference"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetConfiguration"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetReportDevOps"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetService"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceFeatureAvailibility"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMember"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMemberConnectorMetadata"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMemberMetrics"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMemberServiceConfiguration"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadata"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadataForGroup"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceMetrics"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#GetServiceTenantWhitelisting"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAdDomainServiceMembers"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceMemberCredentials"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceMembers"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricMetadata"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsAverage"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsSum"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServicePremiumServices"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationDetails"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummary"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServices"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServiceServerAlerts"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAddsServicesServiceMembers"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListAlertAddsAlerts"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListConfigurationAddsConfigurations"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListDimensionAddsDimensions"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListIPAddressAggregatesByService"
+          "target": "com.azure.adhybridhealthservice#UpdateIPAddressAggregateSettings"
         },
         {
           "target": "com.azure.adhybridhealthservice#ListIPAddressAggregateSettings"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ListOperations"
+          "target": "com.azure.adhybridhealthservice#ListIPAddressAggregatesByService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ListServiceAlertFeedback"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceAlerts"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMemberAlerts"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMemberConnectors"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMemberCredentials"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMemberDataFreshness"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMemberGlobalConfiguration"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMembers"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMetricMetadata"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMetricsAverage"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMetricsSum"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceMonitoringConfigurations"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServicePremium"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServices"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ListServiceUserBadPasswordReport"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ServiceMembersListExportStatus"
-        },
-        {
-          "target": "com.azure.adhybridhealthservice#ServicesListAllRiskyIpDownloadReport"
+          "target": "com.azure.adhybridhealthservice#GetServiceMemberConnectorMetadata"
         },
         {
           "target": "com.azure.adhybridhealthservice#ServicesListCurrentRiskyIpDownloadReport"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListExportErrors"
+          "target": "com.azure.adhybridhealthservice#ServicesListAllRiskyIpDownloadReport"
         },
         {
-          "target": "com.azure.adhybridhealthservice#ServicesListExportErrorsV2"
+          "target": "com.azure.adhybridhealthservice#GetServiceTenantWhitelisting"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetServiceMemberServiceConfiguration"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetServiceMemberMetrics"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberGlobalConfiguration"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ServiceMembersListExportStatus"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberDataFreshness"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#DeleteServiceMemberData"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberCredentials"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberConnectors"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMemberAlerts"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#DeleteServiceMember"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetServiceMember"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddServiceMember"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMembers"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceUserBadPasswordReport"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMonitoringConfigurations"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#UpdateServiceMonitoringConfiguration"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadataForGroup"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetServiceMetricMetadata"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMetricMetadata"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMetricsSum"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceMetricsAverage"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetServiceMetrics"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceAlertFeedback"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddServiceAlertFeedback"
         },
         {
           "target": "com.azure.adhybridhealthservice#ServicesListExportStatus"
         },
         {
-          "target": "com.azure.adhybridhealthservice#UpdateAddsService"
+          "target": "com.azure.adhybridhealthservice#ServicesListExportErrorsV2"
         },
         {
-          "target": "com.azure.adhybridhealthservice#UpdateConfiguration"
+          "target": "com.azure.adhybridhealthservice#ServicesListExportErrors"
         },
         {
-          "target": "com.azure.adhybridhealthservice#UpdateIPAddressAggregateSettings"
+          "target": "com.azure.adhybridhealthservice#GetServiceFeatureAvailibility"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServiceAlerts"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#DeleteService"
         },
         {
           "target": "com.azure.adhybridhealthservice#UpdateService"
         },
         {
-          "target": "com.azure.adhybridhealthservice#UpdateServiceMonitoringConfiguration"
+          "target": "com.azure.adhybridhealthservice#GetService"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServicePremium"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddService"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListServices"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetReportDevOps"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#UpdateConfiguration"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddConfiguration"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetConfiguration"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListOperations"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServicePremiumServices"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMemberCredentials"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceServerAlerts"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#DeleteAddsServiceMember"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMember"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddAddsServicesServiceMember"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServicesServiceMembers"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationSummary"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServicesReplicationStatus"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceReplicationDetails"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadataForGroup"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetricMetadata"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricMetadata"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsSum"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMetricsAverage"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceMetrics"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServiceForestSummary"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#DeleteAddsServicesUserPreference"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddAddsServicesUserPreference"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsServicesUserPreference"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAdDomainServiceMembers"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServiceMembers"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListDimensionAddsDimensions"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListConfigurationAddsConfigurations"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAlertAddsAlerts"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#DeleteAddsService"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#UpdateAddsService"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#GetAddsService"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#AddAddsService"
+        },
+        {
+          "target": "com.azure.adhybridhealthservice#ListAddsServices"
         }
       ],
       "traits": {

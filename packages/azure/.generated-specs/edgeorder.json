@@ -6144,67 +6144,67 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.edgeorder#ListOrderByResourceGroup"
+        },
+        {
+          "target": "com.azure.edgeorder#OrderItemsReturn"
+        },
+        {
           "target": "com.azure.edgeorder#CancelOrderItem"
-        },
-        {
-          "target": "com.azure.edgeorder#CreateAddress"
-        },
-        {
-          "target": "com.azure.edgeorder#CreateOrderItem"
-        },
-        {
-          "target": "com.azure.edgeorder#DeleteAddress"
         },
         {
           "target": "com.azure.edgeorder#DeleteOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#GetAddress"
+          "target": "com.azure.edgeorder#UpdateOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#GetOrder"
+          "target": "com.azure.edgeorder#CreateOrderItem"
         },
         {
           "target": "com.azure.edgeorder#GetOrderItem"
         },
         {
+          "target": "com.azure.edgeorder#ListOrderItemByResourceGroup"
+        },
+        {
+          "target": "com.azure.edgeorder#GetOrder"
+        },
+        {
+          "target": "com.azure.edgeorder#DeleteAddress"
+        },
+        {
+          "target": "com.azure.edgeorder#UpdateAddress"
+        },
+        {
+          "target": "com.azure.edgeorder#CreateAddress"
+        },
+        {
+          "target": "com.azure.edgeorder#GetAddress"
+        },
+        {
           "target": "com.azure.edgeorder#ListAddressByResourceGroup"
+        },
+        {
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesMetadata"
+        },
+        {
+          "target": "com.azure.edgeorder#ListOrderBySubscription"
+        },
+        {
+          "target": "com.azure.edgeorder#ListOrderItemBySubscription"
+        },
+        {
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamilies"
+        },
+        {
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationConfigurations"
         },
         {
           "target": "com.azure.edgeorder#ListAddressBySubscription"
         },
         {
           "target": "com.azure.edgeorder#ListOperations"
-        },
-        {
-          "target": "com.azure.edgeorder#ListOrderByResourceGroup"
-        },
-        {
-          "target": "com.azure.edgeorder#ListOrderBySubscription"
-        },
-        {
-          "target": "com.azure.edgeorder#ListOrderItemByResourceGroup"
-        },
-        {
-          "target": "com.azure.edgeorder#ListOrderItemBySubscription"
-        },
-        {
-          "target": "com.azure.edgeorder#ListProductsAndConfigurationConfigurations"
-        },
-        {
-          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamilies"
-        },
-        {
-          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesMetadata"
-        },
-        {
-          "target": "com.azure.edgeorder#OrderItemsReturn"
-        },
-        {
-          "target": "com.azure.edgeorder#UpdateAddress"
-        },
-        {
-          "target": "com.azure.edgeorder#UpdateOrderItem"
         }
       ],
       "traits": {

@@ -637,10 +637,10 @@
           "target": "com.azure.carbon#CarbonServiceQueryCarbonEmissionDataAvailableDateRange"
         },
         {
-          "target": "com.azure.carbon#CarbonServiceQueryCarbonEmissionReports"
+          "target": "com.azure.carbon#ListOperations"
         },
         {
-          "target": "com.azure.carbon#ListOperations"
+          "target": "com.azure.carbon#CarbonServiceQueryCarbonEmissionReports"
         }
       ],
       "traits": {

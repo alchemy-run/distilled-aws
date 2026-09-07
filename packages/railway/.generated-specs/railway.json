@@ -61271,24 +61271,6 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.railway.api#AcceptProjectInvitation"
-        },
-        {
-          "target": "com.railway.api#AddAccessGroupMember"
-        },
-        {
-          "target": "com.railway.api#AddFeatureFlag"
-        },
-        {
-          "target": "com.railway.api#AddProjectFeatureFlag"
-        },
-        {
-          "target": "com.railway.api#AddProjectMember"
-        },
-        {
-          "target": "com.railway.api#AddServiceFeatureFlag"
-        },
-        {
           "target": "com.railway.api#AdminVolumeInstancesForVolume"
         },
         {
@@ -61304,18 +61286,6 @@
           "target": "com.railway.api#ApiTokens"
         },
         {
-          "target": "com.railway.api#ApplyEnvironmentChangeSet"
-        },
-        {
-          "target": "com.railway.api#ApproveDeployment"
-        },
-        {
-          "target": "com.railway.api#ApproveSshSignup"
-        },
-        {
-          "target": "com.railway.api#AttachAccessGroupProject"
-        },
-        {
           "target": "com.railway.api#AuditLog"
         },
         {
@@ -61323,9 +61293,6 @@
         },
         {
           "target": "com.railway.api#AuditLogs"
-        },
-        {
-          "target": "com.railway.api#BaseEnvironmentOverride"
         },
         {
           "target": "com.railway.api#BotScopeBindings"
@@ -61340,34 +61307,10 @@
           "target": "com.railway.api#BuildLogs"
         },
         {
-          "target": "com.railway.api#CancelDeployment"
-        },
-        {
-          "target": "com.railway.api#CancelLoginSession"
-        },
-        {
-          "target": "com.railway.api#CancelPitrHaWorkflow"
+          "target": "com.railway.api#PreviewCanvasViewMerge"
         },
         {
           "target": "com.railway.api#ChangelogBlockImage"
-        },
-        {
-          "target": "com.railway.api#ClaimProject"
-        },
-        {
-          "target": "com.railway.api#ClearEgressGatewayAssociation"
-        },
-        {
-          "target": "com.railway.api#ClearPitrHaWorkflowProgress"
-        },
-        {
-          "target": "com.railway.api#CliAuthEventTrack"
-        },
-        {
-          "target": "com.railway.api#CliEventTrack"
-        },
-        {
-          "target": "com.railway.api#CloneTemplate"
         },
         {
           "target": "com.railway.api#CloudAgent"
@@ -61382,235 +61325,16 @@
           "target": "com.railway.api#CloudAgentConsoleSessions"
         },
         {
-          "target": "com.railway.api#CloudAgentHarnessToken"
-        },
-        {
           "target": "com.railway.api#CloudAgents"
         },
         {
-          "target": "com.railway.api#CloudAgentSleep"
-        },
-        {
-          "target": "com.railway.api#CloudAgentStateReport"
-        },
-        {
-          "target": "com.railway.api#CloudAgentWake"
-        },
-        {
           "target": "com.railway.api#ComplianceAgreements"
-        },
-        {
-          "target": "com.railway.api#ConfirmEmailChange"
-        },
-        {
-          "target": "com.railway.api#ConfirmProjectTransfer"
-        },
-        {
-          "target": "com.railway.api#ConnectService"
-        },
-        {
-          "target": "com.railway.api#CreateAccessGroup"
-        },
-        {
-          "target": "com.railway.api#CreateApiToken"
-        },
-        {
-          "target": "com.railway.api#CreateBucket"
-        },
-        {
-          "target": "com.railway.api#CreateCloudAgent"
-        },
-        {
-          "target": "com.railway.api#CreateCloudAgentCheckpoint"
-        },
-        {
-          "target": "com.railway.api#CreateCustomDomain"
-        },
-        {
-          "target": "com.railway.api#CreateDeploymentInstanceExecution"
-        },
-        {
-          "target": "com.railway.api#CreateEgressGatewayAssociation"
-        },
-        {
-          "target": "com.railway.api#CreateEnvironment"
-        },
-        {
-          "target": "com.railway.api#CreateIntegration"
-        },
-        {
-          "target": "com.railway.api#CreateJobApplication"
-        },
-        {
-          "target": "com.railway.api#CreateLoginSession"
-        },
-        {
-          "target": "com.railway.api#CreateNotificationRule"
-        },
-        {
-          "target": "com.railway.api#CreateObservabilityDashboard"
-        },
-        {
-          "target": "com.railway.api#CreateProject"
-        },
-        {
-          "target": "com.railway.api#CreateProjectInvitation"
-        },
-        {
-          "target": "com.railway.api#CreateProjectToken"
-        },
-        {
-          "target": "com.railway.api#CreateRailwayDomainDnsRecord"
-        },
-        {
-          "target": "com.railway.api#CreateSandbox"
-        },
-        {
-          "target": "com.railway.api#CreateSandboxCheckpoint"
-        },
-        {
-          "target": "com.railway.api#CreateService"
-        },
-        {
-          "target": "com.railway.api#CreateServiceDomain"
-        },
-        {
-          "target": "com.railway.api#CreateSignal"
-        },
-        {
-          "target": "com.railway.api#CreateSshPublicKey"
-        },
-        {
-          "target": "com.railway.api#CreateTcpProxy"
-        },
-        {
-          "target": "com.railway.api#CreateTrustedDomain"
-        },
-        {
-          "target": "com.railway.api#CreateTwoFactorInfo"
-        },
-        {
-          "target": "com.railway.api#CreateVolume"
-        },
-        {
-          "target": "com.railway.api#CreateVolumeInstanceBackup"
-        },
-        {
-          "target": "com.railway.api#CreateWorkspaceInviteCode"
         },
         {
           "target": "com.railway.api#CustomDomain"
         },
         {
           "target": "com.railway.api#CustomDomainAvailable"
-        },
-        {
-          "target": "com.railway.api#CustomDomainIssueCertificate"
-        },
-        {
-          "target": "com.railway.api#CustomerCreateFreePlanSubscription"
-        },
-        {
-          "target": "com.railway.api#CustomerTogglePayoutsToCredits"
-        },
-        {
-          "target": "com.railway.api#DeleteAccessGroup"
-        },
-        {
-          "target": "com.railway.api#DeleteApiToken"
-        },
-        {
-          "target": "com.railway.api#DeleteCloudAgent"
-        },
-        {
-          "target": "com.railway.api#DeleteCloudAgentCheckpoint"
-        },
-        {
-          "target": "com.railway.api#DeleteCustomDomain"
-        },
-        {
-          "target": "com.railway.api#DeleteEnvironment"
-        },
-        {
-          "target": "com.railway.api#DeleteIntegration"
-        },
-        {
-          "target": "com.railway.api#DeleteNotificationRule"
-        },
-        {
-          "target": "com.railway.api#DeletePasskey"
-        },
-        {
-          "target": "com.railway.api#DeletePrivateNetworkEndpoint"
-        },
-        {
-          "target": "com.railway.api#DeletePrivateNetworksForEnvironment"
-        },
-        {
-          "target": "com.railway.api#DeleteProject"
-        },
-        {
-          "target": "com.railway.api#DeleteProjectInvitation"
-        },
-        {
-          "target": "com.railway.api#DeleteProjectSchedule"
-        },
-        {
-          "target": "com.railway.api#DeleteProjectToken"
-        },
-        {
-          "target": "com.railway.api#DeleteRailwayDomainDnsRecord"
-        },
-        {
-          "target": "com.railway.api#DeleteSandboxCheckpoint"
-        },
-        {
-          "target": "com.railway.api#DeleteService"
-        },
-        {
-          "target": "com.railway.api#DeleteServiceDomain"
-        },
-        {
-          "target": "com.railway.api#DeleteSession"
-        },
-        {
-          "target": "com.railway.api#DeleteSignal"
-        },
-        {
-          "target": "com.railway.api#DeleteSshPublicKey"
-        },
-        {
-          "target": "com.railway.api#DeleteTcpProxy"
-        },
-        {
-          "target": "com.railway.api#DeleteTemplate"
-        },
-        {
-          "target": "com.railway.api#DeleteTrustedDomain"
-        },
-        {
-          "target": "com.railway.api#DeleteTwoFactorInfo"
-        },
-        {
-          "target": "com.railway.api#DeleteUser"
-        },
-        {
-          "target": "com.railway.api#DeleteVariable"
-        },
-        {
-          "target": "com.railway.api#DeleteVolume"
-        },
-        {
-          "target": "com.railway.api#DeleteVolumeInstanceBackup"
-        },
-        {
-          "target": "com.railway.api#DeleteWorkspace"
-        },
-        {
-          "target": "com.railway.api#DeployEnvironmentTrigger"
-        },
-        {
-          "target": "com.railway.api#DeployGithubRepo"
         },
         {
           "target": "com.railway.api#Deployment"
@@ -61625,46 +61349,13 @@
           "target": "com.railway.api#DeploymentLogs"
         },
         {
-          "target": "com.railway.api#DeploymentRollback"
-        },
-        {
-          "target": "com.railway.api#Deployments"
-        },
-        {
           "target": "com.railway.api#DeploymentSnapshot"
-        },
-        {
-          "target": "com.railway.api#DeploymentTriggerCreate"
-        },
-        {
-          "target": "com.railway.api#DeploymentTriggerDelete"
         },
         {
           "target": "com.railway.api#DeploymentTriggers"
         },
         {
-          "target": "com.railway.api#DeploymentTriggerUpdate"
-        },
-        {
-          "target": "com.railway.api#DeployServiceInstance"
-        },
-        {
-          "target": "com.railway.api#DetachAccessGroupProject"
-        },
-        {
-          "target": "com.railway.api#DisablePitrForHaCluster"
-        },
-        {
-          "target": "com.railway.api#DisableServiceCdn"
-        },
-        {
-          "target": "com.railway.api#DisconnectService"
-        },
-        {
-          "target": "com.railway.api#DisconnectUserDiscord"
-        },
-        {
-          "target": "com.railway.api#DismissServiceInstanceVulnRemediation"
+          "target": "com.railway.api#Deployments"
         },
         {
           "target": "com.railway.api#DnsQueryLogs"
@@ -61673,28 +61364,19 @@
           "target": "com.railway.api#Domains"
         },
         {
-          "target": "com.railway.api#EgressGatewayRollbackFromHA"
+          "target": "com.railway.api#PreviewEgressGatewayHA"
+        },
+        {
+          "target": "com.railway.api#PreviewEgressGatewayLegacy"
         },
         {
           "target": "com.railway.api#EgressGateways"
         },
         {
-          "target": "com.railway.api#EgressGatewayUpgradeToHA"
-        },
-        {
-          "target": "com.railway.api#EmailChangeInitiate"
-        },
-        {
-          "target": "com.railway.api#EnablePitrForHaCluster"
-        },
-        {
-          "target": "com.railway.api#EnableServiceCdn"
-        },
-        {
           "target": "com.railway.api#Environment"
         },
         {
-          "target": "com.railway.api#EnvironmentApplyChangeSet"
+          "target": "com.railway.api#ApplyEnvironmentChangeSet"
         },
         {
           "target": "com.railway.api#EnvironmentHasLegacyStaticEgress"
@@ -61703,10 +61385,7 @@
           "target": "com.railway.api#EnvironmentLogs"
         },
         {
-          "target": "com.railway.api#EnvironmentPatchCommit"
-        },
-        {
-          "target": "com.railway.api#EnvironmentPatchCommitStaged"
+          "target": "com.railway.api#PatchEnvironment"
         },
         {
           "target": "com.railway.api#EnvironmentPatches"
@@ -61715,16 +61394,10 @@
           "target": "com.railway.api#EnvironmentPendingWork"
         },
         {
-          "target": "com.railway.api#Environments"
-        },
-        {
-          "target": "com.railway.api#EnvironmentStageChanges"
-        },
-        {
           "target": "com.railway.api#EnvironmentStagedChanges"
         },
         {
-          "target": "com.railway.api#EnvironmentUnskipService"
+          "target": "com.railway.api#Environments"
         },
         {
           "target": "com.railway.api#EstimatedUsage"
@@ -61733,16 +61406,7 @@
           "target": "com.railway.api#Events"
         },
         {
-          "target": "com.railway.api#ExecSandbox"
-        },
-        {
           "target": "com.railway.api#ExternalWorkspaces"
-        },
-        {
-          "target": "com.railway.api#FairUseAgree"
-        },
-        {
-          "target": "com.railway.api#ForkCloudAgent"
         },
         {
           "target": "com.railway.api#FunctionRuntime"
@@ -61751,13 +61415,10 @@
           "target": "com.railway.api#FunctionRuntimes"
         },
         {
-          "target": "com.railway.api#GenerateRecoveryCode"
+          "target": "com.railway.api#GitHubRepoAccessAvailable"
         },
         {
-          "target": "com.railway.api#GenerateShellToken"
-        },
-        {
-          "target": "com.railway.api#GenerateTemplate"
+          "target": "com.railway.api#GitHubSshKeys"
         },
         {
           "target": "com.railway.api#GithubIsRepoNameAvailable"
@@ -61772,25 +61433,16 @@
           "target": "com.railway.api#GithubRepo"
         },
         {
-          "target": "com.railway.api#GitHubRepoAccessAvailable"
-        },
-        {
           "target": "com.railway.api#GithubRepoBranches"
         },
         {
           "target": "com.railway.api#GithubRepos"
         },
         {
-          "target": "com.railway.api#GitHubSshKeys"
-        },
-        {
           "target": "com.railway.api#GithubWritableScopes"
         },
         {
           "target": "com.railway.api#HerokuApps"
-        },
-        {
-          "target": "com.railway.api#HerokuImportVariables"
         },
         {
           "target": "com.railway.api#HttpDurationMetrics"
@@ -61805,9 +61457,6 @@
           "target": "com.railway.api#HttpMetricsGroupedByStatus"
         },
         {
-          "target": "com.railway.api#ImportDockerCompose"
-        },
-        {
           "target": "com.railway.api#IntegrationAuth"
         },
         {
@@ -61820,40 +61469,7 @@
           "target": "com.railway.api#InviteCode"
         },
         {
-          "target": "com.railway.api#InviteCodeUse"
-        },
-        {
-          "target": "com.railway.api#InviteWorkspaceUser"
-        },
-        {
-          "target": "com.railway.api#LeaveProject"
-        },
-        {
-          "target": "com.railway.api#LeaveUserBeta"
-        },
-        {
-          "target": "com.railway.api#LeaveWorkspace"
-        },
-        {
-          "target": "com.railway.api#ListVolumeInstanceBackup"
-        },
-        {
-          "target": "com.railway.api#ListVolumeInstanceBackupSchedule"
-        },
-        {
-          "target": "com.railway.api#LockVolumeInstanceBackup"
-        },
-        {
-          "target": "com.railway.api#LoginSessionAuth"
-        },
-        {
-          "target": "com.railway.api#LoginSessionConsume"
-        },
-        {
           "target": "com.railway.api#Me"
-        },
-        {
-          "target": "com.railway.api#MergeCanvasView"
         },
         {
           "target": "com.railway.api#Metrics"
@@ -61880,9 +61496,6 @@
           "target": "com.railway.api#Passkeys"
         },
         {
-          "target": "com.railway.api#PatchEnvironment"
-        },
-        {
           "target": "com.railway.api#PitrHaClusterReplicationHealth"
         },
         {
@@ -61895,25 +61508,7 @@
           "target": "com.railway.api#Preferences"
         },
         {
-          "target": "com.railway.api#PreviewCanvasViewMerge"
-        },
-        {
-          "target": "com.railway.api#PreviewEgressGatewayHA"
-        },
-        {
-          "target": "com.railway.api#PreviewEgressGatewayHAMigration"
-        },
-        {
-          "target": "com.railway.api#PreviewEgressGatewayLegacy"
-        },
-        {
-          "target": "com.railway.api#PrivateNetworkCreateOrGet"
-        },
-        {
           "target": "com.railway.api#PrivateNetworkEndpoint"
-        },
-        {
-          "target": "com.railway.api#PrivateNetworkEndpointCreateOrGet"
         },
         {
           "target": "com.railway.api#PrivateNetworkEndpointNameAvailable"
@@ -61940,25 +61535,10 @@
           "target": "com.railway.api#ProjectInviteCode"
         },
         {
-          "target": "com.railway.api#ProjectInviteUser"
-        },
-        {
           "target": "com.railway.api#ProjectMembers"
         },
         {
           "target": "com.railway.api#ProjectResourceAccess"
-        },
-        {
-          "target": "com.railway.api#Projects"
-        },
-        {
-          "target": "com.railway.api#ProjectsByIds"
-        },
-        {
-          "target": "com.railway.api#ProjectScheduleDeleteCancel"
-        },
-        {
-          "target": "com.railway.api#ProjectScheduleDeleteForce"
         },
         {
           "target": "com.railway.api#ProjectServiceUsage"
@@ -61970,19 +61550,16 @@
           "target": "com.railway.api#ProjectTokens"
         },
         {
-          "target": "com.railway.api#ProjectTransferInitiate"
-        },
-        {
           "target": "com.railway.api#ProjectWorkspaceMembers"
         },
         {
+          "target": "com.railway.api#Projects"
+        },
+        {
+          "target": "com.railway.api#ProjectsByIds"
+        },
+        {
           "target": "com.railway.api#PublicStats"
-        },
-        {
-          "target": "com.railway.api#PublishTemplate"
-        },
-        {
-          "target": "com.railway.api#PurgeServiceCache"
         },
         {
           "target": "com.railway.api#RailwayDomain"
@@ -61997,85 +61574,13 @@
           "target": "com.railway.api#RailwayDomains"
         },
         {
-          "target": "com.railway.api#ReadNotificationDeliveriesMarkAs"
-        },
-        {
-          "target": "com.railway.api#RedeployDeployment"
-        },
-        {
-          "target": "com.railway.api#RedeployServiceInstance"
-        },
-        {
           "target": "com.railway.api#ReferralInfo"
         },
         {
           "target": "com.railway.api#Regions"
         },
         {
-          "target": "com.railway.api#RemoveAccessGroupMember"
-        },
-        {
-          "target": "com.railway.api#RemoveBotScopeBinding"
-        },
-        {
-          "target": "com.railway.api#RemoveDeployment"
-        },
-        {
-          "target": "com.railway.api#RemoveFeatureFlag"
-        },
-        {
-          "target": "com.railway.api#RemoveProjectFeatureFlag"
-        },
-        {
-          "target": "com.railway.api#RemoveProjectMember"
-        },
-        {
-          "target": "com.railway.api#RemoveProviderAuth"
-        },
-        {
-          "target": "com.railway.api#RemoveServiceFeatureFlag"
-        },
-        {
-          "target": "com.railway.api#RemoveUsageLimit"
-        },
-        {
-          "target": "com.railway.api#RemoveUserFlag"
-        },
-        {
-          "target": "com.railway.api#RemoveWorkspaceUser"
-        },
-        {
-          "target": "com.railway.api#RenameEnvironment"
-        },
-        {
-          "target": "com.railway.api#RenamePrivateNetworkEndpoint"
-        },
-        {
-          "target": "com.railway.api#RenameSandboxCheckpoint"
-        },
-        {
-          "target": "com.railway.api#ReplaceSignal"
-        },
-        {
-          "target": "com.railway.api#ResendProjectInvitation"
-        },
-        {
-          "target": "com.railway.api#ResetBucketCredentials"
-        },
-        {
-          "target": "com.railway.api#ResetObservabilityDashboard"
-        },
-        {
           "target": "com.railway.api#ResourceAccess"
-        },
-        {
-          "target": "com.railway.api#RestartDeployment"
-        },
-        {
-          "target": "com.railway.api#RestoreVolumeInstanceBackup"
-        },
-        {
-          "target": "com.railway.api#RestoreVolumeInstancePITR"
         },
         {
           "target": "com.railway.api#Sandbox"
@@ -62084,22 +61589,13 @@
           "target": "com.railway.api#SandboxCheckpoints"
         },
         {
-          "target": "com.railway.api#SandboxDestroy"
-        },
-        {
-          "target": "com.railway.api#Sandboxes"
-        },
-        {
-          "target": "com.railway.api#SandboxHeartbeat"
-        },
-        {
           "target": "com.railway.api#SandboxSessions"
         },
         {
           "target": "com.railway.api#SandboxTemplateBuild"
         },
         {
-          "target": "com.railway.api#SearchTemplate"
+          "target": "com.railway.api#Sandboxes"
         },
         {
           "target": "com.railway.api#Service"
@@ -62114,21 +61610,6 @@
           "target": "com.railway.api#ServiceInstanceAutoDeployStatus"
         },
         {
-          "target": "com.railway.api#ServiceInstanceAutoDeployUpdate"
-        },
-        {
-          "target": "com.railway.api#ServiceInstanceAutoUpdateScheduleUpdate"
-        },
-        {
-          "target": "com.railway.api#ServiceInstanceAutoUpdateSnooze"
-        },
-        {
-          "target": "com.railway.api#ServiceInstanceAutoUpdateSnoozeClear"
-        },
-        {
-          "target": "com.railway.api#ServiceInstanceDeployV2"
-        },
-        {
           "target": "com.railway.api#ServiceInstanceIsUpdatable"
         },
         {
@@ -62138,40 +61619,7 @@
           "target": "com.railway.api#ServiceInstanceLimits"
         },
         {
-          "target": "com.railway.api#ServiceInstanceVulnRemediationPatchNow"
-        },
-        {
-          "target": "com.railway.api#ServiceRemoveUpstreamUrl"
-        },
-        {
           "target": "com.railway.api#Sessions"
-        },
-        {
-          "target": "com.railway.api#SetAgentUsageLimit"
-        },
-        {
-          "target": "com.railway.api#SetEnvironmentPreviewChange"
-        },
-        {
-          "target": "com.railway.api#SetProjectFavorite"
-        },
-        {
-          "target": "com.railway.api#SetRailwayDomainNameserver"
-        },
-        {
-          "target": "com.railway.api#SetServiceUnderAttackMode"
-        },
-        {
-          "target": "com.railway.api#SetupAgentEventTrack"
-        },
-        {
-          "target": "com.railway.api#SetUsageLimit"
-        },
-        {
-          "target": "com.railway.api#SetUserFlag"
-        },
-        {
-          "target": "com.railway.api#SharedVariableConfigure"
         },
         {
           "target": "com.railway.api#Signal"
@@ -62180,19 +61628,7 @@
           "target": "com.railway.api#SignalChanges"
         },
         {
-          "target": "com.railway.api#SignalDefaultSet"
-        },
-        {
           "target": "com.railway.api#SignalEvaluate"
-        },
-        {
-          "target": "com.railway.api#SignalRollback"
-        },
-        {
-          "target": "com.railway.api#SignalRuleSet"
-        },
-        {
-          "target": "com.railway.api#SignalRuleUnset"
         },
         {
           "target": "com.railway.api#Signals"
@@ -62204,22 +61640,19 @@
           "target": "com.railway.api#SshSignupInfo"
         },
         {
-          "target": "com.railway.api#StopDeployment"
-        },
-        {
           "target": "com.railway.api#TcpProxies"
         },
         {
           "target": "com.railway.api#Template"
         },
         {
-          "target": "com.railway.api#TemplateDeployV2"
-        },
-        {
           "target": "com.railway.api#TemplateMetrics"
         },
         {
-          "target": "com.railway.api#TemplateRevert"
+          "target": "com.railway.api#SearchTemplate"
+        },
+        {
+          "target": "com.railway.api#TemplateSourceForProject"
         },
         {
           "target": "com.railway.api#Templates"
@@ -62228,130 +61661,10 @@
           "target": "com.railway.api#TemplatesCount"
         },
         {
-          "target": "com.railway.api#TemplateServiceSourceEject"
-        },
-        {
-          "target": "com.railway.api#TemplateSourceForProject"
-        },
-        {
-          "target": "com.railway.api#TestWebhook"
-        },
-        {
-          "target": "com.railway.api#TransferProject"
-        },
-        {
-          "target": "com.railway.api#TrustedDomainRetriggerVerification"
-        },
-        {
           "target": "com.railway.api#TrustedDomains"
         },
         {
           "target": "com.railway.api#TwoFactorInfo"
-        },
-        {
-          "target": "com.railway.api#TwoFactorInfoSecret"
-        },
-        {
-          "target": "com.railway.api#UnpublishTemplate"
-        },
-        {
-          "target": "com.railway.api#UpdateAccessGroup"
-        },
-        {
-          "target": "com.railway.api#UpdateBucket"
-        },
-        {
-          "target": "com.railway.api#UpdateCustomDomain"
-        },
-        {
-          "target": "com.railway.api#UpdateGithubRepo"
-        },
-        {
-          "target": "com.railway.api#UpdateIntegration"
-        },
-        {
-          "target": "com.railway.api#UpdateNotificationRule"
-        },
-        {
-          "target": "com.railway.api#UpdateObservabilityDashboard"
-        },
-        {
-          "target": "com.railway.api#UpdatePreference"
-        },
-        {
-          "target": "com.railway.api#UpdateProject"
-        },
-        {
-          "target": "com.railway.api#UpdateProjectMember"
-        },
-        {
-          "target": "com.railway.api#UpdateRailwayDomain"
-        },
-        {
-          "target": "com.railway.api#UpdateRailwayDomainDnsRecord"
-        },
-        {
-          "target": "com.railway.api#UpdateReferralInfo"
-        },
-        {
-          "target": "com.railway.api#UpdateService"
-        },
-        {
-          "target": "com.railway.api#UpdateServiceDomain"
-        },
-        {
-          "target": "com.railway.api#UpdateServiceEdgeConfig"
-        },
-        {
-          "target": "com.railway.api#UpdateServiceEdgeRules"
-        },
-        {
-          "target": "com.railway.api#UpdateServiceInstance"
-        },
-        {
-          "target": "com.railway.api#UpdateServiceInstanceLimit"
-        },
-        {
-          "target": "com.railway.api#UpdateTemplateVolume"
-        },
-        {
-          "target": "com.railway.api#UpdateTrustedDomain"
-        },
-        {
-          "target": "com.railway.api#UpdateUserProfile"
-        },
-        {
-          "target": "com.railway.api#UpdateUserTerm"
-        },
-        {
-          "target": "com.railway.api#UpdateVolume"
-        },
-        {
-          "target": "com.railway.api#UpdateVolumeInstance"
-        },
-        {
-          "target": "com.railway.api#UpdateVolumeInstanceBackupSchedule"
-        },
-        {
-          "target": "com.railway.api#UpdateWorkspace"
-        },
-        {
-          "target": "com.railway.api#UpdateWorkspacePolicyItem"
-        },
-        {
-          "target": "com.railway.api#UpdateWorkspaceTwoFactorEnforcement"
-        },
-        {
-          "target": "com.railway.api#UpsertEnvironmentConfigPlanComment"
-        },
-        {
-          "target": "com.railway.api#UpsertSlackChannel"
-        },
-        {
-          "target": "com.railway.api#UpsertVariable"
-        },
-        {
-          "target": "com.railway.api#UpsertVariableCollection"
         },
         {
           "target": "com.railway.api#Usage"
@@ -62360,13 +61673,7 @@
           "target": "com.railway.api#UserProfile"
         },
         {
-          "target": "com.railway.api#ValidateRecoveryCode"
-        },
-        {
           "target": "com.railway.api#ValidateServiceEdgeRules"
-        },
-        {
-          "target": "com.railway.api#ValidateTwoFactorInfo"
         },
         {
           "target": "com.railway.api#Variables"
@@ -62378,10 +61685,13 @@
           "target": "com.railway.api#VercelInfo"
         },
         {
-          "target": "com.railway.api#VerifyLoginSession"
+          "target": "com.railway.api#VolumeInstance"
         },
         {
-          "target": "com.railway.api#VolumeInstance"
+          "target": "com.railway.api#ListVolumeInstanceBackup"
+        },
+        {
+          "target": "com.railway.api#ListVolumeInstanceBackupSchedule"
         },
         {
           "target": "com.railway.api#VolumeInstancePitrRestoreEstimate"
@@ -62399,13 +61709,694 @@
           "target": "com.railway.api#WorkspaceIdentityProviders"
         },
         {
+          "target": "com.railway.api#WorkspacePolicy"
+        },
+        {
+          "target": "com.railway.api#WorkspacePolicySelectableDeploySources"
+        },
+        {
+          "target": "com.railway.api#WorkspaceTemplates"
+        },
+        {
+          "target": "com.railway.api#WorkspaceUsageTotals"
+        },
+        {
+          "target": "com.railway.api#CreateAccessGroup"
+        },
+        {
+          "target": "com.railway.api#DeleteAccessGroup"
+        },
+        {
+          "target": "com.railway.api#AddAccessGroupMember"
+        },
+        {
+          "target": "com.railway.api#RemoveAccessGroupMember"
+        },
+        {
+          "target": "com.railway.api#AttachAccessGroupProject"
+        },
+        {
+          "target": "com.railway.api#DetachAccessGroupProject"
+        },
+        {
+          "target": "com.railway.api#UpdateAccessGroup"
+        },
+        {
+          "target": "com.railway.api#SetAgentUsageLimit"
+        },
+        {
+          "target": "com.railway.api#CreateApiToken"
+        },
+        {
+          "target": "com.railway.api#DeleteApiToken"
+        },
+        {
+          "target": "com.railway.api#BaseEnvironmentOverride"
+        },
+        {
+          "target": "com.railway.api#RemoveBotScopeBinding"
+        },
+        {
+          "target": "com.railway.api#CreateBucket"
+        },
+        {
+          "target": "com.railway.api#ResetBucketCredentials"
+        },
+        {
+          "target": "com.railway.api#UpdateBucket"
+        },
+        {
+          "target": "com.railway.api#CancelPitrHaWorkflow"
+        },
+        {
+          "target": "com.railway.api#MergeCanvasView"
+        },
+        {
+          "target": "com.railway.api#ClearPitrHaWorkflowProgress"
+        },
+        {
+          "target": "com.railway.api#CliAuthEventTrack"
+        },
+        {
+          "target": "com.railway.api#CliEventTrack"
+        },
+        {
+          "target": "com.railway.api#CreateCloudAgentCheckpoint"
+        },
+        {
+          "target": "com.railway.api#DeleteCloudAgentCheckpoint"
+        },
+        {
+          "target": "com.railway.api#CreateCloudAgent"
+        },
+        {
+          "target": "com.railway.api#DeleteCloudAgent"
+        },
+        {
+          "target": "com.railway.api#ForkCloudAgent"
+        },
+        {
+          "target": "com.railway.api#CloudAgentHarnessToken"
+        },
+        {
+          "target": "com.railway.api#CloudAgentSleep"
+        },
+        {
+          "target": "com.railway.api#CloudAgentStateReport"
+        },
+        {
+          "target": "com.railway.api#CloudAgentWake"
+        },
+        {
+          "target": "com.railway.api#CreateCustomDomain"
+        },
+        {
+          "target": "com.railway.api#DeleteCustomDomain"
+        },
+        {
+          "target": "com.railway.api#CustomDomainIssueCertificate"
+        },
+        {
+          "target": "com.railway.api#UpdateCustomDomain"
+        },
+        {
+          "target": "com.railway.api#CustomerCreateFreePlanSubscription"
+        },
+        {
+          "target": "com.railway.api#CustomerTogglePayoutsToCredits"
+        },
+        {
+          "target": "com.railway.api#ApproveDeployment"
+        },
+        {
+          "target": "com.railway.api#CancelDeployment"
+        },
+        {
+          "target": "com.railway.api#CreateDeploymentInstanceExecution"
+        },
+        {
+          "target": "com.railway.api#RedeployDeployment"
+        },
+        {
+          "target": "com.railway.api#RemoveDeployment"
+        },
+        {
+          "target": "com.railway.api#RestartDeployment"
+        },
+        {
+          "target": "com.railway.api#DeploymentRollback"
+        },
+        {
+          "target": "com.railway.api#StopDeployment"
+        },
+        {
+          "target": "com.railway.api#DeploymentTriggerCreate"
+        },
+        {
+          "target": "com.railway.api#DeploymentTriggerDelete"
+        },
+        {
+          "target": "com.railway.api#DeploymentTriggerUpdate"
+        },
+        {
+          "target": "com.railway.api#DisablePitrForHaCluster"
+        },
+        {
+          "target": "com.railway.api#DisableServiceCdn"
+        },
+        {
+          "target": "com.railway.api#ImportDockerCompose"
+        },
+        {
+          "target": "com.railway.api#CreateEgressGatewayAssociation"
+        },
+        {
+          "target": "com.railway.api#ClearEgressGatewayAssociation"
+        },
+        {
+          "target": "com.railway.api#PreviewEgressGatewayHAMigration"
+        },
+        {
+          "target": "com.railway.api#EgressGatewayRollbackFromHA"
+        },
+        {
+          "target": "com.railway.api#EgressGatewayUpgradeToHA"
+        },
+        {
+          "target": "com.railway.api#ConfirmEmailChange"
+        },
+        {
+          "target": "com.railway.api#EmailChangeInitiate"
+        },
+        {
+          "target": "com.railway.api#EnablePitrForHaCluster"
+        },
+        {
+          "target": "com.railway.api#EnableServiceCdn"
+        },
+        {
+          "target": "com.railway.api#EnvironmentApplyChangeSet"
+        },
+        {
+          "target": "com.railway.api#UpsertEnvironmentConfigPlanComment"
+        },
+        {
+          "target": "com.railway.api#CreateEnvironment"
+        },
+        {
+          "target": "com.railway.api#DeleteEnvironment"
+        },
+        {
+          "target": "com.railway.api#EnvironmentPatchCommit"
+        },
+        {
+          "target": "com.railway.api#EnvironmentPatchCommitStaged"
+        },
+        {
+          "target": "com.railway.api#SetEnvironmentPreviewChange"
+        },
+        {
+          "target": "com.railway.api#RenameEnvironment"
+        },
+        {
+          "target": "com.railway.api#EnvironmentStageChanges"
+        },
+        {
+          "target": "com.railway.api#DeployEnvironmentTrigger"
+        },
+        {
+          "target": "com.railway.api#EnvironmentUnskipService"
+        },
+        {
+          "target": "com.railway.api#FairUseAgree"
+        },
+        {
+          "target": "com.railway.api#AddFeatureFlag"
+        },
+        {
+          "target": "com.railway.api#RemoveFeatureFlag"
+        },
+        {
+          "target": "com.railway.api#GenerateShellToken"
+        },
+        {
+          "target": "com.railway.api#DeployGithubRepo"
+        },
+        {
+          "target": "com.railway.api#UpdateGithubRepo"
+        },
+        {
+          "target": "com.railway.api#HerokuImportVariables"
+        },
+        {
+          "target": "com.railway.api#CreateIntegration"
+        },
+        {
+          "target": "com.railway.api#DeleteIntegration"
+        },
+        {
+          "target": "com.railway.api#UpdateIntegration"
+        },
+        {
+          "target": "com.railway.api#InviteCodeUse"
+        },
+        {
+          "target": "com.railway.api#CreateJobApplication"
+        },
+        {
+          "target": "com.railway.api#LoginSessionAuth"
+        },
+        {
+          "target": "com.railway.api#CancelLoginSession"
+        },
+        {
+          "target": "com.railway.api#LoginSessionConsume"
+        },
+        {
+          "target": "com.railway.api#CreateLoginSession"
+        },
+        {
+          "target": "com.railway.api#VerifyLoginSession"
+        },
+        {
+          "target": "com.railway.api#ReadNotificationDeliveriesMarkAs"
+        },
+        {
+          "target": "com.railway.api#CreateNotificationRule"
+        },
+        {
+          "target": "com.railway.api#DeleteNotificationRule"
+        },
+        {
+          "target": "com.railway.api#UpdateNotificationRule"
+        },
+        {
+          "target": "com.railway.api#CreateObservabilityDashboard"
+        },
+        {
+          "target": "com.railway.api#ResetObservabilityDashboard"
+        },
+        {
+          "target": "com.railway.api#UpdateObservabilityDashboard"
+        },
+        {
+          "target": "com.railway.api#DeletePasskey"
+        },
+        {
+          "target": "com.railway.api#UpdatePreference"
+        },
+        {
+          "target": "com.railway.api#PrivateNetworkCreateOrGet"
+        },
+        {
+          "target": "com.railway.api#PrivateNetworkEndpointCreateOrGet"
+        },
+        {
+          "target": "com.railway.api#DeletePrivateNetworkEndpoint"
+        },
+        {
+          "target": "com.railway.api#RenamePrivateNetworkEndpoint"
+        },
+        {
+          "target": "com.railway.api#DeletePrivateNetworksForEnvironment"
+        },
+        {
+          "target": "com.railway.api#ClaimProject"
+        },
+        {
+          "target": "com.railway.api#CreateProject"
+        },
+        {
+          "target": "com.railway.api#DeleteProject"
+        },
+        {
+          "target": "com.railway.api#SetProjectFavorite"
+        },
+        {
+          "target": "com.railway.api#AddProjectFeatureFlag"
+        },
+        {
+          "target": "com.railway.api#RemoveProjectFeatureFlag"
+        },
+        {
+          "target": "com.railway.api#AcceptProjectInvitation"
+        },
+        {
+          "target": "com.railway.api#CreateProjectInvitation"
+        },
+        {
+          "target": "com.railway.api#DeleteProjectInvitation"
+        },
+        {
+          "target": "com.railway.api#ResendProjectInvitation"
+        },
+        {
+          "target": "com.railway.api#ProjectInviteUser"
+        },
+        {
+          "target": "com.railway.api#LeaveProject"
+        },
+        {
+          "target": "com.railway.api#AddProjectMember"
+        },
+        {
+          "target": "com.railway.api#RemoveProjectMember"
+        },
+        {
+          "target": "com.railway.api#UpdateProjectMember"
+        },
+        {
+          "target": "com.railway.api#DeleteProjectSchedule"
+        },
+        {
+          "target": "com.railway.api#ProjectScheduleDeleteCancel"
+        },
+        {
+          "target": "com.railway.api#ProjectScheduleDeleteForce"
+        },
+        {
+          "target": "com.railway.api#CreateProjectToken"
+        },
+        {
+          "target": "com.railway.api#DeleteProjectToken"
+        },
+        {
+          "target": "com.railway.api#TransferProject"
+        },
+        {
+          "target": "com.railway.api#ConfirmProjectTransfer"
+        },
+        {
+          "target": "com.railway.api#ProjectTransferInitiate"
+        },
+        {
+          "target": "com.railway.api#UpdateProject"
+        },
+        {
+          "target": "com.railway.api#RemoveProviderAuth"
+        },
+        {
+          "target": "com.railway.api#PurgeServiceCache"
+        },
+        {
+          "target": "com.railway.api#CreateRailwayDomainDnsRecord"
+        },
+        {
+          "target": "com.railway.api#DeleteRailwayDomainDnsRecord"
+        },
+        {
+          "target": "com.railway.api#UpdateRailwayDomainDnsRecord"
+        },
+        {
+          "target": "com.railway.api#SetRailwayDomainNameserver"
+        },
+        {
+          "target": "com.railway.api#UpdateRailwayDomain"
+        },
+        {
+          "target": "com.railway.api#GenerateRecoveryCode"
+        },
+        {
+          "target": "com.railway.api#ValidateRecoveryCode"
+        },
+        {
+          "target": "com.railway.api#UpdateReferralInfo"
+        },
+        {
+          "target": "com.railway.api#CreateSandboxCheckpoint"
+        },
+        {
+          "target": "com.railway.api#DeleteSandboxCheckpoint"
+        },
+        {
+          "target": "com.railway.api#RenameSandboxCheckpoint"
+        },
+        {
+          "target": "com.railway.api#CreateSandbox"
+        },
+        {
+          "target": "com.railway.api#SandboxDestroy"
+        },
+        {
+          "target": "com.railway.api#ExecSandbox"
+        },
+        {
+          "target": "com.railway.api#SandboxHeartbeat"
+        },
+        {
+          "target": "com.railway.api#ConnectService"
+        },
+        {
+          "target": "com.railway.api#CreateService"
+        },
+        {
+          "target": "com.railway.api#DeleteService"
+        },
+        {
+          "target": "com.railway.api#DisconnectService"
+        },
+        {
+          "target": "com.railway.api#CreateServiceDomain"
+        },
+        {
+          "target": "com.railway.api#DeleteServiceDomain"
+        },
+        {
+          "target": "com.railway.api#UpdateServiceDomain"
+        },
+        {
+          "target": "com.railway.api#AddServiceFeatureFlag"
+        },
+        {
+          "target": "com.railway.api#RemoveServiceFeatureFlag"
+        },
+        {
+          "target": "com.railway.api#ServiceInstanceAutoDeployUpdate"
+        },
+        {
+          "target": "com.railway.api#ServiceInstanceAutoUpdateScheduleUpdate"
+        },
+        {
+          "target": "com.railway.api#ServiceInstanceAutoUpdateSnooze"
+        },
+        {
+          "target": "com.railway.api#ServiceInstanceAutoUpdateSnoozeClear"
+        },
+        {
+          "target": "com.railway.api#DeployServiceInstance"
+        },
+        {
+          "target": "com.railway.api#ServiceInstanceDeployV2"
+        },
+        {
+          "target": "com.railway.api#UpdateServiceInstanceLimit"
+        },
+        {
+          "target": "com.railway.api#RedeployServiceInstance"
+        },
+        {
+          "target": "com.railway.api#UpdateServiceInstance"
+        },
+        {
+          "target": "com.railway.api#DismissServiceInstanceVulnRemediation"
+        },
+        {
+          "target": "com.railway.api#ServiceInstanceVulnRemediationPatchNow"
+        },
+        {
+          "target": "com.railway.api#ServiceRemoveUpstreamUrl"
+        },
+        {
+          "target": "com.railway.api#UpdateService"
+        },
+        {
+          "target": "com.railway.api#DeleteSession"
+        },
+        {
+          "target": "com.railway.api#SetServiceUnderAttackMode"
+        },
+        {
+          "target": "com.railway.api#SetupAgentEventTrack"
+        },
+        {
+          "target": "com.railway.api#SharedVariableConfigure"
+        },
+        {
+          "target": "com.railway.api#CreateSignal"
+        },
+        {
+          "target": "com.railway.api#SignalDefaultSet"
+        },
+        {
+          "target": "com.railway.api#DeleteSignal"
+        },
+        {
+          "target": "com.railway.api#ReplaceSignal"
+        },
+        {
+          "target": "com.railway.api#SignalRollback"
+        },
+        {
+          "target": "com.railway.api#SignalRuleSet"
+        },
+        {
+          "target": "com.railway.api#SignalRuleUnset"
+        },
+        {
+          "target": "com.railway.api#CreateSshPublicKey"
+        },
+        {
+          "target": "com.railway.api#DeleteSshPublicKey"
+        },
+        {
+          "target": "com.railway.api#ApproveSshSignup"
+        },
+        {
+          "target": "com.railway.api#DeleteTcpProxy"
+        },
+        {
+          "target": "com.railway.api#CloneTemplate"
+        },
+        {
+          "target": "com.railway.api#DeleteTemplate"
+        },
+        {
+          "target": "com.railway.api#TemplateDeployV2"
+        },
+        {
+          "target": "com.railway.api#GenerateTemplate"
+        },
+        {
+          "target": "com.railway.api#PublishTemplate"
+        },
+        {
+          "target": "com.railway.api#TemplateRevert"
+        },
+        {
+          "target": "com.railway.api#TemplateServiceSourceEject"
+        },
+        {
+          "target": "com.railway.api#UnpublishTemplate"
+        },
+        {
+          "target": "com.railway.api#UpdateTemplateVolume"
+        },
+        {
+          "target": "com.railway.api#CreateTrustedDomain"
+        },
+        {
+          "target": "com.railway.api#DeleteTrustedDomain"
+        },
+        {
+          "target": "com.railway.api#TrustedDomainRetriggerVerification"
+        },
+        {
+          "target": "com.railway.api#UpdateTrustedDomain"
+        },
+        {
+          "target": "com.railway.api#CreateTwoFactorInfo"
+        },
+        {
+          "target": "com.railway.api#DeleteTwoFactorInfo"
+        },
+        {
+          "target": "com.railway.api#TwoFactorInfoSecret"
+        },
+        {
+          "target": "com.railway.api#ValidateTwoFactorInfo"
+        },
+        {
+          "target": "com.railway.api#UpdateServiceEdgeConfig"
+        },
+        {
+          "target": "com.railway.api#UpdateServiceEdgeRules"
+        },
+        {
+          "target": "com.railway.api#UpsertSlackChannel"
+        },
+        {
+          "target": "com.railway.api#RemoveUsageLimit"
+        },
+        {
+          "target": "com.railway.api#SetUsageLimit"
+        },
+        {
+          "target": "com.railway.api#LeaveUserBeta"
+        },
+        {
+          "target": "com.railway.api#DeleteUser"
+        },
+        {
+          "target": "com.railway.api#DisconnectUserDiscord"
+        },
+        {
+          "target": "com.railway.api#RemoveUserFlag"
+        },
+        {
+          "target": "com.railway.api#SetUserFlag"
+        },
+        {
+          "target": "com.railway.api#UpdateUserProfile"
+        },
+        {
+          "target": "com.railway.api#UpdateUserTerm"
+        },
+        {
+          "target": "com.railway.api#UpsertVariableCollection"
+        },
+        {
+          "target": "com.railway.api#DeleteVariable"
+        },
+        {
+          "target": "com.railway.api#UpsertVariable"
+        },
+        {
+          "target": "com.railway.api#CreateVolume"
+        },
+        {
+          "target": "com.railway.api#DeleteVolume"
+        },
+        {
+          "target": "com.railway.api#CreateVolumeInstanceBackup"
+        },
+        {
+          "target": "com.railway.api#DeleteVolumeInstanceBackup"
+        },
+        {
+          "target": "com.railway.api#LockVolumeInstanceBackup"
+        },
+        {
+          "target": "com.railway.api#RestoreVolumeInstanceBackup"
+        },
+        {
+          "target": "com.railway.api#UpdateVolumeInstanceBackupSchedule"
+        },
+        {
+          "target": "com.railway.api#RestoreVolumeInstancePITR"
+        },
+        {
+          "target": "com.railway.api#UpdateVolumeInstance"
+        },
+        {
+          "target": "com.railway.api#UpdateVolume"
+        },
+        {
+          "target": "com.railway.api#TestWebhook"
+        },
+        {
+          "target": "com.railway.api#DeleteWorkspace"
+        },
+        {
+          "target": "com.railway.api#CreateWorkspaceInviteCode"
+        },
+        {
           "target": "com.railway.api#WorkspaceInviteCodeUse"
         },
         {
-          "target": "com.railway.api#WorkspacePermissionChange"
+          "target": "com.railway.api#LeaveWorkspace"
         },
         {
-          "target": "com.railway.api#WorkspacePolicy"
+          "target": "com.railway.api#WorkspacePermissionChange"
         },
         {
           "target": "com.railway.api#WorkspacePolicyDeploySourceAllowlistAdd"
@@ -62414,19 +62405,28 @@
           "target": "com.railway.api#WorkspacePolicyDeploySourceAllowlistRemove"
         },
         {
-          "target": "com.railway.api#WorkspacePolicySelectableDeploySources"
+          "target": "com.railway.api#UpdateWorkspacePolicyItem"
         },
         {
           "target": "com.railway.api#WorkspaceSetRestrictProjectVisibilityToGroups"
         },
         {
-          "target": "com.railway.api#WorkspaceTemplates"
+          "target": "com.railway.api#UpdateWorkspaceTwoFactorEnforcement"
+        },
+        {
+          "target": "com.railway.api#UpdateWorkspace"
         },
         {
           "target": "com.railway.api#WorkspaceUpsertSlackChannel"
         },
         {
-          "target": "com.railway.api#WorkspaceUsageTotals"
+          "target": "com.railway.api#InviteWorkspaceUser"
+        },
+        {
+          "target": "com.railway.api#RemoveWorkspaceUser"
+        },
+        {
+          "target": "com.railway.api#CreateTcpProxy"
         }
       ],
       "traits": {

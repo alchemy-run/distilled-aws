@@ -479,13 +479,13 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.sql_console#CreateEmbed"
+          "target": "com.huggingface.sql_console#UpdateEmbed"
         },
         {
           "target": "com.huggingface.sql_console#DeleteEmbed"
         },
         {
-          "target": "com.huggingface.sql_console#UpdateEmbed"
+          "target": "com.huggingface.sql_console#CreateEmbed"
         }
       ],
       "traits": {

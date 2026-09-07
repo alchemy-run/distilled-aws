@@ -1452,10 +1452,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.communitytraining#CreateCommunityTraining"
+          "target": "com.azure.communitytraining#DeleteCommunityTraining"
         },
         {
-          "target": "com.azure.communitytraining#DeleteCommunityTraining"
+          "target": "com.azure.communitytraining#UpdateCommunityTraining"
+        },
+        {
+          "target": "com.azure.communitytraining#CreateCommunityTraining"
         },
         {
           "target": "com.azure.communitytraining#GetCommunityTraining"
@@ -1468,9 +1471,6 @@
         },
         {
           "target": "com.azure.communitytraining#ListOperations"
-        },
-        {
-          "target": "com.azure.communitytraining#UpdateCommunityTraining"
         }
       ],
       "traits": {

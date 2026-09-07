@@ -8464,13 +8464,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticsTestMapping"
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreate"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsConversionGoal"
         },
         {
           "target": "com.posthog.marketing_analytics#DeleteMarketingAnalyticsConversionGoalDestroy"
         },
         {
-          "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsConversionGoal"
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsUpdatePartialUpdate"
+        },
+        {
+          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsCreateCreate"
         },
         {
           "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsDataSource"
@@ -8491,16 +8497,10 @@
           "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsSuggestUtmMapping"
         },
         {
+          "target": "com.posthog.marketing_analytics#CreateMarketingAnalyticsTestMapping"
+        },
+        {
           "target": "com.posthog.marketing_analytics#GetMarketingAnalyticsUtmAudit"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsApplySetupOpsCreate"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsCreateCreate"
-        },
-        {
-          "target": "com.posthog.marketing_analytics#MarketingAnalyticsConversionGoalsUpdatePartialUpdate"
         }
       ],
       "traits": {

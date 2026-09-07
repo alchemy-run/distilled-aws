@@ -2919,15 +2919,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.apiextensions#CreateApiextensionsV1CustomResourceDefinition"
-        },
-        {
-          "target": "com.kubernetes.apiextensions#DeleteApiextensionsV1CollectionCustomResourceDefinition"
-        },
-        {
-          "target": "com.kubernetes.apiextensions#DeleteApiextensionsV1CustomResourceDefinition"
-        },
-        {
           "target": "com.kubernetes.apiextensions#GetApiextensionsAPIGroup"
         },
         {
@@ -2937,28 +2928,37 @@
           "target": "com.kubernetes.apiextensions#ListApiextensionsV1CustomResourceDefinition"
         },
         {
-          "target": "com.kubernetes.apiextensions#PatchApiextensionsV1CustomResourceDefinition"
+          "target": "com.kubernetes.apiextensions#CreateApiextensionsV1CustomResourceDefinition"
         },
         {
-          "target": "com.kubernetes.apiextensions#PatchApiextensionsV1CustomResourceDefinitionStatus"
+          "target": "com.kubernetes.apiextensions#DeleteApiextensionsV1CollectionCustomResourceDefinition"
         },
         {
           "target": "com.kubernetes.apiextensions#ReadApiextensionsV1CustomResourceDefinition"
         },
         {
-          "target": "com.kubernetes.apiextensions#ReadApiextensionsV1CustomResourceDefinitionStatus"
+          "target": "com.kubernetes.apiextensions#ReplaceApiextensionsV1CustomResourceDefinition"
         },
         {
-          "target": "com.kubernetes.apiextensions#ReplaceApiextensionsV1CustomResourceDefinition"
+          "target": "com.kubernetes.apiextensions#PatchApiextensionsV1CustomResourceDefinition"
+        },
+        {
+          "target": "com.kubernetes.apiextensions#DeleteApiextensionsV1CustomResourceDefinition"
+        },
+        {
+          "target": "com.kubernetes.apiextensions#ReadApiextensionsV1CustomResourceDefinitionStatus"
         },
         {
           "target": "com.kubernetes.apiextensions#ReplaceApiextensionsV1CustomResourceDefinitionStatus"
         },
         {
-          "target": "com.kubernetes.apiextensions#WatchApiextensionsV1CustomResourceDefinition"
+          "target": "com.kubernetes.apiextensions#PatchApiextensionsV1CustomResourceDefinitionStatus"
         },
         {
           "target": "com.kubernetes.apiextensions#WatchApiextensionsV1CustomResourceDefinitionList"
+        },
+        {
+          "target": "com.kubernetes.apiextensions#WatchApiextensionsV1CustomResourceDefinition"
         }
       ],
       "traits": {

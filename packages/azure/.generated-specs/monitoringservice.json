@@ -5770,46 +5770,64 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.monitoringservice#AddIssueInvestigationResult"
-        },
-        {
-          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.monitoringservice#CreateIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#DeleteAzureMonitorWorkspace"
-        },
-        {
-          "target": "com.azure.monitoringservice#DeleteIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#DeletePipelineGroup"
-        },
-        {
-          "target": "com.azure.monitoringservice#FetchIssueBackgroundVisualization"
-        },
-        {
-          "target": "com.azure.monitoringservice#FetchIssueInvestigationResult"
-        },
-        {
-          "target": "com.azure.monitoringservice#GetAzureMonitorWorkspace"
-        },
-        {
-          "target": "com.azure.monitoringservice#GetIssue"
+          "target": "com.azure.monitoringservice#MetricsContainersCreateOrUpdate"
         },
         {
           "target": "com.azure.monitoringservice#GetMetricsContainer"
         },
         {
-          "target": "com.azure.monitoringservice#GetPipelineGroup"
+          "target": "com.azure.monitoringservice#ListMetricsContainerByAzureMonitorWorkspace"
+        },
+        {
+          "target": "com.azure.monitoringservice#SetIssueBackgroundVisualization"
+        },
+        {
+          "target": "com.azure.monitoringservice#ListIssueResources"
+        },
+        {
+          "target": "com.azure.monitoringservice#ListIssueAlerts"
+        },
+        {
+          "target": "com.azure.monitoringservice#FetchIssueInvestigationResult"
+        },
+        {
+          "target": "com.azure.monitoringservice#FetchIssueBackgroundVisualization"
+        },
+        {
+          "target": "com.azure.monitoringservice#IssueAddOrUpdateResources"
         },
         {
           "target": "com.azure.monitoringservice#IssueAddOrUpdateAlerts"
         },
         {
-          "target": "com.azure.monitoringservice#IssueAddOrUpdateResources"
+          "target": "com.azure.monitoringservice#AddIssueInvestigationResult"
+        },
+        {
+          "target": "com.azure.monitoringservice#DeleteIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#UpdateIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#CreateIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#GetIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#ListIssue"
+        },
+        {
+          "target": "com.azure.monitoringservice#DeleteAzureMonitorWorkspace"
+        },
+        {
+          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspace"
+        },
+        {
+          "target": "com.azure.monitoringservice#AzureMonitorWorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.monitoringservice#GetAzureMonitorWorkspace"
         },
         {
           "target": "com.azure.monitoringservice#ListAzureMonitorWorkspaceByResourceGroup"
@@ -5818,43 +5836,25 @@
           "target": "com.azure.monitoringservice#ListAzureMonitorWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.monitoringservice#ListIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListIssueAlerts"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListIssueResources"
-        },
-        {
-          "target": "com.azure.monitoringservice#ListMetricsContainerByAzureMonitorWorkspace"
-        },
-        {
           "target": "com.azure.monitoringservice#ListOperations"
+        },
+        {
+          "target": "com.azure.monitoringservice#DeletePipelineGroup"
+        },
+        {
+          "target": "com.azure.monitoringservice#UpdatePipelineGroup"
+        },
+        {
+          "target": "com.azure.monitoringservice#PipelineGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.monitoringservice#GetPipelineGroup"
         },
         {
           "target": "com.azure.monitoringservice#ListPipelineGroupByResourceGroup"
         },
         {
           "target": "com.azure.monitoringservice#ListPipelineGroupBySubscription"
-        },
-        {
-          "target": "com.azure.monitoringservice#MetricsContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.monitoringservice#PipelineGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.monitoringservice#SetIssueBackgroundVisualization"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdateAzureMonitorWorkspace"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdateIssue"
-        },
-        {
-          "target": "com.azure.monitoringservice#UpdatePipelineGroup"
         }
       ],
       "traits": {

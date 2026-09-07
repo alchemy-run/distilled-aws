@@ -8002,55 +8002,37 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.pulls#AddPullRequestStack"
-        },
-        {
-          "target": "com.github.pulls#CheckIfMerged"
+          "target": "com.github.pulls#List"
         },
         {
           "target": "com.github.pulls#Create"
         },
         {
-          "target": "com.github.pulls#CreatePullRequestStack"
-        },
-        {
-          "target": "com.github.pulls#CreateReplyForReviewComment"
-        },
-        {
-          "target": "com.github.pulls#CreateReview"
-        },
-        {
-          "target": "com.github.pulls#CreateReviewComment"
-        },
-        {
-          "target": "com.github.pulls#DeletePendingReview"
-        },
-        {
-          "target": "com.github.pulls#DeleteReviewComment"
-        },
-        {
-          "target": "com.github.pulls#DismissReview"
-        },
-        {
-          "target": "com.github.pulls#Get"
-        },
-        {
-          "target": "com.github.pulls#GetMergeAsyncResult"
-        },
-        {
-          "target": "com.github.pulls#GetPullRequestStack"
-        },
-        {
-          "target": "com.github.pulls#GetReview"
+          "target": "com.github.pulls#ListReviewCommentsForRepo"
         },
         {
           "target": "com.github.pulls#GetReviewComment"
         },
         {
-          "target": "com.github.pulls#List"
+          "target": "com.github.pulls#UpdateReviewComment"
         },
         {
-          "target": "com.github.pulls#ListCommentsForReview"
+          "target": "com.github.pulls#DeleteReviewComment"
+        },
+        {
+          "target": "com.github.pulls#Get"
+        },
+        {
+          "target": "com.github.pulls#Update"
+        },
+        {
+          "target": "com.github.pulls#ListReviewComments"
+        },
+        {
+          "target": "com.github.pulls#CreateReviewComment"
+        },
+        {
+          "target": "com.github.pulls#CreateReplyForReviewComment"
         },
         {
           "target": "com.github.pulls#ListCommits"
@@ -8059,19 +8041,7 @@
           "target": "com.github.pulls#ListFiles"
         },
         {
-          "target": "com.github.pulls#ListPullRequestStacks"
-        },
-        {
-          "target": "com.github.pulls#ListRequestedReviewers"
-        },
-        {
-          "target": "com.github.pulls#ListReviewComments"
-        },
-        {
-          "target": "com.github.pulls#ListReviewCommentsForRepo"
-        },
-        {
-          "target": "com.github.pulls#ListReviews"
+          "target": "com.github.pulls#CheckIfMerged"
         },
         {
           "target": "com.github.pulls#Merge"
@@ -8080,28 +8050,58 @@
           "target": "com.github.pulls#MergeAsync"
         },
         {
-          "target": "com.github.pulls#PullRequestStacksUnstack"
+          "target": "com.github.pulls#GetMergeAsyncResult"
         },
         {
-          "target": "com.github.pulls#RemoveRequestedReviewers"
+          "target": "com.github.pulls#ListRequestedReviewers"
         },
         {
           "target": "com.github.pulls#RequestReviewers"
         },
         {
-          "target": "com.github.pulls#SubmitReview"
+          "target": "com.github.pulls#RemoveRequestedReviewers"
         },
         {
-          "target": "com.github.pulls#Update"
+          "target": "com.github.pulls#ListReviews"
         },
         {
-          "target": "com.github.pulls#UpdateBranch"
+          "target": "com.github.pulls#CreateReview"
+        },
+        {
+          "target": "com.github.pulls#GetReview"
         },
         {
           "target": "com.github.pulls#UpdateReview"
         },
         {
-          "target": "com.github.pulls#UpdateReviewComment"
+          "target": "com.github.pulls#DeletePendingReview"
+        },
+        {
+          "target": "com.github.pulls#ListCommentsForReview"
+        },
+        {
+          "target": "com.github.pulls#DismissReview"
+        },
+        {
+          "target": "com.github.pulls#SubmitReview"
+        },
+        {
+          "target": "com.github.pulls#UpdateBranch"
+        },
+        {
+          "target": "com.github.pulls#ListPullRequestStacks"
+        },
+        {
+          "target": "com.github.pulls#CreatePullRequestStack"
+        },
+        {
+          "target": "com.github.pulls#GetPullRequestStack"
+        },
+        {
+          "target": "com.github.pulls#AddPullRequestStack"
+        },
+        {
+          "target": "com.github.pulls#PullRequestStacksUnstack"
         }
       ],
       "traits": {

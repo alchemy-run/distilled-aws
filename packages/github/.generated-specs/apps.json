@@ -7714,64 +7714,25 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.apps#AddRepoToInstallationForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.apps#CheckToken"
+          "target": "com.github.apps#GetAuthenticated"
         },
         {
           "target": "com.github.apps#CreateFromManifest"
         },
         {
-          "target": "com.github.apps#CreateInstallationAccessToken"
-        },
-        {
-          "target": "com.github.apps#DeleteAuthorization"
-        },
-        {
-          "target": "com.github.apps#DeleteInstallation"
-        },
-        {
-          "target": "com.github.apps#DeleteToken"
-        },
-        {
-          "target": "com.github.apps#GetAuthenticated"
-        },
-        {
-          "target": "com.github.apps#GetBySlug"
-        },
-        {
-          "target": "com.github.apps#GetInstallation"
-        },
-        {
-          "target": "com.github.apps#GetOrgInstallation"
-        },
-        {
-          "target": "com.github.apps#GetRepoInstallation"
-        },
-        {
-          "target": "com.github.apps#GetSubscriptionPlanForAccount"
-        },
-        {
-          "target": "com.github.apps#GetSubscriptionPlanForAccountStubbed"
-        },
-        {
-          "target": "com.github.apps#GetUserInstallation"
-        },
-        {
           "target": "com.github.apps#GetWebhookConfigForApp"
+        },
+        {
+          "target": "com.github.apps#UpdateWebhookConfigForApp"
+        },
+        {
+          "target": "com.github.apps#ListWebhookDeliveries"
         },
         {
           "target": "com.github.apps#GetWebhookDelivery"
         },
         {
-          "target": "com.github.apps#ListAccountsForPlan"
-        },
-        {
-          "target": "com.github.apps#ListAccountsForPlanStubbed"
-        },
-        {
-          "target": "com.github.apps#ListInstallationReposForAuthenticatedUser"
+          "target": "com.github.apps#RedeliverWebhookDelivery"
         },
         {
           "target": "com.github.apps#ListInstallationRequestsForAuthenticatedApp"
@@ -7780,40 +7741,13 @@
           "target": "com.github.apps#ListInstallations"
         },
         {
-          "target": "com.github.apps#ListInstallationsForAuthenticatedUser"
+          "target": "com.github.apps#GetInstallation"
         },
         {
-          "target": "com.github.apps#ListPlans"
+          "target": "com.github.apps#DeleteInstallation"
         },
         {
-          "target": "com.github.apps#ListPlansStubbed"
-        },
-        {
-          "target": "com.github.apps#ListReposAccessibleToInstallation"
-        },
-        {
-          "target": "com.github.apps#ListSubscriptionsForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.apps#ListSubscriptionsForAuthenticatedUserStubbed"
-        },
-        {
-          "target": "com.github.apps#ListWebhookDeliveries"
-        },
-        {
-          "target": "com.github.apps#RedeliverWebhookDelivery"
-        },
-        {
-          "target": "com.github.apps#RemoveRepoFromInstallationForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.apps#ResetToken"
-        },
-        {
-          "target": "com.github.apps#RevokeInstallationAccessToken"
-        },
-        {
-          "target": "com.github.apps#ScopeToken"
+          "target": "com.github.apps#CreateInstallationAccessToken"
         },
         {
           "target": "com.github.apps#SuspendInstallation"
@@ -7822,7 +7756,73 @@
           "target": "com.github.apps#UnsuspendInstallation"
         },
         {
-          "target": "com.github.apps#UpdateWebhookConfigForApp"
+          "target": "com.github.apps#DeleteAuthorization"
+        },
+        {
+          "target": "com.github.apps#CheckToken"
+        },
+        {
+          "target": "com.github.apps#ResetToken"
+        },
+        {
+          "target": "com.github.apps#DeleteToken"
+        },
+        {
+          "target": "com.github.apps#ScopeToken"
+        },
+        {
+          "target": "com.github.apps#GetBySlug"
+        },
+        {
+          "target": "com.github.apps#ListReposAccessibleToInstallation"
+        },
+        {
+          "target": "com.github.apps#RevokeInstallationAccessToken"
+        },
+        {
+          "target": "com.github.apps#GetSubscriptionPlanForAccount"
+        },
+        {
+          "target": "com.github.apps#ListPlans"
+        },
+        {
+          "target": "com.github.apps#ListAccountsForPlan"
+        },
+        {
+          "target": "com.github.apps#GetSubscriptionPlanForAccountStubbed"
+        },
+        {
+          "target": "com.github.apps#ListPlansStubbed"
+        },
+        {
+          "target": "com.github.apps#ListAccountsForPlanStubbed"
+        },
+        {
+          "target": "com.github.apps#GetOrgInstallation"
+        },
+        {
+          "target": "com.github.apps#GetRepoInstallation"
+        },
+        {
+          "target": "com.github.apps#ListInstallationsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.apps#ListInstallationReposForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.apps#AddRepoToInstallationForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.apps#RemoveRepoFromInstallationForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.apps#ListSubscriptionsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.apps#ListSubscriptionsForAuthenticatedUserStubbed"
+        },
+        {
+          "target": "com.github.apps#GetUserInstallation"
         }
       ],
       "traits": {

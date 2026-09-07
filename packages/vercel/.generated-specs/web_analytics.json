@@ -8160,22 +8160,22 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.web_analytics#AggregateEvents"
+          "target": "com.vercel.web_analytics#CreateSpeedInsightsToggle"
+        },
+        {
+          "target": "com.vercel.web_analytics#CreateWebInsightsToggle"
         },
         {
           "target": "com.vercel.web_analytics#AggregatePageviews"
         },
         {
-          "target": "com.vercel.web_analytics#CountEvents"
+          "target": "com.vercel.web_analytics#AggregateEvents"
         },
         {
           "target": "com.vercel.web_analytics#CountPageviews"
         },
         {
-          "target": "com.vercel.web_analytics#CreateSpeedInsightsToggle"
-        },
-        {
-          "target": "com.vercel.web_analytics#CreateWebInsightsToggle"
+          "target": "com.vercel.web_analytics#CountEvents"
         }
       ],
       "traits": {

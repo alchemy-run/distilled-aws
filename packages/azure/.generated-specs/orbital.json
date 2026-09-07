@@ -6277,91 +6277,73 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.orbital#ContactProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.orbital#CreateContact"
-        },
-        {
-          "target": "com.azure.orbital#DeleteContact"
-        },
-        {
-          "target": "com.azure.orbital#DeleteContactProfile"
-        },
-        {
-          "target": "com.azure.orbital#DeleteEdgeSite"
-        },
-        {
-          "target": "com.azure.orbital#DeleteGroundStation"
-        },
-        {
-          "target": "com.azure.orbital#DeleteL2Connection"
-        },
-        {
-          "target": "com.azure.orbital#DeleteSpacecraft"
-        },
-        {
-          "target": "com.azure.orbital#EdgeSitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.orbital#GetContact"
-        },
-        {
-          "target": "com.azure.orbital#GetContactProfile"
-        },
-        {
-          "target": "com.azure.orbital#GetEdgeSite"
-        },
-        {
-          "target": "com.azure.orbital#GetGroundStation"
-        },
-        {
-          "target": "com.azure.orbital#GetL2Connection"
-        },
-        {
           "target": "com.azure.orbital#GetOperationsResult"
-        },
-        {
-          "target": "com.azure.orbital#GetSpacecraft"
-        },
-        {
-          "target": "com.azure.orbital#GroundStationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.orbital#L2ConnectionsCreateOrUpdate"
         },
         {
           "target": "com.azure.orbital#ListAvailableGroundStationByCapability"
         },
         {
+          "target": "com.azure.orbital#ListContactProfiles"
+        },
+        {
           "target": "com.azure.orbital#ListContactProfileBySubscription"
         },
         {
-          "target": "com.azure.orbital#ListContactProfiles"
+          "target": "com.azure.orbital#DeleteContactProfile"
+        },
+        {
+          "target": "com.azure.orbital#UpdateContactProfileTags"
+        },
+        {
+          "target": "com.azure.orbital#ContactProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.orbital#GetContactProfile"
+        },
+        {
+          "target": "com.azure.orbital#ListSpacecraftAvailableContacts"
+        },
+        {
+          "target": "com.azure.orbital#DeleteContact"
+        },
+        {
+          "target": "com.azure.orbital#CreateContact"
+        },
+        {
+          "target": "com.azure.orbital#GetContact"
         },
         {
           "target": "com.azure.orbital#ListContacts"
         },
         {
-          "target": "com.azure.orbital#ListEdgeSiteBySubscription"
+          "target": "com.azure.orbital#DeleteSpacecraft"
         },
         {
-          "target": "com.azure.orbital#ListEdgeSiteL2Connections"
+          "target": "com.azure.orbital#UpdateSpacecraftTags"
         },
         {
-          "target": "com.azure.orbital#ListEdgeSites"
+          "target": "com.azure.orbital#SpacecraftsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.orbital#GetSpacecraft"
+        },
+        {
+          "target": "com.azure.orbital#ListSpacecrafts"
+        },
+        {
+          "target": "com.azure.orbital#ListSpacecraftBySubscription"
+        },
+        {
+          "target": "com.azure.orbital#ListOperations"
         },
         {
           "target": "com.azure.orbital#ListGlobalCommunicationsSiteBySubscription"
         },
         {
-          "target": "com.azure.orbital#ListGroundStationBySubscription"
-        },
-        {
           "target": "com.azure.orbital#ListGroundStationL2Connections"
         },
         {
-          "target": "com.azure.orbital#ListGroundStations"
+          "target": "com.azure.orbital#ListEdgeSiteL2Connections"
         },
         {
           "target": "com.azure.orbital#ListL2ConnectionBySubscription"
@@ -6370,34 +6352,52 @@
           "target": "com.azure.orbital#ListL2Connections"
         },
         {
-          "target": "com.azure.orbital#ListOperations"
-        },
-        {
-          "target": "com.azure.orbital#ListSpacecraftAvailableContacts"
-        },
-        {
-          "target": "com.azure.orbital#ListSpacecraftBySubscription"
-        },
-        {
-          "target": "com.azure.orbital#ListSpacecrafts"
-        },
-        {
-          "target": "com.azure.orbital#SpacecraftsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.orbital#UpdateContactProfileTags"
-        },
-        {
-          "target": "com.azure.orbital#UpdateEdgeSiteTags"
-        },
-        {
-          "target": "com.azure.orbital#UpdateGroundStationTags"
+          "target": "com.azure.orbital#DeleteL2Connection"
         },
         {
           "target": "com.azure.orbital#UpdateL2ConnectionTags"
         },
         {
-          "target": "com.azure.orbital#UpdateSpacecraftTags"
+          "target": "com.azure.orbital#L2ConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.orbital#GetL2Connection"
+        },
+        {
+          "target": "com.azure.orbital#ListEdgeSites"
+        },
+        {
+          "target": "com.azure.orbital#ListEdgeSiteBySubscription"
+        },
+        {
+          "target": "com.azure.orbital#DeleteEdgeSite"
+        },
+        {
+          "target": "com.azure.orbital#UpdateEdgeSiteTags"
+        },
+        {
+          "target": "com.azure.orbital#EdgeSitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.orbital#GetEdgeSite"
+        },
+        {
+          "target": "com.azure.orbital#DeleteGroundStation"
+        },
+        {
+          "target": "com.azure.orbital#UpdateGroundStationTags"
+        },
+        {
+          "target": "com.azure.orbital#GroundStationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.orbital#GetGroundStation"
+        },
+        {
+          "target": "com.azure.orbital#ListGroundStations"
+        },
+        {
+          "target": "com.azure.orbital#ListGroundStationBySubscription"
         }
       ],
       "traits": {

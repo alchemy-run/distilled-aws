@@ -1345,16 +1345,16 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.llm_prompts#ListLlmPrompts"
+        },
+        {
           "target": "com.posthog.llm_prompts#CreateLlmPrompt"
         },
         {
           "target": "com.posthog.llm_prompts#GetLlmPromptsName"
         },
         {
-          "target": "com.posthog.llm_prompts#GetLlmPromptsResolveName"
-        },
-        {
-          "target": "com.posthog.llm_prompts#ListLlmPrompts"
+          "target": "com.posthog.llm_prompts#UpdateLlmPromptsNamePartial"
         },
         {
           "target": "com.posthog.llm_prompts#LlmPromptsNameArchiveCreate"
@@ -1363,13 +1363,13 @@
           "target": "com.posthog.llm_prompts#LlmPromptsNameDuplicateCreate"
         },
         {
-          "target": "com.posthog.llm_prompts#LlmPromptsNameLabelsDestroy"
-        },
-        {
           "target": "com.posthog.llm_prompts#UpdateLlmPromptsNameLabel"
         },
         {
-          "target": "com.posthog.llm_prompts#UpdateLlmPromptsNamePartial"
+          "target": "com.posthog.llm_prompts#LlmPromptsNameLabelsDestroy"
+        },
+        {
+          "target": "com.posthog.llm_prompts#GetLlmPromptsResolveName"
         }
       ],
       "traits": {

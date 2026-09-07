@@ -10112,61 +10112,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.labservices#DeleteLab"
-        },
-        {
-          "target": "com.azure.labservices#DeleteLabPlan"
-        },
-        {
-          "target": "com.azure.labservices#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.labservices#DeleteUser"
-        },
-        {
-          "target": "com.azure.labservices#GetImage"
-        },
-        {
-          "target": "com.azure.labservices#GetLab"
-        },
-        {
-          "target": "com.azure.labservices#GetLabPlan"
-        },
-        {
-          "target": "com.azure.labservices#GetOperationResult"
-        },
-        {
-          "target": "com.azure.labservices#GetSchedule"
-        },
-        {
-          "target": "com.azure.labservices#GetUser"
-        },
-        {
-          "target": "com.azure.labservices#GetVirtualMachine"
+          "target": "com.azure.labservices#UpdateImage"
         },
         {
           "target": "com.azure.labservices#ImagesCreateOrUpdate"
         },
         {
-          "target": "com.azure.labservices#InviteUser"
-        },
-        {
-          "target": "com.azure.labservices#LabPlansCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.labservices#LabPlansSaveImage"
-        },
-        {
-          "target": "com.azure.labservices#LabsCreateOrUpdate"
+          "target": "com.azure.labservices#GetImage"
         },
         {
           "target": "com.azure.labservices#ListImageByLabPlan"
         },
         {
-          "target": "com.azure.labservices#ListLabByResourceGroup"
+          "target": "com.azure.labservices#LabPlansSaveImage"
         },
         {
-          "target": "com.azure.labservices#ListLabBySubscription"
+          "target": "com.azure.labservices#DeleteLabPlan"
+        },
+        {
+          "target": "com.azure.labservices#UpdateLabPlan"
+        },
+        {
+          "target": "com.azure.labservices#LabPlansCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.labservices#GetLabPlan"
         },
         {
           "target": "com.azure.labservices#ListLabPlanByResourceGroup"
@@ -10178,6 +10148,45 @@
           "target": "com.azure.labservices#ListOperations"
         },
         {
+          "target": "com.azure.labservices#SyncLabGroup"
+        },
+        {
+          "target": "com.azure.labservices#PublishLab"
+        },
+        {
+          "target": "com.azure.labservices#DeleteLab"
+        },
+        {
+          "target": "com.azure.labservices#UpdateLab"
+        },
+        {
+          "target": "com.azure.labservices#LabsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.labservices#GetLab"
+        },
+        {
+          "target": "com.azure.labservices#ListLabByResourceGroup"
+        },
+        {
+          "target": "com.azure.labservices#ListLabBySubscription"
+        },
+        {
+          "target": "com.azure.labservices#GetOperationResult"
+        },
+        {
+          "target": "com.azure.labservices#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.labservices#UpdateSchedule"
+        },
+        {
+          "target": "com.azure.labservices#SchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.labservices#GetSchedule"
+        },
+        {
           "target": "com.azure.labservices#ListScheduleByLab"
         },
         {
@@ -10187,43 +10196,10 @@
           "target": "com.azure.labservices#ListUsageByLocation"
         },
         {
-          "target": "com.azure.labservices#ListUserByLab"
+          "target": "com.azure.labservices#InviteUser"
         },
         {
-          "target": "com.azure.labservices#ListVirtualMachineByLab"
-        },
-        {
-          "target": "com.azure.labservices#PublishLab"
-        },
-        {
-          "target": "com.azure.labservices#RedeployVirtualMachine"
-        },
-        {
-          "target": "com.azure.labservices#ResetVirtualMachinePassword"
-        },
-        {
-          "target": "com.azure.labservices#SchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.labservices#StartVirtualMachine"
-        },
-        {
-          "target": "com.azure.labservices#StopVirtualMachine"
-        },
-        {
-          "target": "com.azure.labservices#SyncLabGroup"
-        },
-        {
-          "target": "com.azure.labservices#UpdateImage"
-        },
-        {
-          "target": "com.azure.labservices#UpdateLab"
-        },
-        {
-          "target": "com.azure.labservices#UpdateLabPlan"
-        },
-        {
-          "target": "com.azure.labservices#UpdateSchedule"
+          "target": "com.azure.labservices#DeleteUser"
         },
         {
           "target": "com.azure.labservices#UpdateUser"
@@ -10232,7 +10208,31 @@
           "target": "com.azure.labservices#UsersCreateOrUpdate"
         },
         {
+          "target": "com.azure.labservices#GetUser"
+        },
+        {
+          "target": "com.azure.labservices#ListUserByLab"
+        },
+        {
+          "target": "com.azure.labservices#ResetVirtualMachinePassword"
+        },
+        {
+          "target": "com.azure.labservices#RedeployVirtualMachine"
+        },
+        {
           "target": "com.azure.labservices#VirtualMachinesReimage"
+        },
+        {
+          "target": "com.azure.labservices#StopVirtualMachine"
+        },
+        {
+          "target": "com.azure.labservices#StartVirtualMachine"
+        },
+        {
+          "target": "com.azure.labservices#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.labservices#ListVirtualMachineByLab"
         }
       ],
       "traits": {

@@ -4948,106 +4948,106 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#DeleteDedicatedCloudNode"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#DeleteDedicatedCloudService"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#DeleteVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetCustomizationPolicy"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetDedicatedCloudNode"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetDedicatedCloudService"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetOperation"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetPrivateCloud"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetResourcePool"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetVirtualMachineTemplate"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#GetVirtualNetwork"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListCustomizationPolicies"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudNodeByResourceGroup"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudNodeBySubscription"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudServiceBySubscription"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListOperations"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListPrivateClouds"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListResourcePools"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListSkusAvailability"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListUsages"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListVirtualMachineByResourceGroup"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListVirtualMachineBySubscription"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListVirtualMachineTemplates"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#ListVirtualNetworks"
+          "target": "com.azure.vmwarecloudsimple#StopVirtualMachine"
         },
         {
           "target": "com.azure.vmwarecloudsimple#StartVirtualMachine"
         },
         {
-          "target": "com.azure.vmwarecloudsimple#StopVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#UpdateDedicatedCloudNode"
-        },
-        {
-          "target": "com.azure.vmwarecloudsimple#UpdateDedicatedCloudService"
+          "target": "com.azure.vmwarecloudsimple#DeleteVirtualMachine"
         },
         {
           "target": "com.azure.vmwarecloudsimple#UpdateVirtualMachine"
         },
         {
           "target": "com.azure.vmwarecloudsimple#VirtualMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListVirtualMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DeleteDedicatedCloudService"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#UpdateDedicatedCloudService"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetDedicatedCloudService"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DeleteDedicatedCloudNode"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#UpdateDedicatedCloudNode"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#DedicatedCloudNodesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetDedicatedCloudNode"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudNodeByResourceGroup"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListVirtualMachineBySubscription"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListUsages"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetVirtualNetwork"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListVirtualNetworks"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetVirtualMachineTemplate"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListVirtualMachineTemplates"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetResourcePool"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListResourcePools"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetCustomizationPolicy"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListCustomizationPolicies"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetPrivateCloud"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListPrivateClouds"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#GetOperation"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListSkusAvailability"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudServiceBySubscription"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListDedicatedCloudNodeBySubscription"
+        },
+        {
+          "target": "com.azure.vmwarecloudsimple#ListOperations"
         }
       ],
       "traits": {

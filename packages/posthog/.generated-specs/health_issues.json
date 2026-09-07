@@ -677,22 +677,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.health_issues#CreateHealthIssuesResolve"
+          "target": "com.posthog.health_issues#ListHealthIssues"
         },
         {
           "target": "com.posthog.health_issues#GetHealthIssue"
         },
         {
-          "target": "com.posthog.health_issues#GetHealthIssuesSummary"
+          "target": "com.posthog.health_issues#UpdateHealthIssuesPartial"
+        },
+        {
+          "target": "com.posthog.health_issues#CreateHealthIssuesResolve"
         },
         {
           "target": "com.posthog.health_issues#HealthIssuesRefreshCreate"
         },
         {
-          "target": "com.posthog.health_issues#ListHealthIssues"
-        },
-        {
-          "target": "com.posthog.health_issues#UpdateHealthIssuesPartial"
+          "target": "com.posthog.health_issues#GetHealthIssuesSummary"
         }
       ],
       "traits": {

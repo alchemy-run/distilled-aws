@@ -3877,13 +3877,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.functions#CancelFunctionCall"
-        },
-        {
-          "target": "com.modal.functions#CreateFunction"
+          "target": "com.modal.functions#InvokeFunctionAsync"
         },
         {
           "target": "com.modal.functions#FunctionBindParams"
+        },
+        {
+          "target": "com.modal.functions#CancelFunctionCall"
         },
         {
           "target": "com.modal.functions#FunctionCallFromId"
@@ -3892,10 +3892,19 @@
           "target": "com.modal.functions#FunctionCallGetInfo"
         },
         {
+          "target": "com.modal.functions#ListFunctionCall"
+        },
+        {
           "target": "com.modal.functions#FunctionCallPutDataOut"
         },
         {
+          "target": "com.modal.functions#CreateFunction"
+        },
+        {
           "target": "com.modal.functions#FunctionFinishInputs"
+        },
+        {
+          "target": "com.modal.functions#GetFunction"
         },
         {
           "target": "com.modal.functions#FunctionGetById"
@@ -3908,6 +3917,12 @@
         },
         {
           "target": "com.modal.functions#FunctionGetDynamicConcurrency"
+        },
+        {
+          "target": "com.modal.functions#GetFunctionInputs"
+        },
+        {
+          "target": "com.modal.functions#GetFunctionOutputs"
         },
         {
           "target": "com.modal.functions#FunctionGetSerialized"
@@ -3935,21 +3950,6 @@
         },
         {
           "target": "com.modal.functions#FunctionUpdateSchedulingParams"
-        },
-        {
-          "target": "com.modal.functions#GetFunction"
-        },
-        {
-          "target": "com.modal.functions#GetFunctionInputs"
-        },
-        {
-          "target": "com.modal.functions#GetFunctionOutputs"
-        },
-        {
-          "target": "com.modal.functions#InvokeFunctionAsync"
-        },
-        {
-          "target": "com.modal.functions#ListFunctionCall"
         }
       ],
       "traits": {

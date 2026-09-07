@@ -19868,223 +19868,337 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cdn#AbortProfilesMigration"
-        },
-        {
-          "target": "com.azure.cdn#AFDProfilesUpgrade"
-        },
-        {
-          "target": "com.azure.cdn#CheckAFDProfileEndpointNameAvailability"
-        },
-        {
-          "target": "com.azure.cdn#CheckAFDProfileHostNameAvailability"
-        },
-        {
-          "target": "com.azure.cdn#CheckEndpointNameAvailability"
-        },
-        {
-          "target": "com.azure.cdn#CheckNameAvailability"
-        },
-        {
-          "target": "com.azure.cdn#CheckNameAvailabilityWithSubscription"
-        },
-        {
-          "target": "com.azure.cdn#CommitProfilesMigration"
-        },
-        {
-          "target": "com.azure.cdn#CreateAFDCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#CreateAFDEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#CreateAFDOrigin"
-        },
-        {
-          "target": "com.azure.cdn#CreateAFDOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#CreateCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#CreateEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#CreateOrigin"
-        },
-        {
-          "target": "com.azure.cdn#CreateOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#CreateProfile"
-        },
-        {
-          "target": "com.azure.cdn#CreateRoute"
-        },
-        {
-          "target": "com.azure.cdn#CreateRule"
-        },
-        {
-          "target": "com.azure.cdn#CreateRuleSet"
-        },
-        {
-          "target": "com.azure.cdn#CreateSecret"
-        },
-        {
-          "target": "com.azure.cdn#CreateSecurityPolicy"
-        },
-        {
-          "target": "com.azure.cdn#DeleteAFDCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#DeleteAFDEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#DeleteAFDOrigin"
-        },
-        {
-          "target": "com.azure.cdn#DeleteAFDOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#DeleteCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#DeleteEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#DeleteOrigin"
-        },
-        {
-          "target": "com.azure.cdn#DeleteOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#DeletePolicy"
-        },
-        {
-          "target": "com.azure.cdn#DeleteProfile"
-        },
-        {
-          "target": "com.azure.cdn#DeleteRoute"
-        },
-        {
-          "target": "com.azure.cdn#DeleteRule"
-        },
-        {
-          "target": "com.azure.cdn#DeleteRuleSet"
-        },
-        {
-          "target": "com.azure.cdn#DeleteSecret"
-        },
-        {
-          "target": "com.azure.cdn#DeleteSecurityPolicy"
-        },
-        {
-          "target": "com.azure.cdn#DisableCustomDomainCustomHttps"
-        },
-        {
-          "target": "com.azure.cdn#EnableCustomDomainCustomHttps"
-        },
-        {
-          "target": "com.azure.cdn#EndpointsLoadContent"
-        },
-        {
-          "target": "com.azure.cdn#GenerateProfileSsoUri"
-        },
-        {
-          "target": "com.azure.cdn#GetAFDCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#GetAFDEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#GetAFDOrigin"
-        },
-        {
-          "target": "com.azure.cdn#GetAFDOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#GetCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#GetEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsLocations"
-        },
-        {
-          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsMetrics"
-        },
-        {
-          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsRankings"
-        },
-        {
-          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsResources"
-        },
-        {
-          "target": "com.azure.cdn#GetLogAnalyticsWafLogAnalyticsMetrics"
-        },
-        {
-          "target": "com.azure.cdn#GetLogAnalyticsWafLogAnalyticsRankings"
-        },
-        {
-          "target": "com.azure.cdn#GetOrigin"
-        },
-        {
-          "target": "com.azure.cdn#GetOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#GetPolicy"
-        },
-        {
-          "target": "com.azure.cdn#GetProfile"
-        },
-        {
-          "target": "com.azure.cdn#GetRoute"
-        },
-        {
-          "target": "com.azure.cdn#GetRule"
-        },
-        {
-          "target": "com.azure.cdn#GetRuleSet"
-        },
-        {
-          "target": "com.azure.cdn#GetSecret"
-        },
-        {
-          "target": "com.azure.cdn#GetSecurityPolicy"
-        },
-        {
-          "target": "com.azure.cdn#ListAFDCustomDomainByProfile"
-        },
-        {
-          "target": "com.azure.cdn#ListAFDEndpointByProfile"
-        },
-        {
-          "target": "com.azure.cdn#ListAFDEndpointResourceUsage"
-        },
-        {
-          "target": "com.azure.cdn#ListAFDOriginByOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#ListAFDOriginGroupByProfile"
-        },
-        {
-          "target": "com.azure.cdn#ListAFDOriginGroupResourceUsage"
+          "target": "com.azure.cdn#ValidateAFDProfileSecret"
         },
         {
           "target": "com.azure.cdn#ListAFDProfileResourceUsage"
         },
         {
+          "target": "com.azure.cdn#AFDProfilesUpgrade"
+        },
+        {
+          "target": "com.azure.cdn#DeleteSecurityPolicy"
+        },
+        {
+          "target": "com.azure.cdn#PatchSecurityPolicy"
+        },
+        {
+          "target": "com.azure.cdn#CreateSecurityPolicy"
+        },
+        {
+          "target": "com.azure.cdn#GetSecurityPolicy"
+        },
+        {
+          "target": "com.azure.cdn#ListSecurityPolicyByProfile"
+        },
+        {
+          "target": "com.azure.cdn#DeleteSecret"
+        },
+        {
+          "target": "com.azure.cdn#CreateSecret"
+        },
+        {
+          "target": "com.azure.cdn#GetSecret"
+        },
+        {
+          "target": "com.azure.cdn#ListSecretByProfile"
+        },
+        {
+          "target": "com.azure.cdn#ListRuleSetResourceUsage"
+        },
+        {
+          "target": "com.azure.cdn#DeleteRule"
+        },
+        {
+          "target": "com.azure.cdn#UpdateRule"
+        },
+        {
+          "target": "com.azure.cdn#CreateRule"
+        },
+        {
+          "target": "com.azure.cdn#GetRule"
+        },
+        {
+          "target": "com.azure.cdn#ListRuleByRuleSet"
+        },
+        {
+          "target": "com.azure.cdn#DeleteRuleSet"
+        },
+        {
+          "target": "com.azure.cdn#CreateRuleSet"
+        },
+        {
+          "target": "com.azure.cdn#GetRuleSet"
+        },
+        {
+          "target": "com.azure.cdn#ListRuleSetByProfile"
+        },
+        {
+          "target": "com.azure.cdn#ListAFDOriginGroupResourceUsage"
+        },
+        {
+          "target": "com.azure.cdn#DeleteAFDOrigin"
+        },
+        {
+          "target": "com.azure.cdn#UpdateAFDOrigin"
+        },
+        {
+          "target": "com.azure.cdn#CreateAFDOrigin"
+        },
+        {
+          "target": "com.azure.cdn#GetAFDOrigin"
+        },
+        {
+          "target": "com.azure.cdn#ListAFDOriginByOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#DeleteAFDOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#UpdateAFDOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#CreateAFDOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#GetAFDOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#ListAFDOriginGroupByProfile"
+        },
+        {
+          "target": "com.azure.cdn#CommitProfilesMigration"
+        },
+        {
+          "target": "com.azure.cdn#AbortProfilesMigration"
+        },
+        {
+          "target": "com.azure.cdn#GetLogAnalyticsWafLogAnalyticsRankings"
+        },
+        {
+          "target": "com.azure.cdn#GetLogAnalyticsWafLogAnalyticsMetrics"
+        },
+        {
+          "target": "com.azure.cdn#ListProfileSupportedOptimizationTypes"
+        },
+        {
+          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsResources"
+        },
+        {
+          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsRankings"
+        },
+        {
+          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsMetrics"
+        },
+        {
+          "target": "com.azure.cdn#GetLogAnalyticsLogAnalyticsLocations"
+        },
+        {
+          "target": "com.azure.cdn#GenerateProfileSsoUri"
+        },
+        {
+          "target": "com.azure.cdn#ValidateEndpointCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#StopEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#StartEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#PurgeEndpointContent"
+        },
+        {
+          "target": "com.azure.cdn#DeleteOrigin"
+        },
+        {
+          "target": "com.azure.cdn#UpdateOrigin"
+        },
+        {
+          "target": "com.azure.cdn#CreateOrigin"
+        },
+        {
+          "target": "com.azure.cdn#GetOrigin"
+        },
+        {
+          "target": "com.azure.cdn#ListOriginByEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#DeleteOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#UpdateOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#CreateOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#GetOriginGroup"
+        },
+        {
+          "target": "com.azure.cdn#ListOriginGroupByEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#EndpointsLoadContent"
+        },
+        {
+          "target": "com.azure.cdn#EnableCustomDomainCustomHttps"
+        },
+        {
+          "target": "com.azure.cdn#DisableCustomDomainCustomHttps"
+        },
+        {
+          "target": "com.azure.cdn#DeleteCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#CreateCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#GetCustomDomain"
+        },
+        {
           "target": "com.azure.cdn#ListCustomDomainByEndpoint"
         },
         {
-          "target": "com.azure.cdn#ListEdgeNodes"
+          "target": "com.azure.cdn#ListEndpointResourceUsage"
+        },
+        {
+          "target": "com.azure.cdn#DeleteEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#UpdateEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#CreateEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#GetEndpoint"
         },
         {
           "target": "com.azure.cdn#ListEndpointByProfile"
         },
         {
-          "target": "com.azure.cdn#ListEndpointResourceUsage"
+          "target": "com.azure.cdn#RefreshAFDCustomDomainValidationToken"
+        },
+        {
+          "target": "com.azure.cdn#DeleteAFDCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#UpdateAFDCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#CreateAFDCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#GetAFDCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#ListAFDCustomDomainByProfile"
+        },
+        {
+          "target": "com.azure.cdn#ListProfileResourceUsage"
+        },
+        {
+          "target": "com.azure.cdn#CheckAFDProfileHostNameAvailability"
+        },
+        {
+          "target": "com.azure.cdn#CheckAFDProfileEndpointNameAvailability"
+        },
+        {
+          "target": "com.azure.cdn#ProfilesCdnMigrateToAfd"
+        },
+        {
+          "target": "com.azure.cdn#ProfilesCdnCanMigrateToAfd"
+        },
+        {
+          "target": "com.azure.cdn#ValidateAFDEndpointCustomDomain"
+        },
+        {
+          "target": "com.azure.cdn#ListAFDEndpointResourceUsage"
+        },
+        {
+          "target": "com.azure.cdn#DeleteRoute"
+        },
+        {
+          "target": "com.azure.cdn#UpdateRoute"
+        },
+        {
+          "target": "com.azure.cdn#CreateRoute"
+        },
+        {
+          "target": "com.azure.cdn#GetRoute"
+        },
+        {
+          "target": "com.azure.cdn#ListRouteByEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#PurgeAFDEndpointContent"
+        },
+        {
+          "target": "com.azure.cdn#DeleteAFDEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#UpdateAFDEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#CreateAFDEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#GetAFDEndpoint"
+        },
+        {
+          "target": "com.azure.cdn#ListAFDEndpointByProfile"
+        },
+        {
+          "target": "com.azure.cdn#DeleteProfile"
+        },
+        {
+          "target": "com.azure.cdn#UpdateProfile"
+        },
+        {
+          "target": "com.azure.cdn#CreateProfile"
+        },
+        {
+          "target": "com.azure.cdn#GetProfile"
+        },
+        {
+          "target": "com.azure.cdn#ListProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.cdn#MigrateProfile"
+        },
+        {
+          "target": "com.azure.cdn#CheckEndpointNameAvailability"
+        },
+        {
+          "target": "com.azure.cdn#DeletePolicy"
+        },
+        {
+          "target": "com.azure.cdn#UpdatePolicy"
+        },
+        {
+          "target": "com.azure.cdn#PoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cdn#GetPolicy"
+        },
+        {
+          "target": "com.azure.cdn#ListPolicies"
+        },
+        {
+          "target": "com.azure.cdn#MigrateProfilesCan"
+        },
+        {
+          "target": "com.azure.cdn#ValidateProbe"
+        },
+        {
+          "target": "com.azure.cdn#ListProfiles"
+        },
+        {
+          "target": "com.azure.cdn#ListResourceUsage"
+        },
+        {
+          "target": "com.azure.cdn#CheckNameAvailabilityWithSubscription"
         },
         {
           "target": "com.azure.cdn#ListManagedRuleSets"
@@ -20093,124 +20207,10 @@
           "target": "com.azure.cdn#ListOperations"
         },
         {
-          "target": "com.azure.cdn#ListOriginByEndpoint"
+          "target": "com.azure.cdn#ListEdgeNodes"
         },
         {
-          "target": "com.azure.cdn#ListOriginGroupByEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#ListPolicies"
-        },
-        {
-          "target": "com.azure.cdn#ListProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.cdn#ListProfileResourceUsage"
-        },
-        {
-          "target": "com.azure.cdn#ListProfiles"
-        },
-        {
-          "target": "com.azure.cdn#ListProfileSupportedOptimizationTypes"
-        },
-        {
-          "target": "com.azure.cdn#ListResourceUsage"
-        },
-        {
-          "target": "com.azure.cdn#ListRouteByEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#ListRuleByRuleSet"
-        },
-        {
-          "target": "com.azure.cdn#ListRuleSetByProfile"
-        },
-        {
-          "target": "com.azure.cdn#ListRuleSetResourceUsage"
-        },
-        {
-          "target": "com.azure.cdn#ListSecretByProfile"
-        },
-        {
-          "target": "com.azure.cdn#ListSecurityPolicyByProfile"
-        },
-        {
-          "target": "com.azure.cdn#MigrateProfile"
-        },
-        {
-          "target": "com.azure.cdn#MigrateProfilesCan"
-        },
-        {
-          "target": "com.azure.cdn#PatchSecurityPolicy"
-        },
-        {
-          "target": "com.azure.cdn#PoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cdn#ProfilesCdnCanMigrateToAfd"
-        },
-        {
-          "target": "com.azure.cdn#ProfilesCdnMigrateToAfd"
-        },
-        {
-          "target": "com.azure.cdn#PurgeAFDEndpointContent"
-        },
-        {
-          "target": "com.azure.cdn#PurgeEndpointContent"
-        },
-        {
-          "target": "com.azure.cdn#RefreshAFDCustomDomainValidationToken"
-        },
-        {
-          "target": "com.azure.cdn#StartEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#StopEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#UpdateAFDCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#UpdateAFDEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#UpdateAFDOrigin"
-        },
-        {
-          "target": "com.azure.cdn#UpdateAFDOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#UpdateEndpoint"
-        },
-        {
-          "target": "com.azure.cdn#UpdateOrigin"
-        },
-        {
-          "target": "com.azure.cdn#UpdateOriginGroup"
-        },
-        {
-          "target": "com.azure.cdn#UpdatePolicy"
-        },
-        {
-          "target": "com.azure.cdn#UpdateProfile"
-        },
-        {
-          "target": "com.azure.cdn#UpdateRoute"
-        },
-        {
-          "target": "com.azure.cdn#UpdateRule"
-        },
-        {
-          "target": "com.azure.cdn#ValidateAFDEndpointCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#ValidateAFDProfileSecret"
-        },
-        {
-          "target": "com.azure.cdn#ValidateEndpointCustomDomain"
-        },
-        {
-          "target": "com.azure.cdn#ValidateProbe"
+          "target": "com.azure.cdn#CheckNameAvailability"
         }
       ],
       "traits": {

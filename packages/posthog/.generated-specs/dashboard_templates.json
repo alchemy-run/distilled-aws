@@ -1104,25 +1104,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.dashboard_templates#ListDashboardTemplates"
+        },
+        {
           "target": "com.posthog.dashboard_templates#CreateDashboardTemplate"
         },
         {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreate"
-        },
-        {
-          "target": "com.posthog.dashboard_templates#DashboardTemplatesDestroy"
-        },
-        {
           "target": "com.posthog.dashboard_templates#GetDashboardTemplate"
-        },
-        {
-          "target": "com.posthog.dashboard_templates#ListDashboardTemplates"
         },
         {
           "target": "com.posthog.dashboard_templates#UpdateDashboardTemplate"
         },
         {
           "target": "com.posthog.dashboard_templates#UpdateDashboardTemplatesPartial"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesDestroy"
+        },
+        {
+          "target": "com.posthog.dashboard_templates#DashboardTemplatesCopyBetweenProjectsCreate"
         }
       ],
       "traits": {

@@ -4686,49 +4686,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.search#CheckServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.search#CreateQueryKeys"
-        },
-        {
-          "target": "com.azure.search#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.search#DeleteQueryKeys"
-        },
-        {
-          "target": "com.azure.search#DeleteService"
+          "target": "com.azure.search#ServicesUpgrade"
         },
         {
           "target": "com.azure.search#DeleteSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.search#GetAdminKeys"
-        },
-        {
-          "target": "com.azure.search#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.search#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.search#GetService"
+          "target": "com.azure.search#SharedPrivateLinkResourcesCreateOrUpdate"
         },
         {
           "target": "com.azure.search#GetSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.search#ListNetworkSecurityPerimeterConfigurationByService"
+          "target": "com.azure.search#ListSharedPrivateLinkResourceByService"
         },
         {
-          "target": "com.azure.search#ListOperations"
+          "target": "com.azure.search#RegenerateAdminKeys"
+        },
+        {
+          "target": "com.azure.search#ListPrivateLinkResourceSupported"
+        },
+        {
+          "target": "com.azure.search#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.search#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.search#GetPrivateEndpointConnection"
         },
         {
           "target": "com.azure.search#ListPrivateEndpointConnectionByService"
         },
         {
-          "target": "com.azure.search#ListPrivateLinkResourceSupported"
+          "target": "com.azure.search#NetworkSecurityPerimeterConfigurationsReconcile"
+        },
+        {
+          "target": "com.azure.search#GetNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.search#ListNetworkSecurityPerimeterConfigurationByService"
+        },
+        {
+          "target": "com.azure.search#QueryKeysListBySearchService"
+        },
+        {
+          "target": "com.azure.search#GetAdminKeys"
+        },
+        {
+          "target": "com.azure.search#DeleteQueryKeys"
+        },
+        {
+          "target": "com.azure.search#CreateQueryKeys"
+        },
+        {
+          "target": "com.azure.search#DeleteService"
+        },
+        {
+          "target": "com.azure.search#UpdateService"
+        },
+        {
+          "target": "com.azure.search#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.search#GetService"
         },
         {
           "target": "com.azure.search#ListServiceByResourceGroup"
@@ -4737,37 +4758,16 @@
           "target": "com.azure.search#ListServiceBySubscription"
         },
         {
-          "target": "com.azure.search#ListSharedPrivateLinkResourceByService"
+          "target": "com.azure.search#UsageBySubscriptionSku"
         },
         {
           "target": "com.azure.search#ListUsageBySubscription"
         },
         {
-          "target": "com.azure.search#NetworkSecurityPerimeterConfigurationsReconcile"
+          "target": "com.azure.search#CheckServiceNameAvailability"
         },
         {
-          "target": "com.azure.search#QueryKeysListBySearchService"
-        },
-        {
-          "target": "com.azure.search#RegenerateAdminKeys"
-        },
-        {
-          "target": "com.azure.search#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.search#ServicesUpgrade"
-        },
-        {
-          "target": "com.azure.search#SharedPrivateLinkResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.search#UpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.search#UpdateService"
-        },
-        {
-          "target": "com.azure.search#UsageBySubscriptionSku"
+          "target": "com.azure.search#ListOperations"
         }
       ],
       "traits": {

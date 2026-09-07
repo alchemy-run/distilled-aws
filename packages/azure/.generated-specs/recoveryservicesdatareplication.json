@@ -8040,154 +8040,154 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservicesdatareplication#CreateEmailConfiguration"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateFabricAgent"
+          "target": "com.azure.recoveryservicesdatareplication#DeletePolicy"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#CreatePolicy"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#CreateProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#CreateVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeletePolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#DeleteVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetEmailConfiguration"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetEvent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetJob"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetLocationBasedOperationResult"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetOperationResult"
-        },
-        {
           "target": "com.azure.recoveryservicesdatareplication#GetPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetReplicationExtension"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#GetVault"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListEmailConfiguration"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListEvent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListFabricAgent"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListFabricBySubscription"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListJob"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListOperations"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#ListPolicy"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListPrivateEndpointConnections"
+          "target": "com.azure.recoveryservicesdatareplication#DeleteReplicationExtension"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListPrivateLinkResources"
+          "target": "com.azure.recoveryservicesdatareplication#CreateReplicationExtension"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#ListRecoveryPoint"
+          "target": "com.azure.recoveryservicesdatareplication#GetReplicationExtension"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#ListReplicationExtension"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListVault"
+          "target": "com.azure.recoveryservicesdatareplication#GetRecoveryPoint"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#ListVaultBySubscription"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#PostCheckNameAvailability"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#PostDeploymentPreflight"
+          "target": "com.azure.recoveryservicesdatareplication#ListRecoveryPoint"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#ProtectedItemPlannedFailover"
         },
         {
-          "target": "com.azure.recoveryservicesdatareplication#UpdateFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicesdatareplication#UpdatePrivateEndpointConnection"
+          "target": "com.azure.recoveryservicesdatareplication#DeleteProtectedItem"
         },
         {
           "target": "com.azure.recoveryservicesdatareplication#UpdateProtectedItem"
         },
         {
+          "target": "com.azure.recoveryservicesdatareplication#CreateProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetJob"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListJob"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetEvent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListEvent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateEmailConfiguration"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetEmailConfiguration"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListEmailConfiguration"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteVault"
+        },
+        {
           "target": "com.azure.recoveryservicesdatareplication#UpdateVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListVault"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteFabricAgent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateFabricAgent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetFabricAgent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListFabricAgent"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#DeleteFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#UpdateFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#CreateFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#GetLocationBasedOperationResult"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#PostDeploymentPreflight"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListVaultBySubscription"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListFabricBySubscription"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#PostCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.recoveryservicesdatareplication#ListOperations"
         }
       ],
       "traits": {

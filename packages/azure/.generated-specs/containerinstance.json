@@ -8667,130 +8667,130 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.containerinstance#AttachContainer"
-        },
-        {
-          "target": "com.azure.containerinstance#CGProfileCreateOrUpdate"
+          "target": "com.azure.containerinstance#DeleteSubnetServiceAssociationLink"
         },
         {
           "target": "com.azure.containerinstance#ConnectSandboxGroup"
         },
         {
-          "target": "com.azure.containerinstance#ContainerGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteCGProfile"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#DeleteNGroup"
-        },
-        {
           "target": "com.azure.containerinstance#DeleteSandboxGroup"
         },
         {
-          "target": "com.azure.containerinstance#DeleteSubnetServiceAssociationLink"
-        },
-        {
-          "target": "com.azure.containerinstance#ExecuteContainerCommand"
-        },
-        {
-          "target": "com.azure.containerinstance#GetCGProfile"
-        },
-        {
-          "target": "com.azure.containerinstance#GetCGProfileByRevisionNumber"
-        },
-        {
-          "target": "com.azure.containerinstance#GetContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.containerinstance#GetNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#GetSandboxGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListCGProfileAllRevisions"
-        },
-        {
-          "target": "com.azure.containerinstance#ListCGProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListCGProfileBySubscription"
-        },
-        {
-          "target": "com.azure.containerinstance#ListContainerGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListContainerGroups"
-        },
-        {
-          "target": "com.azure.containerinstance#ListContainerLogs"
-        },
-        {
-          "target": "com.azure.containerinstance#ListLocationCachedImages"
-        },
-        {
-          "target": "com.azure.containerinstance#ListLocationCapabilities"
-        },
-        {
-          "target": "com.azure.containerinstance#ListLocationUsage"
-        },
-        {
-          "target": "com.azure.containerinstance#ListNGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListNGroups"
-        },
-        {
-          "target": "com.azure.containerinstance#ListOperations"
-        },
-        {
-          "target": "com.azure.containerinstance#ListSandboxGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#ListSandboxGroupBySubscription"
-        },
-        {
-          "target": "com.azure.containerinstance#NGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.containerinstance#RestartContainerGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#RestartNGroup"
+          "target": "com.azure.containerinstance#UpdateSandboxGroup"
         },
         {
           "target": "com.azure.containerinstance#SandboxGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.containerinstance#StartContainerGroup"
+          "target": "com.azure.containerinstance#GetSandboxGroup"
         },
         {
-          "target": "com.azure.containerinstance#StartNGroup"
-        },
-        {
-          "target": "com.azure.containerinstance#StopContainerGroup"
+          "target": "com.azure.containerinstance#ListSandboxGroupByResourceGroup"
         },
         {
           "target": "com.azure.containerinstance#StopNGroup"
         },
         {
-          "target": "com.azure.containerinstance#UpdateCGProfile"
+          "target": "com.azure.containerinstance#StartNGroup"
         },
         {
-          "target": "com.azure.containerinstance#UpdateContainerGroup"
+          "target": "com.azure.containerinstance#RestartNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#DeleteNGroup"
         },
         {
           "target": "com.azure.containerinstance#UpdateNGroup"
         },
         {
-          "target": "com.azure.containerinstance#UpdateSandboxGroup"
+          "target": "com.azure.containerinstance#NGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.containerinstance#GetNGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListNGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#StopContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#StartContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#RestartContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#GetContainerGroupOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.containerinstance#ListContainerLogs"
+        },
+        {
+          "target": "com.azure.containerinstance#ExecuteContainerCommand"
+        },
+        {
+          "target": "com.azure.containerinstance#AttachContainer"
+        },
+        {
+          "target": "com.azure.containerinstance#DeleteContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#UpdateContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ContainerGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.containerinstance#GetContainerGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListContainerGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#GetCGProfileByRevisionNumber"
+        },
+        {
+          "target": "com.azure.containerinstance#ListCGProfileAllRevisions"
+        },
+        {
+          "target": "com.azure.containerinstance#DeleteCGProfile"
+        },
+        {
+          "target": "com.azure.containerinstance#UpdateCGProfile"
+        },
+        {
+          "target": "com.azure.containerinstance#CGProfileCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.containerinstance#GetCGProfile"
+        },
+        {
+          "target": "com.azure.containerinstance#ListCGProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerinstance#ListSandboxGroupBySubscription"
+        },
+        {
+          "target": "com.azure.containerinstance#ListNGroups"
+        },
+        {
+          "target": "com.azure.containerinstance#ListLocationUsage"
+        },
+        {
+          "target": "com.azure.containerinstance#ListLocationCapabilities"
+        },
+        {
+          "target": "com.azure.containerinstance#ListLocationCachedImages"
+        },
+        {
+          "target": "com.azure.containerinstance#ListContainerGroups"
+        },
+        {
+          "target": "com.azure.containerinstance#ListCGProfileBySubscription"
+        },
+        {
+          "target": "com.azure.containerinstance#ListOperations"
         }
       ],
       "traits": {

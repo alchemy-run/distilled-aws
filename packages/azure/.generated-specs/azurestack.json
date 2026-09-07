@@ -2762,28 +2762,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurestack#CreateCustomerSubscription"
-        },
-        {
           "target": "com.azure.azurestack#CreateDeploymentLicense"
-        },
-        {
-          "target": "com.azure.azurestack#DeleteCustomerSubscription"
-        },
-        {
-          "target": "com.azure.azurestack#DeleteRegistration"
-        },
-        {
-          "target": "com.azure.azurestack#EnableRegistrationRemoteManagement"
         },
         {
           "target": "com.azure.azurestack#GetCloudManifestFile"
         },
         {
+          "target": "com.azure.azurestack#ListCloudManifestFile"
+        },
+        {
+          "target": "com.azure.azurestack#ListOperations"
+        },
+        {
+          "target": "com.azure.azurestack#DeleteCustomerSubscription"
+        },
+        {
+          "target": "com.azure.azurestack#CreateCustomerSubscription"
+        },
+        {
           "target": "com.azure.azurestack#GetCustomerSubscription"
         },
         {
-          "target": "com.azure.azurestack#GetProduct"
+          "target": "com.azure.azurestack#ListCustomerSubscriptions"
+        },
+        {
+          "target": "com.azure.azurestack#UploadProductLog"
         },
         {
           "target": "com.azure.azurestack#GetProductProduct"
@@ -2792,43 +2795,40 @@
           "target": "com.azure.azurestack#GetProductProducts"
         },
         {
-          "target": "com.azure.azurestack#GetRegistration"
-        },
-        {
-          "target": "com.azure.azurestack#GetRegistrationActivationKey"
-        },
-        {
-          "target": "com.azure.azurestack#ListCloudManifestFile"
-        },
-        {
-          "target": "com.azure.azurestack#ListCustomerSubscriptions"
-        },
-        {
-          "target": "com.azure.azurestack#ListOperations"
+          "target": "com.azure.azurestack#ListProductProducts"
         },
         {
           "target": "com.azure.azurestack#ListProductDetails"
         },
         {
-          "target": "com.azure.azurestack#ListProductProducts"
+          "target": "com.azure.azurestack#GetProduct"
         },
         {
           "target": "com.azure.azurestack#ListProducts"
+        },
+        {
+          "target": "com.azure.azurestack#EnableRegistrationRemoteManagement"
+        },
+        {
+          "target": "com.azure.azurestack#GetRegistrationActivationKey"
+        },
+        {
+          "target": "com.azure.azurestack#DeleteRegistration"
+        },
+        {
+          "target": "com.azure.azurestack#UpdateRegistration"
+        },
+        {
+          "target": "com.azure.azurestack#RegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestack#GetRegistration"
         },
         {
           "target": "com.azure.azurestack#ListRegistrationBySubscription"
         },
         {
           "target": "com.azure.azurestack#ListRegistrations"
-        },
-        {
-          "target": "com.azure.azurestack#RegistrationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestack#UpdateRegistration"
-        },
-        {
-          "target": "com.azure.azurestack#UploadProductLog"
         }
       ],
       "traits": {

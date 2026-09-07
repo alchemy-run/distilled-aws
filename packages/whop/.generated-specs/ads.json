@@ -3966,7 +3966,16 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.ads#ListAds"
+        },
+        {
           "target": "com.whop.ads#CreateAd"
+        },
+        {
+          "target": "com.whop.ads#GetAd"
+        },
+        {
+          "target": "com.whop.ads#UpdateAd"
         },
         {
           "target": "com.whop.ads#DeleteAd"
@@ -3975,19 +3984,10 @@
           "target": "com.whop.ads#DuplicateAd"
         },
         {
-          "target": "com.whop.ads#GetAd"
-        },
-        {
-          "target": "com.whop.ads#ListAds"
-        },
-        {
           "target": "com.whop.ads#PauseAd"
         },
         {
           "target": "com.whop.ads#UnpauseAd"
-        },
-        {
-          "target": "com.whop.ads#UpdateAd"
         }
       ],
       "traits": {

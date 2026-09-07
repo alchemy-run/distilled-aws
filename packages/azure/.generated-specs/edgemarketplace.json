@@ -1464,31 +1464,31 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.edgemarketplace#ListPublisherBySubscription"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListOfferBySubscription"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListOperations"
+        },
+        {
+          "target": "com.azure.edgemarketplace#GetPublisher"
+        },
+        {
+          "target": "com.azure.edgemarketplace#ListPublishers"
+        },
+        {
+          "target": "com.azure.edgemarketplace#GetOfferAccessToken"
+        },
+        {
           "target": "com.azure.edgemarketplace#GenerateOfferAccessToken"
         },
         {
           "target": "com.azure.edgemarketplace#GetOffer"
         },
         {
-          "target": "com.azure.edgemarketplace#GetOfferAccessToken"
-        },
-        {
-          "target": "com.azure.edgemarketplace#GetPublisher"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListOfferBySubscription"
-        },
-        {
           "target": "com.azure.edgemarketplace#ListOffers"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListOperations"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListPublisherBySubscription"
-        },
-        {
-          "target": "com.azure.edgemarketplace#ListPublishers"
         }
       ],
       "traits": {

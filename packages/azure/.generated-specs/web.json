@@ -89358,475 +89358,91 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.web#AiGatewaysCreateOrUpdate"
+          "target": "com.azure.web#ValidateMove"
         },
         {
-          "target": "com.azure.web#ApplyWebAppSlotConfigToProduction"
-        },
-        {
-          "target": "com.azure.web#ApplyWebAppSlotConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsChangeVnet"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsCreateOrUpdateMultiRolePool"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsCreateOrUpdateWorkerPool"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsGetPrivateEndpointConnectionList"
-        },
-        {
-          "target": "com.azure.web#AppServiceEnvironmentsUpgrade"
-        },
-        {
-          "target": "com.azure.web#AppServicePlansCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.web#AppServicePlansCreateOrUpdateVnetRoute"
-        },
-        {
-          "target": "com.azure.web#AppServicePlansRecycleManagedInstanceWorker"
-        },
-        {
-          "target": "com.azure.web#CancelWorkflowRun"
-        },
-        {
-          "target": "com.azure.web#CertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.web#CheckNameAvailability"
-        },
-        {
-          "target": "com.azure.web#CreateStaticSiteUserRolesInvitationLink"
+          "target": "com.azure.web#Validate"
         },
         {
           "target": "com.azure.web#CreateStaticSiteZipDeploymentForStaticSite"
         },
         {
-          "target": "com.azure.web#CreateStaticSiteZipDeploymentForStaticSiteBuild"
+          "target": "com.azure.web#DetachStaticSiteUserProvidedFunctionAppFromStaticSite"
         },
         {
-          "target": "com.azure.web#CreateWebAppDeployment"
+          "target": "com.azure.web#RegisterStaticSiteUserProvidedFunctionAppWithStaticSite"
         },
         {
-          "target": "com.azure.web#CreateWebAppDeploymentSlot"
+          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppForStaticSite"
         },
         {
-          "target": "com.azure.web#CreateWebAppFunction"
+          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppsForStaticSite"
         },
         {
-          "target": "com.azure.web#CreateWebAppInstanceFunctionSlot"
+          "target": "com.azure.web#GetStaticSiteDatabaseConnectionsWithDetails"
         },
         {
-          "target": "com.azure.web#DeleteAiGateways"
+          "target": "com.azure.web#ResetStaticSiteStaticSiteApiKey"
         },
         {
-          "target": "com.azure.web#DeleteAppServiceEnvironment"
-        },
-        {
-          "target": "com.azure.web#DeleteAppServiceEnvironmentAseCustomDnsSuffixConfiguration"
-        },
-        {
-          "target": "com.azure.web#DeleteAppServiceEnvironmentPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteAppServicePlan"
-        },
-        {
-          "target": "com.azure.web#DeleteAppServicePlanHybridConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteAppServicePlanVnetRoute"
-        },
-        {
-          "target": "com.azure.web#DeleteCertificate"
-        },
-        {
-          "target": "com.azure.web#DeleteKubeEnvironment"
-        },
-        {
-          "target": "com.azure.web#DeleteSiteCertificate"
-        },
-        {
-          "target": "com.azure.web#DeleteSiteCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteStaticSiteBuildDatabaseConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteStaticSiteDatabaseConnection"
+          "target": "com.azure.web#GetStaticSitePrivateLinkResources"
         },
         {
           "target": "com.azure.web#DeleteStaticSitePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.web#DeleteStaticSiteStaticSite"
+          "target": "com.azure.web#StaticSitesApproveOrRejectPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.web#DeleteStaticSiteStaticSiteBuild"
+          "target": "com.azure.web#GetStaticSitePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.web#DeleteStaticSiteStaticSiteCustomDomain"
+          "target": "com.azure.web#StaticSitesGetPrivateEndpointConnectionList"
         },
         {
-          "target": "com.azure.web#DeleteStaticSiteStaticSiteUser"
+          "target": "com.azure.web#ListStaticSiteStaticSiteSecrets"
         },
         {
-          "target": "com.azure.web#DeleteWebApp"
+          "target": "com.azure.web#ListStaticSiteStaticSiteFunctionAppSettings"
         },
         {
-          "target": "com.azure.web#DeleteWebAppBackup"
+          "target": "com.azure.web#ListStaticSiteStaticSiteConfiguredRoles"
         },
         {
-          "target": "com.azure.web#DeleteWebAppBackupConfiguration"
+          "target": "com.azure.web#ListStaticSiteStaticSiteAppSettings"
         },
         {
-          "target": "com.azure.web#DeleteWebAppBackupConfigurationSlot"
+          "target": "com.azure.web#ValidateStaticSiteBackend"
         },
         {
-          "target": "com.azure.web#DeleteWebAppBackupSlot"
+          "target": "com.azure.web#UnlinkStaticSiteBackend"
         },
         {
-          "target": "com.azure.web#DeleteWebAppContinuousWebJob"
+          "target": "com.azure.web#StaticSitesLinkBackend"
         },
         {
-          "target": "com.azure.web#DeleteWebAppContinuousWebJobSlot"
+          "target": "com.azure.web#GetStaticSiteLinkedBackend"
         },
         {
-          "target": "com.azure.web#DeleteWebAppDeployment"
+          "target": "com.azure.web#GetStaticSiteLinkedBackends"
         },
         {
-          "target": "com.azure.web#DeleteWebAppDeploymentSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppDomainOwnershipIdentifierSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppFunction"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppFunctionSecret"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppFunctionSecretSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppHostNameBinding"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppHostNameBindingSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppHostSecret"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppHostSecretSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppHybridConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppHybridConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppInstanceFunctionSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppInstanceProcess"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppInstanceProcessSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppPrivateEndpointConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppProcess"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppProcessSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppPublicCertificate"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppPublicCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppRelayServiceConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppRelayServiceConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSiteContainer"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSiteContainerSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSiteExtension"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSiteExtensionSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSourceControl"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSourceControlSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSwiftVirtualNetwork"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppSwiftVirtualNetworkSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppTriggeredWebJob"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppTriggeredWebJobSlot"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppVnetConnection"
-        },
-        {
-          "target": "com.azure.web#DeleteWebAppVnetConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#DeployWebAppWorkflowArtifacts"
-        },
-        {
-          "target": "com.azure.web#DeployWebAppWorkflowArtifactsSlot"
+          "target": "com.azure.web#ListStaticSiteStaticSiteFunctions"
         },
         {
           "target": "com.azure.web#DetachStaticSiteStaticSite"
         },
         {
-          "target": "com.azure.web#DetachStaticSiteUserProvidedFunctionAppFromStaticSite"
+          "target": "com.azure.web#GetStaticSiteDatabaseConnectionWithDetails"
         },
         {
-          "target": "com.azure.web#DetachStaticSiteUserProvidedFunctionAppFromStaticSiteBuild"
+          "target": "com.azure.web#DeleteStaticSiteDatabaseConnection"
         },
         {
-          "target": "com.azure.web#DisableRecommendationAllForHostingEnvironment"
+          "target": "com.azure.web#UpdateStaticSiteDatabaseConnection"
         },
         {
-          "target": "com.azure.web#DisableRecommendationAllForWebApp"
-        },
-        {
-          "target": "com.azure.web#DisableRecommendationRecommendationForHostingEnvironment"
-        },
-        {
-          "target": "com.azure.web#DisableRecommendationRecommendationForSite"
-        },
-        {
-          "target": "com.azure.web#DisableRecommendationRecommendationForSubscription"
-        },
-        {
-          "target": "com.azure.web#ExecuteDiagnosticSiteAnalysis"
-        },
-        {
-          "target": "com.azure.web#ExecuteDiagnosticSiteAnalysisSlot"
-        },
-        {
-          "target": "com.azure.web#ExecuteDiagnosticSiteDetector"
-        },
-        {
-          "target": "com.azure.web#ExecuteDiagnosticSiteDetectorSlot"
-        },
-        {
-          "target": "com.azure.web#GenerateWebAppNewSitePublishingPassword"
-        },
-        {
-          "target": "com.azure.web#GenerateWebAppNewSitePublishingPasswordSlot"
-        },
-        {
-          "target": "com.azure.web#GetAiGateways"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironment"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentAseCustomDnsSuffixConfiguration"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentAseV3NetworkingConfiguration"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentDiagnosticsItem"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentInboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentMultiRolePool"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentVipInfo"
-        },
-        {
-          "target": "com.azure.web#GetAppServiceEnvironmentWorkerPool"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlan"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanHybridConnection"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanHybridConnectionPlanLimit"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanRouteForVnet"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanServerFarmInstanceDetails"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanServerFarmRdpPassword"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanServerFarmSkus"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanVnetFromServerFarm"
-        },
-        {
-          "target": "com.azure.web#GetAppServicePlanVnetGateway"
-        },
-        {
-          "target": "com.azure.web#GetCertificate"
-        },
-        {
-          "target": "com.azure.web#GetDeletedWebAppDeletedWebAppByLocation"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticHostingEnvironmentDetectorResponse"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteAnalysis"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteAnalysisSlot"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteDetector"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteDetectorResponse"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteDetectorResponseSlot"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteDetectorSlot"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteDiagnosticCategory"
-        },
-        {
-          "target": "com.azure.web#GetDiagnosticSiteDiagnosticCategorySlot"
-        },
-        {
-          "target": "com.azure.web#GetGlobalDeletedWebApp"
-        },
-        {
-          "target": "com.azure.web#GetGlobalDeletedWebAppSnapshots"
-        },
-        {
-          "target": "com.azure.web#GetGlobalSubscriptionOperationWithAsyncResponse"
-        },
-        {
-          "target": "com.azure.web#GetKubeEnvironment"
-        },
-        {
-          "target": "com.azure.web#GetProviderAvailableStacks"
-        },
-        {
-          "target": "com.azure.web#GetProviderAvailableStacksOnPrem"
-        },
-        {
-          "target": "com.azure.web#GetProviderFunctionAppStacks"
-        },
-        {
-          "target": "com.azure.web#GetProviderFunctionAppStacksForLocation"
-        },
-        {
-          "target": "com.azure.web#GetProviderWebAppStacks"
-        },
-        {
-          "target": "com.azure.web#GetProviderWebAppStacksForLocation"
-        },
-        {
-          "target": "com.azure.web#GetPublishingUser"
-        },
-        {
-          "target": "com.azure.web#GetRecommendationRuleDetailsByHostingEnvironment"
-        },
-        {
-          "target": "com.azure.web#GetRecommendationRuleDetailsByWebApp"
-        },
-        {
-          "target": "com.azure.web#GetResourceHealthMetadataBySite"
-        },
-        {
-          "target": "com.azure.web#GetResourceHealthMetadataBySiteSlot"
-        },
-        {
-          "target": "com.azure.web#GetSiteCertificate"
-        },
-        {
-          "target": "com.azure.web#GetSiteCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#GetSiteNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.web#GetSourceControl"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteBasicAuth"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnection"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnections"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnectionsWithDetails"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnectionWithDetails"
+          "target": "com.azure.web#StaticSitesCreateOrUpdateDatabaseConnection"
         },
         {
           "target": "com.azure.web#GetStaticSiteDatabaseConnection"
@@ -89835,37 +89451,97 @@
           "target": "com.azure.web#GetStaticSiteDatabaseConnections"
         },
         {
-          "target": "com.azure.web#GetStaticSiteDatabaseConnectionsWithDetails"
+          "target": "com.azure.web#ValidateStaticSiteCustomDomainCanBeAddedToStaticSite"
         },
         {
-          "target": "com.azure.web#GetStaticSiteDatabaseConnectionWithDetails"
+          "target": "com.azure.web#DeleteStaticSiteStaticSiteCustomDomain"
         },
         {
-          "target": "com.azure.web#GetStaticSiteLinkedBackend"
+          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteCustomDomain"
+        },
+        {
+          "target": "com.azure.web#GetStaticSiteStaticSiteCustomDomain"
+        },
+        {
+          "target": "com.azure.web#ListStaticSiteStaticSiteCustomDomains"
+        },
+        {
+          "target": "com.azure.web#CreateStaticSiteUserRolesInvitationLink"
+        },
+        {
+          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteFunctionAppSettings"
+        },
+        {
+          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteAppSettings"
+        },
+        {
+          "target": "com.azure.web#CreateStaticSiteZipDeploymentForStaticSiteBuild"
+        },
+        {
+          "target": "com.azure.web#DetachStaticSiteUserProvidedFunctionAppFromStaticSiteBuild"
+        },
+        {
+          "target": "com.azure.web#RegisterStaticSiteUserProvidedFunctionAppWithStaticSiteBuild"
+        },
+        {
+          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppForStaticSiteBuild"
+        },
+        {
+          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppsForStaticSiteBuild"
+        },
+        {
+          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnectionsWithDetails"
+        },
+        {
+          "target": "com.azure.web#ListStaticSiteStaticSiteBuildFunctionAppSettings"
+        },
+        {
+          "target": "com.azure.web#ListStaticSiteStaticSiteBuildAppSettings"
+        },
+        {
+          "target": "com.azure.web#ValidateStaticSiteBackendForBuild"
+        },
+        {
+          "target": "com.azure.web#UnlinkStaticSiteBackendFromBuild"
+        },
+        {
+          "target": "com.azure.web#StaticSitesLinkBackendToBuild"
         },
         {
           "target": "com.azure.web#GetStaticSiteLinkedBackendForBuild"
         },
         {
-          "target": "com.azure.web#GetStaticSiteLinkedBackends"
-        },
-        {
           "target": "com.azure.web#GetStaticSiteLinkedBackendsForBuild"
         },
         {
-          "target": "com.azure.web#GetStaticSitePrivateEndpointConnection"
+          "target": "com.azure.web#ListStaticSiteStaticSiteBuildFunctions"
         },
         {
-          "target": "com.azure.web#GetStaticSitePrivateLinkResources"
+          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnectionWithDetails"
         },
         {
-          "target": "com.azure.web#GetStaticSitesAsyncOperationOperationResult"
+          "target": "com.azure.web#DeleteStaticSiteBuildDatabaseConnection"
         },
         {
-          "target": "com.azure.web#GetStaticSitesAsyncOperationOperationStatus"
+          "target": "com.azure.web#UpdateStaticSiteBuildDatabaseConnection"
         },
         {
-          "target": "com.azure.web#GetStaticSiteStaticSite"
+          "target": "com.azure.web#StaticSitesCreateOrUpdateBuildDatabaseConnection"
+        },
+        {
+          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnection"
+        },
+        {
+          "target": "com.azure.web#GetStaticSiteBuildDatabaseConnections"
+        },
+        {
+          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettings"
+        },
+        {
+          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteBuildAppSettings"
+        },
+        {
+          "target": "com.azure.web#DeleteStaticSiteStaticSiteBuild"
         },
         {
           "target": "com.azure.web#GetStaticSiteStaticSiteBuild"
@@ -89874,1147 +89550,202 @@
           "target": "com.azure.web#GetStaticSiteStaticSiteBuilds"
         },
         {
-          "target": "com.azure.web#GetStaticSiteStaticSiteCustomDomain"
+          "target": "com.azure.web#StaticSitesCreateOrUpdateBasicAuth"
         },
         {
-          "target": "com.azure.web#GetStaticSiteStaticSitesByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppForStaticSite"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppForStaticSiteBuild"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppsForStaticSite"
-        },
-        {
-          "target": "com.azure.web#GetStaticSiteUserProvidedFunctionAppsForStaticSiteBuild"
-        },
-        {
-          "target": "com.azure.web#GetSubscriptionDeploymentLocations"
-        },
-        {
-          "target": "com.azure.web#GetWebApp"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAppSettingKeyVaultReference"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAppSettingKeyVaultReferenceSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAppSettingsKeyVaultReferences"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAppSettingsKeyVaultReferencesSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAuthSettings"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAuthSettingsSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAuthSettingsV2"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAuthSettingsV2Slot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAuthSettingsV2WithoutSecrets"
-        },
-        {
-          "target": "com.azure.web#GetWebAppAuthSettingsV2WithoutSecretsSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppBackupConfiguration"
-        },
-        {
-          "target": "com.azure.web#GetWebAppBackupConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppBackupStatus"
-        },
-        {
-          "target": "com.azure.web#GetWebAppBackupStatusSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppConfiguration"
-        },
-        {
-          "target": "com.azure.web#GetWebAppConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppConfigurationSnapshot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppConfigurationSnapshotSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppContainerLogsZip"
-        },
-        {
-          "target": "com.azure.web#GetWebAppContainerLogsZipSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppContinuousWebJob"
-        },
-        {
-          "target": "com.azure.web#GetWebAppContinuousWebJobSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppDeployment"
-        },
-        {
-          "target": "com.azure.web#GetWebAppDeploymentSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppDiagnosticLogsConfiguration"
-        },
-        {
-          "target": "com.azure.web#GetWebAppDiagnosticLogsConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.web#GetWebAppDomainOwnershipIdentifierSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppFtpAllowed"
-        },
-        {
-          "target": "com.azure.web#GetWebAppFtpAllowedSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppFunction"
-        },
-        {
-          "target": "com.azure.web#GetWebAppFunctionsAdminToken"
-        },
-        {
-          "target": "com.azure.web#GetWebAppFunctionsAdminTokenSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppHostNameBinding"
-        },
-        {
-          "target": "com.azure.web#GetWebAppHostNameBindingSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppHybridConnection"
-        },
-        {
-          "target": "com.azure.web#GetWebAppHybridConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceFunctionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceInfo"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceInfoSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceProcess"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceProcessDump"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceProcessDumpSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceProcessModule"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceProcessModuleSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceProcessSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppInstanceWorkflowSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTraceOperation"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTraceOperationSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTraceOperationSlotV2"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTraceOperationV2"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTraces"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTracesSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTracesSlotV2"
-        },
-        {
-          "target": "com.azure.web#GetWebAppNetworkTracesV2"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPrivateAccess"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPrivateAccessSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPrivateEndpointConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPrivateLinkResourcesSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProcess"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProcessDump"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProcessDumpSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProcessModule"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProcessModuleSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProcessSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppProductionSiteDeploymentStatus"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPublicCertificate"
-        },
-        {
-          "target": "com.azure.web#GetWebAppPublicCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppRelayServiceConnection"
-        },
-        {
-          "target": "com.azure.web#GetWebAppRelayServiceConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppScmAllowed"
-        },
-        {
-          "target": "com.azure.web#GetWebAppScmAllowedSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReference"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReferences"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReferenceSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReferencesSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteContainer"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteContainerSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteExtension"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSiteExtensionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSitePhpErrorLogFlag"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSitePhpErrorLogFlagSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSlotSiteDeploymentStatusSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSourceControl"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSourceControlSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSwiftVirtualNetworkConnection"
-        },
-        {
-          "target": "com.azure.web#GetWebAppSwiftVirtualNetworkConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppTriggeredWebJob"
-        },
-        {
-          "target": "com.azure.web#GetWebAppTriggeredWebJobHistory"
-        },
-        {
-          "target": "com.azure.web#GetWebAppTriggeredWebJobHistorySlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppTriggeredWebJobSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppVnetConnection"
-        },
-        {
-          "target": "com.azure.web#GetWebAppVnetConnectionGateway"
-        },
-        {
-          "target": "com.azure.web#GetWebAppVnetConnectionGatewaySlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppVnetConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppWebJob"
-        },
-        {
-          "target": "com.azure.web#GetWebAppWebJobSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppWebSiteContainerLogs"
-        },
-        {
-          "target": "com.azure.web#GetWebAppWebSiteContainerLogsSlot"
-        },
-        {
-          "target": "com.azure.web#GetWebAppWorkflow"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowRun"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowRunAction"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowRunActionRepetition"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowRunActionRepetitionsRequestHistory"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowRunActionScopeRepetition"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowTrigger"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowTriggerHistory"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowTriggerSchemaJson"
-        },
-        {
-          "target": "com.azure.web#GetWorkflowVersion"
-        },
-        {
-          "target": "com.azure.web#InstallWebAppSiteExtension"
-        },
-        {
-          "target": "com.azure.web#InstallWebAppSiteExtensionSlot"
-        },
-        {
-          "target": "com.azure.web#KubeEnvironmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.web#ListAiGatewaysByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListAiGatewaysBySubscription"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentAppServicePlans"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentCapacities"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentDiagnostics"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentMultiRoleMetricDefinitions"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentMultiRolePoolInstanceMetricDefinitions"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentMultiRolePools"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentMultiRolePoolSkus"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentMultiRoleUsages"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentOperations"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironments"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentUsages"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentWebApps"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentWebWorkerMetricDefinitions"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentWebWorkerUsages"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentWorkerPoolInstanceMetricDefinitions"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentWorkerPools"
-        },
-        {
-          "target": "com.azure.web#ListAppServiceEnvironmentWorkerPoolSkus"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanCapabilities"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanHybridConnectionKeys"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanHybridConnections"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanRoutesForVnet"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlans"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanUsages"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanVnets"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanWebApps"
-        },
-        {
-          "target": "com.azure.web#ListAppServicePlanWebAppsByHybridConnection"
-        },
-        {
-          "target": "com.azure.web#ListAseRegions"
-        },
-        {
-          "target": "com.azure.web#ListBillingMeters"
-        },
-        {
-          "target": "com.azure.web#ListCertificateByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListCertificates"
-        },
-        {
-          "target": "com.azure.web#ListCustomHostNameSites"
-        },
-        {
-          "target": "com.azure.web#ListDeletedWebAppByLocation"
-        },
-        {
-          "target": "com.azure.web#ListDeletedWebApps"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticHostingEnvironmentDetectorResponses"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteAnalyses"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteAnalysesSlot"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteDetectorResponses"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteDetectorResponsesSlot"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteDetectors"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteDetectorsSlot"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteDiagnosticCategories"
-        },
-        {
-          "target": "com.azure.web#ListDiagnosticSiteDiagnosticCategoriesSlot"
-        },
-        {
-          "target": "com.azure.web#ListGeoRegions"
-        },
-        {
-          "target": "com.azure.web#ListGetUsagesInLocation"
-        },
-        {
-          "target": "com.azure.web#ListKubeEnvironmentByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListKubeEnvironmentBySubscription"
-        },
-        {
-          "target": "com.azure.web#ListPremierAddOnOffers"
-        },
-        {
-          "target": "com.azure.web#ListProviderOperations"
-        },
-        {
-          "target": "com.azure.web#ListRecommendationHistoryForHostingEnvironment"
-        },
-        {
-          "target": "com.azure.web#ListRecommendationHistoryForWebApp"
-        },
-        {
-          "target": "com.azure.web#ListRecommendationRecommendedRulesForHostingEnvironment"
-        },
-        {
-          "target": "com.azure.web#ListRecommendationRecommendedRulesForWebApp"
-        },
-        {
-          "target": "com.azure.web#ListRecommendations"
-        },
-        {
-          "target": "com.azure.web#ListResourceHealthMetadata"
-        },
-        {
-          "target": "com.azure.web#ListResourceHealthMetadataByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListResourceHealthMetadataBySite"
-        },
-        {
-          "target": "com.azure.web#ListResourceHealthMetadataBySiteSlot"
-        },
-        {
-          "target": "com.azure.web#ListSiteCertificates"
-        },
-        {
-          "target": "com.azure.web#ListSiteCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#ListSiteIdentifiersAssignedToHostName"
-        },
-        {
-          "target": "com.azure.web#ListSiteNetworkSecurityPerimeterConfigurations"
-        },
-        {
-          "target": "com.azure.web#ListSkus"
-        },
-        {
-          "target": "com.azure.web#ListSourceControls"
+          "target": "com.azure.web#GetStaticSiteBasicAuth"
         },
         {
           "target": "com.azure.web#ListStaticSiteBasicAuth"
         },
         {
-          "target": "com.azure.web#ListStaticSites"
+          "target": "com.azure.web#DeleteStaticSiteStaticSiteUser"
         },
         {
-          "target": "com.azure.web#ListStaticSiteStaticSiteAppSettings"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteBuildAppSettings"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteBuildFunctionAppSettings"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteBuildFunctions"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteConfiguredRoles"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteCustomDomains"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteFunctionAppSettings"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteFunctions"
-        },
-        {
-          "target": "com.azure.web#ListStaticSiteStaticSiteSecrets"
+          "target": "com.azure.web#UpdateStaticSiteStaticSiteUser"
         },
         {
           "target": "com.azure.web#ListStaticSiteStaticSiteUsers"
         },
         {
-          "target": "com.azure.web#ListWebAppApplicationSettings"
+          "target": "com.azure.web#DeleteStaticSiteStaticSite"
         },
         {
-          "target": "com.azure.web#ListWebAppApplicationSettingsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppAzureStorageAccounts"
-        },
-        {
-          "target": "com.azure.web#ListWebAppAzureStorageAccountsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppBackups"
-        },
-        {
-          "target": "com.azure.web#ListWebAppBackupsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppBackupStatusSecrets"
-        },
-        {
-          "target": "com.azure.web#ListWebAppBackupStatusSecretsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppBasicPublishingCredentialsPolicies"
-        },
-        {
-          "target": "com.azure.web#ListWebAppBasicPublishingCredentialsPoliciesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppByResourceGroup"
-        },
-        {
-          "target": "com.azure.web#ListWebAppConfigurations"
-        },
-        {
-          "target": "com.azure.web#ListWebAppConfigurationSnapshotInfo"
-        },
-        {
-          "target": "com.azure.web#ListWebAppConfigurationSnapshotInfoSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppConfigurationsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppConnectionStrings"
-        },
-        {
-          "target": "com.azure.web#ListWebAppConnectionStringsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppContinuousWebJobs"
-        },
-        {
-          "target": "com.azure.web#ListWebAppContinuousWebJobsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppDeploymentLog"
-        },
-        {
-          "target": "com.azure.web#ListWebAppDeploymentLogSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppDeployments"
-        },
-        {
-          "target": "com.azure.web#ListWebAppDeploymentsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppDomainOwnershipIdentifiers"
-        },
-        {
-          "target": "com.azure.web#ListWebAppDomainOwnershipIdentifiersSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppFunctionKeys"
-        },
-        {
-          "target": "com.azure.web#ListWebAppFunctionKeysSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppFunctions"
-        },
-        {
-          "target": "com.azure.web#ListWebAppFunctionSecrets"
-        },
-        {
-          "target": "com.azure.web#ListWebAppFunctionSecretsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppHostKeys"
-        },
-        {
-          "target": "com.azure.web#ListWebAppHostKeysSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppHostNameBindings"
-        },
-        {
-          "target": "com.azure.web#ListWebAppHostNameBindingsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppHybridConnections"
-        },
-        {
-          "target": "com.azure.web#ListWebAppHybridConnectionsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceFunctionsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceIdentifiers"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceIdentifiersSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceProcesses"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceProcessesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceProcessModules"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceProcessModulesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceProcessThreads"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceProcessThreadsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppInstanceWorkflowsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppMetadata"
-        },
-        {
-          "target": "com.azure.web#ListWebAppMetadataSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppNetworkFeatures"
-        },
-        {
-          "target": "com.azure.web#ListWebAppNetworkFeaturesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPerfMonCounters"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPerfMonCountersSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProcesses"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProcessesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProcessModules"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProcessModulesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProcessThreads"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProcessThreadsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppProductionSiteDeploymentStatuses"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPublicCertificates"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPublicCertificatesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPublishingCredentials"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPublishingCredentialsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPublishingProfileXmlWithSecrets"
-        },
-        {
-          "target": "com.azure.web#ListWebAppPublishingProfileXmlWithSecretsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppRelayServiceConnections"
-        },
-        {
-          "target": "com.azure.web#ListWebAppRelayServiceConnectionsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebApps"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSiteBackups"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSiteBackupsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSiteContainers"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSiteContainersSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSiteExtensions"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSiteExtensionsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSitePushSettings"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSitePushSettingsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSlotConfigurationNames"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSlotDifferencesFromProduction"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSlotDifferencesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSlots"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSlotSiteDeploymentStatusesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSnapshots"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSnapshotsFromDRSecondary"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSnapshotsFromDRSecondarySlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSnapshotsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSyncFunctionTriggers"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSyncFunctionTriggersSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSyncStatus"
-        },
-        {
-          "target": "com.azure.web#ListWebAppSyncStatusSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppTriggeredWebJobHistory"
-        },
-        {
-          "target": "com.azure.web#ListWebAppTriggeredWebJobHistorySlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppTriggeredWebJobs"
-        },
-        {
-          "target": "com.azure.web#ListWebAppTriggeredWebJobsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppUsages"
-        },
-        {
-          "target": "com.azure.web#ListWebAppUsagesSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppVnetConnections"
-        },
-        {
-          "target": "com.azure.web#ListWebAppVnetConnectionsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppWebJobs"
-        },
-        {
-          "target": "com.azure.web#ListWebAppWebJobsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWebAppWorkflows"
-        },
-        {
-          "target": "com.azure.web#ListWebAppWorkflowsConnections"
-        },
-        {
-          "target": "com.azure.web#ListWebAppWorkflowsConnectionsSlot"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRunActionExpressionTraces"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRunActionRepetitionExpressionTraces"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRunActionRepetitions"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRunActionRepetitionsRequestHistories"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRunActions"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRunActionScopeRepetitions"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowRuns"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowTriggerCallbackUrl"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowTriggerHistories"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowTriggers"
-        },
-        {
-          "target": "com.azure.web#ListWorkflowVersions"
-        },
-        {
-          "target": "com.azure.web#MigrateWebAppMySql"
-        },
-        {
-          "target": "com.azure.web#MigrateWebAppStorage"
-        },
-        {
-          "target": "com.azure.web#Move"
-        },
-        {
-          "target": "com.azure.web#PatchAiGateways"
-        },
-        {
-          "target": "com.azure.web#PreviewStaticSiteWorkflow"
-        },
-        {
-          "target": "com.azure.web#PutWebAppPrivateAccessVnet"
-        },
-        {
-          "target": "com.azure.web#PutWebAppPrivateAccessVnetSlot"
-        },
-        {
-          "target": "com.azure.web#RebootAppServiceEnvironment"
-        },
-        {
-          "target": "com.azure.web#RebootAppServicePlanWorker"
-        },
-        {
-          "target": "com.azure.web#RecoverWebAppSiteConfigurationSnapshot"
-        },
-        {
-          "target": "com.azure.web#RecoverWebAppSiteConfigurationSnapshotSlot"
-        },
-        {
-          "target": "com.azure.web#RegenerateWorkflowAccessKey"
-        },
-        {
-          "target": "com.azure.web#RegionalCheckNameAvailability"
-        },
-        {
-          "target": "com.azure.web#RegisterStaticSiteUserProvidedFunctionAppWithStaticSite"
-        },
-        {
-          "target": "com.azure.web#RegisterStaticSiteUserProvidedFunctionAppWithStaticSiteBuild"
-        },
-        {
-          "target": "com.azure.web#ResetRecommendationAllFilters"
-        },
-        {
-          "target": "com.azure.web#ResetRecommendationAllFiltersForHostingEnvironment"
-        },
-        {
-          "target": "com.azure.web#ResetRecommendationAllFiltersForWebApp"
-        },
-        {
-          "target": "com.azure.web#ResetStaticSiteStaticSiteApiKey"
-        },
-        {
-          "target": "com.azure.web#ResetWebAppProductionSlotConfig"
-        },
-        {
-          "target": "com.azure.web#ResetWebAppSlotConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#RestartAppServicePlanWebApps"
-        },
-        {
-          "target": "com.azure.web#RestartWebApp"
-        },
-        {
-          "target": "com.azure.web#RestartWebAppSlot"
-        },
-        {
-          "target": "com.azure.web#RestoreWebApp"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppFromBackupBlob"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppFromBackupBlobSlot"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppFromDeletedApp"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppFromDeletedAppSlot"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppSlot"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppSnapshot"
-        },
-        {
-          "target": "com.azure.web#RestoreWebAppSnapshotSlot"
-        },
-        {
-          "target": "com.azure.web#ResumeAppServiceEnvironment"
-        },
-        {
-          "target": "com.azure.web#RunWebAppTriggeredWebJob"
-        },
-        {
-          "target": "com.azure.web#RunWebAppTriggeredWebJobSlot"
-        },
-        {
-          "target": "com.azure.web#SiteCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.web#SiteCertificatesCreateOrUpdateSlot"
-        },
-        {
-          "target": "com.azure.web#StartAppServicePlanWebApps"
-        },
-        {
-          "target": "com.azure.web#StartWebApp"
-        },
-        {
-          "target": "com.azure.web#StartWebAppContinuousWebJob"
-        },
-        {
-          "target": "com.azure.web#StartWebAppContinuousWebJobSlot"
-        },
-        {
-          "target": "com.azure.web#StartWebAppNetworkTrace"
-        },
-        {
-          "target": "com.azure.web#StartWebAppNetworkTraceSlot"
-        },
-        {
-          "target": "com.azure.web#StartWebAppSlot"
-        },
-        {
-          "target": "com.azure.web#StartWebAppWebSiteNetworkTrace"
-        },
-        {
-          "target": "com.azure.web#StartWebAppWebSiteNetworkTraceOperation"
-        },
-        {
-          "target": "com.azure.web#StartWebAppWebSiteNetworkTraceOperationSlot"
-        },
-        {
-          "target": "com.azure.web#StartWebAppWebSiteNetworkTraceSlot"
-        },
-        {
-          "target": "com.azure.web#StaticSitesApproveOrRejectPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateBasicAuth"
-        },
-        {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateBuildDatabaseConnection"
-        },
-        {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateDatabaseConnection"
+          "target": "com.azure.web#UpdateStaticSiteStaticSite"
         },
         {
           "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSite"
         },
         {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteAppSettings"
+          "target": "com.azure.web#GetStaticSiteStaticSite"
         },
         {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteBuildAppSettings"
+          "target": "com.azure.web#GetStaticSiteStaticSitesByResourceGroup"
         },
         {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettings"
+          "target": "com.azure.web#GetWebAppWorkflow"
         },
         {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteCustomDomain"
+          "target": "com.azure.web#ListWebAppWorkflows"
         },
         {
-          "target": "com.azure.web#StaticSitesCreateOrUpdateStaticSiteFunctionAppSettings"
+          "target": "com.azure.web#GetWebAppWebJob"
         },
         {
-          "target": "com.azure.web#StaticSitesGetPrivateEndpointConnectionList"
+          "target": "com.azure.web#ListWebAppWebJobs"
         },
         {
-          "target": "com.azure.web#StaticSitesLinkBackend"
+          "target": "com.azure.web#UpdateWebAppVnetConnectionGateway"
         },
         {
-          "target": "com.azure.web#StaticSitesLinkBackendToBuild"
+          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnectionGateway"
         },
         {
-          "target": "com.azure.web#StopAppServicePlanWebApps"
+          "target": "com.azure.web#GetWebAppVnetConnectionGateway"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppVnetConnection"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppVnetConnection"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnection"
+        },
+        {
+          "target": "com.azure.web#GetWebAppVnetConnection"
+        },
+        {
+          "target": "com.azure.web#ListWebAppVnetConnections"
+        },
+        {
+          "target": "com.azure.web#ListWebAppUsages"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppMachineKey"
+        },
+        {
+          "target": "com.azure.web#RunWebAppTriggeredWebJob"
+        },
+        {
+          "target": "com.azure.web#GetWebAppTriggeredWebJobHistory"
+        },
+        {
+          "target": "com.azure.web#ListWebAppTriggeredWebJobHistory"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppTriggeredWebJob"
+        },
+        {
+          "target": "com.azure.web#GetWebAppTriggeredWebJob"
+        },
+        {
+          "target": "com.azure.web#ListWebAppTriggeredWebJobs"
+        },
+        {
+          "target": "com.azure.web#SyncWebAppFunctionTriggers"
+        },
+        {
+          "target": "com.azure.web#SyncWebAppRepository"
+        },
+        {
+          "target": "com.azure.web#StopWebAppNetworkTrace"
         },
         {
           "target": "com.azure.web#StopWebApp"
         },
         {
-          "target": "com.azure.web#StopWebAppContinuousWebJob"
+          "target": "com.azure.web#StartWebAppNetworkTrace"
         },
         {
-          "target": "com.azure.web#StopWebAppContinuousWebJobSlot"
+          "target": "com.azure.web#StartWebApp"
         },
         {
-          "target": "com.azure.web#StopWebAppNetworkTrace"
+          "target": "com.azure.web#DeleteWebAppSourceControl"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSourceControl"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateSourceControl"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSourceControl"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSnapshotsFromDRSecondary"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSnapshots"
+        },
+        {
+          "target": "com.azure.web#SwapWebAppSlotWithProduction"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSlotDifferencesFromProduction"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceWorkflowSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceWorkflowsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppWebJobsSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppVnetConnectionGatewaySlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnectionGatewaySlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppVnetConnectionGatewaySlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppVnetConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppVnetConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppVnetConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppVnetConnectionsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppUsagesSlot"
+        },
+        {
+          "target": "com.azure.web#RunWebAppTriggeredWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppTriggeredWebJobHistorySlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppTriggeredWebJobHistorySlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppTriggeredWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppTriggeredWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppTriggeredWebJobsSlot"
+        },
+        {
+          "target": "com.azure.web#SyncWebAppFunctionTriggersSlot"
+        },
+        {
+          "target": "com.azure.web#SyncWebAppRepositorySlot"
         },
         {
           "target": "com.azure.web#StopWebAppNetworkTraceSlot"
@@ -91023,451 +89754,1720 @@
           "target": "com.azure.web#StopWebAppSlot"
         },
         {
-          "target": "com.azure.web#StopWebAppWebSiteNetworkTrace"
+          "target": "com.azure.web#StartWebAppNetworkTraceSlot"
         },
         {
-          "target": "com.azure.web#StopWebAppWebSiteNetworkTraceSlot"
+          "target": "com.azure.web#StartWebAppSlot"
         },
         {
-          "target": "com.azure.web#SuspendAppServiceEnvironment"
-        },
-        {
-          "target": "com.azure.web#SwapWebAppSlotSlot"
-        },
-        {
-          "target": "com.azure.web#SwapWebAppSlotWithProduction"
-        },
-        {
-          "target": "com.azure.web#SyncWebAppFunctions"
-        },
-        {
-          "target": "com.azure.web#SyncWebAppFunctionsSlot"
-        },
-        {
-          "target": "com.azure.web#SyncWebAppFunctionTriggers"
-        },
-        {
-          "target": "com.azure.web#SyncWebAppFunctionTriggersSlot"
-        },
-        {
-          "target": "com.azure.web#SyncWebAppRepository"
-        },
-        {
-          "target": "com.azure.web#SyncWebAppRepositorySlot"
-        },
-        {
-          "target": "com.azure.web#TestAppServiceEnvironmentUpgradeAvailableNotification"
-        },
-        {
-          "target": "com.azure.web#TriggerRunWorkflow"
-        },
-        {
-          "target": "com.azure.web#UnlinkStaticSiteBackend"
-        },
-        {
-          "target": "com.azure.web#UnlinkStaticSiteBackendFromBuild"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServiceEnvironment"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServiceEnvironmentAseCustomDnsSuffixConfiguration"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServiceEnvironmentAseNetworkingConfiguration"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServiceEnvironmentMultiRolePool"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServiceEnvironmentWorkerPool"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServicePlan"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServicePlanVnetGateway"
-        },
-        {
-          "target": "com.azure.web#UpdateAppServicePlanVnetRoute"
-        },
-        {
-          "target": "com.azure.web#UpdateCertificate"
-        },
-        {
-          "target": "com.azure.web#UpdateKubeEnvironment"
-        },
-        {
-          "target": "com.azure.web#UpdatePublishingUser"
-        },
-        {
-          "target": "com.azure.web#UpdateSiteCertificate"
-        },
-        {
-          "target": "com.azure.web#UpdateSiteCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateSourceControl"
-        },
-        {
-          "target": "com.azure.web#UpdateStaticSiteBuildDatabaseConnection"
-        },
-        {
-          "target": "com.azure.web#UpdateStaticSiteDatabaseConnection"
-        },
-        {
-          "target": "com.azure.web#UpdateStaticSiteStaticSite"
-        },
-        {
-          "target": "com.azure.web#UpdateStaticSiteStaticSiteUser"
-        },
-        {
-          "target": "com.azure.web#UpdateWebApp"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppApplicationSettings"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppApplicationSettingsSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppAuthSettings"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppAuthSettingsSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppAuthSettingsV2"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppAuthSettingsV2Slot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppAzureStorageAccounts"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppAzureStorageAccountsSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppBackupConfiguration"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppBackupConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppConfiguration"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppConnectionStrings"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppConnectionStringsSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppDiagnosticLogsConfig"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppDiagnosticLogsConfigSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppDomainOwnershipIdentifierSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppFtpAllowed"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppFtpAllowedSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppHybridConnection"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppHybridConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppMachineKey"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppMetadata"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppMetadataSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppRelayServiceConnection"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppRelayServiceConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppScmAllowed"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppScmAllowedSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppSitePushSettings"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppSitePushSettingsSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppSlot"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppSlotConfigurationNames"
-        },
-        {
-          "target": "com.azure.web#UpdateWebAppSourceControl"
+          "target": "com.azure.web#DeleteWebAppSourceControlSlot"
         },
         {
           "target": "com.azure.web#UpdateWebAppSourceControlSlot"
         },
         {
-          "target": "com.azure.web#UpdateWebAppSwiftVirtualNetworkConnectionWithCheck"
+          "target": "com.azure.web#WebAppsCreateOrUpdateSourceControlSlot"
         },
         {
-          "target": "com.azure.web#UpdateWebAppSwiftVirtualNetworkConnectionWithCheckSlot"
+          "target": "com.azure.web#GetWebAppSourceControlSlot"
         },
         {
-          "target": "com.azure.web#UpdateWebAppVnetConnection"
+          "target": "com.azure.web#ListWebAppSnapshotsFromDRSecondarySlot"
         },
         {
-          "target": "com.azure.web#UpdateWebAppVnetConnectionGateway"
+          "target": "com.azure.web#ListWebAppSnapshotsSlot"
         },
         {
-          "target": "com.azure.web#UpdateWebAppVnetConnectionGatewaySlot"
+          "target": "com.azure.web#SwapWebAppSlotSlot"
         },
         {
-          "target": "com.azure.web#UpdateWebAppVnetConnectionSlot"
+          "target": "com.azure.web#ListWebAppSlotDifferencesSlot"
         },
         {
-          "target": "com.azure.web#Validate"
+          "target": "com.azure.web#DeleteWebAppSiteExtensionSlot"
         },
         {
-          "target": "com.azure.web#ValidateMove"
+          "target": "com.azure.web#InstallWebAppSiteExtensionSlot"
         },
         {
-          "target": "com.azure.web#ValidateStaticSiteBackend"
+          "target": "com.azure.web#GetWebAppSiteExtensionSlot"
         },
         {
-          "target": "com.azure.web#ValidateStaticSiteBackendForBuild"
+          "target": "com.azure.web#ListWebAppSiteExtensionsSlot"
         },
         {
-          "target": "com.azure.web#ValidateStaticSiteCustomDomainCanBeAddedToStaticSite"
-        },
-        {
-          "target": "com.azure.web#ValidateWorkflow"
-        },
-        {
-          "target": "com.azure.web#VerifyHostingEnvironmentVnet"
-        },
-        {
-          "target": "com.azure.web#WebAppsAddPremierAddOn"
-        },
-        {
-          "target": "com.azure.web#WebAppsAddPremierAddOnSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsAnalyzeCustomHostname"
-        },
-        {
-          "target": "com.azure.web#WebAppsAnalyzeCustomHostnameSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsApproveOrRejectPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.web#WebAppsApproveOrRejectPrivateEndpointConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsBackup"
-        },
-        {
-          "target": "com.azure.web#WebAppsBackupSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateInstanceMSDeployOperation"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateInstanceMSDeployOperationSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateMSDeployOperation"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateMSDeployOperationSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOneDeployOperation"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateConfiguration"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateConfigurationSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateDomainOwnershipIdentifierSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateFunctionSecret"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateFunctionSecretSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateHostNameBinding"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateHostNameBindingSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateHostSecret"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateHostSecretSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateHybridConnection"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateHybridConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdatePublicCertificate"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdatePublicCertificateSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateRelayServiceConnection"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateRelayServiceConnectionSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsCreateOrUpdateSiteContainer"
+          "target": "com.azure.web#DeleteWebAppSiteContainerSlot"
         },
         {
           "target": "com.azure.web#WebAppsCreateOrUpdateSiteContainerSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateSlot"
+          "target": "com.azure.web#GetWebAppSiteContainerSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateSourceControl"
+          "target": "com.azure.web#ListWebAppSiteContainersSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateSourceControlSlot"
+          "target": "com.azure.web#RestoreWebAppSnapshotSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheck"
+          "target": "com.azure.web#RestoreWebAppFromDeletedAppSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot"
+          "target": "com.azure.web#RestoreWebAppFromBackupBlobSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnection"
+          "target": "com.azure.web#RestartWebAppSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnectionGateway"
+          "target": "com.azure.web#GetResourceHealthMetadataBySiteSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnectionGatewaySlot"
+          "target": "com.azure.web#ListResourceHealthMetadataBySiteSlot"
         },
         {
-          "target": "com.azure.web#WebAppsCreateOrUpdateVnetConnectionSlot"
+          "target": "com.azure.web#ResetWebAppSlotConfigurationSlot"
         },
         {
-          "target": "com.azure.web#WebAppsDeletePremierAddOn"
+          "target": "com.azure.web#ListWebAppPublishingProfileXmlWithSecretsSlot"
         },
         {
-          "target": "com.azure.web#WebAppsDeletePremierAddOnSlot"
+          "target": "com.azure.web#DeleteWebAppPublicCertificateSlot"
         },
         {
-          "target": "com.azure.web#WebAppsDiscoverBackup"
+          "target": "com.azure.web#WebAppsCreateOrUpdatePublicCertificateSlot"
         },
         {
-          "target": "com.azure.web#WebAppsDiscoverBackupSlot"
+          "target": "com.azure.web#GetWebAppPublicCertificateSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetInstanceMSDeployLog"
+          "target": "com.azure.web#ListWebAppPublicCertificatesSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetInstanceMSDeployLogSlot"
+          "target": "com.azure.web#ListWebAppProcessThreadsSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetInstanceMsDeployStatus"
+          "target": "com.azure.web#GetWebAppProcessModuleSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetInstanceMsDeployStatusSlot"
+          "target": "com.azure.web#ListWebAppProcessModulesSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetMigrateMySqlStatus"
+          "target": "com.azure.web#GetWebAppProcessDumpSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetMigrateMySqlStatusSlot"
+          "target": "com.azure.web#DeleteWebAppProcessSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetMSDeployLog"
+          "target": "com.azure.web#GetWebAppProcessSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetMSDeployLogSlot"
+          "target": "com.azure.web#ListWebAppProcessesSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetMSDeployStatus"
+          "target": "com.azure.web#GetWebAppPrivateLinkResourcesSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetMSDeployStatusSlot"
+          "target": "com.azure.web#DeleteWebAppPrivateEndpointConnectionSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetOneDeployStatus"
+          "target": "com.azure.web#WebAppsApproveOrRejectPrivateEndpointConnectionSlot"
         },
         {
-          "target": "com.azure.web#WebAppsGetPremierAddOn"
-        },
-        {
-          "target": "com.azure.web#WebAppsGetPremierAddOnSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsGetPrivateEndpointConnectionList"
+          "target": "com.azure.web#GetWebAppPrivateEndpointConnectionSlot"
         },
         {
           "target": "com.azure.web#WebAppsGetPrivateEndpointConnectionListSlot"
         },
         {
-          "target": "com.azure.web#WebAppsIsCloneable"
+          "target": "com.azure.web#PutWebAppPrivateAccessVnetSlot"
         },
         {
-          "target": "com.azure.web#WebAppsIsCloneableSlot"
+          "target": "com.azure.web#GetWebAppPrivateAccessSlot"
         },
         {
-          "target": "com.azure.web#WebAppsListPremierAddOns"
-        },
-        {
-          "target": "com.azure.web#WebAppsListPremierAddOnsSlot"
-        },
-        {
-          "target": "com.azure.web#WebAppsUpdatePremierAddOn"
+          "target": "com.azure.web#WebAppsDeletePremierAddOnSlot"
         },
         {
           "target": "com.azure.web#WebAppsUpdatePremierAddOnSlot"
         },
         {
+          "target": "com.azure.web#WebAppsAddPremierAddOnSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetPremierAddOnSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsListPremierAddOnsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSitePhpErrorLogFlagSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppPerfMonCountersSlot"
+        },
+        {
+          "target": "com.azure.web#GenerateWebAppNewSitePublishingPasswordSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTraceOperationSlotV2"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTracesSlotV2"
+        },
+        {
+          "target": "com.azure.web#StopWebAppWebSiteNetworkTraceSlot"
+        },
+        {
+          "target": "com.azure.web#StartWebAppWebSiteNetworkTraceOperationSlot"
+        },
+        {
+          "target": "com.azure.web#StartWebAppWebSiteNetworkTraceSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTraceOperationSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTracesSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppNetworkFeaturesSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppSwiftVirtualNetworkSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSwiftVirtualNetworkConnectionWithCheckSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheckSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSwiftVirtualNetworkConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetMigrateMySqlStatusSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSyncFunctionTriggersSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSiteBackupsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppWorkflowsConnectionsSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsIsCloneableSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceProcessThreadsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceProcessModuleSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceProcessModulesSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceProcessDumpSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppInstanceProcessSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceProcessSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceProcessesSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetInstanceMSDeployLogSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateInstanceMSDeployOperationSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetInstanceMsDeployStatusSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceInfoSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceIdentifiersSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppRelayServiceConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppRelayServiceConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateRelayServiceConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppRelayServiceConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppRelayServiceConnectionsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppHybridConnectionsSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppHybridConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppHybridConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateHybridConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppHybridConnectionSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppHostNameBindingSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateHostNameBindingSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppHostNameBindingSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppHostNameBindingsSlot"
+        },
+        {
+          "target": "com.azure.web#SyncWebAppFunctionsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSyncStatusSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppHostKeysSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppHostSecretSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateHostSecretSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppFunctionsAdminTokenSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppFunctionSecretsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppFunctionKeysSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppFunctionSecretSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateFunctionSecretSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppInstanceFunctionSlot"
+        },
+        {
+          "target": "com.azure.web#CreateWebAppInstanceFunctionSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceFunctionSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceFunctionsSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetMSDeployLogSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateMSDeployOperationSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetMSDeployStatusSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppDomainOwnershipIdentifierSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppDomainOwnershipIdentifierSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateDomainOwnershipIdentifierSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppDomainOwnershipIdentifierSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppDomainOwnershipIdentifiersSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsDiscoverBackupSlot"
+        },
+        {
+          "target": "com.azure.web#ExecuteDiagnosticSiteDetectorSlot"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteDetectorSlot"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteDetectorsSlot"
+        },
+        {
+          "target": "com.azure.web#ExecuteDiagnosticSiteAnalysisSlot"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteAnalysisSlot"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteAnalysesSlot"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteDiagnosticCategorySlot"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteDiagnosticCategoriesSlot"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteDetectorResponseSlot"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteDetectorResponsesSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppDeploymentLogSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppDeploymentSlot"
+        },
+        {
+          "target": "com.azure.web#CreateWebAppDeploymentSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppDeploymentSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppDeploymentsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSlotSiteDeploymentStatusSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSlotSiteDeploymentStatusesSlot"
+        },
+        {
+          "target": "com.azure.web#DeployWebAppWorkflowArtifactsSlot"
+        },
+        {
+          "target": "com.azure.web#StopWebAppContinuousWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#StartWebAppContinuousWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppContinuousWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppContinuousWebJobSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppContinuousWebJobsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppContainerLogsZipSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppWebSiteContainerLogsSlot"
+        },
+        {
+          "target": "com.azure.web#RecoverWebAppSiteConfigurationSnapshotSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppConfigurationSnapshotSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppConfigurationSnapshotInfoSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSitePushSettingsSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSitePushSettingsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppPublishingCredentialsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppMetadataSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppMetadataSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppDiagnosticLogsConfigSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppDiagnosticLogsConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppConnectionStringsSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppConnectionStringsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReferenceSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReferencesSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAppSettingKeyVaultReferenceSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAppSettingsKeyVaultReferencesSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppBackupConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppBackupConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppBackupConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppAzureStorageAccountsSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppAzureStorageAccountsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAuthSettingsV2Slot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppAuthSettingsV2Slot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAuthSettingsV2WithoutSecretsSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAuthSettingsSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppAuthSettingsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppApplicationSettingsSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppApplicationSettingsSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppConfigurationsSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteSiteCertificateSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateSiteCertificateSlot"
+        },
+        {
+          "target": "com.azure.web#SiteCertificatesCreateOrUpdateSlot"
+        },
+        {
+          "target": "com.azure.web#GetSiteCertificateSlot"
+        },
+        {
+          "target": "com.azure.web#ListSiteCertificateSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppScmAllowedSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppScmAllowedSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppFtpAllowedSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppFtpAllowedSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppBasicPublishingCredentialsPoliciesSlot"
+        },
+        {
+          "target": "com.azure.web#RestoreWebAppSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppBackupStatusSecretsSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppBackupSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppBackupStatusSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppBackupsSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsBackupSlot"
+        },
+        {
+          "target": "com.azure.web#ApplyWebAppSlotConfigurationSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsAnalyzeCustomHostnameSlot"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppSlot"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSlot"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateSlot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSlot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSlots"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppSiteExtension"
+        },
+        {
+          "target": "com.azure.web#InstallWebAppSiteExtension"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSiteExtension"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSiteExtensions"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppSiteContainer"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateSiteContainer"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSiteContainer"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSiteContainers"
+        },
+        {
+          "target": "com.azure.web#RestoreWebAppSnapshot"
+        },
+        {
+          "target": "com.azure.web#RestoreWebAppFromDeletedApp"
+        },
+        {
+          "target": "com.azure.web#RestoreWebAppFromBackupBlob"
+        },
+        {
+          "target": "com.azure.web#RestartWebApp"
+        },
+        {
+          "target": "com.azure.web#GetResourceHealthMetadataBySite"
+        },
+        {
+          "target": "com.azure.web#ListResourceHealthMetadataBySite"
+        },
+        {
+          "target": "com.azure.web#ResetWebAppProductionSlotConfig"
+        },
+        {
+          "target": "com.azure.web#ResetRecommendationAllFiltersForWebApp"
+        },
+        {
+          "target": "com.azure.web#DisableRecommendationAllForWebApp"
+        },
+        {
+          "target": "com.azure.web#DisableRecommendationRecommendationForSite"
+        },
+        {
+          "target": "com.azure.web#GetRecommendationRuleDetailsByWebApp"
+        },
+        {
+          "target": "com.azure.web#ListRecommendationRecommendedRulesForWebApp"
+        },
+        {
+          "target": "com.azure.web#ListRecommendationHistoryForWebApp"
+        },
+        {
+          "target": "com.azure.web#ListWebAppPublishingProfileXmlWithSecrets"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppPublicCertificate"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdatePublicCertificate"
+        },
+        {
+          "target": "com.azure.web#GetWebAppPublicCertificate"
+        },
+        {
+          "target": "com.azure.web#ListWebAppPublicCertificates"
+        },
+        {
+          "target": "com.azure.web#ListWebAppProcessThreads"
+        },
+        {
+          "target": "com.azure.web#GetWebAppProcessModule"
+        },
+        {
+          "target": "com.azure.web#ListWebAppProcessModules"
+        },
+        {
+          "target": "com.azure.web#GetWebAppProcessDump"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppProcess"
+        },
+        {
+          "target": "com.azure.web#GetWebAppProcess"
+        },
+        {
+          "target": "com.azure.web#ListWebAppProcesses"
+        },
+        {
+          "target": "com.azure.web#GetWebAppPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.web#WebAppsApproveOrRejectPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.web#GetWebAppPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetPrivateEndpointConnectionList"
+        },
+        {
+          "target": "com.azure.web#PutWebAppPrivateAccessVnet"
+        },
+        {
+          "target": "com.azure.web#GetWebAppPrivateAccess"
+        },
+        {
+          "target": "com.azure.web#WebAppsDeletePremierAddOn"
+        },
+        {
+          "target": "com.azure.web#WebAppsUpdatePremierAddOn"
+        },
+        {
+          "target": "com.azure.web#WebAppsAddPremierAddOn"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetPremierAddOn"
+        },
+        {
+          "target": "com.azure.web#WebAppsListPremierAddOns"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSitePhpErrorLogFlag"
+        },
+        {
+          "target": "com.azure.web#ListWebAppPerfMonCounters"
+        },
+        {
+          "target": "com.azure.web#GenerateWebAppNewSitePublishingPassword"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTraceOperationV2"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTracesV2"
+        },
+        {
+          "target": "com.azure.web#StopWebAppWebSiteNetworkTrace"
+        },
+        {
+          "target": "com.azure.web#StartWebAppWebSiteNetworkTraceOperation"
+        },
+        {
+          "target": "com.azure.web#StartWebAppWebSiteNetworkTrace"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTraceOperation"
+        },
+        {
+          "target": "com.azure.web#GetWebAppNetworkTraces"
+        },
+        {
+          "target": "com.azure.web#GetSiteNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.web#ListSiteNetworkSecurityPerimeterConfigurations"
+        },
+        {
+          "target": "com.azure.web#ListWebAppNetworkFeatures"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppSwiftVirtualNetwork"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSwiftVirtualNetworkConnectionWithCheck"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionWithCheck"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSwiftVirtualNetworkConnection"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetMigrateMySqlStatus"
+        },
+        {
+          "target": "com.azure.web#MigrateWebAppMySql"
+        },
+        {
+          "target": "com.azure.web#MigrateWebAppStorage"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSyncFunctionTriggers"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSiteBackups"
+        },
+        {
+          "target": "com.azure.web#ListWebAppWorkflowsConnections"
+        },
+        {
+          "target": "com.azure.web#WebAppsIsCloneable"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceProcessThreads"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceProcessModule"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceProcessModules"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceProcessDump"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppInstanceProcess"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceProcess"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceProcesses"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetInstanceMSDeployLog"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateInstanceMSDeployOperation"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetInstanceMsDeployStatus"
+        },
+        {
+          "target": "com.azure.web#GetWebAppInstanceInfo"
+        },
+        {
+          "target": "com.azure.web#ListWebAppInstanceIdentifiers"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppRelayServiceConnection"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppRelayServiceConnection"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateRelayServiceConnection"
+        },
+        {
+          "target": "com.azure.web#GetWebAppRelayServiceConnection"
+        },
+        {
+          "target": "com.azure.web#ListWebAppRelayServiceConnections"
+        },
+        {
+          "target": "com.azure.web#ListWebAppHybridConnections"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppHybridConnection"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppHybridConnection"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateHybridConnection"
+        },
+        {
+          "target": "com.azure.web#GetWebAppHybridConnection"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowVersion"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowVersions"
+        },
+        {
+          "target": "com.azure.web#ValidateWorkflow"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowTriggerSchemaJson"
+        },
+        {
+          "target": "com.azure.web#TriggerRunWorkflow"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowTriggerCallbackUrl"
+        },
+        {
           "target": "com.azure.web#WorkflowTriggerHistoriesResubmit"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowTriggerHistory"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowTriggerHistories"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowTrigger"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowTriggers"
+        },
+        {
+          "target": "com.azure.web#CancelWorkflowRun"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowRunActionScopeRepetition"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRunActionScopeRepetitions"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowRunActionRepetitionsRequestHistory"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRunActionRepetitionsRequestHistories"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRunActionRepetitionExpressionTraces"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowRunActionRepetition"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRunActionRepetitions"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRunActionExpressionTraces"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowRunAction"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRunActions"
+        },
+        {
+          "target": "com.azure.web#GetWorkflowRun"
+        },
+        {
+          "target": "com.azure.web#ListWorkflowRuns"
+        },
+        {
+          "target": "com.azure.web#RegenerateWorkflowAccessKey"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppHostNameBinding"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateHostNameBinding"
+        },
+        {
+          "target": "com.azure.web#GetWebAppHostNameBinding"
+        },
+        {
+          "target": "com.azure.web#ListWebAppHostNameBindings"
+        },
+        {
+          "target": "com.azure.web#SyncWebAppFunctions"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSyncStatus"
+        },
+        {
+          "target": "com.azure.web#ListWebAppHostKeys"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppHostSecret"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateHostSecret"
+        },
+        {
+          "target": "com.azure.web#GetWebAppFunctionsAdminToken"
+        },
+        {
+          "target": "com.azure.web#ListWebAppFunctionSecrets"
+        },
+        {
+          "target": "com.azure.web#ListWebAppFunctionKeys"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppFunctionSecret"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateFunctionSecret"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppFunction"
+        },
+        {
+          "target": "com.azure.web#CreateWebAppFunction"
+        },
+        {
+          "target": "com.azure.web#GetWebAppFunction"
+        },
+        {
+          "target": "com.azure.web#ListWebAppFunctions"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOneDeployOperation"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetOneDeployStatus"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetMSDeployLog"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateMSDeployOperation"
+        },
+        {
+          "target": "com.azure.web#WebAppsGetMSDeployStatus"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.web#GetWebAppDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.web#ListWebAppDomainOwnershipIdentifiers"
+        },
+        {
+          "target": "com.azure.web#WebAppsDiscoverBackup"
+        },
+        {
+          "target": "com.azure.web#ExecuteDiagnosticSiteDetector"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteDetector"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteDetectors"
+        },
+        {
+          "target": "com.azure.web#ExecuteDiagnosticSiteAnalysis"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteAnalysis"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteAnalyses"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteDiagnosticCategory"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteDiagnosticCategories"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticSiteDetectorResponse"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticSiteDetectorResponses"
+        },
+        {
+          "target": "com.azure.web#ListWebAppDeploymentLog"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppDeployment"
+        },
+        {
+          "target": "com.azure.web#CreateWebAppDeployment"
+        },
+        {
+          "target": "com.azure.web#GetWebAppDeployment"
+        },
+        {
+          "target": "com.azure.web#ListWebAppDeployments"
+        },
+        {
+          "target": "com.azure.web#GetWebAppProductionSiteDeploymentStatus"
+        },
+        {
+          "target": "com.azure.web#ListWebAppProductionSiteDeploymentStatuses"
+        },
+        {
+          "target": "com.azure.web#DeployWebAppWorkflowArtifacts"
+        },
+        {
+          "target": "com.azure.web#StopWebAppContinuousWebJob"
+        },
+        {
+          "target": "com.azure.web#StartWebAppContinuousWebJob"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppContinuousWebJob"
+        },
+        {
+          "target": "com.azure.web#GetWebAppContinuousWebJob"
+        },
+        {
+          "target": "com.azure.web#ListWebAppContinuousWebJobs"
+        },
+        {
+          "target": "com.azure.web#GetWebAppContainerLogsZip"
+        },
+        {
+          "target": "com.azure.web#GetWebAppWebSiteContainerLogs"
+        },
+        {
+          "target": "com.azure.web#RecoverWebAppSiteConfigurationSnapshot"
+        },
+        {
+          "target": "com.azure.web#GetWebAppConfigurationSnapshot"
+        },
+        {
+          "target": "com.azure.web#ListWebAppConfigurationSnapshotInfo"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppConfiguration"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdateConfiguration"
+        },
+        {
+          "target": "com.azure.web#GetWebAppConfiguration"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSlotConfigurationNames"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSlotConfigurationNames"
+        },
+        {
+          "target": "com.azure.web#ListWebAppSitePushSettings"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppSitePushSettings"
+        },
+        {
+          "target": "com.azure.web#ListWebAppPublishingCredentials"
+        },
+        {
+          "target": "com.azure.web#ListWebAppMetadata"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppMetadata"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppDiagnosticLogsConfig"
+        },
+        {
+          "target": "com.azure.web#GetWebAppDiagnosticLogsConfiguration"
+        },
+        {
+          "target": "com.azure.web#ListWebAppConnectionStrings"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppConnectionStrings"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReference"
+        },
+        {
+          "target": "com.azure.web#GetWebAppSiteConnectionStringKeyVaultReferences"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAppSettingKeyVaultReference"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAppSettingsKeyVaultReferences"
+        },
+        {
+          "target": "com.azure.web#GetWebAppBackupConfiguration"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppBackupConfiguration"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppBackupConfiguration"
+        },
+        {
+          "target": "com.azure.web#ListWebAppAzureStorageAccounts"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppAzureStorageAccounts"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAuthSettingsV2"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppAuthSettingsV2"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAuthSettingsV2WithoutSecrets"
+        },
+        {
+          "target": "com.azure.web#GetWebAppAuthSettings"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppAuthSettings"
+        },
+        {
+          "target": "com.azure.web#ListWebAppApplicationSettings"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppApplicationSettings"
+        },
+        {
+          "target": "com.azure.web#ListWebAppConfigurations"
+        },
+        {
+          "target": "com.azure.web#DeleteSiteCertificate"
+        },
+        {
+          "target": "com.azure.web#UpdateSiteCertificate"
+        },
+        {
+          "target": "com.azure.web#SiteCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetSiteCertificate"
+        },
+        {
+          "target": "com.azure.web#ListSiteCertificates"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppScmAllowed"
+        },
+        {
+          "target": "com.azure.web#GetWebAppScmAllowed"
+        },
+        {
+          "target": "com.azure.web#UpdateWebAppFtpAllowed"
+        },
+        {
+          "target": "com.azure.web#GetWebAppFtpAllowed"
+        },
+        {
+          "target": "com.azure.web#ListWebAppBasicPublishingCredentialsPolicies"
+        },
+        {
+          "target": "com.azure.web#RestoreWebApp"
+        },
+        {
+          "target": "com.azure.web#ListWebAppBackupStatusSecrets"
+        },
+        {
+          "target": "com.azure.web#DeleteWebAppBackup"
+        },
+        {
+          "target": "com.azure.web#GetWebAppBackupStatus"
+        },
+        {
+          "target": "com.azure.web#ListWebAppBackups"
+        },
+        {
+          "target": "com.azure.web#WebAppsBackup"
+        },
+        {
+          "target": "com.azure.web#ApplyWebAppSlotConfigToProduction"
+        },
+        {
+          "target": "com.azure.web#WebAppsAnalyzeCustomHostname"
+        },
+        {
+          "target": "com.azure.web#DeleteWebApp"
+        },
+        {
+          "target": "com.azure.web#UpdateWebApp"
+        },
+        {
+          "target": "com.azure.web#WebAppsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetWebApp"
+        },
+        {
+          "target": "com.azure.web#ListWebAppByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#AppServicePlansRecycleManagedInstanceWorker"
+        },
+        {
+          "target": "com.azure.web#RebootAppServicePlanWorker"
+        },
+        {
+          "target": "com.azure.web#DeleteAppServicePlanVnetRoute"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServicePlanVnetRoute"
+        },
+        {
+          "target": "com.azure.web#AppServicePlansCreateOrUpdateVnetRoute"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanRouteForVnet"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanRoutesForVnet"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServicePlanVnetGateway"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanVnetGateway"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanVnetFromServerFarm"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanVnets"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanUsages"
+        },
+        {
+          "target": "com.azure.web#StopAppServicePlanWebApps"
+        },
+        {
+          "target": "com.azure.web#StartAppServicePlanWebApps"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanServerFarmSkus"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanWebApps"
+        },
+        {
+          "target": "com.azure.web#RestartAppServicePlanWebApps"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanServerFarmInstanceDetails"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanHybridConnections"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanHybridConnectionPlanLimit"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanWebAppsByHybridConnection"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanHybridConnectionKeys"
+        },
+        {
+          "target": "com.azure.web#DeleteAppServicePlanHybridConnection"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanHybridConnection"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlanServerFarmRdpPassword"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanCapabilities"
+        },
+        {
+          "target": "com.azure.web#DeleteAppServicePlan"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServicePlan"
+        },
+        {
+          "target": "com.azure.web#AppServicePlansCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetAppServicePlan"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlanByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#ListResourceHealthMetadataByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#DeleteKubeEnvironment"
+        },
+        {
+          "target": "com.azure.web#UpdateKubeEnvironment"
+        },
+        {
+          "target": "com.azure.web#KubeEnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetKubeEnvironment"
+        },
+        {
+          "target": "com.azure.web#ListKubeEnvironmentByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentWebWorkerUsages"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentWorkerPoolSkus"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentWebWorkerMetricDefinitions"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentWorkerPoolInstanceMetricDefinitions"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServiceEnvironmentWorkerPool"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsCreateOrUpdateWorkerPool"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentWorkerPool"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentWorkerPools"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentUsages"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsUpgrade"
+        },
+        {
+          "target": "com.azure.web#TestAppServiceEnvironmentUpgradeAvailableNotification"
+        },
+        {
+          "target": "com.azure.web#SuspendAppServiceEnvironment"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentWebApps"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentAppServicePlans"
+        },
+        {
+          "target": "com.azure.web#ResumeAppServiceEnvironment"
+        },
+        {
+          "target": "com.azure.web#ResetRecommendationAllFiltersForHostingEnvironment"
+        },
+        {
+          "target": "com.azure.web#DisableRecommendationAllForHostingEnvironment"
+        },
+        {
+          "target": "com.azure.web#DisableRecommendationRecommendationForHostingEnvironment"
+        },
+        {
+          "target": "com.azure.web#GetRecommendationRuleDetailsByHostingEnvironment"
+        },
+        {
+          "target": "com.azure.web#ListRecommendationRecommendedRulesForHostingEnvironment"
+        },
+        {
+          "target": "com.azure.web#ListRecommendationHistoryForHostingEnvironment"
+        },
+        {
+          "target": "com.azure.web#RebootAppServiceEnvironment"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.web#DeleteAppServiceEnvironmentPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsApproveOrRejectPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsGetPrivateEndpointConnectionList"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentOperations"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentMultiRoleUsages"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentMultiRolePoolSkus"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentMultiRoleMetricDefinitions"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentMultiRolePoolInstanceMetricDefinitions"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServiceEnvironmentMultiRolePool"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsCreateOrUpdateMultiRolePool"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentMultiRolePool"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentMultiRolePools"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentInboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentDiagnosticsItem"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentDiagnostics"
+        },
+        {
+          "target": "com.azure.web#GetDiagnosticHostingEnvironmentDetectorResponse"
+        },
+        {
+          "target": "com.azure.web#ListDiagnosticHostingEnvironmentDetectorResponses"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServiceEnvironmentAseNetworkingConfiguration"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentAseV3NetworkingConfiguration"
+        },
+        {
+          "target": "com.azure.web#DeleteAppServiceEnvironmentAseCustomDnsSuffixConfiguration"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServiceEnvironmentAseCustomDnsSuffixConfiguration"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentAseCustomDnsSuffixConfiguration"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsChangeVnet"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironmentVipInfo"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentCapacities"
+        },
+        {
+          "target": "com.azure.web#DeleteAppServiceEnvironment"
+        },
+        {
+          "target": "com.azure.web#UpdateAppServiceEnvironment"
+        },
+        {
+          "target": "com.azure.web#AppServiceEnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetAppServiceEnvironment"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironmentByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#DeleteCertificate"
+        },
+        {
+          "target": "com.azure.web#UpdateCertificate"
+        },
+        {
+          "target": "com.azure.web#CertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetCertificate"
+        },
+        {
+          "target": "com.azure.web#ListCertificateByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#DeleteAiGateways"
+        },
+        {
+          "target": "com.azure.web#PatchAiGateways"
+        },
+        {
+          "target": "com.azure.web#AiGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.web#GetAiGateways"
+        },
+        {
+          "target": "com.azure.web#ListAiGatewaysByResourceGroup"
+        },
+        {
+          "target": "com.azure.web#Move"
+        },
+        {
+          "target": "com.azure.web#VerifyHostingEnvironmentVnet"
+        },
+        {
+          "target": "com.azure.web#ListStaticSites"
+        },
+        {
+          "target": "com.azure.web#ListSkus"
+        },
+        {
+          "target": "com.azure.web#ListWebApps"
+        },
+        {
+          "target": "com.azure.web#ListAppServicePlans"
+        },
+        {
+          "target": "com.azure.web#ListResourceHealthMetadata"
+        },
+        {
+          "target": "com.azure.web#ResetRecommendationAllFilters"
+        },
+        {
+          "target": "com.azure.web#DisableRecommendationRecommendationForSubscription"
+        },
+        {
+          "target": "com.azure.web#ListRecommendations"
+        },
+        {
+          "target": "com.azure.web#ListPremierAddOnOffers"
+        },
+        {
+          "target": "com.azure.web#ListGetUsagesInLocation"
+        },
+        {
+          "target": "com.azure.web#GetStaticSitesAsyncOperationOperationStatus"
+        },
+        {
+          "target": "com.azure.web#GetStaticSitesAsyncOperationOperationResult"
+        },
+        {
+          "target": "com.azure.web#PreviewStaticSiteWorkflow"
+        },
+        {
+          "target": "com.azure.web#GetGlobalSubscriptionOperationWithAsyncResponse"
+        },
+        {
+          "target": "com.azure.web#GetDeletedWebAppDeletedWebAppByLocation"
+        },
+        {
+          "target": "com.azure.web#ListDeletedWebAppByLocation"
+        },
+        {
+          "target": "com.azure.web#RegionalCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.web#ListSiteIdentifiersAssignedToHostName"
+        },
+        {
+          "target": "com.azure.web#ListKubeEnvironmentBySubscription"
+        },
+        {
+          "target": "com.azure.web#ListAppServiceEnvironments"
+        },
+        {
+          "target": "com.azure.web#ListGeoRegions"
+        },
+        {
+          "target": "com.azure.web#GetSubscriptionDeploymentLocations"
+        },
+        {
+          "target": "com.azure.web#GetGlobalDeletedWebAppSnapshots"
+        },
+        {
+          "target": "com.azure.web#GetGlobalDeletedWebApp"
+        },
+        {
+          "target": "com.azure.web#ListDeletedWebApps"
+        },
+        {
+          "target": "com.azure.web#ListCustomHostNameSites"
+        },
+        {
+          "target": "com.azure.web#CheckNameAvailability"
+        },
+        {
+          "target": "com.azure.web#ListCertificates"
+        },
+        {
+          "target": "com.azure.web#ListBillingMeters"
+        },
+        {
+          "target": "com.azure.web#GetProviderAvailableStacksOnPrem"
+        },
+        {
+          "target": "com.azure.web#ListAseRegions"
+        },
+        {
+          "target": "com.azure.web#ListAiGatewaysBySubscription"
+        },
+        {
+          "target": "com.azure.web#GetProviderWebAppStacks"
+        },
+        {
+          "target": "com.azure.web#UpdateSourceControl"
+        },
+        {
+          "target": "com.azure.web#GetSourceControl"
+        },
+        {
+          "target": "com.azure.web#ListSourceControls"
+        },
+        {
+          "target": "com.azure.web#UpdatePublishingUser"
+        },
+        {
+          "target": "com.azure.web#GetPublishingUser"
+        },
+        {
+          "target": "com.azure.web#ListProviderOperations"
+        },
+        {
+          "target": "com.azure.web#GetProviderWebAppStacksForLocation"
+        },
+        {
+          "target": "com.azure.web#GetProviderFunctionAppStacksForLocation"
+        },
+        {
+          "target": "com.azure.web#GetProviderFunctionAppStacks"
+        },
+        {
+          "target": "com.azure.web#GetProviderAvailableStacks"
         }
       ],
       "traits": {

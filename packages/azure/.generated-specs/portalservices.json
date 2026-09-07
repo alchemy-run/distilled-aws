@@ -692,22 +692,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.portalservices#CopilotSettingsCreateOrUpdate"
+          "target": "com.azure.portalservices#ListOperations"
         },
         {
           "target": "com.azure.portalservices#DeleteCopilotSettings"
         },
         {
+          "target": "com.azure.portalservices#UpdateCopilotSettings"
+        },
+        {
+          "target": "com.azure.portalservices#CopilotSettingsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.portalservices#GetCopilotSettings"
         },
         {
-          "target": "com.azure.portalservices#ListOperations"
-        },
-        {
           "target": "com.azure.portalservices#PortalTenantCompilefile"
-        },
-        {
-          "target": "com.azure.portalservices#UpdateCopilotSettings"
         }
       ],
       "traits": {

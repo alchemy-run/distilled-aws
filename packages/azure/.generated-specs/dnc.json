@@ -2510,40 +2510,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dnc#CreateController"
-        },
-        {
-          "target": "com.azure.dnc#CreateOrchestratorInstanceService"
-        },
-        {
-          "target": "com.azure.dnc#DeleteController"
-        },
-        {
-          "target": "com.azure.dnc#DeleteDelegatedSubnetServiceDetails"
-        },
-        {
-          "target": "com.azure.dnc#DeleteOrchestratorInstanceService"
-        },
-        {
-          "target": "com.azure.dnc#GetControllerDetails"
-        },
-        {
-          "target": "com.azure.dnc#GetDelegatedSubnetServiceDetails"
-        },
-        {
-          "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetails"
-        },
-        {
           "target": "com.azure.dnc#ListDelegatedNetworkByResourceGroup"
         },
         {
           "target": "com.azure.dnc#ListDelegatedNetworkBySubscription"
         },
         {
+          "target": "com.azure.dnc#DeleteController"
+        },
+        {
+          "target": "com.azure.dnc#PatchController"
+        },
+        {
+          "target": "com.azure.dnc#CreateController"
+        },
+        {
+          "target": "com.azure.dnc#GetControllerDetails"
+        },
+        {
           "target": "com.azure.dnc#ListDelegatedSubnetServiceByResourceGroup"
         },
         {
           "target": "com.azure.dnc#ListDelegatedSubnetServiceBySubscription"
+        },
+        {
+          "target": "com.azure.dnc#DeleteDelegatedSubnetServiceDetails"
+        },
+        {
+          "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetails"
+        },
+        {
+          "target": "com.azure.dnc#PutDelegatedSubnetServiceDetails"
+        },
+        {
+          "target": "com.azure.dnc#GetDelegatedSubnetServiceDetails"
         },
         {
           "target": "com.azure.dnc#ListOperations"
@@ -2555,16 +2555,16 @@
           "target": "com.azure.dnc#ListOrchestratorInstanceServiceBySubscription"
         },
         {
-          "target": "com.azure.dnc#PatchController"
-        },
-        {
-          "target": "com.azure.dnc#PatchDelegatedSubnetServiceDetails"
+          "target": "com.azure.dnc#DeleteOrchestratorInstanceService"
         },
         {
           "target": "com.azure.dnc#PatchOrchestratorInstanceService"
         },
         {
-          "target": "com.azure.dnc#PutDelegatedSubnetServiceDetails"
+          "target": "com.azure.dnc#CreateOrchestratorInstanceService"
+        },
+        {
+          "target": "com.azure.dnc#GetOrchestratorInstanceServiceDetails"
         }
       ],
       "traits": {

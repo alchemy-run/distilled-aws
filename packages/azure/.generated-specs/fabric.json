@@ -1603,10 +1603,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fabric#CheckFabricCapacityNameAvailability"
+          "target": "com.azure.fabric#SuspendFabricCapacity"
+        },
+        {
+          "target": "com.azure.fabric#ListFabricCapacitySkusForCapacity"
+        },
+        {
+          "target": "com.azure.fabric#ResumeFabricCapacity"
         },
         {
           "target": "com.azure.fabric#DeleteFabricCapacity"
+        },
+        {
+          "target": "com.azure.fabric#UpdateFabricCapacity"
         },
         {
           "target": "com.azure.fabric#FabricCapacitiesCreateOrUpdate"
@@ -1618,25 +1627,16 @@
           "target": "com.azure.fabric#ListFabricCapacityByResourceGroup"
         },
         {
-          "target": "com.azure.fabric#ListFabricCapacityBySubscription"
-        },
-        {
           "target": "com.azure.fabric#ListFabricCapacitySkus"
         },
         {
-          "target": "com.azure.fabric#ListFabricCapacitySkusForCapacity"
+          "target": "com.azure.fabric#CheckFabricCapacityNameAvailability"
+        },
+        {
+          "target": "com.azure.fabric#ListFabricCapacityBySubscription"
         },
         {
           "target": "com.azure.fabric#ListOperations"
-        },
-        {
-          "target": "com.azure.fabric#ResumeFabricCapacity"
-        },
-        {
-          "target": "com.azure.fabric#SuspendFabricCapacity"
-        },
-        {
-          "target": "com.azure.fabric#UpdateFabricCapacity"
         }
       ],
       "traits": {

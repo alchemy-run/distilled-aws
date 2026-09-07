@@ -986,19 +986,13 @@
           "target": "com.modal.volume#CommitVolume"
         },
         {
-          "target": "com.modal.volume#DeleteVolume"
-        },
-        {
-          "target": "com.modal.volume#ListVolume"
-        },
-        {
-          "target": "com.modal.volume#RenameVolume"
-        },
-        {
           "target": "com.modal.volume#VolumeCopyFiles"
         },
         {
           "target": "com.modal.volume#VolumeCopyFiles2"
+        },
+        {
+          "target": "com.modal.volume#DeleteVolume"
         },
         {
           "target": "com.modal.volume#VolumeGetById"
@@ -1016,6 +1010,9 @@
           "target": "com.modal.volume#VolumeHeartbeat"
         },
         {
+          "target": "com.modal.volume#ListVolume"
+        },
+        {
           "target": "com.modal.volume#VolumePutFiles"
         },
         {
@@ -1029,6 +1026,9 @@
         },
         {
           "target": "com.modal.volume#VolumeRemoveFile2"
+        },
+        {
+          "target": "com.modal.volume#RenameVolume"
         }
       ],
       "traits": {

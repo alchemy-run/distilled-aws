@@ -3560,28 +3560,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.maps#AccountsCreateOrUpdate"
+          "target": "com.azure.maps#DeleteCreator"
+        },
+        {
+          "target": "com.azure.maps#UpdateCreator"
         },
         {
           "target": "com.azure.maps#CreatorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.maps#DeleteAccount"
-        },
-        {
-          "target": "com.azure.maps#DeleteCreator"
-        },
-        {
-          "target": "com.azure.maps#GetAccount"
-        },
-        {
           "target": "com.azure.maps#GetCreator"
         },
         {
-          "target": "com.azure.maps#ListAccountByResourceGroup"
+          "target": "com.azure.maps#ListCreatorByAccount"
         },
         {
-          "target": "com.azure.maps#ListAccountBySubscription"
+          "target": "com.azure.maps#ListMapSubscriptionOperations"
+        },
+        {
+          "target": "com.azure.maps#ListMapOperations"
+        },
+        {
+          "target": "com.azure.maps#RegenerateAccountKeys"
         },
         {
           "target": "com.azure.maps#ListAccountKeys"
@@ -3590,22 +3590,22 @@
           "target": "com.azure.maps#ListAccountSas"
         },
         {
-          "target": "com.azure.maps#ListCreatorByAccount"
+          "target": "com.azure.maps#ListAccountBySubscription"
         },
         {
-          "target": "com.azure.maps#ListMapOperations"
+          "target": "com.azure.maps#ListAccountByResourceGroup"
         },
         {
-          "target": "com.azure.maps#ListMapSubscriptionOperations"
-        },
-        {
-          "target": "com.azure.maps#RegenerateAccountKeys"
+          "target": "com.azure.maps#DeleteAccount"
         },
         {
           "target": "com.azure.maps#UpdateAccount"
         },
         {
-          "target": "com.azure.maps#UpdateCreator"
+          "target": "com.azure.maps#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maps#GetAccount"
         }
       ],
       "traits": {

@@ -10046,70 +10046,40 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#CreateSchedulingV1PriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1CollectionPriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#DeleteSchedulingV1PriorityClass"
-        },
-        {
           "target": "com.kubernetes.scheduling#GetSchedulingAPIGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#GetSchedulingV1alpha3APIResources"
         },
         {
           "target": "com.kubernetes.scheduling#GetSchedulingV1APIResources"
         },
         {
-          "target": "com.kubernetes.scheduling#GetSchedulingV1beta1APIResources"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1CollectionPriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClassList"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClass"
+        },
+        {
+          "target": "com.kubernetes.scheduling#GetSchedulingV1alpha3APIResources"
         },
         {
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3CompositePodGroupForAllNamespaces"
@@ -10118,133 +10088,106 @@
           "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedPodGroup"
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3PodGroupForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3WorkloadForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1PodGroupForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1WorkloadForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ListSchedulingV1PriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#PatchSchedulingV1PriorityClass"
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedCompositePodGroup"
         },
         {
           "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroup"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroupStatus"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReadSchedulingV1PriorityClass"
-        },
-        {
           "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedCompositePodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedCompositePodGroupStatus"
         },
         {
           "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedCompositePodGroupStatus"
         },
         {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedCompositePodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
           "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedPodGroupStatus"
         },
         {
           "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedPodGroupStatus"
         },
         {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3CollectionNamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1alpha3NamespacedWorkload"
+        },
+        {
           "target": "com.kubernetes.scheduling#ReplaceSchedulingV1alpha3NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroup"
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1alpha3NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroupStatus"
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1alpha3NamespacedWorkload"
         },
         {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedWorkload"
-        },
-        {
-          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1PriorityClass"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3PodGroupForAllNamespaces"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3CompositePodGroupListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroup"
-        },
-        {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroupList"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroup"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedCompositePodGroup"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroupList"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedPodGroup"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkloadList"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3NamespacedWorkload"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3PodGroupListForAllNamespaces"
@@ -10253,16 +10196,76 @@
           "target": "com.kubernetes.scheduling#WatchSchedulingV1alpha3WorkloadListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroup"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1alpha3WorkloadForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.scheduling#GetSchedulingV1beta1APIResources"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedPodGroup"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedPodGroupStatus"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#CreateSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1CollectionNamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReadSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ReplaceSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#PatchSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#DeleteSchedulingV1beta1NamespacedWorkload"
+        },
+        {
+          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1PodGroupForAllNamespaces"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroupList"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkload"
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedPodGroup"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkloadList"
+        },
+        {
+          "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1NamespacedWorkload"
         },
         {
           "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1PodGroupListForAllNamespaces"
@@ -10271,10 +10274,7 @@
           "target": "com.kubernetes.scheduling#WatchSchedulingV1beta1WorkloadListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClass"
-        },
-        {
-          "target": "com.kubernetes.scheduling#WatchSchedulingV1PriorityClassList"
+          "target": "com.kubernetes.scheduling#ListSchedulingV1beta1WorkloadForAllNamespaces"
         }
       ],
       "traits": {

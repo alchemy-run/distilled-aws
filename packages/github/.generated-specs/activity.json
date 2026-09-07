@@ -8549,58 +8549,40 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.activity#CheckRepoIsStarredByAuthenticatedUser"
-        },
-        {
-          "target": "com.github.activity#DeleteRepoSubscription"
-        },
-        {
-          "target": "com.github.activity#DeleteThreadSubscription"
+          "target": "com.github.activity#ListPublicEvents"
         },
         {
           "target": "com.github.activity#GetFeeds"
         },
         {
-          "target": "com.github.activity#GetRepoSubscription"
-        },
-        {
-          "target": "com.github.activity#GetStargazerCountForRepo"
-        },
-        {
-          "target": "com.github.activity#GetStargazerHistoryForRepo"
-        },
-        {
-          "target": "com.github.activity#GetThread"
-        },
-        {
-          "target": "com.github.activity#GetThreadSubscriptionForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.activity#ListEventsForAuthenticatedUser"
+          "target": "com.github.activity#ListPublicEventsForRepoNetwork"
         },
         {
           "target": "com.github.activity#ListNotificationsForAuthenticatedUser"
         },
         {
-          "target": "com.github.activity#ListOrgEventsForAuthenticatedUser"
+          "target": "com.github.activity#ReadMarkNotificationsAs"
         },
         {
-          "target": "com.github.activity#ListPublicEvents"
+          "target": "com.github.activity#GetThread"
         },
         {
-          "target": "com.github.activity#ListPublicEventsForRepoNetwork"
+          "target": "com.github.activity#ReadMarkThreadAs"
         },
         {
-          "target": "com.github.activity#ListPublicEventsForUser"
+          "target": "com.github.activity#MarkThreadAsDone"
+        },
+        {
+          "target": "com.github.activity#GetThreadSubscriptionForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.activity#SetThreadSubscription"
+        },
+        {
+          "target": "com.github.activity#DeleteThreadSubscription"
         },
         {
           "target": "com.github.activity#ListPublicOrgEvents"
-        },
-        {
-          "target": "com.github.activity#ListReceivedEventsForUser"
-        },
-        {
-          "target": "com.github.activity#ListReceivedPublicEventsForUser"
         },
         {
           "target": "com.github.activity#ListRepoEvents"
@@ -8609,46 +8591,64 @@
           "target": "com.github.activity#ListRepoNotificationsForAuthenticatedUser"
         },
         {
-          "target": "com.github.activity#ListReposStarredByAuthenticatedUser"
-        },
-        {
-          "target": "com.github.activity#ListReposStarredByUser"
-        },
-        {
-          "target": "com.github.activity#ListReposWatchedByUser"
+          "target": "com.github.activity#ReadMarkRepoNotificationsAs"
         },
         {
           "target": "com.github.activity#ListStargazersForRepo"
         },
         {
-          "target": "com.github.activity#ListWatchedReposForAuthenticatedUser"
+          "target": "com.github.activity#GetStargazerCountForRepo"
+        },
+        {
+          "target": "com.github.activity#GetStargazerHistoryForRepo"
         },
         {
           "target": "com.github.activity#ListWatchersForRepo"
         },
         {
-          "target": "com.github.activity#MarkThreadAsDone"
-        },
-        {
-          "target": "com.github.activity#ReadMarkNotificationsAs"
-        },
-        {
-          "target": "com.github.activity#ReadMarkRepoNotificationsAs"
-        },
-        {
-          "target": "com.github.activity#ReadMarkThreadAs"
+          "target": "com.github.activity#GetRepoSubscription"
         },
         {
           "target": "com.github.activity#SetRepoSubscription"
         },
         {
-          "target": "com.github.activity#SetThreadSubscription"
+          "target": "com.github.activity#DeleteRepoSubscription"
+        },
+        {
+          "target": "com.github.activity#ListReposStarredByAuthenticatedUser"
+        },
+        {
+          "target": "com.github.activity#CheckRepoIsStarredByAuthenticatedUser"
         },
         {
           "target": "com.github.activity#StarRepoForAuthenticatedUser"
         },
         {
           "target": "com.github.activity#UnstarRepoForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.activity#ListWatchedReposForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.activity#ListEventsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.activity#ListOrgEventsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.activity#ListPublicEventsForUser"
+        },
+        {
+          "target": "com.github.activity#ListReceivedEventsForUser"
+        },
+        {
+          "target": "com.github.activity#ListReceivedPublicEventsForUser"
+        },
+        {
+          "target": "com.github.activity#ListReposStarredByUser"
+        },
+        {
+          "target": "com.github.activity#ListReposWatchedByUser"
         }
       ],
       "traits": {

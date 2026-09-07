@@ -20670,400 +20670,400 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devtestlabs#AddVirtualMachineDataDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#ApplyVirtualMachineArtifacts"
-        },
-        {
-          "target": "com.azure.devtestlabs#ArtifactSourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#AttachDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#ClaimLabAnyVm"
-        },
-        {
-          "target": "com.azure.devtestlabs#ClaimVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#ClaimVirtualMachinesUn"
-        },
-        {
-          "target": "com.azure.devtestlabs#CostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#CreateLabEnvironment"
-        },
-        {
-          "target": "com.azure.devtestlabs#CustomImagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteArtifactSource"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteCustomImage"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteEnvironment"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteFormulas"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteGlobalSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteLab"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteNotificationChannel"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeletePolicy"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteSecret"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteServiceFabric"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteServiceFabricSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteServiceRunner"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteUser"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteVirtualMachineSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#DeleteVirtualNetwork"
-        },
-        {
-          "target": "com.azure.devtestlabs#DetachDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#DetachVirtualMachineDataDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#DisksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#EnvironmentsCreateOrUpdate"
+          "target": "com.azure.devtestlabs#GlobalSchedulesRetarget"
         },
         {
           "target": "com.azure.devtestlabs#ExecuteGlobalSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#ExecuteSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#ExecuteServiceFabricSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#ExecuteVirtualMachineSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#ExportLabResourceUsage"
-        },
-        {
-          "target": "com.azure.devtestlabs#FormulasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#GenerateArtifactArmTemplate"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetArmTemplate"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetArtifact"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetArtifactSource"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetCost"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetCustomImage"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetEnvironment"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetFormulas"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetGlobalSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetLab"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetNotificationChannel"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetOperation"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetPolicy"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetSecret"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetServiceFabric"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetServiceFabricSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetServiceRunner"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetUser"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetVirtualMachineRdpFileContents"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetVirtualMachineSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#GetVirtualNetwork"
-        },
-        {
-          "target": "com.azure.devtestlabs#GlobalSchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#GlobalSchedulesRetarget"
-        },
-        {
-          "target": "com.azure.devtestlabs#ImportLabVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#LabsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#LabsGenerateUploadUri"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListArmTemplates"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListArtifacts"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListArtifactSources"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListCustomImages"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListDisks"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListEnvironments"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListFormulas"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListGalleryImages"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListGlobalScheduleByResourceGroup"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListGlobalScheduleBySubscription"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListLabByResourceGroup"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListLabBySubscription"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListLabVhds"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListNotificationChannels"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListPolicies"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListProviderOperations"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListScheduleApplicable"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListSchedules"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListSecrets"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListServiceFabricApplicableSchedules"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListServiceFabrics"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListServiceFabricSchedules"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListUsers"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListVirtualMachineApplicableSchedules"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListVirtualMachines"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListVirtualMachineSchedules"
-        },
-        {
-          "target": "com.azure.devtestlabs#ListVirtualNetworks"
-        },
-        {
-          "target": "com.azure.devtestlabs#NotificationChannelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#NotifyNotificationChannel"
-        },
-        {
-          "target": "com.azure.devtestlabs#PoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#PolicySetsEvaluatePolicies"
-        },
-        {
-          "target": "com.azure.devtestlabs#RedeployVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#ResizeVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#RestartVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#SchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#SecretsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#ServiceFabricSchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#ServiceFabricsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#ServiceRunnersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devtestlabs#StartServiceFabric"
-        },
-        {
-          "target": "com.azure.devtestlabs#StartVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#StopServiceFabric"
-        },
-        {
-          "target": "com.azure.devtestlabs#StopVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#TransferVirtualMachineDisks"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateArtifactSource"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateCustomImage"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateDisk"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateEnvironment"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateFormulas"
+          "target": "com.azure.devtestlabs#DeleteGlobalSchedule"
         },
         {
           "target": "com.azure.devtestlabs#UpdateGlobalSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#UpdateLab"
+          "target": "com.azure.devtestlabs#GlobalSchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#UpdateNotificationChannel"
+          "target": "com.azure.devtestlabs#GetGlobalSchedule"
         },
         {
-          "target": "com.azure.devtestlabs#UpdatePolicy"
+          "target": "com.azure.devtestlabs#ListGlobalScheduleByResourceGroup"
         },
         {
-          "target": "com.azure.devtestlabs#UpdateSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateSecret"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateServiceFabric"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateServiceFabricSchedule"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateUser"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateVirtualMachine"
-        },
-        {
-          "target": "com.azure.devtestlabs#UpdateVirtualMachineSchedule"
+          "target": "com.azure.devtestlabs#DeleteVirtualNetwork"
         },
         {
           "target": "com.azure.devtestlabs#UpdateVirtualNetwork"
         },
         {
-          "target": "com.azure.devtestlabs#UsersCreateOrUpdate"
+          "target": "com.azure.devtestlabs#VirtualNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetVirtualNetwork"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListVirtualNetworks"
+        },
+        {
+          "target": "com.azure.devtestlabs#ClaimVirtualMachinesUn"
+        },
+        {
+          "target": "com.azure.devtestlabs#TransferVirtualMachineDisks"
+        },
+        {
+          "target": "com.azure.devtestlabs#StopVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#StartVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#ExecuteVirtualMachineSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteVirtualMachineSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateVirtualMachineSchedule"
         },
         {
           "target": "com.azure.devtestlabs#VirtualMachineSchedulesCreateOrUpdate"
         },
         {
+          "target": "com.azure.devtestlabs#GetVirtualMachineSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListVirtualMachineSchedules"
+        },
+        {
+          "target": "com.azure.devtestlabs#RestartVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#ResizeVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#RedeployVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListVirtualMachineApplicableSchedules"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetVirtualMachineRdpFileContents"
+        },
+        {
+          "target": "com.azure.devtestlabs#DetachVirtualMachineDataDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#ClaimVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#ApplyVirtualMachineArtifacts"
+        },
+        {
+          "target": "com.azure.devtestlabs#AddVirtualMachineDataDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateVirtualMachine"
+        },
+        {
           "target": "com.azure.devtestlabs#VirtualMachinesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devtestlabs#VirtualNetworksCreateOrUpdate"
+          "target": "com.azure.devtestlabs#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListVirtualMachines"
+        },
+        {
+          "target": "com.azure.devtestlabs#StopServiceFabric"
+        },
+        {
+          "target": "com.azure.devtestlabs#StartServiceFabric"
+        },
+        {
+          "target": "com.azure.devtestlabs#ExecuteServiceFabricSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteServiceFabricSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateServiceFabricSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#ServiceFabricSchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetServiceFabricSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListServiceFabricSchedules"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListServiceFabricApplicableSchedules"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteServiceFabric"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateServiceFabric"
+        },
+        {
+          "target": "com.azure.devtestlabs#ServiceFabricsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetServiceFabric"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListServiceFabrics"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteSecret"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateSecret"
+        },
+        {
+          "target": "com.azure.devtestlabs#SecretsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetSecret"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListSecrets"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteEnvironment"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateEnvironment"
+        },
+        {
+          "target": "com.azure.devtestlabs#EnvironmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetEnvironment"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListEnvironments"
+        },
+        {
+          "target": "com.azure.devtestlabs#DetachDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#AttachDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#DisksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetDisk"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListDisks"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteUser"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateUser"
+        },
+        {
+          "target": "com.azure.devtestlabs#UsersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetUser"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListUsers"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteServiceRunner"
+        },
+        {
+          "target": "com.azure.devtestlabs#ServiceRunnersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetServiceRunner"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListScheduleApplicable"
+        },
+        {
+          "target": "com.azure.devtestlabs#ExecuteSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#SchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetSchedule"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListSchedules"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeletePolicy"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdatePolicy"
+        },
+        {
+          "target": "com.azure.devtestlabs#PoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetPolicy"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListPolicies"
+        },
+        {
+          "target": "com.azure.devtestlabs#PolicySetsEvaluatePolicies"
+        },
+        {
+          "target": "com.azure.devtestlabs#NotifyNotificationChannel"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteNotificationChannel"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateNotificationChannel"
+        },
+        {
+          "target": "com.azure.devtestlabs#NotificationChannelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetNotificationChannel"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListNotificationChannels"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListLabVhds"
+        },
+        {
+          "target": "com.azure.devtestlabs#ImportLabVirtualMachine"
+        },
+        {
+          "target": "com.azure.devtestlabs#LabsGenerateUploadUri"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListGalleryImages"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteFormulas"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateFormulas"
+        },
+        {
+          "target": "com.azure.devtestlabs#FormulasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetFormulas"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListFormulas"
+        },
+        {
+          "target": "com.azure.devtestlabs#ExportLabResourceUsage"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteCustomImage"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateCustomImage"
+        },
+        {
+          "target": "com.azure.devtestlabs#CustomImagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetCustomImage"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListCustomImages"
+        },
+        {
+          "target": "com.azure.devtestlabs#CreateLabEnvironment"
+        },
+        {
+          "target": "com.azure.devtestlabs#CostsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetCost"
+        },
+        {
+          "target": "com.azure.devtestlabs#ClaimLabAnyVm"
+        },
+        {
+          "target": "com.azure.devtestlabs#GenerateArtifactArmTemplate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetArtifact"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListArtifacts"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetArmTemplate"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListArmTemplates"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteArtifactSource"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateArtifactSource"
+        },
+        {
+          "target": "com.azure.devtestlabs#ArtifactSourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetArtifactSource"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListArtifactSources"
+        },
+        {
+          "target": "com.azure.devtestlabs#DeleteLab"
+        },
+        {
+          "target": "com.azure.devtestlabs#UpdateLab"
+        },
+        {
+          "target": "com.azure.devtestlabs#LabsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetLab"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListLabByResourceGroup"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListGlobalScheduleBySubscription"
+        },
+        {
+          "target": "com.azure.devtestlabs#GetOperation"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListLabBySubscription"
+        },
+        {
+          "target": "com.azure.devtestlabs#ListProviderOperations"
         }
       ],
       "traits": {

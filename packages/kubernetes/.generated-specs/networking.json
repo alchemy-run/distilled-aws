@@ -7661,51 +7661,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.networking#CreateNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#CreateNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#CreateNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#CreateNetworkingV1NamespacedNetworkPolicy"
-        },
-        {
-          "target": "com.kubernetes.networking#CreateNetworkingV1ServiceCIDR"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedNetworkPolicy"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCIDR"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedNetworkPolicy"
-        },
-        {
-          "target": "com.kubernetes.networking#DeleteNetworkingV1ServiceCIDR"
-        },
-        {
           "target": "com.kubernetes.networking#GetNetworkingAPIGroup"
         },
         {
@@ -7715,16 +7670,97 @@
           "target": "com.kubernetes.networking#ListNetworkingV1IngressClass"
         },
         {
+          "target": "com.kubernetes.networking#CreateNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1IngressClass"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1IngressClass"
+        },
+        {
           "target": "com.kubernetes.networking#ListNetworkingV1IngressForAllNamespaces"
         },
         {
           "target": "com.kubernetes.networking#ListNetworkingV1IPAddress"
         },
         {
+          "target": "com.kubernetes.networking#CreateNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionIPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1IPAddress"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1IPAddress"
+        },
+        {
           "target": "com.kubernetes.networking#ListNetworkingV1NamespacedIngress"
         },
         {
+          "target": "com.kubernetes.networking#CreateNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedIngress"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngressStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngressStatus"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngressStatus"
+        },
+        {
           "target": "com.kubernetes.networking#ListNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#CreateNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionNamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1NamespacedNetworkPolicy"
         },
         {
           "target": "com.kubernetes.networking#ListNetworkingV1NetworkPolicyForAllNamespaces"
@@ -7733,103 +7769,67 @@
           "target": "com.kubernetes.networking#ListNetworkingV1ServiceCIDR"
         },
         {
-          "target": "com.kubernetes.networking#PatchNetworkingV1IngressClass"
+          "target": "com.kubernetes.networking#CreateNetworkingV1ServiceCIDR"
         },
         {
-          "target": "com.kubernetes.networking#PatchNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedIngressStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1NamespacedNetworkPolicy"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDR"
-        },
-        {
-          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedIngressStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ReadNetworkingV1NamespacedNetworkPolicy"
+          "target": "com.kubernetes.networking#DeleteNetworkingV1CollectionServiceCIDR"
         },
         {
           "target": "com.kubernetes.networking#ReadNetworkingV1ServiceCIDR"
         },
         {
-          "target": "com.kubernetes.networking#ReadNetworkingV1ServiceCIDRStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1IngressClass"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1IPAddress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngress"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedIngressStatus"
-        },
-        {
-          "target": "com.kubernetes.networking#ReplaceNetworkingV1NamespacedNetworkPolicy"
-        },
-        {
           "target": "com.kubernetes.networking#ReplaceNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#DeleteNetworkingV1ServiceCIDR"
+        },
+        {
+          "target": "com.kubernetes.networking#ReadNetworkingV1ServiceCIDRStatus"
         },
         {
           "target": "com.kubernetes.networking#ReplaceNetworkingV1ServiceCIDRStatus"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1IngressClass"
+          "target": "com.kubernetes.networking#PatchNetworkingV1ServiceCIDRStatus"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1IngressClassList"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1IngressListForAllNamespaces"
+          "target": "com.kubernetes.networking#WatchNetworkingV1IngressClass"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1IPAddress"
+          "target": "com.kubernetes.networking#WatchNetworkingV1IngressListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1IPAddressList"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedIngress"
+          "target": "com.kubernetes.networking#WatchNetworkingV1IPAddress"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedIngressList"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicy"
+          "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedIngress"
         },
         {
           "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicyList"
         },
         {
+          "target": "com.kubernetes.networking#WatchNetworkingV1NamespacedNetworkPolicy"
+        },
+        {
           "target": "com.kubernetes.networking#WatchNetworkingV1NetworkPolicyListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDR"
+          "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDRList"
         },
         {
-          "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDRList"
+          "target": "com.kubernetes.networking#WatchNetworkingV1ServiceCIDR"
         }
       ],
       "traits": {

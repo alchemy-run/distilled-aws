@@ -12478,13 +12478,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payments#CreatePayment"
-        },
-        {
-          "target": "com.whop.payments#FeesPayment"
-        },
-        {
-          "target": "com.whop.payments#GetPayment"
+          "target": "com.whop.payments#UpdateReturnUrlPayment"
         },
         {
           "target": "com.whop.payments#GetStatusPayment"
@@ -12493,13 +12487,19 @@
           "target": "com.whop.payments#ListPayment"
         },
         {
+          "target": "com.whop.payments#CreatePayment"
+        },
+        {
+          "target": "com.whop.payments#GetPayment"
+        },
+        {
+          "target": "com.whop.payments#FeesPayment"
+        },
+        {
           "target": "com.whop.payments#RefundPayment"
         },
         {
           "target": "com.whop.payments#RetryPayment"
-        },
-        {
-          "target": "com.whop.payments#UpdateReturnUrlPayment"
         },
         {
           "target": "com.whop.payments#VoidPayment"

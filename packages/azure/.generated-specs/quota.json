@@ -4475,103 +4475,103 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.quota#DeleteGroupQuotas"
-        },
-        {
-          "target": "com.azure.quota#DeleteGroupQuotaSubscription"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotaLimitsRequest"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotaLocationSettings"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotas"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotaSubscription"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequest"
-        },
-        {
-          "target": "com.azure.quota#GetGroupQuotaSubscriptionRequest"
-        },
-        {
-          "target": "com.azure.quota#GetQuota"
-        },
-        {
-          "target": "com.azure.quota#GetQuotaRequestStatus"
-        },
-        {
-          "target": "com.azure.quota#GetUsage"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaLimits"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaLimitsRequest2"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotas"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocation"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptionRequests"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaSubscriptions"
-        },
-        {
-          "target": "com.azure.quota#ListGroupQuotaUsages"
-        },
-        {
-          "target": "com.azure.quota#ListQuota"
-        },
-        {
           "target": "com.azure.quota#ListQuotaOperation"
-        },
-        {
-          "target": "com.azure.quota#ListQuotaRequestStatus"
-        },
-        {
-          "target": "com.azure.quota#ListUsages"
-        },
-        {
-          "target": "com.azure.quota#QuotaCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.quota#UpdateGroupQuotaLimitsRequest"
-        },
-        {
-          "target": "com.azure.quota#UpdateGroupQuotaLocationSettings"
-        },
-        {
-          "target": "com.azure.quota#UpdateGroupQuotas"
-        },
-        {
-          "target": "com.azure.quota#UpdateGroupQuotaSubscription"
         },
         {
           "target": "com.azure.quota#UpdateGroupQuotaSubscriptionAllocationRequest"
         },
         {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocation"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotaSubscriptionAllocationRequest"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptionAllocationRequest"
+        },
+        {
+          "target": "com.azure.quota#DeleteGroupQuotaSubscription"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaSubscription"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotaSubscription"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptions"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotaSubscriptionRequest"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaSubscriptionRequests"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaUsages"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaLocationSettings"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotaLocationSettings"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaLimitsRequest2"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotaLimitsRequest"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotaLimits"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotaLimitsRequest"
+        },
+        {
+          "target": "com.azure.quota#DeleteGroupQuotas"
+        },
+        {
+          "target": "com.azure.quota#UpdateGroupQuotas"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GetGroupQuotas"
+        },
+        {
+          "target": "com.azure.quota#ListGroupQuotas"
+        },
+        {
+          "target": "com.azure.quota#GetUsage"
+        },
+        {
+          "target": "com.azure.quota#ListUsages"
+        },
+        {
           "target": "com.azure.quota#UpdateQuota"
+        },
+        {
+          "target": "com.azure.quota#QuotaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GetQuota"
+        },
+        {
+          "target": "com.azure.quota#ListQuota"
+        },
+        {
+          "target": "com.azure.quota#GetQuotaRequestStatus"
+        },
+        {
+          "target": "com.azure.quota#ListQuotaRequestStatus"
         }
       ],
       "traits": {

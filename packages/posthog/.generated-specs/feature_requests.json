@@ -2250,7 +2250,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.feature_requests#ListFeatureRequests"
+        },
+        {
           "target": "com.posthog.feature_requests#CreateFeatureRequest"
+        },
+        {
+          "target": "com.posthog.feature_requests#GetFeatureRequest"
+        },
+        {
+          "target": "com.posthog.feature_requests#UpdateFeatureRequest"
+        },
+        {
+          "target": "com.posthog.feature_requests#UpdateFeatureRequestsPartial"
         },
         {
           "target": "com.posthog.feature_requests#FeatureRequestsAddAccountCreate"
@@ -2262,31 +2274,19 @@
           "target": "com.posthog.feature_requests#FeatureRequestsArchiveCreate"
         },
         {
+          "target": "com.posthog.feature_requests#ListFeatureRequestsHistory"
+        },
+        {
           "target": "com.posthog.feature_requests#FeatureRequestsRemoveEvidenceCreate"
         },
         {
           "target": "com.posthog.feature_requests#FeatureRequestsRestoreCreate"
         },
         {
-          "target": "com.posthog.feature_requests#FeatureRequestsUpdateEvidenceCreate"
-        },
-        {
-          "target": "com.posthog.feature_requests#GetFeatureRequest"
-        },
-        {
-          "target": "com.posthog.feature_requests#ListFeatureRequests"
-        },
-        {
-          "target": "com.posthog.feature_requests#ListFeatureRequestsHistory"
-        },
-        {
           "target": "com.posthog.feature_requests#ListFeatureRequestsStatusHistory"
         },
         {
-          "target": "com.posthog.feature_requests#UpdateFeatureRequest"
-        },
-        {
-          "target": "com.posthog.feature_requests#UpdateFeatureRequestsPartial"
+          "target": "com.posthog.feature_requests#FeatureRequestsUpdateEvidenceCreate"
         }
       ],
       "traits": {

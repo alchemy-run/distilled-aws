@@ -535,10 +535,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.dispute_alerts#GetDisputeAlert"
+          "target": "com.whop.dispute_alerts#ListDisputeAlerts"
         },
         {
-          "target": "com.whop.dispute_alerts#ListDisputeAlerts"
+          "target": "com.whop.dispute_alerts#GetDisputeAlert"
         }
       ],
       "traits": {

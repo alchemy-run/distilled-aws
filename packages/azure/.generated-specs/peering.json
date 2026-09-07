@@ -6986,139 +6986,139 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.peering#CheckServiceProviderAvailability"
+          "target": "com.azure.peering#ListRpUnbilledPrefixes"
         },
         {
-          "target": "com.azure.peering#ConnectionMonitorTestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#DeleteConnectionMonitorTest"
-        },
-        {
-          "target": "com.azure.peering#DeletePeerAsn"
-        },
-        {
-          "target": "com.azure.peering#DeletePeering"
-        },
-        {
-          "target": "com.azure.peering#DeletePeeringService"
-        },
-        {
-          "target": "com.azure.peering#DeletePrefix"
-        },
-        {
-          "target": "com.azure.peering#DeleteRegisteredAsn"
+          "target": "com.azure.peering#ValidateRegisteredPrefix"
         },
         {
           "target": "com.azure.peering#DeleteRegisteredPrefix"
         },
         {
-          "target": "com.azure.peering#GetConnectionMonitorTest"
-        },
-        {
-          "target": "com.azure.peering#GetPeerAsn"
-        },
-        {
-          "target": "com.azure.peering#GetPeering"
-        },
-        {
-          "target": "com.azure.peering#GetPeeringService"
-        },
-        {
-          "target": "com.azure.peering#GetPrefix"
-        },
-        {
-          "target": "com.azure.peering#GetRegisteredAsn"
+          "target": "com.azure.peering#RegisteredPrefixesCreateOrUpdate"
         },
         {
           "target": "com.azure.peering#GetRegisteredPrefix"
         },
         {
-          "target": "com.azure.peering#InvokeLookingGlass"
-        },
-        {
-          "target": "com.azure.peering#ListCdnPeeringPrefixes"
-        },
-        {
-          "target": "com.azure.peering#ListConnectionMonitorTestByPeeringService"
-        },
-        {
-          "target": "com.azure.peering#ListLegacyPeerings"
-        },
-        {
-          "target": "com.azure.peering#ListOperations"
-        },
-        {
-          "target": "com.azure.peering#ListPeerAsnBySubscription"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringByResourceGroup"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringBySubscription"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringLocations"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceBySubscription"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceCountries"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceLocations"
-        },
-        {
-          "target": "com.azure.peering#ListPeeringServiceProviders"
-        },
-        {
-          "target": "com.azure.peering#ListPrefixByPeeringService"
-        },
-        {
-          "target": "com.azure.peering#ListReceivedRouteByPeering"
-        },
-        {
-          "target": "com.azure.peering#ListRegisteredAsnByPeering"
-        },
-        {
           "target": "com.azure.peering#ListRegisteredPrefixByPeering"
         },
         {
-          "target": "com.azure.peering#ListRpUnbilledPrefixes"
-        },
-        {
-          "target": "com.azure.peering#PeerAsnsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#PeeringsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#PeeringServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.peering#PeeringServicesInitializeConnectionMonitor"
-        },
-        {
-          "target": "com.azure.peering#PrefixesCreateOrUpdate"
+          "target": "com.azure.peering#DeleteRegisteredAsn"
         },
         {
           "target": "com.azure.peering#RegisteredAsnsCreateOrUpdate"
         },
         {
-          "target": "com.azure.peering#RegisteredPrefixesCreateOrUpdate"
+          "target": "com.azure.peering#GetRegisteredAsn"
+        },
+        {
+          "target": "com.azure.peering#ListRegisteredAsnByPeering"
+        },
+        {
+          "target": "com.azure.peering#ListReceivedRouteByPeering"
+        },
+        {
+          "target": "com.azure.peering#DeletePeering"
         },
         {
           "target": "com.azure.peering#UpdatePeering"
         },
         {
+          "target": "com.azure.peering#PeeringsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#GetPeering"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringByResourceGroup"
+        },
+        {
+          "target": "com.azure.peering#DeletePrefix"
+        },
+        {
+          "target": "com.azure.peering#PrefixesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#GetPrefix"
+        },
+        {
+          "target": "com.azure.peering#ListPrefixByPeeringService"
+        },
+        {
+          "target": "com.azure.peering#DeleteConnectionMonitorTest"
+        },
+        {
+          "target": "com.azure.peering#ConnectionMonitorTestsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#GetConnectionMonitorTest"
+        },
+        {
+          "target": "com.azure.peering#ListConnectionMonitorTestByPeeringService"
+        },
+        {
+          "target": "com.azure.peering#DeletePeeringService"
+        },
+        {
           "target": "com.azure.peering#UpdatePeeringService"
         },
         {
-          "target": "com.azure.peering#ValidateRegisteredPrefix"
+          "target": "com.azure.peering#PeeringServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#GetPeeringService"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringBySubscription"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceBySubscription"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceProviders"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceLocations"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringServiceCountries"
+        },
+        {
+          "target": "com.azure.peering#ListPeeringLocations"
+        },
+        {
+          "target": "com.azure.peering#DeletePeerAsn"
+        },
+        {
+          "target": "com.azure.peering#PeerAsnsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.peering#GetPeerAsn"
+        },
+        {
+          "target": "com.azure.peering#ListPeerAsnBySubscription"
+        },
+        {
+          "target": "com.azure.peering#InvokeLookingGlass"
+        },
+        {
+          "target": "com.azure.peering#ListLegacyPeerings"
+        },
+        {
+          "target": "com.azure.peering#PeeringServicesInitializeConnectionMonitor"
+        },
+        {
+          "target": "com.azure.peering#CheckServiceProviderAvailability"
+        },
+        {
+          "target": "com.azure.peering#ListCdnPeeringPrefixes"
+        },
+        {
+          "target": "com.azure.peering#ListOperations"
         }
       ],
       "traits": {

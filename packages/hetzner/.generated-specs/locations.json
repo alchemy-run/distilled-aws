@@ -400,10 +400,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.locations#GetLocation"
+          "target": "com.hetzner.locations#ListLocations"
         },
         {
-          "target": "com.hetzner.locations#ListLocations"
+          "target": "com.hetzner.locations#GetLocation"
         }
       ],
       "traits": {

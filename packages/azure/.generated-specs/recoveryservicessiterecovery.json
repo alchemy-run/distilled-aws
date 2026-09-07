@@ -23397,466 +23397,466 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CheckReplicationFabricConsistency"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationStorageClassificationMapping"
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenters"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#CreateReplicationVaultSetting"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServicesProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationStorageClassificationMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ExportReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetClusterRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetMigrationRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationEligibilityResult"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationEvent"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationLogicalNetwork"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetwork"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetworkMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationPolicy"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectableItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResults"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainer"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionIntent"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryPlan"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassification"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassificationMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultHealth"
-        },
-        {
           "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultSetting"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetReplicationvCenter"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#GetSupportedOperatingSystem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListClusterRecoveryPointByReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListMigrationRecoveryPointByReplicationMigrationItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListOperations"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListRecoveryPointByReplicationProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAlertSettings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAppliances"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationEligibilityResults"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationEvents"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationJobs"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationLogicalNetworkByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItemByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappingByReplicationNetworks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworks"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationPolicies"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectableItemByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItemByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusterByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusters"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappingByReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainers"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionIntents"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryPlans"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviderByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviders"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappingByReplicationStorageClassifications"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappings"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassifications"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#ListReplicationVaultSetting"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenterByReplicationFabrics"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenters"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ListTargetComputeSizByReplicationProtectedItems"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationFabricToAad"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTest"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationFabric"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionCluster"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionContainerMapping"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationRecoveryServicesProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProvider"
-        },
-        {
           "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationVaultHealth"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationFabricInfra"
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationVaultHealth"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisks"
+          "target": "com.azure.recoveryservicessiterecovery#GetSupportedOperatingSystem"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificate"
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassifications"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsReassociateGateway"
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappings"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResync"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateCleanup"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPlannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReinstallMobilityService"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRepairReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReprotect"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsResolveHealthErrors"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsSwitchProvider"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsUnplannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersRepairReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersUnplannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersDiscoverProtectableItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchClusterProtection"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchProtection"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansPlannedFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansReprotect"
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviders"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansUnplannedFailover"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#RestartReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationJob"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplication"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanup"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailover"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanup"
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanup"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailover"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#TestReplicationRecoveryPlanFailoverCleanup"
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansReprotect"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationMigrationItem"
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationRecoveryPlansPlannedFailover"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationNetworkMapping"
+          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationRecoveryPlansFailover"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationPolicy"
+          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationRecoveryPlansFailover"
         },
         {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItem"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemAppliance"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemMobilityService"
-        },
-        {
-          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectionContainerMapping"
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryPlan"
         },
         {
           "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationRecoveryPlan"
         },
         {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryPlan"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryPlan"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryPlans"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionIntent"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionIntents"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusters"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationPolicy"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationPolicies"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ExportReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RestartReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationJob"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationJobs"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationvCenter"
+        },
+        {
           "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationvCenter"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationvCenter"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationvCenter"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationvCenterByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationStorageClassificationMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationStorageClassificationMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassificationMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationMappingByReplicationStorageClassifications"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationStorageClassification"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationStorageClassificationByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RefreshReplicationRecoveryServicesProviderProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationRecoveryServicesProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationRecoveryServicesProviderByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchProtection"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersSwitchClusterProtection"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainerMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerMappingByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersUnplannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailoverCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectionClusterFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionClustersRepairReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetClusterRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListClusterRecoveryPointByReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionClusterOperationResults"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectionClustersFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectionClusterRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionCluster"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionClusterByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemMobilityService"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItemAppliance"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsUnplannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailoverCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#TestReplicationProtectedItemFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListTargetComputeSizByReplicationProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsSwitchProvider"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsResolveHealthErrors"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsRepairReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationProtectedItemDisks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReinstallMobilityService"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListRecoveryPointByReplicationProtectedItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsReprotect"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectedItemsPlannedFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CommitReplicationProtectedItemsFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CancelReplicationProtectedItemsFailover"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ApplyReplicationProtectedItemRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#AddReplicationProtectedItemDisks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectedItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectedItemByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectableItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectableItemByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsTestMigrateCleanup"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItemsTest"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationMigrationItemsResync"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ResumeReplicationMigrationItemReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PauseReplicationMigrationItemReplication"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetMigrationRecoveryPoint"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListMigrationRecoveryPointByReplicationMigrationItems"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationMigrationItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationMigrationItemByReplicationProtectionContainers"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationProtectionContainersDiscoverProtectableItem"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationProtectionContainer"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationProtectionContainerByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#UpdateReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetworkMapping"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkMappingByReplicationNetworks"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationNetwork"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationNetworkByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationLogicalNetwork"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationLogicalNetworkByReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RenewReplicationFabricCertificate"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#RemoveReplicationFabricInfra"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#DeleteReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ReplicationFabricsReassociateGateway"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#MigrateReplicationFabricToAad"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CheckReplicationFabricConsistency"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#PurgeReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationFabric"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationFabrics"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationEvent"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationEvents"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAppliances"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#CreateReplicationAlertSettings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationAlertSettings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationAlertSettings"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListOperations"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#GetReplicationEligibilityResult"
+        },
+        {
+          "target": "com.azure.recoveryservicessiterecovery#ListReplicationEligibilityResults"
         }
       ],
       "traits": {

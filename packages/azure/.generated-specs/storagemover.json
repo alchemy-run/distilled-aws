@@ -5955,112 +5955,112 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagemover#AgentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#ConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteAgent"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteConnection"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteEndpoint"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteJobDefinition"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteProject"
-        },
-        {
-          "target": "com.azure.storagemover#DeleteStorageMover"
-        },
-        {
-          "target": "com.azure.storagemover#EndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#GetAgent"
-        },
-        {
-          "target": "com.azure.storagemover#GetConnection"
-        },
-        {
-          "target": "com.azure.storagemover#GetEndpoint"
-        },
-        {
-          "target": "com.azure.storagemover#GetJobDefinition"
-        },
-        {
-          "target": "com.azure.storagemover#GetJobRun"
-        },
-        {
-          "target": "com.azure.storagemover#GetProject"
-        },
-        {
-          "target": "com.azure.storagemover#GetStorageMover"
-        },
-        {
-          "target": "com.azure.storagemover#JobDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storagemover#JobDefinitionsReconcileJob"
-        },
-        {
-          "target": "com.azure.storagemover#ListAgents"
-        },
-        {
-          "target": "com.azure.storagemover#ListConnections"
-        },
-        {
-          "target": "com.azure.storagemover#ListEndpoints"
-        },
-        {
-          "target": "com.azure.storagemover#ListJobDefinitions"
-        },
-        {
-          "target": "com.azure.storagemover#ListJobRuns"
-        },
-        {
-          "target": "com.azure.storagemover#ListOperations"
-        },
-        {
-          "target": "com.azure.storagemover#ListProjects"
-        },
-        {
-          "target": "com.azure.storagemover#ListStorageMoverBySubscription"
-        },
-        {
-          "target": "com.azure.storagemover#ListStorageMovers"
-        },
-        {
-          "target": "com.azure.storagemover#ProjectsCreateOrUpdate"
+          "target": "com.azure.storagemover#StopJobDefinitionJob"
         },
         {
           "target": "com.azure.storagemover#StartJobDefinitionJob"
         },
         {
-          "target": "com.azure.storagemover#StopJobDefinitionJob"
+          "target": "com.azure.storagemover#JobDefinitionsReconcileJob"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversCreateOrUpdate"
+          "target": "com.azure.storagemover#GetJobRun"
         },
         {
-          "target": "com.azure.storagemover#UpdateAgent"
+          "target": "com.azure.storagemover#ListJobRuns"
         },
         {
-          "target": "com.azure.storagemover#UpdateEndpoint"
+          "target": "com.azure.storagemover#DeleteJobDefinition"
         },
         {
           "target": "com.azure.storagemover#UpdateJobDefinition"
         },
         {
+          "target": "com.azure.storagemover#JobDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#GetJobDefinition"
+        },
+        {
+          "target": "com.azure.storagemover#ListJobDefinitions"
+        },
+        {
+          "target": "com.azure.storagemover#DeleteProject"
+        },
+        {
           "target": "com.azure.storagemover#UpdateProject"
         },
         {
+          "target": "com.azure.storagemover#ProjectsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#GetProject"
+        },
+        {
+          "target": "com.azure.storagemover#ListProjects"
+        },
+        {
+          "target": "com.azure.storagemover#DeleteEndpoint"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateEndpoint"
+        },
+        {
+          "target": "com.azure.storagemover#EndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#GetEndpoint"
+        },
+        {
+          "target": "com.azure.storagemover#ListEndpoints"
+        },
+        {
+          "target": "com.azure.storagemover#DeleteConnection"
+        },
+        {
+          "target": "com.azure.storagemover#ConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#GetConnection"
+        },
+        {
+          "target": "com.azure.storagemover#ListConnections"
+        },
+        {
+          "target": "com.azure.storagemover#DeleteAgent"
+        },
+        {
+          "target": "com.azure.storagemover#UpdateAgent"
+        },
+        {
+          "target": "com.azure.storagemover#AgentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#GetAgent"
+        },
+        {
+          "target": "com.azure.storagemover#ListAgents"
+        },
+        {
+          "target": "com.azure.storagemover#DeleteStorageMover"
+        },
+        {
           "target": "com.azure.storagemover#UpdateStorageMover"
+        },
+        {
+          "target": "com.azure.storagemover#StorageMoversCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagemover#GetStorageMover"
+        },
+        {
+          "target": "com.azure.storagemover#ListStorageMovers"
+        },
+        {
+          "target": "com.azure.storagemover#ListStorageMoverBySubscription"
+        },
+        {
+          "target": "com.azure.storagemover#ListOperations"
         }
       ],
       "traits": {

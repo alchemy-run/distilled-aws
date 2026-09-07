@@ -627,16 +627,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payment_method_domains#CreatePaymentMethodDomain"
+          "target": "com.whop.payment_method_domains#ListPaymentMethodDomains"
         },
         {
-          "target": "com.whop.payment_method_domains#DeletePaymentMethodDomain"
+          "target": "com.whop.payment_method_domains#CreatePaymentMethodDomain"
         },
         {
           "target": "com.whop.payment_method_domains#GetPaymentMethodDomain"
         },
         {
-          "target": "com.whop.payment_method_domains#ListPaymentMethodDomains"
+          "target": "com.whop.payment_method_domains#DeletePaymentMethodDomain"
         },
         {
           "target": "com.whop.payment_method_domains#VerifyPaymentMethodDomain"

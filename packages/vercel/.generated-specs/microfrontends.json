@@ -14735,7 +14735,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.microfrontends#CreateMicrofrontendsGroupWithApplications"
+          "target": "com.vercel.microfrontends#GetMicrofrontendsGroups"
+        },
+        {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroup"
         },
         {
           "target": "com.vercel.microfrontends#GetMicrofrontendsConfig"
@@ -14744,10 +14747,7 @@
           "target": "com.vercel.microfrontends#GetMicrofrontendsConfigForProject"
         },
         {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsGroups"
-        },
-        {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroup"
+          "target": "com.vercel.microfrontends#CreateMicrofrontendsGroupWithApplications"
         }
       ],
       "traits": {

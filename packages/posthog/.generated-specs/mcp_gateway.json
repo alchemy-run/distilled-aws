@@ -3402,22 +3402,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.mcp_gateway#CreateMcpGatewayConfigSetAllServersEnabled"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#CreateMcpGatewayMembersSetAccess"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#CreateMcpGatewayRule"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#CreateMcpGatewayServersPolicy"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#CreateMcpGatewayServersSetTemplateEnabled"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#CreateMcpGatewayServiceAccountsAccess"
+          "target": "com.posthog.mcp_gateway#ListMcpGatewayAudit"
         },
         {
           "target": "com.posthog.mcp_gateway#GetMcpGatewayAudit"
@@ -3426,49 +3411,34 @@
           "target": "com.posthog.mcp_gateway#GetMcpGatewayAuditCount"
         },
         {
-          "target": "com.posthog.mcp_gateway#GetMcpGatewayMember"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#GetMcpGatewayRule"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#GetMcpGatewayServer"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#GetMcpGatewayServersTool"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#GetMcpGatewayServiceAccount"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#ListMcpGatewayAudit"
-        },
-        {
           "target": "com.posthog.mcp_gateway#ListMcpGatewayConfig"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#ListMcpGatewayMembers"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#ListMcpGatewayRules"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#ListMcpGatewayServers"
-        },
-        {
-          "target": "com.posthog.mcp_gateway#ListMcpGatewayServiceAccounts"
         },
         {
           "target": "com.posthog.mcp_gateway#McpGatewayConfigApplyPresetCreate"
         },
         {
+          "target": "com.posthog.mcp_gateway#CreateMcpGatewayConfigSetAllServersEnabled"
+        },
+        {
           "target": "com.posthog.mcp_gateway#McpGatewayConfigUpdateSettingsCreate"
         },
         {
-          "target": "com.posthog.mcp_gateway#McpGatewayRulesDestroy"
+          "target": "com.posthog.mcp_gateway#ListMcpGatewayMembers"
         },
         {
-          "target": "com.posthog.mcp_gateway#McpGatewayServersDestroy"
+          "target": "com.posthog.mcp_gateway#GetMcpGatewayMember"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#CreateMcpGatewayMembersSetAccess"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#ListMcpGatewayRules"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#CreateMcpGatewayRule"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#GetMcpGatewayRule"
         },
         {
           "target": "com.posthog.mcp_gateway#UpdateMcpGatewayRule"
@@ -3477,16 +3447,46 @@
           "target": "com.posthog.mcp_gateway#UpdateMcpGatewayRulesPartial"
         },
         {
+          "target": "com.posthog.mcp_gateway#McpGatewayRulesDestroy"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#ListMcpGatewayServers"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#GetMcpGatewayServer"
+        },
+        {
           "target": "com.posthog.mcp_gateway#UpdateMcpGatewayServer"
         },
         {
           "target": "com.posthog.mcp_gateway#UpdateMcpGatewayServersPartial"
         },
         {
+          "target": "com.posthog.mcp_gateway#McpGatewayServersDestroy"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#CreateMcpGatewayServersPolicy"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#GetMcpGatewayServersTool"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#CreateMcpGatewayServersSetTemplateEnabled"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#ListMcpGatewayServiceAccounts"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#GetMcpGatewayServiceAccount"
+        },
+        {
           "target": "com.posthog.mcp_gateway#UpdateMcpGatewayServiceAccount"
         },
         {
           "target": "com.posthog.mcp_gateway#UpdateMcpGatewayServiceAccountsPartial"
+        },
+        {
+          "target": "com.posthog.mcp_gateway#CreateMcpGatewayServiceAccountsAccess"
         }
       ],
       "traits": {

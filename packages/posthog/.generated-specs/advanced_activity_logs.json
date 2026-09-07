@@ -895,13 +895,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsExportCreate"
+          "target": "com.posthog.advanced_activity_logs#ListAdvancedActivityLogs"
         },
         {
           "target": "com.posthog.advanced_activity_logs#GetAdvancedActivityLogsAvailableFilter"
         },
         {
-          "target": "com.posthog.advanced_activity_logs#ListAdvancedActivityLogs"
+          "target": "com.posthog.advanced_activity_logs#AdvancedActivityLogsExportCreate"
         }
       ],
       "traits": {

@@ -1356,10 +1356,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.healthbot#CreateBot"
+          "target": "com.azure.healthbot#RegenerateBotApiJwtSecret"
+        },
+        {
+          "target": "com.azure.healthbot#ListBotSecrets"
         },
         {
           "target": "com.azure.healthbot#DeleteBot"
+        },
+        {
+          "target": "com.azure.healthbot#UpdateBot"
+        },
+        {
+          "target": "com.azure.healthbot#CreateBot"
         },
         {
           "target": "com.azure.healthbot#GetBot"
@@ -1371,16 +1380,7 @@
           "target": "com.azure.healthbot#ListBots"
         },
         {
-          "target": "com.azure.healthbot#ListBotSecrets"
-        },
-        {
           "target": "com.azure.healthbot#ListOperations"
-        },
-        {
-          "target": "com.azure.healthbot#RegenerateBotApiJwtSecret"
-        },
-        {
-          "target": "com.azure.healthbot#UpdateBot"
         }
       ],
       "traits": {

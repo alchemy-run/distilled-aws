@@ -8999,34 +8999,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.users#CreateUsersCredentialsReviewComplete"
+          "target": "com.posthog.users#ListUsers"
         },
         {
-          "target": "com.posthog.users#CreateUsersIntegrationsGithubPrepareCallback"
-        },
-        {
-          "target": "com.posthog.users#CreateUsersOnboardingSkip"
-        },
-        {
-          "target": "com.posthog.users#CreateUsersPushToken"
-        },
-        {
-          "target": "com.posthog.users#CreateUsersRequestEmailVerification"
-        },
-        {
-          "target": "com.posthog.users#CreateUsersScenePersonalisation"
+          "target": "com.posthog.users#GetUsersSignalAutonomy"
         },
         {
           "target": "com.posthog.users#CreateUsersSignalAutonomy"
         },
         {
-          "target": "com.posthog.users#CreateUsersTwoFactorBackupCode"
-        },
-        {
-          "target": "com.posthog.users#CreateUsersValidate2fa"
+          "target": "com.posthog.users#SignalUserAutonomyDestroy"
         },
         {
           "target": "com.posthog.users#GetUser"
+        },
+        {
+          "target": "com.posthog.users#UpdateUser"
+        },
+        {
+          "target": "com.posthog.users#UpdateUsersPartial"
+        },
+        {
+          "target": "com.posthog.users#UsersDestroy"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersCredentialsReviewComplete"
         },
         {
           "target": "com.posthog.users#GetUsersGithubLogin"
@@ -9035,67 +9032,31 @@
           "target": "com.posthog.users#GetUsersHedgehogConfig"
         },
         {
+          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartial"
+        },
+        {
+          "target": "com.posthog.users#ListUsersIntegrations"
+        },
+        {
+          "target": "com.posthog.users#UsersIntegrationsGithubDestroy"
+        },
+        {
           "target": "com.posthog.users#GetUsersIntegrationsGithubBranch"
         },
         {
           "target": "com.posthog.users#GetUsersIntegrationsGithubRepos"
         },
         {
-          "target": "com.posthog.users#GetUsersIntegrationsSlackLinkableWorkspace"
-        },
-        {
-          "target": "com.posthog.users#GetUsersSignalAutonomy"
-        },
-        {
-          "target": "com.posthog.users#GetUsersStart2faSetup"
-        },
-        {
-          "target": "com.posthog.users#GetUsersTwoFactorStatus"
-        },
-        {
-          "target": "com.posthog.users#InstallUsersIntegrationsGithubRequestsDestroy"
-        },
-        {
-          "target": "com.posthog.users#ListUsers"
-        },
-        {
-          "target": "com.posthog.users#ListUsersIntegrations"
-        },
-        {
-          "target": "com.posthog.users#ListUsersLoginSessions"
-        },
-        {
-          "target": "com.posthog.users#LoginUserSessionsDestroy"
-        },
-        {
-          "target": "com.posthog.users#SignalUserAutonomyDestroy"
-        },
-        {
-          "target": "com.posthog.users#UpdateUser"
-        },
-        {
-          "target": "com.posthog.users#UpdateUsersHedgehogConfigPartial"
-        },
-        {
-          "target": "com.posthog.users#UpdateUsersPartial"
-        },
-        {
-          "target": "com.posthog.users#UpdateUsersProductIntroSeenPartial"
-        },
-        {
-          "target": "com.posthog.users#UsersCancelEmailChangeRequestPartialUpdate"
-        },
-        {
-          "target": "com.posthog.users#UsersDestroy"
-        },
-        {
-          "target": "com.posthog.users#UsersIntegrationsGithubDestroy"
+          "target": "com.posthog.users#UsersIntegrationsGithubReposRefreshCreate"
         },
         {
           "target": "com.posthog.users#UsersIntegrationsGithubInstallRequestsRetrieve"
         },
         {
-          "target": "com.posthog.users#UsersIntegrationsGithubReposRefreshCreate"
+          "target": "com.posthog.users#InstallUsersIntegrationsGithubRequestsDestroy"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersIntegrationsGithubPrepareCallback"
         },
         {
           "target": "com.posthog.users#UsersIntegrationsGithubStartCreate"
@@ -9104,13 +9065,40 @@
           "target": "com.posthog.users#UsersIntegrationsSlackDestroy"
         },
         {
+          "target": "com.posthog.users#GetUsersIntegrationsSlackLinkableWorkspace"
+        },
+        {
           "target": "com.posthog.users#UsersIntegrationsSlackStartCreate"
+        },
+        {
+          "target": "com.posthog.users#ListUsersLoginSessions"
+        },
+        {
+          "target": "com.posthog.users#LoginUserSessionsDestroy"
         },
         {
           "target": "com.posthog.users#UsersLoginSessionsRevokeOthersCreate"
         },
         {
+          "target": "com.posthog.users#CreateUsersOnboardingSkip"
+        },
+        {
+          "target": "com.posthog.users#UpdateUsersProductIntroSeenPartial"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersPushToken"
+        },
+        {
           "target": "com.posthog.users#UsersPushTokensUnregisterCreate"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersScenePersonalisation"
+        },
+        {
+          "target": "com.posthog.users#GetUsersStart2faSetup"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersTwoFactorBackupCode"
         },
         {
           "target": "com.posthog.users#UsersTwoFactorDisableCreate"
@@ -9119,7 +9107,19 @@
           "target": "com.posthog.users#UsersTwoFactorStartSetupRetrieve"
         },
         {
+          "target": "com.posthog.users#GetUsersTwoFactorStatus"
+        },
+        {
           "target": "com.posthog.users#UsersTwoFactorValidateCreate"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersValidate2fa"
+        },
+        {
+          "target": "com.posthog.users#UsersCancelEmailChangeRequestPartialUpdate"
+        },
+        {
+          "target": "com.posthog.users#CreateUsersRequestEmailVerification"
         },
         {
           "target": "com.posthog.users#UsersVerifyEmailCreate"

@@ -9709,241 +9709,241 @@
       "version": "30.0",
       "operations": [
         {
+          "target": "com.typesense.api#GetCollections"
+        },
+        {
+          "target": "com.typesense.api#CreateCollection"
+        },
+        {
+          "target": "com.typesense.api#GetCollection"
+        },
+        {
+          "target": "com.typesense.api#UpdateCollection"
+        },
+        {
+          "target": "com.typesense.api#DeleteCollection"
+        },
+        {
+          "target": "com.typesense.api#ListDocument"
+        },
+        {
+          "target": "com.typesense.api#UpdateDocuments"
+        },
+        {
+          "target": "com.typesense.api#DeleteDocuments"
+        },
+        {
+          "target": "com.typesense.api#SearchCollection"
+        },
+        {
+          "target": "com.typesense.api#GetSynonymSets"
+        },
+        {
+          "target": "com.typesense.api#GetSynonymSet"
+        },
+        {
+          "target": "com.typesense.api#UpsertSynonymSet"
+        },
+        {
+          "target": "com.typesense.api#DeleteSynonymSet"
+        },
+        {
+          "target": "com.typesense.api#GetSynonymSetItems"
+        },
+        {
+          "target": "com.typesense.api#GetSynonymSetItem"
+        },
+        {
+          "target": "com.typesense.api#UpsertSynonymSetItem"
+        },
+        {
+          "target": "com.typesense.api#DeleteSynonymSetItem"
+        },
+        {
+          "target": "com.typesense.api#GetCurationSets"
+        },
+        {
+          "target": "com.typesense.api#GetCurationSet"
+        },
+        {
+          "target": "com.typesense.api#UpsertCurationSet"
+        },
+        {
+          "target": "com.typesense.api#DeleteCurationSet"
+        },
+        {
+          "target": "com.typesense.api#GetCurationSetItems"
+        },
+        {
+          "target": "com.typesense.api#GetCurationSetItem"
+        },
+        {
+          "target": "com.typesense.api#UpsertCurationSetItem"
+        },
+        {
+          "target": "com.typesense.api#DeleteCurationSetItem"
+        },
+        {
+          "target": "com.typesense.api#ExportDocuments"
+        },
+        {
+          "target": "com.typesense.api#ImportDocuments"
+        },
+        {
+          "target": "com.typesense.api#GetDocument"
+        },
+        {
+          "target": "com.typesense.api#UpdateDocument"
+        },
+        {
+          "target": "com.typesense.api#DeleteDocument"
+        },
+        {
+          "target": "com.typesense.api#GetAllConversationModels"
+        },
+        {
+          "target": "com.typesense.api#CreateConversationModel"
+        },
+        {
+          "target": "com.typesense.api#GetConversationModel"
+        },
+        {
+          "target": "com.typesense.api#UpdateConversationModel"
+        },
+        {
+          "target": "com.typesense.api#DeleteConversationModel"
+        },
+        {
+          "target": "com.typesense.api#GetKeys"
+        },
+        {
+          "target": "com.typesense.api#CreateKey"
+        },
+        {
+          "target": "com.typesense.api#GetKey"
+        },
+        {
+          "target": "com.typesense.api#DeleteKey"
+        },
+        {
+          "target": "com.typesense.api#GetAliases"
+        },
+        {
+          "target": "com.typesense.api#GetAlias"
+        },
+        {
+          "target": "com.typesense.api#UpsertAlias"
+        },
+        {
+          "target": "com.typesense.api#DeleteAlias"
+        },
+        {
+          "target": "com.typesense.api#Debug"
+        },
+        {
+          "target": "com.typesense.api#Health"
+        },
+        {
+          "target": "com.typesense.api#GetSchemaChanges"
+        },
+        {
+          "target": "com.typesense.api#TakeSnapshot"
+        },
+        {
+          "target": "com.typesense.api#Vote"
+        },
+        {
           "target": "com.typesense.api#ClearCache"
         },
         {
           "target": "com.typesense.api#CompactDb"
         },
         {
-          "target": "com.typesense.api#CreateAnalyticsEvent"
-        },
-        {
-          "target": "com.typesense.api#CreateAnalyticsRule"
-        },
-        {
-          "target": "com.typesense.api#CreateCollection"
-        },
-        {
-          "target": "com.typesense.api#CreateConversationModel"
-        },
-        {
-          "target": "com.typesense.api#CreateKey"
-        },
-        {
-          "target": "com.typesense.api#CreateNLSearchModel"
-        },
-        {
-          "target": "com.typesense.api#Debug"
-        },
-        {
-          "target": "com.typesense.api#DeleteAlias"
-        },
-        {
-          "target": "com.typesense.api#DeleteAnalyticsRule"
-        },
-        {
-          "target": "com.typesense.api#DeleteCollection"
-        },
-        {
-          "target": "com.typesense.api#DeleteConversationModel"
-        },
-        {
-          "target": "com.typesense.api#DeleteCurationSet"
-        },
-        {
-          "target": "com.typesense.api#DeleteCurationSetItem"
-        },
-        {
-          "target": "com.typesense.api#DeleteDocument"
-        },
-        {
-          "target": "com.typesense.api#DeleteDocuments"
-        },
-        {
-          "target": "com.typesense.api#DeleteKey"
-        },
-        {
-          "target": "com.typesense.api#DeleteNLSearchModel"
-        },
-        {
-          "target": "com.typesense.api#DeletePreset"
-        },
-        {
-          "target": "com.typesense.api#DeleteStopwordsSet"
-        },
-        {
-          "target": "com.typesense.api#DeleteSynonymSet"
-        },
-        {
-          "target": "com.typesense.api#DeleteSynonymSetItem"
-        },
-        {
-          "target": "com.typesense.api#ExportDocuments"
-        },
-        {
-          "target": "com.typesense.api#FlushAnalytics"
-        },
-        {
-          "target": "com.typesense.api#GetAlias"
-        },
-        {
-          "target": "com.typesense.api#GetAliases"
-        },
-        {
-          "target": "com.typesense.api#GetAllConversationModels"
-        },
-        {
-          "target": "com.typesense.api#GetAllNLSearchModels"
-        },
-        {
-          "target": "com.typesense.api#GetAllPresets"
-        },
-        {
-          "target": "com.typesense.api#GetAnalyticsEvents"
-        },
-        {
-          "target": "com.typesense.api#GetAnalyticsRule"
-        },
-        {
-          "target": "com.typesense.api#GetAnalyticsRules"
-        },
-        {
-          "target": "com.typesense.api#GetAnalyticsStatus"
-        },
-        {
-          "target": "com.typesense.api#GetAPIStats"
-        },
-        {
-          "target": "com.typesense.api#GetCollection"
-        },
-        {
-          "target": "com.typesense.api#GetCollections"
-        },
-        {
-          "target": "com.typesense.api#GetConversationModel"
-        },
-        {
-          "target": "com.typesense.api#GetCurationSet"
-        },
-        {
-          "target": "com.typesense.api#GetCurationSetItem"
-        },
-        {
-          "target": "com.typesense.api#GetCurationSetItems"
-        },
-        {
-          "target": "com.typesense.api#GetCurationSets"
-        },
-        {
-          "target": "com.typesense.api#GetDocument"
-        },
-        {
-          "target": "com.typesense.api#GetKey"
-        },
-        {
-          "target": "com.typesense.api#GetKeys"
-        },
-        {
-          "target": "com.typesense.api#GetMetrics"
-        },
-        {
-          "target": "com.typesense.api#GetNLSearchModel"
-        },
-        {
-          "target": "com.typesense.api#GetPreset"
-        },
-        {
-          "target": "com.typesense.api#GetSchemaChanges"
-        },
-        {
-          "target": "com.typesense.api#GetStemmingDictionary"
-        },
-        {
-          "target": "com.typesense.api#GetStopwordsSet"
-        },
-        {
-          "target": "com.typesense.api#GetStopwordsSets"
-        },
-        {
-          "target": "com.typesense.api#GetSynonymSet"
-        },
-        {
-          "target": "com.typesense.api#GetSynonymSetItem"
-        },
-        {
-          "target": "com.typesense.api#GetSynonymSetItems"
-        },
-        {
-          "target": "com.typesense.api#GetSynonymSets"
-        },
-        {
-          "target": "com.typesense.api#Health"
-        },
-        {
-          "target": "com.typesense.api#ImportDocuments"
-        },
-        {
-          "target": "com.typesense.api#ImportStemmingDictionary"
-        },
-        {
-          "target": "com.typesense.api#ListDocument"
-        },
-        {
-          "target": "com.typesense.api#ListStemmingDictionaries"
-        },
-        {
-          "target": "com.typesense.api#SearchCollection"
+          "target": "com.typesense.api#ToggleSlowRequestLog"
         },
         {
           "target": "com.typesense.api#SearchMulti"
         },
         {
-          "target": "com.typesense.api#TakeSnapshot"
+          "target": "com.typesense.api#GetAnalyticsEvents"
         },
         {
-          "target": "com.typesense.api#ToggleSlowRequestLog"
+          "target": "com.typesense.api#CreateAnalyticsEvent"
         },
         {
-          "target": "com.typesense.api#UpdateCollection"
+          "target": "com.typesense.api#FlushAnalytics"
         },
         {
-          "target": "com.typesense.api#UpdateConversationModel"
+          "target": "com.typesense.api#GetAnalyticsStatus"
         },
         {
-          "target": "com.typesense.api#UpdateDocument"
+          "target": "com.typesense.api#GetAnalyticsRules"
         },
         {
-          "target": "com.typesense.api#UpdateDocuments"
+          "target": "com.typesense.api#CreateAnalyticsRule"
         },
         {
-          "target": "com.typesense.api#UpdateNLSearchModel"
-        },
-        {
-          "target": "com.typesense.api#UpsertAlias"
+          "target": "com.typesense.api#GetAnalyticsRule"
         },
         {
           "target": "com.typesense.api#UpsertAnalyticsRule"
         },
         {
-          "target": "com.typesense.api#UpsertCurationSet"
+          "target": "com.typesense.api#DeleteAnalyticsRule"
         },
         {
-          "target": "com.typesense.api#UpsertCurationSetItem"
+          "target": "com.typesense.api#GetMetrics"
         },
         {
-          "target": "com.typesense.api#UpsertPreset"
+          "target": "com.typesense.api#GetAPIStats"
+        },
+        {
+          "target": "com.typesense.api#GetStopwordsSets"
+        },
+        {
+          "target": "com.typesense.api#GetStopwordsSet"
         },
         {
           "target": "com.typesense.api#UpsertStopwordsSet"
         },
         {
-          "target": "com.typesense.api#UpsertSynonymSet"
+          "target": "com.typesense.api#DeleteStopwordsSet"
         },
         {
-          "target": "com.typesense.api#UpsertSynonymSetItem"
+          "target": "com.typesense.api#GetAllPresets"
         },
         {
-          "target": "com.typesense.api#Vote"
+          "target": "com.typesense.api#GetPreset"
+        },
+        {
+          "target": "com.typesense.api#UpsertPreset"
+        },
+        {
+          "target": "com.typesense.api#DeletePreset"
+        },
+        {
+          "target": "com.typesense.api#ListStemmingDictionaries"
+        },
+        {
+          "target": "com.typesense.api#GetStemmingDictionary"
+        },
+        {
+          "target": "com.typesense.api#ImportStemmingDictionary"
+        },
+        {
+          "target": "com.typesense.api#GetAllNLSearchModels"
+        },
+        {
+          "target": "com.typesense.api#CreateNLSearchModel"
+        },
+        {
+          "target": "com.typesense.api#GetNLSearchModel"
+        },
+        {
+          "target": "com.typesense.api#UpdateNLSearchModel"
+        },
+        {
+          "target": "com.typesense.api#DeleteNLSearchModel"
         }
       ],
       "traits": {

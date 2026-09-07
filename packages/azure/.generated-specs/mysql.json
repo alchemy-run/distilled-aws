@@ -10134,211 +10134,211 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePut"
-        },
-        {
-          "target": "com.azure.mysql#AzureADAdministratorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#ConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#CreateBackupAndExport"
-        },
-        {
-          "target": "com.azure.mysql#CreateLongRunningBackup"
-        },
-        {
-          "target": "com.azure.mysql#CreateServer"
-        },
-        {
-          "target": "com.azure.mysql#DatabasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#DeleteAzureADAdministrator"
-        },
-        {
-          "target": "com.azure.mysql#DeleteDatabase"
-        },
-        {
-          "target": "com.azure.mysql#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.mysql#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.mysql#DeleteServer"
-        },
-        {
-          "target": "com.azure.mysql#DeleteServerKeys"
-        },
-        {
-          "target": "com.azure.mysql#DetachServerVNet"
-        },
-        {
-          "target": "com.azure.mysql#ExecuteCheckNameAvailability"
-        },
-        {
-          "target": "com.azure.mysql#ExecuteCheckNameAvailabilityWithoutLocation"
-        },
-        {
-          "target": "com.azure.mysql#ExecuteCheckVirtualNetworkSubnetUsage"
-        },
-        {
-          "target": "com.azure.mysql#ExecuteGetPrivateDnsZoneSuffix"
-        },
-        {
-          "target": "com.azure.mysql#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#GetAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.mysql#GetAzureADAdministrator"
-        },
-        {
-          "target": "com.azure.mysql#GetBackup"
-        },
-        {
-          "target": "com.azure.mysql#GetConfiguration"
-        },
-        {
-          "target": "com.azure.mysql#GetDatabase"
-        },
-        {
-          "target": "com.azure.mysql#GetFirewallRule"
-        },
-        {
-          "target": "com.azure.mysql#GetLocationBasedCapabilitySet"
-        },
-        {
-          "target": "com.azure.mysql#GetLongRunningBackup"
-        },
-        {
-          "target": "com.azure.mysql#GetOperationProgress"
-        },
-        {
-          "target": "com.azure.mysql#GetOperationResult"
-        },
-        {
-          "target": "com.azure.mysql#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.mysql#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.mysql#GetServer"
-        },
-        {
-          "target": "com.azure.mysql#GetServerKeys"
-        },
-        {
-          "target": "com.azure.mysql#ListAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.mysql#ListAzureADAdministratorByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListBackupByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListConfigurationByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListDatabaseByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListFirewallRuleByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListLocationBasedCapabilities"
-        },
-        {
-          "target": "com.azure.mysql#ListLocationBasedCapabilitySet"
-        },
-        {
-          "target": "com.azure.mysql#ListLogFileByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListLongRunningBackups"
-        },
-        {
-          "target": "com.azure.mysql#ListMaintenances"
-        },
-        {
-          "target": "com.azure.mysql#ListOperations"
-        },
-        {
-          "target": "com.azure.mysql#ListPrivateEndpointConnectionByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListPrivateLinkResourceByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListReplicasByServer"
-        },
-        {
-          "target": "com.azure.mysql#ListServerByResourceGroup"
-        },
-        {
-          "target": "com.azure.mysql#ListServerKeys"
-        },
-        {
-          "target": "com.azure.mysql#ListServers"
-        },
-        {
-          "target": "com.azure.mysql#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#PutBackup"
-        },
-        {
-          "target": "com.azure.mysql#ReadMaintenance"
-        },
-        {
-          "target": "com.azure.mysql#ResetServerGtid"
-        },
-        {
-          "target": "com.azure.mysql#RestartServer"
-        },
-        {
-          "target": "com.azure.mysql#ServerKeysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mysql#ServersFailover"
-        },
-        {
-          "target": "com.azure.mysql#ServersMigrationCutoverMigration"
-        },
-        {
-          "target": "com.azure.mysql#ServersUpgrade"
-        },
-        {
-          "target": "com.azure.mysql#StartServer"
-        },
-        {
-          "target": "com.azure.mysql#StopServer"
-        },
-        {
-          "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettings"
-        },
-        {
-          "target": "com.azure.mysql#UpdateConfiguration"
-        },
-        {
-          "target": "com.azure.mysql#UpdateConfigurationBatch"
-        },
-        {
-          "target": "com.azure.mysql#UpdateMaintenance"
-        },
-        {
-          "target": "com.azure.mysql#UpdateServer"
+          "target": "com.azure.mysql#ValidateServerEstimateHighAvailability"
         },
         {
           "target": "com.azure.mysql#ValidateBackupAndExportBackup"
         },
         {
-          "target": "com.azure.mysql#ValidateServerEstimateHighAvailability"
+          "target": "com.azure.mysql#UpdateConfigurationBatch"
+        },
+        {
+          "target": "com.azure.mysql#StopServer"
+        },
+        {
+          "target": "com.azure.mysql#StartServer"
+        },
+        {
+          "target": "com.azure.mysql#RestartServer"
+        },
+        {
+          "target": "com.azure.mysql#ResetServerGtid"
+        },
+        {
+          "target": "com.azure.mysql#ListReplicasByServer"
+        },
+        {
+          "target": "com.azure.mysql#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.mysql#ListPrivateLinkResourceByServer"
+        },
+        {
+          "target": "com.azure.mysql#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.mysql#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.mysql#ListPrivateEndpointConnectionByServer"
+        },
+        {
+          "target": "com.azure.mysql#UpdateMaintenance"
+        },
+        {
+          "target": "com.azure.mysql#ReadMaintenance"
+        },
+        {
+          "target": "com.azure.mysql#ListMaintenances"
+        },
+        {
+          "target": "com.azure.mysql#ListLogFileByServer"
+        },
+        {
+          "target": "com.azure.mysql#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.mysql#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.mysql#ListFirewallRuleByServer"
+        },
+        {
+          "target": "com.azure.mysql#ServersFailover"
+        },
+        {
+          "target": "com.azure.mysql#DetachServerVNet"
+        },
+        {
+          "target": "com.azure.mysql#DeleteDatabase"
+        },
+        {
+          "target": "com.azure.mysql#DatabasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetDatabase"
+        },
+        {
+          "target": "com.azure.mysql#ListDatabaseByServer"
+        },
+        {
+          "target": "com.azure.mysql#ServersMigrationCutoverMigration"
+        },
+        {
+          "target": "com.azure.mysql#UpdateConfiguration"
+        },
+        {
+          "target": "com.azure.mysql#ConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetConfiguration"
+        },
+        {
+          "target": "com.azure.mysql#ListConfigurationByServer"
+        },
+        {
+          "target": "com.azure.mysql#CreateLongRunningBackup"
+        },
+        {
+          "target": "com.azure.mysql#GetLongRunningBackup"
+        },
+        {
+          "target": "com.azure.mysql#ListLongRunningBackups"
+        },
+        {
+          "target": "com.azure.mysql#PutBackup"
+        },
+        {
+          "target": "com.azure.mysql#GetBackup"
+        },
+        {
+          "target": "com.azure.mysql#ListBackupByServer"
+        },
+        {
+          "target": "com.azure.mysql#CreateBackupAndExport"
+        },
+        {
+          "target": "com.azure.mysql#UpdateAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.mysql#AdvancedThreatProtectionSettingsUpdatePut"
+        },
+        {
+          "target": "com.azure.mysql#GetAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.mysql#ListAdvancedThreatProtectionSettings"
+        },
+        {
+          "target": "com.azure.mysql#DeleteAzureADAdministrator"
+        },
+        {
+          "target": "com.azure.mysql#AzureADAdministratorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetAzureADAdministrator"
+        },
+        {
+          "target": "com.azure.mysql#ListAzureADAdministratorByServer"
+        },
+        {
+          "target": "com.azure.mysql#DeleteServer"
+        },
+        {
+          "target": "com.azure.mysql#UpdateServer"
+        },
+        {
+          "target": "com.azure.mysql#CreateServer"
+        },
+        {
+          "target": "com.azure.mysql#GetServer"
+        },
+        {
+          "target": "com.azure.mysql#ListServerByResourceGroup"
+        },
+        {
+          "target": "com.azure.mysql#GetOperationResult"
+        },
+        {
+          "target": "com.azure.mysql#GetOperationProgress"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteCheckVirtualNetworkSubnetUsage"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.mysql#GetLocationBasedCapabilitySet"
+        },
+        {
+          "target": "com.azure.mysql#ListLocationBasedCapabilitySet"
+        },
+        {
+          "target": "com.azure.mysql#ListLocationBasedCapabilities"
+        },
+        {
+          "target": "com.azure.mysql#ListServers"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteCheckNameAvailabilityWithoutLocation"
+        },
+        {
+          "target": "com.azure.mysql#ListOperations"
+        },
+        {
+          "target": "com.azure.mysql#ExecuteGetPrivateDnsZoneSuffix"
+        },
+        {
+          "target": "com.azure.mysql#DeleteServerKeys"
+        },
+        {
+          "target": "com.azure.mysql#ServerKeysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mysql#GetServerKeys"
+        },
+        {
+          "target": "com.azure.mysql#ListServerKeys"
+        },
+        {
+          "target": "com.azure.mysql#ServersUpgrade"
         }
       ],
       "traits": {

@@ -2176,13 +2176,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdate"
-        },
-        {
-          "target": "com.posthog.cohorts#CohortsDestroy"
-        },
-        {
-          "target": "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdate"
+          "target": "com.posthog.cohorts#ListCohorts"
         },
         {
           "target": "com.posthog.cohorts#CreateCohort"
@@ -2191,10 +2185,19 @@
           "target": "com.posthog.cohorts#GetCohort"
         },
         {
+          "target": "com.posthog.cohorts#UpdateCohort"
+        },
+        {
+          "target": "com.posthog.cohorts#UpdateCohortsPartial"
+        },
+        {
+          "target": "com.posthog.cohorts#CohortsDestroy"
+        },
+        {
           "target": "com.posthog.cohorts#GetCohortsActivity"
         },
         {
-          "target": "com.posthog.cohorts#GetCohortsAllActivity"
+          "target": "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdate"
         },
         {
           "target": "com.posthog.cohorts#GetCohortsCalculationHistory"
@@ -2203,16 +2206,13 @@
           "target": "com.posthog.cohorts#GetCohortsPerson"
         },
         {
+          "target": "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdate"
+        },
+        {
           "target": "com.posthog.cohorts#GetCohortsUsedIn"
         },
         {
-          "target": "com.posthog.cohorts#ListCohorts"
-        },
-        {
-          "target": "com.posthog.cohorts#UpdateCohort"
-        },
-        {
-          "target": "com.posthog.cohorts#UpdateCohortsPartial"
+          "target": "com.posthog.cohorts#GetCohortsAllActivity"
         }
       ],
       "traits": {

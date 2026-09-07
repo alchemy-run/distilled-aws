@@ -4106,36 +4106,6 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.domains_registrar#BuyDomains"
-        },
-        {
-          "target": "com.vercel.domains_registrar#BuySingleDomain"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetBulkAvailability"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetContactInfoSchema"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetDomainAuthCode"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetDomainAvailability"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetDomainContactVerification"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetDomainPrice"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetDomainTransferIn"
-        },
-        {
-          "target": "com.vercel.domains_registrar#GetOrder"
-        },
-        {
           "target": "com.vercel.domains_registrar#GetSupportedTlds"
         },
         {
@@ -4145,16 +4115,46 @@
           "target": "com.vercel.domains_registrar#GetTldPrice"
         },
         {
-          "target": "com.vercel.domains_registrar#RenewDomain"
+          "target": "com.vercel.domains_registrar#GetDomainAvailability"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainPrice"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetBulkAvailability"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainAuthCode"
+        },
+        {
+          "target": "com.vercel.domains_registrar#BuySingleDomain"
+        },
+        {
+          "target": "com.vercel.domains_registrar#BuyDomains"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainTransferIn"
         },
         {
           "target": "com.vercel.domains_registrar#TransferInDomain"
+        },
+        {
+          "target": "com.vercel.domains_registrar#RenewDomain"
         },
         {
           "target": "com.vercel.domains_registrar#UpdateDomainAutoRenew"
         },
         {
           "target": "com.vercel.domains_registrar#UpdateDomainNameservers"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetDomainContactVerification"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetContactInfoSchema"
+        },
+        {
+          "target": "com.vercel.domains_registrar#GetOrder"
         }
       ],
       "traits": {

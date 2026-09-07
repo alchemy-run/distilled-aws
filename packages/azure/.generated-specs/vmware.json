@@ -19282,379 +19282,379 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.vmware#AddonsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#AuthorizationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#CheckLocationQuotaAvailability"
-        },
-        {
-          "target": "com.azure.vmware#CheckLocationTrialAvailability"
-        },
-        {
-          "target": "com.azure.vmware#CheckServiceComponentAvailability"
-        },
-        {
-          "target": "com.azure.vmware#CloudLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkPublicIP"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkSegments"
-        },
-        {
-          "target": "com.azure.vmware#CreateWorkloadNetworkVMGroup"
-        },
-        {
-          "target": "com.azure.vmware#DatastoresCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#DeleteAddon"
-        },
-        {
-          "target": "com.azure.vmware#DeleteAuthorization"
-        },
-        {
-          "target": "com.azure.vmware#DeleteCloudLink"
-        },
-        {
-          "target": "com.azure.vmware#DeleteCluster"
-        },
-        {
-          "target": "com.azure.vmware#DeleteDatastore"
-        },
-        {
-          "target": "com.azure.vmware#DeleteGlobalReachConnection"
-        },
-        {
-          "target": "com.azure.vmware#DeleteHcxEnterpriseSite"
-        },
-        {
-          "target": "com.azure.vmware#DeleteIscsiPath"
-        },
-        {
-          "target": "com.azure.vmware#DeleteLicense"
-        },
-        {
-          "target": "com.azure.vmware#DeletePlacementPolicy"
-        },
-        {
-          "target": "com.azure.vmware#DeletePrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#DeletePureStoragePolicy"
-        },
-        {
-          "target": "com.azure.vmware#DeleteScriptExecution"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkPublicIP"
-        },
-        {
-          "target": "com.azure.vmware#DeleteWorkloadNetworkSegment"
-        },
-        {
           "target": "com.azure.vmware#DeleteWorkloadNetworkVMGroup"
-        },
-        {
-          "target": "com.azure.vmware#GetAddon"
-        },
-        {
-          "target": "com.azure.vmware#GetAuthorization"
-        },
-        {
-          "target": "com.azure.vmware#GetCloudLink"
-        },
-        {
-          "target": "com.azure.vmware#GetCluster"
-        },
-        {
-          "target": "com.azure.vmware#GetDatastore"
-        },
-        {
-          "target": "com.azure.vmware#GetGlobalReachConnection"
-        },
-        {
-          "target": "com.azure.vmware#GetHcxEnterpriseSite"
-        },
-        {
-          "target": "com.azure.vmware#GetHost"
-        },
-        {
-          "target": "com.azure.vmware#GetIscsiPath"
-        },
-        {
-          "target": "com.azure.vmware#GetLicense"
-        },
-        {
-          "target": "com.azure.vmware#GetLicenseProperties"
-        },
-        {
-          "target": "com.azure.vmware#GetMaintenance"
-        },
-        {
-          "target": "com.azure.vmware#GetPlacementPolicy"
-        },
-        {
-          "target": "com.azure.vmware#GetPrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#GetPrivateCloudVcfLicense"
-        },
-        {
-          "target": "com.azure.vmware#GetProvisionedNetwork"
-        },
-        {
-          "target": "com.azure.vmware#GetPureStoragePolicy"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptCmdlet"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptExecution"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptExecutionExecutionLogs"
-        },
-        {
-          "target": "com.azure.vmware#GetScriptPackage"
-        },
-        {
-          "target": "com.azure.vmware#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetwork"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkGateway"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkPublicIP"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkSegment"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkVirtualMachine"
-        },
-        {
-          "target": "com.azure.vmware#GetWorkloadNetworkVMGroup"
-        },
-        {
-          "target": "com.azure.vmware#GlobalReachConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#HcxEnterpriseSitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#IscsiPathsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#LicensesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#ListAddons"
-        },
-        {
-          "target": "com.azure.vmware#ListAuthorizations"
-        },
-        {
-          "target": "com.azure.vmware#ListCloudLinks"
-        },
-        {
-          "target": "com.azure.vmware#ListClusters"
-        },
-        {
-          "target": "com.azure.vmware#ListClusterZones"
-        },
-        {
-          "target": "com.azure.vmware#ListDatastores"
-        },
-        {
-          "target": "com.azure.vmware#ListGlobalReachConnections"
-        },
-        {
-          "target": "com.azure.vmware#ListHcxEnterpriseSites"
-        },
-        {
-          "target": "com.azure.vmware#ListHosts"
-        },
-        {
-          "target": "com.azure.vmware#ListIscsiPathByPrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#ListLicenses"
-        },
-        {
-          "target": "com.azure.vmware#ListMaintenances"
-        },
-        {
-          "target": "com.azure.vmware#ListOperations"
-        },
-        {
-          "target": "com.azure.vmware#ListPlacementPolicies"
-        },
-        {
-          "target": "com.azure.vmware#ListPrivateCloudAdminCredentials"
-        },
-        {
-          "target": "com.azure.vmware#ListPrivateCloudInSubscription"
-        },
-        {
-          "target": "com.azure.vmware#ListPrivateClouds"
-        },
-        {
-          "target": "com.azure.vmware#ListProvisionedNetworks"
-        },
-        {
-          "target": "com.azure.vmware#ListPureStoragePolicies"
-        },
-        {
-          "target": "com.azure.vmware#ListScriptCmdlets"
-        },
-        {
-          "target": "com.azure.vmware#ListScriptExecutions"
-        },
-        {
-          "target": "com.azure.vmware#ListScriptPackages"
-        },
-        {
-          "target": "com.azure.vmware#ListSkus"
-        },
-        {
-          "target": "com.azure.vmware#ListVirtualMachines"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkDnsServices"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkDnsZones"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkGateways"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkPublicIPs"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworks"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkSegments"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkVirtualMachines"
-        },
-        {
-          "target": "com.azure.vmware#ListWorkloadNetworkVMGroups"
-        },
-        {
-          "target": "com.azure.vmware#MaintenancesInitiateChecks"
-        },
-        {
-          "target": "com.azure.vmware#MaintenancesReschedule"
-        },
-        {
-          "target": "com.azure.vmware#MaintenancesSchedule"
-        },
-        {
-          "target": "com.azure.vmware#PlacementPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#PrivateCloudsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#PureStoragePoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#RotatePrivateCloudNsxtPassword"
-        },
-        {
-          "target": "com.azure.vmware#RotatePrivateCloudVcenterPassword"
-        },
-        {
-          "target": "com.azure.vmware#ScriptExecutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vmware#UpdateCluster"
-        },
-        {
-          "target": "com.azure.vmware#UpdateHost"
-        },
-        {
-          "target": "com.azure.vmware#UpdatePlacementPolicy"
-        },
-        {
-          "target": "com.azure.vmware#UpdatePrivateCloud"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkDhcp"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsService"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsZone"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkPortMirroring"
-        },
-        {
-          "target": "com.azure.vmware#UpdateWorkloadNetworkSegments"
         },
         {
           "target": "com.azure.vmware#UpdateWorkloadNetworkVMGroup"
         },
         {
+          "target": "com.azure.vmware#CreateWorkloadNetworkVMGroup"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkVMGroup"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkVMGroups"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkVirtualMachine"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkVirtualMachines"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkSegment"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkSegments"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkSegments"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkSegment"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkSegments"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkPublicIP"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkPublicIP"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkPublicIP"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkPublicIPs"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkPortMirroring"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkGateway"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkGateways"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkDnsZone"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkDnsZones"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkDnsService"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkDnsServices"
+        },
+        {
+          "target": "com.azure.vmware#DeleteWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#UpdateWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#CreateWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworkDhcp"
+        },
+        {
+          "target": "com.azure.vmware#GetWorkloadNetwork"
+        },
+        {
+          "target": "com.azure.vmware#ListWorkloadNetworks"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptCmdlet"
+        },
+        {
+          "target": "com.azure.vmware#ListScriptCmdlets"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptPackage"
+        },
+        {
+          "target": "com.azure.vmware#ListScriptPackages"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptExecutionExecutionLogs"
+        },
+        {
+          "target": "com.azure.vmware#DeleteScriptExecution"
+        },
+        {
+          "target": "com.azure.vmware#ScriptExecutionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetScriptExecution"
+        },
+        {
+          "target": "com.azure.vmware#ListScriptExecutions"
+        },
+        {
+          "target": "com.azure.vmware#RotatePrivateCloudVcenterPassword"
+        },
+        {
+          "target": "com.azure.vmware#RotatePrivateCloudNsxtPassword"
+        },
+        {
+          "target": "com.azure.vmware#DeletePureStoragePolicy"
+        },
+        {
+          "target": "com.azure.vmware#PureStoragePoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetPureStoragePolicy"
+        },
+        {
+          "target": "com.azure.vmware#ListPureStoragePolicies"
+        },
+        {
+          "target": "com.azure.vmware#GetProvisionedNetwork"
+        },
+        {
+          "target": "com.azure.vmware#ListProvisionedNetworks"
+        },
+        {
+          "target": "com.azure.vmware#MaintenancesSchedule"
+        },
+        {
+          "target": "com.azure.vmware#MaintenancesReschedule"
+        },
+        {
+          "target": "com.azure.vmware#MaintenancesInitiateChecks"
+        },
+        {
+          "target": "com.azure.vmware#GetMaintenance"
+        },
+        {
+          "target": "com.azure.vmware#ListMaintenances"
+        },
+        {
+          "target": "com.azure.vmware#ListPrivateCloudAdminCredentials"
+        },
+        {
+          "target": "com.azure.vmware#GetLicenseProperties"
+        },
+        {
+          "target": "com.azure.vmware#DeleteLicense"
+        },
+        {
+          "target": "com.azure.vmware#LicensesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetLicense"
+        },
+        {
+          "target": "com.azure.vmware#ListLicenses"
+        },
+        {
+          "target": "com.azure.vmware#DeleteIscsiPath"
+        },
+        {
+          "target": "com.azure.vmware#IscsiPathsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetIscsiPath"
+        },
+        {
+          "target": "com.azure.vmware#ListIscsiPathByPrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#DeleteHcxEnterpriseSite"
+        },
+        {
+          "target": "com.azure.vmware#HcxEnterpriseSitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetHcxEnterpriseSite"
+        },
+        {
+          "target": "com.azure.vmware#ListHcxEnterpriseSites"
+        },
+        {
+          "target": "com.azure.vmware#DeleteGlobalReachConnection"
+        },
+        {
+          "target": "com.azure.vmware#GlobalReachConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetGlobalReachConnection"
+        },
+        {
+          "target": "com.azure.vmware#ListGlobalReachConnections"
+        },
+        {
+          "target": "com.azure.vmware#GetPrivateCloudVcfLicense"
+        },
+        {
           "target": "com.azure.vmware#VirtualMachinesRestrictMovement"
+        },
+        {
+          "target": "com.azure.vmware#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.vmware#ListVirtualMachines"
+        },
+        {
+          "target": "com.azure.vmware#DeletePlacementPolicy"
+        },
+        {
+          "target": "com.azure.vmware#UpdatePlacementPolicy"
+        },
+        {
+          "target": "com.azure.vmware#PlacementPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetPlacementPolicy"
+        },
+        {
+          "target": "com.azure.vmware#ListPlacementPolicies"
+        },
+        {
+          "target": "com.azure.vmware#ListClusterZones"
+        },
+        {
+          "target": "com.azure.vmware#UpdateHost"
+        },
+        {
+          "target": "com.azure.vmware#GetHost"
+        },
+        {
+          "target": "com.azure.vmware#ListHosts"
+        },
+        {
+          "target": "com.azure.vmware#DeleteDatastore"
+        },
+        {
+          "target": "com.azure.vmware#DatastoresCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetDatastore"
+        },
+        {
+          "target": "com.azure.vmware#ListDatastores"
+        },
+        {
+          "target": "com.azure.vmware#DeleteCluster"
+        },
+        {
+          "target": "com.azure.vmware#UpdateCluster"
+        },
+        {
+          "target": "com.azure.vmware#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetCluster"
+        },
+        {
+          "target": "com.azure.vmware#ListClusters"
+        },
+        {
+          "target": "com.azure.vmware#DeleteCloudLink"
+        },
+        {
+          "target": "com.azure.vmware#CloudLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetCloudLink"
+        },
+        {
+          "target": "com.azure.vmware#ListCloudLinks"
+        },
+        {
+          "target": "com.azure.vmware#DeleteAuthorization"
+        },
+        {
+          "target": "com.azure.vmware#AuthorizationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetAuthorization"
+        },
+        {
+          "target": "com.azure.vmware#ListAuthorizations"
+        },
+        {
+          "target": "com.azure.vmware#DeleteAddon"
+        },
+        {
+          "target": "com.azure.vmware#AddonsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetAddon"
+        },
+        {
+          "target": "com.azure.vmware#ListAddons"
+        },
+        {
+          "target": "com.azure.vmware#DeletePrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#UpdatePrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#PrivateCloudsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vmware#GetPrivateCloud"
+        },
+        {
+          "target": "com.azure.vmware#ListPrivateClouds"
+        },
+        {
+          "target": "com.azure.vmware#ListSkus"
+        },
+        {
+          "target": "com.azure.vmware#ListPrivateCloudInSubscription"
+        },
+        {
+          "target": "com.azure.vmware#CheckServiceComponentAvailability"
+        },
+        {
+          "target": "com.azure.vmware#CheckLocationTrialAvailability"
+        },
+        {
+          "target": "com.azure.vmware#CheckLocationQuotaAvailability"
+        },
+        {
+          "target": "com.azure.vmware#ListOperations"
         }
       ],
       "traits": {

@@ -5601,22 +5601,31 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.dependabot#AddSelectedRepoToOrgSecret"
+          "target": "com.github.dependabot#ListAlertsForEnterprise"
         },
         {
-          "target": "com.github.dependabot#CreateOrUpdateOrgSecret"
+          "target": "com.github.dependabot#RepositoryAccessForEnterprise"
         },
         {
-          "target": "com.github.dependabot#CreateOrUpdateRepoSecret"
+          "target": "com.github.dependabot#UpdateRepositoryAccessForEnterprise"
         },
         {
-          "target": "com.github.dependabot#DeleteOrgSecret"
+          "target": "com.github.dependabot#SetRepositoryAccessDefaultLevelForEnterprise"
         },
         {
-          "target": "com.github.dependabot#DeleteRepoSecret"
+          "target": "com.github.dependabot#ListAlertsForOrg"
         },
         {
-          "target": "com.github.dependabot#GetAlert"
+          "target": "com.github.dependabot#RepositoryAccessForOrg"
+        },
+        {
+          "target": "com.github.dependabot#UpdateRepositoryAccessForOrg"
+        },
+        {
+          "target": "com.github.dependabot#SetRepositoryAccessDefaultLevel"
+        },
+        {
+          "target": "com.github.dependabot#ListOrgSecrets"
         },
         {
           "target": "com.github.dependabot#GetOrgPublicKey"
@@ -5625,55 +5634,46 @@
           "target": "com.github.dependabot#GetOrgSecret"
         },
         {
+          "target": "com.github.dependabot#CreateOrUpdateOrgSecret"
+        },
+        {
+          "target": "com.github.dependabot#DeleteOrgSecret"
+        },
+        {
+          "target": "com.github.dependabot#ListSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.dependabot#SetSelectedReposForOrgSecret"
+        },
+        {
+          "target": "com.github.dependabot#AddSelectedRepoToOrgSecret"
+        },
+        {
+          "target": "com.github.dependabot#RemoveSelectedRepoFromOrgSecret"
+        },
+        {
+          "target": "com.github.dependabot#ListAlertsForRepo"
+        },
+        {
+          "target": "com.github.dependabot#GetAlert"
+        },
+        {
+          "target": "com.github.dependabot#UpdateAlert"
+        },
+        {
+          "target": "com.github.dependabot#ListRepoSecrets"
+        },
+        {
           "target": "com.github.dependabot#GetRepoPublicKey"
         },
         {
           "target": "com.github.dependabot#GetRepoSecret"
         },
         {
-          "target": "com.github.dependabot#ListAlertsForEnterprise"
+          "target": "com.github.dependabot#CreateOrUpdateRepoSecret"
         },
         {
-          "target": "com.github.dependabot#ListAlertsForOrg"
-        },
-        {
-          "target": "com.github.dependabot#ListAlertsForRepo"
-        },
-        {
-          "target": "com.github.dependabot#ListOrgSecrets"
-        },
-        {
-          "target": "com.github.dependabot#ListRepoSecrets"
-        },
-        {
-          "target": "com.github.dependabot#ListSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.dependabot#RemoveSelectedRepoFromOrgSecret"
-        },
-        {
-          "target": "com.github.dependabot#RepositoryAccessForEnterprise"
-        },
-        {
-          "target": "com.github.dependabot#RepositoryAccessForOrg"
-        },
-        {
-          "target": "com.github.dependabot#SetRepositoryAccessDefaultLevel"
-        },
-        {
-          "target": "com.github.dependabot#SetRepositoryAccessDefaultLevelForEnterprise"
-        },
-        {
-          "target": "com.github.dependabot#SetSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.dependabot#UpdateAlert"
-        },
-        {
-          "target": "com.github.dependabot#UpdateRepositoryAccessForEnterprise"
-        },
-        {
-          "target": "com.github.dependabot#UpdateRepositoryAccessForOrg"
+          "target": "com.github.dependabot#DeleteRepoSecret"
         }
       ],
       "traits": {

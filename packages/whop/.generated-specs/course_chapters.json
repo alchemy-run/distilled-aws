@@ -541,19 +541,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_chapters#CreateCourseChapter"
+          "target": "com.whop.course_chapters#ListCourseChapter"
         },
         {
-          "target": "com.whop.course_chapters#DeleteCourseChapter"
+          "target": "com.whop.course_chapters#CreateCourseChapter"
         },
         {
           "target": "com.whop.course_chapters#GetCourseChapter"
         },
         {
-          "target": "com.whop.course_chapters#ListCourseChapter"
+          "target": "com.whop.course_chapters#UpdateCourseChapter"
         },
         {
-          "target": "com.whop.course_chapters#UpdateCourseChapter"
+          "target": "com.whop.course_chapters#DeleteCourseChapter"
         }
       ],
       "traits": {

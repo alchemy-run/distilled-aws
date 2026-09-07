@@ -14947,51 +14947,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#CreateAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedStatefulSet"
-        },
-        {
           "target": "com.kubernetes.apps#GetAppsAPIGroup"
         },
         {
@@ -15010,130 +14965,175 @@
           "target": "com.kubernetes.apps#ListAppsV1NamespacedControllerRevision"
         },
         {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedControllerRevision"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedControllerRevision"
+        },
+        {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDaemonSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSetStatus"
         },
         {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedDeployment"
         },
         {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedDeployment"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentScale"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentStatus"
+        },
+        {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedReplicaSet"
         },
         {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedReplicaSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetStatus"
+        },
+        {
           "target": "com.kubernetes.apps#ListAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#CreateAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1CollectionNamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#DeleteAppsV1NamespacedStatefulSet"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetScale"
+        },
+        {
+          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetStatus"
+        },
+        {
+          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetStatus"
         },
         {
           "target": "com.kubernetes.apps#ListAppsV1ReplicaSetForAllNamespaces"
         },
         {
           "target": "com.kubernetes.apps#ListAppsV1StatefulSetForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDaemonSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentScale"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedDeploymentStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedReplicaSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#PatchAppsV1NamespacedStatefulSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDaemonSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedDeploymentStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedReplicaSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReadAppsV1NamespacedStatefulSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedControllerRevision"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSet"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDaemonSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeployment"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedDeploymentStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSet"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedReplicaSetStatus"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSet"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetScale"
-        },
-        {
-          "target": "com.kubernetes.apps#ReplaceAppsV1NamespacedStatefulSetStatus"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1ControllerRevisionListForAllNamespaces"
@@ -15145,34 +15145,34 @@
           "target": "com.kubernetes.apps#WatchAppsV1DeploymentListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevision"
-        },
-        {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevisionList"
         },
         {
-          "target": "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSet"
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedControllerRevision"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSetList"
         },
         {
-          "target": "com.kubernetes.apps#WatchAppsV1NamespacedDeployment"
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedDaemonSet"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedDeploymentList"
         },
         {
-          "target": "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSet"
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedDeployment"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSetList"
         },
         {
-          "target": "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSet"
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedReplicaSet"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSetList"
+        },
+        {
+          "target": "com.kubernetes.apps#WatchAppsV1NamespacedStatefulSet"
         },
         {
           "target": "com.kubernetes.apps#WatchAppsV1ReplicaSetListForAllNamespaces"

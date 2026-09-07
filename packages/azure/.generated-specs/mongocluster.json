@@ -4378,22 +4378,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.mongocluster#CheckMongoClusterNameAvailability"
+          "target": "com.azure.mongocluster#DeleteUser"
         },
         {
-          "target": "com.azure.mongocluster#CreatePrivateEndpointConnection"
+          "target": "com.azure.mongocluster#UsersCreateOrUpdate"
         },
         {
-          "target": "com.azure.mongocluster#DeleteFirewallRule"
+          "target": "com.azure.mongocluster#GetUser"
         },
         {
-          "target": "com.azure.mongocluster#DeleteMongoCluster"
+          "target": "com.azure.mongocluster#ListUserByMongoCluster"
+        },
+        {
+          "target": "com.azure.mongocluster#ListReplicasByParent"
+        },
+        {
+          "target": "com.azure.mongocluster#PromoteMongoCluster"
+        },
+        {
+          "target": "com.azure.mongocluster#ListPrivateLinkByMongoCluster"
         },
         {
           "target": "com.azure.mongocluster#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.mongocluster#DeleteUser"
+          "target": "com.azure.mongocluster#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.mongocluster#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.mongocluster#ListPrivateEndpointConnectionByMongoCluster"
+        },
+        {
+          "target": "com.azure.mongocluster#ListMongoClusterConnectionStrings"
+        },
+        {
+          "target": "com.azure.mongocluster#DeleteFirewallRule"
         },
         {
           "target": "com.azure.mongocluster#FirewallRulesCreateOrUpdate"
@@ -4402,52 +4423,31 @@
           "target": "com.azure.mongocluster#GetFirewallRule"
         },
         {
-          "target": "com.azure.mongocluster#GetMongoCluster"
-        },
-        {
-          "target": "com.azure.mongocluster#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.mongocluster#GetUser"
-        },
-        {
           "target": "com.azure.mongocluster#ListFirewallRuleByMongoCluster"
         },
         {
-          "target": "com.azure.mongocluster#ListMongoClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.mongocluster#ListMongoClusterConnectionStrings"
-        },
-        {
-          "target": "com.azure.mongocluster#ListMongoClusters"
-        },
-        {
-          "target": "com.azure.mongocluster#ListOperations"
-        },
-        {
-          "target": "com.azure.mongocluster#ListPrivateEndpointConnectionByMongoCluster"
-        },
-        {
-          "target": "com.azure.mongocluster#ListPrivateLinkByMongoCluster"
-        },
-        {
-          "target": "com.azure.mongocluster#ListReplicasByParent"
-        },
-        {
-          "target": "com.azure.mongocluster#ListUserByMongoCluster"
-        },
-        {
-          "target": "com.azure.mongocluster#MongoClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mongocluster#PromoteMongoCluster"
+          "target": "com.azure.mongocluster#DeleteMongoCluster"
         },
         {
           "target": "com.azure.mongocluster#UpdateMongoCluster"
         },
         {
-          "target": "com.azure.mongocluster#UsersCreateOrUpdate"
+          "target": "com.azure.mongocluster#MongoClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mongocluster#GetMongoCluster"
+        },
+        {
+          "target": "com.azure.mongocluster#ListMongoClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.mongocluster#ListMongoClusters"
+        },
+        {
+          "target": "com.azure.mongocluster#CheckMongoClusterNameAvailability"
+        },
+        {
+          "target": "com.azure.mongocluster#ListOperations"
         }
       ],
       "traits": {

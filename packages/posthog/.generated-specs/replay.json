@@ -1663,40 +1663,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.replay#CreateSessionRecordingPlaylist"
-        },
-        {
-          "target": "com.posthog.replay#CreateSessionRecordingPlaylistsRecording"
-        },
-        {
-          "target": "com.posthog.replay#GetSessionRecording"
-        },
-        {
-          "target": "com.posthog.replay#GetSessionRecordingPlaylist"
-        },
-        {
-          "target": "com.posthog.replay#GetSessionRecordingPlaylistsRecording"
-        },
-        {
           "target": "com.posthog.replay#ListSessionRecordingPlaylists"
         },
         {
-          "target": "com.posthog.replay#ListSessionRecordings"
+          "target": "com.posthog.replay#CreateSessionRecordingPlaylist"
         },
         {
-          "target": "com.posthog.replay#SessionRecordingPlaylistsDestroy"
-        },
-        {
-          "target": "com.posthog.replay#SessionRecordingPlaylistsRecordingsDestroy"
-        },
-        {
-          "target": "com.posthog.replay#SessionRecordingsBulkDeleteCreate"
-        },
-        {
-          "target": "com.posthog.replay#SessionRecordingsDestroy"
-        },
-        {
-          "target": "com.posthog.replay#UpdateSessionRecording"
+          "target": "com.posthog.replay#GetSessionRecordingPlaylist"
         },
         {
           "target": "com.posthog.replay#UpdateSessionRecordingPlaylist"
@@ -1705,7 +1678,34 @@
           "target": "com.posthog.replay#UpdateSessionRecordingPlaylistsPartial"
         },
         {
+          "target": "com.posthog.replay#SessionRecordingPlaylistsDestroy"
+        },
+        {
+          "target": "com.posthog.replay#GetSessionRecordingPlaylistsRecording"
+        },
+        {
+          "target": "com.posthog.replay#CreateSessionRecordingPlaylistsRecording"
+        },
+        {
+          "target": "com.posthog.replay#SessionRecordingPlaylistsRecordingsDestroy"
+        },
+        {
+          "target": "com.posthog.replay#ListSessionRecordings"
+        },
+        {
+          "target": "com.posthog.replay#GetSessionRecording"
+        },
+        {
+          "target": "com.posthog.replay#UpdateSessionRecording"
+        },
+        {
           "target": "com.posthog.replay#UpdateSessionRecordingsPartial"
+        },
+        {
+          "target": "com.posthog.replay#SessionRecordingsDestroy"
+        },
+        {
+          "target": "com.posthog.replay#SessionRecordingsBulkDeleteCreate"
         }
       ],
       "traits": {

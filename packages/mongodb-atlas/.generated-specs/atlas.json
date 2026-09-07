@@ -152350,448 +152350,97 @@
       "version": "2.0",
       "operations": [
         {
-          "target": "com.mongodbatlas.api#AcceptGroupStreamVpcPeeringConnection"
+          "target": "com.mongodbatlas.api#GetSystemStatus"
         },
         {
-          "target": "com.mongodbatlas.api#AcknowledgeGroupAlert"
+          "target": "com.mongodbatlas.api#ListAlertConfigMatcherFieldNames"
         },
         {
-          "target": "com.mongodbatlas.api#AddGroupApiKey"
+          "target": "com.mongodbatlas.api#ListClusterDetails"
         },
         {
-          "target": "com.mongodbatlas.api#AddGroupTeams"
-        },
-        {
-          "target": "com.mongodbatlas.api#AddGroupUserRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#AddGroupUsers"
-        },
-        {
-          "target": "com.mongodbatlas.api#AddOrgTeamUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#AddOrgUserRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#AuthorizeGroupCloudProviderAccessRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#CancelGroupClusterBackupRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateFederationSettingConnectedOrgConfigRoleMapping"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateFederationSettingIdentityProvider"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroup"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupAiModelApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupAlertConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupBackupExportBucket"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupBackupPrivateEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupCloudProviderAccess"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterBackupExport"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterBackupRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterCollectionRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterGlobalWriteCustomZoneMapping"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterGlobalWriteManagedNamespace"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterIndexRollingIndex"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterOnlineArchive"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterOverloadSimulation"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterSearchDeployment"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupClusterSearchIndex"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupContainer"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupCustomDbRoleRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupDatabaseUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupDatabaseUserCert"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupDataFederation"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupEncryptionAtRestPrivateEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupFlexCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupFlexClusterBackupRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupLiveMigration"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupLogIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupMcpConfigSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupMetricIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupPeer"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupPrivateEndpointEndpointService"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupPrivateEndpointEndpointServiceEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupPrivateNetworkSettingEndpointId"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupServiceAccountAccessList"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupServiceAccountSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupStreamConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupStreamConnectionFailoverConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupStreamPrivateLinkConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupStreamProcessor"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateGroupStreamWorkspace"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrg"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgApiKeyAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgBillingCostExplorerUsageProcess"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgInvoiceReport"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgLiveMigrationLinkToken"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgMcpConfigSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgResourcePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgServiceAccountAccessList"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgServiceAccountSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgTeam"
-        },
-        {
-          "target": "com.mongodbatlas.api#CreateOrgUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#CutoverGroupLiveMigration"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeauthorizeGroupCloudProviderAccessRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeferGroupMaintenanceWindow"
+          "target": "com.mongodbatlas.api#ListEventTypes"
         },
         {
           "target": "com.mongodbatlas.api#DeleteFederationSetting"
         },
         {
-          "target": "com.mongodbatlas.api#DeleteFederationSettingConnectedOrgConfigRoleMapping"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteFederationSettingIdentityProvider"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroup"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupAiModelApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupAlertConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupBackupExportBucket"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupBackupPrivateEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterBackupSchedule"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterBackupSnapshot"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterBackupSnapshotShardedCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterGlobalWriteCustomZoneMapping"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterGlobalWriteManagedNamespaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterOnlineArchive"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterOverloadSimulation"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterSearchDeployment"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterSearchIndex"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupClusterSearchIndexByName"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupContainer"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupCustomDbRoleRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupDatabaseUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupDataFederation"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupDataFederationLimit"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupFlexCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupLimit"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupLogIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupMcpConfigSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupMetricIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupPeer"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupPrivateEndpointEndpointService"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupPrivateEndpointEndpointServiceEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupPrivateNetworkSettingEndpointId"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupServiceAccountAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupServiceAccountSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupStreamConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupStreamConnectionFailoverConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupStreamPrivateLinkConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupStreamProcessor"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupStreamVpcPeeringConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupStreamWorkspace"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteGroupUserSecurityLdapUserToDnMapping"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrg"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgApiKeyAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgLiveMigrationLinkTokens"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgMcpConfigSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgResourcePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgServiceAccountAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgServiceAccountSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#DeleteOrgTeam"
-        },
-        {
-          "target": "com.mongodbatlas.api#DisableGroupBackupCompliancePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#DisableGroupManagedSlowMs"
-        },
-        {
-          "target": "com.mongodbatlas.api#DisableGroupUserSecurityCustomerX509"
-        },
-        {
-          "target": "com.mongodbatlas.api#DownloadGroupClusterLog"
-        },
-        {
-          "target": "com.mongodbatlas.api#DownloadGroupClusterOnlineArchiveQueryLogs"
-        },
-        {
-          "target": "com.mongodbatlas.api#DownloadGroupDataFederationQueryLogs"
-        },
-        {
-          "target": "com.mongodbatlas.api#DownloadGroupFlexClusterBackup"
-        },
-        {
-          "target": "com.mongodbatlas.api#DownloadGroupStreamAuditLogs"
-        },
-        {
-          "target": "com.mongodbatlas.api#DownloadGroupStreamOperationalLogs"
-        },
-        {
-          "target": "com.mongodbatlas.api#EnableGroupManagedSlowMs"
-        },
-        {
-          "target": "com.mongodbatlas.api#EndGroupClusterOutageSimulation"
+          "target": "com.mongodbatlas.api#ListFederationSettingConnectedOrgConfigs"
         },
         {
           "target": "com.mongodbatlas.api#GetFederationSettingConnectedOrgConfig"
         },
         {
+          "target": "com.mongodbatlas.api#UpdateFederationSettingConnectedOrgConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveFederationSettingConnectedOrgConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListFederationSettingConnectedOrgConfigRoleMappings"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateFederationSettingConnectedOrgConfigRoleMapping"
+        },
+        {
           "target": "com.mongodbatlas.api#GetFederationSettingConnectedOrgConfigRoleMapping"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateFederationSettingConnectedOrgConfigRoleMapping"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteFederationSettingConnectedOrgConfigRoleMapping"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListFederationSettingIdentityProviders"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateFederationSettingIdentityProvider"
         },
         {
           "target": "com.mongodbatlas.api#GetFederationSettingIdentityProvider"
         },
         {
+          "target": "com.mongodbatlas.api#UpdateFederationSettingIdentityProvider"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteFederationSettingIdentityProvider"
+        },
+        {
+          "target": "com.mongodbatlas.api#RevokeFederationSettingIdentityProviderJwks"
+        },
+        {
           "target": "com.mongodbatlas.api#GetFederationSettingIdentityProviderMetadata"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroups"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroup"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupByName"
         },
         {
           "target": "com.mongodbatlas.api#GetGroup"
         },
         {
+          "target": "com.mongodbatlas.api#UpdateGroup"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroup"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupAccessListEntries"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupAccessListEntry"
+        },
+        {
           "target": "com.mongodbatlas.api#GetGroupAccessListEntry"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupAccessListEntry"
         },
         {
           "target": "com.mongodbatlas.api#GetGroupAccessListStatus"
@@ -152803,439 +152452,313 @@
           "target": "com.mongodbatlas.api#GetGroupAiModelApiCloudGeographyModelGroupNameRateLimits"
         },
         {
-          "target": "com.mongodbatlas.api#GetGroupAiModelApiKey"
+          "target": "com.mongodbatlas.api#UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimits"
         },
         {
-          "target": "com.mongodbatlas.api#GetGroupAiModelApiRateLimits"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupAlert"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupAlertAlertConfigs"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupAlertConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupAlertConfigAlerts"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupAuditLog"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupAwsCustomDns"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupBackupCompliancePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupBackupExportBucket"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupBackupPrivateEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupByName"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupCloudProviderAccess"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupExport"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupSchedule"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshot"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshotDatabase"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshotDatabaseCollection"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshotShardedCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterCollectionRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterCollectionRestoreJobCollection"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterCollStatNamespaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterGlobalWrites"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterOnlineArchive"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterOutageSimulation"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterOverloadSimulation"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterProcessArgs"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterQueryShape"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterQueryShapeInsightDetails"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterSearchDeployment"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterSearchIndex"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterSearchIndexByName"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupClusterStatus"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupContainer"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupCustomDbRoleRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupDatabaseUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupDataFederation"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupDataFederationLimit"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupDbAccessHistoryCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupDbAccessHistoryProcess"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupEncryptionAtRest"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupEncryptionAtRestPrivateEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupEvent"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupFlexCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupFlexClusterBackupRestoreJob"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupFlexClusterBackupSnapshot"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupHostFtsMetricIndexMeasurements"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupIpAddresses"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupLimit"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupLiveMigration"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupLiveMigrationValidateStatus"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupLogIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupMaintenanceWindow"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupManagedSlowMs"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupMcpConfigSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupMetricIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupMongoDbVersions"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupPeer"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupPrivateEndpointEndpointService"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupPrivateEndpointEndpointServiceEndpoint"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupPrivateEndpointRegionalMode"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupPrivateNetworkSettingEndpointId"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcess"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcessCollStatNamespaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcessDatabase"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcessDatabaseMeasurements"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcessDisk"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcessDiskMeasurements"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupProcessMeasurements"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupSampleDatasetLoad"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamAccountDetails"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamConnectionFailoverConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamPrivateLinkConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamProcessor"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamProcessors"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupStreamWorkspace"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupTeam"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupUserSecurity"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetGroupUserSecurityLdapVerify"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrg"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgActivityFeed"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgAiModelApiCloudGeographyModelGroupNameRateLimits"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgAiModelApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgAiModelApiRateLimits"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgApiKeyAccessListEntry"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgAssociatedInvoices"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgBillingCostExplorerUsage"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgDelegationSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgEvent"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgFederationSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgGroups"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgInvoice"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgInvoiceCsv"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgInvoiceReport"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgMcpConfigSecret"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgNonCompliantResources"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgResourcePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgServiceAccountGroups"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgTeam"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgTeamByName"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetOrgUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetRateLimit"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetSku"
-        },
-        {
-          "target": "com.mongodbatlas.api#GetSystemStatus"
-        },
-        {
-          "target": "com.mongodbatlas.api#GrantGroupClusterMongoDbEmployeeAccess"
-        },
-        {
-          "target": "com.mongodbatlas.api#InviteGroupServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListAlertConfigMatcherFieldNames"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListClusterDetails"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListControlPlaneIpAddresses"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListEventTypes"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListFederationSettingConnectedOrgConfigRoleMappings"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListFederationSettingConnectedOrgConfigs"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListFederationSettingIdentityProviders"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupAccessListEntries"
+          "target": "com.mongodbatlas.api#ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimits"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupAiModelApiKeys"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupAiModelApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAiModelApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupAiModelApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupAiModelApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAiModelApiRateLimits"
+        },
+        {
+          "target": "com.mongodbatlas.api#ResetGroupAiModelApiRateLimits"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupAlertConfigs"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupAlertConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAlertConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupAlertConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#ToggleGroupAlertConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupAlertConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAlertConfigAlerts"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupAlerts"
         },
         {
+          "target": "com.mongodbatlas.api#GetGroupAlert"
+        },
+        {
+          "target": "com.mongodbatlas.api#AcknowledgeGroupAlert"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAlertAlertConfigs"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupApiKeys"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#AddGroupApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupApiKeyRoles"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveGroupApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAuditLog"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupAuditLog"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupAwsCustomDns"
+        },
+        {
+          "target": "com.mongodbatlas.api#ToggleGroupAwsCustomDns"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupBackupExportBuckets"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupBackupExportBucket"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupBackupExportBucket"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupBackupExportBucket"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupBackupExportBucket"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupBackupPrivateEndpoints"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupBackupPrivateEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupBackupPrivateEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupBackupPrivateEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupBackupCompliancePolicy"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupBackupCompliancePolicy"
+        },
+        {
+          "target": "com.mongodbatlas.api#DisableGroupBackupCompliancePolicy"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupCloudProviderAccess"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupCloudProviderAccess"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeauthorizeGroupCloudProviderAccessRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupCloudProviderAccess"
+        },
+        {
+          "target": "com.mongodbatlas.api#AuthorizeGroupCloudProviderAccessRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusters"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusterProviderRegions"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpgradeGroupClusterTenantUpgrade"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupCluster"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupClusterBackupExports"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterBackupExport"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupExport"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupClusterBackupRestoreJobs"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterBackupSnapshotDatabaseCollections"
+          "target": "com.mongodbatlas.api#CreateGroupClusterBackupRestoreJob"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterBackupSnapshotDatabases"
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupRestoreJob"
+        },
+        {
+          "target": "com.mongodbatlas.api#CancelGroupClusterBackupRestoreJob"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupSchedule"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterBackupSchedule"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterBackupSchedule"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupClusterBackupSnapshots"
         },
         {
+          "target": "com.mongodbatlas.api#TakeGroupClusterBackupSnapshots"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshotShardedCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterBackupSnapshotShardedCluster"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupClusterBackupSnapshotShardedClusters"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterCollectionRestoreJobCollections"
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshot"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterCollectionRestoreJobs"
+          "target": "com.mongodbatlas.api#UpdateGroupClusterBackupSnapshot"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterCollStatMeasurements"
+          "target": "com.mongodbatlas.api#DeleteGroupClusterBackupSnapshot"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusterBackupSnapshotDatabases"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshotDatabase"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusterBackupSnapshotDatabaseCollections"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterBackupSnapshotDatabaseCollection"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupClusterCollStatPinnedNamespaces"
         },
         {
+          "target": "com.mongodbatlas.api#PinGroupClusterCollStatPinnedNamespaces"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterCollStatPinnedNamespaces"
+        },
+        {
+          "target": "com.mongodbatlas.api#UnpinGroupClusterCollStatUnpinNamespaces"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusterCollectionRestoreJobs"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterCollectionRestoreJob"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterCollectionRestoreJob"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusterCollectionRestoreJobCollections"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterCollectionRestoreJobCollection"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterGlobalWrites"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterGlobalWriteCustomZoneMapping"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterGlobalWriteCustomZoneMapping"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterGlobalWriteManagedNamespace"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterGlobalWriteManagedNamespaces"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterIndexRollingIndex"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupClusterOnlineArchives"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupClusterOnlineArchive"
+        },
+        {
+          "target": "com.mongodbatlas.api#DownloadGroupClusterOnlineArchiveQueryLogs"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterOnlineArchive"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterOnlineArchive"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterOnlineArchive"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterOutageSimulation"
+        },
+        {
+          "target": "com.mongodbatlas.api#StartGroupClusterOutageSimulation"
+        },
+        {
+          "target": "com.mongodbatlas.api#EndGroupClusterOutageSimulation"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupClusterOverloadSimulations"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterOverloadSimulation"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterOverloadSimulation"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterOverloadSimulation"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupClusterPerformanceAdvisorDropIndexSuggestions"
@@ -153247,109 +152770,472 @@
           "target": "com.mongodbatlas.api#ListGroupClusterPerformanceAdvisorSuggestedIndexes"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterProviderRegions"
+          "target": "com.mongodbatlas.api#GetGroupClusterProcessArgs"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterProcessArgs"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupClusterQueryShapeInsightSummaries"
         },
         {
+          "target": "com.mongodbatlas.api#GetGroupClusterQueryShapeInsightDetails"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupClusterQueryShapes"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusters"
+          "target": "com.mongodbatlas.api#GetGroupClusterQueryShape"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupClusterSearchIndex"
+          "target": "com.mongodbatlas.api#UpdateGroupClusterQueryShape"
+        },
+        {
+          "target": "com.mongodbatlas.api#RestartGroupClusterPrimaries"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterSearchDeployment"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupClusterSearchDeployment"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterSearchDeployment"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterSearchDeployment"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupClusterSearchIndexes"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupCollStatMetrics"
+          "target": "com.mongodbatlas.api#CreateGroupClusterSearchIndex"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupContainerAll"
+          "target": "com.mongodbatlas.api#ListGroupClusterSearchIndex"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterSearchIndexByName"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterSearchIndexByName"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterSearchIndexByName"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterSearchIndex"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupClusterSearchIndex"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupClusterSearchIndex"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterStatus"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupClusterCollStatNamespaces"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupClusterCollStatMeasurements"
+        },
+        {
+          "target": "com.mongodbatlas.api#GrantGroupClusterMongoDbEmployeeAccess"
+        },
+        {
+          "target": "com.mongodbatlas.api#PinGroupClusterFeatureCompatibilityVersion"
+        },
+        {
+          "target": "com.mongodbatlas.api#RevokeGroupClusterMongoDbEmployeeAccess"
+        },
+        {
+          "target": "com.mongodbatlas.api#UnpinGroupClusterFeatureCompatibilityVersion"
+        },
+        {
+          "target": "com.mongodbatlas.api#DownloadGroupClusterLog"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupCollStatMetrics"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupContainers"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupContainer"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupContainerAll"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupContainer"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupContainer"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupContainer"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupCustomDbRoleRoles"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupDatabaseUserCerts"
+          "target": "com.mongodbatlas.api#CreateGroupCustomDbRoleRole"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupDatabaseUsers"
+          "target": "com.mongodbatlas.api#GetGroupCustomDbRoleRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupCustomDbRoleRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupCustomDbRoleRole"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupDataFederation"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupDataFederation"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupDataFederation"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupDataFederation"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupDataFederation"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupDataFederationLimits"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupDataFederationLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#SetGroupDataFederationLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupDataFederationLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#DownloadGroupDataFederationQueryLogs"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupDatabaseUsers"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupDatabaseUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupDatabaseUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupDatabaseUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupDatabaseUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupDatabaseUserCerts"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupDatabaseUserCert"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupDbAccessHistoryCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupDbAccessHistoryProcess"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupEncryptionAtRest"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupEncryptionAtRest"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupEncryptionAtRestPrivateEndpoints"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupEncryptionAtRestPrivateEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupEncryptionAtRestPrivateEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#RequestGroupEncryptionAtRestPrivateEndpointDeletion"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupEvents"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupFlexClusterBackupRestoreJobs"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupFlexClusterBackupSnapshots"
+          "target": "com.mongodbatlas.api#GetGroupEvent"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupFlexClusters"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupHostFtsMetricIndexMeasurements"
+          "target": "com.mongodbatlas.api#CreateGroupFlexCluster"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupHostFtsMetricMeasurements"
+          "target": "com.mongodbatlas.api#GetGroupFlexCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupFlexCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupFlexCluster"
+        },
+        {
+          "target": "com.mongodbatlas.api#DownloadGroupFlexClusterBackup"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupFlexClusterBackupRestoreJobs"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupFlexClusterBackupRestoreJob"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupFlexClusterBackupRestoreJob"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupFlexClusterBackupSnapshots"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupFlexClusterBackupSnapshot"
+        },
+        {
+          "target": "com.mongodbatlas.api#TenantGroupFlexClusterUpgrade"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupHostFtsMetrics"
         },
         {
+          "target": "com.mongodbatlas.api#ListGroupHostFtsMetricIndexMeasurements"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupHostFtsMetricIndexMeasurements"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupHostFtsMetricMeasurements"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupIntegrations"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupIpAddresses"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupLimits"
         },
         {
+          "target": "com.mongodbatlas.api#GetGroupLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#SetGroupLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupLiveMigration"
+        },
+        {
+          "target": "com.mongodbatlas.api#ValidateGroupLiveMigrations"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupLiveMigrationValidateStatus"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupLiveMigration"
+        },
+        {
+          "target": "com.mongodbatlas.api#CutoverGroupLiveMigration"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupLogIntegrations"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupLogIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupLogIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupLogIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupLogIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupMaintenanceWindow"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupMaintenanceWindow"
+        },
+        {
+          "target": "com.mongodbatlas.api#ResetGroupMaintenanceWindow"
+        },
+        {
+          "target": "com.mongodbatlas.api#ToggleGroupMaintenanceWindowAutoDefer"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeferGroupMaintenanceWindow"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupManagedSlowMs"
+        },
+        {
+          "target": "com.mongodbatlas.api#DisableGroupManagedSlowMs"
+        },
+        {
+          "target": "com.mongodbatlas.api#EnableGroupManagedSlowMs"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupMcpConfigs"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupMcpConfig"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupMcpConfigSecrets"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupMcpConfigSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupMcpConfigSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupMcpConfigSecret"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupMetricIntegrations"
         },
         {
+          "target": "com.mongodbatlas.api#CreateGroupMetricIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupMetricIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupMetricIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupMetricIntegration"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupMongoDbVersions"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupPeers"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupPeer"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupPeer"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupPeer"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupPeer"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupPrivateEndpointEndpointService"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupPrivateEndpointEndpointService"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupPrivateEndpointRegionalMode"
+        },
+        {
+          "target": "com.mongodbatlas.api#ToggleGroupPrivateEndpointRegionalMode"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupPrivateEndpointEndpointService"
         },
         {
+          "target": "com.mongodbatlas.api#GetGroupPrivateEndpointEndpointService"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupPrivateEndpointEndpointService"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupPrivateEndpointEndpointServiceEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupPrivateEndpointEndpointServiceEndpoint"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupPrivateEndpointEndpointServiceEndpoint"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupPrivateNetworkSettingEndpointIds"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupProcessCollStatMeasurements"
+          "target": "com.mongodbatlas.api#CreateGroupPrivateNetworkSettingEndpointId"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupPrivateNetworkSettingEndpointId"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupPrivateNetworkSettingEndpointId"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupProcesses"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupProcess"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupProcessCollStatNamespaces"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupProcessDatabases"
         },
         {
+          "target": "com.mongodbatlas.api#GetGroupProcessDatabase"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupProcessDatabaseMeasurements"
+        },
+        {
           "target": "com.mongodbatlas.api#ListGroupProcessDisks"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroupProcesses"
+          "target": "com.mongodbatlas.api#GetGroupProcessDisk"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupProcessDiskMeasurements"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupProcessMeasurements"
         },
         {
           "target": "com.mongodbatlas.api#ListGroupProcessPerformanceAdvisorNamespaces"
@@ -153361,169 +153247,145 @@
           "target": "com.mongodbatlas.api#ListGroupProcessPerformanceAdvisorSuggestedIndexes"
         },
         {
-          "target": "com.mongodbatlas.api#ListGroups"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupServiceAccountAccessList"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupServiceAccounts"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupStreamActiveVpcPeeringConnections"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupStreamConnectionFailoverConnections"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupStreamConnections"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupStreamPrivateLinkConnections"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupStreamVpcPeeringConnections"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupStreamWorkspaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupTeams"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListGroupUsers"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgAiModelApiKeys"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgApiKeyAccessListEntries"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgApiKeys"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgEvents"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgInvoicePending"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgInvoiceReports"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgInvoices"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgLiveMigrationAvailableProjects"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgMcpConfigs"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgMcpConfigSecrets"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgResourcePolicies"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgs"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgServiceAccountAccessList"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgServiceAccounts"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgTeams"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgTeamUsers"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListOrgUsers"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListRateLimits"
-        },
-        {
-          "target": "com.mongodbatlas.api#ListSkus"
-        },
-        {
-          "target": "com.mongodbatlas.api#MigrateGroup"
-        },
-        {
-          "target": "com.mongodbatlas.api#PinGroupClusterCollStatPinnedNamespaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#PinGroupClusterFeatureCompatibilityVersion"
-        },
-        {
-          "target": "com.mongodbatlas.api#RejectGroupStreamVpcPeeringConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveFederationSettingConnectedOrgConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveGroupApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveGroupTeam"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveGroupUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveGroupUserRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveOrgTeamUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveOrgUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#RemoveOrgUserRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#RenameOrgTeam"
-        },
-        {
-          "target": "com.mongodbatlas.api#RequestGroupEncryptionAtRestPrivateEndpointDeletion"
+          "target": "com.mongodbatlas.api#ListGroupProcessCollStatMeasurements"
         },
         {
           "target": "com.mongodbatlas.api#RequestGroupSampleDatasetLoad"
         },
         {
-          "target": "com.mongodbatlas.api#ResetGroupAiModelApiCloudGeographyModelGroupNameRateLimits"
+          "target": "com.mongodbatlas.api#GetGroupSampleDatasetLoad"
         },
         {
-          "target": "com.mongodbatlas.api#ResetGroupAiModelApiRateLimits"
+          "target": "com.mongodbatlas.api#ListGroupServiceAccounts"
         },
         {
-          "target": "com.mongodbatlas.api#ResetGroupMaintenanceWindow"
+          "target": "com.mongodbatlas.api#CreateGroupServiceAccount"
         },
         {
-          "target": "com.mongodbatlas.api#RestartGroupClusterPrimaries"
+          "target": "com.mongodbatlas.api#GetGroupServiceAccount"
         },
         {
-          "target": "com.mongodbatlas.api#RevokeFederationSettingIdentityProviderJwks"
+          "target": "com.mongodbatlas.api#UpdateGroupServiceAccount"
         },
         {
-          "target": "com.mongodbatlas.api#RevokeGroupClusterMongoDbEmployeeAccess"
+          "target": "com.mongodbatlas.api#DeleteGroupServiceAccount"
         },
         {
-          "target": "com.mongodbatlas.api#SearchOrgInvoiceLineItems"
+          "target": "com.mongodbatlas.api#ListGroupServiceAccountAccessList"
         },
         {
-          "target": "com.mongodbatlas.api#SetGroupDataFederationLimit"
+          "target": "com.mongodbatlas.api#CreateGroupServiceAccountAccessList"
         },
         {
-          "target": "com.mongodbatlas.api#SetGroupLimit"
+          "target": "com.mongodbatlas.api#DeleteGroupServiceAccountAccessListEntry"
         },
         {
-          "target": "com.mongodbatlas.api#StartGroupClusterOutageSimulation"
+          "target": "com.mongodbatlas.api#CreateGroupServiceAccountSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupServiceAccountSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#InviteGroupServiceAccount"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupStreamWorkspaces"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupStreamWorkspace"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupStreamAccountDetails"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupStreamActiveVpcPeeringConnections"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupStreamPrivateLinkConnections"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupStreamPrivateLinkConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupStreamPrivateLinkConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupStreamPrivateLinkConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupStreamPrivateLinkConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupStreamVpcPeeringConnections"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupStreamVpcPeeringConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#AcceptGroupStreamVpcPeeringConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#RejectGroupStreamVpcPeeringConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupStreamWorkspace"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupStreamWorkspace"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupStreamWorkspace"
+        },
+        {
+          "target": "com.mongodbatlas.api#DownloadGroupStreamAuditLogs"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupStreamConnections"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupStreamConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupStreamConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupStreamConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupStreamConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupStreamConnectionFailoverConnections"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupStreamConnectionFailoverConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupStreamConnectionFailoverConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupStreamConnectionFailoverConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupStreamConnectionFailoverConnection"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateGroupStreamProcessor"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupStreamProcessor"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateGroupStreamProcessor"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteGroupStreamProcessor"
         },
         {
           "target": "com.mongodbatlas.api#StartGroupStreamProcessor"
@@ -153535,196 +153397,334 @@
           "target": "com.mongodbatlas.api#StopGroupStreamProcessor"
         },
         {
-          "target": "com.mongodbatlas.api#TakeGroupClusterBackupSnapshots"
+          "target": "com.mongodbatlas.api#GetGroupStreamProcessors"
         },
         {
-          "target": "com.mongodbatlas.api#TenantGroupFlexClusterUpgrade"
+          "target": "com.mongodbatlas.api#DownloadGroupStreamOperationalLogs"
         },
         {
-          "target": "com.mongodbatlas.api#ToggleGroupAlertConfig"
+          "target": "com.mongodbatlas.api#WithGroupStreamSampleConnections"
         },
         {
-          "target": "com.mongodbatlas.api#ToggleGroupAwsCustomDns"
+          "target": "com.mongodbatlas.api#ListGroupTeams"
         },
         {
-          "target": "com.mongodbatlas.api#ToggleGroupMaintenanceWindowAutoDefer"
+          "target": "com.mongodbatlas.api#AddGroupTeams"
         },
         {
-          "target": "com.mongodbatlas.api#ToggleGroupPrivateEndpointRegionalMode"
-        },
-        {
-          "target": "com.mongodbatlas.api#UnpinGroupClusterCollStatUnpinNamespaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#UnpinGroupClusterFeatureCompatibilityVersion"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateFederationSettingConnectedOrgConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateFederationSettingConnectedOrgConfigRoleMapping"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateFederationSettingIdentityProvider"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroup"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupAiModelApiCloudGeographyModelGroupNameRateLimits"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupAiModelApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupAlertConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupApiKeyRoles"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupAuditLog"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupBackupCompliancePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupBackupExportBucket"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterBackupSchedule"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterBackupSnapshot"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterCollStatPinnedNamespaces"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterOnlineArchive"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterProcessArgs"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterQueryShape"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterSearchDeployment"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterSearchIndex"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupClusterSearchIndexByName"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupContainer"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupCustomDbRoleRole"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupDatabaseUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupDataFederation"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupEncryptionAtRest"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupFlexCluster"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupLogIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupMaintenanceWindow"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupMetricIntegration"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupPeer"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupPrivateEndpointEndpointService"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupStreamConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupStreamConnectionFailoverConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupStreamPrivateLinkConnection"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupStreamProcessor"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateGroupStreamWorkspace"
+          "target": "com.mongodbatlas.api#GetGroupTeam"
         },
         {
           "target": "com.mongodbatlas.api#UpdateGroupTeam"
         },
         {
+          "target": "com.mongodbatlas.api#RemoveGroupTeam"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupUserSecurity"
+        },
+        {
           "target": "com.mongodbatlas.api#UpdateGroupUserSecurity"
         },
         {
-          "target": "com.mongodbatlas.api#UpdateOrg"
+          "target": "com.mongodbatlas.api#DisableGroupUserSecurityCustomerX509"
         },
         {
-          "target": "com.mongodbatlas.api#UpdateOrgApiKey"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateOrgDelegationSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateOrgMcpConfig"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateOrgResourcePolicy"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateOrgServiceAccount"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateOrgSettings"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpdateOrgUser"
-        },
-        {
-          "target": "com.mongodbatlas.api#UpgradeGroupClusterTenantUpgrade"
-        },
-        {
-          "target": "com.mongodbatlas.api#ValidateGroupLiveMigrations"
-        },
-        {
-          "target": "com.mongodbatlas.api#ValidateOrgResourcePolicies"
+          "target": "com.mongodbatlas.api#DeleteGroupUserSecurityLdapUserToDnMapping"
         },
         {
           "target": "com.mongodbatlas.api#VerifyGroupUserSecurityLdap"
         },
         {
-          "target": "com.mongodbatlas.api#WithGroupStreamSampleConnections"
+          "target": "com.mongodbatlas.api#GetGroupUserSecurityLdapVerify"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListGroupUsers"
+        },
+        {
+          "target": "com.mongodbatlas.api#AddGroupUsers"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetGroupUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveGroupUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#AddGroupUserRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveGroupUserRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#MigrateGroup"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgs"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrg"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrg"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrg"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrg"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgActivityFeed"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgAiModelApiCloudGeographyModelGroupNameRateLimits"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgAiModelApiKeys"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgAiModelApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgAiModelApiRateLimits"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgApiKeys"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgApiKey"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgApiKeyAccessListEntries"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgApiKeyAccessListEntry"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgApiKeyAccessListEntry"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgApiKeyAccessListEntry"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgAssociatedInvoices"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgBillingCostExplorerUsageProcess"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgBillingCostExplorerUsage"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgDelegationSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgDelegationSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgEvents"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgEvent"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgFederationSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgGroups"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgInvoices"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgInvoicePending"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgInvoice"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgInvoiceCsv"
+        },
+        {
+          "target": "com.mongodbatlas.api#SearchOrgInvoiceLineItems"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgInvoiceReports"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgInvoiceReport"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgInvoiceReport"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgLiveMigrationAvailableProjects"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgLiveMigrationLinkToken"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgLiveMigrationLinkTokens"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgMcpConfigs"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgMcpConfig"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgMcpConfigSecrets"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgMcpConfigSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgMcpConfigSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgMcpConfigSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgNonCompliantResources"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgResourcePolicies"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgResourcePolicy"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgResourcePolicy"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgResourcePolicy"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgResourcePolicy"
+        },
+        {
+          "target": "com.mongodbatlas.api#ValidateOrgResourcePolicies"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgServiceAccounts"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgServiceAccount"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgServiceAccount"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgServiceAccount"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgServiceAccount"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgServiceAccountAccessList"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgServiceAccountAccessList"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgServiceAccountAccessListEntry"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgServiceAccountGroups"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgServiceAccountSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgServiceAccountSecret"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgSettings"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgTeams"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgTeam"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgTeamByName"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgTeam"
+        },
+        {
+          "target": "com.mongodbatlas.api#RenameOrgTeam"
+        },
+        {
+          "target": "com.mongodbatlas.api#DeleteOrgTeam"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgTeamUsers"
+        },
+        {
+          "target": "com.mongodbatlas.api#AddOrgTeamUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveOrgTeamUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListOrgUsers"
+        },
+        {
+          "target": "com.mongodbatlas.api#CreateOrgUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetOrgUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#UpdateOrgUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveOrgUser"
+        },
+        {
+          "target": "com.mongodbatlas.api#AddOrgUserRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#RemoveOrgUserRole"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListRateLimits"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetRateLimit"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListSkus"
+        },
+        {
+          "target": "com.mongodbatlas.api#GetSku"
+        },
+        {
+          "target": "com.mongodbatlas.api#ListControlPlaneIpAddresses"
         }
       ],
       "traits": {

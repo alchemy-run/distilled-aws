@@ -1854,34 +1854,34 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.affiliates#ArchiveAffiliate"
+          "target": "com.whop.affiliates#ListAffiliate"
         },
         {
           "target": "com.whop.affiliates#CreateAffiliate"
         },
         {
-          "target": "com.whop.affiliates#CreateOverrideAffiliate"
-        },
-        {
-          "target": "com.whop.affiliates#DeleteOverrideAffiliate"
-        },
-        {
           "target": "com.whop.affiliates#GetAffiliate"
         },
         {
-          "target": "com.whop.affiliates#GetOverrideAffiliate"
-        },
-        {
-          "target": "com.whop.affiliates#ListAffiliate"
+          "target": "com.whop.affiliates#ArchiveAffiliate"
         },
         {
           "target": "com.whop.affiliates#ListOverridesAffiliate"
         },
         {
-          "target": "com.whop.affiliates#UnarchiveAffiliate"
+          "target": "com.whop.affiliates#CreateOverrideAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#GetOverrideAffiliate"
         },
         {
           "target": "com.whop.affiliates#UpdateOverrideAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#DeleteOverrideAffiliate"
+        },
+        {
+          "target": "com.whop.affiliates#UnarchiveAffiliate"
         }
       ],
       "traits": {

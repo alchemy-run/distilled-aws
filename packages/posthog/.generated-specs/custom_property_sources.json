@@ -921,31 +921,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.custom_property_sources#CreateCustomPropertySource"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#CustomPropertySourcesBackfill"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#CustomPropertySourcesDestroy"
-        },
-        {
-          "target": "com.posthog.custom_property_sources#GetCustomPropertySource"
-        },
-        {
           "target": "com.posthog.custom_property_sources#ListCustomPropertySources"
         },
         {
-          "target": "com.posthog.custom_property_sources#ListCustomPropertySourcesRuns"
+          "target": "com.posthog.custom_property_sources#CreateCustomPropertySource"
         },
         {
-          "target": "com.posthog.custom_property_sources#SyncCustomPropertySource"
+          "target": "com.posthog.custom_property_sources#GetCustomPropertySource"
         },
         {
           "target": "com.posthog.custom_property_sources#UpdateCustomPropertySource"
         },
         {
           "target": "com.posthog.custom_property_sources#UpdateCustomPropertySourcesPartial"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#CustomPropertySourcesDestroy"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#CustomPropertySourcesBackfill"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#ListCustomPropertySourcesRuns"
+        },
+        {
+          "target": "com.posthog.custom_property_sources#SyncCustomPropertySource"
         }
       ],
       "traits": {

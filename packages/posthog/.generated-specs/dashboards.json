@@ -42098,34 +42098,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.dashboards#ListDashboards"
+        },
+        {
           "target": "com.posthog.dashboards#CreateDashboard"
+        },
+        {
+          "target": "com.posthog.dashboards#ListDashboardsCollaborators"
         },
         {
           "target": "com.posthog.dashboards#CreateDashboardsCollaborator"
         },
         {
-          "target": "com.posthog.dashboards#CreateDashboardsReorderTile"
-        },
-        {
-          "target": "com.posthog.dashboards#CreateDashboardsSharingPassword"
-        },
-        {
-          "target": "com.posthog.dashboards#CreateDashboardsWidgetsBatch"
-        },
-        {
           "target": "com.posthog.dashboards#DashboardsCollaboratorsDestroy"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsCopyTileCreate"
+          "target": "com.posthog.dashboards#ListDashboardsSharing"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsCreateTextTileCreate"
-        },
-        {
-          "target": "com.posthog.dashboards#DashboardsDestroy"
-        },
-        {
-          "target": "com.posthog.dashboards#DashboardsMoveTileCreate"
+          "target": "com.posthog.dashboards#CreateDashboardsSharingPassword"
         },
         {
           "target": "com.posthog.dashboards#DashboardsSharingPasswordsDestroy"
@@ -42134,16 +42125,31 @@
           "target": "com.posthog.dashboards#DashboardsSharingRefreshCreate"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsSubscribeNudgeCreate"
+          "target": "com.posthog.dashboards#GetDashboard"
         },
         {
-          "target": "com.posthog.dashboards#DashboardsUpdateTextTileCreate"
+          "target": "com.posthog.dashboards#UpdateDashboard"
+        },
+        {
+          "target": "com.posthog.dashboards#UpdateDashboardsPartial"
+        },
+        {
+          "target": "com.posthog.dashboards#DashboardsDestroy"
+        },
+        {
+          "target": "com.posthog.dashboards#DashboardsCopyTileCreate"
+        },
+        {
+          "target": "com.posthog.dashboards#DashboardsCreateTextTileCreate"
         },
         {
           "target": "com.posthog.dashboards#DeleteDashboardTile"
         },
         {
-          "target": "com.posthog.dashboards#GetDashboard"
+          "target": "com.posthog.dashboards#DashboardsMoveTileCreate"
+        },
+        {
+          "target": "com.posthog.dashboards#CreateDashboardsReorderTile"
         },
         {
           "target": "com.posthog.dashboards#GetDashboardsRunInsight"
@@ -42155,25 +42161,19 @@
           "target": "com.posthog.dashboards#GetDashboardsStreamTile"
         },
         {
-          "target": "com.posthog.dashboards#GetDashboardsWidgetCatalog"
+          "target": "com.posthog.dashboards#DashboardsSubscribeNudgeCreate"
         },
         {
-          "target": "com.posthog.dashboards#ListDashboards"
+          "target": "com.posthog.dashboards#DashboardsUpdateTextTileCreate"
         },
         {
-          "target": "com.posthog.dashboards#ListDashboardsCollaborators"
-        },
-        {
-          "target": "com.posthog.dashboards#ListDashboardsSharing"
-        },
-        {
-          "target": "com.posthog.dashboards#UpdateDashboard"
-        },
-        {
-          "target": "com.posthog.dashboards#UpdateDashboardsPartial"
+          "target": "com.posthog.dashboards#CreateDashboardsWidgetsBatch"
         },
         {
           "target": "com.posthog.dashboards#UpdateDashboardWidgetsBatch"
+        },
+        {
+          "target": "com.posthog.dashboards#GetDashboardsWidgetCatalog"
         }
       ],
       "traits": {

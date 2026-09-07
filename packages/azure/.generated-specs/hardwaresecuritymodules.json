@@ -4296,79 +4296,79 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersBackup"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestoreProperties"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#CreateCloudHsmClusterPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmCluster"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmClusterPrivateEndpointConnection"
+          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependenciesEndpoints"
         },
         {
           "target": "com.azure.hardwaresecuritymodules#DeleteDedicatedHsm"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmCluster"
+          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsm"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterBackupStatus"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterRestoreStatus"
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdate"
         },
         {
           "target": "com.azure.hardwaresecuritymodules#GetDedicatedHsm"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterBySubscription"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterPrivateLinkResourceByCloudHsmCluster"
-        },
-        {
           "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmByResourceGroup"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmBySubscription"
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestoreProperties"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmOutboundNetworkDependenciesEndpoints"
+          "target": "com.azure.hardwaresecuritymodules#ValidateCloudHsmClusterBackupProperties"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#ListOperations"
-        },
-        {
-          "target": "com.azure.hardwaresecuritymodules#ListPrivateEndpointConnectionByCloudHsmCluster"
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterRestoreStatus"
         },
         {
           "target": "com.azure.hardwaresecuritymodules#RestoreCloudHsmCluster"
         },
         {
+          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterPrivateLinkResourceByCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmClusterPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CreateCloudHsmClusterPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListPrivateEndpointConnectionByCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmClusterBackupStatus"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersBackup"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DeleteCloudHsmCluster"
+        },
+        {
           "target": "com.azure.hardwaresecuritymodules#UpdateCloudHsmCluster"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#UpdateDedicatedHsm"
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdate"
         },
         {
-          "target": "com.azure.hardwaresecuritymodules#ValidateCloudHsmClusterBackupProperties"
+          "target": "com.azure.hardwaresecuritymodules#GetCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListDedicatedHsmBySubscription"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListCloudHsmClusterBySubscription"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#ListOperations"
         }
       ],
       "traits": {

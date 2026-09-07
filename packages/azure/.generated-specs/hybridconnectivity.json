@@ -4386,19 +4386,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridconnectivity#CreateServiceConfigurationOrupdate"
+          "target": "com.azure.hybridconnectivity#GetSolutionType"
         },
         {
-          "target": "com.azure.hybridconnectivity#DeleteEndpoint"
+          "target": "com.azure.hybridconnectivity#ListSolutionTypeByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#TestPublicCloudConnectorPermissions"
         },
         {
           "target": "com.azure.hybridconnectivity#DeletePublicCloudConnector"
         },
         {
-          "target": "com.azure.hybridconnectivity#DeleteServiceConfiguration"
+          "target": "com.azure.hybridconnectivity#UpdatePublicCloudConnector"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#GetPublicCloudConnector"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListPublicCloudConnectorByResourceGroup"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListSolutionTypeBySubscription"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListPublicCloudConnectorBySubscription"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PostGenerateGcpTemplate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#PostGenerateAwsTemplate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListOperations"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SyncSolutionConfigurationNow"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#GetInventory"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListInventoryBySolutionConfiguration"
         },
         {
           "target": "com.azure.hybridconnectivity#DeleteSolutionConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#UpdateSolutionConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#GetSolutionConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListSolutionConfigurations"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#DeleteServiceConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#UpdateServiceConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#CreateServiceConfigurationOrupdate"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#GetServiceConfiguration"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListServiceConfigurationByEndpointResource"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListEndpointManagedProxyDetails"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListEndpointIngressGatewayCredentials"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#ListEndpointCredentials"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#DeleteEndpoint"
+        },
+        {
+          "target": "com.azure.hybridconnectivity#UpdateEndpoint"
         },
         {
           "target": "com.azure.hybridconnectivity#EndpointsCreateOrUpdate"
@@ -4407,85 +4485,7 @@
           "target": "com.azure.hybridconnectivity#GetEndpoint"
         },
         {
-          "target": "com.azure.hybridconnectivity#GetInventory"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#GetPublicCloudConnector"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#GetServiceConfiguration"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#GetSolutionConfiguration"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#GetSolutionType"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListEndpointCredentials"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListEndpointIngressGatewayCredentials"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListEndpointManagedProxyDetails"
-        },
-        {
           "target": "com.azure.hybridconnectivity#ListEndpoints"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListInventoryBySolutionConfiguration"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListOperations"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListPublicCloudConnectorByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListPublicCloudConnectorBySubscription"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListServiceConfigurationByEndpointResource"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListSolutionConfigurations"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListSolutionTypeByResourceGroup"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#ListSolutionTypeBySubscription"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#PostGenerateAwsTemplate"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#PostGenerateGcpTemplate"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#PublicCloudConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#SolutionConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#SyncSolutionConfigurationNow"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#TestPublicCloudConnectorPermissions"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#UpdateEndpoint"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#UpdatePublicCloudConnector"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#UpdateServiceConfiguration"
-        },
-        {
-          "target": "com.azure.hybridconnectivity#UpdateSolutionConfiguration"
         }
       ],
       "traits": {

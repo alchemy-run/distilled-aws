@@ -712,19 +712,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.sandbox_environments#ListSandbox"
+        },
+        {
           "target": "com.posthog.sandbox_environments#CreateSandbox"
         },
         {
           "target": "com.posthog.sandbox_environments#GetSandbox"
         },
         {
-          "target": "com.posthog.sandbox_environments#ListSandbox"
+          "target": "com.posthog.sandbox_environments#UpdateSandboxPartial"
         },
         {
           "target": "com.posthog.sandbox_environments#SandboxDestroy"
-        },
-        {
-          "target": "com.posthog.sandbox_environments#UpdateSandboxPartial"
         }
       ],
       "traits": {

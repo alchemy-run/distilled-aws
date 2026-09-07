@@ -37617,652 +37617,652 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.machinelearningservices#BatchDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#BatchEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CancelJob"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CapabilityHostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrGetStartPendingUpload"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComponentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComponentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ComputeCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#CreateWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DataContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DatastoresCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DataVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteBatchDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteBatchEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCapabilityHost"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteDataContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteDatastore"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteEnvironmentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturesetContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturesetVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteJob"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteManagedNetworkSettingsRule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteMarketplaceSubscription"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteModelContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteOnlineDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteOnlineEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistry"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryDataContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryModelContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteRegistryModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteServerlessEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.machinelearningservices#DeleteWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#EnvironmentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#EnvironmentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturesetContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturesetVersionsBackfill"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturesetVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturestoreEntityContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#FeaturestoreEntityVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetBatchDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetBatchEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCapabilityHost"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetDataContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetDatastore"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetEnvironmentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeature"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturesetContainerEntity"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturesetVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityContainerEntity"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetJob"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetManagedNetworkSettingsRule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetMarketplaceSubscription"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetModelContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineDeploymentLogs"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetOnlineEndpointToken"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistry"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryCodeContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryComponentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryDataContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSAS"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryModelContainer"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetRegistryModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetSchedule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetServerlessEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetWorkspace"
-        },
-        {
-          "target": "com.azure.machinelearningservices#GetWorkspaceConnection"
-        },
-        {
-          "target": "com.azure.machinelearningservices#JobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListBatchDeployments"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListBatchEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListBatchEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListCodeContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListCodeVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComponentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComponentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComputeKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListComputeNodes"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDataContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDatastores"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDatastoreSecrets"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListDataVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListEnvironmentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListEnvironmentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeatures"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturesetContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturesetVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListJobs"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListManagedNetworkSettingsRule"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListMarketplaceSubscriptions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListModelContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListModelVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineDeployments"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineDeploymentSkus"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOnlineEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListOperations"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListQuotas"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistries"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryBySubscription"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryCodeContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryCodeVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryComponentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryComponentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryDataContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryDataVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryModelContainers"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListRegistryModelVersions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListSchedules"
+          "target": "com.azure.machinelearningservices#RegenerateServerlessEndpointKeys"
         },
         {
           "target": "com.azure.machinelearningservices#ListServerlessEndpointKeys"
         },
         {
-          "target": "com.azure.machinelearningservices#ListServerlessEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListUsages"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListVirtualMachineSizes"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceBySubscription"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceConnections"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceConnectionSecrets"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceFeatures"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookAccessToken"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ListWorkspaceStorageAccountKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ManagedNetworkSettingsRuleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#MarketplaceSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ModelContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ModelVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#OnlineDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#OnlineEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ProvisionManagedNetworkProvisionManagedNetwork"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PublishCodeVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PublishComponentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PublishDataVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PublishEnvironmentVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#PublishModelVersion"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegenerateOnlineEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegenerateServerlessEndpointKeys"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistriesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryCodeContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrGetStartPendingUpload"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryComponentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryComponentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryDataContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrGetStartPendingUpload"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryEnvironmentContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryEnvironmentVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryModelContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrGetStartPendingUpload"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RemoveRegistryRegions"
-        },
-        {
-          "target": "com.azure.machinelearningservices#RestartCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#SchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#ServerlessEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.machinelearningservices#StartCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#StopCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateBatchDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateBatchEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateCompute"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateOnlineDeployment"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateOnlineEndpoint"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateQuotas"
-        },
-        {
-          "target": "com.azure.machinelearningservices#UpdateRegistry"
+          "target": "com.azure.machinelearningservices#DeleteServerlessEndpoint"
         },
         {
           "target": "com.azure.machinelearningservices#UpdateServerlessEndpoint"
         },
         {
-          "target": "com.azure.machinelearningservices#UpdateWorkspace"
+          "target": "com.azure.machinelearningservices#ServerlessEndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearningservices#UpdateWorkspaceConnection"
+          "target": "com.azure.machinelearningservices#GetServerlessEndpoint"
         },
         {
-          "target": "com.azure.machinelearningservices#WorkspacesCreateOrUpdate"
+          "target": "com.azure.machinelearningservices#ListServerlessEndpoints"
         },
         {
-          "target": "com.azure.machinelearningservices#WorkspacesDiagnose"
+          "target": "com.azure.machinelearningservices#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#SchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetSchedule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListSchedules"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesResyncKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ProvisionManagedNetworkProvisionManagedNetwork"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListPrivateEndpointConnections"
         },
         {
           "target": "com.azure.machinelearningservices#WorkspacesPrepareNotebook"
         },
         {
-          "target": "com.azure.machinelearningservices#WorkspacesResyncKeys"
+          "target": "com.azure.machinelearningservices#DeleteManagedNetworkSettingsRule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ManagedNetworkSettingsRuleCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetManagedNetworkSettingsRule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListManagedNetworkSettingsRule"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineEndpointToken"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegenerateOnlineEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineDeploymentSkus"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineDeploymentLogs"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteOnlineDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateOnlineDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#OnlineDeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineDeployments"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteOnlineEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateOnlineEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#OnlineEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetOnlineEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOnlineEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ModelVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListModelVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ModelContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListModelContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteMarketplaceSubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#MarketplaceSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetMarketplaceSubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListMarketplaceSubscriptions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceStorageAccountKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceNotebookAccessToken"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#CancelJob"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteJob"
+        },
+        {
+          "target": "com.azure.machinelearningservices#JobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetJob"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListJobs"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturestoreEntityVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteFeaturestoreEntityContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturestoreEntityContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturestoreEntityContainerEntity"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturestoreEntityContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeature"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeatures"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturesetVersionsBackfill"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteFeaturesetVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturesetVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturesetVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturesetVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteFeaturesetContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#FeaturesetContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetFeaturesetContainerEntity"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListFeaturesetContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceFeatures"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#EnvironmentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListEnvironmentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#EnvironmentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListEnvironmentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesDiagnose"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDatastoreSecrets"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteDatastore"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DatastoresCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetDatastore"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDatastores"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DataVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDataVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteDataContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DataContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetDataContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListDataContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceConnectionSecrets"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#CreateWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetWorkspaceConnection"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceConnections"
+        },
+        {
+          "target": "com.azure.machinelearningservices#StopCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#StartCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RestartCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComputeNodes"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComputeKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ComputeCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListCompute"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ComponentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComponentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteComponentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ComponentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetComponentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListComponentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#PublishCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#CodeVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListCodeVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteCodeContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#CodeContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCodeContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListCodeContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteCapabilityHost"
+        },
+        {
+          "target": "com.azure.machinelearningservices#CapabilityHostsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetCapabilityHost"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListBatchEndpointKeys"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteBatchDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateBatchDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#BatchDeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetBatchDeployment"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListBatchDeployments"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteBatchEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateBatchEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#BatchEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetBatchEndpoint"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListBatchEndpoints"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearningservices#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RemoveRegistryRegions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryModelVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryModelVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryModelVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryModelContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryModelContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryModelContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryEnvironmentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryEnvironmentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryEnvironmentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryEnvironmentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryDataReferenceBlobReferenceSAS"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryDataVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryDataVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryDataVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryDataContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryDataContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryDataContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryDataContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryComponentVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryComponentVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryComponentVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryComponentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryComponentContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryComponentContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryComponentContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrGetStartPendingUpload"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryCodeVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryCodeVersion"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryCodeVersions"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistryCodeContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistryCodeContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistryCodeContainer"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryCodeContainers"
+        },
+        {
+          "target": "com.azure.machinelearningservices#DeleteRegistry"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateRegistry"
+        },
+        {
+          "target": "com.azure.machinelearningservices#RegistriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.machinelearningservices#GetRegistry"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistries"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListRegistryBySubscription"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListVirtualMachineSizes"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListUsages"
+        },
+        {
+          "target": "com.azure.machinelearningservices#UpdateQuotas"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListQuotas"
+        },
+        {
+          "target": "com.azure.machinelearningservices#ListOperations"
         }
       ],
       "traits": {

@@ -9673,60 +9673,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.storage#CreateStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1NamespacedCSIStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#CreateStorageV1VolumeAttributesClass"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCSIStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionStorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttributesClass"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1NamespacedCSIStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttributesClass"
-        },
-        {
           "target": "com.kubernetes.storage#GetStorageAPIGroup"
         },
         {
@@ -9736,7 +9682,52 @@
           "target": "com.kubernetes.storage#ListStorageV1CSIDriver"
         },
         {
+          "target": "com.kubernetes.storage#CreateStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1CSIDriver"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CSIDriver"
+        },
+        {
           "target": "com.kubernetes.storage#ListStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#CreateStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionCSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CSINode"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1CSINodeStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#ReplaceStorageV1CSINodeStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1CSINodeStatus"
         },
         {
           "target": "com.kubernetes.storage#ListStorageV1CSIStorageCapacityForAllNamespaces"
@@ -9745,124 +9736,133 @@
           "target": "com.kubernetes.storage#ListStorageV1NamespacedCSIStorageCapacity"
         },
         {
-          "target": "com.kubernetes.storage#ListStorageV1StorageClass"
+          "target": "com.kubernetes.storage#CreateStorageV1NamespacedCSIStorageCapacity"
         },
         {
-          "target": "com.kubernetes.storage#ListStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#ListStorageV1VolumeAttributesClass"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1CSINodeStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1NamespacedCSIStorageCapacity"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachmentStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttributesClass"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1CSINodeStatus"
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionNamespacedCSIStorageCapacity"
         },
         {
           "target": "com.kubernetes.storage#ReadStorageV1NamespacedCSIStorageCapacity"
         },
         {
-          "target": "com.kubernetes.storage#ReadStorageV1StorageClass"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachment"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachmentStatus"
-        },
-        {
-          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttributesClass"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1CSIDriver"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1CSINode"
-        },
-        {
-          "target": "com.kubernetes.storage#ReplaceStorageV1CSINodeStatus"
-        },
-        {
           "target": "com.kubernetes.storage#ReplaceStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1NamespacedCSIStorageCapacity"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#CreateStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionStorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1StorageClass"
         },
         {
           "target": "com.kubernetes.storage#ReplaceStorageV1StorageClass"
         },
         {
+          "target": "com.kubernetes.storage#PatchStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1StorageClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#CreateStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachment"
+        },
+        {
           "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttachment"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttachmentStatus"
         },
         {
           "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttachmentStatus"
         },
         {
+          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttachmentStatus"
+        },
+        {
+          "target": "com.kubernetes.storage#ListStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#CreateStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1CollectionVolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#ReadStorageV1VolumeAttributesClass"
+        },
+        {
           "target": "com.kubernetes.storage#ReplaceStorageV1VolumeAttributesClass"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1CSIDriver"
+          "target": "com.kubernetes.storage#PatchStorageV1VolumeAttributesClass"
+        },
+        {
+          "target": "com.kubernetes.storage#DeleteStorageV1VolumeAttributesClass"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1CSIDriverList"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1CSINode"
+          "target": "com.kubernetes.storage#WatchStorageV1CSIDriver"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1CSINodeList"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1CSIStorageCapacityListForAllNamespaces"
+          "target": "com.kubernetes.storage#WatchStorageV1CSINode"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacity"
+          "target": "com.kubernetes.storage#WatchStorageV1CSIStorageCapacityListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacityList"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1StorageClass"
+          "target": "com.kubernetes.storage#WatchStorageV1NamespacedCSIStorageCapacity"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1StorageClassList"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1VolumeAttachment"
+          "target": "com.kubernetes.storage#WatchStorageV1StorageClass"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1VolumeAttachmentList"
         },
         {
-          "target": "com.kubernetes.storage#WatchStorageV1VolumeAttributesClass"
+          "target": "com.kubernetes.storage#WatchStorageV1VolumeAttachment"
         },
         {
           "target": "com.kubernetes.storage#WatchStorageV1VolumeAttributesClassList"
+        },
+        {
+          "target": "com.kubernetes.storage#WatchStorageV1VolumeAttributesClass"
         }
       ],
       "traits": {

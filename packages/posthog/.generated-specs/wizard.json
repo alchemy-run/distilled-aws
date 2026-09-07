@@ -723,6 +723,9 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.wizard#ListWizardSessions"
+        },
+        {
           "target": "com.posthog.wizard#CreateWizardSession"
         },
         {
@@ -733,9 +736,6 @@
         },
         {
           "target": "com.posthog.wizard#GetWizardSessionsStream"
-        },
-        {
-          "target": "com.posthog.wizard#ListWizardSessions"
         }
       ],
       "traits": {

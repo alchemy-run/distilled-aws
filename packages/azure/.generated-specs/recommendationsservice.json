@@ -4996,34 +4996,55 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.recommendationsservice#AccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recommendationsservice#CheckAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.recommendationsservice#DeleteAccount"
-        },
-        {
-          "target": "com.azure.recommendationsservice#DeleteModeling"
-        },
-        {
-          "target": "com.azure.recommendationsservice#DeleteServiceEndpoint"
-        },
-        {
-          "target": "com.azure.recommendationsservice#GetAccount"
-        },
-        {
-          "target": "com.azure.recommendationsservice#GetAccountStatus"
-        },
-        {
-          "target": "com.azure.recommendationsservice#GetModeling"
+          "target": "com.azure.recommendationsservice#ListOperations"
         },
         {
           "target": "com.azure.recommendationsservice#GetOperationStatus"
         },
         {
+          "target": "com.azure.recommendationsservice#DeleteServiceEndpoint"
+        },
+        {
+          "target": "com.azure.recommendationsservice#UpdateServiceEndpoint"
+        },
+        {
+          "target": "com.azure.recommendationsservice#ServiceEndpointsCreateOrUpdate"
+        },
+        {
           "target": "com.azure.recommendationsservice#GetServiceEndpoint"
+        },
+        {
+          "target": "com.azure.recommendationsservice#ListServiceEndpointByAccountResource"
+        },
+        {
+          "target": "com.azure.recommendationsservice#DeleteModeling"
+        },
+        {
+          "target": "com.azure.recommendationsservice#UpdateModeling"
+        },
+        {
+          "target": "com.azure.recommendationsservice#ModelingCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recommendationsservice#GetModeling"
+        },
+        {
+          "target": "com.azure.recommendationsservice#ListModelingByAccountResource"
+        },
+        {
+          "target": "com.azure.recommendationsservice#GetAccountStatus"
+        },
+        {
+          "target": "com.azure.recommendationsservice#DeleteAccount"
+        },
+        {
+          "target": "com.azure.recommendationsservice#UpdateAccount"
+        },
+        {
+          "target": "com.azure.recommendationsservice#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.recommendationsservice#GetAccount"
         },
         {
           "target": "com.azure.recommendationsservice#ListAccountByResourceGroup"
@@ -5032,28 +5053,7 @@
           "target": "com.azure.recommendationsservice#ListAccountBySubscription"
         },
         {
-          "target": "com.azure.recommendationsservice#ListModelingByAccountResource"
-        },
-        {
-          "target": "com.azure.recommendationsservice#ListOperations"
-        },
-        {
-          "target": "com.azure.recommendationsservice#ListServiceEndpointByAccountResource"
-        },
-        {
-          "target": "com.azure.recommendationsservice#ModelingCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recommendationsservice#ServiceEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.recommendationsservice#UpdateAccount"
-        },
-        {
-          "target": "com.azure.recommendationsservice#UpdateModeling"
-        },
-        {
-          "target": "com.azure.recommendationsservice#UpdateServiceEndpoint"
+          "target": "com.azure.recommendationsservice#CheckAccountNameAvailability"
         }
       ],
       "traits": {

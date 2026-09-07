@@ -5837,46 +5837,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.surveys#ListSurveys"
+        },
+        {
           "target": "com.posthog.surveys#CreateSurveys"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveysSummarizeResponse"
-        },
-        {
-          "target": "com.posthog.surveys#CreateSurveysSummaryHeadline"
         },
         {
           "target": "com.posthog.surveys#GetSurveys"
         },
         {
-          "target": "com.posthog.surveys#GetSurveysActivity"
+          "target": "com.posthog.surveys#UpdateSurveys"
         },
         {
-          "target": "com.posthog.surveys#GetSurveysAllActivity"
-        },
-        {
-          "target": "com.posthog.surveys#GetSurveysArchivedResponseUuid"
-        },
-        {
-          "target": "com.posthog.surveys#GetSurveysGlobalStat"
-        },
-        {
-          "target": "com.posthog.surveys#GetSurveysResponsesCount"
-        },
-        {
-          "target": "com.posthog.surveys#GetSurveysStat"
-        },
-        {
-          "target": "com.posthog.surveys#ListSurveys"
-        },
-        {
-          "target": "com.posthog.surveys#ListSurveysResponses"
-        },
-        {
-          "target": "com.posthog.surveys#StopSurveys"
+          "target": "com.posthog.surveys#UpdateSurveysPartial"
         },
         {
           "target": "com.posthog.surveys#SurveysDestroy"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysActivity"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysArchivedResponseUuid"
         },
         {
           "target": "com.posthog.surveys#SurveysDuplicateToProjectsCreate"
@@ -5888,7 +5870,7 @@
           "target": "com.posthog.surveys#SurveysLaunch"
         },
         {
-          "target": "com.posthog.surveys#SurveysQuestionLabels"
+          "target": "com.posthog.surveys#ListSurveysResponses"
         },
         {
           "target": "com.posthog.surveys#SurveysResponsesArchiveCreate"
@@ -5897,10 +5879,28 @@
           "target": "com.posthog.surveys#SurveysResponsesUnarchiveCreate"
         },
         {
-          "target": "com.posthog.surveys#UpdateSurveys"
+          "target": "com.posthog.surveys#GetSurveysStat"
         },
         {
-          "target": "com.posthog.surveys#UpdateSurveysPartial"
+          "target": "com.posthog.surveys#StopSurveys"
+        },
+        {
+          "target": "com.posthog.surveys#CreateSurveysSummarizeResponse"
+        },
+        {
+          "target": "com.posthog.surveys#CreateSurveysSummaryHeadline"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysAllActivity"
+        },
+        {
+          "target": "com.posthog.surveys#SurveysQuestionLabels"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysResponsesCount"
+        },
+        {
+          "target": "com.posthog.surveys#GetSurveysGlobalStat"
         }
       ],
       "traits": {

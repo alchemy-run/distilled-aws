@@ -430,19 +430,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.evaluation_directories#CreateEvaluationDirectory"
+          "target": "com.posthog.evaluation_directories#ListEvaluationDirectories"
         },
         {
-          "target": "com.posthog.evaluation_directories#EvaluationDirectoriesDestroy"
+          "target": "com.posthog.evaluation_directories#CreateEvaluationDirectory"
         },
         {
           "target": "com.posthog.evaluation_directories#GetEvaluationDirectory"
         },
         {
-          "target": "com.posthog.evaluation_directories#ListEvaluationDirectories"
+          "target": "com.posthog.evaluation_directories#UpdateEvaluationDirectoriesPartial"
         },
         {
-          "target": "com.posthog.evaluation_directories#UpdateEvaluationDirectoriesPartial"
+          "target": "com.posthog.evaluation_directories#EvaluationDirectoriesDestroy"
         }
       ],
       "traits": {

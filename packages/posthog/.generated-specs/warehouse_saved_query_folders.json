@@ -503,13 +503,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.warehouse_saved_query_folders#ListWarehouseSavedQueryFolders"
+        },
+        {
           "target": "com.posthog.warehouse_saved_query_folders#CreateWarehouseSavedQueryFolder"
         },
         {
           "target": "com.posthog.warehouse_saved_query_folders#GetWarehouseSavedQueryFolder"
-        },
-        {
-          "target": "com.posthog.warehouse_saved_query_folders#ListWarehouseSavedQueryFolders"
         },
         {
           "target": "com.posthog.warehouse_saved_query_folders#UpdateWarehouseSavedQueryFoldersPartial"

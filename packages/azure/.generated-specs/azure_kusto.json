@@ -11386,172 +11386,139 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azure_kusto#AddClusterCalloutPolicies"
+          "target": "com.azure.azure_kusto#StopCluster"
         },
         {
-          "target": "com.azure.azure_kusto#AddClusterLanguageExtensions"
-        },
-        {
-          "target": "com.azure.azure_kusto#AddDatabasePrincipals"
-        },
-        {
-          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckClusterNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckDatabaseNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckDataConnectionNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#CheckScriptNameAvailability"
-        },
-        {
-          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#ClustersDiagnoseVirtualNetwork"
-        },
-        {
-          "target": "com.azure.azure_kusto#ClustersListFollowerDatabasesGet"
-        },
-        {
-          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#DatabasesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#DataConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#DataConnectionsDataConnectionValidation"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteAttachedDatabaseConfiguration"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteClusterPrincipalAssignment"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteDatabase"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteDatabasePrincipalAssignment"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteDataConnection"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteSandboxCustomImage"
-        },
-        {
-          "target": "com.azure.azure_kusto#DeleteScript"
-        },
-        {
-          "target": "com.azure.azure_kusto#DetachClusterFollowerDatabases"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetAttachedDatabaseConfiguration"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetClusterPrincipalAssignment"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetDatabase"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetDatabasePrincipalAssignment"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetDataConnection"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetOperationsResult"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetSandboxCustomImage"
-        },
-        {
-          "target": "com.azure.azure_kusto#GetScript"
-        },
-        {
-          "target": "com.azure.azure_kusto#InviteDatabaseFollower"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListAttachedDatabaseConfigurationByCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterCalloutPolicies"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterFollowerDatabases"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterLanguageExtensions"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterPrincipalAssignments"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusters"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListClusterSkus"
+          "target": "com.azure.azure_kusto#StartCluster"
         },
         {
           "target": "com.azure.azure_kusto#ListClusterSkusByResource"
         },
         {
-          "target": "com.azure.azure_kusto#ListDatabaseByCluster"
+          "target": "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteSandboxCustomImage"
+        },
+        {
+          "target": "com.azure.azure_kusto#UpdateSandboxCustomImage"
+        },
+        {
+          "target": "com.azure.azure_kusto#SandboxCustomImagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetSandboxCustomImage"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListSandboxCustomImageByCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#RemoveClusterLanguageExtensions"
+        },
+        {
+          "target": "com.azure.azure_kusto#RemoveClusterCalloutPolicy"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.azure_kusto#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteClusterPrincipalAssignment"
+        },
+        {
+          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetClusterPrincipalAssignment"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterPrincipalAssignments"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.azure_kusto#MigrateCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.azure_kusto#UpdateManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListManagedPrivateEndpoints"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterLanguageExtensions"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterFollowerDatabases"
+        },
+        {
+          "target": "com.azure.azure_kusto#ClustersListFollowerDatabasesGet"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterCalloutPolicies"
+        },
+        {
+          "target": "com.azure.azure_kusto#ClustersDiagnoseVirtualNetwork"
+        },
+        {
+          "target": "com.azure.azure_kusto#DetachClusterFollowerDatabases"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckScriptNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteScript"
+        },
+        {
+          "target": "com.azure.azure_kusto#UpdateScript"
+        },
+        {
+          "target": "com.azure.azure_kusto#ScriptsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetScript"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListScriptByDatabase"
+        },
+        {
+          "target": "com.azure.azure_kusto#RemoveDatabasePrincipals"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteDatabasePrincipalAssignment"
+        },
+        {
+          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetDatabasePrincipalAssignment"
         },
         {
           "target": "com.azure.azure_kusto#ListDatabasePrincipalAssignments"
@@ -11560,76 +11527,109 @@
           "target": "com.azure.azure_kusto#ListDatabasePrincipals"
         },
         {
-          "target": "com.azure.azure_kusto#ListDataConnectionByDatabase"
+          "target": "com.azure.azure_kusto#InviteDatabaseFollower"
         },
         {
-          "target": "com.azure.azure_kusto#ListManagedPrivateEndpoints"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListOperations"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListSandboxCustomImageByCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListScriptByDatabase"
-        },
-        {
-          "target": "com.azure.azure_kusto#ListSkus"
-        },
-        {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#MigrateCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#RemoveClusterCalloutPolicy"
-        },
-        {
-          "target": "com.azure.azure_kusto#RemoveClusterLanguageExtensions"
-        },
-        {
-          "target": "com.azure.azure_kusto#RemoveDatabasePrincipals"
-        },
-        {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#ScriptsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azure_kusto#StartCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#StopCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#UpdateCluster"
-        },
-        {
-          "target": "com.azure.azure_kusto#UpdateDatabase"
+          "target": "com.azure.azure_kusto#DeleteDataConnection"
         },
         {
           "target": "com.azure.azure_kusto#UpdateDataConnection"
         },
         {
-          "target": "com.azure.azure_kusto#UpdateManagedPrivateEndpoint"
+          "target": "com.azure.azure_kusto#DataConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#UpdateSandboxCustomImage"
+          "target": "com.azure.azure_kusto#GetDataConnection"
         },
         {
-          "target": "com.azure.azure_kusto#UpdateScript"
+          "target": "com.azure.azure_kusto#ListDataConnectionByDatabase"
+        },
+        {
+          "target": "com.azure.azure_kusto#DataConnectionsDataConnectionValidation"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckDataConnectionNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#AddDatabasePrincipals"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteDatabase"
+        },
+        {
+          "target": "com.azure.azure_kusto#UpdateDatabase"
+        },
+        {
+          "target": "com.azure.azure_kusto#DatabasesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetDatabase"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListDatabaseByCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckDatabaseNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteAttachedDatabaseConfiguration"
+        },
+        {
+          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetAttachedDatabaseConfiguration"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListAttachedDatabaseConfigurationByCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#AddClusterLanguageExtensions"
+        },
+        {
+          "target": "com.azure.azure_kusto#AddClusterCalloutPolicies"
+        },
+        {
+          "target": "com.azure.azure_kusto#DeleteCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#UpdateCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetCluster"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusterSkus"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListSkus"
+        },
+        {
+          "target": "com.azure.azure_kusto#GetOperationsResult"
+        },
+        {
+          "target": "com.azure.azure_kusto#CheckClusterNameAvailability"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListClusters"
+        },
+        {
+          "target": "com.azure.azure_kusto#ListOperations"
         }
       ],
       "traits": {

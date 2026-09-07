@@ -15704,103 +15704,103 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.orgs#AssignTeamToOrgRole"
+          "target": "com.github.orgs#List"
         },
         {
-          "target": "com.github.orgs#AssignUserToOrgRole"
+          "target": "com.github.orgs#Get"
         },
         {
-          "target": "com.github.orgs#BlockUser"
-        },
-        {
-          "target": "com.github.orgs#BulkReviewPatGrantRequestsIn"
-        },
-        {
-          "target": "com.github.orgs#CancelInvitation"
-        },
-        {
-          "target": "com.github.orgs#CheckBlockedUser"
-        },
-        {
-          "target": "com.github.orgs#CheckMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#CheckPublicMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#ConvertMemberToOutsideCollaborator"
-        },
-        {
-          "target": "com.github.orgs#CreateArtifactDeploymentRecord"
-        },
-        {
-          "target": "com.github.orgs#CreateArtifactStorageRecord"
-        },
-        {
-          "target": "com.github.orgs#CreateClusterDeploymentRecordsJob"
-        },
-        {
-          "target": "com.github.orgs#CreateInvitation"
-        },
-        {
-          "target": "com.github.orgs#CreateIssueField"
-        },
-        {
-          "target": "com.github.orgs#CreateIssueType"
-        },
-        {
-          "target": "com.github.orgs#CreateWebhook"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinitions"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationValues"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposDeleteOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinition"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitions"
-        },
-        {
-          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationValues"
+          "target": "com.github.orgs#Update"
         },
         {
           "target": "com.github.orgs#Delete"
         },
         {
-          "target": "com.github.orgs#DeleteAttestationsBulk"
+          "target": "com.github.orgs#CreateArtifactDeploymentRecord"
         },
         {
-          "target": "com.github.orgs#DeleteAttestationsById"
+          "target": "com.github.orgs#SetClusterDeploymentRecords"
+        },
+        {
+          "target": "com.github.orgs#CreateClusterDeploymentRecordsJob"
+        },
+        {
+          "target": "com.github.orgs#GetClusterDeploymentRecordsJob"
+        },
+        {
+          "target": "com.github.orgs#CreateArtifactStorageRecord"
+        },
+        {
+          "target": "com.github.orgs#ListArtifactDeploymentRecords"
+        },
+        {
+          "target": "com.github.orgs#ListArtifactStorageRecords"
+        },
+        {
+          "target": "com.github.orgs#ListAttestationsBulk"
+        },
+        {
+          "target": "com.github.orgs#DeleteAttestationsBulk"
         },
         {
           "target": "com.github.orgs#DeleteAttestationsBySubjectDigest"
         },
         {
-          "target": "com.github.orgs#DeleteIssueField"
+          "target": "com.github.orgs#ListAttestationRepositories"
         },
         {
-          "target": "com.github.orgs#DeleteIssueType"
+          "target": "com.github.orgs#DeleteAttestationsById"
+        },
+        {
+          "target": "com.github.orgs#ListAttestations"
+        },
+        {
+          "target": "com.github.orgs#ListBlockedUsers"
+        },
+        {
+          "target": "com.github.orgs#CheckBlockedUser"
+        },
+        {
+          "target": "com.github.orgs#BlockUser"
+        },
+        {
+          "target": "com.github.orgs#UnblockUser"
+        },
+        {
+          "target": "com.github.orgs#ListFailedInvitations"
+        },
+        {
+          "target": "com.github.orgs#ListWebhooks"
+        },
+        {
+          "target": "com.github.orgs#CreateWebhook"
+        },
+        {
+          "target": "com.github.orgs#GetWebhook"
+        },
+        {
+          "target": "com.github.orgs#UpdateWebhook"
         },
         {
           "target": "com.github.orgs#DeleteWebhook"
         },
         {
-          "target": "com.github.orgs#DisableSelectedRepositoryImmutableReleasesOrganization"
+          "target": "com.github.orgs#GetWebhookConfigForOrg"
         },
         {
-          "target": "com.github.orgs#EnableSelectedRepositoryImmutableReleasesOrganization"
+          "target": "com.github.orgs#UpdateWebhookConfigForOrg"
         },
         {
-          "target": "com.github.orgs#Get"
+          "target": "com.github.orgs#ListWebhookDeliveries"
+        },
+        {
+          "target": "com.github.orgs#GetWebhookDelivery"
+        },
+        {
+          "target": "com.github.orgs#RedeliverWebhookDelivery"
+        },
+        {
+          "target": "com.github.orgs#PingWebhook"
         },
         {
           "target": "com.github.orgs#GetApiInsightRouteStatsByActor"
@@ -15812,88 +15812,34 @@
           "target": "com.github.orgs#GetApiInsightSummaryStats"
         },
         {
-          "target": "com.github.orgs#GetApiInsightSummaryStatsByActor"
+          "target": "com.github.orgs#GetApiInsightSummaryStatsByUser"
         },
         {
-          "target": "com.github.orgs#GetApiInsightSummaryStatsByUser"
+          "target": "com.github.orgs#GetApiInsightSummaryStatsByActor"
         },
         {
           "target": "com.github.orgs#GetApiInsightTimeStats"
         },
         {
-          "target": "com.github.orgs#GetApiInsightTimeStatsByActor"
+          "target": "com.github.orgs#GetApiInsightTimeStatsByUser"
         },
         {
-          "target": "com.github.orgs#GetApiInsightTimeStatsByUser"
+          "target": "com.github.orgs#GetApiInsightTimeStatsByActor"
         },
         {
           "target": "com.github.orgs#GetApiInsightUserStats"
         },
         {
-          "target": "com.github.orgs#GetClusterDeploymentRecordsJob"
-        },
-        {
-          "target": "com.github.orgs#GetImmutableReleasesSettings"
-        },
-        {
-          "target": "com.github.orgs#GetImmutableReleasesSettingsRepositories"
-        },
-        {
-          "target": "com.github.orgs#GetMembershipForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.orgs#GetMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#GetOrgRole"
-        },
-        {
-          "target": "com.github.orgs#GetOrgRulesetHistory"
-        },
-        {
-          "target": "com.github.orgs#GetOrgRulesetVersion"
-        },
-        {
-          "target": "com.github.orgs#GetWebhook"
-        },
-        {
-          "target": "com.github.orgs#GetWebhookConfigForOrg"
-        },
-        {
-          "target": "com.github.orgs#GetWebhookDelivery"
-        },
-        {
-          "target": "com.github.orgs#List"
-        },
-        {
           "target": "com.github.orgs#ListAppInstallations"
         },
         {
-          "target": "com.github.orgs#ListArtifactDeploymentRecords"
+          "target": "com.github.orgs#ListPendingInvitations"
         },
         {
-          "target": "com.github.orgs#ListArtifactStorageRecords"
+          "target": "com.github.orgs#CreateInvitation"
         },
         {
-          "target": "com.github.orgs#ListAttestationRepositories"
-        },
-        {
-          "target": "com.github.orgs#ListAttestations"
-        },
-        {
-          "target": "com.github.orgs#ListAttestationsBulk"
-        },
-        {
-          "target": "com.github.orgs#ListBlockedUsers"
-        },
-        {
-          "target": "com.github.orgs#ListFailedInvitations"
-        },
-        {
-          "target": "com.github.orgs#ListForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.orgs#ListForUser"
+          "target": "com.github.orgs#CancelInvitation"
         },
         {
           "target": "com.github.orgs#ListInvitationTeams"
@@ -15902,16 +15848,67 @@
           "target": "com.github.orgs#ListIssueFields"
         },
         {
+          "target": "com.github.orgs#CreateIssueField"
+        },
+        {
+          "target": "com.github.orgs#UpdateIssueField"
+        },
+        {
+          "target": "com.github.orgs#DeleteIssueField"
+        },
+        {
           "target": "com.github.orgs#ListIssueTypes"
+        },
+        {
+          "target": "com.github.orgs#CreateIssueType"
+        },
+        {
+          "target": "com.github.orgs#UpdateIssueType"
+        },
+        {
+          "target": "com.github.orgs#DeleteIssueType"
         },
         {
           "target": "com.github.orgs#ListMembers"
         },
         {
-          "target": "com.github.orgs#ListMembershipsForAuthenticatedUser"
+          "target": "com.github.orgs#CheckMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#RemoveMember"
+        },
+        {
+          "target": "com.github.orgs#GetMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#SetMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#RemoveMembershipForUser"
         },
         {
           "target": "com.github.orgs#ListOrgRoles"
+        },
+        {
+          "target": "com.github.orgs#RevokeAllOrgRolesTeam"
+        },
+        {
+          "target": "com.github.orgs#AssignTeamToOrgRole"
+        },
+        {
+          "target": "com.github.orgs#RevokeOrgRoleTeam"
+        },
+        {
+          "target": "com.github.orgs#RevokeAllOrgRolesUser"
+        },
+        {
+          "target": "com.github.orgs#AssignUserToOrgRole"
+        },
+        {
+          "target": "com.github.orgs#RevokeOrgRoleUser"
+        },
+        {
+          "target": "com.github.orgs#GetOrgRole"
         },
         {
           "target": "com.github.orgs#ListOrgRoleTeams"
@@ -15923,103 +15920,106 @@
           "target": "com.github.orgs#ListOutsideCollaborators"
         },
         {
-          "target": "com.github.orgs#ListPatGrantRepositories"
-        },
-        {
-          "target": "com.github.orgs#ListPatGrantRequestRepositories"
-        },
-        {
-          "target": "com.github.orgs#ListPatGrantRequests"
-        },
-        {
-          "target": "com.github.orgs#ListPatGrants"
-        },
-        {
-          "target": "com.github.orgs#ListPendingInvitations"
-        },
-        {
-          "target": "com.github.orgs#ListPublicMembers"
-        },
-        {
-          "target": "com.github.orgs#ListWebhookDeliveries"
-        },
-        {
-          "target": "com.github.orgs#ListWebhooks"
-        },
-        {
-          "target": "com.github.orgs#PingWebhook"
-        },
-        {
-          "target": "com.github.orgs#RedeliverWebhookDelivery"
-        },
-        {
-          "target": "com.github.orgs#RemoveMember"
-        },
-        {
-          "target": "com.github.orgs#RemoveMembershipForUser"
+          "target": "com.github.orgs#ConvertMemberToOutsideCollaborator"
         },
         {
           "target": "com.github.orgs#RemoveOutsideCollaborator"
         },
         {
-          "target": "com.github.orgs#RemovePublicMembershipForAuthenticatedUser"
+          "target": "com.github.orgs#ListPatGrantRequests"
+        },
+        {
+          "target": "com.github.orgs#BulkReviewPatGrantRequestsIn"
         },
         {
           "target": "com.github.orgs#ReviewPatGrantRequest"
         },
         {
-          "target": "com.github.orgs#RevokeAllOrgRolesTeam"
+          "target": "com.github.orgs#ListPatGrantRequestRepositories"
         },
         {
-          "target": "com.github.orgs#RevokeAllOrgRolesUser"
-        },
-        {
-          "target": "com.github.orgs#RevokeOrgRoleTeam"
-        },
-        {
-          "target": "com.github.orgs#RevokeOrgRoleUser"
-        },
-        {
-          "target": "com.github.orgs#SetClusterDeploymentRecords"
-        },
-        {
-          "target": "com.github.orgs#SetImmutableReleasesSettings"
-        },
-        {
-          "target": "com.github.orgs#SetImmutableReleasesSettingsRepositories"
-        },
-        {
-          "target": "com.github.orgs#SetMembershipForUser"
-        },
-        {
-          "target": "com.github.orgs#SetPublicMembershipForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.orgs#UnblockUser"
-        },
-        {
-          "target": "com.github.orgs#Update"
-        },
-        {
-          "target": "com.github.orgs#UpdateIssueField"
-        },
-        {
-          "target": "com.github.orgs#UpdateIssueType"
-        },
-        {
-          "target": "com.github.orgs#UpdateMembershipForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.orgs#UpdatePatAccess"
+          "target": "com.github.orgs#ListPatGrants"
         },
         {
           "target": "com.github.orgs#UpdatePatAccesses"
         },
         {
-          "target": "com.github.orgs#UpdateWebhook"
+          "target": "com.github.orgs#UpdatePatAccess"
         },
         {
-          "target": "com.github.orgs#UpdateWebhookConfigForOrg"
+          "target": "com.github.orgs#ListPatGrantRepositories"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinitions"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinitions"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationDefinition"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationDefinition"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposDeleteOrganizationDefinition"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposGetOrganizationValues"
+        },
+        {
+          "target": "com.github.orgs#CustomPropertiesForReposCreateOrUpdateOrganizationValues"
+        },
+        {
+          "target": "com.github.orgs#ListPublicMembers"
+        },
+        {
+          "target": "com.github.orgs#CheckPublicMembershipForUser"
+        },
+        {
+          "target": "com.github.orgs#SetPublicMembershipForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#RemovePublicMembershipForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#GetOrgRulesetHistory"
+        },
+        {
+          "target": "com.github.orgs#GetOrgRulesetVersion"
+        },
+        {
+          "target": "com.github.orgs#GetImmutableReleasesSettings"
+        },
+        {
+          "target": "com.github.orgs#SetImmutableReleasesSettings"
+        },
+        {
+          "target": "com.github.orgs#GetImmutableReleasesSettingsRepositories"
+        },
+        {
+          "target": "com.github.orgs#SetImmutableReleasesSettingsRepositories"
+        },
+        {
+          "target": "com.github.orgs#EnableSelectedRepositoryImmutableReleasesOrganization"
+        },
+        {
+          "target": "com.github.orgs#DisableSelectedRepositoryImmutableReleasesOrganization"
+        },
+        {
+          "target": "com.github.orgs#ListMembershipsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#GetMembershipForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#UpdateMembershipForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#ListForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.orgs#ListForUser"
         }
       ],
       "traits": {

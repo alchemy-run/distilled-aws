@@ -5432,25 +5432,61 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailability"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#DeleteEvidence"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#DeleteReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#DeleteScopingConfiguration"
+          "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluation"
         },
         {
           "target": "com.azure.appcomplianceautomation#DeleteWebhook"
         },
         {
-          "target": "com.azure.appcomplianceautomation#DownloadEvidence"
+          "target": "com.azure.appcomplianceautomation#UpdateWebhook"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#WebhookCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetWebhook"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListWebhook"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#VerifyReport"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#SyncReportCertRecord"
         },
         {
           "target": "com.azure.appcomplianceautomation#DownloadSnapshot"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetSnapshot"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListSnapshot"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#DeleteScopingConfiguration"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ScopingConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetScopingConfiguration"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListScopingConfiguration"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetReportScopingQuestions"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ReportFix"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#DownloadEvidence"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#DeleteEvidence"
         },
         {
           "target": "com.azure.appcomplianceautomation#EvidenceCreateOrUpdate"
@@ -5459,79 +5495,43 @@
           "target": "com.azure.appcomplianceautomation#GetEvidence"
         },
         {
-          "target": "com.azure.appcomplianceautomation#GetProviderActionCollectionCount"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetProviderActionOverviewStatus"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetReportScopingQuestions"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetScopingConfiguration"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetSnapshot"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#GetWebhook"
-        },
-        {
           "target": "com.azure.appcomplianceautomation#ListEvidenceByReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListOperations"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccounts"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListReport"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListScopingConfiguration"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListSnapshot"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ListWebhook"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsOnboard"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ReportCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#ReportFix"
         },
         {
           "target": "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailability"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ScopingConfigurationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#SyncReportCertRecord"
-        },
-        {
-          "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluation"
+          "target": "com.azure.appcomplianceautomation#DeleteReport"
         },
         {
           "target": "com.azure.appcomplianceautomation#UpdateReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#UpdateWebhook"
+          "target": "com.azure.appcomplianceautomation#ReportCreateOrUpdate"
         },
         {
-          "target": "com.azure.appcomplianceautomation#VerifyReport"
+          "target": "com.azure.appcomplianceautomation#GetReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#WebhookCreateOrUpdate"
+          "target": "com.azure.appcomplianceautomation#ListReport"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListOperations"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ProviderActionsOnboard"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccounts"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetProviderActionOverviewStatus"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#GetProviderActionCollectionCount"
+        },
+        {
+          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailability"
         }
       ],
       "traits": {

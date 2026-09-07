@@ -11725,31 +11725,34 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.environments#CreateEnvironmentsEvaluationContextSuggestion"
+          "target": "com.posthog.environments#GetEnvironmentsActivity"
         },
         {
           "target": "com.posthog.environments#EnvironmentsAddProductIntentPartialUpdate"
         },
         {
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartial"
+        },
+        {
           "target": "com.posthog.environments#EnvironmentsDeleteSecretTokenBackupPartialUpdate"
+        },
+        {
+          "target": "com.posthog.environments#CreateEnvironmentsEvaluationContextSuggestion"
         },
         {
           "target": "com.posthog.environments#EnvironmentsEvaluationContextSuggestionsDestroy"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsGenerateConversationsPublicTokenCreate"
-        },
-        {
-          "target": "com.posthog.environments#EnvironmentsResetTokenPartialUpdate"
-        },
-        {
-          "target": "com.posthog.environments#EnvironmentsRotateSecretTokenPartialUpdate"
-        },
-        {
-          "target": "com.posthog.environments#GetEnvironmentsActivity"
+          "target": "com.posthog.environments#ListEnvironmentsEventIngestionRestrictions"
         },
         {
           "target": "com.posthog.environments#GetEnvironmentsExperimentsConfig"
+        },
+        {
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartial"
+        },
+        {
+          "target": "com.posthog.environments#EnvironmentsGenerateConversationsPublicTokenCreate"
         },
         {
           "target": "com.posthog.environments#GetEnvironmentsIsGeneratingDemoData"
@@ -11758,19 +11761,16 @@
           "target": "com.posthog.environments#GetEnvironmentsLogsConfig"
         },
         {
-          "target": "com.posthog.environments#GetEnvironmentsSettingsAsOf"
-        },
-        {
-          "target": "com.posthog.environments#ListEnvironmentsEventIngestionRestrictions"
-        },
-        {
-          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartial"
-        },
-        {
-          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartial"
-        },
-        {
           "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartial"
+        },
+        {
+          "target": "com.posthog.environments#EnvironmentsResetTokenPartialUpdate"
+        },
+        {
+          "target": "com.posthog.environments#EnvironmentsRotateSecretTokenPartialUpdate"
+        },
+        {
+          "target": "com.posthog.environments#GetEnvironmentsSettingsAsOf"
         }
       ],
       "traits": {

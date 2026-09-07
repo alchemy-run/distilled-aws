@@ -1816,13 +1816,13 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.repos#CreateNewRepository"
-        },
-        {
           "target": "com.huggingface.repos#DuplicateRepository"
         },
         {
           "target": "com.huggingface.repos#DuplicationStatus"
+        },
+        {
+          "target": "com.huggingface.repos#CreateNewRepository"
         },
         {
           "target": "com.huggingface.repos#MoveRepo"

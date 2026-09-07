@@ -35447,472 +35447,682 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cosmos_db#CassandraClustersCreateUpdate"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraClustersDeallocate"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraClustersStatus"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraDataCentersCreateUpdate"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraKeyspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraTable"
-        },
-        {
-          "target": "com.azure.cosmos_db#CreateFleet"
-        },
-        {
-          "target": "com.azure.cosmos_db#CreateFleetspace"
+          "target": "com.azure.cosmos_db#DeleteFleetspaceAccount"
         },
         {
           "target": "com.azure.cosmos_db#CreateFleetspaceAccount"
         },
         {
-          "target": "com.azure.cosmos_db#CreateService"
-        },
-        {
-          "target": "com.azure.cosmos_db#DatabaseAccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cosmos_db#DatabaseAccountsFailoverPriorityChange"
-        },
-        {
-          "target": "com.azure.cosmos_db#DatabaseAccountsGetReadOnlyKeys"
-        },
-        {
-          "target": "com.azure.cosmos_db#DatabaseAccountsListReadOnlyKeys"
-        },
-        {
-          "target": "com.azure.cosmos_db#DatabaseAccountsOfflineRegion"
-        },
-        {
-          "target": "com.azure.cosmos_db#DatabaseAccountsOnlineRegion"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteCassandraCluster"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteCassandraDataCenter"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraKeyspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraTable"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteDatabaseAccount"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteFleet"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteFleetspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteFleetspaceAccount"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinGraph"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoDBCollection"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoDBDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoUserDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteMongoMIResourceMongoMIRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteMongoMIResourceMongoMIRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteNotebookWorkspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteService"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlContainer"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlStoredProcedure"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlUserDefinedFunction"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteTableResourceTable"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteTableResourceTableRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#DeleteTableResourceTableRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraCluster"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraDataCenter"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraKeyspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraKeyspaceThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraTable"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraTableThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetDatabaseAccount"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetFleet"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetFleetspace"
-        },
-        {
           "target": "com.azure.cosmos_db#GetFleetspaceAccount"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceContinuousBackupInformation"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinDatabaseThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinGraph"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinGraphThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetLocation"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceContinuousBackupInformation"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBCollection"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBCollectionThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBDatabaseThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoUserDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoMIResourceMongoMIRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetMongoMIResourceMongoMIRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetNotebookWorkspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetRestorableDatabaseAccountByLocation"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetService"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceClientEncryptionKey"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceContinuousBackupInformation"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlContainer"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlContainerThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlDatabaseThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlStoredProcedure"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetSqlResourceSqlUserDefinedFunction"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetTableResourceContinuousBackupInformation"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetTableResourceTable"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetTableResourceTableRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetTableResourceTableRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#GetTableResourceTableThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinGraph"
-        },
-        {
-          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#InvokeCassandraClusterCommand"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraClusterBySubscription"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraDataCenters"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraKeyspaces"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraRoleAssignments"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraRoleDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraTables"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionMetricDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionPartitionMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionPartitionRegionMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionPartitionUsages"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionRegionMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListCollectionUsages"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountConnectionStrings"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountKeys"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountMetricDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountRegionMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccounts"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseAccountUsages"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseMetricDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListDatabaseUsages"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListFleet"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListFleetByResourceGroup"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListFleetspace"
         },
         {
           "target": "com.azure.cosmos_db#ListFleetspaceAccount"
         },
         {
-          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinDatabases"
+          "target": "com.azure.cosmos_db#DeleteFleetspace"
         },
         {
-          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinGraphs"
+          "target": "com.azure.cosmos_db#UpdateFleetspace"
         },
         {
-          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinRoleAssignments"
+          "target": "com.azure.cosmos_db#CreateFleetspace"
         },
         {
-          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinRoleDefinitions"
+          "target": "com.azure.cosmos_db#GetFleetspace"
         },
         {
-          "target": "com.azure.cosmos_db#ListLocations"
+          "target": "com.azure.cosmos_db#ListFleetspace"
         },
         {
-          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoDBCollections"
+          "target": "com.azure.cosmos_db#DeleteFleet"
         },
         {
-          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoDBDatabases"
+          "target": "com.azure.cosmos_db#UpdateFleet"
         },
         {
-          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoRoleDefinitions"
+          "target": "com.azure.cosmos_db#CreateFleet"
         },
         {
-          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoUserDefinitions"
+          "target": "com.azure.cosmos_db#GetFleet"
         },
         {
-          "target": "com.azure.cosmos_db#ListMongoMIResourceMongoMIRoleAssignments"
+          "target": "com.azure.cosmos_db#ListFleetByResourceGroup"
         },
         {
-          "target": "com.azure.cosmos_db#ListMongoMIResourceMongoMIRoleDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListNotebookWorkspaceByDatabaseAccount"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListNotebookWorkspaceConnectionInfo"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListOperations"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListPartitionKeyRangeIdMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListPartitionKeyRangeIdRegionMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListPercentileMetrics"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListPercentileSourceTargetMetrics"
+          "target": "com.azure.cosmos_db#ListDatabaseAccountUsages"
         },
         {
           "target": "com.azure.cosmos_db#ListPercentileTargetMetrics"
         },
         {
-          "target": "com.azure.cosmos_db#ListPrivateEndpointConnectionByDatabaseAccount"
+          "target": "com.azure.cosmos_db#MigrateTableResourceTableToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateTableResourceTableToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateTableResourceTableThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetTableResourceTableThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetTableResourceContinuousBackupInformation"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteTableResourceTable"
+        },
+        {
+          "target": "com.azure.cosmos_db#TableResourcesCreateUpdateTable"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetTableResourceTable"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListTableResourceTables"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteTableResourceTableRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#TableResourcesCreateUpdateTableRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetTableResourceTableRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListTableResourceTableRoleDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteTableResourceTableRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#TableResourcesCreateUpdateTableRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetTableResourceTableRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListTableResourceTableRoleAssignments"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlRoleDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlRoleAssignments"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlDatabaseToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlDatabaseToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateSqlResourceSqlDatabaseThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlDatabaseThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlUserDefinedFunction"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlUserDefinedFunction"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlUserDefinedFunction"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlUserDefinedFunctions"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesDeleteSqlTrigger"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlTrigger"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesGetSqlTrigger"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlTriggers"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlContainerToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlContainerToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateSqlResourceSqlContainerThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlContainerThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlStoredProcedure"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlStoredProcedure"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlStoredProcedure"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlStoredProcedures"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceContinuousBackupInformation"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlContainer"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlContainer"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlContainer"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlContainers"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateClientEncryptionKey"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceClientEncryptionKey"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceClientEncryptionKeys"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteSqlResourceSqlDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetSqlResourceSqlDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListSqlResourceSqlDatabases"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListPercentileSourceTargetMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteService"
+        },
+        {
+          "target": "com.azure.cosmos_db#CreateService"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetService"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListService"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseAccountRegionMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionPartitionRegionMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListPartitionKeyRangeIdRegionMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionRegionMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#RegenerateDatabaseAccountKey"
+        },
+        {
+          "target": "com.azure.cosmos_db#DatabaseAccountsListReadOnlyKeys"
+        },
+        {
+          "target": "com.azure.cosmos_db#DatabaseAccountsGetReadOnlyKeys"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetPrivateLinkResource"
         },
         {
           "target": "com.azure.cosmos_db#ListPrivateLinkResourceByDatabaseAccount"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableDatabaseAccountByLocation"
+          "target": "com.azure.cosmos_db#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.cosmos_db#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListPrivateEndpointConnectionByDatabaseAccount"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListPercentileMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#DatabaseAccountsOnlineRegion"
+        },
+        {
+          "target": "com.azure.cosmos_db#DatabaseAccountsOfflineRegion"
+        },
+        {
+          "target": "com.azure.cosmos_db#StartNotebookWorkspace"
+        },
+        {
+          "target": "com.azure.cosmos_db#RegenerateNotebookWorkspaceAuthToken"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListNotebookWorkspaceConnectionInfo"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteNotebookWorkspace"
+        },
+        {
+          "target": "com.azure.cosmos_db#NotebookWorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetNotebookWorkspace"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListNotebookWorkspaceByDatabaseAccount"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoUserDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoUserDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoUserDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoUserDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoRoleDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBDatabaseToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBDatabaseToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateMongoDBResourceMongoDBDatabaseThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBDatabaseThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBCollectionToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBCollectionToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateMongoDBResourceMongoDBCollectionThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBCollectionThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceContinuousBackupInformation"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoDBCollection"
+        },
+        {
+          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoDBCollection"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBCollection"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoDBCollections"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteMongoDBResourceMongoDBDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoDBDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoDBResourceMongoDBDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListMongoDBResourceMongoDBDatabases"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteMongoMIResourceMongoMIRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#MongoMIResourcesCreateUpdateMongoMIRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoMIResourceMongoMIRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListMongoMIResourceMongoMIRoleDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteMongoMIResourceMongoMIRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#MongoMIResourcesCreateUpdateMongoMIRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetMongoMIResourceMongoMIRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListMongoMIResourceMongoMIRoleAssignments"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseAccountMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseAccountMetricDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseAccountKeys"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseAccountConnectionStrings"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinRoleDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinRoleAssignments"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinDatabaseToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinDatabaseToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateGremlinResourceGremlinDatabaseThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinDatabaseThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinGraphToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinGraphToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateGremlinResourceGremlinGraphThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinGraphThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceContinuousBackupInformation"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinGraph"
+        },
+        {
+          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinGraph"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinGraph"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinGraphs"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteGremlinResourceGremlinDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#GremlinResourcesCreateUpdateGremlinDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetGremlinResourceGremlinDatabase"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListGremlinResourceGremlinDatabases"
+        },
+        {
+          "target": "com.azure.cosmos_db#DatabaseAccountsFailoverPriorityChange"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseUsages"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseMetricDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionUsages"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionPartitionUsages"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionPartitionMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListPartitionKeyRangeIdMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionMetrics"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCollectionMetricDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraRoleDefinition"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraRoleDefinitions"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraRoleAssignment"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraRoleAssignments"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraKeyspaceToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraKeyspaceToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateCassandraResourceCassandraKeyspaceThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraKeyspaceThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraTableToManualThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraTableToAutoscale"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateCassandraResourceCassandraTableThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraTableThroughput"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraTable"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraTable"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraTable"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraTables"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteCassandraResourceCassandraKeyspace"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraResourcesCreateUpdateCassandraKeyspace"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraResourceCassandraKeyspace"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCassandraResourceCassandraKeyspaces"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteDatabaseAccount"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateDatabaseAccount"
+        },
+        {
+          "target": "com.azure.cosmos_db#DatabaseAccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetDatabaseAccount"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListDatabaseAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraClustersStatus"
+        },
+        {
+          "target": "com.azure.cosmos_db#StartCassandraCluster"
+        },
+        {
+          "target": "com.azure.cosmos_db#InvokeCassandraClusterCommand"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraClustersDeallocate"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteCassandraDataCenter"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateCassandraDataCenter"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraDataCentersCreateUpdate"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraDataCenter"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCassandraDataCenters"
+        },
+        {
+          "target": "com.azure.cosmos_db#DeleteCassandraCluster"
+        },
+        {
+          "target": "com.azure.cosmos_db#UpdateCassandraCluster"
+        },
+        {
+          "target": "com.azure.cosmos_db#CassandraClustersCreateUpdate"
+        },
+        {
+          "target": "com.azure.cosmos_db#GetCassandraCluster"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListCassandraClusterByResourceGroup"
         },
         {
           "target": "com.azure.cosmos_db#ListRestorableDatabaseAccounts"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableTables"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableTableResources"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableSqlResources"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableSqlDatabases"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableSqlContainers"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableMongodbResources"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableMongodbDatabases"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableMongodbCollections"
+        },
+        {
+          "target": "com.azure.cosmos_db#ListRestorableGremlinResources"
         },
         {
           "target": "com.azure.cosmos_db#ListRestorableGremlinDatabases"
@@ -35921,238 +36131,28 @@
           "target": "com.azure.cosmos_db#ListRestorableGremlinGraphs"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableGremlinResources"
+          "target": "com.azure.cosmos_db#GetRestorableDatabaseAccountByLocation"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableMongodbCollections"
+          "target": "com.azure.cosmos_db#ListRestorableDatabaseAccountByLocation"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableMongodbDatabases"
+          "target": "com.azure.cosmos_db#GetLocation"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableMongodbResources"
+          "target": "com.azure.cosmos_db#ListLocations"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableSqlContainers"
+          "target": "com.azure.cosmos_db#ListFleet"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableSqlDatabases"
+          "target": "com.azure.cosmos_db#ListDatabaseAccounts"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableSqlResources"
+          "target": "com.azure.cosmos_db#ListCassandraClusterBySubscription"
         },
         {
-          "target": "com.azure.cosmos_db#ListRestorableTableResources"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListRestorableTables"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListService"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceClientEncryptionKeys"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlContainers"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlDatabases"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlRoleAssignments"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlRoleDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlStoredProcedures"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlTriggers"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListSqlResourceSqlUserDefinedFunctions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListTableResourceTableRoleAssignments"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListTableResourceTableRoleDefinitions"
-        },
-        {
-          "target": "com.azure.cosmos_db#ListTableResourceTables"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraKeyspaceToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraKeyspaceToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraTableToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateCassandraResourceCassandraTableToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinDatabaseToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinDatabaseToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinGraphToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateGremlinResourceGremlinGraphToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBCollectionToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBCollectionToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBDatabaseToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateMongoDBResourceMongoDBDatabaseToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlContainerToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlContainerToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlDatabaseToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateSqlResourceSqlDatabaseToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateTableResourceTableToAutoscale"
-        },
-        {
-          "target": "com.azure.cosmos_db#MigrateTableResourceTableToManualThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoDBCollection"
-        },
-        {
-          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoDBDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#MongoDBResourcesCreateUpdateMongoUserDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#MongoMIResourcesCreateUpdateMongoMIRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#MongoMIResourcesCreateUpdateMongoMIRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#NotebookWorkspacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cosmos_db#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cosmos_db#RegenerateDatabaseAccountKey"
-        },
-        {
-          "target": "com.azure.cosmos_db#RegenerateNotebookWorkspaceAuthToken"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateClientEncryptionKey"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlContainer"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlDatabase"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlStoredProcedure"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlTrigger"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesCreateUpdateSqlUserDefinedFunction"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesDeleteSqlTrigger"
-        },
-        {
-          "target": "com.azure.cosmos_db#SqlResourcesGetSqlTrigger"
-        },
-        {
-          "target": "com.azure.cosmos_db#StartCassandraCluster"
-        },
-        {
-          "target": "com.azure.cosmos_db#StartNotebookWorkspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#TableResourcesCreateUpdateTable"
-        },
-        {
-          "target": "com.azure.cosmos_db#TableResourcesCreateUpdateTableRoleAssignment"
-        },
-        {
-          "target": "com.azure.cosmos_db#TableResourcesCreateUpdateTableRoleDefinition"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateCassandraCluster"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateCassandraDataCenter"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateCassandraResourceCassandraKeyspaceThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateCassandraResourceCassandraTableThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateDatabaseAccount"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateFleet"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateFleetspace"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateGremlinResourceGremlinDatabaseThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateGremlinResourceGremlinGraphThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateMongoDBResourceMongoDBCollectionThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateMongoDBResourceMongoDBDatabaseThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateSqlResourceSqlContainerThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateSqlResourceSqlDatabaseThroughput"
-        },
-        {
-          "target": "com.azure.cosmos_db#UpdateTableResourceTableThroughput"
+          "target": "com.azure.cosmos_db#ListOperations"
         }
       ],
       "traits": {

@@ -10367,160 +10367,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dataprotection#BackupInstancesAdhocBackup"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObject"
         },
         {
-          "target": "com.azure.dataprotection#BackupInstancesCreateOrUpdate"
+          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectionPolicyRequestsObjects"
         },
         {
-          "target": "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestore"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectedItemRequestsObject"
         },
         {
-          "target": "com.azure.dataprotection#BackupInstancesTriggerRestore"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestore"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesValidateForModifyBackup"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupInstancesValidateForRestore"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dataprotection#BackupVaultsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dataprotection#CheckBackupVaultNameAvailability"
-        },
-        {
-          "target": "com.azure.dataprotection#CheckDataProtectionFeatureSupport"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteBackupInstance"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteBackupPolicy"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteBackupVault"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteDppResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.dataprotection#DeleteResourceGuard"
-        },
-        {
-          "target": "com.azure.dataprotection#DppResourceGuardProxyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dataprotection#DppResourceGuardProxyUnlockDelete"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupInstance"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupInstanceBackupInstanceOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupPolicy"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupVault"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupVaultInResourceGroup"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupVaultInSubscription"
-        },
-        {
-          "target": "com.azure.dataprotection#GetBackupVaultOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#GetDeletedBackupInstance"
-        },
-        {
-          "target": "com.azure.dataprotection#GetDeletedBackupVault"
-        },
-        {
-          "target": "com.azure.dataprotection#GetDppResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.dataprotection#GetExportJobsOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#GetFetchCrossRegionRestoreJob"
-        },
-        {
-          "target": "com.azure.dataprotection#GetJob"
-        },
-        {
-          "target": "com.azure.dataprotection#GetOperationResult"
-        },
-        {
-          "target": "com.azure.dataprotection#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.dataprotection#GetOperationStatusBackupVaultContext"
-        },
-        {
-          "target": "com.azure.dataprotection#GetOperationStatusResourceGroupContext"
-        },
-        {
-          "target": "com.azure.dataprotection#GetRecoveryPoint"
-        },
-        {
-          "target": "com.azure.dataprotection#GetResourceGuard"
-        },
-        {
-          "target": "com.azure.dataprotection#GetResourceGuardBackupSecurityPINRequestsObjects"
+          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectedItemRequestsObjects"
         },
         {
           "target": "com.azure.dataprotection#GetResourceGuardDefaultBackupSecurityPINRequestsObject"
         },
         {
-          "target": "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroup"
+          "target": "com.azure.dataprotection#GetResourceGuardBackupSecurityPINRequestsObjects"
         },
         {
-          "target": "com.azure.dataprotection#GetResourceGuardResourcesInSubscription"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDisableSoftDeleteRequestsObject"
         },
         {
-          "target": "com.azure.dataprotection#ListBackupInstances"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDisableSoftDeleteRequestsObjects"
         },
         {
-          "target": "com.azure.dataprotection#ListBackupInstancesExtensionRouting"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteResourceGuardProxyRequestsObject"
         },
         {
-          "target": "com.azure.dataprotection#ListBackupPolicies"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteResourceGuardProxyRequestsObjects"
         },
         {
-          "target": "com.azure.dataprotection#ListDataProtectionOperations"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteProtectedItemRequestsObject"
         },
         {
-          "target": "com.azure.dataprotection#ListDeletedBackupInstances"
+          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteProtectedItemRequestsObjects"
         },
         {
-          "target": "com.azure.dataprotection#ListDeletedBackupVaultByLocation"
-        },
-        {
-          "target": "com.azure.dataprotection#ListDppResourceGuardProxy"
-        },
-        {
-          "target": "com.azure.dataprotection#ListFetchCrossRegionRestoreJobs"
-        },
-        {
-          "target": "com.azure.dataprotection#ListFetchSecondaryRecoveryPoints"
-        },
-        {
-          "target": "com.azure.dataprotection#ListJobs"
-        },
-        {
-          "target": "com.azure.dataprotection#ListRecoveryPoints"
+          "target": "com.azure.dataprotection#DeleteResourceGuard"
         },
         {
           "target": "com.azure.dataprotection#PatchResourceGuard"
@@ -10529,55 +10412,40 @@
           "target": "com.azure.dataprotection#PutResourceGuard"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteProtectedItemRequestsObject"
+          "target": "com.azure.dataprotection#GetResourceGuard"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDeleteResourceGuardProxyRequestsObject"
+          "target": "com.azure.dataprotection#GetResourceGuardResourcesInResourceGroup"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultDisableSoftDeleteRequestsObject"
+          "target": "com.azure.dataprotection#GetOperationStatusResourceGroupContext"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectedItemRequestsObject"
+          "target": "com.azure.dataprotection#BackupInstancesValidateCrossRegionRestore"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDefaultUpdateProtectionPolicyRequestsObject"
+          "target": "com.azure.dataprotection#ListFetchSecondaryRecoveryPoints"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteProtectedItemRequestsObjects"
+          "target": "com.azure.dataprotection#ListFetchCrossRegionRestoreJobs"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDeleteResourceGuardProxyRequestsObjects"
+          "target": "com.azure.dataprotection#GetFetchCrossRegionRestoreJob"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetDisableSoftDeleteRequestsObjects"
+          "target": "com.azure.dataprotection#BackupInstancesTriggerCrossRegionRestore"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectedItemRequestsObjects"
+          "target": "com.azure.dataprotection#CheckBackupVaultNameAvailability"
         },
         {
-          "target": "com.azure.dataprotection#ResourceGuardsGetUpdateProtectionPolicyRequestsObjects"
+          "target": "com.azure.dataprotection#ValidateBackupInstanceForBackup"
         },
         {
-          "target": "com.azure.dataprotection#RestorableTimeRangesFind"
+          "target": "com.azure.dataprotection#GetOperationStatusBackupVaultContext"
         },
         {
-          "target": "com.azure.dataprotection#ResumeBackupInstanceBackups"
-        },
-        {
-          "target": "com.azure.dataprotection#ResumeBackupInstanceProtection"
-        },
-        {
-          "target": "com.azure.dataprotection#StopBackupInstanceProtection"
-        },
-        {
-          "target": "com.azure.dataprotection#SuspendBackupInstanceBackups"
-        },
-        {
-          "target": "com.azure.dataprotection#SyncBackupInstanceBackupInstance"
-        },
-        {
-          "target": "com.azure.dataprotection#TriggerBackupInstanceRehydrate"
+          "target": "com.azure.dataprotection#GetBackupVaultOperationResult"
         },
         {
           "target": "com.azure.dataprotection#TriggerExportJob"
@@ -10586,10 +10454,142 @@
           "target": "com.azure.dataprotection#UndeleteDeletedBackupInstance"
         },
         {
+          "target": "com.azure.dataprotection#GetDeletedBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#ListDeletedBackupInstances"
+        },
+        {
+          "target": "com.azure.dataprotection#DppResourceGuardProxyUnlockDelete"
+        },
+        {
+          "target": "com.azure.dataprotection#DeleteDppResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.dataprotection#DppResourceGuardProxyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#GetDppResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.dataprotection#ListDppResourceGuardProxy"
+        },
+        {
+          "target": "com.azure.dataprotection#DeleteBackupPolicy"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupPolicy"
+        },
+        {
+          "target": "com.azure.dataprotection#ListBackupPolicies"
+        },
+        {
+          "target": "com.azure.dataprotection#GetExportJobsOperationResult"
+        },
+        {
+          "target": "com.azure.dataprotection#GetJob"
+        },
+        {
+          "target": "com.azure.dataprotection#ListJobs"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesValidateForRestore"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesValidateForModifyBackup"
+        },
+        {
+          "target": "com.azure.dataprotection#SyncBackupInstanceBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#SuspendBackupInstanceBackups"
+        },
+        {
+          "target": "com.azure.dataprotection#StopBackupInstanceProtection"
+        },
+        {
+          "target": "com.azure.dataprotection#ResumeBackupInstanceProtection"
+        },
+        {
+          "target": "com.azure.dataprotection#ResumeBackupInstanceBackups"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesTriggerRestore"
+        },
+        {
+          "target": "com.azure.dataprotection#TriggerBackupInstanceRehydrate"
+        },
+        {
+          "target": "com.azure.dataprotection#GetRecoveryPoint"
+        },
+        {
+          "target": "com.azure.dataprotection#ListRecoveryPoints"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupInstanceBackupInstanceOperationResult"
+        },
+        {
+          "target": "com.azure.dataprotection#RestorableTimeRangesFind"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesAdhocBackup"
+        },
+        {
+          "target": "com.azure.dataprotection#DeleteBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#BackupInstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupInstance"
+        },
+        {
+          "target": "com.azure.dataprotection#ListBackupInstances"
+        },
+        {
+          "target": "com.azure.dataprotection#DeleteBackupVault"
+        },
+        {
           "target": "com.azure.dataprotection#UpdateBackupVault"
         },
         {
-          "target": "com.azure.dataprotection#ValidateBackupInstanceForBackup"
+          "target": "com.azure.dataprotection#BackupVaultsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupVault"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupVaultInResourceGroup"
+        },
+        {
+          "target": "com.azure.dataprotection#GetResourceGuardResourcesInSubscription"
+        },
+        {
+          "target": "com.azure.dataprotection#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.dataprotection#GetOperationResult"
+        },
+        {
+          "target": "com.azure.dataprotection#GetDeletedBackupVault"
+        },
+        {
+          "target": "com.azure.dataprotection#ListDeletedBackupVaultByLocation"
+        },
+        {
+          "target": "com.azure.dataprotection#CheckDataProtectionFeatureSupport"
+        },
+        {
+          "target": "com.azure.dataprotection#GetBackupVaultInSubscription"
+        },
+        {
+          "target": "com.azure.dataprotection#ListDataProtectionOperations"
+        },
+        {
+          "target": "com.azure.dataprotection#ListBackupInstancesExtensionRouting"
         }
       ],
       "traits": {

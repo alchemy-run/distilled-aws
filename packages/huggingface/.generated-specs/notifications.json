@@ -1365,13 +1365,13 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.notifications#ChangeReadStatus"
+          "target": "com.huggingface.notifications#ListNotifications"
         },
         {
           "target": "com.huggingface.notifications#DeleteNotifications"
         },
         {
-          "target": "com.huggingface.notifications#ListNotifications"
+          "target": "com.huggingface.notifications#ChangeReadStatus"
         },
         {
           "target": "com.huggingface.notifications#UpdateNotificationSettings"

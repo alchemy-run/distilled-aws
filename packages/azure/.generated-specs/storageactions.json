@@ -2209,19 +2209,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storageactions#CreateStorageTask"
+          "target": "com.azure.storageactions#ListStorageTaskAssignment"
+        },
+        {
+          "target": "com.azure.storageactions#StopStorageTaskAllAssignments"
+        },
+        {
+          "target": "com.azure.storageactions#ListStorageTasksReport"
         },
         {
           "target": "com.azure.storageactions#DeleteStorageTask"
         },
         {
+          "target": "com.azure.storageactions#UpdateStorageTask"
+        },
+        {
+          "target": "com.azure.storageactions#CreateStorageTask"
+        },
+        {
           "target": "com.azure.storageactions#GetStorageTask"
-        },
-        {
-          "target": "com.azure.storageactions#ListOperations"
-        },
-        {
-          "target": "com.azure.storageactions#ListStorageTaskAssignment"
         },
         {
           "target": "com.azure.storageactions#ListStorageTaskByResourceGroup"
@@ -2230,16 +2236,10 @@
           "target": "com.azure.storageactions#ListStorageTaskBySubscription"
         },
         {
-          "target": "com.azure.storageactions#ListStorageTasksReport"
-        },
-        {
           "target": "com.azure.storageactions#PreviewStorageTaskActions"
         },
         {
-          "target": "com.azure.storageactions#StopStorageTaskAllAssignments"
-        },
-        {
-          "target": "com.azure.storageactions#UpdateStorageTask"
+          "target": "com.azure.storageactions#ListOperations"
         }
       ],
       "traits": {

@@ -14413,124 +14413,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.signals#CreateSignalsReportArtefact"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsReportPrReviewComment"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsReportPrReviewCommentReaction"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsReportsFeedback"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsReportsRefund"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsReportsState"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsReportsViewed"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsScout"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsScoutChatTask"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsScoutConfig"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsScoutNote"
-        },
-        {
-          "target": "com.posthog.signals#CreateSignalsSourceConfig"
-        },
-        {
-          "target": "com.posthog.signals#DismissSignalsScoutSuggestion"
-        },
-        {
-          "target": "com.posthog.signals#EditSignalsScoutReport"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsReport"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsReportArtefact"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsReportsRefundSummary"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsReportsSignal"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsScoutMetadata"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsScoutProjectProfile"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsScoutRun"
-        },
-        {
-          "target": "com.posthog.signals#GetSignalsSourceConfig"
-        },
-        {
           "target": "com.posthog.signals#ListSignalsProcessing"
         },
         {
-          "target": "com.posthog.signals#ListSignalsReportArtefacts"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsReports"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsScoutConfig"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsScoutMembers"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsScoutNotes"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsScoutRuns"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsScoutSuggestions"
-        },
-        {
-          "target": "com.posthog.signals#ListSignalsSourceConfigs"
+          "target": "com.posthog.signals#UpdateSignalsProcessingPause"
         },
         {
           "target": "com.posthog.signals#PauseSignalsProcessingDestroy"
         },
         {
-          "target": "com.posthog.signals#RefreshSignalsScoutSuggestion"
+          "target": "com.posthog.signals#ListSignalsReports"
         },
         {
-          "target": "com.posthog.signals#ReviewSignalsReportPrCommentDestroy"
+          "target": "com.posthog.signals#GetSignalsReport"
         },
         {
-          "target": "com.posthog.signals#ReviewSignalsReportPrCommentReactionDestroy"
+          "target": "com.posthog.signals#UpdateSignalsReportsPartial"
         },
         {
-          "target": "com.posthog.signals#RunSignalsScoutConfig"
-        },
-        {
-          "target": "com.posthog.signals#SearchSignalsScoutScratchpad"
-        },
-        {
-          "target": "com.posthog.signals#SignalSignalsScoutEmit"
-        },
-        {
-          "target": "com.posthog.signals#SignalsReportArtefactsDestroy"
-        },
-        {
-          "target": "com.posthog.signals#SignalsReportArtefactsDiff"
+          "target": "com.posthog.signals#CreateSignalsReportsFeedback"
         },
         {
           "target": "com.posthog.signals#SignalsReportPrChecks"
@@ -14539,73 +14440,172 @@
           "target": "com.posthog.signals#SignalsReportPrComments"
         },
         {
-          "target": "com.posthog.signals#SignalsReportsBulkStateCreate"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutConfigDestroy"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutEmitReport"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutNotesDestroy"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRecordOutput"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsEmissionReports"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsEmissionReportsBatch"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsEmissions"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsEmissionsBatch"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsFindingsSummary"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsRecentEmissions"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutRunsRecentPerScout"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutScratchpadForget"
-        },
-        {
-          "target": "com.posthog.signals#SignalsScoutScratchpadRemember"
-        },
-        {
-          "target": "com.posthog.signals#SignalsSourceConfigsDestroy"
-        },
-        {
-          "target": "com.posthog.signals#SyncSignalsScoutConfig"
-        },
-        {
-          "target": "com.posthog.signals#UpdateSignalsProcessingPause"
-        },
-        {
-          "target": "com.posthog.signals#UpdateSignalsReportArtefactsPartial"
+          "target": "com.posthog.signals#CreateSignalsReportPrReviewComment"
         },
         {
           "target": "com.posthog.signals#UpdateSignalsReportPrReviewComment"
         },
         {
-          "target": "com.posthog.signals#UpdateSignalsReportsPartial"
+          "target": "com.posthog.signals#ReviewSignalsReportPrCommentDestroy"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsReportPrReviewCommentReaction"
+        },
+        {
+          "target": "com.posthog.signals#ReviewSignalsReportPrCommentReactionDestroy"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsReportsRefund"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsReportsSignal"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsReportsState"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsReportsViewed"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsReportArtefacts"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsReportArtefact"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsReportArtefact"
+        },
+        {
+          "target": "com.posthog.signals#UpdateSignalsReportArtefactsPartial"
+        },
+        {
+          "target": "com.posthog.signals#SignalsReportArtefactsDestroy"
+        },
+        {
+          "target": "com.posthog.signals#SignalsReportArtefactsDiff"
+        },
+        {
+          "target": "com.posthog.signals#SignalsReportsBulkStateCreate"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsReportsRefundSummary"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsScout"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsScoutChatTask"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsScoutConfig"
         },
         {
           "target": "com.posthog.signals#UpdateSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutConfigDestroy"
+        },
+        {
+          "target": "com.posthog.signals#RunSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#SyncSignalsScoutConfig"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutMembers"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsScoutMetadata"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutNotes"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsScoutNote"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutNotesDestroy"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsScoutProjectProfile"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutRuns"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsScoutRun"
+        },
+        {
+          "target": "com.posthog.signals#EditSignalsScoutReport"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsEmissions"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsEmissionReports"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutEmitReport"
+        },
+        {
+          "target": "com.posthog.signals#SignalSignalsScoutEmit"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRecordOutput"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsEmissionsBatch"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsRecentEmissions"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsEmissionReportsBatch"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsFindingsSummary"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutRunsRecentPerScout"
+        },
+        {
+          "target": "com.posthog.signals#SearchSignalsScoutScratchpad"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutScratchpadRemember"
+        },
+        {
+          "target": "com.posthog.signals#SignalsScoutScratchpadForget"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsScoutSuggestions"
+        },
+        {
+          "target": "com.posthog.signals#DismissSignalsScoutSuggestion"
+        },
+        {
+          "target": "com.posthog.signals#RefreshSignalsScoutSuggestion"
+        },
+        {
+          "target": "com.posthog.signals#ListSignalsSourceConfigs"
+        },
+        {
+          "target": "com.posthog.signals#CreateSignalsSourceConfig"
+        },
+        {
+          "target": "com.posthog.signals#GetSignalsSourceConfig"
         },
         {
           "target": "com.posthog.signals#UpdateSignalsSourceConfig"
         },
         {
           "target": "com.posthog.signals#UpdateSignalsSourceConfigsPartial"
+        },
+        {
+          "target": "com.posthog.signals#SignalsSourceConfigsDestroy"
         }
       ],
       "traits": {

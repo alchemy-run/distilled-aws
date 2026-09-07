@@ -9401,208 +9401,208 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.eventhub#ApplicationGroupCreateOrUpdateApplicationGroup"
-        },
-        {
-          "target": "com.azure.eventhub#CheckDisasterRecoveryConfigNameAvailability"
-        },
-        {
-          "target": "com.azure.eventhub#CheckNamespaceNameAvailability"
-        },
-        {
-          "target": "com.azure.eventhub#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#ConsumerGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteApplicationGroup"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteCluster"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteConsumerGroup"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteDisasterRecoveryConfig"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteEventHub"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteEventHubAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#DeleteNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#DeletePrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.eventhub#DeleteSchemaRegistry"
-        },
-        {
-          "target": "com.azure.eventhub#DisasterRecoveryConfigsBreakPairing"
-        },
-        {
-          "target": "com.azure.eventhub#DisasterRecoveryConfigsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#DisasterRecoveryConfigsFailOver"
-        },
-        {
-          "target": "com.azure.eventhub#EventHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#EventHubsCreateOrUpdateAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#GetApplicationGroup"
-        },
-        {
-          "target": "com.azure.eventhub#GetCluster"
-        },
-        {
-          "target": "com.azure.eventhub#GetConfiguration"
-        },
-        {
-          "target": "com.azure.eventhub#GetConsumerGroup"
-        },
-        {
-          "target": "com.azure.eventhub#GetDisasterRecoveryConfig"
-        },
-        {
-          "target": "com.azure.eventhub#GetDisasterRecoveryConfigAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#GetEventHub"
-        },
-        {
-          "target": "com.azure.eventhub#GetEventHubAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#GetNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#GetNamespaceAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#GetNamespaceNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.eventhub#GetNetworkSecurityPerimeterConfigurationResourceAssociationName"
-        },
-        {
-          "target": "com.azure.eventhub#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventhub#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.eventhub#GetSchemaRegistry"
-        },
-        {
-          "target": "com.azure.eventhub#ListApplicationGroupByNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#ListClusterAvailableClusterRegion"
-        },
-        {
-          "target": "com.azure.eventhub#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventhub#ListClusterBySubscription"
-        },
-        {
-          "target": "com.azure.eventhub#ListClusterNamespaces"
-        },
-        {
-          "target": "com.azure.eventhub#ListConsumerGroupByEventHub"
-        },
-        {
-          "target": "com.azure.eventhub#ListDisasterRecoveryConfigAuthorizationRules"
-        },
-        {
-          "target": "com.azure.eventhub#ListDisasterRecoveryConfigKeys"
-        },
-        {
-          "target": "com.azure.eventhub#ListDisasterRecoveryConfigs"
-        },
-        {
-          "target": "com.azure.eventhub#ListEventHubAuthorizationRules"
-        },
-        {
-          "target": "com.azure.eventhub#ListEventHubByNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#ListEventHubKeys"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceAuthorizationRules"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceKeys"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaceNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.eventhub#ListNamespaces"
-        },
-        {
-          "target": "com.azure.eventhub#ListNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.eventhub#ListOperations"
-        },
-        {
-          "target": "com.azure.eventhub#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.eventhub#ListSchemaRegistryByNamespace"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesCreateOrUpdateAuthorizationRule"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesCreateOrUpdateNetworkRuleSet"
-        },
-        {
-          "target": "com.azure.eventhub#NamespacesFailover"
-        },
-        {
-          "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#PatchConfiguration"
-        },
-        {
-          "target": "com.azure.eventhub#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventhub#RegenerateEventHubKeys"
-        },
-        {
-          "target": "com.azure.eventhub#RegenerateNamespaceKeys"
         },
         {
           "target": "com.azure.eventhub#SchemaRegistryCreateOrUpdate"
         },
         {
-          "target": "com.azure.eventhub#UpdateCluster"
+          "target": "com.azure.eventhub#GetSchemaRegistry"
+        },
+        {
+          "target": "com.azure.eventhub#ListSchemaRegistryByNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.eventhub#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventhub#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventhub#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.eventhub#NetworkSecurityPerimeterConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetNetworkSecurityPerimeterConfigurationResourceAssociationName"
+        },
+        {
+          "target": "com.azure.eventhub#ListNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesCreateOrUpdateNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.eventhub#GetNamespaceNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceNetworkRuleSet"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesFailover"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteConsumerGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ConsumerGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetConsumerGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ListConsumerGroupByEventHub"
+        },
+        {
+          "target": "com.azure.eventhub#RegenerateEventHubKeys"
+        },
+        {
+          "target": "com.azure.eventhub#ListEventHubKeys"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteEventHubAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#EventHubsCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#GetEventHubAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#ListEventHubAuthorizationRules"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteEventHub"
+        },
+        {
+          "target": "com.azure.eventhub#EventHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetEventHub"
+        },
+        {
+          "target": "com.azure.eventhub#ListEventHubByNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#CheckDisasterRecoveryConfigNameAvailability"
+        },
+        {
+          "target": "com.azure.eventhub#DisasterRecoveryConfigsFailOver"
+        },
+        {
+          "target": "com.azure.eventhub#DisasterRecoveryConfigsBreakPairing"
+        },
+        {
+          "target": "com.azure.eventhub#ListDisasterRecoveryConfigKeys"
+        },
+        {
+          "target": "com.azure.eventhub#GetDisasterRecoveryConfigAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#ListDisasterRecoveryConfigAuthorizationRules"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteDisasterRecoveryConfig"
+        },
+        {
+          "target": "com.azure.eventhub#DisasterRecoveryConfigsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetDisasterRecoveryConfig"
+        },
+        {
+          "target": "com.azure.eventhub#ListDisasterRecoveryConfigs"
+        },
+        {
+          "target": "com.azure.eventhub#RegenerateNamespaceKeys"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceKeys"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesCreateOrUpdateAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#GetNamespaceAuthorizationRule"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceAuthorizationRules"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteApplicationGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ApplicationGroupCreateOrUpdateApplicationGroup"
+        },
+        {
+          "target": "com.azure.eventhub#GetApplicationGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ListApplicationGroupByNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteNamespace"
         },
         {
           "target": "com.azure.eventhub#UpdateNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#NamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetNamespace"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventhub#PatchConfiguration"
+        },
+        {
+          "target": "com.azure.eventhub#GetConfiguration"
+        },
+        {
+          "target": "com.azure.eventhub#ListClusterNamespaces"
+        },
+        {
+          "target": "com.azure.eventhub#DeleteCluster"
+        },
+        {
+          "target": "com.azure.eventhub#UpdateCluster"
+        },
+        {
+          "target": "com.azure.eventhub#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventhub#GetCluster"
+        },
+        {
+          "target": "com.azure.eventhub#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventhub#ListNamespaces"
+        },
+        {
+          "target": "com.azure.eventhub#ListClusterBySubscription"
+        },
+        {
+          "target": "com.azure.eventhub#CheckNamespaceNameAvailability"
+        },
+        {
+          "target": "com.azure.eventhub#ListClusterAvailableClusterRegion"
+        },
+        {
+          "target": "com.azure.eventhub#ListOperations"
         }
       ],
       "traits": {

@@ -9693,148 +9693,148 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.keyvault#CheckManagedHsmMhsmNameAvailability"
-        },
-        {
-          "target": "com.azure.keyvault#CheckVaultNameAvailability"
-        },
-        {
-          "target": "com.azure.keyvault#CreateKeysIfNotExist"
-        },
-        {
-          "target": "com.azure.keyvault#CreateManagedHsmKeysIfNotExist"
-        },
-        {
-          "target": "com.azure.keyvault#DeleteManagedHsm"
-        },
-        {
-          "target": "com.azure.keyvault#DeleteMHSMPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.keyvault#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.keyvault#DeleteVault"
-        },
-        {
-          "target": "com.azure.keyvault#GetKeys"
-        },
-        {
-          "target": "com.azure.keyvault#GetKeysVersion"
-        },
-        {
-          "target": "com.azure.keyvault#GetManagedHsm"
-        },
-        {
-          "target": "com.azure.keyvault#GetManagedHsmDeleted"
-        },
-        {
-          "target": "com.azure.keyvault#GetManagedHsmKeys"
-        },
-        {
-          "target": "com.azure.keyvault#GetManagedHsmKeysVersion"
-        },
-        {
-          "target": "com.azure.keyvault#GetMHSMPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.keyvault#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.keyvault#GetSecret"
-        },
-        {
-          "target": "com.azure.keyvault#GetVault"
-        },
-        {
-          "target": "com.azure.keyvault#GetVaultDeleted"
-        },
-        {
-          "target": "com.azure.keyvault#ListKeys"
-        },
-        {
-          "target": "com.azure.keyvault#ListKeysVersions"
-        },
-        {
-          "target": "com.azure.keyvault#ListManagedHsmByResourceGroup"
-        },
-        {
-          "target": "com.azure.keyvault#ListManagedHsmBySubscription"
-        },
-        {
-          "target": "com.azure.keyvault#ListManagedHsmDeleted"
-        },
-        {
-          "target": "com.azure.keyvault#ListManagedHsmKeys"
-        },
-        {
-          "target": "com.azure.keyvault#ListManagedHsmKeysVersions"
-        },
-        {
-          "target": "com.azure.keyvault#ListMHSMPrivateEndpointConnectionByResource"
-        },
-        {
-          "target": "com.azure.keyvault#ListMHSMPrivateLinkResourceByMHSMResource"
-        },
-        {
-          "target": "com.azure.keyvault#ListMHSMRegionByResource"
-        },
-        {
-          "target": "com.azure.keyvault#ListOperations"
-        },
-        {
-          "target": "com.azure.keyvault#ListPrivateEndpointConnectionByResource"
-        },
-        {
-          "target": "com.azure.keyvault#ListPrivateLinkResourceByVault"
-        },
-        {
-          "target": "com.azure.keyvault#ListSecrets"
-        },
-        {
-          "target": "com.azure.keyvault#ListVaultByResourceGroup"
-        },
-        {
-          "target": "com.azure.keyvault#ListVaultBySubscription"
-        },
-        {
-          "target": "com.azure.keyvault#ListVaultDeleted"
-        },
-        {
           "target": "com.azure.keyvault#ListVaults"
-        },
-        {
-          "target": "com.azure.keyvault#ManagedHsmsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.keyvault#PurgeManagedHsmDeleted"
-        },
-        {
-          "target": "com.azure.keyvault#PurgeVaultDeleted"
-        },
-        {
-          "target": "com.azure.keyvault#PutMHSMPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.keyvault#PutPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.keyvault#SecretsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.keyvault#UpdateManagedHsm"
         },
         {
           "target": "com.azure.keyvault#UpdateSecret"
         },
         {
-          "target": "com.azure.keyvault#UpdateVault"
+          "target": "com.azure.keyvault#SecretsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.keyvault#GetSecret"
+        },
+        {
+          "target": "com.azure.keyvault#ListSecrets"
+        },
+        {
+          "target": "com.azure.keyvault#ListPrivateLinkResourceByVault"
+        },
+        {
+          "target": "com.azure.keyvault#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.keyvault#PutPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.keyvault#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.keyvault#ListPrivateEndpointConnectionByResource"
+        },
+        {
+          "target": "com.azure.keyvault#GetKeysVersion"
+        },
+        {
+          "target": "com.azure.keyvault#ListKeysVersions"
+        },
+        {
+          "target": "com.azure.keyvault#CreateKeysIfNotExist"
+        },
+        {
+          "target": "com.azure.keyvault#GetKeys"
+        },
+        {
+          "target": "com.azure.keyvault#ListKeys"
         },
         {
           "target": "com.azure.keyvault#UpdateVaultAccessPolicy"
         },
         {
+          "target": "com.azure.keyvault#DeleteVault"
+        },
+        {
+          "target": "com.azure.keyvault#UpdateVault"
+        },
+        {
           "target": "com.azure.keyvault#VaultsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.keyvault#GetVault"
+        },
+        {
+          "target": "com.azure.keyvault#ListVaultByResourceGroup"
+        },
+        {
+          "target": "com.azure.keyvault#ListMHSMRegionByResource"
+        },
+        {
+          "target": "com.azure.keyvault#ListMHSMPrivateLinkResourceByMHSMResource"
+        },
+        {
+          "target": "com.azure.keyvault#DeleteMHSMPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.keyvault#PutMHSMPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.keyvault#GetMHSMPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.keyvault#ListMHSMPrivateEndpointConnectionByResource"
+        },
+        {
+          "target": "com.azure.keyvault#GetManagedHsmKeysVersion"
+        },
+        {
+          "target": "com.azure.keyvault#ListManagedHsmKeysVersions"
+        },
+        {
+          "target": "com.azure.keyvault#CreateManagedHsmKeysIfNotExist"
+        },
+        {
+          "target": "com.azure.keyvault#GetManagedHsmKeys"
+        },
+        {
+          "target": "com.azure.keyvault#ListManagedHsmKeys"
+        },
+        {
+          "target": "com.azure.keyvault#DeleteManagedHsm"
+        },
+        {
+          "target": "com.azure.keyvault#UpdateManagedHsm"
+        },
+        {
+          "target": "com.azure.keyvault#ManagedHsmsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.keyvault#GetManagedHsm"
+        },
+        {
+          "target": "com.azure.keyvault#ListManagedHsmByResourceGroup"
+        },
+        {
+          "target": "com.azure.keyvault#ListVaultBySubscription"
+        },
+        {
+          "target": "com.azure.keyvault#ListManagedHsmBySubscription"
+        },
+        {
+          "target": "com.azure.keyvault#PurgeVaultDeleted"
+        },
+        {
+          "target": "com.azure.keyvault#GetVaultDeleted"
+        },
+        {
+          "target": "com.azure.keyvault#PurgeManagedHsmDeleted"
+        },
+        {
+          "target": "com.azure.keyvault#GetManagedHsmDeleted"
+        },
+        {
+          "target": "com.azure.keyvault#ListVaultDeleted"
+        },
+        {
+          "target": "com.azure.keyvault#ListManagedHsmDeleted"
+        },
+        {
+          "target": "com.azure.keyvault#CheckVaultNameAvailability"
+        },
+        {
+          "target": "com.azure.keyvault#CheckManagedHsmMhsmNameAvailability"
+        },
+        {
+          "target": "com.azure.keyvault#ListOperations"
         }
       ],
       "traits": {

@@ -3975,73 +3975,73 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.certificateregistration#AppServiceCertificateOrdersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.certificateregistration#AppServiceCertificateOrdersCreateOrUpdateCertificate"
-        },
-        {
-          "target": "com.azure.certificateregistration#AppServiceCertificateOrdersReissue"
-        },
-        {
-          "target": "com.azure.certificateregistration#DeleteAppServiceCertificateOrder"
-        },
-        {
-          "target": "com.azure.certificateregistration#DeleteAppServiceCertificateOrderCertificate"
-        },
-        {
-          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrder"
-        },
-        {
-          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderCertificate"
-        },
-        {
-          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderCertificateActions"
-        },
-        {
-          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderCertificateEmailHistory"
+          "target": "com.azure.certificateregistration#VerifyAppServiceCertificateOrderDomainOwnership"
         },
         {
           "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderSiteSeal"
         },
         {
-          "target": "com.azure.certificateregistration#GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponse"
+          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderCertificateEmailHistory"
         },
         {
-          "target": "com.azure.certificateregistration#ListAppServiceCertificateOrderByResourceGroup"
-        },
-        {
-          "target": "com.azure.certificateregistration#ListAppServiceCertificateOrderCertificates"
-        },
-        {
-          "target": "com.azure.certificateregistration#ListAppServiceCertificateOrders"
-        },
-        {
-          "target": "com.azure.certificateregistration#ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponse"
-        },
-        {
-          "target": "com.azure.certificateregistration#ListCertificateRegistrationProviderOperations"
-        },
-        {
-          "target": "com.azure.certificateregistration#RenewAppServiceCertificateOrder"
-        },
-        {
-          "target": "com.azure.certificateregistration#ResendAppServiceCertificateOrderEmail"
+          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderCertificateActions"
         },
         {
           "target": "com.azure.certificateregistration#ResendAppServiceCertificateOrderRequestEmails"
         },
         {
-          "target": "com.azure.certificateregistration#UpdateAppServiceCertificateOrder"
+          "target": "com.azure.certificateregistration#ResendAppServiceCertificateOrderEmail"
+        },
+        {
+          "target": "com.azure.certificateregistration#RenewAppServiceCertificateOrder"
+        },
+        {
+          "target": "com.azure.certificateregistration#AppServiceCertificateOrdersReissue"
+        },
+        {
+          "target": "com.azure.certificateregistration#GetCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponse"
+        },
+        {
+          "target": "com.azure.certificateregistration#ListCertificateOrdersDiagnosticAppServiceCertificateOrderDetectorResponse"
+        },
+        {
+          "target": "com.azure.certificateregistration#DeleteAppServiceCertificateOrderCertificate"
         },
         {
           "target": "com.azure.certificateregistration#UpdateAppServiceCertificateOrderCertificate"
         },
         {
+          "target": "com.azure.certificateregistration#AppServiceCertificateOrdersCreateOrUpdateCertificate"
+        },
+        {
+          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrderCertificate"
+        },
+        {
+          "target": "com.azure.certificateregistration#ListAppServiceCertificateOrderCertificates"
+        },
+        {
+          "target": "com.azure.certificateregistration#DeleteAppServiceCertificateOrder"
+        },
+        {
+          "target": "com.azure.certificateregistration#UpdateAppServiceCertificateOrder"
+        },
+        {
+          "target": "com.azure.certificateregistration#AppServiceCertificateOrdersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.certificateregistration#GetAppServiceCertificateOrder"
+        },
+        {
+          "target": "com.azure.certificateregistration#ListAppServiceCertificateOrderByResourceGroup"
+        },
+        {
           "target": "com.azure.certificateregistration#ValidateAppServiceCertificateOrderPurchaseInformation"
         },
         {
-          "target": "com.azure.certificateregistration#VerifyAppServiceCertificateOrderDomainOwnership"
+          "target": "com.azure.certificateregistration#ListAppServiceCertificateOrders"
+        },
+        {
+          "target": "com.azure.certificateregistration#ListCertificateRegistrationProviderOperations"
         }
       ],
       "traits": {

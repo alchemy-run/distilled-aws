@@ -535,13 +535,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.fee_markups#ListFeeMarkup"
+        },
+        {
           "target": "com.whop.fee_markups#CreateFeeMarkup"
         },
         {
           "target": "com.whop.fee_markups#DeleteFeeMarkup"
-        },
-        {
-          "target": "com.whop.fee_markups#ListFeeMarkup"
         }
       ],
       "traits": {

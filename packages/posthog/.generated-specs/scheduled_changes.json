@@ -856,22 +856,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.scheduled_changes#ListScheduledChanges"
+        },
+        {
           "target": "com.posthog.scheduled_changes#CreateScheduledChange"
         },
         {
           "target": "com.posthog.scheduled_changes#GetScheduledChange"
         },
         {
-          "target": "com.posthog.scheduled_changes#ListScheduledChanges"
-        },
-        {
-          "target": "com.posthog.scheduled_changes#ScheduledChangesDestroy"
-        },
-        {
           "target": "com.posthog.scheduled_changes#UpdateScheduledChange"
         },
         {
           "target": "com.posthog.scheduled_changes#UpdateScheduledChangesPartial"
+        },
+        {
+          "target": "com.posthog.scheduled_changes#ScheduledChangesDestroy"
         }
       ],
       "traits": {

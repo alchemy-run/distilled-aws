@@ -16365,166 +16365,160 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.desktopvirtualization#AppAttachPackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ApplicationGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#CreateScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#CreateScalingPlanPersonalSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#CreateScalingPlanPooledSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteAppAttachPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteApplication"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteApplicationGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteMSIXPackage"
-        },
-        {
           "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByHostPool"
         },
         {
-          "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPersonalSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPooledSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteSessionHost"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteUserSession"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#DisconnectUserSession"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetAppAttachPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetApplication"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetApplicationGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetDesktop"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetHostPoolRegistrationToken"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetMSIXPackage"
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPool"
         },
         {
           "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByHostPool"
         },
         {
-          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetScalingPlan"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetScalingPlanPersonalSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetScalingPlanPooledSchedule"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetSessionHost"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetUserSession"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#GetWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#HostPoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ImportAppAttachPackageInfo"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListAppAttachPackageByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListAppAttachPackageBySubscription"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListApplicationGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListApplicationGroupBySubscription"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListApplications"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListDesktops"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListHostPoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListHostPoolRegistrationTokens"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListHostPools"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListMSIXPackages"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListOperations"
-        },
-        {
           "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByWorkspace"
         },
         {
           "target": "com.azure.desktopvirtualization#ListScalingPlanByHostPool"
         },
         {
-          "target": "com.azure.desktopvirtualization#ListScalingPlanByResourceGroup"
+          "target": "com.azure.desktopvirtualization#SendUserSessionMessage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DisconnectUserSession"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListUserSessions"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteUserSession"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetUserSession"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListAppAttachPackageBySubscription"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListAppAttachPackageByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteAppAttachPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateAppAttachPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#AppAttachPackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetAppAttachPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#MsixImagesExpand"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ImportAppAttachPackageInfo"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListMSIXPackages"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteMSIXPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateMSIXPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#MSIXPackagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetMSIXPackage"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListSessionHosts"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteSessionHost"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateSessionHost"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetSessionHost"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListUserSessionByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListHostPoolRegistrationTokens"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetHostPoolRegistrationToken"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListHostPools"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListHostPoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#HostPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetHostPool"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListDesktops"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateDesktop"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetDesktop"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListApplications"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteApplication"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateApplication"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetApplication"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListStartMenuItems"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListApplicationGroupBySubscription"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListApplicationGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteApplicationGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateApplicationGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ApplicationGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetApplicationGroup"
         },
         {
           "target": "com.azure.desktopvirtualization#ListScalingPlanBySubscription"
@@ -16533,76 +16527,82 @@
           "target": "com.azure.desktopvirtualization#ListScalingPlanPersonalSchedules"
         },
         {
-          "target": "com.azure.desktopvirtualization#ListScalingPlanPooledSchedules"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListSessionHosts"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListStartMenuItems"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListUserSessionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListUserSessions"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#ListWorkspaceBySubscription"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#MsixImagesExpand"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#MSIXPackagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#SendUserSessionMessage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateAppAttachPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateApplication"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateApplicationGroup"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateDesktop"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateMSIXPackage"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByHostPool"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.desktopvirtualization#UpdateScalingPlan"
+          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPersonalSchedule"
         },
         {
           "target": "com.azure.desktopvirtualization#UpdateScalingPlanPersonalSchedule"
         },
         {
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanPersonalSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetScalingPlanPersonalSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListScalingPlanPooledSchedules"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteScalingPlanPooledSchedule"
+        },
+        {
           "target": "com.azure.desktopvirtualization#UpdateScalingPlanPooledSchedule"
         },
         {
-          "target": "com.azure.desktopvirtualization#UpdateSessionHost"
+          "target": "com.azure.desktopvirtualization#CreateScalingPlanPooledSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetScalingPlanPooledSchedule"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListScalingPlanByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdateScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#CreateScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetScalingPlan"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateLinkResourceByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeletePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#UpdatePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetPrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListPrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#DeleteWorkspace"
         },
         {
           "target": "com.azure.desktopvirtualization#UpdateWorkspace"
         },
         {
           "target": "com.azure.desktopvirtualization#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#GetWorkspace"
+        },
+        {
+          "target": "com.azure.desktopvirtualization#ListOperations"
         }
       ],
       "traits": {

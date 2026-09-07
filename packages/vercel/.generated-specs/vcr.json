@@ -3884,64 +3884,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.vcr#AddRepositoryPermission"
-        },
-        {
-          "target": "com.vercel.vcr#ClearRepositoryPermissions"
-        },
-        {
-          "target": "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploads"
+          "target": "com.vercel.vcr#ListRepositories"
         },
         {
           "target": "com.vercel.vcr#CreateRepository"
         },
         {
-          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
-        },
-        {
-          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
-        },
-        {
-          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
-        },
-        {
-          "target": "com.vercel.vcr#DeleteRepository"
-        },
-        {
-          "target": "com.vercel.vcr#DeleteRepositoryImage"
-        },
-        {
-          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
-        },
-        {
-          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
-        },
-        {
-          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
-        },
-        {
-          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsList"
-        },
-        {
           "target": "com.vercel.vcr#GetRepository"
         },
         {
-          "target": "com.vercel.vcr#GetRepositoryImage"
-        },
-        {
-          "target": "com.vercel.vcr#GetRepositoryTag"
-        },
-        {
-          "target": "com.vercel.vcr#GetRoot"
-        },
-        {
-          "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
-        },
-        {
-          "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
-        },
-        {
-          "target": "com.vercel.vcr#ListRepositories"
+          "target": "com.vercel.vcr#DeleteRepository"
         },
         {
           "target": "com.vercel.vcr#ListRepositoryImages"
@@ -3950,19 +3902,67 @@
           "target": "com.vercel.vcr#ListRepositoryPermissions"
         },
         {
-          "target": "com.vercel.vcr#ListRepositoryTags"
+          "target": "com.vercel.vcr#AddRepositoryPermission"
         },
         {
           "target": "com.vercel.vcr#RemoveRepositoryPermission"
         },
         {
+          "target": "com.vercel.vcr#ClearRepositoryPermissions"
+        },
+        {
+          "target": "com.vercel.vcr#ListRepositoryTags"
+        },
+        {
+          "target": "com.vercel.vcr#GetRepositoryTag"
+        },
+        {
+          "target": "com.vercel.vcr#GetRepositoryImage"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteRepositoryImage"
+        },
+        {
+          "target": "com.vercel.vcr#GetRoot"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
+        },
+        {
+          "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameBlobsByDigest"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
           "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+        },
+        {
+          "target": "com.vercel.vcr#CreateByTeamSlugByProjectSlugByRepositoryNameBlobsUploads"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
         },
         {
           "target": "com.vercel.vcr#ReplaceByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
         },
         {
-          "target": "com.vercel.vcr#UpdateByTeamSlugByProjectSlugByRepositoryNameBlobsUploadsByUuid"
+          "target": "com.vercel.vcr#DeleteByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
+        },
+        {
+          "target": "com.vercel.vcr#HeadByTeamSlugByProjectSlugByRepositoryNameManifestsByReference"
+        },
+        {
+          "target": "com.vercel.vcr#GetByTeamSlugByProjectSlugByRepositoryNameTagsList"
         }
       ],
       "traits": {

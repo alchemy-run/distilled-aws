@@ -19361,253 +19361,250 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devcenter#AttachedNetworksCreateOrUpdate"
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetails"
         },
         {
           "target": "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuild"
         },
         {
-          "target": "com.azure.devcenter#CatalogsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#ConnectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ConnectProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteAttachedNetwork"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteDevBoxDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteGallery"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteNetworkConnection"
-        },
-        {
-          "target": "com.azure.devcenter#DeletePool"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProject"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProjectEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteProjectPolicy"
-        },
-        {
-          "target": "com.azure.devcenter#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.devcenter#DevBoxDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#DevCentersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#EnvironmentTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#ExecuteCheckNameAvailability"
-        },
-        {
-          "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailability"
-        },
-        {
-          "target": "com.azure.devcenter#GalleriesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#GetAttachedNetworkByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#GetAttachedNetworkByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#GetCatalogSyncErrorDetails"
-        },
-        {
-          "target": "com.azure.devcenter#GetCustomizationTask"
-        },
-        {
-          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetails"
-        },
-        {
-          "target": "com.azure.devcenter#GetDevBoxDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#GetDevBoxDefinitionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetails"
-        },
-        {
-          "target": "com.azure.devcenter#GetEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#GetGallery"
-        },
-        {
-          "target": "com.azure.devcenter#GetImage"
-        },
-        {
-          "target": "com.azure.devcenter#GetImageByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetImageVersion"
-        },
-        {
-          "target": "com.azure.devcenter#GetImageVersionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetNetworkConnection"
-        },
-        {
-          "target": "com.azure.devcenter#GetNetworkConnectionHealthDetails"
-        },
-        {
-          "target": "com.azure.devcenter#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.devcenter#GetPool"
-        },
-        {
-          "target": "com.azure.devcenter#GetProject"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectAllowedEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetails"
-        },
-        {
           "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuild"
         },
         {
-          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetails"
+          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinition"
         },
         {
-          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalog"
+          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsBuildImage"
         },
         {
           "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetails"
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#GetProjectEnvironmentType"
+          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#GetProjectInheritedSettings"
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#GetProjectPolicy"
-        },
-        {
-          "target": "com.azure.devcenter#GetSchedule"
-        },
-        {
-          "target": "com.azure.devcenter#ListAttachedNetworkByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ListAttachedNetworkByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListCatalogByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ListCustomizationTaskByCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ListDevBoxDefinitionByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ListDevBoxDefinitionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListDevCenterByResourceGroup"
-        },
-        {
-          "target": "com.azure.devcenter#ListDevCenterBySubscription"
+          "target": "com.azure.devcenter#GetEnvironmentDefinition"
         },
         {
           "target": "com.azure.devcenter#ListEnvironmentDefinitionByCatalog"
         },
         {
-          "target": "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalog"
+          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#ListEnvironmentTypeByDevCenter"
+          "target": "com.azure.devcenter#GetCustomizationTask"
         },
         {
-          "target": "com.azure.devcenter#ListGalleryByDevCenter"
+          "target": "com.azure.devcenter#ListCustomizationTaskByCatalog"
         },
         {
-          "target": "com.azure.devcenter#ListImageByDevCenter"
+          "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailability"
         },
         {
-          "target": "com.azure.devcenter#ListImageByGallery"
+          "target": "com.azure.devcenter#ExecuteCheckNameAvailability"
         },
         {
-          "target": "com.azure.devcenter#ListImageByProject"
+          "target": "com.azure.devcenter#ListUsageByLocation"
         },
         {
-          "target": "com.azure.devcenter#ListImageVersionByImage"
-        },
-        {
-          "target": "com.azure.devcenter#ListImageVersionByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListNetworkConnectionByResourceGroup"
-        },
-        {
-          "target": "com.azure.devcenter#ListNetworkConnectionBySubscription"
-        },
-        {
-          "target": "com.azure.devcenter#ListNetworkConnectionHealthDetails"
-        },
-        {
-          "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpoints"
+          "target": "com.azure.devcenter#GetOperationStatus"
         },
         {
           "target": "com.azure.devcenter#ListOperations"
         },
         {
-          "target": "com.azure.devcenter#ListPoolByProject"
+          "target": "com.azure.devcenter#GetDevBoxDefinitionByProject"
+        },
+        {
+          "target": "com.azure.devcenter#ListDevBoxDefinitionByProject"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteDevBoxDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateDevBoxDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#DevBoxDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetDevBoxDefinition"
+        },
+        {
+          "target": "com.azure.devcenter#ListDevBoxDefinitionByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProjectEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectEnvironmentTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectEnvironmentTypes"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectAllowedEnvironmentType"
         },
         {
           "target": "com.azure.devcenter#ListProjectAllowedEnvironmentTypes"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#EnvironmentTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetEnvironmentType"
+        },
+        {
+          "target": "com.azure.devcenter#ListEnvironmentTypeByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ConnectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#SyncCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#GetCatalogSyncErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#CatalogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#ListCatalogByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteAttachedNetwork"
+        },
+        {
+          "target": "com.azure.devcenter#AttachedNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetAttachedNetworkByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListAttachedNetworkByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListSkusByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetImageVersionByProject"
+        },
+        {
+          "target": "com.azure.devcenter#ListImageVersionByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetImageByProject"
+        },
+        {
+          "target": "com.azure.devcenter#ListImageByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetImageVersion"
+        },
+        {
+          "target": "com.azure.devcenter#ListImageVersionByImage"
+        },
+        {
+          "target": "com.azure.devcenter#GetImage"
+        },
+        {
+          "target": "com.azure.devcenter#ListImageByGallery"
+        },
+        {
+          "target": "com.azure.devcenter#ListImageByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteGallery"
+        },
+        {
+          "target": "com.azure.devcenter#GalleriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetGallery"
+        },
+        {
+          "target": "com.azure.devcenter#ListGalleryByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ConnectProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#SyncProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetails"
+        },
+        {
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#PatchProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectCatalogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectCatalog"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectCatalogs"
+        },
+        {
+          "target": "com.azure.devcenter#GetAttachedNetworkByProject"
+        },
+        {
+          "target": "com.azure.devcenter#ListAttachedNetworkByProject"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectInheritedSettings"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteProject"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateProject"
+        },
+        {
+          "target": "com.azure.devcenter#ProjectsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetProject"
         },
         {
           "target": "com.azure.devcenter#ListProjectByResourceGroup"
@@ -19616,100 +19613,103 @@
           "target": "com.azure.devcenter#ListProjectBySubscription"
         },
         {
-          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectCatalogs"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectEnvironmentTypes"
-        },
-        {
-          "target": "com.azure.devcenter#ListProjectPolicyByDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#ListScheduleByPool"
-        },
-        {
-          "target": "com.azure.devcenter#ListSkusByProject"
-        },
-        {
-          "target": "com.azure.devcenter#ListSkusBySubscription"
-        },
-        {
-          "target": "com.azure.devcenter#ListUsageByLocation"
-        },
-        {
-          "target": "com.azure.devcenter#NetworkConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#PatchProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#PoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsBuildImage"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectCatalogsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#ProjectsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#RunNetworkConnectionHealthChecks"
-        },
-        {
-          "target": "com.azure.devcenter#RunPoolHealthChecks"
-        },
-        {
-          "target": "com.azure.devcenter#SchedulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.devcenter#SyncCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#SyncProjectCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateCatalog"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateDevBoxDefinition"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateDevCenter"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateEnvironmentType"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateNetworkConnection"
-        },
-        {
-          "target": "com.azure.devcenter#UpdatePool"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateProject"
-        },
-        {
-          "target": "com.azure.devcenter#UpdateProjectEnvironmentType"
+          "target": "com.azure.devcenter#DeleteProjectPolicy"
         },
         {
           "target": "com.azure.devcenter#UpdateProjectPolicy"
         },
         {
+          "target": "com.azure.devcenter#ProjectPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetProjectPolicy"
+        },
+        {
+          "target": "com.azure.devcenter#ListProjectPolicyByDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#DevCentersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetDevCenter"
+        },
+        {
+          "target": "com.azure.devcenter#ListDevCenterByResourceGroup"
+        },
+        {
+          "target": "com.azure.devcenter#ListDevCenterBySubscription"
+        },
+        {
+          "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.devcenter#RunNetworkConnectionHealthChecks"
+        },
+        {
+          "target": "com.azure.devcenter#GetNetworkConnectionHealthDetails"
+        },
+        {
+          "target": "com.azure.devcenter#ListNetworkConnectionHealthDetails"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteNetworkConnection"
+        },
+        {
+          "target": "com.azure.devcenter#UpdateNetworkConnection"
+        },
+        {
+          "target": "com.azure.devcenter#NetworkConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetNetworkConnection"
+        },
+        {
+          "target": "com.azure.devcenter#ListNetworkConnectionByResourceGroup"
+        },
+        {
+          "target": "com.azure.devcenter#ListNetworkConnectionBySubscription"
+        },
+        {
+          "target": "com.azure.devcenter#DeleteSchedule"
+        },
+        {
           "target": "com.azure.devcenter#UpdateSchedule"
+        },
+        {
+          "target": "com.azure.devcenter#SchedulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetSchedule"
+        },
+        {
+          "target": "com.azure.devcenter#ListScheduleByPool"
+        },
+        {
+          "target": "com.azure.devcenter#RunPoolHealthChecks"
+        },
+        {
+          "target": "com.azure.devcenter#DeletePool"
+        },
+        {
+          "target": "com.azure.devcenter#UpdatePool"
+        },
+        {
+          "target": "com.azure.devcenter#PoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.devcenter#GetPool"
+        },
+        {
+          "target": "com.azure.devcenter#ListPoolByProject"
+        },
+        {
+          "target": "com.azure.devcenter#ListSkusBySubscription"
         }
       ],
       "traits": {

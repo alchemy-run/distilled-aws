@@ -637,13 +637,13 @@
           "target": "com.vercel.certs#GetCertById"
         },
         {
+          "target": "com.vercel.certs#RemoveCert"
+        },
+        {
           "target": "com.vercel.certs#GetCerts"
         },
         {
           "target": "com.vercel.certs#IssueCert"
-        },
-        {
-          "target": "com.vercel.certs#RemoveCert"
         },
         {
           "target": "com.vercel.certs#UploadCert"

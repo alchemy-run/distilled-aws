@@ -613,13 +613,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.warehouse_expressions#ListWarehouseExpressions"
+        },
+        {
           "target": "com.posthog.warehouse_expressions#CreateWarehouseExpression"
         },
         {
           "target": "com.posthog.warehouse_expressions#GetWarehouseExpression"
-        },
-        {
-          "target": "com.posthog.warehouse_expressions#ListWarehouseExpressions"
         },
         {
           "target": "com.posthog.warehouse_expressions#UpdateWarehouseExpression"

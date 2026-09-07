@@ -6009,49 +6009,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicefabric#ApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#ApplicationTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#ApplicationTypeVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabric#DeleteApplication"
-        },
-        {
-          "target": "com.azure.servicefabric#DeleteApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabric#DeleteApplicationTypeVersion"
-        },
-        {
-          "target": "com.azure.servicefabric#DeleteCluster"
+          "target": "com.azure.servicefabric#ListServices"
         },
         {
           "target": "com.azure.servicefabric#DeleteService"
         },
         {
-          "target": "com.azure.servicefabric#GetApplication"
+          "target": "com.azure.servicefabric#UpdateService"
         },
         {
-          "target": "com.azure.servicefabric#GetApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabric#GetApplicationTypeVersion"
-        },
-        {
-          "target": "com.azure.servicefabric#GetCluster"
-        },
-        {
-          "target": "com.azure.servicefabric#GetClusterVersion"
-        },
-        {
-          "target": "com.azure.servicefabric#GetClusterVersionByEnvironment"
+          "target": "com.azure.servicefabric#ServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.servicefabric#GetService"
@@ -6060,16 +6027,43 @@
           "target": "com.azure.servicefabric#ListApplications"
         },
         {
-          "target": "com.azure.servicefabric#ListApplicationTypes"
+          "target": "com.azure.servicefabric#DeleteApplication"
+        },
+        {
+          "target": "com.azure.servicefabric#UpdateApplication"
+        },
+        {
+          "target": "com.azure.servicefabric#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#GetApplication"
         },
         {
           "target": "com.azure.servicefabric#ListApplicationTypeVersions"
         },
         {
-          "target": "com.azure.servicefabric#ListClusterByResourceGroup"
+          "target": "com.azure.servicefabric#DeleteApplicationTypeVersion"
         },
         {
-          "target": "com.azure.servicefabric#ListClusters"
+          "target": "com.azure.servicefabric#ApplicationTypeVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#GetApplicationTypeVersion"
+        },
+        {
+          "target": "com.azure.servicefabric#ListApplicationTypes"
+        },
+        {
+          "target": "com.azure.servicefabric#DeleteApplicationType"
+        },
+        {
+          "target": "com.azure.servicefabric#ApplicationTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#GetApplicationType"
+        },
+        {
+          "target": "com.azure.servicefabric#ListOperations"
         },
         {
           "target": "com.azure.servicefabric#ListClusterUpgradableVersions"
@@ -6081,22 +6075,28 @@
           "target": "com.azure.servicefabric#ListClusterVersions"
         },
         {
-          "target": "com.azure.servicefabric#ListOperations"
+          "target": "com.azure.servicefabric#GetClusterVersionByEnvironment"
         },
         {
-          "target": "com.azure.servicefabric#ListServices"
+          "target": "com.azure.servicefabric#GetClusterVersion"
         },
         {
-          "target": "com.azure.servicefabric#ServicesCreateOrUpdate"
+          "target": "com.azure.servicefabric#ListClusters"
         },
         {
-          "target": "com.azure.servicefabric#UpdateApplication"
+          "target": "com.azure.servicefabric#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.servicefabric#DeleteCluster"
         },
         {
           "target": "com.azure.servicefabric#UpdateCluster"
         },
         {
-          "target": "com.azure.servicefabric#UpdateService"
+          "target": "com.azure.servicefabric#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabric#GetCluster"
         }
       ],
       "traits": {

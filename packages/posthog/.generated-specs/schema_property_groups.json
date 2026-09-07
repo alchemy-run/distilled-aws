@@ -728,22 +728,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.schema_property_groups#ListSchemaPropertyGroups"
+        },
+        {
           "target": "com.posthog.schema_property_groups#CreateSchemaPropertyGroup"
         },
         {
           "target": "com.posthog.schema_property_groups#GetSchemaPropertyGroup"
         },
         {
-          "target": "com.posthog.schema_property_groups#ListSchemaPropertyGroups"
-        },
-        {
-          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroy"
-        },
-        {
           "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroup"
         },
         {
           "target": "com.posthog.schema_property_groups#UpdateSchemaPropertyGroupsPartial"
+        },
+        {
+          "target": "com.posthog.schema_property_groups#SchemaPropertyGroupsDestroy"
         }
       ],
       "traits": {

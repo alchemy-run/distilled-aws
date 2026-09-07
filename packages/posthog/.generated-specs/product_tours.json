@@ -1392,16 +1392,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.product_tours#ListProductTours"
+        },
+        {
           "target": "com.posthog.product_tours#CreateProductTour"
         },
         {
           "target": "com.posthog.product_tours#GetProductTour"
         },
         {
-          "target": "com.posthog.product_tours#GetProductToursDraftStatus"
+          "target": "com.posthog.product_tours#UpdateProductTour"
         },
         {
-          "target": "com.posthog.product_tours#ListProductTours"
+          "target": "com.posthog.product_tours#UpdateProductToursPartial"
         },
         {
           "target": "com.posthog.product_tours#ProductToursDestroy"
@@ -1410,19 +1413,16 @@
           "target": "com.posthog.product_tours#ProductToursDiscardDraftDestroy"
         },
         {
+          "target": "com.posthog.product_tours#UpdateProductToursDraftPartial"
+        },
+        {
+          "target": "com.posthog.product_tours#GetProductToursDraftStatus"
+        },
+        {
           "target": "com.posthog.product_tours#ProductToursGenerateCreate"
         },
         {
           "target": "com.posthog.product_tours#ProductToursPublishDraftCreate"
-        },
-        {
-          "target": "com.posthog.product_tours#UpdateProductTour"
-        },
-        {
-          "target": "com.posthog.product_tours#UpdateProductToursDraftPartial"
-        },
-        {
-          "target": "com.posthog.product_tours#UpdateProductToursPartial"
         }
       ],
       "traits": {

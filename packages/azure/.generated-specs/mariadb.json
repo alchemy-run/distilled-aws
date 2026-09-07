@@ -125,10 +125,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.mariadb#StartServer"
+          "target": "com.azure.mariadb#StopServer"
         },
         {
-          "target": "com.azure.mariadb#StopServer"
+          "target": "com.azure.mariadb#StartServer"
         }
       ],
       "traits": {

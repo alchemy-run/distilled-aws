@@ -8351,10 +8351,40 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.vercel.teams#GetTeamMembers"
+        },
+        {
+          "target": "com.vercel.teams#InviteUserToTeam"
+        },
+        {
+          "target": "com.vercel.teams#RequestAccessToTeam"
+        },
+        {
+          "target": "com.vercel.teams#GetTeamAccessRequest"
+        },
+        {
+          "target": "com.vercel.teams#JoinTeam"
+        },
+        {
+          "target": "com.vercel.teams#UpdateTeamMember"
+        },
+        {
+          "target": "com.vercel.teams#RemoveTeamMember"
+        },
+        {
+          "target": "com.vercel.teams#GetTeam"
+        },
+        {
+          "target": "com.vercel.teams#PatchTeam"
+        },
+        {
+          "target": "com.vercel.teams#GetTeams"
+        },
+        {
           "target": "com.vercel.teams#CreateTeam"
         },
         {
-          "target": "com.vercel.teams#DeleteMicrofrontendsGroup"
+          "target": "com.vercel.teams#PostTeamDsyncRoles"
         },
         {
           "target": "com.vercel.teams#DeleteTeam"
@@ -8363,40 +8393,10 @@
           "target": "com.vercel.teams#DeleteTeamInviteCode"
         },
         {
-          "target": "com.vercel.teams#GetTeam"
-        },
-        {
-          "target": "com.vercel.teams#GetTeamAccessRequest"
-        },
-        {
-          "target": "com.vercel.teams#GetTeamMembers"
-        },
-        {
-          "target": "com.vercel.teams#GetTeams"
-        },
-        {
-          "target": "com.vercel.teams#InviteUserToTeam"
-        },
-        {
-          "target": "com.vercel.teams#JoinTeam"
-        },
-        {
-          "target": "com.vercel.teams#PatchTeam"
-        },
-        {
-          "target": "com.vercel.teams#PostTeamDsyncRoles"
-        },
-        {
-          "target": "com.vercel.teams#RemoveTeamMember"
-        },
-        {
-          "target": "com.vercel.teams#RequestAccessToTeam"
-        },
-        {
           "target": "com.vercel.teams#UpdateMicrofrontendsGroup"
         },
         {
-          "target": "com.vercel.teams#UpdateTeamMember"
+          "target": "com.vercel.teams#DeleteMicrofrontendsGroup"
         }
       ],
       "traits": {

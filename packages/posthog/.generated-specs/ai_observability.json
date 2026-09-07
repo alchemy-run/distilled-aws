@@ -3613,25 +3613,67 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.ai_observability#AiObservabilityInstrumentationChecklistRestoreCreate"
+          "target": "com.posthog.ai_observability#ListLlmAnalyticsPersonalSpend"
         },
         {
-          "target": "com.posthog.ai_observability#ArchiveDataset"
-        },
-        {
-          "target": "com.posthog.ai_observability#ArchiveDatasetItem"
+          "target": "com.posthog.ai_observability#GetAiObservabilityInstrumentationChecklist"
         },
         {
           "target": "com.posthog.ai_observability#CreateAiObservabilityInstrumentationChecklistDismiss"
         },
         {
-          "target": "com.posthog.ai_observability#CreateDataset"
+          "target": "com.posthog.ai_observability#AiObservabilityInstrumentationChecklistRestoreCreate"
+        },
+        {
+          "target": "com.posthog.ai_observability#ListDatasetItems"
         },
         {
           "target": "com.posthog.ai_observability#CreateDatasetItem"
         },
         {
+          "target": "com.posthog.ai_observability#GetDatasetItem"
+        },
+        {
+          "target": "com.posthog.ai_observability#UpdateDatasetItemsPartial"
+        },
+        {
+          "target": "com.posthog.ai_observability#ArchiveDatasetItem"
+        },
+        {
+          "target": "com.posthog.ai_observability#RestoreDatasetItem"
+        },
+        {
+          "target": "com.posthog.ai_observability#ListDatasetItemsVersions"
+        },
+        {
+          "target": "com.posthog.ai_observability#ListDatasets"
+        },
+        {
+          "target": "com.posthog.ai_observability#CreateDataset"
+        },
+        {
+          "target": "com.posthog.ai_observability#GetDataset"
+        },
+        {
+          "target": "com.posthog.ai_observability#UpdateDatasetsPartial"
+        },
+        {
+          "target": "com.posthog.ai_observability#ArchiveDataset"
+        },
+        {
           "target": "com.posthog.ai_observability#CreateDatasetsExport"
+        },
+        {
+          "target": "com.posthog.ai_observability#GetDatasetsExport"
+        },
+        {
+          "target": "com.posthog.ai_observability#GetDatasetsExportsContent"
+        },
+        {
+          "target": "com.posthog.ai_observability#RestoreDataset"
+        },
+        {
+          "target": "com.posthog.ai_observability#ListDatasetsRevisions"
         },
         {
           "target": "com.posthog.ai_observability#CreateLlmAnalyticsOfflineEvaluationsExperimentItem"
@@ -3644,48 +3686,6 @@
         },
         {
           "target": "com.posthog.ai_observability#CreateLlmAnalyticsTextRepr"
-        },
-        {
-          "target": "com.posthog.ai_observability#GetAiObservabilityInstrumentationChecklist"
-        },
-        {
-          "target": "com.posthog.ai_observability#GetDataset"
-        },
-        {
-          "target": "com.posthog.ai_observability#GetDatasetItem"
-        },
-        {
-          "target": "com.posthog.ai_observability#GetDatasetsExport"
-        },
-        {
-          "target": "com.posthog.ai_observability#GetDatasetsExportsContent"
-        },
-        {
-          "target": "com.posthog.ai_observability#ListDatasetItems"
-        },
-        {
-          "target": "com.posthog.ai_observability#ListDatasetItemsVersions"
-        },
-        {
-          "target": "com.posthog.ai_observability#ListDatasets"
-        },
-        {
-          "target": "com.posthog.ai_observability#ListDatasetsRevisions"
-        },
-        {
-          "target": "com.posthog.ai_observability#ListLlmAnalyticsPersonalSpend"
-        },
-        {
-          "target": "com.posthog.ai_observability#RestoreDataset"
-        },
-        {
-          "target": "com.posthog.ai_observability#RestoreDatasetItem"
-        },
-        {
-          "target": "com.posthog.ai_observability#UpdateDatasetItemsPartial"
-        },
-        {
-          "target": "com.posthog.ai_observability#UpdateDatasetsPartial"
         }
       ],
       "traits": {

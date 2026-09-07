@@ -2965,6 +2965,12 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.ssl#GetAutomaticUpgrader"
+        },
+        {
+          "target": "com.cloudflare.ssl#PatchAutomaticUpgrader"
+        },
+        {
           "target": "com.cloudflare.ssl#CreateAnalyze"
         },
         {
@@ -2972,9 +2978,6 @@
         },
         {
           "target": "com.cloudflare.ssl#DeleteCertificatePack"
-        },
-        {
-          "target": "com.cloudflare.ssl#GetAutomaticUpgrader"
         },
         {
           "target": "com.cloudflare.ssl#GetAutoOriginTlsKex"
@@ -2993,9 +2996,6 @@
         },
         {
           "target": "com.cloudflare.ssl#ListCertificatePacks"
-        },
-        {
-          "target": "com.cloudflare.ssl#PatchAutomaticUpgrader"
         },
         {
           "target": "com.cloudflare.ssl#PatchAutoOriginTlsKex"

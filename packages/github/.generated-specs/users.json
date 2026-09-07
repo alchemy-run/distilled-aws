@@ -4259,100 +4259,121 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.users#AddEmailForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#AddSocialAccountForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#Block"
-        },
-        {
-          "target": "com.github.users#CheckBlocked"
-        },
-        {
-          "target": "com.github.users#CheckFollowingForUser"
-        },
-        {
-          "target": "com.github.users#CheckPersonIsFollowedByAuthenticated"
-        },
-        {
-          "target": "com.github.users#CreateGpgKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#CreatePublicSshKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#CreateSshSigningKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteAttestationsBulk"
-        },
-        {
-          "target": "com.github.users#DeleteAttestationsById"
-        },
-        {
-          "target": "com.github.users#DeleteAttestationsBySubjectDigest"
-        },
-        {
-          "target": "com.github.users#DeleteEmailForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteGpgKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeletePublicSshKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteSocialAccountForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#DeleteSshSigningKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#Follow"
-        },
-        {
           "target": "com.github.users#GetAuthenticated"
         },
         {
-          "target": "com.github.users#GetById"
-        },
-        {
-          "target": "com.github.users#GetByUsername"
-        },
-        {
-          "target": "com.github.users#GetContextForUser"
-        },
-        {
-          "target": "com.github.users#GetGpgKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#GetPublicSshKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#GetSshSigningKeyForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#List"
-        },
-        {
-          "target": "com.github.users#ListAttestations"
-        },
-        {
-          "target": "com.github.users#ListAttestationsBulk"
+          "target": "com.github.users#UpdateAuthenticated"
         },
         {
           "target": "com.github.users#ListBlockedByAuthenticatedUser"
         },
         {
+          "target": "com.github.users#CheckBlocked"
+        },
+        {
+          "target": "com.github.users#Block"
+        },
+        {
+          "target": "com.github.users#Unblock"
+        },
+        {
+          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUser"
+        },
+        {
           "target": "com.github.users#ListEmailsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#AddEmailForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteEmailForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListFollowersForAuthenticatedUser"
         },
         {
           "target": "com.github.users#ListFollowedByAuthenticatedUser"
         },
         {
-          "target": "com.github.users#ListFollowersForAuthenticatedUser"
+          "target": "com.github.users#CheckPersonIsFollowedByAuthenticated"
+        },
+        {
+          "target": "com.github.users#Follow"
+        },
+        {
+          "target": "com.github.users#Unfollow"
+        },
+        {
+          "target": "com.github.users#ListGpgKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreateGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteGpgKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListPublicSshKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreatePublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetPublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeletePublicSshKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListPublicEmailsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListSocialAccountsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#AddSocialAccountForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteSocialAccountForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#ListSshSigningKeysForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#CreateSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#DeleteSshSigningKeyForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.users#GetById"
+        },
+        {
+          "target": "com.github.users#List"
+        },
+        {
+          "target": "com.github.users#GetByUsername"
+        },
+        {
+          "target": "com.github.users#ListAttestationsBulk"
+        },
+        {
+          "target": "com.github.users#DeleteAttestationsBulk"
+        },
+        {
+          "target": "com.github.users#DeleteAttestationsBySubjectDigest"
+        },
+        {
+          "target": "com.github.users#DeleteAttestationsById"
+        },
+        {
+          "target": "com.github.users#ListAttestations"
         },
         {
           "target": "com.github.users#ListFollowersForUser"
@@ -4361,43 +4382,22 @@
           "target": "com.github.users#ListFollowingForUser"
         },
         {
-          "target": "com.github.users#ListGpgKeysForAuthenticatedUser"
+          "target": "com.github.users#CheckFollowingForUser"
         },
         {
           "target": "com.github.users#ListGpgKeysForUser"
         },
         {
-          "target": "com.github.users#ListPublicEmailsForAuthenticatedUser"
+          "target": "com.github.users#GetContextForUser"
         },
         {
           "target": "com.github.users#ListPublicKeysForUser"
         },
         {
-          "target": "com.github.users#ListPublicSshKeysForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#ListSocialAccountsForAuthenticatedUser"
-        },
-        {
           "target": "com.github.users#ListSocialAccountsForUser"
         },
         {
-          "target": "com.github.users#ListSshSigningKeysForAuthenticatedUser"
-        },
-        {
           "target": "com.github.users#ListSshSigningKeysForUser"
-        },
-        {
-          "target": "com.github.users#SetPrimaryEmailVisibilityForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.users#Unblock"
-        },
-        {
-          "target": "com.github.users#Unfollow"
-        },
-        {
-          "target": "com.github.users#UpdateAuthenticated"
         }
       ],
       "traits": {

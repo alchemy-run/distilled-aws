@@ -1868,37 +1868,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resourceconnector#AppliancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resourceconnector#DeleteAppliance"
-        },
-        {
-          "target": "com.azure.resourceconnector#GetAppliance"
-        },
-        {
-          "target": "com.azure.resourceconnector#GetApplianceTelemetryConfig"
-        },
-        {
           "target": "com.azure.resourceconnector#GetApplianceUpgradeGraph"
-        },
-        {
-          "target": "com.azure.resourceconnector#ListApplianceByResourceGroup"
-        },
-        {
-          "target": "com.azure.resourceconnector#ListApplianceBySubscription"
-        },
-        {
-          "target": "com.azure.resourceconnector#ListApplianceClusterUserCredential"
         },
         {
           "target": "com.azure.resourceconnector#ListApplianceKeys"
         },
         {
-          "target": "com.azure.resourceconnector#ListApplianceOperations"
+          "target": "com.azure.resourceconnector#ListApplianceClusterUserCredential"
+        },
+        {
+          "target": "com.azure.resourceconnector#DeleteAppliance"
         },
         {
           "target": "com.azure.resourceconnector#UpdateAppliance"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resourceconnector#GetAppliance"
+        },
+        {
+          "target": "com.azure.resourceconnector#ListApplianceByResourceGroup"
+        },
+        {
+          "target": "com.azure.resourceconnector#GetApplianceTelemetryConfig"
+        },
+        {
+          "target": "com.azure.resourceconnector#ListApplianceBySubscription"
+        },
+        {
+          "target": "com.azure.resourceconnector#ListApplianceOperations"
         }
       ],
       "traits": {

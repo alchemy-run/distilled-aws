@@ -453,13 +453,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.web_experiments#ListWebExperiments"
+        },
+        {
           "target": "com.posthog.web_experiments#CreateWebExperiment"
         },
         {
           "target": "com.posthog.web_experiments#GetWebExperiment"
-        },
-        {
-          "target": "com.posthog.web_experiments#ListWebExperiments"
         },
         {
           "target": "com.posthog.web_experiments#UpdateWebExperiment"

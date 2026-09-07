@@ -388,7 +388,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsDestroy"
+          "target": "com.posthog.account_relationship_definitions#ListAccountRelationshipDefinitions"
         },
         {
           "target": "com.posthog.account_relationship_definitions#CreateAccountRelationshipDefinition"
@@ -397,13 +397,13 @@
           "target": "com.posthog.account_relationship_definitions#GetAccountRelationshipDefinition"
         },
         {
-          "target": "com.posthog.account_relationship_definitions#ListAccountRelationshipDefinitions"
-        },
-        {
           "target": "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinition"
         },
         {
           "target": "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionsPartial"
+        },
+        {
+          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsDestroy"
         }
       ],
       "traits": {

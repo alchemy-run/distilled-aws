@@ -591,16 +591,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.recommended_actions#GetRecommendedAction"
-        },
-        {
-          "target": "com.whop.recommended_actions#ListRecommendedActionExecutions"
-        },
-        {
           "target": "com.whop.recommended_actions#ListRecommendedActions"
         },
         {
+          "target": "com.whop.recommended_actions#GetRecommendedAction"
+        },
+        {
           "target": "com.whop.recommended_actions#RunRecommendedAction"
+        },
+        {
+          "target": "com.whop.recommended_actions#ListRecommendedActionExecutions"
         }
       ],
       "traits": {

@@ -1063,25 +1063,25 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.marketplaceordering#ListMarketplaceAgreements"
+        },
+        {
+          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementAgreement"
+        },
+        {
           "target": "com.azure.marketplaceordering#CancelMarketplaceAgreement"
+        },
+        {
+          "target": "com.azure.marketplaceordering#SignMarketplaceAgreement"
+        },
+        {
+          "target": "com.azure.marketplaceordering#ListOperations"
         },
         {
           "target": "com.azure.marketplaceordering#CreateMarketplaceAgreement"
         },
         {
           "target": "com.azure.marketplaceordering#GetMarketplaceAgreement"
-        },
-        {
-          "target": "com.azure.marketplaceordering#GetMarketplaceAgreementAgreement"
-        },
-        {
-          "target": "com.azure.marketplaceordering#ListMarketplaceAgreements"
-        },
-        {
-          "target": "com.azure.marketplaceordering#ListOperations"
-        },
-        {
-          "target": "com.azure.marketplaceordering#SignMarketplaceAgreement"
         }
       ],
       "traits": {

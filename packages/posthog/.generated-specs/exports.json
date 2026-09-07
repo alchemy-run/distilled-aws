@@ -565,6 +565,9 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.exports#ListExports"
+        },
+        {
           "target": "com.posthog.exports#CreateExport"
         },
         {
@@ -572,9 +575,6 @@
         },
         {
           "target": "com.posthog.exports#GetExportsContent"
-        },
-        {
-          "target": "com.posthog.exports#ListExports"
         }
       ],
       "traits": {

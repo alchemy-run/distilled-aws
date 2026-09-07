@@ -25273,490 +25273,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.edge#ArtifactsListDownloadUri"
-        },
-        {
-          "target": "com.azure.edge#BulkSolutionTemplateVersionReviewSolution"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplateMetadatasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplatesLinkToHierarchies"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplatesUnLinkFromHierarchies"
-        },
-        {
-          "target": "com.azure.edge#ConfigTemplateVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ConfigurationReferencesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ContextsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#CreateConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#CreateSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#CreateSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigTemplateMetadatas"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfiguration"
-        },
-        {
-          "target": "com.azure.edge#DeleteConfigurationReference"
-        },
-        {
-          "target": "com.azure.edge#DeleteContext"
-        },
-        {
-          "target": "com.azure.edge#DeleteDiagnostic"
-        },
-        {
-          "target": "com.azure.edge#DeleteDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicConfigurationVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#DeleteDynamicSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteExecution"
-        },
-        {
-          "target": "com.azure.edge#DeleteHardwareSettings"
-        },
-        {
-          "target": "com.azure.edge#DeleteInstance"
-        },
-        {
-          "target": "com.azure.edge#DeleteSchema"
-        },
-        {
-          "target": "com.azure.edge#DeleteSchemaReference"
-        },
-        {
-          "target": "com.azure.edge#DeleteSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteSite"
-        },
-        {
-          "target": "com.azure.edge#DeleteSiteReference"
-        },
-        {
-          "target": "com.azure.edge#DeleteSitesByServiceGroup"
-        },
-        {
-          "target": "com.azure.edge#DeleteSitesBySubscription"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolution"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#DeleteTarget"
-        },
-        {
-          "target": "com.azure.edge#DeleteWorkflow"
-        },
-        {
-          "target": "com.azure.edge#DeleteWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#DiagnosticsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#DisconnectedOperationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#DynamicConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#DynamicConfigurationVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#DynamicSchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#DynamicSchemaVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ExecutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#GetArtifact"
-        },
-        {
-          "target": "com.azure.edge#GetConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#GetConfigTemplateMetadatas"
-        },
-        {
-          "target": "com.azure.edge#GetConfigTemplateSchema"
-        },
-        {
-          "target": "com.azure.edge#GetConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#GetConfiguration"
-        },
-        {
-          "target": "com.azure.edge#GetConfigurationReference"
-        },
-        {
-          "target": "com.azure.edge#GetContext"
-        },
-        {
-          "target": "com.azure.edge#GetDiagnostic"
-        },
-        {
-          "target": "com.azure.edge#GetDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicConfigurationVersion"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#GetDynamicSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#GetExecution"
-        },
-        {
-          "target": "com.azure.edge#GetHardwareSettings"
-        },
-        {
-          "target": "com.azure.edge#GetHierarchyConfigurationMetadatas"
-        },
-        {
-          "target": "com.azure.edge#GetHierarchyConfigurationMetadataVersion"
-        },
-        {
-          "target": "com.azure.edge#GetImage"
-        },
-        {
-          "target": "com.azure.edge#GetInstance"
-        },
-        {
-          "target": "com.azure.edge#GetInstanceHistory"
-        },
-        {
-          "target": "com.azure.edge#GetJob"
-        },
-        {
-          "target": "com.azure.edge#GetSchema"
-        },
-        {
-          "target": "com.azure.edge#GetSchemaReference"
-        },
-        {
-          "target": "com.azure.edge#GetSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#GetSite"
-        },
-        {
-          "target": "com.azure.edge#GetSiteReference"
-        },
-        {
-          "target": "com.azure.edge#GetSitesByServiceGroup"
-        },
-        {
-          "target": "com.azure.edge#GetSitesBySubscription"
-        },
-        {
-          "target": "com.azure.edge#GetSolution"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionMetadatas"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionMetadataVersion"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionSchema"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#GetSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#GetTarget"
-        },
-        {
-          "target": "com.azure.edge#GetWorkflow"
-        },
-        {
-          "target": "com.azure.edge#GetWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#HardwareSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ImagesListDownloadUri"
-        },
-        {
-          "target": "com.azure.edge#InstallTargetSolution"
-        },
-        {
-          "target": "com.azure.edge#InstancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#ListArtifactByParent"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateMetadatasByConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateSchemaByConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#ListConfigTemplateVersionByConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#ListConfigurationByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListConfigurationBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListConfigurationReferences"
-        },
-        {
-          "target": "com.azure.edge#ListContextByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListContextBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListDiagnosticByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListDiagnosticBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListDisconnectedOperationByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListDisconnectedOperationBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListDisconnectedOperationDeploymentManifest"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicConfigurationByConfiguration"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicConfigurationVersionByDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicSchemaBySchema"
-        },
-        {
-          "target": "com.azure.edge#ListDynamicSchemaVersionByDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#ListExecutionByWorkflowVersion"
-        },
-        {
-          "target": "com.azure.edge#ListHardwareSettingsByParent"
-        },
-        {
-          "target": "com.azure.edge#ListHierarchyConfigurationMetadatasByParent"
-        },
-        {
-          "target": "com.azure.edge#ListHierarchyConfigurationMetadataVersionByParent"
-        },
-        {
-          "target": "com.azure.edge#ListImageByDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#ListInstanceBySolution"
-        },
-        {
-          "target": "com.azure.edge#ListInstanceHistoryByInstance"
-        },
-        {
-          "target": "com.azure.edge#ListJobByTarget"
-        },
-        {
-          "target": "com.azure.edge#ListOperations"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaReferenceByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListSchemaVersionBySchema"
-        },
-        {
-          "target": "com.azure.edge#ListSiteByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListSiteReferenceByContext"
-        },
-        {
-          "target": "com.azure.edge#ListSitesByServiceGroupByServiceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListSitesBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionByTarget"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionMetadatasByParent"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionMetadataVersionByParent"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionSchemaBySolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionTemplateByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionTemplateBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionTemplateVersionBySolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#ListSolutionVersionBySolution"
-        },
-        {
-          "target": "com.azure.edge#ListTargetByResourceGroup"
-        },
-        {
-          "target": "com.azure.edge#ListTargetBySubscription"
-        },
-        {
-          "target": "com.azure.edge#ListWorkflowByContext"
-        },
-        {
-          "target": "com.azure.edge#ListWorkflowVersionByWorkflow"
-        },
-        {
-          "target": "com.azure.edge#PublishTargetSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#RemoveConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#RemoveSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#RemoveSolutionTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#RemoveTargetRevision"
-        },
-        {
-          "target": "com.azure.edge#ReviewTargetSolutionVersion"
-        },
-        {
-          "target": "com.azure.edge#SchemaReferencesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SchemaVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SiteReferencesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SitesByServiceGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SitesBySubscriptionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SolutionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkDeploySolution"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsBulkPublishSolution"
-        },
-        {
-          "target": "com.azure.edge#SolutionTemplateVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#SolutionVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#TargetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.edge#TargetsResolveConfiguration"
+          "target": "com.azure.edge#UpdateTargetExternalValidationStatus"
         },
         {
           "target": "com.azure.edge#TargetsUnstageSolutionVersion"
@@ -25765,97 +25282,580 @@
           "target": "com.azure.edge#UninstallTargetSolution"
         },
         {
-          "target": "com.azure.edge#UpdateConfigTemplate"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigTemplateMetadatas"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigTemplateVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfiguration"
-        },
-        {
-          "target": "com.azure.edge#UpdateConfigurationReference"
-        },
-        {
-          "target": "com.azure.edge#UpdateContext"
-        },
-        {
-          "target": "com.azure.edge#UpdateDiagnostic"
-        },
-        {
-          "target": "com.azure.edge#UpdateDisconnectedOperation"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicConfiguration"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicConfigurationVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicSchema"
-        },
-        {
-          "target": "com.azure.edge#UpdateDynamicSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateExecution"
-        },
-        {
-          "target": "com.azure.edge#UpdateInstance"
-        },
-        {
-          "target": "com.azure.edge#UpdateSchema"
-        },
-        {
-          "target": "com.azure.edge#UpdateSchemaReference"
-        },
-        {
-          "target": "com.azure.edge#UpdateSchemaVersion"
-        },
-        {
-          "target": "com.azure.edge#UpdateSite"
-        },
-        {
-          "target": "com.azure.edge#UpdateSiteReference"
-        },
-        {
-          "target": "com.azure.edge#UpdateSitesByServiceGroup"
-        },
-        {
-          "target": "com.azure.edge#UpdateSitesBySubscription"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolution"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolutionTemplate"
-        },
-        {
-          "target": "com.azure.edge#UpdateSolutionTemplateVersion"
+          "target": "com.azure.edge#DeleteSolutionVersion"
         },
         {
           "target": "com.azure.edge#UpdateSolutionVersion"
         },
         {
+          "target": "com.azure.edge#SolutionVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionVersionBySolution"
+        },
+        {
+          "target": "com.azure.edge#GetInstanceHistory"
+        },
+        {
+          "target": "com.azure.edge#ListInstanceHistoryByInstance"
+        },
+        {
+          "target": "com.azure.edge#DeleteInstance"
+        },
+        {
+          "target": "com.azure.edge#UpdateInstance"
+        },
+        {
+          "target": "com.azure.edge#InstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetInstance"
+        },
+        {
+          "target": "com.azure.edge#ListInstanceBySolution"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolution"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolution"
+        },
+        {
+          "target": "com.azure.edge#SolutionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSolution"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionByTarget"
+        },
+        {
+          "target": "com.azure.edge#ReviewTargetSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#TargetsResolveConfiguration"
+        },
+        {
+          "target": "com.azure.edge#RemoveTargetRevision"
+        },
+        {
+          "target": "com.azure.edge#PublishTargetSolutionVersion"
+        },
+        {
+          "target": "com.azure.edge#InstallTargetSolution"
+        },
+        {
+          "target": "com.azure.edge#DeleteTarget"
+        },
+        {
           "target": "com.azure.edge#UpdateTarget"
         },
         {
-          "target": "com.azure.edge#UpdateTargetExternalValidationStatus"
+          "target": "com.azure.edge#TargetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#UpdateWorkflow"
+          "target": "com.azure.edge#GetTarget"
+        },
+        {
+          "target": "com.azure.edge#ListTargetByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionSchema"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionSchemaBySolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#BulkSolutionTemplateVersionReviewSolution"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplateVersionsBulkPublishSolution"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplateVersionsBulkDeploySolution"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplateVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionTemplateVersionBySolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#RemoveSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#CreateSolutionTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteSolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#UpdateSolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#SolutionTemplatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionTemplate"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#DeleteSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#SchemaVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#ListSchemaVersionBySchema"
+        },
+        {
+          "target": "com.azure.edge#RemoveSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#DynamicSchemaVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicSchemaVersionByDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#DynamicSchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicSchema"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicSchemaBySchema"
+        },
+        {
+          "target": "com.azure.edge#CreateSchemaVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteSchema"
+        },
+        {
+          "target": "com.azure.edge#UpdateSchema"
+        },
+        {
+          "target": "com.azure.edge#SchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSchema"
+        },
+        {
+          "target": "com.azure.edge#ListSchemaByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#DeleteDiagnostic"
+        },
+        {
+          "target": "com.azure.edge#UpdateDiagnostic"
+        },
+        {
+          "target": "com.azure.edge#DiagnosticsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetDiagnostic"
+        },
+        {
+          "target": "com.azure.edge#ListDiagnosticByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#DeleteExecution"
+        },
+        {
+          "target": "com.azure.edge#UpdateExecution"
+        },
+        {
+          "target": "com.azure.edge#ExecutionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetExecution"
+        },
+        {
+          "target": "com.azure.edge#ListExecutionByWorkflowVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteWorkflowVersion"
         },
         {
           "target": "com.azure.edge#UpdateWorkflowVersion"
         },
         {
+          "target": "com.azure.edge#WorkflowVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetWorkflowVersion"
+        },
+        {
+          "target": "com.azure.edge#ListWorkflowVersionByWorkflow"
+        },
+        {
+          "target": "com.azure.edge#DeleteWorkflow"
+        },
+        {
+          "target": "com.azure.edge#UpdateWorkflow"
+        },
+        {
           "target": "com.azure.edge#WorkflowsCreateOrUpdate"
         },
         {
-          "target": "com.azure.edge#WorkflowVersionsCreateOrUpdate"
+          "target": "com.azure.edge#GetWorkflow"
+        },
+        {
+          "target": "com.azure.edge#ListWorkflowByContext"
+        },
+        {
+          "target": "com.azure.edge#DeleteSiteReference"
+        },
+        {
+          "target": "com.azure.edge#UpdateSiteReference"
+        },
+        {
+          "target": "com.azure.edge#SiteReferencesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSiteReference"
+        },
+        {
+          "target": "com.azure.edge#ListSiteReferenceByContext"
+        },
+        {
+          "target": "com.azure.edge#DeleteContext"
+        },
+        {
+          "target": "com.azure.edge#UpdateContext"
+        },
+        {
+          "target": "com.azure.edge#ContextsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetContext"
+        },
+        {
+          "target": "com.azure.edge#ListContextByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplateSchema"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateSchemaByConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#ConfigTemplateVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateVersionByConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#ConfigTemplatesUnLinkFromHierarchies"
+        },
+        {
+          "target": "com.azure.edge#RemoveConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#ConfigTemplatesLinkToHierarchies"
+        },
+        {
+          "target": "com.azure.edge#CreateConfigTemplateVersion"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigTemplateMetadatas"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigTemplateMetadatas"
+        },
+        {
+          "target": "com.azure.edge#ConfigTemplateMetadatasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplateMetadatas"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateMetadatasByConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#ConfigTemplatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetConfigTemplate"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListTargetBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionTemplateBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListSchemaBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListDiagnosticBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListContextBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListConfigTemplateBySubscription"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionMetadataVersion"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionMetadataVersionByParent"
+        },
+        {
+          "target": "com.azure.edge#GetSolutionMetadatas"
+        },
+        {
+          "target": "com.azure.edge#ListSolutionMetadatasByParent"
+        },
+        {
+          "target": "com.azure.edge#DeleteSchemaReference"
+        },
+        {
+          "target": "com.azure.edge#UpdateSchemaReference"
+        },
+        {
+          "target": "com.azure.edge#SchemaReferencesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSchemaReference"
+        },
+        {
+          "target": "com.azure.edge#ListSchemaReferenceByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#GetJob"
+        },
+        {
+          "target": "com.azure.edge#ListJobByTarget"
+        },
+        {
+          "target": "com.azure.edge#GetHierarchyConfigurationMetadataVersion"
+        },
+        {
+          "target": "com.azure.edge#ListHierarchyConfigurationMetadataVersionByParent"
+        },
+        {
+          "target": "com.azure.edge#GetHierarchyConfigurationMetadatas"
+        },
+        {
+          "target": "com.azure.edge#ListHierarchyConfigurationMetadatasByParent"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicConfigurationVersion"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicConfigurationVersion"
+        },
+        {
+          "target": "com.azure.edge#DynamicConfigurationVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicConfigurationVersion"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicConfigurationVersionByDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#DeleteDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#UpdateDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#DynamicConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetDynamicConfiguration"
+        },
+        {
+          "target": "com.azure.edge#ListDynamicConfigurationByConfiguration"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfiguration"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfiguration"
+        },
+        {
+          "target": "com.azure.edge#ConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetConfiguration"
+        },
+        {
+          "target": "com.azure.edge#ListConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListConfigurationBySubscription"
+        },
+        {
+          "target": "com.azure.edge#DeleteConfigurationReference"
+        },
+        {
+          "target": "com.azure.edge#UpdateConfigurationReference"
+        },
+        {
+          "target": "com.azure.edge#ConfigurationReferencesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetConfigurationReference"
+        },
+        {
+          "target": "com.azure.edge#ListConfigurationReferences"
+        },
+        {
+          "target": "com.azure.edge#ListDisconnectedOperationDeploymentManifest"
+        },
+        {
+          "target": "com.azure.edge#ImagesListDownloadUri"
+        },
+        {
+          "target": "com.azure.edge#ArtifactsListDownloadUri"
+        },
+        {
+          "target": "com.azure.edge#GetArtifact"
+        },
+        {
+          "target": "com.azure.edge#ListArtifactByParent"
+        },
+        {
+          "target": "com.azure.edge#GetImage"
+        },
+        {
+          "target": "com.azure.edge#ListImageByDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#DeleteHardwareSettings"
+        },
+        {
+          "target": "com.azure.edge#HardwareSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetHardwareSettings"
+        },
+        {
+          "target": "com.azure.edge#ListHardwareSettingsByParent"
+        },
+        {
+          "target": "com.azure.edge#DeleteDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#UpdateDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#DisconnectedOperationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetDisconnectedOperation"
+        },
+        {
+          "target": "com.azure.edge#ListDisconnectedOperationByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListDisconnectedOperationBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListOperations"
+        },
+        {
+          "target": "com.azure.edge#DeleteSite"
+        },
+        {
+          "target": "com.azure.edge#UpdateSite"
+        },
+        {
+          "target": "com.azure.edge#SitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSite"
+        },
+        {
+          "target": "com.azure.edge#ListSiteByResourceGroup"
+        },
+        {
+          "target": "com.azure.edge#DeleteSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#UpdateSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#SitesBySubscriptionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#ListSitesBySubscription"
+        },
+        {
+          "target": "com.azure.edge#DeleteSitesByServiceGroup"
+        },
+        {
+          "target": "com.azure.edge#UpdateSitesByServiceGroup"
+        },
+        {
+          "target": "com.azure.edge#SitesByServiceGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.edge#GetSitesByServiceGroup"
+        },
+        {
+          "target": "com.azure.edge#ListSitesByServiceGroupByServiceGroup"
         }
       ],
       "traits": {

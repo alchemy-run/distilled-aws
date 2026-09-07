@@ -5134,70 +5134,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.reservations#ArchiveReservation"
+          "target": "com.azure.reservations#GetCatalog"
         },
         {
           "target": "com.azure.reservations#GetAppliedReservationList"
         },
         {
-          "target": "com.azure.reservations#GetCatalog"
-        },
-        {
-          "target": "com.azure.reservations#GetReservation"
-        },
-        {
-          "target": "com.azure.reservations#GetReservationOrder"
-        },
-        {
-          "target": "com.azure.reservations#ListOperation"
-        },
-        {
-          "target": "com.azure.reservations#ListReservation"
-        },
-        {
           "target": "com.azure.reservations#ListReservationAll"
-        },
-        {
-          "target": "com.azure.reservations#ListReservationOrder"
-        },
-        {
-          "target": "com.azure.reservations#ListReservationRevisions"
-        },
-        {
-          "target": "com.azure.reservations#MergeReservation"
-        },
-        {
-          "target": "com.azure.reservations#PostCalculateExchange"
-        },
-        {
-          "target": "com.azure.reservations#PostCalculateRefund"
-        },
-        {
-          "target": "com.azure.reservations#PostExchange"
-        },
-        {
-          "target": "com.azure.reservations#PostReturn"
-        },
-        {
-          "target": "com.azure.reservations#ReservationAvailableScopes"
-        },
-        {
-          "target": "com.azure.reservations#ReservationOrderCalculate"
-        },
-        {
-          "target": "com.azure.reservations#ReservationOrderChangeDirectory"
-        },
-        {
-          "target": "com.azure.reservations#ReservationOrderPurchase"
         },
         {
           "target": "com.azure.reservations#ReservationSplit"
         },
         {
+          "target": "com.azure.reservations#PostReturn"
+        },
+        {
           "target": "com.azure.reservations#UnarchiveReservation"
         },
         {
+          "target": "com.azure.reservations#ListReservationRevisions"
+        },
+        {
+          "target": "com.azure.reservations#ReservationAvailableScopes"
+        },
+        {
+          "target": "com.azure.reservations#ArchiveReservation"
+        },
+        {
           "target": "com.azure.reservations#UpdateReservation"
+        },
+        {
+          "target": "com.azure.reservations#GetReservation"
+        },
+        {
+          "target": "com.azure.reservations#ListReservation"
+        },
+        {
+          "target": "com.azure.reservations#MergeReservation"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderChangeDirectory"
+        },
+        {
+          "target": "com.azure.reservations#PostCalculateRefund"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderPurchase"
+        },
+        {
+          "target": "com.azure.reservations#GetReservationOrder"
+        },
+        {
+          "target": "com.azure.reservations#ListReservationOrder"
+        },
+        {
+          "target": "com.azure.reservations#ListOperation"
+        },
+        {
+          "target": "com.azure.reservations#PostExchange"
+        },
+        {
+          "target": "com.azure.reservations#ReservationOrderCalculate"
+        },
+        {
+          "target": "com.azure.reservations#PostCalculateExchange"
         }
       ],
       "traits": {

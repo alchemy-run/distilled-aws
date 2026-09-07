@@ -650,19 +650,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.event_schemas#CreateEventSchema"
-        },
-        {
-          "target": "com.posthog.event_schemas#EventSchemasDestroy"
-        },
-        {
           "target": "com.posthog.event_schemas#ListEventSchemas"
+        },
+        {
+          "target": "com.posthog.event_schemas#CreateEventSchema"
         },
         {
           "target": "com.posthog.event_schemas#UpdateEventSchema"
         },
         {
           "target": "com.posthog.event_schemas#UpdateEventSchemasPartial"
+        },
+        {
+          "target": "com.posthog.event_schemas#EventSchemasDestroy"
         }
       ],
       "traits": {

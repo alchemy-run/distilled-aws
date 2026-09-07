@@ -1966,16 +1966,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.transfers#CreateTransfer"
-        },
-        {
-          "target": "com.whop.transfers#GetTransfer"
-        },
-        {
           "target": "com.whop.transfers#ListTransfer"
         },
         {
+          "target": "com.whop.transfers#CreateTransfer"
+        },
+        {
           "target": "com.whop.transfers#ListTransferRecipients"
+        },
+        {
+          "target": "com.whop.transfers#GetTransfer"
         }
       ],
       "traits": {

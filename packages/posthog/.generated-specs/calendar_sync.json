@@ -183,10 +183,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.calendar_sync#CreateCalendarSyncSyncNow"
+          "target": "com.posthog.calendar_sync#ListCalendarSync"
         },
         {
-          "target": "com.posthog.calendar_sync#ListCalendarSync"
+          "target": "com.posthog.calendar_sync#CreateCalendarSyncSyncNow"
         }
       ],
       "traits": {

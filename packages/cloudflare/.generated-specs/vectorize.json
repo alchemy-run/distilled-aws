@@ -509,6 +509,9 @@
           "target": "com.cloudflare.vectorize#GetIndex"
         },
         {
+          "target": "com.cloudflare.vectorize#ListInfo"
+        },
+        {
           "target": "com.cloudflare.vectorize#InsertIndex"
         },
         {
@@ -518,13 +521,10 @@
           "target": "com.cloudflare.vectorize#ListIndexMetadataIndexes"
         },
         {
-          "target": "com.cloudflare.vectorize#ListInfo"
+          "target": "com.cloudflare.vectorize#ListVectorsIndex"
         },
         {
           "target": "com.cloudflare.vectorize#ListQuery"
-        },
-        {
-          "target": "com.cloudflare.vectorize#ListVectorsIndex"
         },
         {
           "target": "com.cloudflare.vectorize#UpsertIndex"

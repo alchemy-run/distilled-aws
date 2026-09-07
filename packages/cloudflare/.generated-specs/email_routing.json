@@ -1768,6 +1768,12 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.email_routing#Unlock"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EditAddress"
+        },
+        {
           "target": "com.cloudflare.email_routing#CreateAddress"
         },
         {
@@ -1787,9 +1793,6 @@
         },
         {
           "target": "com.cloudflare.email_routing#DisableEmailRouting"
-        },
-        {
-          "target": "com.cloudflare.email_routing#EditAddress"
         },
         {
           "target": "com.cloudflare.email_routing#EnableEmailRouting"
@@ -1813,19 +1816,16 @@
           "target": "com.cloudflare.email_routing#ListAddresses"
         },
         {
-          "target": "com.cloudflare.email_routing#ListRules"
-        },
-        {
           "target": "com.cloudflare.email_routing#PatchDns"
         },
         {
           "target": "com.cloudflare.email_routing#PutRuleCatchAll"
         },
         {
-          "target": "com.cloudflare.email_routing#Unlock"
+          "target": "com.cloudflare.email_routing#UpdateRule"
         },
         {
-          "target": "com.cloudflare.email_routing#UpdateRule"
+          "target": "com.cloudflare.email_routing#ListRules"
         }
       ],
       "traits": {

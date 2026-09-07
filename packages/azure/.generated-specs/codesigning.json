@@ -1968,28 +1968,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.codesigning#CheckCodeSigningAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.codesigning#CreateCertificateProfile"
-        },
-        {
-          "target": "com.azure.codesigning#CreateCodeSigningAccount"
+          "target": "com.azure.codesigning#RevokeCertificateProfileCertificate"
         },
         {
           "target": "com.azure.codesigning#DeleteCertificateProfile"
         },
         {
-          "target": "com.azure.codesigning#DeleteCodeSigningAccount"
+          "target": "com.azure.codesigning#CreateCertificateProfile"
         },
         {
           "target": "com.azure.codesigning#GetCertificateProfile"
         },
         {
-          "target": "com.azure.codesigning#GetCodeSigningAccount"
+          "target": "com.azure.codesigning#ListCertificateProfileByCodeSigningAccount"
         },
         {
-          "target": "com.azure.codesigning#ListCertificateProfileByCodeSigningAccount"
+          "target": "com.azure.codesigning#DeleteCodeSigningAccount"
+        },
+        {
+          "target": "com.azure.codesigning#UpdateCodeSigningAccount"
+        },
+        {
+          "target": "com.azure.codesigning#CreateCodeSigningAccount"
+        },
+        {
+          "target": "com.azure.codesigning#GetCodeSigningAccount"
         },
         {
           "target": "com.azure.codesigning#ListCodeSigningAccountByResourceGroup"
@@ -1998,13 +2001,10 @@
           "target": "com.azure.codesigning#ListCodeSigningAccountBySubscription"
         },
         {
+          "target": "com.azure.codesigning#CheckCodeSigningAccountNameAvailability"
+        },
+        {
           "target": "com.azure.codesigning#ListOperations"
-        },
-        {
-          "target": "com.azure.codesigning#RevokeCertificateProfileCertificate"
-        },
-        {
-          "target": "com.azure.codesigning#UpdateCodeSigningAccount"
         }
       ],
       "traits": {

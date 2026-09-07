@@ -1404,25 +1404,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdate"
+          "target": "com.azure.graphservicesprod#ListOperations"
         },
         {
           "target": "com.azure.graphservicesprod#DeleteAccount"
         },
         {
-          "target": "com.azure.graphservicesprod#GetAccount"
+          "target": "com.azure.graphservicesprod#UpdateAccount"
         },
         {
-          "target": "com.azure.graphservicesprod#ListAccountByResourceGroup"
+          "target": "com.azure.graphservicesprod#AccountsCreateAndUpdate"
+        },
+        {
+          "target": "com.azure.graphservicesprod#GetAccount"
         },
         {
           "target": "com.azure.graphservicesprod#ListAccountBySubscription"
         },
         {
-          "target": "com.azure.graphservicesprod#ListOperations"
-        },
-        {
-          "target": "com.azure.graphservicesprod#UpdateAccount"
+          "target": "com.azure.graphservicesprod#ListAccountByResourceGroup"
         }
       ],
       "traits": {

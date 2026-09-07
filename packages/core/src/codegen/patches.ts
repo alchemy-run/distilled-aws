@@ -103,23 +103,28 @@ export const applyRfc6902Files = async (
 
 /**
  * An RFC-6902 `move` that renames an operation shape leaves the service's
- * `operations` list pointing at the old id. Rebuild it from the operation
- * shapes that exist (sorted, one entry each). Returns the number of
- * services whose list changed.
+ * `operations` list pointing at the old id. Drop entries whose target no
+ * longer exists and append operation shapes the list is missing, keeping
+ * the existing order. Returns the number of services whose list changed.
  */
 export const syncServiceOperations = (model: {
   shapes?: Record<string, any>;
 }): number => {
   const shapes = model.shapes ?? {};
-  const opIds = Object.keys(shapes)
-    .filter((id) => shapes[id]?.type === "operation")
-    .sort((a, b) => a.localeCompare(b));
+  const opIds = Object.keys(shapes).filter(
+    (id) => shapes[id]?.type === "operation",
+  );
   let changed = 0;
   for (const def of Object.values(shapes)) {
     if (def?.type !== "service") continue;
-    const before = JSON.stringify(def.operations ?? []);
-    const after = opIds.map((target) => ({ target }));
-    if (before !== JSON.stringify(after)) {
+    const current: Array<{ target: string }> = def.operations ?? [];
+    const kept = current.filter((o) => shapes[o.target]?.type === "operation");
+    const listed = new Set(kept.map((o) => o.target));
+    const after = [
+      ...kept,
+      ...opIds.filter((id) => !listed.has(id)).map((target) => ({ target })),
+    ];
+    if (JSON.stringify(current) !== JSON.stringify(after)) {
       def.operations = after;
       changed++;
     }
@@ -217,8 +222,6 @@ export const finalizeConvert = async (o: {
         `${path.relative(o.root, modelPath)} was already finalized — finalizeConvert is not idempotent; re-run this package's convert from the spec instead`,
       );
     }
-    let dirty = false;
-
     if (patchesDir) {
       const patchFiles = await listRfc6902PatchFiles(
         path.join(patchesDir, resource),
@@ -235,7 +238,6 @@ export const finalizeConvert = async (o: {
         );
       }
       if (applied.applied > 0) {
-        dirty = true;
         console.log(
           `   patched ${resource}: ${applied.files} file(s), ${applied.applied} op(s)` +
             (applied.stale ? `, ${applied.stale} stale` : ""),
@@ -246,7 +248,6 @@ export const finalizeConvert = async (o: {
     if (naming === "verbNoun") {
       const { renamed, collisions } = verbNounSmithyModel(model);
       if (renamed > 0) {
-        dirty = true;
         console.log(`   verbNoun ${resource}: renamed ${renamed} operation(s)`);
       }
       for (const c of collisions) {
@@ -257,12 +258,9 @@ export const finalizeConvert = async (o: {
     }
 
     const note = o.transform?.(model, resource);
-    if (note) {
-      dirty = true;
-      console.log(`   ${note}`);
-    }
+    if (note) console.log(`   ${note}`);
 
-    if (syncServiceOperations(model) > 0) dirty = true;
+    syncServiceOperations(model);
 
     const dangling = danglingTargets(model);
     if (dangling.length) {
@@ -271,14 +269,13 @@ export const finalizeConvert = async (o: {
       if (dangling.length > 5) {
         console.error(`   … ${dangling.length - 5} more`);
       }
+      // Leave the unfinalized model on disk for inspection; never stamp
+      // a model that generate cannot compile.
+      continue;
     }
 
     model.metadata = { ...model.metadata, [FINALIZED_KEY]: true };
-    dirty = true;
-
-    if (dirty) {
-      await fs.writeFile(modelPath, `${JSON.stringify(model, null, 2)}\n`);
-    }
+    await fs.writeFile(modelPath, `${JSON.stringify(model, null, 2)}\n`);
   }
   if (broken.length) {
     throw new Error(

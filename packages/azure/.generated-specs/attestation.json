@@ -2386,28 +2386,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.attestation#CreateAttestationProvider"
-        },
-        {
-          "target": "com.azure.attestation#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.attestation#DeleteAttestationProvider"
+          "target": "com.azure.attestation#ListPrivateLinkResourceByProvider"
         },
         {
           "target": "com.azure.attestation#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.attestation#GetAttestationProvider"
-        },
-        {
-          "target": "com.azure.attestation#GetAttestationProviderDefaultByLocation"
+          "target": "com.azure.attestation#CreatePrivateEndpointConnection"
         },
         {
           "target": "com.azure.attestation#GetPrivateEndpointConnection"
         },
         {
+          "target": "com.azure.attestation#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.attestation#DeleteAttestationProvider"
+        },
+        {
+          "target": "com.azure.attestation#UpdateAttestationProvider"
+        },
+        {
+          "target": "com.azure.attestation#CreateAttestationProvider"
+        },
+        {
+          "target": "com.azure.attestation#GetAttestationProvider"
+        },
+        {
           "target": "com.azure.attestation#ListAttestationProviderByResourceGroup"
+        },
+        {
+          "target": "com.azure.attestation#GetAttestationProviderDefaultByLocation"
         },
         {
           "target": "com.azure.attestation#ListAttestationProviderDefault"
@@ -2417,15 +2426,6 @@
         },
         {
           "target": "com.azure.attestation#ListOperations"
-        },
-        {
-          "target": "com.azure.attestation#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.attestation#ListPrivateLinkResourceByProvider"
-        },
-        {
-          "target": "com.azure.attestation#UpdateAttestationProvider"
         }
       ],
       "traits": {

@@ -3223,7 +3223,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.visual_review#ListVisualReviewRepos"
+        },
+        {
           "target": "com.posthog.visual_review#CreateVisualReviewRepos"
+        },
+        {
+          "target": "com.posthog.visual_review#GetVisualReviewRepos"
+        },
+        {
+          "target": "com.posthog.visual_review#UpdateVisualReviewReposPartial"
+        },
+        {
+          "target": "com.posthog.visual_review#GetVisualReviewReposBaseline"
+        },
+        {
+          "target": "com.posthog.visual_review#GetVisualReviewReposFlakiness"
+        },
+        {
+          "target": "com.posthog.visual_review#ListVisualReviewReposQuarantine"
         },
         {
           "target": "com.posthog.visual_review#CreateVisualReviewReposQuarantine"
@@ -3232,7 +3250,31 @@
           "target": "com.posthog.visual_review#CreateVisualReviewReposQuarantineExpire"
         },
         {
+          "target": "com.posthog.visual_review#GetVisualReviewReposThumbnail"
+        },
+        {
+          "target": "com.posthog.visual_review#ListVisualReviewReposRuns"
+        },
+        {
+          "target": "com.posthog.visual_review#GetVisualReviewReposRunsCount"
+        },
+        {
+          "target": "com.posthog.visual_review#ListVisualReviewReposSnapshots"
+        },
+        {
+          "target": "com.posthog.visual_review#ListVisualReviewRuns"
+        },
+        {
           "target": "com.posthog.visual_review#CreateVisualReviewRun"
+        },
+        {
+          "target": "com.posthog.visual_review#GetVisualReviewRun"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsApproveCreate"
         },
         {
           "target": "com.posthog.visual_review#CreateVisualReviewRunsComplete"
@@ -3244,61 +3286,19 @@
           "target": "com.posthog.visual_review#CreateVisualReviewRunsRecompute"
         },
         {
-          "target": "com.posthog.visual_review#CreateVisualReviewRunsTolerate"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewRepos"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewReposBaseline"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewReposFlakiness"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewReposRunsCount"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewReposThumbnail"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewRun"
-        },
-        {
-          "target": "com.posthog.visual_review#GetVisualReviewRunsCount"
-        },
-        {
-          "target": "com.posthog.visual_review#ListVisualReviewRepos"
-        },
-        {
-          "target": "com.posthog.visual_review#ListVisualReviewReposQuarantine"
-        },
-        {
-          "target": "com.posthog.visual_review#ListVisualReviewReposRuns"
-        },
-        {
-          "target": "com.posthog.visual_review#ListVisualReviewReposSnapshots"
-        },
-        {
-          "target": "com.posthog.visual_review#ListVisualReviewRuns"
-        },
-        {
           "target": "com.posthog.visual_review#ListVisualReviewRunsSnapshotHistory"
         },
         {
           "target": "com.posthog.visual_review#ListVisualReviewRunsSnapshots"
         },
         {
+          "target": "com.posthog.visual_review#CreateVisualReviewRunsTolerate"
+        },
+        {
           "target": "com.posthog.visual_review#ListVisualReviewRunsToleratedHashes"
         },
         {
-          "target": "com.posthog.visual_review#UpdateVisualReviewReposPartial"
-        },
-        {
-          "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreate"
-        },
-        {
-          "target": "com.posthog.visual_review#VisualReviewRunsApproveCreate"
+          "target": "com.posthog.visual_review#GetVisualReviewRunsCount"
         }
       ],
       "traits": {

@@ -2243,22 +2243,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.healthdataaiservices#CreateDeidService"
-        },
-        {
-          "target": "com.azure.healthdataaiservices#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.healthdataaiservices#DeleteDeidService"
+          "target": "com.azure.healthdataaiservices#ListPrivateLinkByDeidService"
         },
         {
           "target": "com.azure.healthdataaiservices#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.healthdataaiservices#GetDeidService"
+          "target": "com.azure.healthdataaiservices#CreatePrivateEndpointConnection"
         },
         {
           "target": "com.azure.healthdataaiservices#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.healthdataaiservices#ListPrivateEndpointConnectionByDeidService"
+        },
+        {
+          "target": "com.azure.healthdataaiservices#DeleteDeidService"
+        },
+        {
+          "target": "com.azure.healthdataaiservices#UpdateDeidService"
+        },
+        {
+          "target": "com.azure.healthdataaiservices#CreateDeidService"
+        },
+        {
+          "target": "com.azure.healthdataaiservices#GetDeidService"
         },
         {
           "target": "com.azure.healthdataaiservices#ListDeidServiceByResourceGroup"
@@ -2268,15 +2277,6 @@
         },
         {
           "target": "com.azure.healthdataaiservices#ListOperations"
-        },
-        {
-          "target": "com.azure.healthdataaiservices#ListPrivateEndpointConnectionByDeidService"
-        },
-        {
-          "target": "com.azure.healthdataaiservices#ListPrivateLinkByDeidService"
-        },
-        {
-          "target": "com.azure.healthdataaiservices#UpdateDeidService"
         }
       ],
       "traits": {

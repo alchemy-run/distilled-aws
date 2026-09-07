@@ -1765,43 +1765,43 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.external_data_schemas#ListExternalDataSchemas"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#GetExternalDataSchema"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#UpdateExternalDataSchema"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#UpdateExternalDataSchemasPartial"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#ExternalDataSchemasDestroy"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#ExternalDataSchemasCancelCreate"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#DeleteExternalDataSchemaDataDestroy"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#GetExternalDataSchemasDestination"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#UpdateExternalDataSchemasDestinationsPartial"
+        },
+        {
           "target": "com.posthog.external_data_schemas#CreateExternalDataSchemasIncrementalField"
+        },
+        {
+          "target": "com.posthog.external_data_schemas#GetExternalDataSchemasLog"
         },
         {
           "target": "com.posthog.external_data_schemas#CreateExternalDataSchemasReload"
         },
         {
           "target": "com.posthog.external_data_schemas#CreateExternalDataSchemasResync"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#DeleteExternalDataSchemaDataDestroy"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#ExternalDataSchemasCancelCreate"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#ExternalDataSchemasDestroy"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#GetExternalDataSchema"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#GetExternalDataSchemasDestination"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#GetExternalDataSchemasLog"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#ListExternalDataSchemas"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#UpdateExternalDataSchema"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#UpdateExternalDataSchemasDestinationsPartial"
-        },
-        {
-          "target": "com.posthog.external_data_schemas#UpdateExternalDataSchemasPartial"
         }
       ],
       "traits": {

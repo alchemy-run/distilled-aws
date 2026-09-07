@@ -4939,16 +4939,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.invoices#CreateInvoice"
+          "target": "com.whop.invoices#ListInvoice"
         },
         {
-          "target": "com.whop.invoices#DeleteInvoice"
+          "target": "com.whop.invoices#CreateInvoice"
         },
         {
           "target": "com.whop.invoices#GetInvoice"
         },
         {
-          "target": "com.whop.invoices#ListInvoice"
+          "target": "com.whop.invoices#UpdateInvoice"
+        },
+        {
+          "target": "com.whop.invoices#DeleteInvoice"
         },
         {
           "target": "com.whop.invoices#MarkPaidInvoice"
@@ -4958,9 +4961,6 @@
         },
         {
           "target": "com.whop.invoices#ResendInvoice"
-        },
-        {
-          "target": "com.whop.invoices#UpdateInvoice"
         },
         {
           "target": "com.whop.invoices#VoidInvoice"

@@ -17275,31 +17275,31 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.integrations#ConnectIntegrationResourceToProject"
+          "target": "com.vercel.integrations#GitNamespaces"
         },
         {
-          "target": "com.vercel.integrations#CreateIntegrationStoreDirect"
-        },
-        {
-          "target": "com.vercel.integrations#DeleteConfiguration"
+          "target": "com.vercel.integrations#SearchRepo"
         },
         {
           "target": "com.vercel.integrations#GetBillingPlans"
         },
         {
-          "target": "com.vercel.integrations#GetConfiguration"
-        },
-        {
-          "target": "com.vercel.integrations#GetConfigurationProducts"
+          "target": "com.vercel.integrations#ConnectIntegrationResourceToProject"
         },
         {
           "target": "com.vercel.integrations#GetConfigurations"
         },
         {
-          "target": "com.vercel.integrations#GitNamespaces"
+          "target": "com.vercel.integrations#GetConfiguration"
         },
         {
-          "target": "com.vercel.integrations#SearchRepo"
+          "target": "com.vercel.integrations#DeleteConfiguration"
+        },
+        {
+          "target": "com.vercel.integrations#GetConfigurationProducts"
+        },
+        {
+          "target": "com.vercel.integrations#CreateIntegrationStoreDirect"
         }
       ],
       "traits": {

@@ -572,10 +572,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.course_lesson_interactions#GetCourseLessonInteraction"
+          "target": "com.whop.course_lesson_interactions#ListCourseLessonInteraction"
         },
         {
-          "target": "com.whop.course_lesson_interactions#ListCourseLessonInteraction"
+          "target": "com.whop.course_lesson_interactions#GetCourseLessonInteraction"
         }
       ],
       "traits": {

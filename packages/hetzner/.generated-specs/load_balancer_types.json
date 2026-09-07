@@ -649,10 +649,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.load_balancer_types#GetLoadBalancerType"
+          "target": "com.hetzner.load_balancer_types#ListLoadBalancerTypes"
         },
         {
-          "target": "com.hetzner.load_balancer_types#ListLoadBalancerTypes"
+          "target": "com.hetzner.load_balancer_types#GetLoadBalancerType"
         }
       ],
       "traits": {

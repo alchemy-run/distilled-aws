@@ -2143,21 +2143,6 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.data_warehouse#CreateDataWarehouseDeprovision"
-        },
-        {
-          "target": "com.posthog.data_warehouse#CreateDataWarehouseOnboardTeam"
-        },
-        {
-          "target": "com.posthog.data_warehouse#CreateDataWarehouseProvision"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DataWarehouseResetPasswordCreate"
-        },
-        {
-          "target": "com.posthog.data_warehouse#DeleteDataWarehouseOrgDestroy"
-        },
-        {
           "target": "com.posthog.data_warehouse#GetDataWarehouseCheckDatabaseName"
         },
         {
@@ -2176,6 +2161,15 @@
           "target": "com.posthog.data_warehouse#GetDataWarehouseDataQualityGate"
         },
         {
+          "target": "com.posthog.data_warehouse#UpdateDataWarehouseDataQualityGatePartial"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DeleteDataWarehouseOrgDestroy"
+        },
+        {
+          "target": "com.posthog.data_warehouse#CreateDataWarehouseDeprovision"
+        },
+        {
           "target": "com.posthog.data_warehouse#GetDataWarehouseJobStat"
         },
         {
@@ -2191,7 +2185,16 @@
           "target": "com.posthog.data_warehouse#GetDataWarehouseManagedWarehouseSourceSchema"
         },
         {
+          "target": "com.posthog.data_warehouse#CreateDataWarehouseOnboardTeam"
+        },
+        {
           "target": "com.posthog.data_warehouse#GetDataWarehousePropertyValue"
+        },
+        {
+          "target": "com.posthog.data_warehouse#CreateDataWarehouseProvision"
+        },
+        {
+          "target": "com.posthog.data_warehouse#DataWarehouseResetPasswordCreate"
         },
         {
           "target": "com.posthog.data_warehouse#GetDataWarehouseRunningActivity"
@@ -2201,9 +2204,6 @@
         },
         {
           "target": "com.posthog.data_warehouse#GetDataWarehouseWarehouseStatus"
-        },
-        {
-          "target": "com.posthog.data_warehouse#UpdateDataWarehouseDataQualityGatePartial"
         }
       ],
       "traits": {

@@ -854,22 +854,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.reminders#ListReminders"
+        },
+        {
           "target": "com.posthog.reminders#CreateReminder"
         },
         {
           "target": "com.posthog.reminders#GetReminder"
         },
         {
-          "target": "com.posthog.reminders#ListReminders"
-        },
-        {
-          "target": "com.posthog.reminders#RemindersDestroy"
-        },
-        {
           "target": "com.posthog.reminders#UpdateReminder"
         },
         {
           "target": "com.posthog.reminders#UpdateRemindersPartial"
+        },
+        {
+          "target": "com.posthog.reminders#RemindersDestroy"
         }
       ],
       "traits": {

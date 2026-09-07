@@ -3510,46 +3510,55 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.loadtestservice#CheckPlaywrightWorkspaceNameAvailability"
-        },
-        {
-          "target": "com.azure.loadtestservice#CheckQuotasAvailability"
+          "target": "com.azure.loadtestservice#ListLoadTestOutboundNetworkDependenciesEndpoints"
         },
         {
           "target": "com.azure.loadtestservice#DeleteLoadTest"
         },
         {
-          "target": "com.azure.loadtestservice#DeletePlaywrightWorkspace"
+          "target": "com.azure.loadtestservice#UpdateLoadTest"
+        },
+        {
+          "target": "com.azure.loadtestservice#LoadTestsCreateOrUpdate"
         },
         {
           "target": "com.azure.loadtestservice#GetLoadTest"
         },
         {
-          "target": "com.azure.loadtestservice#GetPlaywrightQuotas"
+          "target": "com.azure.loadtestservice#ListLoadTestByResourceGroup"
         },
         {
-          "target": "com.azure.loadtestservice#GetPlaywrightWorkspace"
-        },
-        {
-          "target": "com.azure.loadtestservice#GetPlaywrightWorkspaceQuotas"
+          "target": "com.azure.loadtestservice#CheckQuotasAvailability"
         },
         {
           "target": "com.azure.loadtestservice#GetQuotas"
         },
         {
-          "target": "com.azure.loadtestservice#ListLoadTestByResourceGroup"
+          "target": "com.azure.loadtestservice#ListQuotas"
         },
         {
           "target": "com.azure.loadtestservice#ListLoadTestBySubscription"
         },
         {
-          "target": "com.azure.loadtestservice#ListLoadTestOutboundNetworkDependenciesEndpoints"
-        },
-        {
           "target": "com.azure.loadtestservice#ListOperations"
         },
         {
-          "target": "com.azure.loadtestservice#ListPlaywrightQuotasBySubscription"
+          "target": "com.azure.loadtestservice#GetPlaywrightWorkspaceQuotas"
+        },
+        {
+          "target": "com.azure.loadtestservice#ListPlaywrightWorkspaceQuotasByPlaywrightWorkspace"
+        },
+        {
+          "target": "com.azure.loadtestservice#DeletePlaywrightWorkspace"
+        },
+        {
+          "target": "com.azure.loadtestservice#UpdatePlaywrightWorkspace"
+        },
+        {
+          "target": "com.azure.loadtestservice#PlaywrightWorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.loadtestservice#GetPlaywrightWorkspace"
         },
         {
           "target": "com.azure.loadtestservice#ListPlaywrightWorkspaceByResourceGroup"
@@ -3558,22 +3567,13 @@
           "target": "com.azure.loadtestservice#ListPlaywrightWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.loadtestservice#ListPlaywrightWorkspaceQuotasByPlaywrightWorkspace"
+          "target": "com.azure.loadtestservice#GetPlaywrightQuotas"
         },
         {
-          "target": "com.azure.loadtestservice#ListQuotas"
+          "target": "com.azure.loadtestservice#ListPlaywrightQuotasBySubscription"
         },
         {
-          "target": "com.azure.loadtestservice#LoadTestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.loadtestservice#PlaywrightWorkspacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.loadtestservice#UpdateLoadTest"
-        },
-        {
-          "target": "com.azure.loadtestservice#UpdatePlaywrightWorkspace"
+          "target": "com.azure.loadtestservice#CheckPlaywrightWorkspaceNameAvailability"
         }
       ],
       "traits": {

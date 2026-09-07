@@ -591,10 +591,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.forums#GetForum"
+          "target": "com.whop.forums#ListForum"
         },
         {
-          "target": "com.whop.forums#ListForum"
+          "target": "com.whop.forums#GetForum"
         },
         {
           "target": "com.whop.forums#UpdateForum"

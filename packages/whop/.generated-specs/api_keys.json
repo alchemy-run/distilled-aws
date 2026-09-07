@@ -1810,25 +1810,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.api_keys#ListApiKeys"
+        },
+        {
           "target": "com.whop.api_keys#CreateApiKey"
-        },
-        {
-          "target": "com.whop.api_keys#DeleteApiKey"
-        },
-        {
-          "target": "com.whop.api_keys#GetApiKey"
         },
         {
           "target": "com.whop.api_keys#ListApiKeyPermissions"
         },
         {
-          "target": "com.whop.api_keys#ListApiKeys"
-        },
-        {
-          "target": "com.whop.api_keys#RotateApiKey"
+          "target": "com.whop.api_keys#GetApiKey"
         },
         {
           "target": "com.whop.api_keys#UpdateApiKey"
+        },
+        {
+          "target": "com.whop.api_keys#DeleteApiKey"
+        },
+        {
+          "target": "com.whop.api_keys#RotateApiKey"
         }
       ],
       "traits": {

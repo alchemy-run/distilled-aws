@@ -1474,25 +1474,25 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.autorag#SearchAi"
+        },
+        {
           "target": "com.cloudflare.autorag#Files"
-        },
-        {
-          "target": "com.cloudflare.autorag#GetJob"
-        },
-        {
-          "target": "com.cloudflare.autorag#JobsLogs"
-        },
-        {
-          "target": "com.cloudflare.autorag#ListJobs"
         },
         {
           "target": "com.cloudflare.autorag#Search"
         },
         {
-          "target": "com.cloudflare.autorag#SearchAi"
+          "target": "com.cloudflare.autorag#Sync"
         },
         {
-          "target": "com.cloudflare.autorag#Sync"
+          "target": "com.cloudflare.autorag#GetJob"
+        },
+        {
+          "target": "com.cloudflare.autorag#ListJobs"
+        },
+        {
+          "target": "com.cloudflare.autorag#JobsLogs"
         }
       ],
       "traits": {

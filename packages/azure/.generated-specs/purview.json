@@ -3962,73 +3962,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.purview#AccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.purview#AddAccountRootCollectionAdmin"
+          "target": "com.azure.purview#GetUsage"
         },
         {
           "target": "com.azure.purview#CheckAccountNameAvailability"
         },
         {
-          "target": "com.azure.purview#DeleteAccount"
-        },
-        {
-          "target": "com.azure.purview#DeleteKafkaConfiguration"
-        },
-        {
-          "target": "com.azure.purview#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.purview#GetAccount"
-        },
-        {
-          "target": "com.azure.purview#GetDefaultAccount"
-        },
-        {
-          "target": "com.azure.purview#GetFeaturesAccount"
-        },
-        {
-          "target": "com.azure.purview#GetFeaturesSubscription"
-        },
-        {
-          "target": "com.azure.purview#GetKafkaConfiguration"
-        },
-        {
-          "target": "com.azure.purview#GetPrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.purview#GetPrivateLinkResourceByGroupId"
-        },
-        {
-          "target": "com.azure.purview#GetUsage"
-        },
-        {
-          "target": "com.azure.purview#KafkaConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.purview#ListAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.purview#ListAccountBySubscription"
-        },
-        {
-          "target": "com.azure.purview#ListAccountKeys"
-        },
-        {
-          "target": "com.azure.purview#ListKafkaConfigurationByAccount"
-        },
-        {
-          "target": "com.azure.purview#ListOperations"
-        },
-        {
-          "target": "com.azure.purview#ListPrivateEndpointConnectionByAccount"
         },
         {
           "target": "com.azure.purview#ListPrivateLinkResourceByAccount"
         },
         {
+          "target": "com.azure.purview#DeletePrivateEndpointConnection"
+        },
+        {
           "target": "com.azure.purview#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.purview#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.purview#ListPrivateEndpointConnectionByAccount"
+        },
+        {
+          "target": "com.azure.purview#ListOperations"
+        },
+        {
+          "target": "com.azure.purview#ListKafkaConfigurationByAccount"
+        },
+        {
+          "target": "com.azure.purview#DeleteKafkaConfiguration"
+        },
+        {
+          "target": "com.azure.purview#KafkaConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.purview#GetKafkaConfiguration"
+        },
+        {
+          "target": "com.azure.purview#GetFeaturesSubscription"
+        },
+        {
+          "target": "com.azure.purview#GetFeaturesAccount"
         },
         {
           "target": "com.azure.purview#RemoveDefaultAccount"
@@ -4037,7 +4013,31 @@
           "target": "com.azure.purview#SetDefaultAccount"
         },
         {
+          "target": "com.azure.purview#GetDefaultAccount"
+        },
+        {
+          "target": "com.azure.purview#AddAccountRootCollectionAdmin"
+        },
+        {
+          "target": "com.azure.purview#ListAccountKeys"
+        },
+        {
+          "target": "com.azure.purview#DeleteAccount"
+        },
+        {
           "target": "com.azure.purview#UpdateAccount"
+        },
+        {
+          "target": "com.azure.purview#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.purview#GetAccount"
+        },
+        {
+          "target": "com.azure.purview#ListAccountBySubscription"
+        },
+        {
+          "target": "com.azure.purview#ListAccountByResourceGroup"
         }
       ],
       "traits": {

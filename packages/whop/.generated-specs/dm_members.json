@@ -604,19 +604,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.dm_members#CreateDmMember"
+          "target": "com.whop.dm_members#ListDmMember"
         },
         {
-          "target": "com.whop.dm_members#DeleteDmMember"
+          "target": "com.whop.dm_members#CreateDmMember"
         },
         {
           "target": "com.whop.dm_members#GetDmMember"
         },
         {
-          "target": "com.whop.dm_members#ListDmMember"
+          "target": "com.whop.dm_members#UpdateDmMember"
         },
         {
-          "target": "com.whop.dm_members#UpdateDmMember"
+          "target": "com.whop.dm_members#DeleteDmMember"
         }
       ],
       "traits": {

@@ -34963,334 +34963,361 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurestackhci#ArcSettingsConsentAndInstallDefaultExtensions"
-        },
-        {
-          "target": "com.azure.azurestackhci#ArcSettingsInitializeDisableProcess"
-        },
-        {
-          "target": "com.azure.azurestackhci#ArcSettingsReconcile"
-        },
-        {
-          "target": "com.azure.azurestackhci#CheckUpdateSummariesOperationGroupHealth"
-        },
-        {
-          "target": "com.azure.azurestackhci#CheckUpdateSummariesOperationGroupUpdates"
-        },
-        {
-          "target": "com.azure.azurestackhci#ClusterJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#ClustersConfigureRemoteSupport"
-        },
-        {
-          "target": "com.azure.azurestackhci#CreateArcSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#CreateArcSettingsIdentity"
-        },
-        {
-          "target": "com.azure.azurestackhci#CreateCluster"
-        },
-        {
-          "target": "com.azure.azurestackhci#CreateClusterIdentity"
-        },
-        {
-          "target": "com.azure.azurestackhci#CreateExtension"
-        },
-        {
-          "target": "com.azure.azurestackhci#CreateGuestAgent"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteArcSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteCluster"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteClusterJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteDeploymentSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeDevice"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeDeviceJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachine"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineDeploymentSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineDisk"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineDiskJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineDiskPrivilegedJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineNetworkAdapterJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteEdgeMachineSecuritySettingsOperation"
+          "target": "com.azure.azurestackhci#ValidateOwnershipVoucher"
         },
         {
           "target": "com.azure.azurestackhci#DeleteEdgeMachineVolume"
         },
         {
-          "target": "com.azure.azurestackhci#DeleteExtension"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteGalleryImage"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteGuestAgent"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteLogicalNetwork"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteMarketplaceGalleryImage"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteNetworkInterface"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteSecuritySettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteStorageContainer"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteUpdateRun"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteUpdateSummary"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteVirtualHardDisk"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeleteVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.azurestackhci#DeploymentSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeDeviceJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeDevicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineDeploymentSettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineDiskJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineDiskPrivilegedJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineDisksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineNetworkAdapterJobsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#EdgeMachineSecuritySettingsOperationsCreateOrUpdate"
-        },
-        {
           "target": "com.azure.azurestackhci#EdgeMachineVolumesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#ExtendClusterSoftwareAssuranceBenefit"
-        },
-        {
-          "target": "com.azure.azurestackhci#ExtensionsUpgrade"
-        },
-        {
-          "target": "com.azure.azurestackhci#GalleryImagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#GenerateArcSettingsPassword"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetArcSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetCluster"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetClusterJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetDeploymentSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeDevice"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeDeviceJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachine"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineDeploymentSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineDisk"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineDiskJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineDiskPrivilegedJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineNetworkAdapter"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineNetworkAdapterJob"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetEdgeMachineSecuritySettingsOperation"
         },
         {
           "target": "com.azure.azurestackhci#GetEdgeMachineVolume"
         },
         {
-          "target": "com.azure.azurestackhci#GetExtension"
+          "target": "com.azure.azurestackhci#ListEdgeMachineVolumes"
         },
         {
-          "target": "com.azure.azurestackhci#GetGalleryImage"
+          "target": "com.azure.azurestackhci#ValidateEdgeMachine"
         },
         {
-          "target": "com.azure.azurestackhci#GetGuestAgent"
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineSecuritySettingsOperation"
         },
         {
-          "target": "com.azure.azurestackhci#GetHybridIdentityMetadata"
+          "target": "com.azure.azurestackhci#EdgeMachineSecuritySettingsOperationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azurestackhci#GetLogicalNetwork"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetMarketplaceGalleryImage"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetNetworkInterface"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetOffer"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetOsImage"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetSecuritySettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetSkus"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetStorageContainer"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetUpdateRun"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetUpdateSummary"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetValidatedSolutionRecipe"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetVirtualHardDisk"
-        },
-        {
-          "target": "com.azure.azurestackhci#GetVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListArcSettingsByCluster"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListClusterBySubscription"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListClusterJobs"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListDeploymentSettingsByClusters"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeDeviceJobByEdgeDevice"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeDevices"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineByResourceGroup"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineBySubscription"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineDeploymentSettingsByEdgeMachine"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineDiskJobs"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineDiskPrivilegedJobs"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineDisks"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineJobs"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineNetworkAdapterJobs"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListEdgeMachineNetworkAdapters"
+          "target": "com.azure.azurestackhci#GetEdgeMachineSecuritySettingsOperation"
         },
         {
           "target": "com.azure.azurestackhci#ListEdgeMachineSecuritySettingsOperationByEdgeMachine"
         },
         {
-          "target": "com.azure.azurestackhci#ListEdgeMachineVolumes"
+          "target": "com.azure.azurestackhci#RefreshEdgeMachineSecuritySettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#RefreshEdgeMachineApplicableUpdates"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineNetworkAdapterJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachineNetworkAdapterJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineNetworkAdapterJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineNetworkAdapterJobs"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineNetworkAdapter"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineNetworkAdapters"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachineJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineJobs"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineDiskPrivilegedJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachineDiskPrivilegedJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineDiskPrivilegedJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineDiskPrivilegedJobs"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineDiskJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachineDiskJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineDiskJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineDiskJobs"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineDisk"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachineDisksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineDisk"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineDisks"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachineDeploymentSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachineDeploymentSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachineDeploymentSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineDeploymentSettingsByEdgeMachine"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeMachine"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateEdgeMachine"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeMachine"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurestackhci#UploadClusterCertificate"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteUpdateRun"
+        },
+        {
+          "target": "com.azure.azurestackhci#PutUpdateRun"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetUpdateRun"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListUpdateRuns"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdatesPrepare"
+        },
+        {
+          "target": "com.azure.azurestackhci#PostUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#PutUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListUpdates"
+        },
+        {
+          "target": "com.azure.azurestackhci#CheckUpdateSummariesOperationGroupUpdates"
+        },
+        {
+          "target": "com.azure.azurestackhci#CheckUpdateSummariesOperationGroupHealth"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteUpdateSummary"
+        },
+        {
+          "target": "com.azure.azurestackhci#PutUpdateSummary"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetUpdateSummary"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListUpdateSummaries"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateClusterSecretsLocations"
+        },
+        {
+          "target": "com.azure.azurestackhci#TriggerClusterLogCollection"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteSecuritySettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#SecuritySettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetSecuritySettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListSecuritySettingsByClusters"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetSkus"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListSkusByOffer"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetOffer"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListOfferByPublisher"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListOfferByCluster"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteClusterJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ClusterJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetClusterJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListClusterJobs"
+        },
+        {
+          "target": "com.azure.azurestackhci#ExtendClusterSoftwareAssuranceBenefit"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteDeploymentSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeploymentSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetDeploymentSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListDeploymentSettingsByClusters"
+        },
+        {
+          "target": "com.azure.azurestackhci#CreateClusterIdentity"
+        },
+        {
+          "target": "com.azure.azurestackhci#ClustersConfigureRemoteSupport"
+        },
+        {
+          "target": "com.azure.azurestackhci#ArcSettingsReconcile"
+        },
+        {
+          "target": "com.azure.azurestackhci#ArcSettingsInitializeDisableProcess"
+        },
+        {
+          "target": "com.azure.azurestackhci#GenerateArcSettingsPassword"
+        },
+        {
+          "target": "com.azure.azurestackhci#ExtensionsUpgrade"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteExtension"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateExtension"
+        },
+        {
+          "target": "com.azure.azurestackhci#CreateExtension"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetExtension"
         },
         {
           "target": "com.azure.azurestackhci#ListExtensionByArcSetting"
+        },
+        {
+          "target": "com.azure.azurestackhci#CreateArcSettingsIdentity"
+        },
+        {
+          "target": "com.azure.azurestackhci#ArcSettingsConsentAndInstallDefaultExtensions"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteArcSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateArcSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#CreateArcSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetArcSettings"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListArcSettingsByCluster"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteCluster"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateCluster"
+        },
+        {
+          "target": "com.azure.azurestackhci#CreateCluster"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetCluster"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetValidatedSolutionRecipe"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListValidatedSolutionRecipeBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetOsImage"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListOsImageBySubscriptionLocationResource"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeMachineBySubscription"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListClusterBySubscription"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListOperations"
+        },
+        {
+          "target": "com.azure.azurestackhci#ValidateEdgeDevice"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeDeviceJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeDeviceJobsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeDeviceJob"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeDeviceJobByEdgeDevice"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteEdgeDevice"
+        },
+        {
+          "target": "com.azure.azurestackhci#EdgeDevicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetEdgeDevice"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListEdgeDevices"
         },
         {
           "target": "com.azure.azurestackhci#ListGalleryImageAll"
@@ -35299,10 +35326,16 @@
           "target": "com.azure.azurestackhci#ListGalleryImages"
         },
         {
-          "target": "com.azure.azurestackhci#ListGuestAgents"
+          "target": "com.azure.azurestackhci#DeleteGalleryImage"
         },
         {
-          "target": "com.azure.azurestackhci#ListHybridIdentityMetadata"
+          "target": "com.azure.azurestackhci#UpdateGalleryImage"
+        },
+        {
+          "target": "com.azure.azurestackhci#GalleryImagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetGalleryImage"
         },
         {
           "target": "com.azure.azurestackhci#ListLogicalNetworkAll"
@@ -35311,10 +35344,34 @@
           "target": "com.azure.azurestackhci#ListLogicalNetworks"
         },
         {
+          "target": "com.azure.azurestackhci#DeleteLogicalNetwork"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateLogicalNetwork"
+        },
+        {
+          "target": "com.azure.azurestackhci#LogicalNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetLogicalNetwork"
+        },
+        {
           "target": "com.azure.azurestackhci#ListMarketplaceGalleryImageAll"
         },
         {
           "target": "com.azure.azurestackhci#ListMarketplaceGalleryImages"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteMarketplaceGalleryImage"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateMarketplaceGalleryImage"
+        },
+        {
+          "target": "com.azure.azurestackhci#MarketplaceGalleryImagesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetMarketplaceGalleryImage"
         },
         {
           "target": "com.azure.azurestackhci#ListNetworkInterfaceAll"
@@ -35323,22 +35380,16 @@
           "target": "com.azure.azurestackhci#ListNetworkInterfaces"
         },
         {
-          "target": "com.azure.azurestackhci#ListOfferByCluster"
+          "target": "com.azure.azurestackhci#DeleteNetworkInterface"
         },
         {
-          "target": "com.azure.azurestackhci#ListOfferByPublisher"
+          "target": "com.azure.azurestackhci#UpdateNetworkInterface"
         },
         {
-          "target": "com.azure.azurestackhci#ListOperations"
+          "target": "com.azure.azurestackhci#NetworkInterfacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.azurestackhci#ListOsImageBySubscriptionLocationResource"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListSecuritySettingsByClusters"
-        },
-        {
-          "target": "com.azure.azurestackhci#ListSkusByOffer"
+          "target": "com.azure.azurestackhci#GetNetworkInterface"
         },
         {
           "target": "com.azure.azurestackhci#ListStorageContainerAll"
@@ -35347,16 +35398,16 @@
           "target": "com.azure.azurestackhci#ListStorageContainers"
         },
         {
-          "target": "com.azure.azurestackhci#ListUpdateRuns"
+          "target": "com.azure.azurestackhci#DeleteStorageContainer"
         },
         {
-          "target": "com.azure.azurestackhci#ListUpdates"
+          "target": "com.azure.azurestackhci#UpdateStorageContainer"
         },
         {
-          "target": "com.azure.azurestackhci#ListUpdateSummaries"
+          "target": "com.azure.azurestackhci#StorageContainersCreateOrUpdate"
         },
         {
-          "target": "com.azure.azurestackhci#ListValidatedSolutionRecipeBySubscriptionLocationResource"
+          "target": "com.azure.azurestackhci#GetStorageContainer"
         },
         {
           "target": "com.azure.azurestackhci#ListVirtualHardDiskAll"
@@ -35365,109 +35416,58 @@
           "target": "com.azure.azurestackhci#ListVirtualHardDisks"
         },
         {
-          "target": "com.azure.azurestackhci#ListVirtualMachineInstances"
-        },
-        {
-          "target": "com.azure.azurestackhci#LogicalNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#MarketplaceGalleryImagesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#NetworkInterfacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#PostUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#PutUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#PutUpdateRun"
-        },
-        {
-          "target": "com.azure.azurestackhci#PutUpdateSummary"
-        },
-        {
-          "target": "com.azure.azurestackhci#RefreshEdgeMachineApplicableUpdates"
-        },
-        {
-          "target": "com.azure.azurestackhci#RefreshEdgeMachineSecuritySettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#RestartVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.azurestackhci#SecuritySettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#StartVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.azurestackhci#StopVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.azurestackhci#StorageContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.azurestackhci#TriggerClusterLogCollection"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateArcSettings"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateCluster"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateClusterSecretsLocations"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateEdgeMachine"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateExtension"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateGalleryImage"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateLogicalNetwork"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateMarketplaceGalleryImage"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateNetworkInterface"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdatesPrepare"
-        },
-        {
-          "target": "com.azure.azurestackhci#UpdateStorageContainer"
+          "target": "com.azure.azurestackhci#DeleteVirtualHardDisk"
         },
         {
           "target": "com.azure.azurestackhci#UpdateVirtualHardDisk"
         },
         {
-          "target": "com.azure.azurestackhci#UpdateVirtualMachineInstance"
-        },
-        {
-          "target": "com.azure.azurestackhci#UploadClusterCertificate"
-        },
-        {
-          "target": "com.azure.azurestackhci#ValidateEdgeDevice"
-        },
-        {
-          "target": "com.azure.azurestackhci#ValidateEdgeMachine"
-        },
-        {
-          "target": "com.azure.azurestackhci#ValidateOwnershipVoucher"
-        },
-        {
           "target": "com.azure.azurestackhci#VirtualHardDisksCreateOrUpdate"
         },
         {
+          "target": "com.azure.azurestackhci#GetVirtualHardDisk"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListGuestAgents"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteGuestAgent"
+        },
+        {
+          "target": "com.azure.azurestackhci#CreateGuestAgent"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetGuestAgent"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListHybridIdentityMetadata"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetHybridIdentityMetadata"
+        },
+        {
+          "target": "com.azure.azurestackhci#ListVirtualMachineInstances"
+        },
+        {
+          "target": "com.azure.azurestackhci#RestartVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.azurestackhci#StopVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.azurestackhci#StartVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.azurestackhci#DeleteVirtualMachineInstance"
+        },
+        {
+          "target": "com.azure.azurestackhci#UpdateVirtualMachineInstance"
+        },
+        {
           "target": "com.azure.azurestackhci#VirtualMachineInstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.azurestackhci#GetVirtualMachineInstance"
         }
       ],
       "traits": {

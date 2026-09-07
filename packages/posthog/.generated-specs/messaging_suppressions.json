@@ -312,13 +312,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.messaging_suppressions#GetMessagingSuppressionsSuppression"
-        },
-        {
           "target": "com.posthog.messaging_suppressions#MessagingSuppressionsAddSuppressionCreate"
         },
         {
           "target": "com.posthog.messaging_suppressions#MessagingSuppressionsRemoveSuppressionCreate"
+        },
+        {
+          "target": "com.posthog.messaging_suppressions#GetMessagingSuppressionsSuppression"
         }
       ],
       "traits": {

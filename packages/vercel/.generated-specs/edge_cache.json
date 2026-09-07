@@ -433,7 +433,7 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImages"
+          "target": "com.vercel.edge_cache#InvalidateByTags"
         },
         {
           "target": "com.vercel.edge_cache#DangerouslyDeleteByTags"
@@ -442,7 +442,7 @@
           "target": "com.vercel.edge_cache#InvalidateBySrcImages"
         },
         {
-          "target": "com.vercel.edge_cache#InvalidateByTags"
+          "target": "com.vercel.edge_cache#DangerouslyDeleteBySrcImages"
         }
       ],
       "traits": {

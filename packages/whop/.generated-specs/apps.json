@@ -2924,7 +2924,16 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.apps#ListApps"
+        },
+        {
           "target": "com.whop.apps#CreateApp"
+        },
+        {
+          "target": "com.whop.apps#GetApp"
+        },
+        {
+          "target": "com.whop.apps#UpdateApp"
         },
         {
           "target": "com.whop.apps#DeleteApp"
@@ -2933,16 +2942,7 @@
           "target": "com.whop.apps#DeployApp"
         },
         {
-          "target": "com.whop.apps#GetApp"
-        },
-        {
           "target": "com.whop.apps#ListAppLogs"
-        },
-        {
-          "target": "com.whop.apps#ListApps"
-        },
-        {
-          "target": "com.whop.apps#UpdateApp"
         },
         {
           "target": "com.whop.apps#UpdateAppPermissions"

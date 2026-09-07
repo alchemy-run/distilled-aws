@@ -26361,310 +26361,130 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.supabase.api#V1AcceptInviteExternalJitAccess"
+          "target": "com.supabase.api#V1GetABranchConfig"
         },
         {
-          "target": "com.supabase.api#V1ActivateCustomHostname"
-        },
-        {
-          "target": "com.supabase.api#V1ActivateVanitySubdomainConfig"
-        },
-        {
-          "target": "com.supabase.api#V1ApplyAMigration"
-        },
-        {
-          "target": "com.supabase.api#V1ApplyProjectAddon"
-        },
-        {
-          "target": "com.supabase.api#V1AuthorizeJitAccess"
-        },
-        {
-          "target": "com.supabase.api#V1AuthorizeUser"
-        },
-        {
-          "target": "com.supabase.api#V1BulkCreateSecrets"
-        },
-        {
-          "target": "com.supabase.api#V1BulkDeleteSecrets"
-        },
-        {
-          "target": "com.supabase.api#V1BulkUpdateFunctions"
-        },
-        {
-          "target": "com.supabase.api#V1CancelAProjectRestoration"
-        },
-        {
-          "target": "com.supabase.api#V1CheckVanitySubdomainAvailability"
-        },
-        {
-          "target": "com.supabase.api#V1ClaimProjectForOrganization"
-        },
-        {
-          "target": "com.supabase.api#V1CreateABranch"
-        },
-        {
-          "target": "com.supabase.api#V1CreateAnOrganization"
-        },
-        {
-          "target": "com.supabase.api#V1CreateAProject"
-        },
-        {
-          "target": "com.supabase.api#V1CreateASsoProvider"
-        },
-        {
-          "target": "com.supabase.api#V1CreateLegacySigningKey"
-        },
-        {
-          "target": "com.supabase.api#V1CreateLoginRole"
-        },
-        {
-          "target": "com.supabase.api#V1CreateProjectApiKey"
-        },
-        {
-          "target": "com.supabase.api#V1CreateProjectClaimToken"
-        },
-        {
-          "target": "com.supabase.api#V1CreateProjectSigningKey"
-        },
-        {
-          "target": "com.supabase.api#V1CreateProjectTpaIntegration"
-        },
-        {
-          "target": "com.supabase.api#V1CreateRestorePoint"
-        },
-        {
-          "target": "com.supabase.api#V1DeactivateVanitySubdomainConfig"
+          "target": "com.supabase.api#V1UpdateABranchConfig"
         },
         {
           "target": "com.supabase.api#V1DeleteABranch"
         },
         {
-          "target": "com.supabase.api#V1DeleteAFunction"
+          "target": "com.supabase.api#V1PushABranch"
         },
         {
-          "target": "com.supabase.api#V1DeleteAProject"
+          "target": "com.supabase.api#V1MergeABranch"
         },
         {
-          "target": "com.supabase.api#V1DeleteASsoProvider"
+          "target": "com.supabase.api#V1ResetABranch"
         },
         {
-          "target": "com.supabase.api#V1DeleteHostnameConfig"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteInviteExternalJitAccess"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteJitAccess"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteLoginRoles"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteNetworkBans"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteProjectApiKey"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteProjectClaimToken"
-        },
-        {
-          "target": "com.supabase.api#V1DeleteProjectTpaIntegration"
-        },
-        {
-          "target": "com.supabase.api#V1DeployAFunction"
+          "target": "com.supabase.api#V1RestoreABranch"
         },
         {
           "target": "com.supabase.api#V1DiffABranch"
         },
         {
-          "target": "com.supabase.api#V1DisablePreviewBranching"
+          "target": "com.supabase.api#V1ListAllProjects"
         },
         {
-          "target": "com.supabase.api#V1DisableReadonlyModeTemporarily"
-        },
-        {
-          "target": "com.supabase.api#V1EnableDatabaseWebhook"
-        },
-        {
-          "target": "com.supabase.api#V1ExchangeOauthToken"
-        },
-        {
-          "target": "com.supabase.api#V1GenerateTypescriptTypes"
-        },
-        {
-          "target": "com.supabase.api#V1GetABranch"
-        },
-        {
-          "target": "com.supabase.api#V1GetABranchConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetActionRun"
-        },
-        {
-          "target": "com.supabase.api#V1GetActionRunLogs"
-        },
-        {
-          "target": "com.supabase.api#V1GetAFunction"
-        },
-        {
-          "target": "com.supabase.api#V1GetAFunctionBody"
-        },
-        {
-          "target": "com.supabase.api#V1GetAllProjectsForOrganization"
-        },
-        {
-          "target": "com.supabase.api#V1GetAMigration"
-        },
-        {
-          "target": "com.supabase.api#V1GetAnOrganization"
-        },
-        {
-          "target": "com.supabase.api#V1GetASnippet"
-        },
-        {
-          "target": "com.supabase.api#V1GetASsoProvider"
-        },
-        {
-          "target": "com.supabase.api#V1GetAuthServiceConfig"
+          "target": "com.supabase.api#V1CreateAProject"
         },
         {
           "target": "com.supabase.api#V1GetAvailableRegions"
         },
         {
-          "target": "com.supabase.api#V1GetBackupSchedule"
+          "target": "com.supabase.api#V1ListAllOrganizations"
         },
         {
-          "target": "com.supabase.api#V1GetDatabaseDisk"
+          "target": "com.supabase.api#V1CreateAnOrganization"
         },
         {
-          "target": "com.supabase.api#V1GetDatabaseOpenapi"
+          "target": "com.supabase.api#V1AuthorizeUser"
         },
         {
-          "target": "com.supabase.api#V1GetDiskUtilization"
+          "target": "com.supabase.api#V1ExchangeOauthToken"
         },
         {
-          "target": "com.supabase.api#V1GetHostnameConfig"
+          "target": "com.supabase.api#V1RevokeToken"
         },
         {
-          "target": "com.supabase.api#V1GetJitAccess"
+          "target": "com.supabase.api#V1OauthAuthorizeProjectClaim"
         },
         {
-          "target": "com.supabase.api#V1GetJitAccessConfig"
+          "target": "com.supabase.api#V1ListAllSnippets"
         },
         {
-          "target": "com.supabase.api#V1GetLegacySigningKey"
-        },
-        {
-          "target": "com.supabase.api#V1GetNetworkRestrictions"
-        },
-        {
-          "target": "com.supabase.api#V1GetOrganizationEntitlements"
-        },
-        {
-          "target": "com.supabase.api#V1GetOrganizationProjectClaim"
-        },
-        {
-          "target": "com.supabase.api#V1GetPgsodiumConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetPoolerConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetPostgresConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetPostgrestServiceConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetPostgresUpgradeEligibility"
-        },
-        {
-          "target": "com.supabase.api#V1GetPostgresUpgradeStatus"
+          "target": "com.supabase.api#V1GetASnippet"
         },
         {
           "target": "com.supabase.api#V1GetProfile"
         },
         {
-          "target": "com.supabase.api#V1GetProject"
+          "target": "com.supabase.api#V1ListActionRuns"
         },
         {
-          "target": "com.supabase.api#V1GetProjectApiKey"
+          "target": "com.supabase.api#V1GetActionRun"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateActionRunStatus"
+        },
+        {
+          "target": "com.supabase.api#V1GetActionRunLogs"
         },
         {
           "target": "com.supabase.api#V1GetProjectApiKeys"
         },
         {
-          "target": "com.supabase.api#V1GetProjectClaimToken"
-        },
-        {
-          "target": "com.supabase.api#V1GetProjectDiskAutoscaleConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetProjectFunctionCombinedStats"
+          "target": "com.supabase.api#V1CreateProjectApiKey"
         },
         {
           "target": "com.supabase.api#V1GetProjectLegacyApiKeys"
         },
         {
-          "target": "com.supabase.api#V1GetProjectLogs"
+          "target": "com.supabase.api#V1UpdateProjectLegacyApiKeys"
         },
         {
-          "target": "com.supabase.api#V1GetProjectPgbouncerConfig"
+          "target": "com.supabase.api#V1GetProjectApiKey"
         },
         {
-          "target": "com.supabase.api#V1GetProjectSigningKey"
+          "target": "com.supabase.api#V1UpdateProjectApiKey"
         },
         {
-          "target": "com.supabase.api#V1GetProjectSigningKeys"
-        },
-        {
-          "target": "com.supabase.api#V1GetProjectTpaIntegration"
-        },
-        {
-          "target": "com.supabase.api#V1GetProjectUsageApiCount"
-        },
-        {
-          "target": "com.supabase.api#V1GetProjectUsageRequestCount"
-        },
-        {
-          "target": "com.supabase.api#V1GetReadonlyModeStatus"
-        },
-        {
-          "target": "com.supabase.api#V1GetRealtimeConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetRestorePoint"
-        },
-        {
-          "target": "com.supabase.api#V1GetServicesHealth"
-        },
-        {
-          "target": "com.supabase.api#V1GetSslEnforcementConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetStorageConfig"
-        },
-        {
-          "target": "com.supabase.api#V1GetVanitySubdomainConfig"
-        },
-        {
-          "target": "com.supabase.api#V1InviteExternalJitAccess"
-        },
-        {
-          "target": "com.supabase.api#V1ListActionRuns"
-        },
-        {
-          "target": "com.supabase.api#V1ListAllBackups"
+          "target": "com.supabase.api#V1DeleteProjectApiKey"
         },
         {
           "target": "com.supabase.api#V1ListAllBranches"
         },
         {
-          "target": "com.supabase.api#V1ListAllBuckets"
+          "target": "com.supabase.api#V1CreateABranch"
         },
         {
-          "target": "com.supabase.api#V1ListAllFunctions"
+          "target": "com.supabase.api#V1DisablePreviewBranching"
+        },
+        {
+          "target": "com.supabase.api#V1GetABranch"
+        },
+        {
+          "target": "com.supabase.api#V1GetHostnameConfig"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteHostnameConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateHostnameConfig"
+        },
+        {
+          "target": "com.supabase.api#V1VerifyDnsConfig"
+        },
+        {
+          "target": "com.supabase.api#V1ActivateCustomHostname"
+        },
+        {
+          "target": "com.supabase.api#V1GetJitAccessConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateJitAccessConfig"
         },
         {
           "target": "com.supabase.api#V1ListAllNetworkBans"
@@ -26673,184 +26493,364 @@
           "target": "com.supabase.api#V1ListAllNetworkBansEnriched"
         },
         {
-          "target": "com.supabase.api#V1ListAllOrganizations"
+          "target": "com.supabase.api#V1DeleteNetworkBans"
         },
         {
-          "target": "com.supabase.api#V1ListAllProjects"
-        },
-        {
-          "target": "com.supabase.api#V1ListAllSecrets"
-        },
-        {
-          "target": "com.supabase.api#V1ListAllSnippets"
-        },
-        {
-          "target": "com.supabase.api#V1ListAllSsoProvider"
-        },
-        {
-          "target": "com.supabase.api#V1ListAvailableRestoreVersions"
-        },
-        {
-          "target": "com.supabase.api#V1ListJitAccess"
-        },
-        {
-          "target": "com.supabase.api#V1ListMigrationHistory"
-        },
-        {
-          "target": "com.supabase.api#V1ListOrganizationMembers"
-        },
-        {
-          "target": "com.supabase.api#V1ListProjectAddons"
-        },
-        {
-          "target": "com.supabase.api#V1ListProjectTpaIntegrations"
-        },
-        {
-          "target": "com.supabase.api#V1MergeABranch"
-        },
-        {
-          "target": "com.supabase.api#V1ModifyDatabaseDisk"
-        },
-        {
-          "target": "com.supabase.api#V1OauthAuthorizeProjectClaim"
-        },
-        {
-          "target": "com.supabase.api#V1PatchAMigration"
+          "target": "com.supabase.api#V1GetNetworkRestrictions"
         },
         {
           "target": "com.supabase.api#V1PatchNetworkRestrictions"
         },
         {
-          "target": "com.supabase.api#V1PauseAProject"
-        },
-        {
-          "target": "com.supabase.api#V1PushABranch"
-        },
-        {
-          "target": "com.supabase.api#V1ReadOnlyQuery"
-        },
-        {
-          "target": "com.supabase.api#V1RemoveAReadReplica"
-        },
-        {
-          "target": "com.supabase.api#V1RemoveProjectAddon"
-        },
-        {
-          "target": "com.supabase.api#V1RemoveProjectSigningKey"
-        },
-        {
-          "target": "com.supabase.api#V1ResetABranch"
-        },
-        {
-          "target": "com.supabase.api#V1RestartAProject"
-        },
-        {
-          "target": "com.supabase.api#V1RestoreABranch"
-        },
-        {
-          "target": "com.supabase.api#V1RestoreAProject"
-        },
-        {
-          "target": "com.supabase.api#V1RestorePhysicalBackup"
-        },
-        {
-          "target": "com.supabase.api#V1RestorePitrBackup"
-        },
-        {
-          "target": "com.supabase.api#V1RevokeToken"
-        },
-        {
-          "target": "com.supabase.api#V1RollbackMigrations"
-        },
-        {
-          "target": "com.supabase.api#V1RunAQuery"
-        },
-        {
-          "target": "com.supabase.api#V1ScrapeProjectMetrics"
-        },
-        {
-          "target": "com.supabase.api#V1SetupAReadReplica"
-        },
-        {
-          "target": "com.supabase.api#V1ShutdownRealtime"
-        },
-        {
-          "target": "com.supabase.api#V1Undo"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateABranchConfig"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateActionRunStatus"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateAFunction"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateAProject"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateASsoProvider"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateAuthServiceConfig"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateBackupSchedule"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateDatabasePassword"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateHostnameConfig"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateJitAccess"
-        },
-        {
-          "target": "com.supabase.api#V1UpdateJitAccessConfig"
-        },
-        {
           "target": "com.supabase.api#V1UpdateNetworkRestrictions"
+        },
+        {
+          "target": "com.supabase.api#V1GetPgsodiumConfig"
         },
         {
           "target": "com.supabase.api#V1UpdatePgsodiumConfig"
         },
         {
-          "target": "com.supabase.api#V1UpdatePoolerConfig"
-        },
-        {
-          "target": "com.supabase.api#V1UpdatePostgresConfig"
+          "target": "com.supabase.api#V1GetPostgrestServiceConfig"
         },
         {
           "target": "com.supabase.api#V1UpdatePostgrestServiceConfig"
         },
         {
-          "target": "com.supabase.api#V1UpdateProjectApiKey"
+          "target": "com.supabase.api#V1GetProject"
         },
         {
-          "target": "com.supabase.api#V1UpdateProjectLegacyApiKeys"
+          "target": "com.supabase.api#V1UpdateAProject"
         },
         {
-          "target": "com.supabase.api#V1UpdateProjectSigningKey"
+          "target": "com.supabase.api#V1DeleteAProject"
         },
         {
-          "target": "com.supabase.api#V1UpdateRealtimeConfig"
+          "target": "com.supabase.api#V1ListAllSecrets"
+        },
+        {
+          "target": "com.supabase.api#V1BulkCreateSecrets"
+        },
+        {
+          "target": "com.supabase.api#V1BulkDeleteSecrets"
+        },
+        {
+          "target": "com.supabase.api#V1GetSslEnforcementConfig"
         },
         {
           "target": "com.supabase.api#V1UpdateSslEnforcementConfig"
         },
         {
-          "target": "com.supabase.api#V1UpdateStorageConfig"
+          "target": "com.supabase.api#V1GenerateTypescriptTypes"
+        },
+        {
+          "target": "com.supabase.api#V1GetVanitySubdomainConfig"
+        },
+        {
+          "target": "com.supabase.api#V1DeactivateVanitySubdomainConfig"
+        },
+        {
+          "target": "com.supabase.api#V1CheckVanitySubdomainAvailability"
+        },
+        {
+          "target": "com.supabase.api#V1ActivateVanitySubdomainConfig"
         },
         {
           "target": "com.supabase.api#V1UpgradePostgresVersion"
         },
         {
+          "target": "com.supabase.api#V1GetPostgresUpgradeEligibility"
+        },
+        {
+          "target": "com.supabase.api#V1GetPostgresUpgradeStatus"
+        },
+        {
+          "target": "com.supabase.api#V1GetReadonlyModeStatus"
+        },
+        {
+          "target": "com.supabase.api#V1DisableReadonlyModeTemporarily"
+        },
+        {
+          "target": "com.supabase.api#V1SetupAReadReplica"
+        },
+        {
+          "target": "com.supabase.api#V1RemoveAReadReplica"
+        },
+        {
+          "target": "com.supabase.api#V1GetServicesHealth"
+        },
+        {
+          "target": "com.supabase.api#V1GetLegacySigningKey"
+        },
+        {
+          "target": "com.supabase.api#V1CreateLegacySigningKey"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectSigningKeys"
+        },
+        {
+          "target": "com.supabase.api#V1CreateProjectSigningKey"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectSigningKey"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateProjectSigningKey"
+        },
+        {
+          "target": "com.supabase.api#V1RemoveProjectSigningKey"
+        },
+        {
+          "target": "com.supabase.api#V1GetAuthServiceConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateAuthServiceConfig"
+        },
+        {
+          "target": "com.supabase.api#V1ListProjectTpaIntegrations"
+        },
+        {
+          "target": "com.supabase.api#V1CreateProjectTpaIntegration"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectTpaIntegration"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteProjectTpaIntegration"
+        },
+        {
+          "target": "com.supabase.api#V1PauseAProject"
+        },
+        {
+          "target": "com.supabase.api#V1RestartAProject"
+        },
+        {
+          "target": "com.supabase.api#V1ListAvailableRestoreVersions"
+        },
+        {
+          "target": "com.supabase.api#V1RestoreAProject"
+        },
+        {
+          "target": "com.supabase.api#V1CancelAProjectRestoration"
+        },
+        {
+          "target": "com.supabase.api#V1ListProjectAddons"
+        },
+        {
+          "target": "com.supabase.api#V1ApplyProjectAddon"
+        },
+        {
+          "target": "com.supabase.api#V1RemoveProjectAddon"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectClaimToken"
+        },
+        {
+          "target": "com.supabase.api#V1CreateProjectClaimToken"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteProjectClaimToken"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectLogs"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectUsageApiCount"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectUsageRequestCount"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectFunctionCombinedStats"
+        },
+        {
+          "target": "com.supabase.api#V1ScrapeProjectMetrics"
+        },
+        {
+          "target": "com.supabase.api#V1CreateLoginRole"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteLoginRoles"
+        },
+        {
+          "target": "com.supabase.api#V1ListMigrationHistory"
+        },
+        {
+          "target": "com.supabase.api#V1ApplyAMigration"
+        },
+        {
           "target": "com.supabase.api#V1UpsertAMigration"
         },
         {
-          "target": "com.supabase.api#V1VerifyDnsConfig"
+          "target": "com.supabase.api#V1RollbackMigrations"
+        },
+        {
+          "target": "com.supabase.api#V1GetAMigration"
+        },
+        {
+          "target": "com.supabase.api#V1PatchAMigration"
+        },
+        {
+          "target": "com.supabase.api#V1RunAQuery"
+        },
+        {
+          "target": "com.supabase.api#V1ReadOnlyQuery"
+        },
+        {
+          "target": "com.supabase.api#V1EnableDatabaseWebhook"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateDatabasePassword"
+        },
+        {
+          "target": "com.supabase.api#V1GetJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1AuthorizeJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1ListJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1InviteExternalJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1AcceptInviteExternalJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteInviteExternalJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteJitAccess"
+        },
+        {
+          "target": "com.supabase.api#V1GetDatabaseOpenapi"
+        },
+        {
+          "target": "com.supabase.api#V1ListAllFunctions"
+        },
+        {
+          "target": "com.supabase.api#V1BulkUpdateFunctions"
+        },
+        {
+          "target": "com.supabase.api#V1DeployAFunction"
+        },
+        {
+          "target": "com.supabase.api#V1GetAFunction"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateAFunction"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteAFunction"
+        },
+        {
+          "target": "com.supabase.api#V1GetAFunctionBody"
+        },
+        {
+          "target": "com.supabase.api#V1ListAllBuckets"
+        },
+        {
+          "target": "com.supabase.api#V1GetDatabaseDisk"
+        },
+        {
+          "target": "com.supabase.api#V1ModifyDatabaseDisk"
+        },
+        {
+          "target": "com.supabase.api#V1GetDiskUtilization"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectDiskAutoscaleConfig"
+        },
+        {
+          "target": "com.supabase.api#V1GetStorageConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateStorageConfig"
+        },
+        {
+          "target": "com.supabase.api#V1GetProjectPgbouncerConfig"
+        },
+        {
+          "target": "com.supabase.api#V1GetPoolerConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdatePoolerConfig"
+        },
+        {
+          "target": "com.supabase.api#V1GetPostgresConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdatePostgresConfig"
+        },
+        {
+          "target": "com.supabase.api#V1GetRealtimeConfig"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateRealtimeConfig"
+        },
+        {
+          "target": "com.supabase.api#V1ShutdownRealtime"
+        },
+        {
+          "target": "com.supabase.api#V1ListAllSsoProvider"
+        },
+        {
+          "target": "com.supabase.api#V1CreateASsoProvider"
+        },
+        {
+          "target": "com.supabase.api#V1GetASsoProvider"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateASsoProvider"
+        },
+        {
+          "target": "com.supabase.api#V1DeleteASsoProvider"
+        },
+        {
+          "target": "com.supabase.api#V1ListAllBackups"
+        },
+        {
+          "target": "com.supabase.api#V1RestorePitrBackup"
+        },
+        {
+          "target": "com.supabase.api#V1GetRestorePoint"
+        },
+        {
+          "target": "com.supabase.api#V1CreateRestorePoint"
+        },
+        {
+          "target": "com.supabase.api#V1RestorePhysicalBackup"
+        },
+        {
+          "target": "com.supabase.api#V1GetBackupSchedule"
+        },
+        {
+          "target": "com.supabase.api#V1UpdateBackupSchedule"
+        },
+        {
+          "target": "com.supabase.api#V1Undo"
+        },
+        {
+          "target": "com.supabase.api#V1GetOrganizationEntitlements"
+        },
+        {
+          "target": "com.supabase.api#V1ListOrganizationMembers"
+        },
+        {
+          "target": "com.supabase.api#V1GetAnOrganization"
+        },
+        {
+          "target": "com.supabase.api#V1GetOrganizationProjectClaim"
+        },
+        {
+          "target": "com.supabase.api#V1ClaimProjectForOrganization"
+        },
+        {
+          "target": "com.supabase.api#V1GetAllProjectsForOrganization"
         }
       ],
       "traits": {

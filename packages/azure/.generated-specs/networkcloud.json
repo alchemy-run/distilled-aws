@@ -28659,436 +28659,436 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.networkcloud#AccessBridgesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#AgentPoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#AssignVirtualMachineRelay"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachineKeySetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesPowerOff"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesReimage"
-        },
-        {
-          "target": "com.azure.networkcloud#BareMetalMachinesRunReadCommands"
-        },
-        {
-          "target": "com.azure.networkcloud#BmcKeySetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#CloudServicesNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#ClusterManagersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersContinueUpdateVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersInspect"
-        },
-        {
-          "target": "com.azure.networkcloud#ClustersScanRuntime"
-        },
-        {
-          "target": "com.azure.networkcloud#ConsolesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#CordonBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteAccessBridge"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteAgentPool"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteBareMetalMachineKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteBmcKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteCloudServicesNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteClusterManager"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteConsole"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteKubernetesCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteKubernetesClusterFeature"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteKubernetesVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteL2Network"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteL3Network"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteMetricsConfiguration"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteRack"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteStorageAppliance"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteTrunkedNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#DeleteVirtualMachine"
-        },
-        {
           "target": "com.azure.networkcloud#DeleteVolume"
-        },
-        {
-          "target": "com.azure.networkcloud#DeployCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#DisableStorageApplianceRemoteVendorManagement"
-        },
-        {
-          "target": "com.azure.networkcloud#EnableStorageApplianceRemoteVendorManagement"
-        },
-        {
-          "target": "com.azure.networkcloud#GetAccessBridge"
-        },
-        {
-          "target": "com.azure.networkcloud#GetAgentPool"
-        },
-        {
-          "target": "com.azure.networkcloud#GetBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#GetBareMetalMachineKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#GetBmcKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#GetCloudServicesNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#GetCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#GetClusterManager"
-        },
-        {
-          "target": "com.azure.networkcloud#GetConsole"
-        },
-        {
-          "target": "com.azure.networkcloud#GetKubernetesCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#GetKubernetesClusterFeature"
-        },
-        {
-          "target": "com.azure.networkcloud#GetKubernetesVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#GetL2Network"
-        },
-        {
-          "target": "com.azure.networkcloud#GetL3Network"
-        },
-        {
-          "target": "com.azure.networkcloud#GetMetricsConfiguration"
-        },
-        {
-          "target": "com.azure.networkcloud#GetRack"
-        },
-        {
-          "target": "com.azure.networkcloud#GetRackSkus"
-        },
-        {
-          "target": "com.azure.networkcloud#GetStorageAppliance"
-        },
-        {
-          "target": "com.azure.networkcloud#GetTrunkedNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#GetVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#GetVolume"
-        },
-        {
-          "target": "com.azure.networkcloud#KubernetesClusterFeaturesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#KubernetesClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#KubernetesVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#L2NetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#L3NetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#ListAccessBridgeByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListAccessBridgeBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListAgentPoolByKubernetesCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBareMetalMachineByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBareMetalMachineBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBareMetalMachineKeySetByCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListBmcKeySetByCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListCloudServicesNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListCloudServicesNetworkBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListClusterBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListClusterManagerByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListClusterManagerBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListConsoleByVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKubernetesClusterByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKubernetesClusterBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKubernetesClusterFeatureByKubernetesCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKubernetesVersionByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListKubernetesVersionBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListL2NetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListL2NetworkBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListL3NetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListL3NetworkBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListMetricsConfigurationByCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#ListOperations"
-        },
-        {
-          "target": "com.azure.networkcloud#ListRackByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListRackBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListRackSkusBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListStorageApplianceByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListStorageApplianceBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListTrunkedNetworkByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListTrunkedNetworkBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListVirtualMachineByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListVirtualMachineBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#ListVolumeByResourceGroup"
-        },
-        {
-          "target": "com.azure.networkcloud#ListVolumeBySubscription"
-        },
-        {
-          "target": "com.azure.networkcloud#MetricsConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#RacksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#ReplaceBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#RestartBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#RestartKubernetesClusterNode"
-        },
-        {
-          "target": "com.azure.networkcloud#RestartVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#RotateClusterCredential"
-        },
-        {
-          "target": "com.azure.networkcloud#RunBareMetalMachineCommand"
-        },
-        {
-          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtracts"
-        },
-        {
-          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestricted"
-        },
-        {
-          "target": "com.azure.networkcloud#StartBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#StartVirtualMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#StorageAppliancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#StorageAppliancesRunReadCommands"
-        },
-        {
-          "target": "com.azure.networkcloud#TrunkedNetworksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.networkcloud#UncordonBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateAccessBridge"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateAgentPool"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateBareMetalMachine"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateBareMetalMachineKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateBmcKeySet"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateCloudServicesNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterManager"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterManagerRelayPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateClusterVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateConsole"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateKubernetesCluster"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateKubernetesClusterFeature"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateKubernetesVersion"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateL2Network"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateL3Network"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateMetricsConfiguration"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateRack"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateStorageAppliance"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateTrunkedNetwork"
-        },
-        {
-          "target": "com.azure.networkcloud#UpdateVirtualMachine"
         },
         {
           "target": "com.azure.networkcloud#UpdateVolume"
         },
         {
-          "target": "com.azure.networkcloud#VirtualMachinesCreateOrUpdate"
+          "target": "com.azure.networkcloud#VolumesCreateOrUpdate"
         },
         {
-          "target": "com.azure.networkcloud#VirtualMachinesPowerOff"
+          "target": "com.azure.networkcloud#GetVolume"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVolumeByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#StartVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#RestartVirtualMachine"
         },
         {
           "target": "com.azure.networkcloud#VirtualMachinesReimage"
         },
         {
-          "target": "com.azure.networkcloud#VolumesCreateOrUpdate"
+          "target": "com.azure.networkcloud#VirtualMachinesPowerOff"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteConsole"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateConsole"
+        },
+        {
+          "target": "com.azure.networkcloud#ConsolesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetConsole"
+        },
+        {
+          "target": "com.azure.networkcloud#ListConsoleByVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#AssignVirtualMachineRelay"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#VirtualMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetVirtualMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVirtualMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteTrunkedNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateTrunkedNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#TrunkedNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetTrunkedNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#ListTrunkedNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#StorageAppliancesRunReadCommands"
+        },
+        {
+          "target": "com.azure.networkcloud#EnableStorageApplianceRemoteVendorManagement"
+        },
+        {
+          "target": "com.azure.networkcloud#DisableStorageApplianceRemoteVendorManagement"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteStorageAppliance"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateStorageAppliance"
+        },
+        {
+          "target": "com.azure.networkcloud#StorageAppliancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetStorageAppliance"
+        },
+        {
+          "target": "com.azure.networkcloud#ListStorageApplianceByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteRack"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateRack"
+        },
+        {
+          "target": "com.azure.networkcloud#RacksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetRack"
+        },
+        {
+          "target": "com.azure.networkcloud#ListRackByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteL3Network"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateL3Network"
+        },
+        {
+          "target": "com.azure.networkcloud#L3NetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetL3Network"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL3NetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteL2Network"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateL2Network"
+        },
+        {
+          "target": "com.azure.networkcloud#L2NetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetL2Network"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL2NetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteKubernetesVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateKubernetesVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#KubernetesVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetKubernetesVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesVersionByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#RestartKubernetesClusterNode"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteKubernetesClusterFeature"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateKubernetesClusterFeature"
+        },
+        {
+          "target": "com.azure.networkcloud#KubernetesClusterFeaturesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetKubernetesClusterFeature"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesClusterFeatureByKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteAgentPool"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateAgentPool"
+        },
+        {
+          "target": "com.azure.networkcloud#AgentPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetAgentPool"
+        },
+        {
+          "target": "com.azure.networkcloud#ListAgentPoolByKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#KubernetesClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetKubernetesCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateClusterVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersScanRuntime"
+        },
+        {
+          "target": "com.azure.networkcloud#RotateClusterCredential"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteMetricsConfiguration"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateMetricsConfiguration"
+        },
+        {
+          "target": "com.azure.networkcloud#MetricsConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetMetricsConfiguration"
+        },
+        {
+          "target": "com.azure.networkcloud#ListMetricsConfigurationByCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersInspect"
+        },
+        {
+          "target": "com.azure.networkcloud#DeployCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersContinueUpdateVersion"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteBmcKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateBmcKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#BmcKeySetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetBmcKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBmcKeySetByCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteBareMetalMachineKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateBareMetalMachineKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#BareMetalMachineKeySetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetBareMetalMachineKeySet"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBareMetalMachineKeySetByCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetCluster"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateClusterManagerRelayPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteClusterManager"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateClusterManager"
+        },
+        {
+          "target": "com.azure.networkcloud#ClusterManagersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetClusterManager"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterManagerByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteCloudServicesNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateCloudServicesNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#CloudServicesNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetCloudServicesNetwork"
+        },
+        {
+          "target": "com.azure.networkcloud#ListCloudServicesNetworkByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#UncordonBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#StartBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#BareMetalMachinesRunReadCommands"
+        },
+        {
+          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtractsRestricted"
+        },
+        {
+          "target": "com.azure.networkcloud#RunBareMetalMachineDataExtracts"
+        },
+        {
+          "target": "com.azure.networkcloud#RunBareMetalMachineCommand"
+        },
+        {
+          "target": "com.azure.networkcloud#RestartBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#ReplaceBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#BareMetalMachinesReimage"
+        },
+        {
+          "target": "com.azure.networkcloud#BareMetalMachinesPowerOff"
+        },
+        {
+          "target": "com.azure.networkcloud#CordonBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#BareMetalMachinesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetBareMetalMachine"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBareMetalMachineByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#DeleteAccessBridge"
+        },
+        {
+          "target": "com.azure.networkcloud#UpdateAccessBridge"
+        },
+        {
+          "target": "com.azure.networkcloud#AccessBridgesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.networkcloud#GetAccessBridge"
+        },
+        {
+          "target": "com.azure.networkcloud#ListAccessBridgeByResourceGroup"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVolumeBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListVirtualMachineBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListTrunkedNetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListStorageApplianceBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListRackBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#GetRackSkus"
+        },
+        {
+          "target": "com.azure.networkcloud#ListRackSkusBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL3NetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListL2NetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesVersionBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListKubernetesClusterBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListClusterManagerBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListCloudServicesNetworkBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListBareMetalMachineBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListAccessBridgeBySubscription"
+        },
+        {
+          "target": "com.azure.networkcloud#ListOperations"
         }
       ],
       "traits": {

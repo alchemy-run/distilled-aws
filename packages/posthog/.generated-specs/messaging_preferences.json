@@ -535,12 +535,6 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.messaging_preferences#GetMessagingPreferencesOptOut"
-        },
-        {
-          "target": "com.posthog.messaging_preferences#GetMessagingPreferencesWebhookUrl"
-        },
-        {
           "target": "com.posthog.messaging_preferences#MessagingPreferencesAddOptOutCreate"
         },
         {
@@ -553,7 +547,13 @@
           "target": "com.posthog.messaging_preferences#MessagingPreferencesGenerateLinkCreate"
         },
         {
+          "target": "com.posthog.messaging_preferences#GetMessagingPreferencesOptOut"
+        },
+        {
           "target": "com.posthog.messaging_preferences#MessagingPreferencesRemoveOptOutCreate"
+        },
+        {
+          "target": "com.posthog.messaging_preferences#GetMessagingPreferencesWebhookUrl"
         }
       ],
       "traits": {

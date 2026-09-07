@@ -17626,6 +17626,21 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.magic_transit#CreateSitesAppConfiguration"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfiguration"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#EditSitesAppConfiguration"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#ListSitesAppConfiguration"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfiguration"
+        },
+        {
           "target": "com.cloudflare.magic_transit#BulkPutCfInterconnects"
         },
         {
@@ -17674,9 +17689,6 @@
           "target": "com.cloudflare.magic_transit#CreateSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#CreateSitesAppConfiguration"
-        },
-        {
           "target": "com.cloudflare.magic_transit#CreateSiteWan"
         },
         {
@@ -17713,13 +17725,7 @@
           "target": "com.cloudflare.magic_transit#DeleteSiteLan"
         },
         {
-          "target": "com.cloudflare.magic_transit#DeleteSitesAppConfiguration"
-        },
-        {
           "target": "com.cloudflare.magic_transit#DeleteSiteWan"
-        },
-        {
-          "target": "com.cloudflare.magic_transit#EditSitesAppConfiguration"
         },
         {
           "target": "com.cloudflare.magic_transit#EmptyRoute"
@@ -17821,9 +17827,6 @@
           "target": "com.cloudflare.magic_transit#ListSites"
         },
         {
-          "target": "com.cloudflare.magic_transit#ListSitesAppConfiguration"
-        },
-        {
           "target": "com.cloudflare.magic_transit#ListSiteWans"
         },
         {
@@ -17882,9 +17885,6 @@
         },
         {
           "target": "com.cloudflare.magic_transit#UpdateSiteLan"
-        },
-        {
-          "target": "com.cloudflare.magic_transit#UpdateSitesAppConfiguration"
         },
         {
           "target": "com.cloudflare.magic_transit#UpdateSiteWan"

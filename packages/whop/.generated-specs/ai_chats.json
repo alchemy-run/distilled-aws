@@ -725,19 +725,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.ai_chats#CreateAiChat"
+          "target": "com.whop.ai_chats#ListAiChat"
         },
         {
-          "target": "com.whop.ai_chats#DeleteAiChat"
+          "target": "com.whop.ai_chats#CreateAiChat"
         },
         {
           "target": "com.whop.ai_chats#GetAiChat"
         },
         {
-          "target": "com.whop.ai_chats#ListAiChat"
+          "target": "com.whop.ai_chats#UpdateAiChat"
         },
         {
-          "target": "com.whop.ai_chats#UpdateAiChat"
+          "target": "com.whop.ai_chats#DeleteAiChat"
         }
       ],
       "traits": {

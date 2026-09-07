@@ -3111,28 +3111,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.integrations#ListIntegrations"
+        },
+        {
           "target": "com.posthog.integrations#CreateIntegration"
-        },
-        {
-          "target": "com.posthog.integrations#CreateIntegrationsGithubLinkExisting"
-        },
-        {
-          "target": "com.posthog.integrations#CreateIntegrationsGithubPrepareCallback"
-        },
-        {
-          "target": "com.posthog.integrations#CreateIntegrationsRequestAccess"
         },
         {
           "target": "com.posthog.integrations#GetIntegration"
         },
         {
-          "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgent"
+          "target": "com.posthog.integrations#IntegrationsDestroy"
         },
         {
           "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentEnv"
         },
         {
           "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentVault"
+        },
+        {
+          "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgent"
         },
         {
           "target": "com.posthog.integrations#GetIntegrationsChannel"
@@ -3147,13 +3144,19 @@
           "target": "com.posthog.integrations#GetIntegrationsClickupWorkspace"
         },
         {
-          "target": "com.posthog.integrations#GetIntegrationsGithubAvailableInstallation"
+          "target": "com.posthog.integrations#UpdateIntegrationsEmailPartial"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsEmailVerifyCreate"
         },
         {
           "target": "com.posthog.integrations#GetIntegrationsGithubBranch"
         },
         {
           "target": "com.posthog.integrations#GetIntegrationsGithubRepos"
+        },
+        {
+          "target": "com.posthog.integrations#IntegrationsGithubReposRefreshCreate"
         },
         {
           "target": "com.posthog.integrations#GetIntegrationsGithubTeam"
@@ -3186,28 +3189,25 @@
           "target": "com.posthog.integrations#IntegrationsAuthorizeRetrieve"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsDestroy"
-        },
-        {
           "target": "com.posthog.integrations#IntegrationsDomainConnectApplyUrlCreate"
         },
         {
           "target": "com.posthog.integrations#IntegrationsDomainConnectCheckRetrieve"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsEmailVerifyCreate"
+          "target": "com.posthog.integrations#GetIntegrationsGithubAvailableInstallation"
+        },
+        {
+          "target": "com.posthog.integrations#CreateIntegrationsGithubLinkExisting"
         },
         {
           "target": "com.posthog.integrations#IntegrationsGithubOauthAuthorizeCreate"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubReposRefreshCreate"
+          "target": "com.posthog.integrations#CreateIntegrationsGithubPrepareCallback"
         },
         {
-          "target": "com.posthog.integrations#ListIntegrations"
-        },
-        {
-          "target": "com.posthog.integrations#UpdateIntegrationsEmailPartial"
+          "target": "com.posthog.integrations#CreateIntegrationsRequestAccess"
         }
       ],
       "traits": {

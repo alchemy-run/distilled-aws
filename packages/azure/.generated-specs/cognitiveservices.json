@@ -23678,439 +23678,439 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cognitiveservices#AccountCapabilityHostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#AddRaiBlocklistItemBatch"
-        },
-        {
-          "target": "com.azure.cognitiveservices#AgentApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CalculateModelCapacity"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CheckDomainAvailability"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CheckSkuAvailability"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdate"
+          "target": "com.azure.cognitiveservices#DeleteCommitmentPlanAssociation"
         },
         {
           "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdateAssociation"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdatePlan"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CreateAccount"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CreateAccountConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CreateProject"
-        },
-        {
-          "target": "com.azure.cognitiveservices#CreateProjectConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteAccount"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteAccountCapabilityHost"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteAccountConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteAgentApplication"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteAgentDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteCommitmentPlan"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteCommitmentPlanAssociation"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteCommitmentPlanPlan"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteEncryptionScope"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteManagedNetworkSettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteOutboundRule"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteProject"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteProjectCapabilityHost"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteProjectConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiBlocklist"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItem"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItemBatch"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiExternalSafetyProvider"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiPolicy"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiToolLabel"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteRaiTopic"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeleteSubscriptionRaiPolicy"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#DisableAgentApplication"
-        },
-        {
-          "target": "com.azure.cognitiveservices#EnableAgentApplication"
-        },
-        {
-          "target": "com.azure.cognitiveservices#EncryptionScopesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetAccount"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetAccountCapabilityHost"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetAccountConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetAgentApplication"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetAgentDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetCommitmentPlan"
-        },
-        {
           "target": "com.azure.cognitiveservices#GetCommitmentPlanAssociation"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetCommitmentPlanPlan"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetDefenderForAISettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetDeletedAccount"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetEncryptionScope"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetManagedNetworkSettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetOutboundRule"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetProject"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetProjectCapabilityHost"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetProjectConnection"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetQuotaTier"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiBlocklist"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiBlocklistItem"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiContentFilter"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiExternalSafetyProvider"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiPolicy"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiToolLabel"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetRaiTopic"
-        },
-        {
-          "target": "com.azure.cognitiveservices#GetSubscriptionRaiPolicy"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountCapabilityHosts"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountConnections"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountKeys"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountModels"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccounts"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountSkus"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAccountUsages"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAgentApplicationAgents"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAgentApplications"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListAgentDeployments"
         },
         {
           "target": "com.azure.cognitiveservices#ListCommitmentPlanAssociations"
         },
         {
-          "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansByResourceGroup"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansBySubscription"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListCommitmentPlans"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListCommitmentTiers"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListDefenderForAISettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListDeletedAccounts"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListDeployments"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListDeploymentSkus"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListEncryptionScopes"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListLocationBasedModelCapacities"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListManagedNetworkSettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListModelCapacities"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListModels"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListNetworkSecurityPerimeterConfigurations"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListOperations"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListOutboundRule"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListProjectCapabilityHosts"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListProjectConnections"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListProjects"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListQuotaTierBySubscription"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiBlocklistItems"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiBlocklists"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiContentFilters"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiExternalSafetyProviders"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiPolicies"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiToolLabels"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListRaiTopics"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListResourceSkus"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ListUsages"
-        },
-        {
-          "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsReconcile"
-        },
-        {
-          "target": "com.azure.cognitiveservices#OutboundRuleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#PatchManagedNetworkSettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#PauseDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#PostOutboundRule"
-        },
-        {
-          "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ProjectCapabilityHostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ProvisionManagedNetworkProvisionManagedNetwork"
-        },
-        {
-          "target": "com.azure.cognitiveservices#PurgeDeletedAccount"
-        },
-        {
-          "target": "com.azure.cognitiveservices#PutManagedNetworkSettings"
-        },
-        {
-          "target": "com.azure.cognitiveservices#QuotaTiersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RaiBlocklistsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RaiPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RaiToolLabelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RaiTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#RegenerateAccountKey"
-        },
-        {
-          "target": "com.azure.cognitiveservices#ResumeDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#StartAgentDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#StopAgentDeployment"
-        },
-        {
-          "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#TestRaiExternalSafetyProviderCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.cognitiveservices#UpdateAccount"
-        },
-        {
-          "target": "com.azure.cognitiveservices#UpdateAccountConnection"
+          "target": "com.azure.cognitiveservices#DeleteCommitmentPlanPlan"
         },
         {
           "target": "com.azure.cognitiveservices#UpdateCommitmentPlanPlan"
         },
         {
-          "target": "com.azure.cognitiveservices#UpdateDefenderForAISettings"
+          "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdatePlan"
         },
         {
-          "target": "com.azure.cognitiveservices#UpdateDeployment"
+          "target": "com.azure.cognitiveservices#GetCommitmentPlanPlan"
         },
         {
-          "target": "com.azure.cognitiveservices#UpdateProject"
+          "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansByResourceGroup"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountUsages"
+        },
+        {
+          "target": "com.azure.cognitiveservices#TestRaiExternalSafetyProviderCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountSkus"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RegenerateAccountKey"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiTopic"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RaiTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiTopic"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiTopics"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiToolLabel"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RaiToolLabelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiToolLabel"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiToolLabels"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiPolicy"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RaiPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiPolicy"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiPolicies"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItem"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RaiBlocklistItemsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiBlocklistItem"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiBlocklistItems"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItemBatch"
+        },
+        {
+          "target": "com.azure.cognitiveservices#AddRaiBlocklistItemBatch"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiBlocklist"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RaiBlocklistsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiBlocklist"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiBlocklists"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteProjectConnection"
         },
         {
           "target": "com.azure.cognitiveservices#UpdateProjectConnection"
         },
         {
+          "target": "com.azure.cognitiveservices#CreateProjectConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetProjectConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListProjectConnections"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteProjectCapabilityHost"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ProjectCapabilityHostsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetProjectCapabilityHost"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListProjectCapabilityHosts"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAgentApplicationAgents"
+        },
+        {
+          "target": "com.azure.cognitiveservices#EnableAgentApplication"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DisableAgentApplication"
+        },
+        {
+          "target": "com.azure.cognitiveservices#StopAgentDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#StartAgentDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteAgentDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#AgentDeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetAgentDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAgentDeployments"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteAgentApplication"
+        },
+        {
+          "target": "com.azure.cognitiveservices#AgentApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetAgentApplication"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAgentApplications"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteProject"
+        },
+        {
+          "target": "com.azure.cognitiveservices#UpdateProject"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CreateProject"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetProject"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListProjects"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsReconcile"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListNetworkSecurityPerimeterConfigurations"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountModels"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ProvisionManagedNetworkProvisionManagedNetwork"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteOutboundRule"
+        },
+        {
+          "target": "com.azure.cognitiveservices#OutboundRuleCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetOutboundRule"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListOutboundRule"
+        },
+        {
+          "target": "com.azure.cognitiveservices#PostOutboundRule"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteManagedNetworkSettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#PatchManagedNetworkSettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#PutManagedNetworkSettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetManagedNetworkSettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListManagedNetworkSettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountKeys"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteEncryptionScope"
+        },
+        {
+          "target": "com.azure.cognitiveservices#EncryptionScopesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetEncryptionScope"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListEncryptionScopes"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListDeploymentSkus"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ResumeDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#PauseDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#UpdateDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetDeployment"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListDeployments"
+        },
+        {
+          "target": "com.azure.cognitiveservices#UpdateDefenderForAISettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DefenderForAISettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetDefenderForAISettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListDefenderForAISettings"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteAccountConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#UpdateAccountConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CreateAccountConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetAccountConnection"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountConnections"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteCommitmentPlan"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetCommitmentPlan"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListCommitmentPlans"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteAccountCapabilityHost"
+        },
+        {
+          "target": "com.azure.cognitiveservices#AccountCapabilityHostsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetAccountCapabilityHost"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountCapabilityHosts"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteAccount"
+        },
+        {
+          "target": "com.azure.cognitiveservices#UpdateAccount"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CreateAccount"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetAccount"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListResourceSkus"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteSubscriptionRaiPolicy"
+        },
+        {
+          "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetSubscriptionRaiPolicy"
+        },
+        {
+          "target": "com.azure.cognitiveservices#DeleteRaiExternalSafetyProvider"
+        },
+        {
+          "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiExternalSafetyProvider"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiExternalSafetyProviders"
+        },
+        {
           "target": "com.azure.cognitiveservices#UpdateQuotaTier"
+        },
+        {
+          "target": "com.azure.cognitiveservices#QuotaTiersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetQuotaTier"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListQuotaTierBySubscription"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListModelCapacities"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListUsages"
+        },
+        {
+          "target": "com.azure.cognitiveservices#PurgeDeletedAccount"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetDeletedAccount"
+        },
+        {
+          "target": "com.azure.cognitiveservices#GetRaiContentFilter"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListRaiContentFilters"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListModels"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListLocationBasedModelCapacities"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListCommitmentTiers"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CheckSkuAvailability"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListDeletedAccounts"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansBySubscription"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CheckDomainAvailability"
+        },
+        {
+          "target": "com.azure.cognitiveservices#CalculateModelCapacity"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListAccounts"
+        },
+        {
+          "target": "com.azure.cognitiveservices#ListOperations"
         }
       ],
       "traits": {

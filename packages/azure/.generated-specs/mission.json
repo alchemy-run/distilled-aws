@@ -11409,196 +11409,196 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.mission#ApprovalCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#CheckCommunityAddressSpaceAvailability"
-        },
-        {
-          "target": "com.azure.mission#CommunityCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#CommunityEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#CommunityEndpointsHandleApprovalCreation"
-        },
-        {
-          "target": "com.azure.mission#CommunityEndpointsHandleApprovalDeletion"
-        },
-        {
-          "target": "com.azure.mission#DedicatedHubCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#DeleteApproval"
-        },
-        {
-          "target": "com.azure.mission#DeleteCommunity"
-        },
-        {
-          "target": "com.azure.mission#DeleteCommunityEndpoint"
-        },
-        {
-          "target": "com.azure.mission#DeleteDedicatedHub"
-        },
-        {
-          "target": "com.azure.mission#DeleteEnclaveConnection"
-        },
-        {
-          "target": "com.azure.mission#DeleteEnclaveEndpoint"
-        },
-        {
-          "target": "com.azure.mission#DeleteTransitHub"
-        },
-        {
-          "target": "com.azure.mission#DeleteVirtualEnclave"
-        },
-        {
           "target": "com.azure.mission#DeleteWorkload"
-        },
-        {
-          "target": "com.azure.mission#EnclaveConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#EnclaveConnectionHandleApprovalCreation"
-        },
-        {
-          "target": "com.azure.mission#EnclaveConnectionHandleApprovalDeletion"
-        },
-        {
-          "target": "com.azure.mission#EnclaveEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#EnclaveEndpointsHandleApprovalCreation"
-        },
-        {
-          "target": "com.azure.mission#EnclaveEndpointsHandleApprovalDeletion"
-        },
-        {
-          "target": "com.azure.mission#GetApproval"
-        },
-        {
-          "target": "com.azure.mission#GetCommunity"
-        },
-        {
-          "target": "com.azure.mission#GetCommunityEndpoint"
-        },
-        {
-          "target": "com.azure.mission#GetDedicatedHub"
-        },
-        {
-          "target": "com.azure.mission#GetEnclaveConnection"
-        },
-        {
-          "target": "com.azure.mission#GetEnclaveEndpoint"
-        },
-        {
-          "target": "com.azure.mission#GetTransitHub"
-        },
-        {
-          "target": "com.azure.mission#GetVirtualEnclave"
-        },
-        {
-          "target": "com.azure.mission#GetWorkload"
-        },
-        {
-          "target": "com.azure.mission#ListApprovalByParent"
-        },
-        {
-          "target": "com.azure.mission#ListCommunityByResourceGroup"
-        },
-        {
-          "target": "com.azure.mission#ListCommunityBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListCommunityEndpointByCommunityResource"
-        },
-        {
-          "target": "com.azure.mission#ListCommunityEndpointBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListDedicatedHubByCommunityResource"
-        },
-        {
-          "target": "com.azure.mission#ListDedicatedHubBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListEnclaveConnectionByResourceGroup"
-        },
-        {
-          "target": "com.azure.mission#ListEnclaveConnectionBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListEnclaveEndpointByEnclaveResource"
-        },
-        {
-          "target": "com.azure.mission#ListEnclaveEndpointBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListOperations"
-        },
-        {
-          "target": "com.azure.mission#ListTransitHubByCommunityResource"
-        },
-        {
-          "target": "com.azure.mission#ListTransitHubBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListVirtualEnclaveByResourceGroup"
-        },
-        {
-          "target": "com.azure.mission#ListVirtualEnclaveBySubscription"
-        },
-        {
-          "target": "com.azure.mission#ListWorkloadByEnclaveResource"
-        },
-        {
-          "target": "com.azure.mission#ListWorkloadBySubscription"
-        },
-        {
-          "target": "com.azure.mission#NotifyApprovalInitiator"
-        },
-        {
-          "target": "com.azure.mission#TransitHubCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.mission#UpdateApproval"
-        },
-        {
-          "target": "com.azure.mission#UpdateCommunity"
-        },
-        {
-          "target": "com.azure.mission#UpdateCommunityEndpoint"
-        },
-        {
-          "target": "com.azure.mission#UpdateDedicatedHub"
-        },
-        {
-          "target": "com.azure.mission#UpdateEnclaveConnection"
-        },
-        {
-          "target": "com.azure.mission#UpdateEnclaveEndpoint"
-        },
-        {
-          "target": "com.azure.mission#UpdateTransitHub"
-        },
-        {
-          "target": "com.azure.mission#UpdateVirtualEnclave"
         },
         {
           "target": "com.azure.mission#UpdateWorkload"
         },
         {
-          "target": "com.azure.mission#VirtualEnclaveCreateOrUpdate"
+          "target": "com.azure.mission#WorkloadCreateOrUpdate"
         },
         {
-          "target": "com.azure.mission#VirtualEnclaveHandleApprovalCreation"
+          "target": "com.azure.mission#GetWorkload"
+        },
+        {
+          "target": "com.azure.mission#ListWorkloadByEnclaveResource"
         },
         {
           "target": "com.azure.mission#VirtualEnclaveHandleApprovalDeletion"
         },
         {
-          "target": "com.azure.mission#WorkloadCreateOrUpdate"
+          "target": "com.azure.mission#VirtualEnclaveHandleApprovalCreation"
+        },
+        {
+          "target": "com.azure.mission#EnclaveEndpointsHandleApprovalDeletion"
+        },
+        {
+          "target": "com.azure.mission#EnclaveEndpointsHandleApprovalCreation"
+        },
+        {
+          "target": "com.azure.mission#DeleteEnclaveEndpoint"
+        },
+        {
+          "target": "com.azure.mission#UpdateEnclaveEndpoint"
+        },
+        {
+          "target": "com.azure.mission#EnclaveEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetEnclaveEndpoint"
+        },
+        {
+          "target": "com.azure.mission#ListEnclaveEndpointByEnclaveResource"
+        },
+        {
+          "target": "com.azure.mission#DeleteVirtualEnclave"
+        },
+        {
+          "target": "com.azure.mission#UpdateVirtualEnclave"
+        },
+        {
+          "target": "com.azure.mission#VirtualEnclaveCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetVirtualEnclave"
+        },
+        {
+          "target": "com.azure.mission#ListVirtualEnclaveByResourceGroup"
+        },
+        {
+          "target": "com.azure.mission#EnclaveConnectionHandleApprovalDeletion"
+        },
+        {
+          "target": "com.azure.mission#EnclaveConnectionHandleApprovalCreation"
+        },
+        {
+          "target": "com.azure.mission#DeleteEnclaveConnection"
+        },
+        {
+          "target": "com.azure.mission#UpdateEnclaveConnection"
+        },
+        {
+          "target": "com.azure.mission#EnclaveConnectionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetEnclaveConnection"
+        },
+        {
+          "target": "com.azure.mission#ListEnclaveConnectionByResourceGroup"
+        },
+        {
+          "target": "com.azure.mission#DeleteTransitHub"
+        },
+        {
+          "target": "com.azure.mission#UpdateTransitHub"
+        },
+        {
+          "target": "com.azure.mission#TransitHubCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetTransitHub"
+        },
+        {
+          "target": "com.azure.mission#ListTransitHubByCommunityResource"
+        },
+        {
+          "target": "com.azure.mission#DeleteDedicatedHub"
+        },
+        {
+          "target": "com.azure.mission#UpdateDedicatedHub"
+        },
+        {
+          "target": "com.azure.mission#DedicatedHubCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetDedicatedHub"
+        },
+        {
+          "target": "com.azure.mission#ListDedicatedHubByCommunityResource"
+        },
+        {
+          "target": "com.azure.mission#CommunityEndpointsHandleApprovalDeletion"
+        },
+        {
+          "target": "com.azure.mission#CommunityEndpointsHandleApprovalCreation"
+        },
+        {
+          "target": "com.azure.mission#DeleteCommunityEndpoint"
+        },
+        {
+          "target": "com.azure.mission#UpdateCommunityEndpoint"
+        },
+        {
+          "target": "com.azure.mission#CommunityEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetCommunityEndpoint"
+        },
+        {
+          "target": "com.azure.mission#ListCommunityEndpointByCommunityResource"
+        },
+        {
+          "target": "com.azure.mission#CheckCommunityAddressSpaceAvailability"
+        },
+        {
+          "target": "com.azure.mission#DeleteCommunity"
+        },
+        {
+          "target": "com.azure.mission#UpdateCommunity"
+        },
+        {
+          "target": "com.azure.mission#CommunityCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetCommunity"
+        },
+        {
+          "target": "com.azure.mission#ListCommunityByResourceGroup"
+        },
+        {
+          "target": "com.azure.mission#ListWorkloadBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListEnclaveEndpointBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListVirtualEnclaveBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListEnclaveConnectionBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListTransitHubBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListDedicatedHubBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListCommunityEndpointBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListCommunityBySubscription"
+        },
+        {
+          "target": "com.azure.mission#ListOperations"
+        },
+        {
+          "target": "com.azure.mission#NotifyApprovalInitiator"
+        },
+        {
+          "target": "com.azure.mission#DeleteApproval"
+        },
+        {
+          "target": "com.azure.mission#UpdateApproval"
+        },
+        {
+          "target": "com.azure.mission#ApprovalCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.mission#GetApproval"
+        },
+        {
+          "target": "com.azure.mission#ListApprovalByParent"
         }
       ],
       "traits": {

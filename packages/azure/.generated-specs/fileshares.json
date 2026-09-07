@@ -3280,70 +3280,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fileshares#CheckFileShareNameAvailability"
-        },
-        {
-          "target": "com.azure.fileshares#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.fileshares#DeleteFileShare"
-        },
-        {
-          "target": "com.azure.fileshares#DeleteFileShareSnapshot"
-        },
-        {
-          "target": "com.azure.fileshares#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.fileshares#FileSharesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.fileshares#FileShareSnapshotCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShare"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShareLimits"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShareProvisioningRecommendation"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShareSnapshot"
-        },
-        {
-          "target": "com.azure.fileshares#GetFileShareUsageData"
-        },
-        {
-          "target": "com.azure.fileshares#GetPrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.fileshares#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.fileshares#ListFileShareByParent"
-        },
-        {
-          "target": "com.azure.fileshares#ListFileShareBySubscription"
-        },
-        {
-          "target": "com.azure.fileshares#ListFileShareSnapshot"
-        },
-        {
-          "target": "com.azure.fileshares#ListOperations"
-        },
-        {
-          "target": "com.azure.fileshares#ListPrivateEndpointConnectionByFileShare"
         },
         {
           "target": "com.azure.fileshares#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.fileshares#UpdateFileShare"
+          "target": "com.azure.fileshares#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.fileshares#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.fileshares#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.fileshares#ListPrivateEndpointConnectionByFileShare"
+        },
+        {
+          "target": "com.azure.fileshares#DeleteFileShareSnapshot"
         },
         {
           "target": "com.azure.fileshares#UpdateFileShareSnapshot"
+        },
+        {
+          "target": "com.azure.fileshares#FileShareSnapshotCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.fileshares#GetFileShareSnapshot"
+        },
+        {
+          "target": "com.azure.fileshares#ListFileShareSnapshot"
+        },
+        {
+          "target": "com.azure.fileshares#DeleteFileShare"
+        },
+        {
+          "target": "com.azure.fileshares#UpdateFileShare"
+        },
+        {
+          "target": "com.azure.fileshares#FileSharesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.fileshares#GetFileShare"
+        },
+        {
+          "target": "com.azure.fileshares#ListFileShareByParent"
+        },
+        {
+          "target": "com.azure.fileshares#GetFileShareUsageData"
+        },
+        {
+          "target": "com.azure.fileshares#GetFileShareProvisioningRecommendation"
+        },
+        {
+          "target": "com.azure.fileshares#GetFileShareLimits"
+        },
+        {
+          "target": "com.azure.fileshares#CheckFileShareNameAvailability"
+        },
+        {
+          "target": "com.azure.fileshares#ListFileShareBySubscription"
+        },
+        {
+          "target": "com.azure.fileshares#ListOperations"
         }
       ],
       "traits": {

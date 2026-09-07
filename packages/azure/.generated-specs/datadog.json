@@ -4342,73 +4342,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datadog#CreateMonitor"
-        },
-        {
-          "target": "com.azure.datadog#DeleteMonitor"
-        },
-        {
-          "target": "com.azure.datadog#DeleteMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.datadog#GetBillingInfo"
-        },
-        {
-          "target": "com.azure.datadog#GetCreationSupported"
-        },
-        {
-          "target": "com.azure.datadog#GetMonitor"
-        },
-        {
-          "target": "com.azure.datadog#GetMonitorDefaultKey"
-        },
-        {
-          "target": "com.azure.datadog#GetMonitoredSubscription"
-        },
-        {
-          "target": "com.azure.datadog#GetSingleSignOnConfiguration"
+          "target": "com.azure.datadog#TagRulesCreateOrUpdate"
         },
         {
           "target": "com.azure.datadog#GetTagRule"
         },
         {
-          "target": "com.azure.datadog#ListCreationSupported"
+          "target": "com.azure.datadog#ListTagRules"
         },
         {
-          "target": "com.azure.datadog#ListMarketplaceAgreements"
+          "target": "com.azure.datadog#SingleSignOnConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.datadog#ListMonitorApiKeys"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorByResourceGroup"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitoredSubscriptions"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorHosts"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorLinkedResources"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitorMonitoredResources"
-        },
-        {
-          "target": "com.azure.datadog#ListMonitors"
-        },
-        {
-          "target": "com.azure.datadog#ListOperations"
+          "target": "com.azure.datadog#GetSingleSignOnConfiguration"
         },
         {
           "target": "com.azure.datadog#ListSingleSignOnConfigurations"
         },
         {
-          "target": "com.azure.datadog#ListTagRules"
-        },
-        {
-          "target": "com.azure.datadog#MarketplaceAgreementsCreateOrUpdate"
+          "target": "com.azure.datadog#SetMonitorDefaultKey"
         },
         {
           "target": "com.azure.datadog#OrganizationsResubscribe"
@@ -4417,22 +4369,70 @@
           "target": "com.azure.datadog#RefreshMonitorSetPasswordLink"
         },
         {
-          "target": "com.azure.datadog#SetMonitorDefaultKey"
-        },
-        {
-          "target": "com.azure.datadog#SingleSignOnConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datadog#TagRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datadog#UpdateMonitor"
+          "target": "com.azure.datadog#DeleteMonitoredSubscription"
         },
         {
           "target": "com.azure.datadog#UpdateMonitoredSubscription"
         },
         {
           "target": "com.azure.datadog#UpdateMonitoredSubscriptionsCreateor"
+        },
+        {
+          "target": "com.azure.datadog#GetMonitoredSubscription"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitoredSubscriptions"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorMonitoredResources"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorLinkedResources"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorHosts"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorApiKeys"
+        },
+        {
+          "target": "com.azure.datadog#GetMonitorDefaultKey"
+        },
+        {
+          "target": "com.azure.datadog#GetBillingInfo"
+        },
+        {
+          "target": "com.azure.datadog#DeleteMonitor"
+        },
+        {
+          "target": "com.azure.datadog#UpdateMonitor"
+        },
+        {
+          "target": "com.azure.datadog#CreateMonitor"
+        },
+        {
+          "target": "com.azure.datadog#GetMonitor"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitorByResourceGroup"
+        },
+        {
+          "target": "com.azure.datadog#GetCreationSupported"
+        },
+        {
+          "target": "com.azure.datadog#ListCreationSupported"
+        },
+        {
+          "target": "com.azure.datadog#ListMonitors"
+        },
+        {
+          "target": "com.azure.datadog#MarketplaceAgreementsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datadog#ListMarketplaceAgreements"
+        },
+        {
+          "target": "com.azure.datadog#ListOperations"
         }
       ],
       "traits": {

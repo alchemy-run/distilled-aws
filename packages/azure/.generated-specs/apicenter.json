@@ -5289,97 +5289,109 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.apicenter#ApiDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#ApisCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#ApiVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteApiDefinition"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteApis"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteApiVersion"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteDeployment"
-        },
-        {
           "target": "com.azure.apicenter#DeleteEnvironment"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteMetadataSchema"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteService"
-        },
-        {
-          "target": "com.azure.apicenter#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.apicenter#DeploymentsCreateOrUpdate"
         },
         {
           "target": "com.azure.apicenter#EnvironmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.apicenter#ExportApiDefinitionSpecification"
-        },
-        {
-          "target": "com.azure.apicenter#ExportServiceMetadataSchema"
-        },
-        {
-          "target": "com.azure.apicenter#GetApiDefinition"
-        },
-        {
-          "target": "com.azure.apicenter#GetApis"
-        },
-        {
-          "target": "com.azure.apicenter#GetApiVersion"
-        },
-        {
-          "target": "com.azure.apicenter#GetDeployment"
-        },
-        {
           "target": "com.azure.apicenter#GetEnvironment"
-        },
-        {
-          "target": "com.azure.apicenter#GetMetadataSchema"
-        },
-        {
-          "target": "com.azure.apicenter#GetService"
-        },
-        {
-          "target": "com.azure.apicenter#GetWorkspace"
-        },
-        {
-          "target": "com.azure.apicenter#ImportApiDefinitionSpecification"
-        },
-        {
-          "target": "com.azure.apicenter#ListApiDefinitions"
-        },
-        {
-          "target": "com.azure.apicenter#ListApis"
-        },
-        {
-          "target": "com.azure.apicenter#ListApiVersions"
-        },
-        {
-          "target": "com.azure.apicenter#ListDeployments"
         },
         {
           "target": "com.azure.apicenter#ListEnvironments"
         },
         {
+          "target": "com.azure.apicenter#ImportApiDefinitionSpecification"
+        },
+        {
+          "target": "com.azure.apicenter#ExportApiDefinitionSpecification"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteApiDefinition"
+        },
+        {
+          "target": "com.azure.apicenter#ApiDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetApiDefinition"
+        },
+        {
+          "target": "com.azure.apicenter#ListApiDefinitions"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteApiVersion"
+        },
+        {
+          "target": "com.azure.apicenter#ApiVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetApiVersion"
+        },
+        {
+          "target": "com.azure.apicenter#ListApiVersions"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteDeployment"
+        },
+        {
+          "target": "com.azure.apicenter#DeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetDeployment"
+        },
+        {
+          "target": "com.azure.apicenter#ListDeployments"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteApis"
+        },
+        {
+          "target": "com.azure.apicenter#ApisCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetApis"
+        },
+        {
+          "target": "com.azure.apicenter#ListApis"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.apicenter#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetWorkspace"
+        },
+        {
+          "target": "com.azure.apicenter#ListWorkspaces"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteMetadataSchema"
+        },
+        {
+          "target": "com.azure.apicenter#MetadataSchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetMetadataSchema"
+        },
+        {
           "target": "com.azure.apicenter#ListMetadataSchemas"
         },
         {
-          "target": "com.azure.apicenter#ListOperations"
+          "target": "com.azure.apicenter#ExportServiceMetadataSchema"
+        },
+        {
+          "target": "com.azure.apicenter#DeleteService"
+        },
+        {
+          "target": "com.azure.apicenter#UpdateService"
+        },
+        {
+          "target": "com.azure.apicenter#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apicenter#GetService"
         },
         {
           "target": "com.azure.apicenter#ListServiceByResourceGroup"
@@ -5388,19 +5400,7 @@
           "target": "com.azure.apicenter#ListServiceBySubscription"
         },
         {
-          "target": "com.azure.apicenter#ListWorkspaces"
-        },
-        {
-          "target": "com.azure.apicenter#MetadataSchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apicenter#UpdateService"
-        },
-        {
-          "target": "com.azure.apicenter#WorkspacesCreateOrUpdate"
+          "target": "com.azure.apicenter#ListOperations"
         }
       ],
       "traits": {

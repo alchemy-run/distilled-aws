@@ -575,10 +575,16 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.groups#ListGroups"
+        },
+        {
           "target": "com.posthog.groups#CreateGroup"
         },
         {
           "target": "com.posthog.groups#GetGroupsActivity"
+        },
+        {
+          "target": "com.posthog.groups#GroupsDeletePropertyCreate"
         },
         {
           "target": "com.posthog.groups#GetGroupsFind"
@@ -590,13 +596,7 @@
           "target": "com.posthog.groups#GetGroupsRelated"
         },
         {
-          "target": "com.posthog.groups#GroupsDeletePropertyCreate"
-        },
-        {
           "target": "com.posthog.groups#GroupsUpdatePropertyCreate"
-        },
-        {
-          "target": "com.posthog.groups#ListGroups"
         }
       ],
       "traits": {

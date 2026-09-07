@@ -6562,31 +6562,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.hog_flows#ListHogFlows"
+        },
+        {
           "target": "com.posthog.hog_flows#CreateHogFlow"
         },
         {
-          "target": "com.posthog.hog_flows#CreateHogFlowsBatchJob"
-        },
-        {
-          "target": "com.posthog.hog_flows#CreateHogFlowsDiscardDraft"
-        },
-        {
-          "target": "com.posthog.hog_flows#CreateHogFlowsInvocation"
-        },
-        {
-          "target": "com.posthog.hog_flows#CreateHogFlowsRerun"
-        },
-        {
-          "target": "com.posthog.hog_flows#CreateHogFlowsRun"
-        },
-        {
-          "target": "com.posthog.hog_flows#CreateHogFlowsSchedule"
-        },
-        {
-          "target": "com.posthog.hog_flows#CreateHogFlowsUserBlastRadius"
-        },
-        {
           "target": "com.posthog.hog_flows#GetHogFlow"
+        },
+        {
+          "target": "com.posthog.hog_flows#UpdateHogFlow"
+        },
+        {
+          "target": "com.posthog.hog_flows#UpdateHogFlowsPartial"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsDestroy"
+        },
+        {
+          "target": "com.posthog.hog_flows#UpdateHogFlowsActionsEmailPartial"
         },
         {
           "target": "com.posthog.hog_flows#GetHogFlowsAsset"
@@ -6595,7 +6589,19 @@
           "target": "com.posthog.hog_flows#GetHogFlowsAssetContent"
         },
         {
-          "target": "com.posthog.hog_flows#GetHogFlowsEmailSendingSuspension"
+          "target": "com.posthog.hog_flows#ListHogFlowsBatchJobs"
+        },
+        {
+          "target": "com.posthog.hog_flows#CreateHogFlowsBatchJob"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsBatchJobsCancelCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#CreateHogFlowsDiscardDraft"
+        },
+        {
+          "target": "com.posthog.hog_flows#UpdateHogFlowsGraphPartial"
         },
         {
           "target": "com.posthog.hog_flows#GetHogFlowsInvocationResult"
@@ -6607,70 +6613,64 @@
           "target": "com.posthog.hog_flows#GetHogFlowsInvocationResultsCount"
         },
         {
+          "target": "com.posthog.hog_flows#CreateHogFlowsInvocation"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsInvocationsCancelCreate"
+        },
+        {
           "target": "com.posthog.hog_flows#GetHogFlowsLog"
         },
         {
           "target": "com.posthog.hog_flows#GetHogFlowsMetrics"
         },
         {
-          "target": "com.posthog.hog_flows#GetHogFlowsMetricsGlobal"
-        },
-        {
           "target": "com.posthog.hog_flows#GetHogFlowsMetricsTotal"
-        },
-        {
-          "target": "com.posthog.hog_flows#GetHogFlowsReputation"
-        },
-        {
-          "target": "com.posthog.hog_flows#GetHogFlowsRevision"
-        },
-        {
-          "target": "com.posthog.hog_flows#HogFlowsBatchJobsCancelCreate"
-        },
-        {
-          "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreate"
-        },
-        {
-          "target": "com.posthog.hog_flows#HogFlowsDestroy"
-        },
-        {
-          "target": "com.posthog.hog_flows#HogFlowsInvocationsCancelCreate"
         },
         {
           "target": "com.posthog.hog_flows#HogFlowsPublishCreate"
         },
         {
-          "target": "com.posthog.hog_flows#HogFlowsRevisionsRestoreCreate"
-        },
-        {
-          "target": "com.posthog.hog_flows#HogFlowsSchedulesDestroy"
-        },
-        {
-          "target": "com.posthog.hog_flows#ListHogFlows"
-        },
-        {
-          "target": "com.posthog.hog_flows#ListHogFlowsBatchJobs"
+          "target": "com.posthog.hog_flows#CreateHogFlowsRerun"
         },
         {
           "target": "com.posthog.hog_flows#ListHogFlowsRevisions"
         },
         {
+          "target": "com.posthog.hog_flows#GetHogFlowsRevision"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsRevisionsRestoreCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#CreateHogFlowsRun"
+        },
+        {
           "target": "com.posthog.hog_flows#ListHogFlowsSchedules"
         },
         {
-          "target": "com.posthog.hog_flows#UpdateHogFlow"
-        },
-        {
-          "target": "com.posthog.hog_flows#UpdateHogFlowsActionsEmailPartial"
-        },
-        {
-          "target": "com.posthog.hog_flows#UpdateHogFlowsGraphPartial"
-        },
-        {
-          "target": "com.posthog.hog_flows#UpdateHogFlowsPartial"
+          "target": "com.posthog.hog_flows#CreateHogFlowsSchedule"
         },
         {
           "target": "com.posthog.hog_flows#UpdateHogFlowsSchedulesPartial"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsSchedulesDestroy"
+        },
+        {
+          "target": "com.posthog.hog_flows#HogFlowsBulkDeleteCreate"
+        },
+        {
+          "target": "com.posthog.hog_flows#GetHogFlowsEmailSendingSuspension"
+        },
+        {
+          "target": "com.posthog.hog_flows#GetHogFlowsMetricsGlobal"
+        },
+        {
+          "target": "com.posthog.hog_flows#GetHogFlowsReputation"
+        },
+        {
+          "target": "com.posthog.hog_flows#CreateHogFlowsUserBlastRadius"
         }
       ],
       "traits": {

@@ -1555,28 +1555,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.applicationinsights#DeleteWorkbook"
-        },
-        {
-          "target": "com.azure.applicationinsights#GetWorkbook"
-        },
-        {
           "target": "com.azure.applicationinsights#GetWorkbooksRevision"
         },
         {
-          "target": "com.azure.applicationinsights#ListWorkbookByResourceGroup"
-        },
-        {
-          "target": "com.azure.applicationinsights#ListWorkbookBySubscription"
-        },
-        {
           "target": "com.azure.applicationinsights#ListWorkbooksRevisions"
+        },
+        {
+          "target": "com.azure.applicationinsights#DeleteWorkbook"
         },
         {
           "target": "com.azure.applicationinsights#UpdateWorkbook"
         },
         {
           "target": "com.azure.applicationinsights#WorkbooksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.applicationinsights#GetWorkbook"
+        },
+        {
+          "target": "com.azure.applicationinsights#ListWorkbookByResourceGroup"
+        },
+        {
+          "target": "com.azure.applicationinsights#ListWorkbookBySubscription"
         }
       ],
       "traits": {

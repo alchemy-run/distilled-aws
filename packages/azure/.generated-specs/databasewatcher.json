@@ -3712,52 +3712,67 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databasewatcher#CreateSharedPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.databasewatcher#DeleteAlertRuleResource"
-        },
-        {
-          "target": "com.azure.databasewatcher#DeleteSharedPrivateLinkResource"
-        },
-        {
           "target": "com.azure.databasewatcher#DeleteTarget"
         },
         {
-          "target": "com.azure.databasewatcher#DeleteWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#GetAlertRuleResource"
-        },
-        {
-          "target": "com.azure.databasewatcher#GetHealthValidation"
-        },
-        {
-          "target": "com.azure.databasewatcher#GetSharedPrivateLinkResource"
+          "target": "com.azure.databasewatcher#TargetsCreateOrUpdate"
         },
         {
           "target": "com.azure.databasewatcher#GetTarget"
         },
         {
-          "target": "com.azure.databasewatcher#GetWatcher"
+          "target": "com.azure.databasewatcher#ListTargetByWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#ListAlertRuleResourceByParent"
+          "target": "com.azure.databasewatcher#StopWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#ListHealthValidationByParent"
+          "target": "com.azure.databasewatcher#StartWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#ListOperations"
+          "target": "com.azure.databasewatcher#DeleteSharedPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.databasewatcher#CreateSharedPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.databasewatcher#GetSharedPrivateLinkResource"
         },
         {
           "target": "com.azure.databasewatcher#ListSharedPrivateLinkResourceByWatcher"
         },
         {
-          "target": "com.azure.databasewatcher#ListTargetByWatcher"
+          "target": "com.azure.databasewatcher#StartHealthValidationValidation"
+        },
+        {
+          "target": "com.azure.databasewatcher#GetHealthValidation"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListHealthValidationByParent"
+        },
+        {
+          "target": "com.azure.databasewatcher#DeleteAlertRuleResource"
+        },
+        {
+          "target": "com.azure.databasewatcher#AlertRuleResourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#GetAlertRuleResource"
+        },
+        {
+          "target": "com.azure.databasewatcher#ListAlertRuleResourceByParent"
+        },
+        {
+          "target": "com.azure.databasewatcher#DeleteWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#UpdateWatcher"
+        },
+        {
+          "target": "com.azure.databasewatcher#WatchersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databasewatcher#GetWatcher"
         },
         {
           "target": "com.azure.databasewatcher#ListWatcherByResourceGroup"
@@ -3766,22 +3781,7 @@
           "target": "com.azure.databasewatcher#ListWatcherBySubscription"
         },
         {
-          "target": "com.azure.databasewatcher#StartHealthValidationValidation"
-        },
-        {
-          "target": "com.azure.databasewatcher#StartWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#StopWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#TargetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databasewatcher#UpdateWatcher"
-        },
-        {
-          "target": "com.azure.databasewatcher#WatchersCreateOrUpdate"
+          "target": "com.azure.databasewatcher#ListOperations"
         }
       ],
       "traits": {

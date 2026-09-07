@@ -1417,34 +1417,34 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.networking#CreateNetwork"
-        },
-        {
-          "target": "com.vercel.networking#CreatePrivateLinkEndpoint"
-        },
-        {
-          "target": "com.vercel.networking#DeleteNetwork"
-        },
-        {
-          "target": "com.vercel.networking#DeletePrivateLinkEndpoint"
-        },
-        {
           "target": "com.vercel.networking#ListNetworks"
         },
         {
-          "target": "com.vercel.networking#ListPrivateLinkEndpoints"
+          "target": "com.vercel.networking#CreateNetwork"
         },
         {
           "target": "com.vercel.networking#ReadNetwork"
         },
         {
-          "target": "com.vercel.networking#ReadPrivateLinkEndpoint"
-        },
-        {
           "target": "com.vercel.networking#UpdateNetwork"
         },
         {
+          "target": "com.vercel.networking#DeleteNetwork"
+        },
+        {
+          "target": "com.vercel.networking#ListPrivateLinkEndpoints"
+        },
+        {
+          "target": "com.vercel.networking#CreatePrivateLinkEndpoint"
+        },
+        {
+          "target": "com.vercel.networking#ReadPrivateLinkEndpoint"
+        },
+        {
           "target": "com.vercel.networking#UpdatePrivateLinkEndpoint"
+        },
+        {
+          "target": "com.vercel.networking#DeletePrivateLinkEndpoint"
         },
         {
           "target": "com.vercel.networking#UpdateStaticIps"

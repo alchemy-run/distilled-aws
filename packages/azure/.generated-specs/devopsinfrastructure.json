@@ -2641,43 +2641,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devopsinfrastructure#CheckPoolNameAvailability"
-        },
-        {
-          "target": "com.azure.devopsinfrastructure#DeletePool"
-        },
-        {
           "target": "com.azure.devopsinfrastructure#DeletePoolResources"
-        },
-        {
-          "target": "com.azure.devopsinfrastructure#GetPool"
-        },
-        {
-          "target": "com.azure.devopsinfrastructure#ListImageVersionByImage"
-        },
-        {
-          "target": "com.azure.devopsinfrastructure#ListOperations"
-        },
-        {
-          "target": "com.azure.devopsinfrastructure#ListPoolByResourceGroup"
-        },
-        {
-          "target": "com.azure.devopsinfrastructure#ListPoolBySubscription"
         },
         {
           "target": "com.azure.devopsinfrastructure#ListResourceDetailByPool"
         },
         {
-          "target": "com.azure.devopsinfrastructure#ListSkuByLocation"
+          "target": "com.azure.devopsinfrastructure#DeletePool"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#UpdatePool"
         },
         {
           "target": "com.azure.devopsinfrastructure#PoolsCreateOrUpdate"
         },
         {
+          "target": "com.azure.devopsinfrastructure#GetPool"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#ListPoolByResourceGroup"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#ListImageVersionByImage"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#ListPoolBySubscription"
+        },
+        {
           "target": "com.azure.devopsinfrastructure#SubscriptionUsagesUsages"
         },
         {
-          "target": "com.azure.devopsinfrastructure#UpdatePool"
+          "target": "com.azure.devopsinfrastructure#ListSkuByLocation"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#CheckPoolNameAvailability"
+        },
+        {
+          "target": "com.azure.devopsinfrastructure#ListOperations"
         }
       ],
       "traits": {

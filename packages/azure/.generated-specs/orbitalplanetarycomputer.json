@@ -1261,10 +1261,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.orbitalplanetarycomputer#CreateGeoCatalog"
+          "target": "com.azure.orbitalplanetarycomputer#DeleteGeoCatalog"
         },
         {
-          "target": "com.azure.orbitalplanetarycomputer#DeleteGeoCatalog"
+          "target": "com.azure.orbitalplanetarycomputer#UpdateGeoCatalog"
+        },
+        {
+          "target": "com.azure.orbitalplanetarycomputer#CreateGeoCatalog"
         },
         {
           "target": "com.azure.orbitalplanetarycomputer#GetGeoCatalog"
@@ -1274,9 +1277,6 @@
         },
         {
           "target": "com.azure.orbitalplanetarycomputer#ListGeoCatalogBySubscription"
-        },
-        {
-          "target": "com.azure.orbitalplanetarycomputer#UpdateGeoCatalog"
         }
       ],
       "traits": {

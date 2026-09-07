@@ -2404,10 +2404,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.cards#CreateCard"
-        },
-        {
-          "target": "com.whop.cards#GetCard"
+          "target": "com.whop.cards#ListCardTransactions"
         },
         {
           "target": "com.whop.cards#GetCardTransaction"
@@ -2416,7 +2413,10 @@
           "target": "com.whop.cards#ListCards"
         },
         {
-          "target": "com.whop.cards#ListCardTransactions"
+          "target": "com.whop.cards#CreateCard"
+        },
+        {
+          "target": "com.whop.cards#GetCard"
         },
         {
           "target": "com.whop.cards#UpdateCard"

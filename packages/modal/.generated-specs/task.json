@@ -576,9 +576,6 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.task#ListTask"
-        },
-        {
           "target": "com.modal.task#TaskClusterHello"
         },
         {
@@ -589,6 +586,9 @@
         },
         {
           "target": "com.modal.task#TaskGetInfo"
+        },
+        {
+          "target": "com.modal.task#ListTask"
         },
         {
           "target": "com.modal.task#TaskResult"

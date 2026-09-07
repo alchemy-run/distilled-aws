@@ -1380,6 +1380,12 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.modal.task.command.router#SandboxStdinWriteV2"
+        },
+        {
+          "target": "com.modal.task.command.router#SandboxWaitUntilReady"
+        },
+        {
           "target": "com.modal.task.command.router#CreateTaskContainer"
         },
         {
@@ -1389,10 +1395,10 @@
           "target": "com.modal.task.command.router#ListTaskContainer"
         },
         {
-          "target": "com.modal.task.command.router#SandboxStdinWriteV2"
+          "target": "com.modal.task.command.router#TerminateTaskContainer"
         },
         {
-          "target": "com.modal.task.command.router#SandboxWaitUntilReady"
+          "target": "com.modal.task.command.router#WaitTaskContainer"
         },
         {
           "target": "com.modal.task.command.router#TaskExecPoll"
@@ -1429,12 +1435,6 @@
         },
         {
           "target": "com.modal.task.command.router#TaskUnmountDirectory"
-        },
-        {
-          "target": "com.modal.task.command.router#TerminateTaskContainer"
-        },
-        {
-          "target": "com.modal.task.command.router#WaitTaskContainer"
         }
       ],
       "traits": {

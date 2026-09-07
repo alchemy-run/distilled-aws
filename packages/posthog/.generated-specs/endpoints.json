@@ -4867,34 +4867,34 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.endpoints#ListEndpoints"
+        },
+        {
           "target": "com.posthog.endpoints#CreateEndpoint"
-        },
-        {
-          "target": "com.posthog.endpoints#CreateEndpointsLastExecutionTime"
-        },
-        {
-          "target": "com.posthog.endpoints#CreateEndpointsMaterializationPreview"
-        },
-        {
-          "target": "com.posthog.endpoints#CreateEndpointsMaterializationSuggestion"
-        },
-        {
-          "target": "com.posthog.endpoints#CreateEndpointsRun"
-        },
-        {
-          "target": "com.posthog.endpoints#EndpointsDestroy"
         },
         {
           "target": "com.posthog.endpoints#GetEndpoint"
         },
         {
+          "target": "com.posthog.endpoints#UpdateEndpoint"
+        },
+        {
+          "target": "com.posthog.endpoints#UpdateEndpointsPartial"
+        },
+        {
+          "target": "com.posthog.endpoints#EndpointsDestroy"
+        },
+        {
           "target": "com.posthog.endpoints#GetEndpointsLog"
         },
         {
-          "target": "com.posthog.endpoints#GetEndpointsMaterializationCondition"
+          "target": "com.posthog.endpoints#CreateEndpointsMaterializationPreview"
         },
         {
           "target": "com.posthog.endpoints#GetEndpointsMaterializationStatus"
+        },
+        {
+          "target": "com.posthog.endpoints#CreateEndpointsMaterializationSuggestion"
         },
         {
           "target": "com.posthog.endpoints#GetEndpointsOpenapiSpec"
@@ -4903,16 +4903,16 @@
           "target": "com.posthog.endpoints#GetEndpointsRun"
         },
         {
-          "target": "com.posthog.endpoints#ListEndpoints"
+          "target": "com.posthog.endpoints#CreateEndpointsRun"
         },
         {
           "target": "com.posthog.endpoints#ListEndpointsVersions"
         },
         {
-          "target": "com.posthog.endpoints#UpdateEndpoint"
+          "target": "com.posthog.endpoints#CreateEndpointsLastExecutionTime"
         },
         {
-          "target": "com.posthog.endpoints#UpdateEndpointsPartial"
+          "target": "com.posthog.endpoints#GetEndpointsMaterializationCondition"
         }
       ],
       "traits": {

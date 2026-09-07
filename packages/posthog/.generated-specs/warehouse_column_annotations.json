@@ -463,13 +463,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.warehouse_column_annotations#ListWarehouseColumnAnnotations"
+        },
+        {
           "target": "com.posthog.warehouse_column_annotations#CreateWarehouseColumnAnnotation"
         },
         {
           "target": "com.posthog.warehouse_column_annotations#GetWarehouseColumnAnnotation"
-        },
-        {
-          "target": "com.posthog.warehouse_column_annotations#ListWarehouseColumnAnnotations"
         },
         {
           "target": "com.posthog.warehouse_column_annotations#UpdateWarehouseColumnAnnotation"

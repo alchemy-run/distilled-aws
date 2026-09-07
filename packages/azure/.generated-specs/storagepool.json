@@ -2958,28 +2958,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagepool#DeleteDiskPool"
-        },
-        {
           "target": "com.azure.storagepool#DeleteIscsiTarget"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsCreateOrUpdate"
+          "target": "com.azure.storagepool#UpdateIscsiTarget"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsDeallocate"
-        },
-        {
-          "target": "com.azure.storagepool#DiskPoolsUpgrade"
-        },
-        {
-          "target": "com.azure.storagepool#GetDiskPool"
+          "target": "com.azure.storagepool#IscsiTargetsCreateOrUpdate"
         },
         {
           "target": "com.azure.storagepool#GetIscsiTarget"
         },
         {
-          "target": "com.azure.storagepool#IscsiTargetsCreateOrUpdate"
+          "target": "com.azure.storagepool#ListIscsiTargetByDiskPool"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsUpgrade"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsDeallocate"
+        },
+        {
+          "target": "com.azure.storagepool#StartDiskPool"
+        },
+        {
+          "target": "com.azure.storagepool#ListDiskPoolOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.storagepool#ListResourceSkus"
+        },
+        {
+          "target": "com.azure.storagepool#ListDiskPoolZones"
+        },
+        {
+          "target": "com.azure.storagepool#DeleteDiskPool"
+        },
+        {
+          "target": "com.azure.storagepool#UpdateDiskPool"
+        },
+        {
+          "target": "com.azure.storagepool#DiskPoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagepool#GetDiskPool"
         },
         {
           "target": "com.azure.storagepool#ListDiskPoolByResourceGroup"
@@ -2988,28 +3009,7 @@
           "target": "com.azure.storagepool#ListDiskPoolBySubscription"
         },
         {
-          "target": "com.azure.storagepool#ListDiskPoolOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.storagepool#ListDiskPoolZones"
-        },
-        {
-          "target": "com.azure.storagepool#ListIscsiTargetByDiskPool"
-        },
-        {
           "target": "com.azure.storagepool#ListOperations"
-        },
-        {
-          "target": "com.azure.storagepool#ListResourceSkus"
-        },
-        {
-          "target": "com.azure.storagepool#StartDiskPool"
-        },
-        {
-          "target": "com.azure.storagepool#UpdateDiskPool"
-        },
-        {
-          "target": "com.azure.storagepool#UpdateIscsiTarget"
         }
       ],
       "traits": {

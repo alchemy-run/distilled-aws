@@ -4847,9 +4847,6 @@
           "target": "com.cloudflare.r2#DeleteBucketSippy"
         },
         {
-          "target": "com.cloudflare.r2#DeleteObjects"
-        },
-        {
           "target": "com.cloudflare.r2#GetBucket"
         },
         {
@@ -4941,6 +4938,9 @@
         },
         {
           "target": "com.cloudflare.r2#UploadBucketObject"
+        },
+        {
+          "target": "com.cloudflare.r2#DeleteObjects"
         }
       ],
       "traits": {

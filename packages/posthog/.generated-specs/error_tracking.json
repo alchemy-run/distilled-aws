@@ -10056,133 +10056,73 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.error_tracking#ListErrorTrackingAssignmentRules"
+        },
+        {
           "target": "com.posthog.error_tracking#CreateErrorTrackingAssignmentRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingBypassRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReference"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssue"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingGroupingRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesMerge"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesSplit"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssue"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEvent"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingRecommendationsDismiss"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingRelease"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingSeverityRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#CreateErrorTrackingSuppressionRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesSearchIssuesRetrieve"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesBulkCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingQueryIssuesListCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsRefreshCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsRestoreCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSettingsRetrieveSettingsRetrieve"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSettingsUpdateSettingsPartialUpdate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigUpdateConfigPartialUpdate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingStackFramesBatchGetCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingStackFramesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsBulkDeleteCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsBulkFinishUploadCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsBulkStartUploadCreate"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsDestroy"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsDownloadRetrieve"
-        },
-        {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsFinishUploadUpdate"
         },
         {
           "target": "com.posthog.error_tracking#GetErrorTrackingAssignmentRule"
         },
         {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRule"
+        },
+        {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesReorderPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingBypassRules"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingBypassRule"
+        },
+        {
           "target": "com.posthog.error_tracking#GetErrorTrackingBypassRule"
+        },
+        {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRule"
+        },
+        {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesReorderPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingExternalReferences"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReference"
         },
         {
           "target": "com.posthog.error_tracking#GetErrorTrackingExternalReference"
         },
         {
+          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssue"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesSearchIssuesRetrieve"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingFingerprints"
+        },
+        {
           "target": "com.posthog.error_tracking#GetErrorTrackingFingerprint"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsDestroy"
         },
         {
           "target": "com.posthog.error_tracking#GetErrorTrackingFingerprintsResolve"
@@ -10194,100 +10134,13 @@
           "target": "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGitlab"
         },
         {
-          "target": "com.posthog.error_tracking#GetErrorTrackingGroupingRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingIssue"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesActivity"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesAllActivity"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesExist"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesValue"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingRelease"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingReleasesHash"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingSeverityRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingStackFrame"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingSuppressionRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#GetErrorTrackingSymbolSet"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingAssignmentRules"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingBypassRules"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingExternalReferences"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingFingerprints"
-        },
-        {
           "target": "com.posthog.error_tracking#ListErrorTrackingGroupingRules"
         },
         {
-          "target": "com.posthog.error_tracking#ListErrorTrackingIssues"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingGroupingRule"
         },
         {
-          "target": "com.posthog.error_tracking#ListErrorTrackingRecommendations"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingReleases"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingSeverityRules"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfig"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeEvents"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingStackFrames"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingSuppressionRules"
-        },
-        {
-          "target": "com.posthog.error_tracking#ListErrorTrackingSymbolSets"
-        },
-        {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesPartial"
-        },
-        {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesReorderPartial"
-        },
-        {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRule"
-        },
-        {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesPartial"
-        },
-        {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesReorderPartial"
+          "target": "com.posthog.error_tracking#GetErrorTrackingGroupingRule"
         },
         {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRule"
@@ -10296,16 +10149,82 @@
           "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesPartial"
         },
         {
+          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesDestroy"
+        },
+        {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesReorderPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingIssues"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssue"
         },
         {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingIssue"
         },
         {
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingIssuesDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesActivity"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdate"
+        },
+        {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohort"
         },
         {
-          "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesPartial"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesMerge"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesSplit"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesAllActivity"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingIssuesBulkCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesExist"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesValue"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssue"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEvent"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingQueryIssuesListCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingRecommendations"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingRecommendationsDismiss"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsRefreshCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsRestoreCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingReleases"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingRelease"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingRelease"
         },
         {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingRelease"
@@ -10314,13 +10233,67 @@
           "target": "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartial"
         },
         {
+          "target": "com.posthog.error_tracking#ErrorTrackingReleasesDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingReleasesHash"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSettingsRetrieveSettingsRetrieve"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSettingsUpdateSettingsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingSeverityRules"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingSeverityRule"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingSeverityRule"
+        },
+        {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRule"
         },
         {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesPartial"
         },
         {
+          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesDestroy"
+        },
+        {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfig"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigUpdateConfigPartialUpdate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeEvents"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingStackFrames"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingStackFrame"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingStackFramesDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingStackFramesBatchGetCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingSuppressionRules"
+        },
+        {
+          "target": "com.posthog.error_tracking#CreateErrorTrackingSuppressionRule"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingSuppressionRule"
         },
         {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRule"
@@ -10329,7 +10302,34 @@
           "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesPartial"
         },
         {
+          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesDestroy"
+        },
+        {
           "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesReorderPartial"
+        },
+        {
+          "target": "com.posthog.error_tracking#ListErrorTrackingSymbolSets"
+        },
+        {
+          "target": "com.posthog.error_tracking#GetErrorTrackingSymbolSet"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsDestroy"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsDownloadRetrieve"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsFinishUploadUpdate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsBulkDeleteCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsBulkFinishUploadCreate"
+        },
+        {
+          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsBulkStartUploadCreate"
         }
       ],
       "traits": {

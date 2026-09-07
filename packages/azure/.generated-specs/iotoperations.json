@@ -12300,151 +12300,160 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.iotoperations#AkriConnectorCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#AkriConnectorTemplateCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#AkriServiceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#BrokerAuthenticationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#BrokerAuthorizationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#BrokerCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#BrokerListenerCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#DataflowCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#DataflowEndpointCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#DataflowGraphCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#DataflowProfileCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteAkriConnector"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteAkriConnectorTemplate"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteAkriService"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteBroker"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteBrokerAuthentication"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteBrokerAuthorization"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteBrokerListener"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteDataflow"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteDataflowEndpoint"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteDataflowGraph"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteDataflowProfile"
-        },
-        {
-          "target": "com.azure.iotoperations#DeleteInstance"
-        },
-        {
           "target": "com.azure.iotoperations#DeleteRegistryEndpoint"
         },
         {
-          "target": "com.azure.iotoperations#GetAkriConnector"
-        },
-        {
-          "target": "com.azure.iotoperations#GetAkriConnectorTemplate"
-        },
-        {
-          "target": "com.azure.iotoperations#GetAkriService"
-        },
-        {
-          "target": "com.azure.iotoperations#GetBroker"
-        },
-        {
-          "target": "com.azure.iotoperations#GetBrokerAuthentication"
-        },
-        {
-          "target": "com.azure.iotoperations#GetBrokerAuthorization"
-        },
-        {
-          "target": "com.azure.iotoperations#GetBrokerListener"
-        },
-        {
-          "target": "com.azure.iotoperations#GetDataflow"
-        },
-        {
-          "target": "com.azure.iotoperations#GetDataflowEndpoint"
-        },
-        {
-          "target": "com.azure.iotoperations#GetDataflowGraph"
-        },
-        {
-          "target": "com.azure.iotoperations#GetDataflowProfile"
-        },
-        {
-          "target": "com.azure.iotoperations#GetInstance"
+          "target": "com.azure.iotoperations#RegistryEndpointCreateOrUpdate"
         },
         {
           "target": "com.azure.iotoperations#GetRegistryEndpoint"
         },
         {
-          "target": "com.azure.iotoperations#InstanceCreateOrUpdate"
+          "target": "com.azure.iotoperations#ListRegistryEndpointByInstanceResource"
         },
         {
-          "target": "com.azure.iotoperations#ListAkriConnectorByTemplate"
+          "target": "com.azure.iotoperations#DeleteDataflow"
         },
         {
-          "target": "com.azure.iotoperations#ListAkriConnectorTemplateByInstanceResource"
+          "target": "com.azure.iotoperations#DataflowCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#ListAkriServiceByInstanceResource"
-        },
-        {
-          "target": "com.azure.iotoperations#ListBrokerAuthenticationByResourceGroup"
-        },
-        {
-          "target": "com.azure.iotoperations#ListBrokerAuthorizationByResourceGroup"
-        },
-        {
-          "target": "com.azure.iotoperations#ListBrokerByResourceGroup"
-        },
-        {
-          "target": "com.azure.iotoperations#ListBrokerListenerByResourceGroup"
+          "target": "com.azure.iotoperations#GetDataflow"
         },
         {
           "target": "com.azure.iotoperations#ListDataflowByProfileResource"
         },
         {
-          "target": "com.azure.iotoperations#ListDataflowEndpointByResourceGroup"
+          "target": "com.azure.iotoperations#DeleteDataflowGraph"
+        },
+        {
+          "target": "com.azure.iotoperations#DataflowGraphCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetDataflowGraph"
         },
         {
           "target": "com.azure.iotoperations#ListDataflowGraphByDataflowProfile"
         },
         {
+          "target": "com.azure.iotoperations#DeleteDataflowProfile"
+        },
+        {
+          "target": "com.azure.iotoperations#DataflowProfileCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetDataflowProfile"
+        },
+        {
           "target": "com.azure.iotoperations#ListDataflowProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteDataflowEndpoint"
+        },
+        {
+          "target": "com.azure.iotoperations#DataflowEndpointCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetDataflowEndpoint"
+        },
+        {
+          "target": "com.azure.iotoperations#ListDataflowEndpointByResourceGroup"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteBrokerListener"
+        },
+        {
+          "target": "com.azure.iotoperations#BrokerListenerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetBrokerListener"
+        },
+        {
+          "target": "com.azure.iotoperations#ListBrokerListenerByResourceGroup"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteBrokerAuthorization"
+        },
+        {
+          "target": "com.azure.iotoperations#BrokerAuthorizationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetBrokerAuthorization"
+        },
+        {
+          "target": "com.azure.iotoperations#ListBrokerAuthorizationByResourceGroup"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteBrokerAuthentication"
+        },
+        {
+          "target": "com.azure.iotoperations#BrokerAuthenticationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetBrokerAuthentication"
+        },
+        {
+          "target": "com.azure.iotoperations#ListBrokerAuthenticationByResourceGroup"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteBroker"
+        },
+        {
+          "target": "com.azure.iotoperations#BrokerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetBroker"
+        },
+        {
+          "target": "com.azure.iotoperations#ListBrokerByResourceGroup"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteAkriService"
+        },
+        {
+          "target": "com.azure.iotoperations#AkriServiceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetAkriService"
+        },
+        {
+          "target": "com.azure.iotoperations#ListAkriServiceByInstanceResource"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteAkriConnector"
+        },
+        {
+          "target": "com.azure.iotoperations#AkriConnectorCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetAkriConnector"
+        },
+        {
+          "target": "com.azure.iotoperations#ListAkriConnectorByTemplate"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteAkriConnectorTemplate"
+        },
+        {
+          "target": "com.azure.iotoperations#AkriConnectorTemplateCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetAkriConnectorTemplate"
+        },
+        {
+          "target": "com.azure.iotoperations#ListAkriConnectorTemplateByInstanceResource"
+        },
+        {
+          "target": "com.azure.iotoperations#DeleteInstance"
+        },
+        {
+          "target": "com.azure.iotoperations#UpdateInstance"
+        },
+        {
+          "target": "com.azure.iotoperations#InstanceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.iotoperations#GetInstance"
         },
         {
           "target": "com.azure.iotoperations#ListInstanceByResourceGroup"
@@ -12454,15 +12463,6 @@
         },
         {
           "target": "com.azure.iotoperations#ListOperations"
-        },
-        {
-          "target": "com.azure.iotoperations#ListRegistryEndpointByInstanceResource"
-        },
-        {
-          "target": "com.azure.iotoperations#RegistryEndpointCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.iotoperations#UpdateInstance"
         }
       ],
       "traits": {

@@ -13188,217 +13188,217 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.containerregistry#CancelRun"
-        },
-        {
-          "target": "com.azure.containerregistry#CheckRegistryNameAvailability"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateCacheRule"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateConnectedRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateCredentialSet"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateReplication"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateScopeMap"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateTask"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateToken"
-        },
-        {
-          "target": "com.azure.containerregistry#CreateWebhook"
-        },
-        {
-          "target": "com.azure.containerregistry#DeactivateConnectedRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteCacheRule"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteConnectedRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteCredentialSet"
-        },
-        {
-          "target": "com.azure.containerregistry#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteReplication"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteScopeMap"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteTask"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteToken"
-        },
-        {
-          "target": "com.azure.containerregistry#DeleteWebhook"
-        },
-        {
-          "target": "com.azure.containerregistry#GenerateRegistryCredentials"
-        },
-        {
-          "target": "com.azure.containerregistry#GetCacheRule"
-        },
-        {
-          "target": "com.azure.containerregistry#GetConnectedRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#GetCredentialSet"
-        },
-        {
-          "target": "com.azure.containerregistry#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.containerregistry#GetRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#GetRegistryPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.containerregistry#GetReplication"
-        },
-        {
-          "target": "com.azure.containerregistry#GetRun"
-        },
-        {
-          "target": "com.azure.containerregistry#GetRunLogSasUrl"
-        },
-        {
-          "target": "com.azure.containerregistry#GetScopeMap"
-        },
-        {
-          "target": "com.azure.containerregistry#GetTask"
-        },
-        {
-          "target": "com.azure.containerregistry#GetTaskDetails"
-        },
-        {
-          "target": "com.azure.containerregistry#GetToken"
-        },
-        {
-          "target": "com.azure.containerregistry#GetWebhook"
-        },
-        {
-          "target": "com.azure.containerregistry#GetWebhookCallbackConfig"
-        },
-        {
-          "target": "com.azure.containerregistry#ImportRegistryImage"
-        },
-        {
-          "target": "com.azure.containerregistry#ListCacheRules"
-        },
-        {
-          "target": "com.azure.containerregistry#ListConnectedRegistries"
-        },
-        {
-          "target": "com.azure.containerregistry#ListCredentialSets"
-        },
-        {
-          "target": "com.azure.containerregistry#ListOperations"
-        },
-        {
-          "target": "com.azure.containerregistry#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.containerregistry#ListRegistries"
-        },
-        {
-          "target": "com.azure.containerregistry#ListRegistryByResourceGroup"
-        },
-        {
-          "target": "com.azure.containerregistry#ListRegistryCredentials"
-        },
-        {
-          "target": "com.azure.containerregistry#ListRegistryPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.containerregistry#ListRegistryUsages"
-        },
-        {
-          "target": "com.azure.containerregistry#ListReplications"
-        },
-        {
-          "target": "com.azure.containerregistry#ListRuns"
-        },
-        {
-          "target": "com.azure.containerregistry#ListScopeMaps"
-        },
-        {
-          "target": "com.azure.containerregistry#ListTasks"
-        },
-        {
-          "target": "com.azure.containerregistry#ListTokens"
+          "target": "com.azure.containerregistry#PingWebhook"
         },
         {
           "target": "com.azure.containerregistry#ListWebhookEvents"
         },
         {
+          "target": "com.azure.containerregistry#GetWebhookCallbackConfig"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteWebhook"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateWebhook"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateWebhook"
+        },
+        {
+          "target": "com.azure.containerregistry#GetWebhook"
+        },
+        {
           "target": "com.azure.containerregistry#ListWebhooks"
         },
         {
-          "target": "com.azure.containerregistry#PingWebhook"
+          "target": "com.azure.containerregistry#DeleteToken"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateToken"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateToken"
+        },
+        {
+          "target": "com.azure.containerregistry#GetToken"
+        },
+        {
+          "target": "com.azure.containerregistry#ListTokens"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteScopeMap"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateScopeMap"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateScopeMap"
+        },
+        {
+          "target": "com.azure.containerregistry#GetScopeMap"
+        },
+        {
+          "target": "com.azure.containerregistry#ListScopeMaps"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteReplication"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateReplication"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateReplication"
+        },
+        {
+          "target": "com.azure.containerregistry#GetReplication"
+        },
+        {
+          "target": "com.azure.containerregistry#ListReplications"
+        },
+        {
+          "target": "com.azure.containerregistry#RegenerateRegistryCredential"
+        },
+        {
+          "target": "com.azure.containerregistry#GetRegistryPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.containerregistry#ListRegistryPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.containerregistry#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.containerregistry#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.containerregistry#RegenerateRegistryCredential"
+          "target": "com.azure.containerregistry#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.containerregistry#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.containerregistry#ListRegistryUsages"
+        },
+        {
+          "target": "com.azure.containerregistry#ListRegistryCredentials"
+        },
+        {
+          "target": "com.azure.containerregistry#ImportRegistryImage"
+        },
+        {
+          "target": "com.azure.containerregistry#GenerateRegistryCredentials"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteCredentialSet"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateCredentialSet"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateCredentialSet"
+        },
+        {
+          "target": "com.azure.containerregistry#GetCredentialSet"
+        },
+        {
+          "target": "com.azure.containerregistry#ListCredentialSets"
+        },
+        {
+          "target": "com.azure.containerregistry#DeactivateConnectedRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteConnectedRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateConnectedRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateConnectedRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#GetConnectedRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#ListConnectedRegistries"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteCacheRule"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateCacheRule"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateCacheRule"
+        },
+        {
+          "target": "com.azure.containerregistry#GetCacheRule"
+        },
+        {
+          "target": "com.azure.containerregistry#ListCacheRules"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#GetRegistry"
+        },
+        {
+          "target": "com.azure.containerregistry#ListRegistryByResourceGroup"
+        },
+        {
+          "target": "com.azure.containerregistry#ListRegistries"
+        },
+        {
+          "target": "com.azure.containerregistry#CheckRegistryNameAvailability"
+        },
+        {
+          "target": "com.azure.containerregistry#ListOperations"
+        },
+        {
+          "target": "com.azure.containerregistry#GetTaskDetails"
+        },
+        {
+          "target": "com.azure.containerregistry#DeleteTask"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateTask"
+        },
+        {
+          "target": "com.azure.containerregistry#CreateTask"
+        },
+        {
+          "target": "com.azure.containerregistry#GetTask"
+        },
+        {
+          "target": "com.azure.containerregistry#ListTasks"
+        },
+        {
+          "target": "com.azure.containerregistry#CancelRun"
+        },
+        {
+          "target": "com.azure.containerregistry#GetRunLogSasUrl"
+        },
+        {
+          "target": "com.azure.containerregistry#UpdateRun"
+        },
+        {
+          "target": "com.azure.containerregistry#GetRun"
+        },
+        {
+          "target": "com.azure.containerregistry#ListRuns"
         },
         {
           "target": "com.azure.containerregistry#RegistriesGetBuildSourceUploadUrl"
         },
         {
           "target": "com.azure.containerregistry#RunRegistriesSchedule"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateCacheRule"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateConnectedRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateCredentialSet"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateRegistry"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateReplication"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateRun"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateScopeMap"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateTask"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateToken"
-        },
-        {
-          "target": "com.azure.containerregistry#UpdateWebhook"
         }
       ],
       "traits": {

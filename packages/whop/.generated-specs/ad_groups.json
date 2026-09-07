@@ -5192,7 +5192,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.ad_groups#ListAdGroups"
+        },
+        {
           "target": "com.whop.ad_groups#CreateAdGroup"
+        },
+        {
+          "target": "com.whop.ad_groups#EstimateAdGroupReach"
+        },
+        {
+          "target": "com.whop.ad_groups#SearchAdGroupTargetingOptions"
+        },
+        {
+          "target": "com.whop.ad_groups#GetAdGroup"
+        },
+        {
+          "target": "com.whop.ad_groups#UpdateAdGroup"
         },
         {
           "target": "com.whop.ad_groups#DeleteAdGroup"
@@ -5201,25 +5216,10 @@
           "target": "com.whop.ad_groups#DuplicateAdGroup"
         },
         {
-          "target": "com.whop.ad_groups#EstimateAdGroupReach"
-        },
-        {
-          "target": "com.whop.ad_groups#GetAdGroup"
-        },
-        {
-          "target": "com.whop.ad_groups#ListAdGroups"
-        },
-        {
           "target": "com.whop.ad_groups#PauseAdGroup"
         },
         {
-          "target": "com.whop.ad_groups#SearchAdGroupTargetingOptions"
-        },
-        {
           "target": "com.whop.ad_groups#UnpauseAdGroup"
-        },
-        {
-          "target": "com.whop.ad_groups#UpdateAdGroup"
         }
       ],
       "traits": {

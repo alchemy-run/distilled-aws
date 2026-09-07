@@ -5741,115 +5741,115 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.automanage#ConfigurationProfileAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#ConfigurationProfileHCIAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#ConfigurationProfileHCRPAssignmentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#ConfigurationProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#ConfigurationProfilesVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfile"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileAssignment"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileHCIAssignment"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfileHCRPAssignment"
-        },
-        {
-          "target": "com.azure.automanage#DeleteConfigurationProfilesVersion"
-        },
-        {
-          "target": "com.azure.automanage#GetBestPractice"
-        },
-        {
-          "target": "com.azure.automanage#GetBestPracticesVersion"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfile"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfileAssignment"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfileHCIAssignment"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignment"
-        },
-        {
-          "target": "com.azure.automanage#GetConfigurationProfilesVersion"
+          "target": "com.azure.automanage#ListHCIReportByConfigurationProfileAssignments"
         },
         {
           "target": "com.azure.automanage#GetHCIReport"
         },
         {
-          "target": "com.azure.automanage#GetHCRPReport"
-        },
-        {
-          "target": "com.azure.automanage#GetReport"
-        },
-        {
-          "target": "com.azure.automanage#GetServicePrincipal"
-        },
-        {
-          "target": "com.azure.automanage#ListBestPracticeByTenant"
-        },
-        {
-          "target": "com.azure.automanage#ListBestPracticesVersionByTenant"
-        },
-        {
           "target": "com.azure.automanage#ListConfigurationProfileAssignmentByClusterName"
         },
         {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByMachineName"
+          "target": "com.azure.automanage#DeleteConfigurationProfileHCIAssignment"
         },
         {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentBySubscription"
+          "target": "com.azure.automanage#ConfigurationProfileHCIAssignmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByVirtualMachines"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileAssignments"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileByResourceGroup"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfileBySubscription"
-        },
-        {
-          "target": "com.azure.automanage#ListConfigurationProfilesVersionChildResources"
-        },
-        {
-          "target": "com.azure.automanage#ListHCIReportByConfigurationProfileAssignments"
+          "target": "com.azure.automanage#GetConfigurationProfileHCIAssignment"
         },
         {
           "target": "com.azure.automanage#ListHCRPReportByConfigurationProfileAssignments"
         },
         {
-          "target": "com.azure.automanage#ListOperations"
+          "target": "com.azure.automanage#GetHCRPReport"
         },
         {
-          "target": "com.azure.automanage#ListReportByConfigurationProfileAssignments"
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByMachineName"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfileHCRPAssignment"
+        },
+        {
+          "target": "com.azure.automanage#ConfigurationProfileHCRPAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automanage#GetConfigurationProfileHCRPAssignment"
+        },
+        {
+          "target": "com.azure.automanage#GetServicePrincipal"
         },
         {
           "target": "com.azure.automanage#ListServicePrincipalBySubscription"
         },
         {
+          "target": "com.azure.automanage#ListReportByConfigurationProfileAssignments"
+        },
+        {
+          "target": "com.azure.automanage#GetReport"
+        },
+        {
+          "target": "com.azure.automanage#ListOperations"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentBySubscription"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignments"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileAssignmentByVirtualMachines"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfileAssignment"
+        },
+        {
+          "target": "com.azure.automanage#ConfigurationProfileAssignmentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automanage#GetConfigurationProfileAssignment"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfilesVersionChildResources"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfilesVersion"
+        },
+        {
+          "target": "com.azure.automanage#ConfigurationProfilesVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automanage#GetConfigurationProfilesVersion"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileBySubscription"
+        },
+        {
+          "target": "com.azure.automanage#ListConfigurationProfileByResourceGroup"
+        },
+        {
+          "target": "com.azure.automanage#DeleteConfigurationProfile"
+        },
+        {
           "target": "com.azure.automanage#UpdateConfigurationProfile"
+        },
+        {
+          "target": "com.azure.automanage#ConfigurationProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automanage#GetConfigurationProfile"
+        },
+        {
+          "target": "com.azure.automanage#ListBestPracticesVersionByTenant"
+        },
+        {
+          "target": "com.azure.automanage#GetBestPracticesVersion"
+        },
+        {
+          "target": "com.azure.automanage#ListBestPracticeByTenant"
+        },
+        {
+          "target": "com.azure.automanage#GetBestPractice"
         }
       ],
       "traits": {

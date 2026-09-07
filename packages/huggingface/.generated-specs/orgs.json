@@ -5226,19 +5226,34 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.orgs#ChangeMemberRole"
+          "target": "com.huggingface.orgs#ListMemberAccessTokens"
+        },
+        {
+          "target": "com.huggingface.orgs#RevokeMemberToken"
+        },
+        {
+          "target": "com.huggingface.orgs#ListOrganizationRepositories"
+        },
+        {
+          "target": "com.huggingface.orgs#RotateSsoCredentials"
         },
         {
           "target": "com.huggingface.orgs#ExportAuditLog"
         },
         {
-          "target": "com.huggingface.orgs#GetAvatar"
-        },
-        {
           "target": "com.huggingface.orgs#GetNetworkSecuritySettings"
         },
         {
+          "target": "com.huggingface.orgs#UpdateNetworkSecurity"
+        },
+        {
+          "target": "com.huggingface.orgs#GetAvatar"
+        },
+        {
           "target": "com.huggingface.orgs#GetOrganizationMembers"
+        },
+        {
+          "target": "com.huggingface.orgs#ChangeMemberRole"
         },
         {
           "target": "com.huggingface.orgs#GetOrgUsage"
@@ -5253,25 +5268,10 @@
           "target": "com.huggingface.orgs#GetSessionInferenceUsage"
         },
         {
-          "target": "com.huggingface.orgs#GetSocialHandles"
-        },
-        {
-          "target": "com.huggingface.orgs#ListMemberAccessTokens"
-        },
-        {
-          "target": "com.huggingface.orgs#ListOrganizationRepositories"
-        },
-        {
-          "target": "com.huggingface.orgs#RevokeMemberToken"
-        },
-        {
-          "target": "com.huggingface.orgs#RotateSsoCredentials"
-        },
-        {
           "target": "com.huggingface.orgs#StreamUsage"
         },
         {
-          "target": "com.huggingface.orgs#UpdateNetworkSecurity"
+          "target": "com.huggingface.orgs#GetSocialHandles"
         }
       ],
       "traits": {

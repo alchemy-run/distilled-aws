@@ -1544,25 +1544,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azureactivedirectory#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAd"
-        },
-        {
           "target": "com.azure.azureactivedirectory#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.azureactivedirectory#DeletePrivateLinkForAzureAd"
+          "target": "com.azure.azureactivedirectory#CreatePrivateEndpointConnection"
         },
         {
           "target": "com.azure.azureactivedirectory#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#GetPrivateLinkForAzureAd"
-        },
-        {
-          "target": "com.azure.azureactivedirectory#GetPrivateLinkResource"
         },
         {
           "target": "com.azure.azureactivedirectory#ListPrivateEndpointConnectionByPolicyName"
@@ -1574,10 +1562,22 @@
           "target": "com.azure.azureactivedirectory#ListPrivateLinkForAzureAdBySubscription"
         },
         {
-          "target": "com.azure.azureactivedirectory#ListPrivateLinkResourceByPrivateLinkPolicy"
+          "target": "com.azure.azureactivedirectory#DeletePrivateLinkForAzureAd"
         },
         {
           "target": "com.azure.azureactivedirectory#UpdatePrivateLinkForAzureAd"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#CreatePrivateLinkForAzureAd"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#GetPrivateLinkForAzureAd"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.azureactivedirectory#ListPrivateLinkResourceByPrivateLinkPolicy"
         }
       ],
       "traits": {

@@ -1522,7 +1522,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.mcp_server_installations#ListMcpServerInstallations"
+        },
+        {
           "target": "com.posthog.mcp_server_installations#CreateMcpServerInstallation"
+        },
+        {
+          "target": "com.posthog.mcp_server_installations#GetMcpServerInstallation"
+        },
+        {
+          "target": "com.posthog.mcp_server_installations#UpdateMcpServerInstallation"
+        },
+        {
+          "target": "com.posthog.mcp_server_installations#UpdateMcpServerInstallationsPartial"
+        },
+        {
+          "target": "com.posthog.mcp_server_installations#McpServerInstallationsDestroy"
         },
         {
           "target": "com.posthog.mcp_server_installations#CreateMcpServerInstallationsCallTool"
@@ -1534,28 +1549,10 @@
           "target": "com.posthog.mcp_server_installations#CreateMcpServerInstallationsShare"
         },
         {
-          "target": "com.posthog.mcp_server_installations#GetMcpServerInstallation"
-        },
-        {
-          "target": "com.posthog.mcp_server_installations#GetMcpServerInstallationsAvailableTool"
-        },
-        {
           "target": "com.posthog.mcp_server_installations#GetMcpServerInstallationsTool"
         },
         {
-          "target": "com.posthog.mcp_server_installations#ListMcpServerInstallations"
-        },
-        {
-          "target": "com.posthog.mcp_server_installations#McpServerInstallationsAuthorizeRetrieve"
-        },
-        {
-          "target": "com.posthog.mcp_server_installations#McpServerInstallationsDestroy"
-        },
-        {
-          "target": "com.posthog.mcp_server_installations#McpServerInstallationsInstallCustomCreate"
-        },
-        {
-          "target": "com.posthog.mcp_server_installations#McpServerInstallationsInstallTemplateCreate"
+          "target": "com.posthog.mcp_server_installations#UpdateMcpServerInstallationsToolsPartial"
         },
         {
           "target": "com.posthog.mcp_server_installations#McpServerInstallationsToolsRefreshCreate"
@@ -1564,13 +1561,16 @@
           "target": "com.posthog.mcp_server_installations#McpServerInstallationsUnshareCreate"
         },
         {
-          "target": "com.posthog.mcp_server_installations#UpdateMcpServerInstallation"
+          "target": "com.posthog.mcp_server_installations#McpServerInstallationsAuthorizeRetrieve"
         },
         {
-          "target": "com.posthog.mcp_server_installations#UpdateMcpServerInstallationsPartial"
+          "target": "com.posthog.mcp_server_installations#GetMcpServerInstallationsAvailableTool"
         },
         {
-          "target": "com.posthog.mcp_server_installations#UpdateMcpServerInstallationsToolsPartial"
+          "target": "com.posthog.mcp_server_installations#McpServerInstallationsInstallCustomCreate"
+        },
+        {
+          "target": "com.posthog.mcp_server_installations#McpServerInstallationsInstallTemplateCreate"
         }
       ],
       "traits": {

@@ -1160,19 +1160,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.messages#CreateMessage"
+          "target": "com.whop.messages#ListMessage"
         },
         {
-          "target": "com.whop.messages#DeleteMessage"
+          "target": "com.whop.messages#CreateMessage"
         },
         {
           "target": "com.whop.messages#GetMessage"
         },
         {
-          "target": "com.whop.messages#ListMessage"
+          "target": "com.whop.messages#UpdateMessage"
         },
         {
-          "target": "com.whop.messages#UpdateMessage"
+          "target": "com.whop.messages#DeleteMessage"
         }
       ],
       "traits": {

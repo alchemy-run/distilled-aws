@@ -1170,19 +1170,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.streamlit_apps#ListStreamlitApps"
+        },
+        {
           "target": "com.posthog.streamlit_apps#CreateStreamlitApp"
         },
         {
           "target": "com.posthog.streamlit_apps#GetStreamlitApp"
         },
         {
-          "target": "com.posthog.streamlit_apps#GetStreamlitAppsStatus"
+          "target": "com.posthog.streamlit_apps#UpdateStreamlitApp"
         },
         {
-          "target": "com.posthog.streamlit_apps#GetStreamlitAppsVersion"
+          "target": "com.posthog.streamlit_apps#UpdateStreamlitAppsPartial"
         },
         {
-          "target": "com.posthog.streamlit_apps#ListStreamlitApps"
+          "target": "com.posthog.streamlit_apps#StreamlitAppsDestroy"
         },
         {
           "target": "com.posthog.streamlit_apps#StreamlitAppsActivateVersionCreate"
@@ -1194,13 +1197,13 @@
           "target": "com.posthog.streamlit_apps#StreamlitAppsCreateVersionFromSourceCreate"
         },
         {
-          "target": "com.posthog.streamlit_apps#StreamlitAppsDestroy"
-        },
-        {
           "target": "com.posthog.streamlit_apps#StreamlitAppsRestartCreate"
         },
         {
           "target": "com.posthog.streamlit_apps#StreamlitAppsStartCreate"
+        },
+        {
+          "target": "com.posthog.streamlit_apps#GetStreamlitAppsStatus"
         },
         {
           "target": "com.posthog.streamlit_apps#StreamlitAppsStopCreate"
@@ -1209,10 +1212,7 @@
           "target": "com.posthog.streamlit_apps#StreamlitAppsUploadVersionCreate"
         },
         {
-          "target": "com.posthog.streamlit_apps#UpdateStreamlitApp"
-        },
-        {
-          "target": "com.posthog.streamlit_apps#UpdateStreamlitAppsPartial"
+          "target": "com.posthog.streamlit_apps#GetStreamlitAppsVersion"
         }
       ],
       "traits": {

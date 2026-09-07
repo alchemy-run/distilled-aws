@@ -1780,40 +1780,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.computeschedule#ListOperations"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesCancelOperations"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteCreate"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDeallocate"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDelete"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteHibernate"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteStart"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationErrors"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationStatus"
-        },
-        {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitDeallocate"
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStart"
         },
         {
           "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitHibernate"
         },
         {
-          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitStart"
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesSubmitDeallocate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationStatus"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesGetOperationErrors"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteStart"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteHibernate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDelete"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteDeallocate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesExecuteCreate"
+        },
+        {
+          "target": "com.azure.computeschedule#ScheduledActionsVirtualMachinesCancelOperations"
+        },
+        {
+          "target": "com.azure.computeschedule#ListOperations"
         }
       ],
       "traits": {

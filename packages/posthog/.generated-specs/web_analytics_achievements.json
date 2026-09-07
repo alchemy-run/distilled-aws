@@ -579,13 +579,13 @@
           "target": "com.posthog.web_analytics_achievements#AcknowledgeWebAnalyticsAchievementCelebration"
         },
         {
-          "target": "com.posthog.web_analytics_achievements#UpdateWebAnalyticsAchievementPreferences"
-        },
-        {
           "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsOverview"
         },
         {
           "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsPreferences"
+        },
+        {
+          "target": "com.posthog.web_analytics_achievements#UpdateWebAnalyticsAchievementPreferences"
         },
         {
           "target": "com.posthog.web_analytics_achievements#WebAnalyticsAchievementsRecordInteraction"

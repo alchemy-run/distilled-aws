@@ -186723,6 +186723,36 @@
           "target": "com.cloudflare.radar#AiTimeseriesGroupsTimeseriesGroups"
         },
         {
+          "target": "com.cloudflare.radar#GetOrigin"
+        },
+        {
+          "target": "com.cloudflare.radar#ListOrigins"
+        },
+        {
+          "target": "com.cloudflare.radar#OriginsSummary"
+        },
+        {
+          "target": "com.cloudflare.radar#OriginsTimeseries"
+        },
+        {
+          "target": "com.cloudflare.radar#OriginsTimeseriesGroups"
+        },
+        {
+          "target": "com.cloudflare.radar#SearchGlobal"
+        },
+        {
+          "target": "com.cloudflare.radar#GetTld"
+        },
+        {
+          "target": "com.cloudflare.radar#ListTlds"
+        },
+        {
+          "target": "com.cloudflare.radar#TldsPerformanceSummary"
+        },
+        {
+          "target": "com.cloudflare.radar#TldsPerformanceTimeseriesGroups"
+        },
+        {
           "target": "com.cloudflare.radar#ArcEmailRoutingSummary"
         },
         {
@@ -186999,13 +187029,7 @@
           "target": "com.cloudflare.radar#GetHttpLocationTlsVersion"
         },
         {
-          "target": "com.cloudflare.radar#GetOrigin"
-        },
-        {
           "target": "com.cloudflare.radar#GetRankingDomain"
-        },
-        {
-          "target": "com.cloudflare.radar#GetTld"
         },
         {
           "target": "com.cloudflare.radar#GetTrafficAnomaly"
@@ -187131,12 +187155,6 @@
           "target": "com.cloudflare.radar#ListGeolocations"
         },
         {
-          "target": "com.cloudflare.radar#ListOrigins"
-        },
-        {
-          "target": "com.cloudflare.radar#ListTlds"
-        },
-        {
           "target": "com.cloudflare.radar#LocationsAnnotationOutage"
         },
         {
@@ -187192,15 +187210,6 @@
         },
         {
           "target": "com.cloudflare.radar#OriginAttackLayer7TopLocation"
-        },
-        {
-          "target": "com.cloudflare.radar#OriginsSummary"
-        },
-        {
-          "target": "com.cloudflare.radar#OriginsTimeseries"
-        },
-        {
-          "target": "com.cloudflare.radar#OriginsTimeseriesGroups"
         },
         {
           "target": "com.cloudflare.radar#OsHttpSummary"
@@ -187276,9 +187285,6 @@
         },
         {
           "target": "com.cloudflare.radar#ResponseTTLDnsTimeseriesGroup"
-        },
-        {
-          "target": "com.cloudflare.radar#SearchGlobal"
         },
         {
           "target": "com.cloudflare.radar#SnapshotBgpRpkiAspa"
@@ -187492,12 +187498,6 @@
         },
         {
           "target": "com.cloudflare.radar#TimeseriesNetflow"
-        },
-        {
-          "target": "com.cloudflare.radar#TldsPerformanceSummary"
-        },
-        {
-          "target": "com.cloudflare.radar#TldsPerformanceTimeseriesGroups"
         },
         {
           "target": "com.cloudflare.radar#TlsVersionEmailSecuritySummary"

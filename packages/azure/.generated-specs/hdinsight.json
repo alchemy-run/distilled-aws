@@ -10678,109 +10678,103 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hdinsight#CheckLocationNameAvailability"
-        },
-        {
-          "target": "com.azure.hdinsight#CreateApplication"
-        },
-        {
-          "target": "com.azure.hdinsight#CreateCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#CreateExtension"
+          "target": "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatus"
         },
         {
           "target": "com.azure.hdinsight#DeleteApplication"
         },
         {
-          "target": "com.azure.hdinsight#DeleteCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#DeleteExtension"
-        },
-        {
-          "target": "com.azure.hdinsight#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hdinsight#DeleteScriptAction"
-        },
-        {
-          "target": "com.azure.hdinsight#DisableExtensionAzureMonitor"
-        },
-        {
-          "target": "com.azure.hdinsight#DisableExtensionMonitoring"
-        },
-        {
-          "target": "com.azure.hdinsight#EnableExtensionAzureMonitor"
-        },
-        {
-          "target": "com.azure.hdinsight#EnableExtensionMonitoring"
-        },
-        {
-          "target": "com.azure.hdinsight#ExecuteClusterScriptActions"
+          "target": "com.azure.hdinsight#CreateApplication"
         },
         {
           "target": "com.azure.hdinsight#GetApplication"
         },
         {
-          "target": "com.azure.hdinsight#GetApplicationAzureAsyncOperationStatus"
+          "target": "com.azure.hdinsight#ListApplicationByCluster"
         },
         {
-          "target": "com.azure.hdinsight#GetCluster"
+          "target": "com.azure.hdinsight#UpdateClusterIdentityCertificate"
         },
         {
           "target": "com.azure.hdinsight#GetClusterAzureAsyncOperationStatus"
         },
         {
+          "target": "com.azure.hdinsight#UpdateClusterGatewaySettings"
+        },
+        {
           "target": "com.azure.hdinsight#GetClusterGatewaySettings"
         },
         {
-          "target": "com.azure.hdinsight#GetConfiguration"
-        },
-        {
-          "target": "com.azure.hdinsight#GetExtension"
-        },
-        {
-          "target": "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatus"
-        },
-        {
-          "target": "com.azure.hdinsight#GetExtensionAzureMonitorStatus"
-        },
-        {
-          "target": "com.azure.hdinsight#GetExtensionMonitoringStatus"
-        },
-        {
-          "target": "com.azure.hdinsight#GetLocationAzureAsyncOperationStatus"
-        },
-        {
-          "target": "com.azure.hdinsight#GetLocationCapabilities"
-        },
-        {
-          "target": "com.azure.hdinsight#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.hdinsight#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatus"
-        },
-        {
-          "target": "com.azure.hdinsight#GetScriptActionExecutionDetail"
-        },
-        {
-          "target": "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatus"
-        },
-        {
-          "target": "com.azure.hdinsight#ListApplicationByCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#ListClusterByResourceGroup"
+          "target": "com.azure.hdinsight#RotateClusterDiskEncryptionKey"
         },
         {
           "target": "com.azure.hdinsight#ListClusters"
         },
         {
+          "target": "com.azure.hdinsight#UpdateClusterAutoScaleConfiguration"
+        },
+        {
+          "target": "com.azure.hdinsight#ResizeCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#ListClusterByResourceGroup"
+        },
+        {
+          "target": "com.azure.hdinsight#DeleteCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#UpdateCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#CreateCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#GetCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#GetConfiguration"
+        },
+        {
           "target": "com.azure.hdinsight#ListConfigurations"
+        },
+        {
+          "target": "com.azure.hdinsight#GetExtensionAzureAsyncOperationStatus"
+        },
+        {
+          "target": "com.azure.hdinsight#DeleteExtension"
+        },
+        {
+          "target": "com.azure.hdinsight#CreateExtension"
+        },
+        {
+          "target": "com.azure.hdinsight#GetExtension"
+        },
+        {
+          "target": "com.azure.hdinsight#DisableExtensionAzureMonitor"
+        },
+        {
+          "target": "com.azure.hdinsight#EnableExtensionAzureMonitor"
+        },
+        {
+          "target": "com.azure.hdinsight#GetExtensionAzureMonitorStatus"
+        },
+        {
+          "target": "com.azure.hdinsight#DisableExtensionMonitoring"
+        },
+        {
+          "target": "com.azure.hdinsight#EnableExtensionMonitoring"
+        },
+        {
+          "target": "com.azure.hdinsight#GetExtensionMonitoringStatus"
+        },
+        {
+          "target": "com.azure.hdinsight#LocationsValidateClusterCreateRequest"
+        },
+        {
+          "target": "com.azure.hdinsight#CheckLocationNameAvailability"
+        },
+        {
+          "target": "com.azure.hdinsight#GetLocationAzureAsyncOperationStatus"
         },
         {
           "target": "com.azure.hdinsight#ListLocationBillingSpecs"
@@ -10789,52 +10783,58 @@
           "target": "com.azure.hdinsight#ListLocationUsages"
         },
         {
+          "target": "com.azure.hdinsight#GetLocationCapabilities"
+        },
+        {
           "target": "com.azure.hdinsight#ListOperations"
         },
         {
-          "target": "com.azure.hdinsight#ListPrivateEndpointConnectionByCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#ListPrivateLinkResourceByCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#ListScriptActionByCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#ListScriptExecutionHistoryByCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#ListVirtualMachineHosts"
-        },
-        {
-          "target": "com.azure.hdinsight#LocationsValidateClusterCreateRequest"
+          "target": "com.azure.hdinsight#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.hdinsight#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
+          "target": "com.azure.hdinsight#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.hdinsight#ListPrivateEndpointConnectionByCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.hdinsight#ListPrivateLinkResourceByCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#GetScriptActionExecutionAsyncOperationStatus"
+        },
+        {
           "target": "com.azure.hdinsight#PromoteScriptExecutionHistory"
         },
         {
-          "target": "com.azure.hdinsight#ResizeCluster"
+          "target": "com.azure.hdinsight#ListScriptExecutionHistoryByCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#GetScriptActionExecutionDetail"
+        },
+        {
+          "target": "com.azure.hdinsight#ListScriptActionByCluster"
+        },
+        {
+          "target": "com.azure.hdinsight#ExecuteClusterScriptActions"
+        },
+        {
+          "target": "com.azure.hdinsight#DeleteScriptAction"
+        },
+        {
+          "target": "com.azure.hdinsight#GetVirtualMachineAsyncOperationStatus"
         },
         {
           "target": "com.azure.hdinsight#RestartVirtualMachineHosts"
         },
         {
-          "target": "com.azure.hdinsight#RotateClusterDiskEncryptionKey"
-        },
-        {
-          "target": "com.azure.hdinsight#UpdateCluster"
-        },
-        {
-          "target": "com.azure.hdinsight#UpdateClusterAutoScaleConfiguration"
-        },
-        {
-          "target": "com.azure.hdinsight#UpdateClusterGatewaySettings"
-        },
-        {
-          "target": "com.azure.hdinsight#UpdateClusterIdentityCertificate"
+          "target": "com.azure.hdinsight#ListVirtualMachineHosts"
         }
       ],
       "traits": {

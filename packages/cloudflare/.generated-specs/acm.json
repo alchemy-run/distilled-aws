@@ -467,6 +467,9 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.acm#UpdateTotalTls"
+        },
+        {
           "target": "com.cloudflare.acm#CreateCustomTrustStore"
         },
         {
@@ -483,9 +486,6 @@
         },
         {
           "target": "com.cloudflare.acm#UpdateTotalTl"
-        },
-        {
-          "target": "com.cloudflare.acm#UpdateTotalTls"
         }
       ],
       "traits": {

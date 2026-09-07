@@ -3376,28 +3376,46 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.storagemigration#CreateStoragemigrationV1beta1StorageVersionMigration"
+          "target": "com.kubernetes.storagemigration#GetStoragemigrationAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#GetStoragemigrationV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#ListStoragemigrationV1StorageVersionMigration"
         },
         {
           "target": "com.kubernetes.storagemigration#CreateStoragemigrationV1StorageVersionMigration"
         },
         {
-          "target": "com.kubernetes.storagemigration#DeleteStoragemigrationV1beta1CollectionStorageVersionMigration"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#DeleteStoragemigrationV1beta1StorageVersionMigration"
-        },
-        {
           "target": "com.kubernetes.storagemigration#DeleteStoragemigrationV1CollectionStorageVersionMigration"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1StorageVersionMigration"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#ReplaceStoragemigrationV1StorageVersionMigration"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1StorageVersionMigration"
         },
         {
           "target": "com.kubernetes.storagemigration#DeleteStoragemigrationV1StorageVersionMigration"
         },
         {
-          "target": "com.kubernetes.storagemigration#GetStoragemigrationAPIGroup"
+          "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1StorageVersionMigrationStatus"
         },
         {
-          "target": "com.kubernetes.storagemigration#GetStoragemigrationV1APIResources"
+          "target": "com.kubernetes.storagemigration#ReplaceStoragemigrationV1StorageVersionMigrationStatus"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1StorageVersionMigrationStatus"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1StorageVersionMigrationList"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1StorageVersionMigration"
         },
         {
           "target": "com.kubernetes.storagemigration#GetStoragemigrationV1beta1APIResources"
@@ -3406,55 +3424,37 @@
           "target": "com.kubernetes.storagemigration#ListStoragemigrationV1beta1StorageVersionMigration"
         },
         {
-          "target": "com.kubernetes.storagemigration#ListStoragemigrationV1StorageVersionMigration"
+          "target": "com.kubernetes.storagemigration#CreateStoragemigrationV1beta1StorageVersionMigration"
         },
         {
-          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1beta1StorageVersionMigration"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1beta1StorageVersionMigrationStatus"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1StorageVersionMigration"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1StorageVersionMigrationStatus"
+          "target": "com.kubernetes.storagemigration#DeleteStoragemigrationV1beta1CollectionStorageVersionMigration"
         },
         {
           "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1beta1StorageVersionMigration"
         },
         {
-          "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1beta1StorageVersionMigrationStatus"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1StorageVersionMigration"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1StorageVersionMigrationStatus"
-        },
-        {
           "target": "com.kubernetes.storagemigration#ReplaceStoragemigrationV1beta1StorageVersionMigration"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1beta1StorageVersionMigration"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#DeleteStoragemigrationV1beta1StorageVersionMigration"
+        },
+        {
+          "target": "com.kubernetes.storagemigration#ReadStoragemigrationV1beta1StorageVersionMigrationStatus"
         },
         {
           "target": "com.kubernetes.storagemigration#ReplaceStoragemigrationV1beta1StorageVersionMigrationStatus"
         },
         {
-          "target": "com.kubernetes.storagemigration#ReplaceStoragemigrationV1StorageVersionMigration"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#ReplaceStoragemigrationV1StorageVersionMigrationStatus"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1beta1StorageVersionMigration"
+          "target": "com.kubernetes.storagemigration#PatchStoragemigrationV1beta1StorageVersionMigrationStatus"
         },
         {
           "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1beta1StorageVersionMigrationList"
         },
         {
-          "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1StorageVersionMigration"
-        },
-        {
-          "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1StorageVersionMigrationList"
+          "target": "com.kubernetes.storagemigration#WatchStoragemigrationV1beta1StorageVersionMigration"
         }
       ],
       "traits": {

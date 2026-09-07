@@ -56258,16 +56258,16 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.user#DeleteRequest"
-        },
-        {
-          "target": "com.vercel.user#GetAuthUser"
+          "target": "com.vercel.user#ListUserEvents"
         },
         {
           "target": "com.vercel.user#ListEventTypes"
         },
         {
-          "target": "com.vercel.user#ListUserEvents"
+          "target": "com.vercel.user#GetAuthUser"
+        },
+        {
+          "target": "com.vercel.user#DeleteRequest"
         }
       ],
       "traits": {

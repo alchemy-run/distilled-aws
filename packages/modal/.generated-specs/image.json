@@ -1093,10 +1093,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.image#DeleteImage"
+          "target": "com.modal.image#GetImageBuildChain"
         },
         {
-          "target": "com.modal.image#GetImageBuildChain"
+          "target": "com.modal.image#DeleteImage"
         },
         {
           "target": "com.modal.image#ImageFromId"
@@ -1111,10 +1111,10 @@
           "target": "com.modal.image#ImageListTags"
         },
         {
-          "target": "com.modal.image#ImageTagRevisions"
+          "target": "com.modal.image#PublishImage"
         },
         {
-          "target": "com.modal.image#PublishImage"
+          "target": "com.modal.image#ImageTagRevisions"
         }
       ],
       "traits": {

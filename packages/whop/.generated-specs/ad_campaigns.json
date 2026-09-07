@@ -2161,19 +2161,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.ad_campaigns#ListAdCampaigns"
+        },
+        {
           "target": "com.whop.ad_campaigns#CreateAdCampaign"
+        },
+        {
+          "target": "com.whop.ad_campaigns#GetAdCampaign"
+        },
+        {
+          "target": "com.whop.ad_campaigns#UpdateAdCampaign"
         },
         {
           "target": "com.whop.ad_campaigns#DeleteAdCampaign"
         },
         {
           "target": "com.whop.ad_campaigns#DuplicateAdCampaign"
-        },
-        {
-          "target": "com.whop.ad_campaigns#GetAdCampaign"
-        },
-        {
-          "target": "com.whop.ad_campaigns#ListAdCampaigns"
         },
         {
           "target": "com.whop.ad_campaigns#PauseAdCampaign"
@@ -2183,9 +2186,6 @@
         },
         {
           "target": "com.whop.ad_campaigns#UnpauseAdCampaign"
-        },
-        {
-          "target": "com.whop.ad_campaigns#UpdateAdCampaign"
         }
       ],
       "traits": {

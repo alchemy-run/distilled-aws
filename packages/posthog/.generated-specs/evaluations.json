@@ -2151,25 +2151,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.evaluations#ListEvaluations"
+        },
+        {
           "target": "com.posthog.evaluations#CreateEvaluation"
         },
         {
-          "target": "com.posthog.evaluations#CreateEvaluationsTestHog"
-        },
-        {
-          "target": "com.posthog.evaluations#EvaluationsDestroy"
-        },
-        {
           "target": "com.posthog.evaluations#GetEvaluation"
-        },
-        {
-          "target": "com.posthog.evaluations#ListEvaluations"
         },
         {
           "target": "com.posthog.evaluations#UpdateEvaluation"
         },
         {
           "target": "com.posthog.evaluations#UpdateEvaluationsPartial"
+        },
+        {
+          "target": "com.posthog.evaluations#EvaluationsDestroy"
+        },
+        {
+          "target": "com.posthog.evaluations#CreateEvaluationsTestHog"
         }
       ],
       "traits": {

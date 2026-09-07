@@ -789,16 +789,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.authorized_users#CreateAuthorizedUser"
+          "target": "com.whop.authorized_users#ListAuthorizedUser"
         },
         {
-          "target": "com.whop.authorized_users#DeleteAuthorizedUser"
+          "target": "com.whop.authorized_users#CreateAuthorizedUser"
         },
         {
           "target": "com.whop.authorized_users#GetAuthorizedUser"
         },
         {
-          "target": "com.whop.authorized_users#ListAuthorizedUser"
+          "target": "com.whop.authorized_users#DeleteAuthorizedUser"
         }
       ],
       "traits": {

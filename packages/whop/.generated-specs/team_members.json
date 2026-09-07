@@ -910,19 +910,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.team_members#CreateTeamMember"
+          "target": "com.whop.team_members#ListTeamMembers"
         },
         {
-          "target": "com.whop.team_members#DeleteTeamMember"
+          "target": "com.whop.team_members#CreateTeamMember"
         },
         {
           "target": "com.whop.team_members#GetTeamMember"
         },
         {
-          "target": "com.whop.team_members#ListTeamMembers"
+          "target": "com.whop.team_members#UpdateTeamMember"
         },
         {
-          "target": "com.whop.team_members#UpdateTeamMember"
+          "target": "com.whop.team_members#DeleteTeamMember"
         }
       ],
       "traits": {

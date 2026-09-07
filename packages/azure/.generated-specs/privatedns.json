@@ -3061,55 +3061,55 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.privatedns#DeletePrivateZone"
-        },
-        {
-          "target": "com.azure.privatedns#DeleteRecordSet"
-        },
-        {
           "target": "com.azure.privatedns#DeleteVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.privatedns#GetPrivateZone"
-        },
-        {
-          "target": "com.azure.privatedns#GetRecordSet"
-        },
-        {
-          "target": "com.azure.privatedns#GetVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.privatedns#ListPrivateZoneByResourceGroup"
-        },
-        {
-          "target": "com.azure.privatedns#ListPrivateZones"
-        },
-        {
-          "target": "com.azure.privatedns#ListRecordSetByType"
-        },
-        {
-          "target": "com.azure.privatedns#ListRecordSets"
-        },
-        {
-          "target": "com.azure.privatedns#ListVirtualNetworkLinks"
-        },
-        {
-          "target": "com.azure.privatedns#PrivateZonesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.privatedns#RecordSetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.privatedns#UpdatePrivateZone"
-        },
-        {
-          "target": "com.azure.privatedns#UpdateRecordSet"
         },
         {
           "target": "com.azure.privatedns#UpdateVirtualNetworkLink"
         },
         {
           "target": "com.azure.privatedns#VirtualNetworkLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.privatedns#GetVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.privatedns#ListVirtualNetworkLinks"
+        },
+        {
+          "target": "com.azure.privatedns#ListRecordSets"
+        },
+        {
+          "target": "com.azure.privatedns#DeleteRecordSet"
+        },
+        {
+          "target": "com.azure.privatedns#UpdateRecordSet"
+        },
+        {
+          "target": "com.azure.privatedns#RecordSetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.privatedns#GetRecordSet"
+        },
+        {
+          "target": "com.azure.privatedns#ListRecordSetByType"
+        },
+        {
+          "target": "com.azure.privatedns#DeletePrivateZone"
+        },
+        {
+          "target": "com.azure.privatedns#UpdatePrivateZone"
+        },
+        {
+          "target": "com.azure.privatedns#PrivateZonesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.privatedns#GetPrivateZone"
+        },
+        {
+          "target": "com.azure.privatedns#ListPrivateZoneByResourceGroup"
+        },
+        {
+          "target": "com.azure.privatedns#ListPrivateZones"
         }
       ],
       "traits": {

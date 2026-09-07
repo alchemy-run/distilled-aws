@@ -2536,58 +2536,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#DeleteBgpPeer"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#DeleteLoadBalancer"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#DeleteService"
+          "target": "com.azure.kubernetesruntime#ListOperations"
         },
         {
           "target": "com.azure.kubernetesruntime#DeleteStorageClass"
         },
         {
-          "target": "com.azure.kubernetesruntime#GetBgpPeer"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#GetLoadBalancer"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#GetService"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#GetStorageClass"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListBgpPeers"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListLoadBalancers"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListOperations"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListServices"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ListStorageClass"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdate"
+          "target": "com.azure.kubernetesruntime#UpdateStorageClass"
         },
         {
           "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesruntime#UpdateStorageClass"
+          "target": "com.azure.kubernetesruntime#GetStorageClass"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListStorageClass"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#DeleteService"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#GetService"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListServices"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#DeleteLoadBalancer"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#GetLoadBalancer"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListLoadBalancers"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#DeleteBgpPeer"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#GetBgpPeer"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ListBgpPeers"
         }
       ],
       "traits": {

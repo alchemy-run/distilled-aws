@@ -7196,82 +7196,82 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.projects#AddFieldForOrg"
-        },
-        {
-          "target": "com.github.projects#AddFieldForUser"
-        },
-        {
-          "target": "com.github.projects#AddItemForOrg"
-        },
-        {
-          "target": "com.github.projects#AddItemForUser"
-        },
-        {
-          "target": "com.github.projects#CreateDraftItemForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.projects#CreateDraftItemForOrg"
-        },
-        {
-          "target": "com.github.projects#CreateViewForOrg"
-        },
-        {
-          "target": "com.github.projects#CreateViewForUser"
-        },
-        {
-          "target": "com.github.projects#DeleteItemForOrg"
-        },
-        {
-          "target": "com.github.projects#DeleteItemForUser"
-        },
-        {
-          "target": "com.github.projects#GetFieldForOrg"
-        },
-        {
-          "target": "com.github.projects#GetFieldForUser"
+          "target": "com.github.projects#ListForOrg"
         },
         {
           "target": "com.github.projects#GetForOrg"
         },
         {
-          "target": "com.github.projects#GetForUser"
-        },
-        {
-          "target": "com.github.projects#GetOrgItem"
-        },
-        {
-          "target": "com.github.projects#GetUserItem"
+          "target": "com.github.projects#CreateDraftItemForOrg"
         },
         {
           "target": "com.github.projects#ListFieldsForOrg"
         },
         {
-          "target": "com.github.projects#ListFieldsForUser"
+          "target": "com.github.projects#AddFieldForOrg"
         },
         {
-          "target": "com.github.projects#ListForOrg"
-        },
-        {
-          "target": "com.github.projects#ListForUser"
+          "target": "com.github.projects#GetFieldForOrg"
         },
         {
           "target": "com.github.projects#ListItemsForOrg"
         },
         {
-          "target": "com.github.projects#ListItemsForUser"
+          "target": "com.github.projects#AddItemForOrg"
         },
         {
-          "target": "com.github.projects#ListViewItemsForOrg"
-        },
-        {
-          "target": "com.github.projects#ListViewItemsForUser"
+          "target": "com.github.projects#GetOrgItem"
         },
         {
           "target": "com.github.projects#UpdateItemForOrg"
         },
         {
+          "target": "com.github.projects#DeleteItemForOrg"
+        },
+        {
+          "target": "com.github.projects#CreateViewForOrg"
+        },
+        {
+          "target": "com.github.projects#ListViewItemsForOrg"
+        },
+        {
+          "target": "com.github.projects#CreateDraftItemForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.projects#CreateViewForUser"
+        },
+        {
+          "target": "com.github.projects#ListForUser"
+        },
+        {
+          "target": "com.github.projects#GetForUser"
+        },
+        {
+          "target": "com.github.projects#ListFieldsForUser"
+        },
+        {
+          "target": "com.github.projects#AddFieldForUser"
+        },
+        {
+          "target": "com.github.projects#GetFieldForUser"
+        },
+        {
+          "target": "com.github.projects#ListItemsForUser"
+        },
+        {
+          "target": "com.github.projects#AddItemForUser"
+        },
+        {
+          "target": "com.github.projects#GetUserItem"
+        },
+        {
           "target": "com.github.projects#UpdateItemForUser"
+        },
+        {
+          "target": "com.github.projects#DeleteItemForUser"
+        },
+        {
+          "target": "com.github.projects#ListViewItemsForUser"
         }
       ],
       "traits": {

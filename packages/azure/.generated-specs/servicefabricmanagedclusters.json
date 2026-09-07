@@ -11315,85 +11315,142 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsCreateOrUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#StartNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesCreateOrUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeSkus"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsCreateOrUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#RestartNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#DeleteApplication"
+          "target": "com.azure.servicefabricmanagedclusters#NodeTypesReimage"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeVersion"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#DeleteManagedCluster"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#DeleteNodeType"
+          "target": "com.azure.servicefabricmanagedclusters#RedeployNodeType"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNode"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#DeleteService"
+          "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeallocate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#FetchApplicationHealth"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#GetApplication"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#GetApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersion"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetManagedAzResiliencyStatus"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetManagedCluster"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersion"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironment"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetManagedMaintenanceWindowStatus"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#GetManagedUnsupportedVMSiz"
+          "target": "com.azure.servicefabricmanagedclusters#NodeTypesCreateOrUpdate"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#GetNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#GetOperationResult"
+          "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeByManagedClusters"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#GetOperationStatus"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedAzResiliencyStatus"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedMaintenanceWindowStatus"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#PostManagedApplyMaintenanceWindow"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationUpgrade"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#StartApplicationRollback"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#RestartServiceReplica"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#DeleteService"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#UpdateService"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#GetService"
         },
         {
+          "target": "com.azure.servicefabricmanagedclusters#ListServiceByApplications"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ResumeApplicationUpgrade"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#RestartApplicationDeployedCodePackage"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ReadApplicationUpgrade"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#FetchApplicationHealth"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#DeleteApplication"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplication"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetApplication"
+        },
+        {
           "target": "com.azure.servicefabricmanagedclusters#ListApplications"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeVersion"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersion"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersion"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypeVersionByApplicationTypes"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationType"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationType"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationType"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypes"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypeVersionByApplicationTypes"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteManagedCluster"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#UpdateManagedCluster"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedCluster"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterByResourceGroup"
@@ -11402,88 +11459,31 @@
           "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterBySubscription"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersion"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironment"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedUnsupportedVMSiz"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ListManagedUnsupportedVMSizes"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeByManagedClusters"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersion"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeSkus"
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersion"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetOperationStatus"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetOperationResult"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironment"
+        },
+        {
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironment"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ListOperations"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#ListServiceByApplications"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeallocate"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesReimage"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#PostManagedApplyMaintenanceWindow"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#ReadApplicationUpgrade"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#RedeployNodeType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#RestartApplicationDeployedCodePackage"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#RestartNodeType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#RestartServiceReplica"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#ResumeApplicationUpgrade"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#StartApplicationRollback"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#StartNodeType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateApplication"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersion"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationUpgrade"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateManagedCluster"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateNodeType"
-        },
-        {
-          "target": "com.azure.servicefabricmanagedclusters#UpdateService"
         }
       ],
       "traits": {

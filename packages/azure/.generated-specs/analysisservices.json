@@ -2312,34 +2312,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.analysisservices#CheckServerNameAvailability"
-        },
-        {
-          "target": "com.azure.analysisservices#CreateServer"
-        },
-        {
-          "target": "com.azure.analysisservices#DeleteServer"
-        },
-        {
-          "target": "com.azure.analysisservices#GetServerDetails"
-        },
-        {
           "target": "com.azure.analysisservices#ListOperations"
-        },
-        {
-          "target": "com.azure.analysisservices#ListServerByResourceGroup"
-        },
-        {
-          "target": "com.azure.analysisservices#ListServerGatewayStatus"
-        },
-        {
-          "target": "com.azure.analysisservices#ListServerOperationResults"
         },
         {
           "target": "com.azure.analysisservices#ListServerOperationStatuses"
         },
         {
-          "target": "com.azure.analysisservices#ListServers"
+          "target": "com.azure.analysisservices#ListServerOperationResults"
+        },
+        {
+          "target": "com.azure.analysisservices#CheckServerNameAvailability"
+        },
+        {
+          "target": "com.azure.analysisservices#ServersDissociateGateway"
+        },
+        {
+          "target": "com.azure.analysisservices#ListServerGatewayStatus"
         },
         {
           "target": "com.azure.analysisservices#ListServerSkusForExisting"
@@ -2348,16 +2336,28 @@
           "target": "com.azure.analysisservices#ListServerSkusForNew"
         },
         {
-          "target": "com.azure.analysisservices#ResumeServer"
+          "target": "com.azure.analysisservices#ListServers"
         },
         {
-          "target": "com.azure.analysisservices#ServersDissociateGateway"
+          "target": "com.azure.analysisservices#ListServerByResourceGroup"
+        },
+        {
+          "target": "com.azure.analysisservices#ResumeServer"
         },
         {
           "target": "com.azure.analysisservices#SuspendServer"
         },
         {
+          "target": "com.azure.analysisservices#DeleteServer"
+        },
+        {
           "target": "com.azure.analysisservices#UpdateServer"
+        },
+        {
+          "target": "com.azure.analysisservices#CreateServer"
+        },
+        {
+          "target": "com.azure.analysisservices#GetServerDetails"
         }
       ],
       "traits": {

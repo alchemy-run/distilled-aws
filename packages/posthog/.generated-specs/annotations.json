@@ -891,7 +891,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.annotations#AnnotationsDestroy"
+          "target": "com.posthog.annotations#ListAnnotations"
         },
         {
           "target": "com.posthog.annotations#CreateAnnotation"
@@ -900,13 +900,13 @@
           "target": "com.posthog.annotations#GetAnnotation"
         },
         {
-          "target": "com.posthog.annotations#ListAnnotations"
-        },
-        {
           "target": "com.posthog.annotations#UpdateAnnotation"
         },
         {
           "target": "com.posthog.annotations#UpdateAnnotationsPartial"
+        },
+        {
+          "target": "com.posthog.annotations#AnnotationsDestroy"
         }
       ],
       "traits": {

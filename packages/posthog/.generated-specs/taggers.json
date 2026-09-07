@@ -1193,25 +1193,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.taggers#CreateTagger"
-        },
-        {
-          "target": "com.posthog.taggers#CreateTaggersTestHog"
-        },
-        {
-          "target": "com.posthog.taggers#GetTagger"
-        },
-        {
           "target": "com.posthog.taggers#ListTaggers"
         },
         {
-          "target": "com.posthog.taggers#TaggersDestroy"
+          "target": "com.posthog.taggers#CreateTagger"
+        },
+        {
+          "target": "com.posthog.taggers#GetTagger"
         },
         {
           "target": "com.posthog.taggers#UpdateTagger"
         },
         {
           "target": "com.posthog.taggers#UpdateTaggersPartial"
+        },
+        {
+          "target": "com.posthog.taggers#TaggersDestroy"
+        },
+        {
+          "target": "com.posthog.taggers#CreateTaggersTestHog"
         }
       ],
       "traits": {

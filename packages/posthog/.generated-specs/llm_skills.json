@@ -1945,34 +1945,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.llm_skills#CreateLlmSkill"
+          "target": "com.posthog.llm_skills#ListLlmSkills"
         },
         {
-          "target": "com.posthog.llm_skills#CreateLlmSkillsNameFile"
+          "target": "com.posthog.llm_skills#CreateLlmSkill"
         },
         {
           "target": "com.posthog.llm_skills#GetLlmSkillsBundle"
         },
         {
-          "target": "com.posthog.llm_skills#GetLlmSkillsName"
-        },
-        {
-          "target": "com.posthog.llm_skills#GetLlmSkillsNameFile"
-        },
-        {
-          "target": "com.posthog.llm_skills#GetLlmSkillsResolveName"
-        },
-        {
-          "target": "com.posthog.llm_skills#ListLlmSkills"
-        },
-        {
           "target": "com.posthog.llm_skills#LlmSkillsImportCreate"
+        },
+        {
+          "target": "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandRetrieve"
         },
         {
           "target": "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandCreate"
         },
         {
-          "target": "com.posthog.llm_skills#LlmSkillsMarketplaceInstallCommandRetrieve"
+          "target": "com.posthog.llm_skills#GetLlmSkillsName"
+        },
+        {
+          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartial"
         },
         {
           "target": "com.posthog.llm_skills#LlmSkillsNameArchiveCreate"
@@ -1984,16 +1978,22 @@
           "target": "com.posthog.llm_skills#LlmSkillsNameExportRetrieve"
         },
         {
-          "target": "com.posthog.llm_skills#LlmSkillsNameFilesDestroy"
+          "target": "com.posthog.llm_skills#CreateLlmSkillsNameFile"
         },
         {
           "target": "com.posthog.llm_skills#LlmSkillsNameFilesRenameCreate"
         },
         {
+          "target": "com.posthog.llm_skills#GetLlmSkillsNameFile"
+        },
+        {
+          "target": "com.posthog.llm_skills#LlmSkillsNameFilesDestroy"
+        },
+        {
           "target": "com.posthog.llm_skills#LlmSkillsNamePublishCommunityCreate"
         },
         {
-          "target": "com.posthog.llm_skills#UpdateLlmSkillsNamePartial"
+          "target": "com.posthog.llm_skills#GetLlmSkillsResolveName"
         }
       ],
       "traits": {

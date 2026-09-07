@@ -912,28 +912,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.elements#CreateElement"
-        },
-        {
-          "target": "com.posthog.elements#ElementsDestroy"
-        },
-        {
-          "target": "com.posthog.elements#GetElement"
-        },
-        {
-          "target": "com.posthog.elements#GetElementsStat"
-        },
-        {
           "target": "com.posthog.elements#ListElements"
         },
         {
-          "target": "com.posthog.elements#ListElementsValues"
+          "target": "com.posthog.elements#CreateElement"
+        },
+        {
+          "target": "com.posthog.elements#GetElement"
         },
         {
           "target": "com.posthog.elements#UpdateElement"
         },
         {
           "target": "com.posthog.elements#UpdateElementsPartial"
+        },
+        {
+          "target": "com.posthog.elements#ElementsDestroy"
+        },
+        {
+          "target": "com.posthog.elements#GetElementsStat"
+        },
+        {
+          "target": "com.posthog.elements#ListElementsValues"
         }
       ],
       "traits": {

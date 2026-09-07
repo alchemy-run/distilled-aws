@@ -2731,10 +2731,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.refunds#GetRefund"
+          "target": "com.whop.refunds#ListRefund"
         },
         {
-          "target": "com.whop.refunds#ListRefund"
+          "target": "com.whop.refunds#GetRefund"
         }
       ],
       "traits": {

@@ -5478,61 +5478,88 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dashboard#ApprovePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.dashboard#CheckGrafanaEnterpriseDetails"
-        },
-        {
-          "target": "com.azure.dashboard#CreateGrafana"
-        },
-        {
-          "target": "com.azure.dashboard#CreateIntegrationFabric"
-        },
-        {
-          "target": "com.azure.dashboard#CreateManagedDashboard"
-        },
-        {
-          "target": "com.azure.dashboard#CreateManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.dashboard#DeleteGrafana"
-        },
-        {
-          "target": "com.azure.dashboard#DeleteIntegrationFabric"
-        },
-        {
-          "target": "com.azure.dashboard#DeleteManagedDashboard"
-        },
-        {
-          "target": "com.azure.dashboard#DeleteManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.dashboard#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.dashboard#FetchGrafanaAvailablePlugins"
-        },
-        {
-          "target": "com.azure.dashboard#GetDashboard"
-        },
-        {
-          "target": "com.azure.dashboard#GetGrafana"
-        },
-        {
-          "target": "com.azure.dashboard#GetIntegrationFabric"
-        },
-        {
-          "target": "com.azure.dashboard#GetManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.dashboard#GetPrivateEndpointConnection"
+          "target": "com.azure.dashboard#RefreshManagedPrivateEndpoint"
         },
         {
           "target": "com.azure.dashboard#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.dashboard#ListDashboardBySubscription"
+          "target": "com.azure.dashboard#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.dashboard#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.dashboard#ApprovePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.dashboard#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.dashboard#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.dashboard#DeleteManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.dashboard#UpdateManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.dashboard#CreateManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.dashboard#GetManagedPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.dashboard#ListManagedPrivateEndpoints"
+        },
+        {
+          "target": "com.azure.dashboard#DeleteIntegrationFabric"
+        },
+        {
+          "target": "com.azure.dashboard#UpdateIntegrationFabric"
+        },
+        {
+          "target": "com.azure.dashboard#CreateIntegrationFabric"
+        },
+        {
+          "target": "com.azure.dashboard#GetIntegrationFabric"
+        },
+        {
+          "target": "com.azure.dashboard#ListIntegrationFabrics"
+        },
+        {
+          "target": "com.azure.dashboard#FetchGrafanaAvailablePlugins"
+        },
+        {
+          "target": "com.azure.dashboard#CheckGrafanaEnterpriseDetails"
+        },
+        {
+          "target": "com.azure.dashboard#DeleteGrafana"
+        },
+        {
+          "target": "com.azure.dashboard#UpdateGrafana"
+        },
+        {
+          "target": "com.azure.dashboard#CreateGrafana"
+        },
+        {
+          "target": "com.azure.dashboard#GetGrafana"
+        },
+        {
+          "target": "com.azure.dashboard#ListGrafanaByResourceGroup"
+        },
+        {
+          "target": "com.azure.dashboard#DeleteManagedDashboard"
+        },
+        {
+          "target": "com.azure.dashboard#UpdateManagedDashboard"
+        },
+        {
+          "target": "com.azure.dashboard#CreateManagedDashboard"
+        },
+        {
+          "target": "com.azure.dashboard#GetDashboard"
         },
         {
           "target": "com.azure.dashboard#ListDashboards"
@@ -5541,37 +5568,10 @@
           "target": "com.azure.dashboard#ListGrafana"
         },
         {
-          "target": "com.azure.dashboard#ListGrafanaByResourceGroup"
-        },
-        {
-          "target": "com.azure.dashboard#ListIntegrationFabrics"
-        },
-        {
-          "target": "com.azure.dashboard#ListManagedPrivateEndpoints"
+          "target": "com.azure.dashboard#ListDashboardBySubscription"
         },
         {
           "target": "com.azure.dashboard#ListOperations"
-        },
-        {
-          "target": "com.azure.dashboard#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.dashboard#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.dashboard#RefreshManagedPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.dashboard#UpdateGrafana"
-        },
-        {
-          "target": "com.azure.dashboard#UpdateIntegrationFabric"
-        },
-        {
-          "target": "com.azure.dashboard#UpdateManagedDashboard"
-        },
-        {
-          "target": "com.azure.dashboard#UpdateManagedPrivateEndpoint"
         }
       ],
       "traits": {

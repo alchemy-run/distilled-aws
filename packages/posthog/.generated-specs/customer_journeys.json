@@ -360,22 +360,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.customer_journeys#ListCustomerJourneys"
+        },
+        {
           "target": "com.posthog.customer_journeys#CreateCustomerJourneys"
         },
         {
-          "target": "com.posthog.customer_journeys#CustomerJourneysDestroy"
-        },
-        {
           "target": "com.posthog.customer_journeys#GetCustomerJourneys"
-        },
-        {
-          "target": "com.posthog.customer_journeys#ListCustomerJourneys"
         },
         {
           "target": "com.posthog.customer_journeys#UpdateCustomerJourneys"
         },
         {
           "target": "com.posthog.customer_journeys#UpdateCustomerJourneysPartial"
+        },
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysDestroy"
         }
       ],
       "traits": {

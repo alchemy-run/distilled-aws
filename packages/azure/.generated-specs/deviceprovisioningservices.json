@@ -4129,52 +4129,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.deviceprovisioningservices#CheckIotDpsResourceProvisioningServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#DeleteDpsCertificate"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResource"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCode"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#GetDpsCertificate"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#GetIotDpsResource"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceOperationResult"
-        },
-        {
-          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnection"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceValidSkus"
         },
         {
           "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResources"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceCreateOrUpdate"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateLinkResources"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnection"
         },
         {
           "target": "com.azure.deviceprovisioningservices#IotDpsResourceCreateOrUpdatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListDpsCertificate"
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceByResourceGroup"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnections"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceBySubscription"
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceOperationResult"
         },
         {
           "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceKeys"
@@ -4183,22 +4159,46 @@
           "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysForKeyName"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnections"
+          "target": "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateLinkResources"
+          "target": "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCode"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceValidSkus"
+          "target": "com.azure.deviceprovisioningservices#DeleteDpsCertificate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#ListOperations"
+          "target": "com.azure.deviceprovisioningservices#DpsCertificateCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#GetDpsCertificate"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#ListDpsCertificate"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResource"
         },
         {
           "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResource"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificate"
+          "target": "com.azure.deviceprovisioningservices#IotDpsResourceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResource"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceBySubscription"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#CheckIotDpsResourceProvisioningServiceNameAvailability"
+        },
+        {
+          "target": "com.azure.deviceprovisioningservices#ListOperations"
         }
       ],
       "traits": {

@@ -2485,58 +2485,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.powerbidedicated#CheckCapacityNameAvailability"
-        },
-        {
-          "target": "com.azure.powerbidedicated#CreateAutoScaleVCore"
-        },
-        {
-          "target": "com.azure.powerbidedicated#CreateCapacity"
-        },
-        {
-          "target": "com.azure.powerbidedicated#DeleteAutoScaleVCore"
-        },
-        {
-          "target": "com.azure.powerbidedicated#DeleteCapacity"
-        },
-        {
-          "target": "com.azure.powerbidedicated#GetAutoScaleVCore"
-        },
-        {
-          "target": "com.azure.powerbidedicated#GetCapacityDetails"
-        },
-        {
-          "target": "com.azure.powerbidedicated#ListAutoScaleVCoreByResourceGroup"
-        },
-        {
-          "target": "com.azure.powerbidedicated#ListAutoScaleVCoreBySubscription"
-        },
-        {
-          "target": "com.azure.powerbidedicated#ListCapacities"
-        },
-        {
-          "target": "com.azure.powerbidedicated#ListCapacityByResourceGroup"
-        },
-        {
-          "target": "com.azure.powerbidedicated#ListCapacitySkus"
+          "target": "com.azure.powerbidedicated#SuspendCapacity"
         },
         {
           "target": "com.azure.powerbidedicated#ListCapacitySkusForCapacity"
         },
         {
-          "target": "com.azure.powerbidedicated#ListOperations"
-        },
-        {
           "target": "com.azure.powerbidedicated#ResumeCapacity"
         },
         {
-          "target": "com.azure.powerbidedicated#SuspendCapacity"
+          "target": "com.azure.powerbidedicated#DeleteCapacity"
+        },
+        {
+          "target": "com.azure.powerbidedicated#UpdateCapacity"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CreateCapacity"
+        },
+        {
+          "target": "com.azure.powerbidedicated#GetCapacityDetails"
+        },
+        {
+          "target": "com.azure.powerbidedicated#ListCapacityByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbidedicated#DeleteAutoScaleVCore"
         },
         {
           "target": "com.azure.powerbidedicated#UpdateAutoScaleVCore"
         },
         {
-          "target": "com.azure.powerbidedicated#UpdateCapacity"
+          "target": "com.azure.powerbidedicated#CreateAutoScaleVCore"
+        },
+        {
+          "target": "com.azure.powerbidedicated#GetAutoScaleVCore"
+        },
+        {
+          "target": "com.azure.powerbidedicated#ListAutoScaleVCoreByResourceGroup"
+        },
+        {
+          "target": "com.azure.powerbidedicated#ListCapacitySkus"
+        },
+        {
+          "target": "com.azure.powerbidedicated#CheckCapacityNameAvailability"
+        },
+        {
+          "target": "com.azure.powerbidedicated#ListCapacities"
+        },
+        {
+          "target": "com.azure.powerbidedicated#ListAutoScaleVCoreBySubscription"
+        },
+        {
+          "target": "com.azure.powerbidedicated#ListOperations"
         }
       ],
       "traits": {

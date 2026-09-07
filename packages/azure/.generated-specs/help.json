@@ -1039,7 +1039,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.help#CheckDiagnosticNameAvailability"
+          "target": "com.azure.help#ListDiscoverySolution"
         },
         {
           "target": "com.azure.help#CreateDiagnostic"
@@ -1048,7 +1048,7 @@
           "target": "com.azure.help#GetDiagnostic"
         },
         {
-          "target": "com.azure.help#ListDiscoverySolution"
+          "target": "com.azure.help#CheckDiagnosticNameAvailability"
         },
         {
           "target": "com.azure.help#ListOperations"

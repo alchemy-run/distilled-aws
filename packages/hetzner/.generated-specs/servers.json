@@ -7287,22 +7287,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.servers#CreateServer"
+          "target": "com.hetzner.servers#ListServers"
         },
         {
-          "target": "com.hetzner.servers#DeleteServer"
+          "target": "com.hetzner.servers#CreateServer"
         },
         {
           "target": "com.hetzner.servers#GetServer"
         },
         {
-          "target": "com.hetzner.servers#GetServerMetrics"
-        },
-        {
-          "target": "com.hetzner.servers#ListServers"
-        },
-        {
           "target": "com.hetzner.servers#UpdateServer"
+        },
+        {
+          "target": "com.hetzner.servers#DeleteServer"
+        },
+        {
+          "target": "com.hetzner.servers#GetServerMetrics"
         }
       ],
       "traits": {

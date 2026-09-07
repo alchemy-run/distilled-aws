@@ -1216,52 +1216,52 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.interactions#GetPullRequestBypassListForRepo"
-        },
-        {
-          "target": "com.github.interactions#GetPullRequestCreationCapForOrg"
-        },
-        {
-          "target": "com.github.interactions#GetPullRequestCreationCapForRepo"
-        },
-        {
-          "target": "com.github.interactions#GetRestrictionsForAuthenticatedUser"
-        },
-        {
           "target": "com.github.interactions#GetRestrictionsForOrg"
-        },
-        {
-          "target": "com.github.interactions#GetRestrictionsForRepo"
-        },
-        {
-          "target": "com.github.interactions#RemovePullRequestBypassListForRepo"
-        },
-        {
-          "target": "com.github.interactions#RemoveRestrictionsForAuthenticatedUser"
-        },
-        {
-          "target": "com.github.interactions#RemoveRestrictionsForOrg"
-        },
-        {
-          "target": "com.github.interactions#RemoveRestrictionsForRepo"
-        },
-        {
-          "target": "com.github.interactions#SetPullRequestBypassListForRepo"
-        },
-        {
-          "target": "com.github.interactions#SetRestrictionsForAuthenticatedUser"
         },
         {
           "target": "com.github.interactions#SetRestrictionsForOrg"
         },
         {
-          "target": "com.github.interactions#SetRestrictionsForRepo"
+          "target": "com.github.interactions#RemoveRestrictionsForOrg"
+        },
+        {
+          "target": "com.github.interactions#GetPullRequestCreationCapForOrg"
         },
         {
           "target": "com.github.interactions#UpdatePullRequestCreationCapForOrg"
         },
         {
+          "target": "com.github.interactions#GetRestrictionsForRepo"
+        },
+        {
+          "target": "com.github.interactions#SetRestrictionsForRepo"
+        },
+        {
+          "target": "com.github.interactions#RemoveRestrictionsForRepo"
+        },
+        {
+          "target": "com.github.interactions#GetPullRequestBypassListForRepo"
+        },
+        {
+          "target": "com.github.interactions#SetPullRequestBypassListForRepo"
+        },
+        {
+          "target": "com.github.interactions#RemovePullRequestBypassListForRepo"
+        },
+        {
+          "target": "com.github.interactions#GetPullRequestCreationCapForRepo"
+        },
+        {
           "target": "com.github.interactions#UpdatePullRequestCreationCapForRepo"
+        },
+        {
+          "target": "com.github.interactions#GetRestrictionsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.interactions#SetRestrictionsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.interactions#RemoveRestrictionsForAuthenticatedUser"
         }
       ],
       "traits": {

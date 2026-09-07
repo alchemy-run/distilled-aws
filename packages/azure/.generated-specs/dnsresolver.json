@@ -7708,178 +7708,178 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dnsresolver#BulkDnsResolverDomainList"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsForwardingRuleset"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsResolver"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsResolverDomainList"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicy"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteDnsSecurityRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteForwardingRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteInboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteOutboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#DeleteVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsForwardingRulesetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsResolverDomainListsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsResolverPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsResolversCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#DnsSecurityRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#ForwardingRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsForwardingRuleset"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsResolver"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsResolverDomainList"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsResolverPolicy"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetDnsSecurityRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetForwardingRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetInboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetOutboundEndpoint"
-        },
-        {
-          "target": "com.azure.dnsresolver#GetVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#InboundEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroup"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetwork"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsForwardingRulesets"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverByResourceGroup"
-        },
-        {
           "target": "com.azure.dnsresolver#ListDnsResolverByVirtualNetwork"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroup"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverDomainLists"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicies"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroup"
         },
         {
           "target": "com.azure.dnsresolver#ListDnsResolverPolicyByVirtualNetwork"
         },
         {
-          "target": "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinks"
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByVirtualNetwork"
         },
         {
-          "target": "com.azure.dnsresolver#ListDnsResolvers"
+          "target": "com.azure.dnsresolver#DeleteOutboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#ListDnsSecurityRules"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListForwardingRules"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListInboundEndpoints"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListOutboundEndpoints"
-        },
-        {
-          "target": "com.azure.dnsresolver#ListVirtualNetworkLinks"
+          "target": "com.azure.dnsresolver#UpdateOutboundEndpoint"
         },
         {
           "target": "com.azure.dnsresolver#OutboundEndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateDnsForwardingRuleset"
+          "target": "com.azure.dnsresolver#GetOutboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateDnsResolver"
+          "target": "com.azure.dnsresolver#ListOutboundEndpoints"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainList"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicy"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLink"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateDnsSecurityRule"
-        },
-        {
-          "target": "com.azure.dnsresolver#UpdateForwardingRule"
+          "target": "com.azure.dnsresolver#DeleteInboundEndpoint"
         },
         {
           "target": "com.azure.dnsresolver#UpdateInboundEndpoint"
         },
         {
-          "target": "com.azure.dnsresolver#UpdateOutboundEndpoint"
+          "target": "com.azure.dnsresolver#InboundEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetInboundEndpoint"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListInboundEndpoints"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteDnsResolver"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolver"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsResolversCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolver"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicyVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicyVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsResolverPolicyVirtualNetworkLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicyVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyVirtualNetworkLinks"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteDnsSecurityRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsSecurityRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsSecurityRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsSecurityRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsSecurityRules"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteDnsResolverPolicy"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolverPolicy"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsResolverPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolverPolicy"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicyByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#BulkDnsResolverDomainList"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteDnsResolverDomainList"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsResolverDomainList"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsResolverDomainListsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsResolverDomainList"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverDomainListByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteVirtualNetworkLink"
         },
         {
           "target": "com.azure.dnsresolver#UpdateVirtualNetworkLink"
         },
         {
           "target": "com.azure.dnsresolver#VirtualNetworkLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetVirtualNetworkLink"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListVirtualNetworkLinks"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteForwardingRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateForwardingRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#ForwardingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetForwardingRule"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListForwardingRules"
+        },
+        {
+          "target": "com.azure.dnsresolver#DeleteDnsForwardingRuleset"
+        },
+        {
+          "target": "com.azure.dnsresolver#UpdateDnsForwardingRuleset"
+        },
+        {
+          "target": "com.azure.dnsresolver#DnsForwardingRulesetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.dnsresolver#GetDnsForwardingRuleset"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesetByResourceGroup"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolvers"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverPolicies"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsResolverDomainLists"
+        },
+        {
+          "target": "com.azure.dnsresolver#ListDnsForwardingRulesets"
         }
       ],
       "traits": {

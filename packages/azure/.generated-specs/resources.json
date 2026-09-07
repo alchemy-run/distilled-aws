@@ -36761,631 +36761,259 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resources#ApplicationDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#ApplicationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#ApplicationsCreateOrUpdateById"
-        },
-        {
-          "target": "com.azure.resources#CancelDeployment"
-        },
-        {
-          "target": "com.azure.resources#CancelDeploymentAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#CancelDeploymentAtScope"
-        },
-        {
-          "target": "com.azure.resources#CancelDeploymentAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#CancelDeploymentAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#CheckResourceName"
-        },
-        {
-          "target": "com.azure.resources#CheckSubscriptionZonePeers"
-        },
-        {
-          "target": "com.azure.resources#CreateDeploymentScript"
-        },
-        {
-          "target": "com.azure.resources#CreatePolicyAssignment"
-        },
-        {
-          "target": "com.azure.resources#DecompileBicep"
-        },
-        {
-          "target": "com.azure.resources#DeleteApplication"
-        },
-        {
-          "target": "com.azure.resources#DeleteApplicationById"
-        },
-        {
-          "target": "com.azure.resources#DeleteApplicationDefinition"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeployment"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentAtScope"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentScript"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentStackAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentStackAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentStackAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentStacksWhatIfResultsAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentStacksWhatIfResultsAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#DeleteDeploymentStacksWhatIfResultsAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#DeleteJitRequest"
-        },
-        {
-          "target": "com.azure.resources#DeleteManagementLockAtResourceGroupLevel"
-        },
-        {
-          "target": "com.azure.resources#DeleteManagementLockAtResourceLevel"
-        },
-        {
-          "target": "com.azure.resources#DeleteManagementLockAtSubscriptionLevel"
-        },
-        {
-          "target": "com.azure.resources#DeleteManagementLockByScope"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicyAssignment"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicyDefinition"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicyDefinitionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicyDefinitionVersion"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicyDefinitionVersionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicySetDefinition"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicySetDefinitionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicySetDefinitionVersion"
-        },
-        {
-          "target": "com.azure.resources#DeletePolicySetDefinitionVersionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeletePrivateLinkAssociation"
-        },
-        {
-          "target": "com.azure.resources#DeleteResource"
-        },
-        {
-          "target": "com.azure.resources#DeleteResourceById"
-        },
-        {
-          "target": "com.azure.resources#DeleteResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#DeleteResourceLink"
-        },
-        {
-          "target": "com.azure.resources#DeleteResourceManagementPrivateLink"
-        },
-        {
-          "target": "com.azure.resources#DeleteSubscriptionFeatureRegistration"
-        },
-        {
-          "target": "com.azure.resources#DeleteTag"
-        },
-        {
-          "target": "com.azure.resources#DeleteTagAtScope"
-        },
-        {
-          "target": "com.azure.resources#DeleteTagValue"
-        },
-        {
-          "target": "com.azure.resources#DeleteTemplateSpec"
-        },
-        {
-          "target": "com.azure.resources#DeleteTemplateSpecVersion"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsCalculateTemplateHash"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtScope"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksCreateOrUpdateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksCreateOrUpdateAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksCreateOrUpdateAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtManagementGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtManagementGroupWhatIf"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtResourceGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtResourceGroupWhatIf"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtSubscriptionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtSubscriptionWhatIf"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsWhatIf"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsWhatIfAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsWhatIfAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#DeploymentsWhatIfAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentStackTemplateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentStackTemplateAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentStackTemplateAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentTemplate"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentTemplateAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentTemplateAtScope"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentTemplateAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#ExportDeploymentTemplateAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#ExportResourceGroupTemplate"
-        },
-        {
-          "target": "com.azure.resources#GetApplication"
-        },
-        {
-          "target": "com.azure.resources#GetApplicationById"
-        },
-        {
-          "target": "com.azure.resources#GetApplicationDefinition"
-        },
-        {
-          "target": "com.azure.resources#GetChange"
-        },
-        {
-          "target": "com.azure.resources#GetDataBoundaryScope"
-        },
-        {
-          "target": "com.azure.resources#GetDataBoundaryTenant"
-        },
-        {
-          "target": "com.azure.resources#GetDataPolicyManifestByPolicyMode"
-        },
-        {
-          "target": "com.azure.resources#GetDeployment"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentAtScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentOperation"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentOperationAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentOperationAtScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentOperationAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentOperationAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentScript"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentScriptLogs"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentScriptLogsDefault"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentStackAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentStackAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentStackAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentStacksWhatIfResultsAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentStacksWhatIfResultsAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#GetDeploymentStacksWhatIfResultsAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#GetFeature"
-        },
-        {
-          "target": "com.azure.resources#GetJitRequest"
-        },
-        {
-          "target": "com.azure.resources#GetManagementLockAtResourceGroupLevel"
-        },
-        {
-          "target": "com.azure.resources#GetManagementLockAtResourceLevel"
-        },
-        {
-          "target": "com.azure.resources#GetManagementLockAtSubscriptionLevel"
-        },
-        {
-          "target": "com.azure.resources#GetManagementLockByScope"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyAssignment"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyDefinition"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyDefinitionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyDefinitionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyDefinitionVersion"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyDefinitionVersionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#GetPolicyDefinitionVersionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#GetPolicySetDefinition"
-        },
-        {
-          "target": "com.azure.resources#GetPolicySetDefinitionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#GetPolicySetDefinitionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#GetPolicySetDefinitionVersion"
-        },
-        {
-          "target": "com.azure.resources#GetPolicySetDefinitionVersionAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#GetPolicySetDefinitionVersionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#GetPrivateLinkAssociation"
-        },
-        {
-          "target": "com.azure.resources#GetProvider"
-        },
-        {
-          "target": "com.azure.resources#GetProviderAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#GetResource"
-        },
-        {
-          "target": "com.azure.resources#GetResourceById"
-        },
-        {
-          "target": "com.azure.resources#GetResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#GetResourceLink"
-        },
-        {
-          "target": "com.azure.resources#GetResourceManagementPrivateLink"
-        },
-        {
-          "target": "com.azure.resources#GetSubscription"
-        },
-        {
-          "target": "com.azure.resources#GetSubscriptionFeatureRegistration"
-        },
-        {
-          "target": "com.azure.resources#GetTagAtScope"
-        },
-        {
-          "target": "com.azure.resources#GetTemplateSpec"
-        },
-        {
-          "target": "com.azure.resources#GetTemplateSpecBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#GetTemplateSpecVersion"
-        },
-        {
-          "target": "com.azure.resources#GetTemplateSpecVersionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#JitRequestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#ListApplicationByResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListApplicationBySubscription"
-        },
-        {
-          "target": "com.azure.resources#ListApplicationDefinitionByResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListAuthorizationOperations"
-        },
-        {
-          "target": "com.azure.resources#ListChanges"
-        },
-        {
-          "target": "com.azure.resources#ListDataPolicyManifests"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentAtScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentByResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentOperationAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentOperationAtScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentOperationAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentOperationAtTenantScope"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentOperations"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentScriptByResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentScriptBySubscription"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentStackAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentStackAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentStackAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentStacksWhatIfResultsAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentStacksWhatIfResultsAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListDeploymentStacksWhatIfResultsAtSubscription"
-        },
-        {
-          "target": "com.azure.resources#ListFeatureAll"
-        },
-        {
-          "target": "com.azure.resources#ListFeatures"
-        },
-        {
-          "target": "com.azure.resources#ListJitRequestByResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ListJitRequestBySubscription"
-        },
-        {
-          "target": "com.azure.resources#ListManagementLockAtResourceGroupLevel"
-        },
-        {
-          "target": "com.azure.resources#ListManagementLockAtResourceLevel"
+          "target": "com.azure.resources#ListManagementLockByScope"
         },
         {
           "target": "com.azure.resources#ListManagementLockAtSubscriptionLevel"
         },
         {
-          "target": "com.azure.resources#ListManagementLockByScope"
+          "target": "com.azure.resources#ListManagementLockAtResourceLevel"
         },
         {
-          "target": "com.azure.resources#ListOperations"
+          "target": "com.azure.resources#ListManagementLockAtResourceGroupLevel"
         },
         {
-          "target": "com.azure.resources#ListPolicyAssignmentForManagementGroup"
+          "target": "com.azure.resources#DeleteManagementLockAtSubscriptionLevel"
         },
         {
-          "target": "com.azure.resources#ListPolicyAssignmentForResource"
+          "target": "com.azure.resources#ManagementLocksCreateOrUpdateAtSubscriptionLevel"
+        },
+        {
+          "target": "com.azure.resources#GetManagementLockAtSubscriptionLevel"
+        },
+        {
+          "target": "com.azure.resources#DeleteManagementLockAtResourceLevel"
+        },
+        {
+          "target": "com.azure.resources#ManagementLocksCreateOrUpdateAtResourceLevel"
+        },
+        {
+          "target": "com.azure.resources#GetManagementLockAtResourceLevel"
+        },
+        {
+          "target": "com.azure.resources#DeleteManagementLockByScope"
+        },
+        {
+          "target": "com.azure.resources#ManagementLocksCreateOrUpdateByScope"
+        },
+        {
+          "target": "com.azure.resources#GetManagementLockByScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteManagementLockAtResourceGroupLevel"
+        },
+        {
+          "target": "com.azure.resources#ManagementLocksCreateOrUpdateAtResourceGroupLevel"
+        },
+        {
+          "target": "com.azure.resources#GetManagementLockAtResourceGroupLevel"
+        },
+        {
+          "target": "com.azure.resources#ListAuthorizationOperations"
         },
         {
           "target": "com.azure.resources#ListPolicyAssignmentForResourceGroup"
         },
         {
-          "target": "com.azure.resources#ListPolicyAssignments"
+          "target": "com.azure.resources#PolicyTokensAcquireAtResourceGroup"
         },
         {
-          "target": "com.azure.resources#ListPolicyDefinitionBuiltIn"
+          "target": "com.azure.resources#ListPolicyAssignmentForResource"
         },
         {
-          "target": "com.azure.resources#ListPolicyDefinitionByManagementGroup"
+          "target": "com.azure.resources#DeletePolicySetDefinitionVersion"
         },
         {
-          "target": "com.azure.resources#ListPolicyDefinitions"
+          "target": "com.azure.resources#PolicySetDefinitionVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.resources#ListPolicyDefinitionVersionAll"
-        },
-        {
-          "target": "com.azure.resources#ListPolicyDefinitionVersionAllAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ListPolicyDefinitionVersionAllBuiltins"
-        },
-        {
-          "target": "com.azure.resources#ListPolicyDefinitionVersionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#ListPolicyDefinitionVersionByManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ListPolicyDefinitionVersions"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionByManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitions"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionVersionAll"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionVersionAllAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionVersionAllBuiltins"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionVersionBuiltIn"
-        },
-        {
-          "target": "com.azure.resources#ListPolicySetDefinitionVersionByManagementGroup"
+          "target": "com.azure.resources#GetPolicySetDefinitionVersion"
         },
         {
           "target": "com.azure.resources#ListPolicySetDefinitionVersions"
         },
         {
-          "target": "com.azure.resources#ListPrivateLinkAssociation"
+          "target": "com.azure.resources#DeletePolicySetDefinition"
         },
         {
-          "target": "com.azure.resources#ListProviderAtTenantScope"
+          "target": "com.azure.resources#PolicySetDefinitionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.resources#ListProviderResourceTypes"
+          "target": "com.azure.resources#GetPolicySetDefinition"
         },
         {
-          "target": "com.azure.resources#ListProviders"
+          "target": "com.azure.resources#ListPolicySetDefinitions"
         },
         {
-          "target": "com.azure.resources#ListResourceByResourceGroup"
+          "target": "com.azure.resources#DeletePolicyDefinitionVersion"
         },
         {
-          "target": "com.azure.resources#ListResourceGroups"
+          "target": "com.azure.resources#PolicyDefinitionVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.resources#ListResourceLinkAtSourceScope"
+          "target": "com.azure.resources#GetPolicyDefinitionVersion"
         },
         {
-          "target": "com.azure.resources#ListResourceLinkAtSubscription"
+          "target": "com.azure.resources#ListPolicyDefinitionVersions"
         },
         {
-          "target": "com.azure.resources#ListResourceManagementPrivateLink"
+          "target": "com.azure.resources#DeletePolicyDefinition"
+        },
+        {
+          "target": "com.azure.resources#PolicyDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetPolicyDefinition"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitions"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyAssignments"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionVersionAll"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionVersionAll"
+        },
+        {
+          "target": "com.azure.resources#PolicyTokensAcquire"
+        },
+        {
+          "target": "com.azure.resources#DeletePolicySetDefinitionVersionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#GetPolicySetDefinitionVersionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionVersionByManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeletePolicySetDefinitionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#PolicySetDefinitionsCreateOrUpdateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#GetPolicySetDefinitionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionByManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeletePolicyDefinitionVersionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#PolicyDefinitionVersionsCreateOrUpdateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#GetPolicyDefinitionVersionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionVersionByManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeletePolicyDefinitionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#PolicyDefinitionsCreateOrUpdateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#GetPolicyDefinitionAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionByManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyAssignmentForManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionVersionAllAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionVersionAllAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#PolicyTokensAcquireAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#GetPolicySetDefinitionVersionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionVersionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#GetPolicySetDefinitionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#GetPolicyDefinitionVersionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionVersionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#GetPolicyDefinitionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListPolicySetDefinitionVersionAllBuiltins"
+        },
+        {
+          "target": "com.azure.resources#ListPolicyDefinitionVersionAllBuiltins"
+        },
+        {
+          "target": "com.azure.resources#GetDataPolicyManifestByPolicyMode"
+        },
+        {
+          "target": "com.azure.resources#ListDataPolicyManifests"
+        },
+        {
+          "target": "com.azure.resources#DeletePolicyAssignment"
+        },
+        {
+          "target": "com.azure.resources#UpdatePolicyAssignment"
+        },
+        {
+          "target": "com.azure.resources#CreatePolicyAssignment"
+        },
+        {
+          "target": "com.azure.resources#GetPolicyAssignment"
         },
         {
           "target": "com.azure.resources#ListResourceManagementPrivateLinkByResourceGroup"
         },
         {
-          "target": "com.azure.resources#ListResources"
+          "target": "com.azure.resources#ListResourceManagementPrivateLink"
+        },
+        {
+          "target": "com.azure.resources#DeleteResourceManagementPrivateLink"
+        },
+        {
+          "target": "com.azure.resources#PutResourceManagementPrivateLink"
+        },
+        {
+          "target": "com.azure.resources#GetResourceManagementPrivateLink"
+        },
+        {
+          "target": "com.azure.resources#ListPrivateLinkAssociation"
+        },
+        {
+          "target": "com.azure.resources#DeletePrivateLinkAssociation"
+        },
+        {
+          "target": "com.azure.resources#PutPrivateLinkAssociation"
+        },
+        {
+          "target": "com.azure.resources#GetPrivateLinkAssociation"
         },
         {
           "target": "com.azure.resources#ListSubscriptionFeatureRegistrationAllBySubscription"
@@ -37394,16 +37022,493 @@
           "target": "com.azure.resources#ListSubscriptionFeatureRegistrationBySubscription"
         },
         {
-          "target": "com.azure.resources#ListSubscriptionLocations"
+          "target": "com.azure.resources#DeleteSubscriptionFeatureRegistration"
         },
         {
-          "target": "com.azure.resources#ListSubscriptions"
+          "target": "com.azure.resources#SubscriptionFeatureRegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetSubscriptionFeatureRegistration"
+        },
+        {
+          "target": "com.azure.resources#UnregisterFeature"
+        },
+        {
+          "target": "com.azure.resources#RegisterFeature"
+        },
+        {
+          "target": "com.azure.resources#GetFeature"
+        },
+        {
+          "target": "com.azure.resources#ListFeatures"
+        },
+        {
+          "target": "com.azure.resources#ListFeatureAll"
+        },
+        {
+          "target": "com.azure.resources#ListOperations"
+        },
+        {
+          "target": "com.azure.resources#DecompileBicep"
+        },
+        {
+          "target": "com.azure.resources#GetChange"
+        },
+        {
+          "target": "com.azure.resources#ListChanges"
+        },
+        {
+          "target": "com.azure.resources#PutDataBoundary"
+        },
+        {
+          "target": "com.azure.resources#GetDataBoundaryTenant"
+        },
+        {
+          "target": "com.azure.resources#GetDataBoundaryScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentScriptLogsDefault"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentScriptLogs"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentScript"
+        },
+        {
+          "target": "com.azure.resources#UpdateDeploymentScript"
+        },
+        {
+          "target": "com.azure.resources#CreateDeploymentScript"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentScript"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentScriptByResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentScriptBySubscription"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtResourceGroupWhatIf"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentStacksWhatIfResultsAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtResourceGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentStacksWhatIfResultsAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentStacksWhatIfResultsAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentStackStackAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentStackTemplateAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentStackAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksCreateOrUpdateAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentStackAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentStackAtResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtSubscriptionWhatIf"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentStacksWhatIfResultsAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtSubscriptionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentStacksWhatIfResultsAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentStacksWhatIfResultsAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentStackStackAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentStackTemplateAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentStackAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksCreateOrUpdateAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentStackAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentStackAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtManagementGroupWhatIf"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentStacksWhatIfResultsAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksWhatIfResultsAtManagementGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentStacksWhatIfResultsAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentStacksWhatIfResultsAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentStackStackAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentStackTemplateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentStackAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeploymentStacksCreateOrUpdateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentStackAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentStackAtManagementGroup"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsWhatIf"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeployment"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentTemplate"
+        },
+        {
+          "target": "com.azure.resources#CancelDeployment"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeployment"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetDeployment"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentByResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentOperation"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentOperations"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsWhatIfAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentOperationAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentOperationAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentTemplateAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#CancelDeploymentAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsWhatIfAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentOperationAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentOperationAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentTemplateAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#CancelDeploymentAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsCalculateTemplateHash"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsWhatIfAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentOperationAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentOperationAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentTemplateAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#CancelDeploymentAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#ValidateDeploymentAtScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentOperationAtScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentOperationAtScope"
+        },
+        {
+          "target": "com.azure.resources#ExportDeploymentTemplateAtScope"
+        },
+        {
+          "target": "com.azure.resources#CancelDeploymentAtScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteDeploymentAtScope"
+        },
+        {
+          "target": "com.azure.resources#DeploymentsCreateOrUpdateAtScope"
+        },
+        {
+          "target": "com.azure.resources#GetDeploymentAtScope"
+        },
+        {
+          "target": "com.azure.resources#ListDeploymentAtScope"
+        },
+        {
+          "target": "com.azure.resources#ListResourceLinkAtSourceScope"
+        },
+        {
+          "target": "com.azure.resources#ListResourceLinkAtSubscription"
+        },
+        {
+          "target": "com.azure.resources#DeleteResourceLink"
+        },
+        {
+          "target": "com.azure.resources#ResourceLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetResourceLink"
+        },
+        {
+          "target": "com.azure.resources#ValidateResourceValidatorResources"
+        },
+        {
+          "target": "com.azure.resources#DeleteTagValue"
+        },
+        {
+          "target": "com.azure.resources#TagsCreateOrUpdateValue"
+        },
+        {
+          "target": "com.azure.resources#DeleteTag"
+        },
+        {
+          "target": "com.azure.resources#TagsCreateOrUpdate"
         },
         {
           "target": "com.azure.resources#ListTags"
         },
         {
+          "target": "com.azure.resources#ListResources"
+        },
+        {
+          "target": "com.azure.resources#ResourcesValidateMoveResources"
+        },
+        {
+          "target": "com.azure.resources#ListResourceByResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#DeleteResource"
+        },
+        {
+          "target": "com.azure.resources#UpdateResource"
+        },
+        {
+          "target": "com.azure.resources#ResourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetResource"
+        },
+        {
+          "target": "com.azure.resources#MoveResourceResources"
+        },
+        {
+          "target": "com.azure.resources#ExportResourceGroupTemplate"
+        },
+        {
+          "target": "com.azure.resources#DeleteResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#UpdateResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ResourceGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ListResourceGroups"
+        },
+        {
+          "target": "com.azure.resources#UnregisterProvider"
+        },
+        {
+          "target": "com.azure.resources#ListProviderResourceTypes"
+        },
+        {
+          "target": "com.azure.resources#RegisterProvider"
+        },
+        {
+          "target": "com.azure.resources#ProvidersProviderPermissions"
+        },
+        {
+          "target": "com.azure.resources#GetProvider"
+        },
+        {
+          "target": "com.azure.resources#ListProviders"
+        },
+        {
+          "target": "com.azure.resources#RegisterProviderAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.resources#GetProviderAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#ListProviderAtTenantScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteTagAtScope"
+        },
+        {
+          "target": "com.azure.resources#UpdateTagAtScope"
+        },
+        {
+          "target": "com.azure.resources#TagsCreateOrUpdateAtScope"
+        },
+        {
+          "target": "com.azure.resources#GetTagAtScope"
+        },
+        {
+          "target": "com.azure.resources#DeleteResourceById"
+        },
+        {
+          "target": "com.azure.resources#UpdateResourceById"
+        },
+        {
+          "target": "com.azure.resources#ResourcesCreateOrUpdateById"
+        },
+        {
+          "target": "com.azure.resources#GetResourceById"
+        },
+        {
+          "target": "com.azure.resources#ListTenants"
+        },
+        {
+          "target": "com.azure.resources#CheckSubscriptionZonePeers"
+        },
+        {
+          "target": "com.azure.resources#ListSubscriptionLocations"
+        },
+        {
+          "target": "com.azure.resources#GetSubscription"
+        },
+        {
+          "target": "com.azure.resources#ListSubscriptions"
+        },
+        {
+          "target": "com.azure.resources#CheckResourceName"
+        },
+        {
+          "target": "com.azure.resources#GetTemplateSpecVersionBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListTemplateSpecVersionBuiltIns"
+        },
+        {
           "target": "com.azure.resources#ListTemplateSpecBuiltIns"
+        },
+        {
+          "target": "com.azure.resources#GetTemplateSpecBuiltIn"
+        },
+        {
+          "target": "com.azure.resources#ListTemplateSpecVersions"
+        },
+        {
+          "target": "com.azure.resources#DeleteTemplateSpecVersion"
+        },
+        {
+          "target": "com.azure.resources#UpdateTemplateSpecVersion"
+        },
+        {
+          "target": "com.azure.resources#TemplateSpecVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetTemplateSpecVersion"
         },
         {
           "target": "com.azure.resources#ListTemplateSpecByResourceGroup"
@@ -37412,184 +37517,79 @@
           "target": "com.azure.resources#ListTemplateSpecBySubscription"
         },
         {
-          "target": "com.azure.resources#ListTemplateSpecVersionBuiltIns"
-        },
-        {
-          "target": "com.azure.resources#ListTemplateSpecVersions"
-        },
-        {
-          "target": "com.azure.resources#ListTenants"
-        },
-        {
-          "target": "com.azure.resources#ManagementLocksCreateOrUpdateAtResourceGroupLevel"
-        },
-        {
-          "target": "com.azure.resources#ManagementLocksCreateOrUpdateAtResourceLevel"
-        },
-        {
-          "target": "com.azure.resources#ManagementLocksCreateOrUpdateAtSubscriptionLevel"
-        },
-        {
-          "target": "com.azure.resources#ManagementLocksCreateOrUpdateByScope"
-        },
-        {
-          "target": "com.azure.resources#MoveResourceResources"
-        },
-        {
-          "target": "com.azure.resources#PolicyDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#PolicyDefinitionsCreateOrUpdateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#PolicyDefinitionVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#PolicyDefinitionVersionsCreateOrUpdateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#PolicySetDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#PolicySetDefinitionsCreateOrUpdateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#PolicySetDefinitionVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#PolicySetDefinitionVersionsCreateOrUpdateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#PolicyTokensAcquire"
-        },
-        {
-          "target": "com.azure.resources#PolicyTokensAcquireAtManagementGroup"
-        },
-        {
-          "target": "com.azure.resources#PolicyTokensAcquireAtResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#ProvidersProviderPermissions"
-        },
-        {
-          "target": "com.azure.resources#PutDataBoundary"
-        },
-        {
-          "target": "com.azure.resources#PutPrivateLinkAssociation"
-        },
-        {
-          "target": "com.azure.resources#PutResourceManagementPrivateLink"
-        },
-        {
-          "target": "com.azure.resources#RefreshApplicationPermissions"
-        },
-        {
-          "target": "com.azure.resources#RegisterFeature"
-        },
-        {
-          "target": "com.azure.resources#RegisterProvider"
-        },
-        {
-          "target": "com.azure.resources#RegisterProviderAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.resources#ResourceGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#ResourceLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#ResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#ResourcesCreateOrUpdateById"
-        },
-        {
-          "target": "com.azure.resources#ResourcesValidateMoveResources"
-        },
-        {
-          "target": "com.azure.resources#SubscriptionFeatureRegistrationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#TagsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#TagsCreateOrUpdateAtScope"
-        },
-        {
-          "target": "com.azure.resources#TagsCreateOrUpdateValue"
-        },
-        {
-          "target": "com.azure.resources#TemplateSpecsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#TemplateSpecVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.resources#UnregisterFeature"
-        },
-        {
-          "target": "com.azure.resources#UnregisterProvider"
-        },
-        {
-          "target": "com.azure.resources#UpdateApplication"
-        },
-        {
-          "target": "com.azure.resources#UpdateApplicationById"
-        },
-        {
-          "target": "com.azure.resources#UpdateDeploymentScript"
-        },
-        {
-          "target": "com.azure.resources#UpdateJitRequest"
-        },
-        {
-          "target": "com.azure.resources#UpdatePolicyAssignment"
-        },
-        {
-          "target": "com.azure.resources#UpdateResource"
-        },
-        {
-          "target": "com.azure.resources#UpdateResourceById"
-        },
-        {
-          "target": "com.azure.resources#UpdateResourceGroup"
-        },
-        {
-          "target": "com.azure.resources#UpdateTagAtScope"
+          "target": "com.azure.resources#DeleteTemplateSpec"
         },
         {
           "target": "com.azure.resources#UpdateTemplateSpec"
         },
         {
-          "target": "com.azure.resources#UpdateTemplateSpecVersion"
+          "target": "com.azure.resources#TemplateSpecsCreateOrUpdate"
         },
         {
-          "target": "com.azure.resources#ValidateDeployment"
+          "target": "com.azure.resources#GetTemplateSpec"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentAtManagementGroupScope"
+          "target": "com.azure.resources#RefreshApplicationPermissions"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentAtScope"
+          "target": "com.azure.resources#ListJitRequestByResourceGroup"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentAtSubscriptionScope"
+          "target": "com.azure.resources#ListJitRequestBySubscription"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentAtTenantScope"
+          "target": "com.azure.resources#DeleteJitRequest"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentStackStackAtManagementGroup"
+          "target": "com.azure.resources#UpdateJitRequest"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentStackStackAtResourceGroup"
+          "target": "com.azure.resources#JitRequestsCreateOrUpdate"
         },
         {
-          "target": "com.azure.resources#ValidateDeploymentStackStackAtSubscription"
+          "target": "com.azure.resources#GetJitRequest"
         },
         {
-          "target": "com.azure.resources#ValidateResourceValidatorResources"
+          "target": "com.azure.resources#DeleteApplicationById"
+        },
+        {
+          "target": "com.azure.resources#UpdateApplicationById"
+        },
+        {
+          "target": "com.azure.resources#ApplicationsCreateOrUpdateById"
+        },
+        {
+          "target": "com.azure.resources#GetApplicationById"
+        },
+        {
+          "target": "com.azure.resources#ListApplicationBySubscription"
+        },
+        {
+          "target": "com.azure.resources#ListApplicationByResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#ListApplicationDefinitionByResourceGroup"
+        },
+        {
+          "target": "com.azure.resources#DeleteApplicationDefinition"
+        },
+        {
+          "target": "com.azure.resources#ApplicationDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetApplicationDefinition"
+        },
+        {
+          "target": "com.azure.resources#DeleteApplication"
+        },
+        {
+          "target": "com.azure.resources#UpdateApplication"
+        },
+        {
+          "target": "com.azure.resources#ApplicationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resources#GetApplication"
         }
       ],
       "traits": {

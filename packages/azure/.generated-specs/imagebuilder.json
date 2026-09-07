@@ -2801,49 +2801,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.imagebuilder#CancelVirtualMachineImageTemplate"
-        },
-        {
           "target": "com.azure.imagebuilder#DeleteTrigger"
         },
         {
-          "target": "com.azure.imagebuilder#DeleteVirtualMachineImageTemplate"
+          "target": "com.azure.imagebuilder#TriggersCreateOrUpdate"
         },
         {
           "target": "com.azure.imagebuilder#GetTrigger"
         },
         {
-          "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplate"
+          "target": "com.azure.imagebuilder#ListTriggerByImageTemplate"
         },
         {
           "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplateRunOutput"
         },
         {
-          "target": "com.azure.imagebuilder#ListOperations"
-        },
-        {
-          "target": "com.azure.imagebuilder#ListTriggerByImageTemplate"
-        },
-        {
-          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplateByResourceGroup"
-        },
-        {
           "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplateRunOutputs"
-        },
-        {
-          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplates"
         },
         {
           "target": "com.azure.imagebuilder#RunVirtualMachineImageTemplate"
         },
         {
-          "target": "com.azure.imagebuilder#TriggersCreateOrUpdate"
+          "target": "com.azure.imagebuilder#CancelVirtualMachineImageTemplate"
+        },
+        {
+          "target": "com.azure.imagebuilder#DeleteVirtualMachineImageTemplate"
         },
         {
           "target": "com.azure.imagebuilder#UpdateVirtualMachineImageTemplate"
         },
         {
           "target": "com.azure.imagebuilder#VirtualMachineImageTemplatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.imagebuilder#GetVirtualMachineImageTemplate"
+        },
+        {
+          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplateByResourceGroup"
+        },
+        {
+          "target": "com.azure.imagebuilder#ListVirtualMachineImageTemplates"
+        },
+        {
+          "target": "com.azure.imagebuilder#ListOperations"
         }
       ],
       "traits": {

@@ -721,13 +721,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.members#ListMembers"
+        },
+        {
           "target": "com.whop.members#GetMember"
         },
         {
           "target": "com.whop.members#ListMemberLogs"
-        },
-        {
-          "target": "com.whop.members#ListMembers"
         }
       ],
       "traits": {

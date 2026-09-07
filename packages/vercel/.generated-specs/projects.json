@@ -117186,100 +117186,100 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.projects#AcceptProjectTransferRequest"
-        },
-        {
-          "target": "com.vercel.projects#AddProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#BatchRemoveProjectEnv"
-        },
-        {
-          "target": "com.vercel.projects#CreateProject"
-        },
-        {
-          "target": "com.vercel.projects#CreateProjectEnv"
-        },
-        {
-          "target": "com.vercel.projects#CreateProjectTransferRequest"
-        },
-        {
-          "target": "com.vercel.projects#CreateTraceSession"
-        },
-        {
-          "target": "com.vercel.projects#DeleteProject"
-        },
-        {
-          "target": "com.vercel.projects#EditProjectEnv"
-        },
-        {
-          "target": "com.vercel.projects#FilterProjectEnvs"
-        },
-        {
-          "target": "com.vercel.projects#GetProject"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectDomains"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectEnv"
-        },
-        {
           "target": "com.vercel.projects#GetProjects"
-        },
-        {
-          "target": "com.vercel.projects#GetProjectToken"
         },
         {
           "target": "com.vercel.projects#GetProjectTrace"
         },
         {
-          "target": "com.vercel.projects#ListPromoteAliases"
+          "target": "com.vercel.projects#CreateProject"
         },
         {
-          "target": "com.vercel.projects#MoveProjectDomain"
+          "target": "com.vercel.projects#GetProjectToken"
         },
         {
-          "target": "com.vercel.projects#PauseProject"
+          "target": "com.vercel.projects#CreateTraceSession"
         },
         {
-          "target": "com.vercel.projects#RemoveProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#RemoveProjectEnv"
-        },
-        {
-          "target": "com.vercel.projects#RequestPromote"
-        },
-        {
-          "target": "com.vercel.projects#RequestRollback"
-        },
-        {
-          "target": "com.vercel.projects#UnpauseProject"
-        },
-        {
-          "target": "com.vercel.projects#UpdateMicrofrontends"
+          "target": "com.vercel.projects#GetProject"
         },
         {
           "target": "com.vercel.projects#UpdateProject"
         },
         {
-          "target": "com.vercel.projects#UpdateProjectDomain"
-        },
-        {
-          "target": "com.vercel.projects#UpdateProjectProtectionBypass"
-        },
-        {
-          "target": "com.vercel.projects#UpdateProjectsByProjectIdRollbackByDeploymentIdUpdateDescription"
+          "target": "com.vercel.projects#DeleteProject"
         },
         {
           "target": "com.vercel.projects#UploadProjectAvatar"
         },
         {
+          "target": "com.vercel.projects#GetProjectDomains"
+        },
+        {
+          "target": "com.vercel.projects#GetProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#RemoveProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#AddProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#MoveProjectDomain"
+        },
+        {
           "target": "com.vercel.projects#VerifyProjectDomain"
+        },
+        {
+          "target": "com.vercel.projects#FilterProjectEnvs"
+        },
+        {
+          "target": "com.vercel.projects#CreateProjectEnv"
+        },
+        {
+          "target": "com.vercel.projects#GetProjectEnv"
+        },
+        {
+          "target": "com.vercel.projects#EditProjectEnv"
+        },
+        {
+          "target": "com.vercel.projects#RemoveProjectEnv"
+        },
+        {
+          "target": "com.vercel.projects#BatchRemoveProjectEnv"
+        },
+        {
+          "target": "com.vercel.projects#CreateProjectTransferRequest"
+        },
+        {
+          "target": "com.vercel.projects#AcceptProjectTransferRequest"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProjectProtectionBypass"
+        },
+        {
+          "target": "com.vercel.projects#RequestRollback"
+        },
+        {
+          "target": "com.vercel.projects#UpdateProjectsByProjectIdRollbackByDeploymentIdUpdateDescription"
+        },
+        {
+          "target": "com.vercel.projects#UpdateMicrofrontends"
+        },
+        {
+          "target": "com.vercel.projects#RequestPromote"
+        },
+        {
+          "target": "com.vercel.projects#ListPromoteAliases"
+        },
+        {
+          "target": "com.vercel.projects#PauseProject"
+        },
+        {
+          "target": "com.vercel.projects#UnpauseProject"
         }
       ],
       "traits": {

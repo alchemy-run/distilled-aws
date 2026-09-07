@@ -531,16 +531,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.reactions#CreateReaction"
+          "target": "com.whop.reactions#ListReaction"
         },
         {
-          "target": "com.whop.reactions#DeleteReaction"
+          "target": "com.whop.reactions#CreateReaction"
         },
         {
           "target": "com.whop.reactions#GetReaction"
         },
         {
-          "target": "com.whop.reactions#ListReaction"
+          "target": "com.whop.reactions#DeleteReaction"
         }
       ],
       "traits": {

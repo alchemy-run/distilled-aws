@@ -974,16 +974,16 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.authentication#CreateAuthenticationV1SelfSubjectReview"
-        },
-        {
-          "target": "com.kubernetes.authentication#CreateAuthenticationV1TokenReview"
-        },
-        {
           "target": "com.kubernetes.authentication#GetAuthenticationAPIGroup"
         },
         {
           "target": "com.kubernetes.authentication#GetAuthenticationV1APIResources"
+        },
+        {
+          "target": "com.kubernetes.authentication#CreateAuthenticationV1SelfSubjectReview"
+        },
+        {
+          "target": "com.kubernetes.authentication#CreateAuthenticationV1TokenReview"
         }
       ],
       "traits": {

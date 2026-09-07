@@ -373,10 +373,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.session_recordings#CreateSessionRecordingsSharingPassword"
+          "target": "com.posthog.session_recordings#ListSessionRecordingsSharing"
         },
         {
-          "target": "com.posthog.session_recordings#ListSessionRecordingsSharing"
+          "target": "com.posthog.session_recordings#CreateSessionRecordingsSharingPassword"
         },
         {
           "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsDestroy"

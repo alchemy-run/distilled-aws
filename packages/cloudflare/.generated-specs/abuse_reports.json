@@ -1754,10 +1754,10 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.abuse_reports#CreateAbuseReport"
+          "target": "com.cloudflare.abuse_reports#Get"
         },
         {
-          "target": "com.cloudflare.abuse_reports#Get"
+          "target": "com.cloudflare.abuse_reports#CreateAbuseReport"
         },
         {
           "target": "com.cloudflare.abuse_reports#ListAbuseReports"

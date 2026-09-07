@@ -2933,25 +2933,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.sandbox#CreateSandbox"
-        },
-        {
-          "target": "com.modal.sandbox#GetSandboxSnapshot"
-        },
-        {
-          "target": "com.modal.sandbox#GetSandboxSnapshotFsAsync"
-        },
-        {
-          "target": "com.modal.sandbox#GetSandboxTag"
-        },
-        {
-          "target": "com.modal.sandbox#ListSandbox"
-        },
-        {
-          "target": "com.modal.sandbox#RestoreSandbox"
-        },
-        {
           "target": "com.modal.sandbox#SandboxContainerCreateV2"
+        },
+        {
+          "target": "com.modal.sandbox#CreateSandbox"
         },
         {
           "target": "com.modal.sandbox#SandboxCreateConnectToken"
@@ -2993,7 +2978,13 @@
           "target": "com.modal.sandbox#SandboxGetTunnelsV2"
         },
         {
+          "target": "com.modal.sandbox#ListSandbox"
+        },
+        {
           "target": "com.modal.sandbox#SandboxListV2"
+        },
+        {
+          "target": "com.modal.sandbox#RestoreSandbox"
         },
         {
           "target": "com.modal.sandbox#SandboxRestoreV2"
@@ -3011,34 +3002,43 @@
           "target": "com.modal.sandbox#SandboxSnapshotFsAsync"
         },
         {
+          "target": "com.modal.sandbox#GetSandboxSnapshotFsAsync"
+        },
+        {
+          "target": "com.modal.sandbox#GetSandboxSnapshot"
+        },
+        {
+          "target": "com.modal.sandbox#WaitSandboxSnapshot"
+        },
+        {
           "target": "com.modal.sandbox#SandboxStdinWrite"
+        },
+        {
+          "target": "com.modal.sandbox#GetSandboxTag"
         },
         {
           "target": "com.modal.sandbox#SandboxTagsGetV2"
         },
         {
+          "target": "com.modal.sandbox#SetSandboxTag"
+        },
+        {
           "target": "com.modal.sandbox#SandboxTagsSetV2"
         },
         {
+          "target": "com.modal.sandbox#TerminateSandbox"
+        },
+        {
           "target": "com.modal.sandbox#SandboxTerminateV2"
+        },
+        {
+          "target": "com.modal.sandbox#WaitSandbox"
         },
         {
           "target": "com.modal.sandbox#SandboxWaitUntilReady"
         },
         {
           "target": "com.modal.sandbox#SandboxWaitV2"
-        },
-        {
-          "target": "com.modal.sandbox#SetSandboxTag"
-        },
-        {
-          "target": "com.modal.sandbox#TerminateSandbox"
-        },
-        {
-          "target": "com.modal.sandbox#WaitSandbox"
-        },
-        {
-          "target": "com.modal.sandbox#WaitSandboxSnapshot"
         }
       ],
       "traits": {

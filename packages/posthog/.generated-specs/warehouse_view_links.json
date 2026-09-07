@@ -834,13 +834,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.warehouse_view_links#ListWarehouseViewLinks"
+        },
+        {
           "target": "com.posthog.warehouse_view_links#CreateWarehouseViewLink"
         },
         {
           "target": "com.posthog.warehouse_view_links#GetWarehouseViewLink"
-        },
-        {
-          "target": "com.posthog.warehouse_view_links#ListWarehouseViewLinks"
         },
         {
           "target": "com.posthog.warehouse_view_links#UpdateWarehouseViewLink"

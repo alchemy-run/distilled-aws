@@ -69120,25 +69120,25 @@
           "target": "com.posthog.query#CreateQuery"
         },
         {
-          "target": "com.posthog.query#CreateQueryCheckAuthForAsync"
-        },
-        {
-          "target": "com.posthog.query#CreateQueryUpgrade"
-        },
-        {
-          "target": "com.posthog.query#CreateQueryWithKind"
-        },
-        {
           "target": "com.posthog.query#GetQuery"
         },
         {
-          "target": "com.posthog.query#GetQueryDraftSql"
+          "target": "com.posthog.query#QueryDestroy"
         },
         {
           "target": "com.posthog.query#GetQueryLog"
         },
         {
-          "target": "com.posthog.query#QueryDestroy"
+          "target": "com.posthog.query#CreateQueryWithKind"
+        },
+        {
+          "target": "com.posthog.query#CreateQueryCheckAuthForAsync"
+        },
+        {
+          "target": "com.posthog.query#GetQueryDraftSql"
+        },
+        {
+          "target": "com.posthog.query#CreateQueryUpgrade"
         }
       ],
       "traits": {

@@ -6969,100 +6969,61 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.datasets#AddResourceGroup"
-        },
-        {
-          "target": "com.huggingface.datasets#BatchHandleAccessRequests"
-        },
-        {
-          "target": "com.huggingface.datasets#CancelAccessRequest"
-        },
-        {
-          "target": "com.huggingface.datasets#CheckUploadMethod"
-        },
-        {
-          "target": "com.huggingface.datasets#Commit"
-        },
-        {
-          "target": "com.huggingface.datasets#CreateBranch"
-        },
-        {
-          "target": "com.huggingface.datasets#CreateTag"
-        },
-        {
-          "target": "com.huggingface.datasets#DeleteBranch"
-        },
-        {
-          "target": "com.huggingface.datasets#DeleteLargeFile"
-        },
-        {
-          "target": "com.huggingface.datasets#DeleteLargeFiles"
-        },
-        {
-          "target": "com.huggingface.datasets#DeleteTag"
-        },
-        {
-          "target": "com.huggingface.datasets#DuplicateXetFiles"
-        },
-        {
-          "target": "com.huggingface.datasets#ExportAccessReport"
-        },
-        {
-          "target": "com.huggingface.datasets#GenerateJwt"
-        },
-        {
-          "target": "com.huggingface.datasets#GetCompareRev"
-        },
-        {
-          "target": "com.huggingface.datasets#GetDatasetLeaderboard"
-        },
-        {
-          "target": "com.huggingface.datasets#GetDatasetTags"
-        },
-        {
           "target": "com.huggingface.datasets#GetFolderSize"
-        },
-        {
-          "target": "com.huggingface.datasets#GetNotebookUrl"
-        },
-        {
-          "target": "com.huggingface.datasets#GetResourceGroup"
-        },
-        {
-          "target": "com.huggingface.datasets#GetSecurityStatus"
-        },
-        {
-          "target": "com.huggingface.datasets#GrantAccess"
-        },
-        {
-          "target": "com.huggingface.datasets#HandleAccessRequest"
-        },
-        {
-          "target": "com.huggingface.datasets#ListAccessRequests"
-        },
-        {
-          "target": "com.huggingface.datasets#ListCommits"
-        },
-        {
-          "target": "com.huggingface.datasets#ListFolderContent"
         },
         {
           "target": "com.huggingface.datasets#ListLargeFiles"
         },
         {
-          "target": "com.huggingface.datasets#ListPathsInfo"
+          "target": "com.huggingface.datasets#DeleteLargeFiles"
+        },
+        {
+          "target": "com.huggingface.datasets#DeleteLargeFile"
+        },
+        {
+          "target": "com.huggingface.datasets#DuplicateXetFiles"
+        },
+        {
+          "target": "com.huggingface.datasets#ListCommits"
         },
         {
           "target": "com.huggingface.datasets#ListReferences"
         },
         {
-          "target": "com.huggingface.datasets#RequestAccess"
+          "target": "com.huggingface.datasets#GetCompareRev"
         },
         {
-          "target": "com.huggingface.datasets#ResolveFile"
+          "target": "com.huggingface.datasets#ListPathsInfo"
         },
         {
-          "target": "com.huggingface.datasets#ResolveFileCached"
+          "target": "com.huggingface.datasets#CheckUploadMethod"
+        },
+        {
+          "target": "com.huggingface.datasets#XetWriteToken"
+        },
+        {
+          "target": "com.huggingface.datasets#XetReadToken"
+        },
+        {
+          "target": "com.huggingface.datasets#Commit"
+        },
+        {
+          "target": "com.huggingface.datasets#CreateTag"
+        },
+        {
+          "target": "com.huggingface.datasets#DeleteTag"
+        },
+        {
+          "target": "com.huggingface.datasets#CreateBranch"
+        },
+        {
+          "target": "com.huggingface.datasets#DeleteBranch"
+        },
+        {
+          "target": "com.huggingface.datasets#GetResourceGroup"
+        },
+        {
+          "target": "com.huggingface.datasets#AddResourceGroup"
         },
         {
           "target": "com.huggingface.datasets#SquashRef"
@@ -7071,10 +7032,49 @@
           "target": "com.huggingface.datasets#UpdateRepoSettings"
         },
         {
-          "target": "com.huggingface.datasets#XetReadToken"
+          "target": "com.huggingface.datasets#ListFolderContent"
         },
         {
-          "target": "com.huggingface.datasets#XetWriteToken"
+          "target": "com.huggingface.datasets#GetNotebookUrl"
+        },
+        {
+          "target": "com.huggingface.datasets#GetSecurityStatus"
+        },
+        {
+          "target": "com.huggingface.datasets#GetDatasetLeaderboard"
+        },
+        {
+          "target": "com.huggingface.datasets#GenerateJwt"
+        },
+        {
+          "target": "com.huggingface.datasets#GetDatasetTags"
+        },
+        {
+          "target": "com.huggingface.datasets#ResolveFile"
+        },
+        {
+          "target": "com.huggingface.datasets#ResolveFileCached"
+        },
+        {
+          "target": "com.huggingface.datasets#RequestAccess"
+        },
+        {
+          "target": "com.huggingface.datasets#ExportAccessReport"
+        },
+        {
+          "target": "com.huggingface.datasets#CancelAccessRequest"
+        },
+        {
+          "target": "com.huggingface.datasets#ListAccessRequests"
+        },
+        {
+          "target": "com.huggingface.datasets#HandleAccessRequest"
+        },
+        {
+          "target": "com.huggingface.datasets#BatchHandleAccessRequests"
+        },
+        {
+          "target": "com.huggingface.datasets#GrantAccess"
         }
       ],
       "traits": {

@@ -2051,13 +2051,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.stats#DescribeStats"
+          "target": "com.whop.stats#ListMetrics"
         },
         {
           "target": "com.whop.stats#GetMetric"
         },
         {
-          "target": "com.whop.stats#ListMetrics"
+          "target": "com.whop.stats#DescribeStats"
         },
         {
           "target": "com.whop.stats#MetricStats"

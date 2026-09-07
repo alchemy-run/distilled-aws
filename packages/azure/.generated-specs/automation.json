@@ -24646,295 +24646,298 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.automation#AutomationAccountCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#CertificateCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#ConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#ConnectionTypeCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#ConvertGraphRunbookContent"
-        },
-        {
-          "target": "com.azure.automation#CreateHybridRunbookWorker"
-        },
-        {
-          "target": "com.azure.automation#CreateHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#CreateJob"
-        },
-        {
-          "target": "com.azure.automation#CreateJobSchedule"
-        },
-        {
-          "target": "com.azure.automation#CreateRuntimeEnvironment"
-        },
-        {
-          "target": "com.azure.automation#CreateSoftwareUpdateConfiguration"
-        },
-        {
-          "target": "com.azure.automation#CreateSourceControlSyncJob"
-        },
-        {
-          "target": "com.azure.automation#CreateTestJob"
-        },
-        {
-          "target": "com.azure.automation#CredentialCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#DeleteAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#DeleteCertificate"
-        },
-        {
-          "target": "com.azure.automation#DeleteConnection"
-        },
-        {
-          "target": "com.azure.automation#DeleteConnectionType"
-        },
-        {
-          "target": "com.azure.automation#DeleteCredential"
-        },
-        {
-          "target": "com.azure.automation#DeleteDscConfiguration"
-        },
-        {
-          "target": "com.azure.automation#DeleteDscNode"
-        },
-        {
-          "target": "com.azure.automation#DeleteDscNodeConfiguration"
-        },
-        {
-          "target": "com.azure.automation#DeleteHybridRunbookWorker"
-        },
-        {
-          "target": "com.azure.automation#DeleteHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#DeleteJobSchedule"
-        },
-        {
-          "target": "com.azure.automation#DeleteModule"
-        },
-        {
-          "target": "com.azure.automation#DeletePackage"
-        },
-        {
-          "target": "com.azure.automation#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.automation#DeletePython2Package"
-        },
-        {
-          "target": "com.azure.automation#DeletePython3Package"
-        },
-        {
-          "target": "com.azure.automation#DeleteRunbook"
-        },
-        {
-          "target": "com.azure.automation#DeleteRuntimeEnvironment"
-        },
-        {
-          "target": "com.azure.automation#DeleteSchedule"
-        },
-        {
-          "target": "com.azure.automation#DeleteSoftwareUpdateConfiguration"
-        },
-        {
-          "target": "com.azure.automation#DeleteSourceControl"
-        },
-        {
-          "target": "com.azure.automation#DeleteVariable"
-        },
-        {
-          "target": "com.azure.automation#DeleteWatcher"
+          "target": "com.azure.automation#GenerateWebhookUri"
         },
         {
           "target": "com.azure.automation#DeleteWebhook"
         },
         {
-          "target": "com.azure.automation#DscConfigurationCreateOrUpdate"
+          "target": "com.azure.automation#UpdateWebhook"
         },
         {
-          "target": "com.azure.automation#DscNodeConfigurationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#EditRunbookDraftUndo"
-        },
-        {
-          "target": "com.azure.automation#GenerateWebhookUri"
-        },
-        {
-          "target": "com.azure.automation#GetActivity"
-        },
-        {
-          "target": "com.azure.automation#GetAgentRegistrationInformation"
-        },
-        {
-          "target": "com.azure.automation#GetAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#GetCertificate"
-        },
-        {
-          "target": "com.azure.automation#GetConnection"
-        },
-        {
-          "target": "com.azure.automation#GetConnectionType"
-        },
-        {
-          "target": "com.azure.automation#GetCredential"
-        },
-        {
-          "target": "com.azure.automation#GetDscConfiguration"
-        },
-        {
-          "target": "com.azure.automation#GetDscConfigurationContent"
-        },
-        {
-          "target": "com.azure.automation#GetDscNode"
-        },
-        {
-          "target": "com.azure.automation#GetDscNodeConfiguration"
-        },
-        {
-          "target": "com.azure.automation#GetHybridRunbookWorker"
-        },
-        {
-          "target": "com.azure.automation#GetHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#GetJob"
-        },
-        {
-          "target": "com.azure.automation#GetJobOutput"
-        },
-        {
-          "target": "com.azure.automation#GetJobRunbookContent"
-        },
-        {
-          "target": "com.azure.automation#GetJobSchedule"
-        },
-        {
-          "target": "com.azure.automation#GetJobStream"
-        },
-        {
-          "target": "com.azure.automation#GetLinkedWorkspace"
-        },
-        {
-          "target": "com.azure.automation#GetModule"
-        },
-        {
-          "target": "com.azure.automation#GetNodeCountInformation"
-        },
-        {
-          "target": "com.azure.automation#GetNodeReport"
-        },
-        {
-          "target": "com.azure.automation#GetNodeReportContent"
-        },
-        {
-          "target": "com.azure.automation#GetPackage"
-        },
-        {
-          "target": "com.azure.automation#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.automation#GetPython2Package"
-        },
-        {
-          "target": "com.azure.automation#GetPython3Package"
-        },
-        {
-          "target": "com.azure.automation#GetRunbook"
-        },
-        {
-          "target": "com.azure.automation#GetRunbookContent"
-        },
-        {
-          "target": "com.azure.automation#GetRunbookDraft"
-        },
-        {
-          "target": "com.azure.automation#GetRunbookDraftContent"
-        },
-        {
-          "target": "com.azure.automation#GetRuntimeEnvironment"
-        },
-        {
-          "target": "com.azure.automation#GetSchedule"
-        },
-        {
-          "target": "com.azure.automation#GetSoftwareUpdateConfigurationByName"
-        },
-        {
-          "target": "com.azure.automation#GetSoftwareUpdateConfigurationMachineRunById"
-        },
-        {
-          "target": "com.azure.automation#GetSoftwareUpdateConfigurationRunById"
-        },
-        {
-          "target": "com.azure.automation#GetSourceControl"
-        },
-        {
-          "target": "com.azure.automation#GetSourceControlSyncJob"
-        },
-        {
-          "target": "com.azure.automation#GetSourceControlSyncJobStream"
-        },
-        {
-          "target": "com.azure.automation#GetTestJob"
-        },
-        {
-          "target": "com.azure.automation#GetTestJobStream"
-        },
-        {
-          "target": "com.azure.automation#GetVariable"
-        },
-        {
-          "target": "com.azure.automation#GetWatcher"
+          "target": "com.azure.automation#WebhookCreateOrUpdate"
         },
         {
           "target": "com.azure.automation#GetWebhook"
         },
         {
-          "target": "com.azure.automation#ListActivityByModule"
+          "target": "com.azure.automation#ListWebhookByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListAutomationAccount"
+          "target": "com.azure.automation#StopWatcher"
         },
         {
-          "target": "com.azure.automation#ListAutomationAccountByResourceGroup"
+          "target": "com.azure.automation#StartWatcher"
         },
         {
-          "target": "com.azure.automation#ListAutomationAccountDeletedRunbooks"
+          "target": "com.azure.automation#DeleteWatcher"
         },
         {
-          "target": "com.azure.automation#ListCertificateByAutomationAccount"
+          "target": "com.azure.automation#UpdateWatcher"
         },
         {
-          "target": "com.azure.automation#ListConnectionByAutomationAccount"
+          "target": "com.azure.automation#WatcherCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#ListConnectionTypeByAutomationAccount"
+          "target": "com.azure.automation#GetWatcher"
         },
         {
-          "target": "com.azure.automation#ListCredentialByAutomationAccount"
+          "target": "com.azure.automation#ListWatcherByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#ListDeletedAutomationAccountBySubscription"
+          "target": "com.azure.automation#DeleteVariable"
         },
         {
-          "target": "com.azure.automation#ListDscConfigurationByAutomationAccount"
+          "target": "com.azure.automation#UpdateVariable"
+        },
+        {
+          "target": "com.azure.automation#VariableCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetVariable"
+        },
+        {
+          "target": "com.azure.automation#ListVariableByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListUsageByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListStatisticsByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#GetSourceControlSyncJobStream"
+        },
+        {
+          "target": "com.azure.automation#ListSourceControlSyncJobStreamBySyncJob"
+        },
+        {
+          "target": "com.azure.automation#CreateSourceControlSyncJob"
+        },
+        {
+          "target": "com.azure.automation#GetSourceControlSyncJob"
+        },
+        {
+          "target": "com.azure.automation#ListSourceControlSyncJobByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeleteSourceControl"
+        },
+        {
+          "target": "com.azure.automation#UpdateSourceControl"
+        },
+        {
+          "target": "com.azure.automation#SourceControlCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetSourceControl"
+        },
+        {
+          "target": "com.azure.automation#ListSourceControlByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeleteSoftwareUpdateConfiguration"
+        },
+        {
+          "target": "com.azure.automation#CreateSoftwareUpdateConfiguration"
+        },
+        {
+          "target": "com.azure.automation#GetSoftwareUpdateConfigurationByName"
+        },
+        {
+          "target": "com.azure.automation#ListSoftwareUpdateConfigurations"
+        },
+        {
+          "target": "com.azure.automation#GetSoftwareUpdateConfigurationRunById"
+        },
+        {
+          "target": "com.azure.automation#ListSoftwareUpdateConfigurationRuns"
+        },
+        {
+          "target": "com.azure.automation#GetSoftwareUpdateConfigurationMachineRunById"
+        },
+        {
+          "target": "com.azure.automation#ListSoftwareUpdateConfigurationMachineRuns"
+        },
+        {
+          "target": "com.azure.automation#DeleteSchedule"
+        },
+        {
+          "target": "com.azure.automation#UpdateSchedule"
+        },
+        {
+          "target": "com.azure.automation#ScheduleCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetSchedule"
+        },
+        {
+          "target": "com.azure.automation#ListScheduleByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeletePackage"
+        },
+        {
+          "target": "com.azure.automation#UpdatePackage"
+        },
+        {
+          "target": "com.azure.automation#PackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetPackage"
+        },
+        {
+          "target": "com.azure.automation#ListPackageByRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#DeleteRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#UpdateRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#CreateRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#GetRuntimeEnvironment"
+        },
+        {
+          "target": "com.azure.automation#ListRuntimeEnvironmentByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#PublishRunbook"
+        },
+        {
+          "target": "com.azure.automation#EditRunbookDraftUndo"
+        },
+        {
+          "target": "com.azure.automation#SuspendTestJob"
+        },
+        {
+          "target": "com.azure.automation#GetTestJobStream"
+        },
+        {
+          "target": "com.azure.automation#ListTestJobStreamByTestJob"
+        },
+        {
+          "target": "com.azure.automation#StopTestJob"
+        },
+        {
+          "target": "com.azure.automation#ResumeTestJob"
+        },
+        {
+          "target": "com.azure.automation#CreateTestJob"
+        },
+        {
+          "target": "com.azure.automation#GetTestJob"
+        },
+        {
+          "target": "com.azure.automation#ReplaceRunbookDraftContent"
+        },
+        {
+          "target": "com.azure.automation#GetRunbookDraftContent"
+        },
+        {
+          "target": "com.azure.automation#GetRunbookDraft"
+        },
+        {
+          "target": "com.azure.automation#GetRunbookContent"
+        },
+        {
+          "target": "com.azure.automation#DeleteRunbook"
+        },
+        {
+          "target": "com.azure.automation#UpdateRunbook"
+        },
+        {
+          "target": "com.azure.automation#RunbookCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetRunbook"
+        },
+        {
+          "target": "com.azure.automation#ListRunbookByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeletePython3Package"
+        },
+        {
+          "target": "com.azure.automation#UpdatePython3Package"
+        },
+        {
+          "target": "com.azure.automation#Python3PackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetPython3Package"
+        },
+        {
+          "target": "com.azure.automation#ListPython3PackageByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeletePython2Package"
+        },
+        {
+          "target": "com.azure.automation#UpdatePython2Package"
+        },
+        {
+          "target": "com.azure.automation#Python2PackageCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetPython2Package"
+        },
+        {
+          "target": "com.azure.automation#ListPython2PackageByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#PrivateLinkResourcesAutomation"
+        },
+        {
+          "target": "com.azure.automation#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.automation#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.automation#ListPrivateEndpointConnectionByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListObjectDataTypeFieldsByType"
+        },
+        {
+          "target": "com.azure.automation#GetNodeReportContent"
+        },
+        {
+          "target": "com.azure.automation#GetNodeReport"
+        },
+        {
+          "target": "com.azure.automation#ListNodeReportByNode"
+        },
+        {
+          "target": "com.azure.automation#DeleteDscNode"
+        },
+        {
+          "target": "com.azure.automation#UpdateDscNode"
+        },
+        {
+          "target": "com.azure.automation#GetDscNode"
         },
         {
           "target": "com.azure.automation#ListDscNodeByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#GetNodeCountInformation"
+        },
+        {
+          "target": "com.azure.automation#DeleteDscNodeConfiguration"
+        },
+        {
+          "target": "com.azure.automation#DscNodeConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetDscNodeConfiguration"
         },
         {
           "target": "com.azure.automation#ListDscNodeConfigurationByAutomationAccount"
@@ -24943,223 +24946,220 @@
           "target": "com.azure.automation#ListFieldByType"
         },
         {
-          "target": "com.azure.automation#ListHybridRunbookWorkerByHybridRunbookWorkerGroup"
-        },
-        {
-          "target": "com.azure.automation#ListHybridRunbookWorkerGroupByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListJobByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListJobScheduleByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListJobStreamByJob"
-        },
-        {
-          "target": "com.azure.automation#ListKeysByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListModuleByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListNodeReportByNode"
-        },
-        {
-          "target": "com.azure.automation#ListObjectDataTypeFieldsByType"
-        },
-        {
-          "target": "com.azure.automation#ListOperations"
-        },
-        {
-          "target": "com.azure.automation#ListPackageByRuntimeEnvironment"
-        },
-        {
-          "target": "com.azure.automation#ListPrivateEndpointConnectionByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListPython2PackageByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListPython3PackageByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListRunbookByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListRuntimeEnvironmentByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListScheduleByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListSoftwareUpdateConfigurationMachineRuns"
-        },
-        {
-          "target": "com.azure.automation#ListSoftwareUpdateConfigurationRuns"
-        },
-        {
-          "target": "com.azure.automation#ListSoftwareUpdateConfigurations"
-        },
-        {
-          "target": "com.azure.automation#ListSourceControlByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListSourceControlSyncJobByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListSourceControlSyncJobStreamBySyncJob"
-        },
-        {
-          "target": "com.azure.automation#ListStatisticsByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListTestJobStreamByTestJob"
-        },
-        {
-          "target": "com.azure.automation#ListUsageByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListVariableByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListWatcherByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ListWebhookByAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#ModuleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#MoveHybridRunbookWorker"
-        },
-        {
           "target": "com.azure.automation#ObjectDataTypesListFieldsByModuleAndType"
         },
         {
-          "target": "com.azure.automation#PackageCreateOrUpdate"
+          "target": "com.azure.automation#GetActivity"
         },
         {
-          "target": "com.azure.automation#PatchHybridRunbookWorker"
+          "target": "com.azure.automation#ListActivityByModule"
         },
         {
-          "target": "com.azure.automation#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#PrivateLinkResourcesAutomation"
-        },
-        {
-          "target": "com.azure.automation#PublishRunbook"
-        },
-        {
-          "target": "com.azure.automation#Python2PackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#Python3PackageCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#RegenerateAgentRegistrationInformationKey"
-        },
-        {
-          "target": "com.azure.automation#ReplaceRunbookDraftContent"
-        },
-        {
-          "target": "com.azure.automation#ResumeJob"
-        },
-        {
-          "target": "com.azure.automation#ResumeTestJob"
-        },
-        {
-          "target": "com.azure.automation#RunbookCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#ScheduleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#SourceControlCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.automation#StartWatcher"
-        },
-        {
-          "target": "com.azure.automation#StopJob"
-        },
-        {
-          "target": "com.azure.automation#StopTestJob"
-        },
-        {
-          "target": "com.azure.automation#StopWatcher"
-        },
-        {
-          "target": "com.azure.automation#SuspendJob"
-        },
-        {
-          "target": "com.azure.automation#SuspendTestJob"
-        },
-        {
-          "target": "com.azure.automation#UpdateAutomationAccount"
-        },
-        {
-          "target": "com.azure.automation#UpdateCertificate"
-        },
-        {
-          "target": "com.azure.automation#UpdateConnection"
-        },
-        {
-          "target": "com.azure.automation#UpdateCredential"
-        },
-        {
-          "target": "com.azure.automation#UpdateDscConfiguration"
-        },
-        {
-          "target": "com.azure.automation#UpdateDscNode"
-        },
-        {
-          "target": "com.azure.automation#UpdateHybridRunbookWorkerGroup"
+          "target": "com.azure.automation#DeleteModule"
         },
         {
           "target": "com.azure.automation#UpdateModule"
         },
         {
-          "target": "com.azure.automation#UpdatePackage"
+          "target": "com.azure.automation#ModuleCreateOrUpdate"
         },
         {
-          "target": "com.azure.automation#UpdatePython2Package"
+          "target": "com.azure.automation#GetModule"
         },
         {
-          "target": "com.azure.automation#UpdatePython3Package"
+          "target": "com.azure.automation#ListModuleByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#UpdateRunbook"
+          "target": "com.azure.automation#ListKeysByAutomationAccount"
         },
         {
-          "target": "com.azure.automation#UpdateRuntimeEnvironment"
+          "target": "com.azure.automation#ListAutomationAccountDeletedRunbooks"
         },
         {
-          "target": "com.azure.automation#UpdateSchedule"
+          "target": "com.azure.automation#GetLinkedWorkspace"
         },
         {
-          "target": "com.azure.automation#UpdateSourceControl"
+          "target": "com.azure.automation#SuspendJob"
         },
         {
-          "target": "com.azure.automation#UpdateVariable"
+          "target": "com.azure.automation#GetJobStream"
         },
         {
-          "target": "com.azure.automation#UpdateWatcher"
+          "target": "com.azure.automation#ListJobStreamByJob"
         },
         {
-          "target": "com.azure.automation#UpdateWebhook"
+          "target": "com.azure.automation#StopJob"
         },
         {
-          "target": "com.azure.automation#VariableCreateOrUpdate"
+          "target": "com.azure.automation#GetJobRunbookContent"
         },
         {
-          "target": "com.azure.automation#WatcherCreateOrUpdate"
+          "target": "com.azure.automation#ResumeJob"
         },
         {
-          "target": "com.azure.automation#WebhookCreateOrUpdate"
+          "target": "com.azure.automation#GetJobOutput"
+        },
+        {
+          "target": "com.azure.automation#CreateJob"
+        },
+        {
+          "target": "com.azure.automation#GetJob"
+        },
+        {
+          "target": "com.azure.automation#ListJobByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeleteJobSchedule"
+        },
+        {
+          "target": "com.azure.automation#CreateJobSchedule"
+        },
+        {
+          "target": "com.azure.automation#GetJobSchedule"
+        },
+        {
+          "target": "com.azure.automation#ListJobScheduleByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#MoveHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#DeleteHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#PatchHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#CreateHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#GetHybridRunbookWorker"
+        },
+        {
+          "target": "com.azure.automation#ListHybridRunbookWorkerByHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#DeleteHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#UpdateHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#CreateHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#GetHybridRunbookWorkerGroup"
+        },
+        {
+          "target": "com.azure.automation#ListHybridRunbookWorkerGroupByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeleteCredential"
+        },
+        {
+          "target": "com.azure.automation#UpdateCredential"
+        },
+        {
+          "target": "com.azure.automation#CredentialCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetCredential"
+        },
+        {
+          "target": "com.azure.automation#ListCredentialByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ConvertGraphRunbookContent"
+        },
+        {
+          "target": "com.azure.automation#DeleteConnection"
+        },
+        {
+          "target": "com.azure.automation#UpdateConnection"
+        },
+        {
+          "target": "com.azure.automation#ConnectionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetConnection"
+        },
+        {
+          "target": "com.azure.automation#ListConnectionByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeleteConnectionType"
+        },
+        {
+          "target": "com.azure.automation#ConnectionTypeCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetConnectionType"
+        },
+        {
+          "target": "com.azure.automation#ListConnectionTypeByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#GetDscConfigurationContent"
+        },
+        {
+          "target": "com.azure.automation#DeleteDscConfiguration"
+        },
+        {
+          "target": "com.azure.automation#UpdateDscConfiguration"
+        },
+        {
+          "target": "com.azure.automation#DscConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetDscConfiguration"
+        },
+        {
+          "target": "com.azure.automation#ListDscConfigurationByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#DeleteCertificate"
+        },
+        {
+          "target": "com.azure.automation#UpdateCertificate"
+        },
+        {
+          "target": "com.azure.automation#CertificateCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetCertificate"
+        },
+        {
+          "target": "com.azure.automation#ListCertificateByAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#RegenerateAgentRegistrationInformationKey"
+        },
+        {
+          "target": "com.azure.automation#GetAgentRegistrationInformation"
+        },
+        {
+          "target": "com.azure.automation#DeleteAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#UpdateAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#AutomationAccountCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.automation#GetAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListAutomationAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.automation#ListDeletedAutomationAccountBySubscription"
+        },
+        {
+          "target": "com.azure.automation#ListAutomationAccount"
+        },
+        {
+          "target": "com.azure.automation#ListOperations"
         }
       ],
       "traits": {

@@ -4197,58 +4197,64 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.fist#CreateFirmware"
+          "target": "com.azure.fist#GetUsageMetrics"
         },
         {
-          "target": "com.azure.fist#CreateWorkspace"
+          "target": "com.azure.fist#ListUsageMetricsByWorkspace"
         },
         {
-          "target": "com.azure.fist#DeleteFirmware"
-        },
-        {
-          "target": "com.azure.fist#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.fist#GetFirmware"
+          "target": "com.azure.fist#WorkspacesGenerateUploadUrl"
         },
         {
           "target": "com.azure.fist#GetSummary"
         },
         {
-          "target": "com.azure.fist#GetUsageMetrics"
-        },
-        {
-          "target": "com.azure.fist#GetWorkspace"
-        },
-        {
-          "target": "com.azure.fist#ListBinaryHardeningByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListCryptoCertificateByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListCryptoKeysByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListCveByFirmware"
-        },
-        {
-          "target": "com.azure.fist#ListFirmwareByWorkspace"
-        },
-        {
-          "target": "com.azure.fist#ListOperations"
-        },
-        {
-          "target": "com.azure.fist#ListPasswordHashByFirmware"
+          "target": "com.azure.fist#ListSummaryByFirmware"
         },
         {
           "target": "com.azure.fist#ListSbomComponentByFirmware"
         },
         {
-          "target": "com.azure.fist#ListSummaryByFirmware"
+          "target": "com.azure.fist#ListPasswordHashByFirmware"
         },
         {
-          "target": "com.azure.fist#ListUsageMetricsByWorkspace"
+          "target": "com.azure.fist#ListCveByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListCryptoKeysByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListCryptoCertificateByFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListBinaryHardeningByFirmware"
+        },
+        {
+          "target": "com.azure.fist#DeleteFirmware"
+        },
+        {
+          "target": "com.azure.fist#UpdateFirmware"
+        },
+        {
+          "target": "com.azure.fist#CreateFirmware"
+        },
+        {
+          "target": "com.azure.fist#GetFirmware"
+        },
+        {
+          "target": "com.azure.fist#ListFirmwareByWorkspace"
+        },
+        {
+          "target": "com.azure.fist#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.fist#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.fist#CreateWorkspace"
+        },
+        {
+          "target": "com.azure.fist#GetWorkspace"
         },
         {
           "target": "com.azure.fist#ListWorkspaceByResourceGroup"
@@ -4257,13 +4263,7 @@
           "target": "com.azure.fist#ListWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.fist#UpdateFirmware"
-        },
-        {
-          "target": "com.azure.fist#UpdateWorkspace"
-        },
-        {
-          "target": "com.azure.fist#WorkspacesGenerateUploadUrl"
+          "target": "com.azure.fist#ListOperations"
         }
       ],
       "traits": {

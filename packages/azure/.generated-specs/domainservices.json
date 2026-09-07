@@ -3602,13 +3602,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.domainservices#CreateOuContainer"
-        },
-        {
           "target": "com.azure.domainservices#DeleteDomainService"
         },
         {
-          "target": "com.azure.domainservices#DeleteOuContainer"
+          "target": "com.azure.domainservices#UpdateDomainService"
         },
         {
           "target": "com.azure.domainservices#DomainServicesCreateOrUpdate"
@@ -3617,28 +3614,31 @@
           "target": "com.azure.domainservices#GetDomainService"
         },
         {
-          "target": "com.azure.domainservices#GetOuContainer"
+          "target": "com.azure.domainservices#ListDomainServiceByResourceGroup"
         },
         {
-          "target": "com.azure.domainservices#ListDomainServiceByResourceGroup"
+          "target": "com.azure.domainservices#ListDomainServices"
         },
         {
           "target": "com.azure.domainservices#ListDomainServiceOperations"
         },
         {
-          "target": "com.azure.domainservices#ListDomainServices"
+          "target": "com.azure.domainservices#DeleteOuContainer"
+        },
+        {
+          "target": "com.azure.domainservices#UpdateOuContainer"
+        },
+        {
+          "target": "com.azure.domainservices#CreateOuContainer"
+        },
+        {
+          "target": "com.azure.domainservices#GetOuContainer"
         },
         {
           "target": "com.azure.domainservices#ListOuContainer"
         },
         {
           "target": "com.azure.domainservices#ListOuContainerOperations"
-        },
-        {
-          "target": "com.azure.domainservices#UpdateDomainService"
-        },
-        {
-          "target": "com.azure.domainservices#UpdateOuContainer"
         }
       ],
       "traits": {

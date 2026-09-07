@@ -2635,19 +2635,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerNameAvailabilityV2"
-        },
-        {
-          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerRelativeDnsNameAvailability"
+          "target": "com.azure.trafficmanager#GetHeatMap"
         },
         {
           "target": "com.azure.trafficmanager#DeleteEndpoint"
         },
         {
-          "target": "com.azure.trafficmanager#DeleteProfile"
-        },
-        {
-          "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeys"
+          "target": "com.azure.trafficmanager#UpdateEndpoint"
         },
         {
           "target": "com.azure.trafficmanager#EndpointsCreateOrUpdate"
@@ -2656,16 +2650,16 @@
           "target": "com.azure.trafficmanager#GetEndpoint"
         },
         {
-          "target": "com.azure.trafficmanager#GetGeographicHierarchyDefault"
+          "target": "com.azure.trafficmanager#DeleteProfile"
         },
         {
-          "target": "com.azure.trafficmanager#GetHeatMap"
+          "target": "com.azure.trafficmanager#UpdateProfile"
+        },
+        {
+          "target": "com.azure.trafficmanager#ProfilesCreateOrUpdate"
         },
         {
           "target": "com.azure.trafficmanager#GetProfile"
-        },
-        {
-          "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeys"
         },
         {
           "target": "com.azure.trafficmanager#ListProfileByResourceGroup"
@@ -2674,16 +2668,22 @@
           "target": "com.azure.trafficmanager#ListProfileBySubscription"
         },
         {
-          "target": "com.azure.trafficmanager#ProfilesCreateOrUpdate"
+          "target": "com.azure.trafficmanager#DeleteTrafficManagerUserMetricsKeys"
         },
         {
           "target": "com.azure.trafficmanager#TrafficManagerUserMetricsKeysCreateOrUpdate"
         },
         {
-          "target": "com.azure.trafficmanager#UpdateEndpoint"
+          "target": "com.azure.trafficmanager#GetTrafficManagerUserMetricsKeys"
         },
         {
-          "target": "com.azure.trafficmanager#UpdateProfile"
+          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerNameAvailabilityV2"
+        },
+        {
+          "target": "com.azure.trafficmanager#GetGeographicHierarchyDefault"
+        },
+        {
+          "target": "com.azure.trafficmanager#CheckProfileTrafficManagerRelativeDnsNameAvailability"
         }
       ],
       "traits": {

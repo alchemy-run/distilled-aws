@@ -1616,19 +1616,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.volumes#CreateVolume"
+          "target": "com.hetzner.volumes#ListVolumes"
         },
         {
-          "target": "com.hetzner.volumes#DeleteVolume"
+          "target": "com.hetzner.volumes#CreateVolume"
         },
         {
           "target": "com.hetzner.volumes#GetVolume"
         },
         {
-          "target": "com.hetzner.volumes#ListVolumes"
+          "target": "com.hetzner.volumes#UpdateVolume"
         },
         {
-          "target": "com.hetzner.volumes#UpdateVolume"
+          "target": "com.hetzner.volumes#DeleteVolume"
         }
       ],
       "traits": {

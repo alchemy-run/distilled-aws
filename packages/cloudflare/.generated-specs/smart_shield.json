@@ -3767,10 +3767,16 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.smart_shield#CacheReserveClearStatus"
+          "target": "com.cloudflare.smart_shield#Get"
+        },
+        {
+          "target": "com.cloudflare.smart_shield#Update"
         },
         {
           "target": "com.cloudflare.smart_shield#ClearCacheReserveClear"
+        },
+        {
+          "target": "com.cloudflare.smart_shield#CacheReserveClearStatus"
         },
         {
           "target": "com.cloudflare.smart_shield#CreateHealthCheck"
@@ -3782,16 +3788,10 @@
           "target": "com.cloudflare.smart_shield#EditHealthCheck"
         },
         {
-          "target": "com.cloudflare.smart_shield#Get"
-        },
-        {
           "target": "com.cloudflare.smart_shield#GetHealthCheck"
         },
         {
           "target": "com.cloudflare.smart_shield#ListHealthChecks"
-        },
-        {
-          "target": "com.cloudflare.smart_shield#Update"
         },
         {
           "target": "com.cloudflare.smart_shield#UpdateHealthCheck"

@@ -22695,235 +22695,61 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.organizations#CimdVerificationTokensDestroy"
+          "target": "com.posthog.organizations#List"
         },
         {
           "target": "com.posthog.organizations#Create"
         },
         {
-          "target": "com.posthog.organizations#CreateCimdVerificationToken"
-        },
-        {
-          "target": "com.posthog.organizations#CreateDesktopBetaTerm"
-        },
-        {
-          "target": "com.posthog.organizations#CreateDomain"
-        },
-        {
-          "target": "com.posthog.organizations#CreateIdentityProviderConfig"
-        },
-        {
-          "target": "com.posthog.organizations#CreateIdentityProviderConfigsScimToken"
-        },
-        {
-          "target": "com.posthog.organizations#CreateInvite"
-        },
-        {
-          "target": "com.posthog.organizations#CreateInvitesDelegate"
-        },
-        {
-          "target": "com.posthog.organizations#CreateLegalDocument"
-        },
-        {
-          "target": "com.posthog.organizations#CreateOrganizationsProject"
-        },
-        {
-          "target": "com.posthog.organizations#CreateOrganizationsProjectsChangeOrganization"
-        },
-        {
-          "target": "com.posthog.organizations#CreateOrganizationsProjectsDefaultEvaluationContext"
-        },
-        {
-          "target": "com.posthog.organizations#CreateOrganizationsProjectsEvaluationContextSuggestion"
-        },
-        {
-          "target": "com.posthog.organizations#CreateRequestAiAccess"
-        },
-        {
-          "target": "com.posthog.organizations#CreateRole"
-        },
-        {
-          "target": "com.posthog.organizations#CreateRoleExternalReference"
-        },
-        {
-          "target": "com.posthog.organizations#CreateRolesRoleMembership"
-        },
-        {
-          "target": "com.posthog.organizations#Destroy"
-        },
-        {
-          "target": "com.posthog.organizations#DomainsDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#DomainsVerifyCreate"
-        },
-        {
           "target": "com.posthog.organizations#Get"
-        },
-        {
-          "target": "com.posthog.organizations#GetCimdVerificationToken"
-        },
-        {
-          "target": "com.posthog.organizations#GetDomain"
-        },
-        {
-          "target": "com.posthog.organizations#GetDomainsScimLog"
-        },
-        {
-          "target": "com.posthog.organizations#GetIdentityProviderConfig"
-        },
-        {
-          "target": "com.posthog.organizations#GetIdentityProviderConfigsScimLog"
-        },
-        {
-          "target": "com.posthog.organizations#GetLegalDocument"
-        },
-        {
-          "target": "com.posthog.organizations#GetMembersGithubLogin"
-        },
-        {
-          "target": "com.posthog.organizations#GetMembersScopedApiKeys"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProject"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsActivity"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsDefaultEvaluationContext"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsDefaultReleaseCondition"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsExperimentsConfig"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsIsGeneratingDemoData"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsLogsConfig"
-        },
-        {
-          "target": "com.posthog.organizations#GetOrganizationsProjectsSettingsAsOf"
-        },
-        {
-          "target": "com.posthog.organizations#GetRole"
-        },
-        {
-          "target": "com.posthog.organizations#GetRoleExternalReferencesLookup"
-        },
-        {
-          "target": "com.posthog.organizations#GetRolesRoleMembership"
-        },
-        {
-          "target": "com.posthog.organizations#GetTeamsDataFreshness"
-        },
-        {
-          "target": "com.posthog.organizations#GetWelcomeCurrent"
-        },
-        {
-          "target": "com.posthog.organizations#IdentityProviderConfigsDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#InvitesBulkCreate"
-        },
-        {
-          "target": "com.posthog.organizations#InvitesDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#LegalDocumentsDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#LegalDocumentsDownloadRetrieve"
-        },
-        {
-          "target": "com.posthog.organizations#List"
-        },
-        {
-          "target": "com.posthog.organizations#ListCimdVerificationTokens"
-        },
-        {
-          "target": "com.posthog.organizations#ListDesktopBetaTerms"
-        },
-        {
-          "target": "com.posthog.organizations#ListDomains"
-        },
-        {
-          "target": "com.posthog.organizations#ListIdentityProviderConfigs"
-        },
-        {
-          "target": "com.posthog.organizations#ListInvites"
-        },
-        {
-          "target": "com.posthog.organizations#ListLegalDocuments"
-        },
-        {
-          "target": "com.posthog.organizations#ListMembers"
-        },
-        {
-          "target": "com.posthog.organizations#ListOauthApplications"
-        },
-        {
-          "target": "com.posthog.organizations#ListOrganizationsProjects"
-        },
-        {
-          "target": "com.posthog.organizations#ListOrganizationsProjectsEventIngestionRestrictions"
-        },
-        {
-          "target": "com.posthog.organizations#ListRoleExternalReferences"
-        },
-        {
-          "target": "com.posthog.organizations#ListRoles"
-        },
-        {
-          "target": "com.posthog.organizations#ListRolesRoleMemberships"
-        },
-        {
-          "target": "com.posthog.organizations#MembersDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsAddProductIntentPartialUpdate"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsDefaultEvaluationContextsDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsDeleteSecretTokenBackupPartialUpdate"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsEvaluationContextSuggestionsDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsGenerateConversationsPublicTokenCreate"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsResetTokenPartialUpdate"
-        },
-        {
-          "target": "com.posthog.organizations#OrganizationsProjectsRotateSecretTokenPartialUpdate"
-        },
-        {
-          "target": "com.posthog.organizations#RemoveBlockedMembersAndEnforceVerifiedDomainsCreate"
-        },
-        {
-          "target": "com.posthog.organizations#RoleExternalReferencesDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#RolesDestroy"
-        },
-        {
-          "target": "com.posthog.organizations#RolesRoleMembershipsDestroy"
         },
         {
           "target": "com.posthog.organizations#Update"
         },
         {
+          "target": "com.posthog.organizations#UpdatePartial"
+        },
+        {
+          "target": "com.posthog.organizations#Destroy"
+        },
+        {
+          "target": "com.posthog.organizations#RemoveBlockedMembersAndEnforceVerifiedDomainsCreate"
+        },
+        {
+          "target": "com.posthog.organizations#CreateRequestAiAccess"
+        },
+        {
+          "target": "com.posthog.organizations#GetTeamsDataFreshness"
+        },
+        {
+          "target": "com.posthog.organizations#ListCimdVerificationTokens"
+        },
+        {
+          "target": "com.posthog.organizations#CreateCimdVerificationToken"
+        },
+        {
+          "target": "com.posthog.organizations#GetCimdVerificationToken"
+        },
+        {
           "target": "com.posthog.organizations#UpdateCimdVerificationTokensPartial"
+        },
+        {
+          "target": "com.posthog.organizations#CimdVerificationTokensDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#ListDesktopBetaTerms"
+        },
+        {
+          "target": "com.posthog.organizations#CreateDesktopBetaTerm"
+        },
+        {
+          "target": "com.posthog.organizations#ListDomains"
+        },
+        {
+          "target": "com.posthog.organizations#CreateDomain"
+        },
+        {
+          "target": "com.posthog.organizations#GetDomain"
         },
         {
           "target": "com.posthog.organizations#UpdateDomain"
@@ -22932,13 +22758,73 @@
           "target": "com.posthog.organizations#UpdateDomainsPartial"
         },
         {
+          "target": "com.posthog.organizations#DomainsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetDomainsScimLog"
+        },
+        {
+          "target": "com.posthog.organizations#DomainsVerifyCreate"
+        },
+        {
+          "target": "com.posthog.organizations#ListIdentityProviderConfigs"
+        },
+        {
+          "target": "com.posthog.organizations#CreateIdentityProviderConfig"
+        },
+        {
+          "target": "com.posthog.organizations#GetIdentityProviderConfig"
+        },
+        {
           "target": "com.posthog.organizations#UpdateIdentityProviderConfig"
         },
         {
           "target": "com.posthog.organizations#UpdateIdentityProviderConfigsPartial"
         },
         {
+          "target": "com.posthog.organizations#IdentityProviderConfigsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetIdentityProviderConfigsScimLog"
+        },
+        {
+          "target": "com.posthog.organizations#CreateIdentityProviderConfigsScimToken"
+        },
+        {
           "target": "com.posthog.organizations#UpdateIntegrationsEnvironmentMappingPartial"
+        },
+        {
+          "target": "com.posthog.organizations#ListInvites"
+        },
+        {
+          "target": "com.posthog.organizations#CreateInvite"
+        },
+        {
+          "target": "com.posthog.organizations#InvitesDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#InvitesBulkCreate"
+        },
+        {
+          "target": "com.posthog.organizations#CreateInvitesDelegate"
+        },
+        {
+          "target": "com.posthog.organizations#ListLegalDocuments"
+        },
+        {
+          "target": "com.posthog.organizations#CreateLegalDocument"
+        },
+        {
+          "target": "com.posthog.organizations#GetLegalDocument"
+        },
+        {
+          "target": "com.posthog.organizations#LegalDocumentsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#LegalDocumentsDownloadRetrieve"
+        },
+        {
+          "target": "com.posthog.organizations#ListMembers"
         },
         {
           "target": "com.posthog.organizations#UpdateMember"
@@ -22947,31 +22833,145 @@
           "target": "com.posthog.organizations#UpdateMembersPartial"
         },
         {
+          "target": "com.posthog.organizations#MembersDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetMembersGithubLogin"
+        },
+        {
+          "target": "com.posthog.organizations#GetMembersScopedApiKeys"
+        },
+        {
+          "target": "com.posthog.organizations#ListOauthApplications"
+        },
+        {
+          "target": "com.posthog.organizations#ListOrganizationsProjects"
+        },
+        {
+          "target": "com.posthog.organizations#CreateOrganizationsProject"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProject"
+        },
+        {
           "target": "com.posthog.organizations#UpdateOrganizationsProject"
-        },
-        {
-          "target": "com.posthog.organizations#UpdateOrganizationsProjectsCompleteProductOnboardingPartial"
-        },
-        {
-          "target": "com.posthog.organizations#UpdateOrganizationsProjectsDefaultReleaseCondition"
-        },
-        {
-          "target": "com.posthog.organizations#UpdateOrganizationsProjectsExperimentsConfigPartial"
-        },
-        {
-          "target": "com.posthog.organizations#UpdateOrganizationsProjectsLogsConfigPartial"
         },
         {
           "target": "com.posthog.organizations#UpdateOrganizationsProjectsPartial"
         },
         {
-          "target": "com.posthog.organizations#UpdatePartial"
+          "target": "com.posthog.organizations#OrganizationsProjectsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsActivity"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsAddProductIntentPartialUpdate"
+        },
+        {
+          "target": "com.posthog.organizations#CreateOrganizationsProjectsChangeOrganization"
+        },
+        {
+          "target": "com.posthog.organizations#UpdateOrganizationsProjectsCompleteProductOnboardingPartial"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsDefaultEvaluationContext"
+        },
+        {
+          "target": "com.posthog.organizations#CreateOrganizationsProjectsDefaultEvaluationContext"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsDefaultEvaluationContextsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsDefaultReleaseCondition"
+        },
+        {
+          "target": "com.posthog.organizations#UpdateOrganizationsProjectsDefaultReleaseCondition"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsDeleteSecretTokenBackupPartialUpdate"
+        },
+        {
+          "target": "com.posthog.organizations#CreateOrganizationsProjectsEvaluationContextSuggestion"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsEvaluationContextSuggestionsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#ListOrganizationsProjectsEventIngestionRestrictions"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsExperimentsConfig"
+        },
+        {
+          "target": "com.posthog.organizations#UpdateOrganizationsProjectsExperimentsConfigPartial"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsGenerateConversationsPublicTokenCreate"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsIsGeneratingDemoData"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsLogsConfig"
+        },
+        {
+          "target": "com.posthog.organizations#UpdateOrganizationsProjectsLogsConfigPartial"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsResetTokenPartialUpdate"
+        },
+        {
+          "target": "com.posthog.organizations#OrganizationsProjectsRotateSecretTokenPartialUpdate"
+        },
+        {
+          "target": "com.posthog.organizations#GetOrganizationsProjectsSettingsAsOf"
+        },
+        {
+          "target": "com.posthog.organizations#ListRoleExternalReferences"
+        },
+        {
+          "target": "com.posthog.organizations#CreateRoleExternalReference"
+        },
+        {
+          "target": "com.posthog.organizations#RoleExternalReferencesDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetRoleExternalReferencesLookup"
+        },
+        {
+          "target": "com.posthog.organizations#ListRoles"
+        },
+        {
+          "target": "com.posthog.organizations#CreateRole"
+        },
+        {
+          "target": "com.posthog.organizations#GetRole"
         },
         {
           "target": "com.posthog.organizations#UpdateRole"
         },
         {
           "target": "com.posthog.organizations#UpdateRolesPartial"
+        },
+        {
+          "target": "com.posthog.organizations#RolesDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#ListRolesRoleMemberships"
+        },
+        {
+          "target": "com.posthog.organizations#CreateRolesRoleMembership"
+        },
+        {
+          "target": "com.posthog.organizations#GetRolesRoleMembership"
+        },
+        {
+          "target": "com.posthog.organizations#RolesRoleMembershipsDestroy"
+        },
+        {
+          "target": "com.posthog.organizations#GetWelcomeCurrent"
         }
       ],
       "traits": {

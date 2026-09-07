@@ -20794,6 +20794,9 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalytics"
+        },
+        {
           "target": "com.cloudflare.realtime_kit#AddParticipantMeeting"
         },
         {
@@ -20921,9 +20924,6 @@
         },
         {
           "target": "com.cloudflare.realtime_kit#KickParticipantsActiveSession"
-        },
-        {
-          "target": "com.cloudflare.realtime_kit#LivestreamsGetOrgAnalytics"
         },
         {
           "target": "com.cloudflare.realtime_kit#PatchPreset"

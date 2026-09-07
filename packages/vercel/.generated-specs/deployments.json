@@ -42915,19 +42915,25 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.deployments#CancelDeployment"
+          "target": "com.vercel.deployments#GetDeploymentEvents"
         },
         {
-          "target": "com.vercel.deployments#CreateDeployment"
-        },
-        {
-          "target": "com.vercel.deployments#DeleteDeployment"
+          "target": "com.vercel.deployments#UpdateIntegrationDeploymentAction"
         },
         {
           "target": "com.vercel.deployments#GetDeployment"
         },
         {
-          "target": "com.vercel.deployments#GetDeploymentEvents"
+          "target": "com.vercel.deployments#CreateDeployment"
+        },
+        {
+          "target": "com.vercel.deployments#CancelDeployment"
+        },
+        {
+          "target": "com.vercel.deployments#UploadFile"
+        },
+        {
+          "target": "com.vercel.deployments#ListDeploymentFiles"
         },
         {
           "target": "com.vercel.deployments#GetDeploymentFileContents"
@@ -42936,13 +42942,7 @@
           "target": "com.vercel.deployments#GetDeployments"
         },
         {
-          "target": "com.vercel.deployments#ListDeploymentFiles"
-        },
-        {
-          "target": "com.vercel.deployments#UpdateIntegrationDeploymentAction"
-        },
-        {
-          "target": "com.vercel.deployments#UploadFile"
+          "target": "com.vercel.deployments#DeleteDeployment"
         }
       ],
       "traits": {

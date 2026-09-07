@@ -2179,16 +2179,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace"
+          "target": "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential"
         },
         {
           "target": "com.azure.hybridkubernetes#DeleteConnectedCluster"
         },
         {
-          "target": "com.azure.hybridkubernetes#GetConnectedCluster"
+          "target": "com.azure.hybridkubernetes#UpdateConnectedCluster"
         },
         {
-          "target": "com.azure.hybridkubernetes#GetOperation"
+          "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace"
+        },
+        {
+          "target": "com.azure.hybridkubernetes#GetConnectedCluster"
         },
         {
           "target": "com.azure.hybridkubernetes#ListConnectedClusterByResourceGroup"
@@ -2197,10 +2200,7 @@
           "target": "com.azure.hybridkubernetes#ListConnectedClusterBySubscription"
         },
         {
-          "target": "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential"
-        },
-        {
-          "target": "com.azure.hybridkubernetes#UpdateConnectedCluster"
+          "target": "com.azure.hybridkubernetes#GetOperation"
         }
       ],
       "traits": {

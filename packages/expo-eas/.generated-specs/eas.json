@@ -462600,6 +462600,219 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.expo.eas#AccountById"
+        },
+        {
+          "target": "com.expo.eas#AccountByName"
+        },
+        {
+          "target": "com.expo.eas#AccountSSOConfigurationPublicDataPublicDataByAccountName"
+        },
+        {
+          "target": "com.expo.eas#AppByDevDomainName"
+        },
+        {
+          "target": "com.expo.eas#AppByFullName"
+        },
+        {
+          "target": "com.expo.eas#AppById"
+        },
+        {
+          "target": "com.expo.eas#AppStoreConnectApiKeyById"
+        },
+        {
+          "target": "com.expo.eas#AppleDeviceRegistrationRequestById"
+        },
+        {
+          "target": "com.expo.eas#AppleDeviceRegistrationRequestPublicDataById"
+        },
+        {
+          "target": "com.expo.eas#AppleDistributionCertificateById"
+        },
+        {
+          "target": "com.expo.eas#AppleProvisioningProfileById"
+        },
+        {
+          "target": "com.expo.eas#AppleTeamByAppleTeamIdentifier"
+        },
+        {
+          "target": "com.expo.eas#AssetByStorageKeys"
+        },
+        {
+          "target": "com.expo.eas#AssetMetadata"
+        },
+        {
+          "target": "com.expo.eas#AssetSignedUrls"
+        },
+        {
+          "target": "com.expo.eas#AuditLogs"
+        },
+        {
+          "target": "com.expo.eas#BackgroundJobReceiptById"
+        },
+        {
+          "target": "com.expo.eas#BranchesById"
+        },
+        {
+          "target": "com.expo.eas#BuildAnnotationsAll"
+        },
+        {
+          "target": "com.expo.eas#BuildAnnotationsById"
+        },
+        {
+          "target": "com.expo.eas#BuildPublicDataById"
+        },
+        {
+          "target": "com.expo.eas#BuildsById"
+        },
+        {
+          "target": "com.expo.eas#ChannelsById"
+        },
+        {
+          "target": "com.expo.eas#ConvexIntegration"
+        },
+        {
+          "target": "com.expo.eas#DashboardChatById"
+        },
+        {
+          "target": "com.expo.eas#DeploymentsById"
+        },
+        {
+          "target": "com.expo.eas#DeviceRunSessionArtifactsById"
+        },
+        {
+          "target": "com.expo.eas#DeviceRunSessionsById"
+        },
+        {
+          "target": "com.expo.eas#EchoChatById"
+        },
+        {
+          "target": "com.expo.eas#EchoMessageById"
+        },
+        {
+          "target": "com.expo.eas#EchoMessagePartByEchoMessageId"
+        },
+        {
+          "target": "com.expo.eas#EchoMessagePartById"
+        },
+        {
+          "target": "com.expo.eas#EchoProjectById"
+        },
+        {
+          "target": "com.expo.eas#EchoProjectBySlug"
+        },
+        {
+          "target": "com.expo.eas#EchoProjectPublicByAccountName"
+        },
+        {
+          "target": "com.expo.eas#EchoVersionById"
+        },
+        {
+          "target": "com.expo.eas#EmbeddedUpdatesById"
+        },
+        {
+          "target": "com.expo.eas#Experimentation"
+        },
+        {
+          "target": "com.expo.eas#ExpoGoBuild"
+        },
+        {
+          "target": "com.expo.eas#GithubApp"
+        },
+        {
+          "target": "com.expo.eas#GoogleServiceAccountKeyById"
+        },
+        {
+          "target": "com.expo.eas#UpdateInvoicePreviewInvoiceForAdditionalAgentCreditsCount"
+        },
+        {
+          "target": "com.expo.eas#UpdateInvoicePreviewInvoiceForAdditionalConcurrenciesCount"
+        },
+        {
+          "target": "com.expo.eas#UpdateInvoicePreviewInvoiceForSubscription"
+        },
+        {
+          "target": "com.expo.eas#JobRunById"
+        },
+        {
+          "target": "com.expo.eas#Me"
+        },
+        {
+          "target": "com.expo.eas#MeActor"
+        },
+        {
+          "target": "com.expo.eas#MeUserActor"
+        },
+        {
+          "target": "com.expo.eas#PosthogIntegration"
+        },
+        {
+          "target": "com.expo.eas#RuntimesById"
+        },
+        {
+          "target": "com.expo.eas#SnackByHashId"
+        },
+        {
+          "target": "com.expo.eas#StatuspageServiceByServiceNames"
+        },
+        {
+          "target": "com.expo.eas#SubmissionsById"
+        },
+        {
+          "target": "com.expo.eas#TurtleBrownfieldArtifactsById"
+        },
+        {
+          "target": "com.expo.eas#TurtleBrownfieldArtifactsLatestForApp"
+        },
+        {
+          "target": "com.expo.eas#UpdatesById"
+        },
+        {
+          "target": "com.expo.eas#UpdatesByGroup"
+        },
+        {
+          "target": "com.expo.eas#UserActorPublicDataByUsername"
+        },
+        {
+          "target": "com.expo.eas#UserAuditLogs"
+        },
+        {
+          "target": "com.expo.eas#UserInvitationPublicDataByToken"
+        },
+        {
+          "target": "com.expo.eas#GetUserPreference"
+        },
+        {
+          "target": "com.expo.eas#VexoIntegration"
+        },
+        {
+          "target": "com.expo.eas#Viewer"
+        },
+        {
+          "target": "com.expo.eas#ViewerChatTokenUsage"
+        },
+        {
+          "target": "com.expo.eas#WebhookById"
+        },
+        {
+          "target": "com.expo.eas#WorkerDeploymentById"
+        },
+        {
+          "target": "com.expo.eas#WorkflowJobsById"
+        },
+        {
+          "target": "com.expo.eas#WorkflowRevisionsById"
+        },
+        {
+          "target": "com.expo.eas#WorkflowRunsById"
+        },
+        {
+          "target": "com.expo.eas#WorkflowsByAppIdAndFileName"
+        },
+        {
+          "target": "com.expo.eas#WorkflowsById"
+        },
+        {
           "target": "com.expo.eas#AccessTokenCreateAccessToken"
         },
         {
@@ -462607,12 +462820,6 @@
         },
         {
           "target": "com.expo.eas#AccessTokenSetAccessTokenRevoked"
-        },
-        {
-          "target": "com.expo.eas#AccountById"
-        },
-        {
-          "target": "com.expo.eas#AccountByName"
         },
         {
           "target": "com.expo.eas#AccountCancelAllSubscriptionsImmediately"
@@ -462634,6 +462841,12 @@
         },
         {
           "target": "com.expo.eas#AccountRemoveProfileImage"
+        },
+        {
+          "target": "com.expo.eas#RenameAccount"
+        },
+        {
+          "target": "com.expo.eas#RefundAccountRequest"
         },
         {
           "target": "com.expo.eas#AccountRevokeActorPermissions"
@@ -462661,9 +462874,6 @@
         },
         {
           "target": "com.expo.eas#AccountSSOConfigurationDeleteAccountSSOConfiguration"
-        },
-        {
-          "target": "com.expo.eas#AccountSSOConfigurationPublicDataPublicDataByAccountName"
         },
         {
           "target": "com.expo.eas#AccountSSOConfigurationUpdateAccountSSOConfiguration"
@@ -462735,79 +462945,7 @@
           "target": "com.expo.eas#AndroidKeystoreDeleteAndroidKeystore"
         },
         {
-          "target": "com.expo.eas#AppByDevDomainName"
-        },
-        {
-          "target": "com.expo.eas#AppByFullName"
-        },
-        {
-          "target": "com.expo.eas#AppById"
-        },
-        {
           "target": "com.expo.eas#AppCreateApp"
-        },
-        {
-          "target": "com.expo.eas#AppleAppIdentifierCreateAppleAppIdentifier"
-        },
-        {
-          "target": "com.expo.eas#AppleDeviceCreateAppleDevice"
-        },
-        {
-          "target": "com.expo.eas#AppleDeviceDeleteAppleDevice"
-        },
-        {
-          "target": "com.expo.eas#AppleDeviceRegistrationRequestById"
-        },
-        {
-          "target": "com.expo.eas#AppleDeviceRegistrationRequestCreateAppleDeviceRegistrationRequest"
-        },
-        {
-          "target": "com.expo.eas#AppleDeviceRegistrationRequestPublicDataById"
-        },
-        {
-          "target": "com.expo.eas#AppleDeviceUpdateAppleDevice"
-        },
-        {
-          "target": "com.expo.eas#AppleDistributionCertificateById"
-        },
-        {
-          "target": "com.expo.eas#AppleDistributionCertificateCreateAppleDistributionCertificate"
-        },
-        {
-          "target": "com.expo.eas#AppleDistributionCertificateDeleteAppleDistributionCertificate"
-        },
-        {
-          "target": "com.expo.eas#AppleProvisioningProfileById"
-        },
-        {
-          "target": "com.expo.eas#AppleProvisioningProfileCreateAppleProvisioningProfile"
-        },
-        {
-          "target": "com.expo.eas#AppleProvisioningProfileDeleteAppleProvisioningProfile"
-        },
-        {
-          "target": "com.expo.eas#AppleProvisioningProfileDeleteAppleProvisioningProfiles"
-        },
-        {
-          "target": "com.expo.eas#AppleProvisioningProfileUpdateAppleProvisioningProfile"
-        },
-        {
-          "target": "com.expo.eas#ApplePushKeyCreateApplePushKey"
-        },
-        {
-          "target": "com.expo.eas#ApplePushKeyDeleteApplePushKey"
-        },
-        {
-          "target": "com.expo.eas#AppleTeamByAppleTeamIdentifier"
-        },
-        {
-          "target": "com.expo.eas#AppleTeamCreateAppleTeam"
-        },
-        {
-          "target": "com.expo.eas#AppleTeamScheduleAppleTeamDeletion"
-        },
-        {
-          "target": "com.expo.eas#AppleTeamUpdateAppleTeam"
         },
         {
           "target": "com.expo.eas#AppRemoveProfileImage"
@@ -462831,9 +462969,6 @@
           "target": "com.expo.eas#AppSetWorkflowCachingConfig"
         },
         {
-          "target": "com.expo.eas#AppStoreConnectApiKeyById"
-        },
-        {
           "target": "com.expo.eas#AppStoreConnectApiKeyCreateAppStoreConnectApiKey"
         },
         {
@@ -462852,28 +462987,58 @@
           "target": "com.expo.eas#AppVersionCreateAppVersion"
         },
         {
-          "target": "com.expo.eas#AssetByStorageKeys"
+          "target": "com.expo.eas#AppleAppIdentifierCreateAppleAppIdentifier"
+        },
+        {
+          "target": "com.expo.eas#AppleDeviceCreateAppleDevice"
+        },
+        {
+          "target": "com.expo.eas#AppleDeviceDeleteAppleDevice"
+        },
+        {
+          "target": "com.expo.eas#AppleDeviceUpdateAppleDevice"
+        },
+        {
+          "target": "com.expo.eas#AppleDeviceRegistrationRequestCreateAppleDeviceRegistrationRequest"
+        },
+        {
+          "target": "com.expo.eas#AppleDistributionCertificateCreateAppleDistributionCertificate"
+        },
+        {
+          "target": "com.expo.eas#AppleDistributionCertificateDeleteAppleDistributionCertificate"
+        },
+        {
+          "target": "com.expo.eas#AppleProvisioningProfileCreateAppleProvisioningProfile"
+        },
+        {
+          "target": "com.expo.eas#AppleProvisioningProfileDeleteAppleProvisioningProfile"
+        },
+        {
+          "target": "com.expo.eas#AppleProvisioningProfileDeleteAppleProvisioningProfiles"
+        },
+        {
+          "target": "com.expo.eas#AppleProvisioningProfileUpdateAppleProvisioningProfile"
+        },
+        {
+          "target": "com.expo.eas#ApplePushKeyCreateApplePushKey"
+        },
+        {
+          "target": "com.expo.eas#ApplePushKeyDeleteApplePushKey"
+        },
+        {
+          "target": "com.expo.eas#AppleTeamCreateAppleTeam"
+        },
+        {
+          "target": "com.expo.eas#AppleTeamScheduleAppleTeamDeletion"
+        },
+        {
+          "target": "com.expo.eas#AppleTeamUpdateAppleTeam"
         },
         {
           "target": "com.expo.eas#AssetGetSignedAssetUploadSpecifications"
         },
         {
-          "target": "com.expo.eas#AssetMetadata"
-        },
-        {
-          "target": "com.expo.eas#AssetSignedUrls"
-        },
-        {
           "target": "com.expo.eas#AuditLogExportAuditLogs"
-        },
-        {
-          "target": "com.expo.eas#AuditLogs"
-        },
-        {
-          "target": "com.expo.eas#BackgroundJobReceiptById"
-        },
-        {
-          "target": "com.expo.eas#BranchesById"
         },
         {
           "target": "com.expo.eas#Build"
@@ -462885,28 +463050,7 @@
           "target": "com.expo.eas#BuildAnnotationDeleteBuildAnnotation"
         },
         {
-          "target": "com.expo.eas#BuildAnnotationsAll"
-        },
-        {
-          "target": "com.expo.eas#BuildAnnotationsById"
-        },
-        {
           "target": "com.expo.eas#BuildAnnotationUpdateBuildAnnotation"
-        },
-        {
-          "target": "com.expo.eas#BuildPublicDataById"
-        },
-        {
-          "target": "com.expo.eas#BuildsById"
-        },
-        {
-          "target": "com.expo.eas#ChannelsById"
-        },
-        {
-          "target": "com.expo.eas#CompleteExitInterview"
-        },
-        {
-          "target": "com.expo.eas#ConvexIntegration"
         },
         {
           "target": "com.expo.eas#ConvexProjectDeleteConvexProject"
@@ -462936,9 +463080,6 @@
           "target": "com.expo.eas#DashboardChatAddUserMessage"
         },
         {
-          "target": "com.expo.eas#DashboardChatById"
-        },
-        {
           "target": "com.expo.eas#DashboardChatCreateChat"
         },
         {
@@ -462951,13 +463092,7 @@
           "target": "com.expo.eas#DashboardChatUpsertAssistantMessage"
         },
         {
-          "target": "com.expo.eas#DeleteUserPreference"
-        },
-        {
           "target": "com.expo.eas#DeploymentsAssignAlias"
-        },
-        {
-          "target": "com.expo.eas#DeploymentsById"
         },
         {
           "target": "com.expo.eas#DeploymentsCreateSignedDeploymentUrl"
@@ -462978,9 +463113,6 @@
           "target": "com.expo.eas#DevDomainNameChangeDevDomainName"
         },
         {
-          "target": "com.expo.eas#DeviceRunSessionArtifactsById"
-        },
-        {
           "target": "com.expo.eas#DeviceRunSessionCreateArtifactUploadSession"
         },
         {
@@ -462993,16 +463125,10 @@
           "target": "com.expo.eas#DeviceRunSessionEnsureDeviceRunSessionStopped"
         },
         {
-          "target": "com.expo.eas#DeviceRunSessionsById"
-        },
-        {
           "target": "com.expo.eas#DeviceRunSessionStartDeviceRunSession"
         },
         {
           "target": "com.expo.eas#DiscordUserDeleteDiscordUser"
-        },
-        {
-          "target": "com.expo.eas#EchoChatById"
         },
         {
           "target": "com.expo.eas#EchoChatCreateChat"
@@ -463014,19 +463140,10 @@
           "target": "com.expo.eas#EchoChatUpdateChat"
         },
         {
-          "target": "com.expo.eas#EchoMessageById"
-        },
-        {
           "target": "com.expo.eas#EchoMessageCompleteMessage"
         },
         {
           "target": "com.expo.eas#EchoMessageCreateMessage"
-        },
-        {
-          "target": "com.expo.eas#EchoMessagePartByEchoMessageId"
-        },
-        {
-          "target": "com.expo.eas#EchoMessagePartById"
         },
         {
           "target": "com.expo.eas#EchoMessagePartCreatePart"
@@ -463036,12 +463153,6 @@
         },
         {
           "target": "com.expo.eas#EchoMessagePartUpdatePart"
-        },
-        {
-          "target": "com.expo.eas#EchoProjectById"
-        },
-        {
-          "target": "com.expo.eas#EchoProjectBySlug"
         },
         {
           "target": "com.expo.eas#EchoProjectCreateEchoProject"
@@ -463054,9 +463165,6 @@
         },
         {
           "target": "com.expo.eas#EchoProjectDeleteEchoProjectIcon"
-        },
-        {
-          "target": "com.expo.eas#EchoProjectPublicByAccountName"
         },
         {
           "target": "com.expo.eas#EchoProjectSelectEchoProjectIcon"
@@ -463074,25 +463182,19 @@
           "target": "com.expo.eas#EchoTurnCompleteTurn"
         },
         {
-          "target": "com.expo.eas#EchoVersionById"
-        },
-        {
           "target": "com.expo.eas#EchoVersionCreateVersion"
         },
         {
           "target": "com.expo.eas#EchoVersionUpdateVersion"
         },
         {
-          "target": "com.expo.eas#EmbeddedUpdateAssetGetSignedEmbeddedUpdateAssetUploadSpecifications"
-        },
-        {
           "target": "com.expo.eas#EmbeddedUpdateDeleteEmbeddedUpdate"
         },
         {
-          "target": "com.expo.eas#EmbeddedUpdatesById"
+          "target": "com.expo.eas#EmbeddedUpdateUploadEmbeddedUpdate"
         },
         {
-          "target": "com.expo.eas#EmbeddedUpdateUploadEmbeddedUpdate"
+          "target": "com.expo.eas#EmbeddedUpdateAssetGetSignedEmbeddedUpdateAssetUploadSpecifications"
         },
         {
           "target": "com.expo.eas#EnvironmentSecretCreateEnvironmentSecretForAccount"
@@ -463137,22 +463239,13 @@
           "target": "com.expo.eas#ExitInterviewBeginChatTurn"
         },
         {
+          "target": "com.expo.eas#CompleteExitInterview"
+        },
+        {
           "target": "com.expo.eas#ExitInterviewSubmitFeedback"
         },
         {
-          "target": "com.expo.eas#Experimentation"
-        },
-        {
-          "target": "com.expo.eas#ExpoGoBuild"
-        },
-        {
           "target": "com.expo.eas#FingerprintCreateOrGetExistingFingerprint"
-        },
-        {
-          "target": "com.expo.eas#GetUserPreference"
-        },
-        {
-          "target": "com.expo.eas#GithubApp"
         },
         {
           "target": "com.expo.eas#GithubAppCreateGitHubBuild"
@@ -463206,9 +463299,6 @@
           "target": "com.expo.eas#GithubUser"
         },
         {
-          "target": "com.expo.eas#GoogleServiceAccountKeyById"
-        },
-        {
           "target": "com.expo.eas#GoogleServiceAccountKeyCreateGoogleServiceAccountKey"
         },
         {
@@ -463242,9 +463332,6 @@
           "target": "com.expo.eas#IosAppCredentialsUpdateIosAppCredentials"
         },
         {
-          "target": "com.expo.eas#JobRunById"
-        },
-        {
           "target": "com.expo.eas#JobRunCancelJobRun"
         },
         {
@@ -463269,22 +463356,10 @@
           "target": "com.expo.eas#LogRocketProjectDeleteLogRocketProject"
         },
         {
-          "target": "com.expo.eas#Me"
-        },
-        {
-          "target": "com.expo.eas#MeActor"
-        },
-        {
-          "target": "com.expo.eas#MeUserActor"
-        },
-        {
           "target": "com.expo.eas#NotificationPreferenceSetAccountNotificationPreference"
         },
         {
           "target": "com.expo.eas#NotificationPreferenceSetAppNotificationPreference"
-        },
-        {
-          "target": "com.expo.eas#PosthogIntegration"
         },
         {
           "target": "com.expo.eas#PosthogOrganizationConnectionCompletePostHogConnection"
@@ -463311,12 +463386,6 @@
           "target": "com.expo.eas#RealtimeLogs"
         },
         {
-          "target": "com.expo.eas#RefundAccountRequest"
-        },
-        {
-          "target": "com.expo.eas#RenameAccount"
-        },
-        {
           "target": "com.expo.eas#RobotCreateRobotForAccount"
         },
         {
@@ -463324,9 +463393,6 @@
         },
         {
           "target": "com.expo.eas#RobotUpdateRobot"
-        },
-        {
-          "target": "com.expo.eas#RuntimesById"
         },
         {
           "target": "com.expo.eas#SentryInstallationConfirmPendingSentryInstallation"
@@ -463347,15 +463413,6 @@
           "target": "com.expo.eas#SentryProjectDeleteSentryProject"
         },
         {
-          "target": "com.expo.eas#SetUserPreference"
-        },
-        {
-          "target": "com.expo.eas#SnackByHashId"
-        },
-        {
-          "target": "com.expo.eas#StatuspageServiceByServiceNames"
-        },
-        {
           "target": "com.expo.eas#SubmissionCancelSubmission"
         },
         {
@@ -463366,9 +463423,6 @@
         },
         {
           "target": "com.expo.eas#SubmissionRetrySubmission"
-        },
-        {
-          "target": "com.expo.eas#SubmissionsById"
         },
         {
           "target": "com.expo.eas#SupabaseConnectionBeginSupabaseOAuth"
@@ -463404,16 +463458,19 @@
           "target": "com.expo.eas#TunnelsCreateSignedTunnelUrl"
         },
         {
-          "target": "com.expo.eas#TurtleBrownfieldArtifactsById"
-        },
-        {
           "target": "com.expo.eas#TurtleBrownfieldArtifactsCreateTurtleBrownfieldArtifact"
         },
         {
-          "target": "com.expo.eas#TurtleBrownfieldArtifactsLatestForApp"
+          "target": "com.expo.eas#TurtleSshSessionCreateOrUpdateTurtleSshSession"
         },
         {
-          "target": "com.expo.eas#TurtleSshSessionCreateOrUpdateTurtleSshSession"
+          "target": "com.expo.eas#UpdateScheduleUpdateGroupDeletion"
+        },
+        {
+          "target": "com.expo.eas#UpdateSetCodeSigningInfo"
+        },
+        {
+          "target": "com.expo.eas#UpdateSetRolloutPercentage"
         },
         {
           "target": "com.expo.eas#UpdateBranchCreateUpdateBranchForApp"
@@ -463449,30 +463506,6 @@
           "target": "com.expo.eas#UpdateChannelUnprotectUpdateChannel"
         },
         {
-          "target": "com.expo.eas#UpdateInvoicePreviewInvoiceForAdditionalAgentCreditsCount"
-        },
-        {
-          "target": "com.expo.eas#UpdateInvoicePreviewInvoiceForAdditionalConcurrenciesCount"
-        },
-        {
-          "target": "com.expo.eas#UpdateInvoicePreviewInvoiceForSubscription"
-        },
-        {
-          "target": "com.expo.eas#UpdatesByGroup"
-        },
-        {
-          "target": "com.expo.eas#UpdatesById"
-        },
-        {
-          "target": "com.expo.eas#UpdateScheduleUpdateGroupDeletion"
-        },
-        {
-          "target": "com.expo.eas#UpdateSetCodeSigningInfo"
-        },
-        {
-          "target": "com.expo.eas#UpdateSetRolloutPercentage"
-        },
-        {
           "target": "com.expo.eas#UploadSessionCreateAccountScopedUploadSession"
         },
         {
@@ -463485,9 +463518,6 @@
           "target": "com.expo.eas#UploadSessionCreateUploadSession"
         },
         {
-          "target": "com.expo.eas#UserActorPublicDataByUsername"
-        },
-        {
           "target": "com.expo.eas#UserAppPinsPinApp"
         },
         {
@@ -463495,9 +463525,6 @@
         },
         {
           "target": "com.expo.eas#UserAuditLogExportUserAuditLogs"
-        },
-        {
-          "target": "com.expo.eas#UserAuditLogs"
         },
         {
           "target": "com.expo.eas#UserDashboardViewPinsPinDashboardView"
@@ -463521,13 +463548,16 @@
           "target": "com.expo.eas#UserInvitationDeleteUserInvitationByToken"
         },
         {
-          "target": "com.expo.eas#UserInvitationPublicDataByToken"
-        },
-        {
           "target": "com.expo.eas#UserInvitationResendUserInvitation"
         },
         {
           "target": "com.expo.eas#UserInvitationUpdateUserInvitationPermissions"
+        },
+        {
+          "target": "com.expo.eas#DeleteUserPreference"
+        },
+        {
+          "target": "com.expo.eas#SetUserPreference"
         },
         {
           "target": "com.expo.eas#VexoAccountConnectionCreateVexoAccountConnection"
@@ -463545,18 +463575,6 @@
           "target": "com.expo.eas#VexoAppUpdateVexoApp"
         },
         {
-          "target": "com.expo.eas#VexoIntegration"
-        },
-        {
-          "target": "com.expo.eas#Viewer"
-        },
-        {
-          "target": "com.expo.eas#ViewerChatTokenUsage"
-        },
-        {
-          "target": "com.expo.eas#WebhookById"
-        },
-        {
           "target": "com.expo.eas#WebhookCreateWebhook"
         },
         {
@@ -463567,9 +463585,6 @@
         },
         {
           "target": "com.expo.eas#WebsiteNotifications"
-        },
-        {
-          "target": "com.expo.eas#WorkerDeploymentById"
         },
         {
           "target": "com.expo.eas#WorkflowCacheDeleteWorkflowCache"
@@ -463587,16 +463602,10 @@
           "target": "com.expo.eas#WorkflowJobApprovalSetWorkflowJobApprovalDecision"
         },
         {
-          "target": "com.expo.eas#WorkflowJobsById"
-        },
-        {
           "target": "com.expo.eas#WorkflowRevisionGetOrCreateWorkflowRevisionFromGitRef"
         },
         {
           "target": "com.expo.eas#WorkflowRevisionGetWorkflowRevisionsFromGitRef"
-        },
-        {
-          "target": "com.expo.eas#WorkflowRevisionsById"
         },
         {
           "target": "com.expo.eas#WorkflowRevisionValidateWorkflowYamlConfig"
@@ -463615,15 +463624,6 @@
         },
         {
           "target": "com.expo.eas#WorkflowRunRetryWorkflowRun"
-        },
-        {
-          "target": "com.expo.eas#WorkflowRunsById"
-        },
-        {
-          "target": "com.expo.eas#WorkflowsByAppIdAndFileName"
-        },
-        {
-          "target": "com.expo.eas#WorkflowsById"
         },
         {
           "target": "com.expo.eas#WorkflowsInsightsExportWorkflowRuns"

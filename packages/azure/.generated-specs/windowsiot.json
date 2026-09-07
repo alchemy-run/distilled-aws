@@ -989,25 +989,25 @@
           "target": "com.azure.windowsiot#CheckServiceDeviceServiceNameAvailability"
         },
         {
+          "target": "com.azure.windowsiot#ListServices"
+        },
+        {
+          "target": "com.azure.windowsiot#ListServiceByResourceGroup"
+        },
+        {
           "target": "com.azure.windowsiot#DeleteService"
+        },
+        {
+          "target": "com.azure.windowsiot#UpdateService"
+        },
+        {
+          "target": "com.azure.windowsiot#ServicesCreateOrUpdate"
         },
         {
           "target": "com.azure.windowsiot#GetService"
         },
         {
           "target": "com.azure.windowsiot#ListOperations"
-        },
-        {
-          "target": "com.azure.windowsiot#ListServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.windowsiot#ListServices"
-        },
-        {
-          "target": "com.azure.windowsiot#ServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.windowsiot#UpdateService"
         }
       ],
       "traits": {

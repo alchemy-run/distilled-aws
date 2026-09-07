@@ -5492,34 +5492,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databox#CancelJob"
+          "target": "com.azure.databox#ValidateServiceInputsByResourceGroup"
         },
         {
-          "target": "com.azure.databox#CreateJob"
-        },
-        {
-          "target": "com.azure.databox#DeleteJob"
-        },
-        {
-          "target": "com.azure.databox#GetJob"
-        },
-        {
-          "target": "com.azure.databox#JobsBookShipmentPickUp"
-        },
-        {
-          "target": "com.azure.databox#JobsMarkDevicesShipped"
-        },
-        {
-          "target": "com.azure.databox#ListJobByResourceGroup"
-        },
-        {
-          "target": "com.azure.databox#ListJobCredentials"
-        },
-        {
-          "target": "com.azure.databox#ListJobs"
-        },
-        {
-          "target": "com.azure.databox#ListOperations"
+          "target": "com.azure.databox#ServiceRegionConfigurationByResourceGroup"
         },
         {
           "target": "com.azure.databox#ListServiceAvailableSkusByResourceGroup"
@@ -5528,19 +5504,43 @@
           "target": "com.azure.databox#Mitigate"
         },
         {
-          "target": "com.azure.databox#ServiceRegionConfiguration"
+          "target": "com.azure.databox#JobsMarkDevicesShipped"
         },
         {
-          "target": "com.azure.databox#ServiceRegionConfigurationByResourceGroup"
+          "target": "com.azure.databox#ListJobCredentials"
+        },
+        {
+          "target": "com.azure.databox#CancelJob"
+        },
+        {
+          "target": "com.azure.databox#JobsBookShipmentPickUp"
+        },
+        {
+          "target": "com.azure.databox#DeleteJob"
         },
         {
           "target": "com.azure.databox#UpdateJob"
         },
         {
+          "target": "com.azure.databox#CreateJob"
+        },
+        {
+          "target": "com.azure.databox#GetJob"
+        },
+        {
+          "target": "com.azure.databox#ListJobByResourceGroup"
+        },
+        {
           "target": "com.azure.databox#ValidateServiceInputs"
         },
         {
-          "target": "com.azure.databox#ValidateServiceInputsByResourceGroup"
+          "target": "com.azure.databox#ServiceRegionConfiguration"
+        },
+        {
+          "target": "com.azure.databox#ListJobs"
+        },
+        {
+          "target": "com.azure.databox#ListOperations"
         }
       ],
       "traits": {

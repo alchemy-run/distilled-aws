@@ -33257,31 +33257,31 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.accounts#ListAccounts"
+        },
+        {
           "target": "com.whop.accounts#CreateAccount"
-        },
-        {
-          "target": "com.whop.accounts#FormCompany"
-        },
-        {
-          "target": "com.whop.accounts#GetAccount"
         },
         {
           "target": "com.whop.accounts#GetAccountPreferences"
         },
         {
+          "target": "com.whop.accounts#UpdateAccountPreferences"
+        },
+        {
           "target": "com.whop.accounts#ListAccountReserves"
         },
         {
-          "target": "com.whop.accounts#ListAccounts"
-        },
-        {
-          "target": "com.whop.accounts#TransferAccountOwnership"
+          "target": "com.whop.accounts#GetAccount"
         },
         {
           "target": "com.whop.accounts#UpdateAccount"
         },
         {
-          "target": "com.whop.accounts#UpdateAccountPreferences"
+          "target": "com.whop.accounts#FormCompany"
+        },
+        {
+          "target": "com.whop.accounts#TransferAccountOwnership"
         }
       ],
       "traits": {

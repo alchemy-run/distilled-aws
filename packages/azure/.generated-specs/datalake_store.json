@@ -4104,79 +4104,79 @@
           "target": "com.azure.datalake_store#CheckAccountNameAvailability"
         },
         {
-          "target": "com.azure.datalake_store#CreateAccount"
-        },
-        {
-          "target": "com.azure.datalake_store#DeleteAccount"
-        },
-        {
-          "target": "com.azure.datalake_store#DeleteFirewallRule"
-        },
-        {
-          "target": "com.azure.datalake_store#DeleteTrustedIdProvider"
-        },
-        {
-          "target": "com.azure.datalake_store#DeleteVirtualNetworkRule"
-        },
-        {
-          "target": "com.azure.datalake_store#EnableAccountKeyVault"
-        },
-        {
-          "target": "com.azure.datalake_store#FirewallRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datalake_store#GetAccount"
-        },
-        {
-          "target": "com.azure.datalake_store#GetFirewallRule"
+          "target": "com.azure.datalake_store#GetLocationUsage"
         },
         {
           "target": "com.azure.datalake_store#GetLocationCapability"
         },
         {
-          "target": "com.azure.datalake_store#GetLocationUsage"
-        },
-        {
-          "target": "com.azure.datalake_store#GetTrustedIdProvider"
-        },
-        {
-          "target": "com.azure.datalake_store#GetVirtualNetworkRule"
-        },
-        {
-          "target": "com.azure.datalake_store#ListAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.datalake_store#ListAccounts"
-        },
-        {
-          "target": "com.azure.datalake_store#ListFirewallRuleByAccount"
-        },
-        {
           "target": "com.azure.datalake_store#ListOperations"
         },
         {
-          "target": "com.azure.datalake_store#ListTrustedIdProviderByAccount"
+          "target": "com.azure.datalake_store#DeleteTrustedIdProvider"
         },
         {
-          "target": "com.azure.datalake_store#ListVirtualNetworkRuleByAccount"
+          "target": "com.azure.datalake_store#UpdateTrustedIdProvider"
         },
         {
           "target": "com.azure.datalake_store#TrustedIdProvidersCreateOrUpdate"
         },
         {
-          "target": "com.azure.datalake_store#UpdateAccount"
+          "target": "com.azure.datalake_store#GetTrustedIdProvider"
         },
         {
-          "target": "com.azure.datalake_store#UpdateFirewallRule"
+          "target": "com.azure.datalake_store#ListTrustedIdProviderByAccount"
         },
         {
-          "target": "com.azure.datalake_store#UpdateTrustedIdProvider"
+          "target": "com.azure.datalake_store#DeleteVirtualNetworkRule"
         },
         {
           "target": "com.azure.datalake_store#UpdateVirtualNetworkRule"
         },
         {
           "target": "com.azure.datalake_store#VirtualNetworkRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datalake_store#GetVirtualNetworkRule"
+        },
+        {
+          "target": "com.azure.datalake_store#ListVirtualNetworkRuleByAccount"
+        },
+        {
+          "target": "com.azure.datalake_store#DeleteFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_store#UpdateFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_store#FirewallRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datalake_store#GetFirewallRule"
+        },
+        {
+          "target": "com.azure.datalake_store#ListFirewallRuleByAccount"
+        },
+        {
+          "target": "com.azure.datalake_store#EnableAccountKeyVault"
+        },
+        {
+          "target": "com.azure.datalake_store#DeleteAccount"
+        },
+        {
+          "target": "com.azure.datalake_store#UpdateAccount"
+        },
+        {
+          "target": "com.azure.datalake_store#CreateAccount"
+        },
+        {
+          "target": "com.azure.datalake_store#GetAccount"
+        },
+        {
+          "target": "com.azure.datalake_store#ListAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.datalake_store#ListAccounts"
         }
       ],
       "traits": {

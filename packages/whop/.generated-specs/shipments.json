@@ -769,13 +769,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.shipments#ListShipments"
+        },
+        {
           "target": "com.whop.shipments#CreateShipment"
         },
         {
           "target": "com.whop.shipments#GetShipment"
-        },
-        {
-          "target": "com.whop.shipments#ListShipments"
         },
         {
           "target": "com.whop.shipments#UpdateShipment"

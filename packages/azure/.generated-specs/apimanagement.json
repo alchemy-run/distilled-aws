@@ -68173,754 +68173,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.apimanagement#ApiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiDiagnosticCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiGatewayConfigConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiGatewayCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiIssueAttachmentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiIssueCommentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiIssueCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiManagementServiceBackup"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiManagementServiceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiOperationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiOperationPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiReleaseCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiSchemaCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiTagDescriptionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiVersionSetCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApiWikiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ApplyApiManagementServiceNetworkConfigurationUpdates"
-        },
-        {
-          "target": "com.azure.apimanagement#AssignTagToApi"
-        },
-        {
-          "target": "com.azure.apimanagement#AssignTagToOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#AssignTagToProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#AuthorizationAccessPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#AuthorizationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#AuthorizationProviderCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#AuthorizationServerCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#BackendCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#BackendReconnect"
-        },
-        {
-          "target": "com.azure.apimanagement#CacheCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#CertificateCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#CheckApiManagementServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.apimanagement#ConfirmAuthorizationConsentCode"
-        },
-        {
-          "target": "com.azure.apimanagement#ContentItemCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ContentTypeCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#CreateGroupUser"
-        },
-        {
-          "target": "com.azure.apimanagement#CreateTenantAccess"
-        },
-        {
-          "target": "com.azure.apimanagement#CreateWorkspaceGroupUser"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApi"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiGateway"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiGatewayConfigConnection"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiIssue"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiIssueAttachment"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiIssueComment"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiManagementService"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiOperationPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiRelease"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiTagDescription"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiVersionSet"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteApiWiki"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteAuthorization"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteAuthorizationAccessPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteAuthorizationProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteAuthorizationServer"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteBackend"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteCache"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteCertificate"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteContentItem"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteContentType"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteDocumentation"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteEmailTemplate"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGateway"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGatewayApi"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGatewayCertificateAuthority"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGatewayHostnameConfiguration"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGlobalSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGraphQLApiResolver"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGraphQLApiResolverPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGroup"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteGroupUser"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteIdentityProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteLogger"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteNamedValue"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteNotificationRecipientEmail"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteNotificationRecipientUser"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteOpenIdConnectProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#DeletePolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeletePolicyFragment"
-        },
-        {
-          "target": "com.azure.apimanagement#DeletePolicyRestriction"
-        },
-        {
-          "target": "com.azure.apimanagement#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProductApi"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProductApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProductGroup"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProductGroupLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProductPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteProductWiki"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteTag"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteTagApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteTagOperationLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteTagProductLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteUser"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApi"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiOperationPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiRelease"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceApiVersionSet"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceBackend"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceCertificate"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceGlobalSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceGroup"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceGroupUser"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceLogger"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceNamedValue"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceNotificationRecipientEmail"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceNotificationRecipientUser"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspacePolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspacePolicyFragment"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceProductApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceProductGroupLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceProductPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceTag"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceTagApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceTagOperationLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeleteWorkspaceTagProductLink"
-        },
-        {
-          "target": "com.azure.apimanagement#DeployTenantConfiguration"
-        },
-        {
-          "target": "com.azure.apimanagement#DetachTagFromApi"
-        },
-        {
-          "target": "com.azure.apimanagement#DetachTagFromOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#DetachTagFromProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#DiagnosticCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#DocumentationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#EmailTemplateCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GatewayApiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GatewayCertificateAuthorityCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GatewayCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GatewayHostnameConfigurationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GenerateGatewayToken"
-        },
-        {
-          "target": "com.azure.apimanagement#GenerateUserSsoUrl"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApi"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiGateway"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiGatewayConfigConnection"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiIssue"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiIssueAttachment"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiIssueComment"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiManagementService"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiManagementServiceDomainOwnershipIdentifier"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiManagementServiceSsoToken"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiManagementWorkspaceLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiOperationPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiRelease"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiTagDescription"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiVersionSet"
-        },
-        {
-          "target": "com.azure.apimanagement#GetApiWiki"
-        },
-        {
-          "target": "com.azure.apimanagement#GetAuthorization"
-        },
-        {
-          "target": "com.azure.apimanagement#GetAuthorizationAccessPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetAuthorizationProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#GetAuthorizationServer"
-        },
-        {
-          "target": "com.azure.apimanagement#GetBackend"
-        },
-        {
-          "target": "com.azure.apimanagement#GetCache"
-        },
-        {
-          "target": "com.azure.apimanagement#GetCertificate"
-        },
-        {
-          "target": "com.azure.apimanagement#GetContentItem"
-        },
-        {
-          "target": "com.azure.apimanagement#GetContentType"
-        },
-        {
-          "target": "com.azure.apimanagement#GetDeletedServiceByName"
-        },
-        {
-          "target": "com.azure.apimanagement#GetDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#GetDocumentation"
-        },
-        {
-          "target": "com.azure.apimanagement#GetEmailTemplate"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGateway"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGatewayCertificateAuthority"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGatewayHostnameConfiguration"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGlobalSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGraphQLApiResolver"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGraphQLApiResolverPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetGroup"
-        },
-        {
-          "target": "com.azure.apimanagement#GetIdentityProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#GetIssue"
-        },
-        {
-          "target": "com.azure.apimanagement#GetLogger"
-        },
-        {
-          "target": "com.azure.apimanagement#GetNamedValue"
-        },
-        {
-          "target": "com.azure.apimanagement#GetNotification"
-        },
-        {
-          "target": "com.azure.apimanagement#GetOpenIdConnectProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#GetOperationsResult"
-        },
-        {
-          "target": "com.azure.apimanagement#GetOperationStatus"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPolicyFragment"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPolicyRestriction"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPortalConfig"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPortalRevision"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPrivateEndpointConnectionByName"
-        },
-        {
-          "target": "com.azure.apimanagement#GetPrivateEndpointConnectionPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.apimanagement#GetProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#GetProductApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetProductGroupLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetProductPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetProductWiki"
-        },
-        {
-          "target": "com.azure.apimanagement#GetQuotaByPeriodKeys"
-        },
-        {
-          "target": "com.azure.apimanagement#GetSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTag"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTagApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTagByApi"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTagByOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTagByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTagOperationLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTagProductLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTenantAccess"
-        },
-        {
-          "target": "com.azure.apimanagement#GetTenantConfigurationSyncState"
-        },
-        {
-          "target": "com.azure.apimanagement#GetUser"
-        },
-        {
-          "target": "com.azure.apimanagement#GetUserSharedAccessToken"
-        },
-        {
-          "target": "com.azure.apimanagement#GetUserSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspace"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApi"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiOperationPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiRelease"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceApiVersionSet"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceBackend"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceCertificate"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceGlobalSchema"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceGroup"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceLogger"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceNamedValue"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceNotification"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspacePolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspacePolicyFragment"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceProductApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceProductGroupLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceProductPolicy"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceTag"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceTagApiLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceTagOperationLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GetWorkspaceTagProductLink"
-        },
-        {
-          "target": "com.azure.apimanagement#GlobalSchemaCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GraphQLApiResolverCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GraphQLApiResolverPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#GroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#IdentityProviderCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#InvalidateGatewayDebugCredentials"
-        },
-        {
-          "target": "com.azure.apimanagement#ListAllPolicyByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListApiByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListApiByTags"
-        },
-        {
-          "target": "com.azure.apimanagement#ListApiDiagnosticByService"
+          "target": "com.azure.apimanagement#ListApiManagementGatewaySkusAvailableSkus"
         },
         {
           "target": "com.azure.apimanagement#ListApiGateway"
@@ -68929,43 +68182,136 @@
           "target": "com.azure.apimanagement#ListApiGatewayByResourceGroup"
         },
         {
-          "target": "com.azure.apimanagement#ListApiGatewayConfigConnectionByGateway"
+          "target": "com.azure.apimanagement#DeleteApiGateway"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateApiGateway"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiGatewayCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiGateway"
+        },
+        {
+          "target": "com.azure.apimanagement#ListAllPolicyByService"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiWikis"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiWiki"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateApiWiki"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiWikiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiWiki"
+        },
+        {
+          "target": "com.azure.apimanagement#ListOperationByTags"
+        },
+        {
+          "target": "com.azure.apimanagement#DetachTagFromApi"
+        },
+        {
+          "target": "com.azure.apimanagement#AssignTagToApi"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTagByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiTagDescription"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiTagDescriptionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiTagDescription"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiTagDescriptionByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiIssueAttachment"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiIssueAttachmentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiIssueAttachment"
         },
         {
           "target": "com.azure.apimanagement#ListApiIssueAttachmentByService"
         },
         {
-          "target": "com.azure.apimanagement#ListApiIssueByService"
+          "target": "com.azure.apimanagement#DeleteApiIssueComment"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiIssueCommentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiIssueComment"
         },
         {
           "target": "com.azure.apimanagement#ListApiIssueCommentByService"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementGatewaySkusAvailableSkus"
+          "target": "com.azure.apimanagement#DeleteApiIssue"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementOperations"
+          "target": "com.azure.apimanagement#UpdateApiIssue"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementService"
+          "target": "com.azure.apimanagement#ApiIssueCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementServiceByResourceGroup"
+          "target": "com.azure.apimanagement#GetApiIssue"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementServiceSkusAvailableServiceSkus"
+          "target": "com.azure.apimanagement#ListApiIssueByService"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementSkus"
+          "target": "com.azure.apimanagement#DeleteApiDiagnostic"
         },
         {
-          "target": "com.azure.apimanagement#ListApiManagementWorkspaceLinkByService"
+          "target": "com.azure.apimanagement#UpdateApiDiagnostic"
         },
         {
-          "target": "com.azure.apimanagement#ListApiOperationByApi"
+          "target": "com.azure.apimanagement#ApiDiagnosticCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#ListApiOperationPolicyByOperation"
+          "target": "com.azure.apimanagement#GetApiDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiDiagnosticByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiSchemaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiSchemaByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiPolicy"
         },
         {
           "target": "com.azure.apimanagement#ListApiPolicyByApi"
@@ -68974,118 +68320,517 @@
           "target": "com.azure.apimanagement#ListApiProductByApis"
         },
         {
+          "target": "com.azure.apimanagement#DeleteGraphQLApiResolverPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#GraphQLApiResolverPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGraphQLApiResolverPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGraphQLApiResolverPolicyByResolver"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteGraphQLApiResolver"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateGraphQLApiResolver"
+        },
+        {
+          "target": "com.azure.apimanagement#GraphQLApiResolverCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGraphQLApiResolver"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGraphQLApiResolverByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DetachTagFromOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#AssignTagToOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTagByOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagByOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiOperationPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiOperationPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiOperationPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiOperationPolicyByOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateApiOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiOperationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiOperationByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiRelease"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateApiRelease"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiReleaseCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiRelease"
+        },
+        {
           "target": "com.azure.apimanagement#ListApiReleaseByService"
         },
         {
           "target": "com.azure.apimanagement#ListApiRevisionByService"
         },
         {
-          "target": "com.azure.apimanagement#ListApiSchemaByApi"
+          "target": "com.azure.apimanagement#DeleteApi"
         },
         {
-          "target": "com.azure.apimanagement#ListApiTagDescriptionByService"
+          "target": "com.azure.apimanagement#UpdateApi"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApi"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiByService"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiByTags"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiVersionSet"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateApiVersionSet"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiVersionSetCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiVersionSet"
         },
         {
           "target": "com.azure.apimanagement#ListApiVersionSetByService"
         },
         {
-          "target": "com.azure.apimanagement#ListApiWikis"
+          "target": "com.azure.apimanagement#DeleteAuthorizationAccessPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#AuthorizationAccessPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetAuthorizationAccessPolicy"
         },
         {
           "target": "com.azure.apimanagement#ListAuthorizationAccessPolicyByAuthorization"
         },
         {
+          "target": "com.azure.apimanagement#ConfirmAuthorizationConsentCode"
+        },
+        {
+          "target": "com.azure.apimanagement#PostAuthorizationLoginLink"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteAuthorization"
+        },
+        {
+          "target": "com.azure.apimanagement#AuthorizationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetAuthorization"
+        },
+        {
           "target": "com.azure.apimanagement#ListAuthorizationByAuthorizationProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteAuthorizationProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#AuthorizationProviderCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetAuthorizationProvider"
         },
         {
           "target": "com.azure.apimanagement#ListAuthorizationProviderByService"
         },
         {
+          "target": "com.azure.apimanagement#ListAuthorizationServerSecrets"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteAuthorizationServer"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateAuthorizationServer"
+        },
+        {
+          "target": "com.azure.apimanagement#AuthorizationServerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetAuthorizationServer"
+        },
+        {
           "target": "com.azure.apimanagement#ListAuthorizationServerByService"
         },
         {
-          "target": "com.azure.apimanagement#ListAuthorizationServerSecrets"
+          "target": "com.azure.apimanagement#BackendReconnect"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteBackend"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateBackend"
+        },
+        {
+          "target": "com.azure.apimanagement#BackendCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetBackend"
         },
         {
           "target": "com.azure.apimanagement#ListBackendByService"
         },
         {
+          "target": "com.azure.apimanagement#DeleteCache"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateCache"
+        },
+        {
+          "target": "com.azure.apimanagement#CacheCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetCache"
+        },
+        {
           "target": "com.azure.apimanagement#ListCacheByService"
+        },
+        {
+          "target": "com.azure.apimanagement#RefreshCertificateSecret"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteCertificate"
+        },
+        {
+          "target": "com.azure.apimanagement#CertificateCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetCertificate"
         },
         {
           "target": "com.azure.apimanagement#ListCertificateByService"
         },
         {
+          "target": "com.azure.apimanagement#PerformConnectivityCheckAsync"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteContentItem"
+        },
+        {
+          "target": "com.azure.apimanagement#ContentItemCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetContentItem"
+        },
+        {
           "target": "com.azure.apimanagement#ListContentItemByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteContentType"
+        },
+        {
+          "target": "com.azure.apimanagement#ContentTypeCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetContentType"
         },
         {
           "target": "com.azure.apimanagement#ListContentTypeByService"
         },
         {
+          "target": "com.azure.apimanagement#PurgeDeletedService"
+        },
+        {
+          "target": "com.azure.apimanagement#GetDeletedServiceByName"
+        },
+        {
           "target": "com.azure.apimanagement#ListDeletedServiceBySubscription"
+        },
+        {
+          "target": "com.azure.apimanagement#ApplyApiManagementServiceNetworkConfigurationUpdates"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiManagementServiceDomainOwnershipIdentifier"
+        },
+        {
+          "target": "com.azure.apimanagement#CheckApiManagementServiceNameAvailability"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiManagementServiceSsoToken"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiManagementService"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiManagementServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.apimanagement#MigrateApiManagementServiceToStv2"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteApiManagementService"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateApiManagementService"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiManagementServiceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiManagementService"
+        },
+        {
+          "target": "com.azure.apimanagement#ApiManagementServiceBackup"
+        },
+        {
+          "target": "com.azure.apimanagement#RestoreApiManagementService"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiManagementServiceSkusAvailableServiceSkus"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiManagementOperations"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#DiagnosticCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetDiagnostic"
         },
         {
           "target": "com.azure.apimanagement#ListDiagnosticByService"
         },
         {
+          "target": "com.azure.apimanagement#DeleteDocumentation"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateDocumentation"
+        },
+        {
+          "target": "com.azure.apimanagement#DocumentationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetDocumentation"
+        },
+        {
           "target": "com.azure.apimanagement#ListDocumentationByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteEmailTemplate"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateEmailTemplate"
+        },
+        {
+          "target": "com.azure.apimanagement#EmailTemplateCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetEmailTemplate"
         },
         {
           "target": "com.azure.apimanagement#ListEmailTemplateByService"
         },
         {
-          "target": "com.azure.apimanagement#ListGatewayApiByService"
+          "target": "com.azure.apimanagement#DeleteApiGatewayConfigConnection"
         },
         {
-          "target": "com.azure.apimanagement#ListGatewayByService"
+          "target": "com.azure.apimanagement#ApiGatewayConfigConnectionCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#ListGatewayCertificateAuthorityByService"
+          "target": "com.azure.apimanagement#GetApiGatewayConfigConnection"
         },
         {
-          "target": "com.azure.apimanagement#ListGatewayDebugCredentials"
-        },
-        {
-          "target": "com.azure.apimanagement#ListGatewayHostnameConfigurationByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListGatewayKeys"
+          "target": "com.azure.apimanagement#ListApiGatewayConfigConnectionByGateway"
         },
         {
           "target": "com.azure.apimanagement#ListGatewayTrace"
         },
         {
-          "target": "com.azure.apimanagement#ListGlobalSchemaByService"
+          "target": "com.azure.apimanagement#ListGatewayDebugCredentials"
         },
         {
-          "target": "com.azure.apimanagement#ListGraphQLApiResolverByApi"
+          "target": "com.azure.apimanagement#InvalidateGatewayDebugCredentials"
         },
         {
-          "target": "com.azure.apimanagement#ListGraphQLApiResolverPolicyByResolver"
+          "target": "com.azure.apimanagement#DeleteGatewayCertificateAuthority"
         },
         {
-          "target": "com.azure.apimanagement#ListGroupByService"
+          "target": "com.azure.apimanagement#GatewayCertificateAuthorityCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGatewayCertificateAuthority"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGatewayCertificateAuthorityByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteGatewayApi"
+        },
+        {
+          "target": "com.azure.apimanagement#GatewayApiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGatewayApiByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteGatewayHostnameConfiguration"
+        },
+        {
+          "target": "com.azure.apimanagement#GatewayHostnameConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGatewayHostnameConfiguration"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGatewayHostnameConfigurationByService"
+        },
+        {
+          "target": "com.azure.apimanagement#GenerateGatewayToken"
+        },
+        {
+          "target": "com.azure.apimanagement#RegenerateGatewayKey"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGatewayKeys"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteGateway"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateGateway"
+        },
+        {
+          "target": "com.azure.apimanagement#GatewayCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGateway"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGatewayByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteGroupUser"
+        },
+        {
+          "target": "com.azure.apimanagement#CreateGroupUser"
         },
         {
           "target": "com.azure.apimanagement#ListGroupUser"
         },
         {
-          "target": "com.azure.apimanagement#ListIdentityProviderByService"
+          "target": "com.azure.apimanagement#DeleteGroup"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateGroup"
+        },
+        {
+          "target": "com.azure.apimanagement#GroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGroup"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGroupByService"
         },
         {
           "target": "com.azure.apimanagement#ListIdentityProviderSecrets"
         },
         {
+          "target": "com.azure.apimanagement#DeleteIdentityProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateIdentityProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#IdentityProviderCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetIdentityProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#ListIdentityProviderByService"
+        },
+        {
+          "target": "com.azure.apimanagement#GetIssue"
+        },
+        {
           "target": "com.azure.apimanagement#ListIssueByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteLogger"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateLogger"
+        },
+        {
+          "target": "com.azure.apimanagement#LoggerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetLogger"
         },
         {
           "target": "com.azure.apimanagement#ListLoggerByService"
         },
         {
-          "target": "com.azure.apimanagement#ListNamedValueByService"
+          "target": "com.azure.apimanagement#RefreshNamedValueSecret"
         },
         {
           "target": "com.azure.apimanagement#ListNamedValueValue"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteNamedValue"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateNamedValue"
+        },
+        {
+          "target": "com.azure.apimanagement#NamedValueCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetNamedValue"
+        },
+        {
+          "target": "com.azure.apimanagement#ListNamedValueByService"
         },
         {
           "target": "com.azure.apimanagement#ListNetworkStatusByLocation"
@@ -69094,25 +68839,61 @@
           "target": "com.azure.apimanagement#ListNetworkStatusByService"
         },
         {
-          "target": "com.azure.apimanagement#ListNotificationByService"
+          "target": "com.azure.apimanagement#DeleteNotificationRecipientEmail"
+        },
+        {
+          "target": "com.azure.apimanagement#NotificationRecipientEmailCreateOrUpdate"
         },
         {
           "target": "com.azure.apimanagement#ListNotificationRecipientEmailByNotification"
         },
         {
+          "target": "com.azure.apimanagement#DeleteNotificationRecipientUser"
+        },
+        {
+          "target": "com.azure.apimanagement#NotificationRecipientUserCreateOrUpdate"
+        },
+        {
           "target": "com.azure.apimanagement#ListNotificationRecipientUserByNotification"
         },
         {
-          "target": "com.azure.apimanagement#ListOpenIdConnectProviderByService"
+          "target": "com.azure.apimanagement#NotificationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetNotification"
+        },
+        {
+          "target": "com.azure.apimanagement#ListNotificationByService"
         },
         {
           "target": "com.azure.apimanagement#ListOpenIdConnectProviderSecrets"
         },
         {
-          "target": "com.azure.apimanagement#ListOperationByTags"
+          "target": "com.azure.apimanagement#DeleteOpenIdConnectProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateOpenIdConnectProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#OpenIdConnectProviderCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetOpenIdConnectProvider"
+        },
+        {
+          "target": "com.azure.apimanagement#ListOpenIdConnectProviderByService"
         },
         {
           "target": "com.azure.apimanagement#ListOutboundNetworkDependenciesEndpointByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeletePolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#PolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetPolicy"
         },
         {
           "target": "com.azure.apimanagement#ListPolicyByService"
@@ -69121,43 +68902,139 @@
           "target": "com.azure.apimanagement#ListPolicyDescriptionByService"
         },
         {
+          "target": "com.azure.apimanagement#ListPolicyFragmentReferences"
+        },
+        {
+          "target": "com.azure.apimanagement#DeletePolicyFragment"
+        },
+        {
+          "target": "com.azure.apimanagement#PolicyFragmentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetPolicyFragment"
+        },
+        {
           "target": "com.azure.apimanagement#ListPolicyFragmentByService"
         },
         {
-          "target": "com.azure.apimanagement#ListPolicyFragmentReferences"
+          "target": "com.azure.apimanagement#DeletePolicyRestriction"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdatePolicyRestriction"
+        },
+        {
+          "target": "com.azure.apimanagement#PolicyRestrictionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetPolicyRestriction"
         },
         {
           "target": "com.azure.apimanagement#ListPolicyRestrictionByService"
         },
         {
+          "target": "com.azure.apimanagement#PolicyRestrictionValidationsByService"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdatePortalConfig"
+        },
+        {
+          "target": "com.azure.apimanagement#PortalConfigCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetPortalConfig"
+        },
+        {
           "target": "com.azure.apimanagement#ListPortalConfigByService"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdatePortalRevision"
+        },
+        {
+          "target": "com.azure.apimanagement#PortalRevisionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetPortalRevision"
         },
         {
           "target": "com.azure.apimanagement#ListPortalRevisionByService"
         },
         {
-          "target": "com.azure.apimanagement#ListPrivateEndpointConnectionByService"
+          "target": "com.azure.apimanagement#GetPrivateEndpointConnectionPrivateLinkResource"
         },
         {
           "target": "com.azure.apimanagement#ListPrivateEndpointConnectionPrivateLinkResources"
         },
         {
-          "target": "com.azure.apimanagement#ListProductApiByProduct"
+          "target": "com.azure.apimanagement#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.apimanagement#PrivateEndpointConnectionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetPrivateEndpointConnectionByName"
+        },
+        {
+          "target": "com.azure.apimanagement#ListPrivateEndpointConnectionByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteProductGroupLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ProductGroupLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetProductGroupLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListProductGroupLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteProductApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ProductApiLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetProductApiLink"
         },
         {
           "target": "com.azure.apimanagement#ListProductApiLinkByProduct"
         },
         {
-          "target": "com.azure.apimanagement#ListProductByService"
+          "target": "com.azure.apimanagement#ListProductWikis"
         },
         {
-          "target": "com.azure.apimanagement#ListProductByTags"
+          "target": "com.azure.apimanagement#DeleteProductWiki"
         },
         {
-          "target": "com.azure.apimanagement#ListProductGroupByProduct"
+          "target": "com.azure.apimanagement#UpdateProductWiki"
         },
         {
-          "target": "com.azure.apimanagement#ListProductGroupLinkByProduct"
+          "target": "com.azure.apimanagement#ProductWikiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetProductWiki"
+        },
+        {
+          "target": "com.azure.apimanagement#DetachTagFromProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#AssignTagToProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTagByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteProductPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ProductPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetProductPolicy"
         },
         {
           "target": "com.azure.apimanagement#ListProductPolicyByProduct"
@@ -69166,7 +69043,49 @@
           "target": "com.azure.apimanagement#ListProductSubscriptions"
         },
         {
-          "target": "com.azure.apimanagement#ListProductWikis"
+          "target": "com.azure.apimanagement#DeleteProductGroup"
+        },
+        {
+          "target": "com.azure.apimanagement#ProductGroupCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#ListProductGroupByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteProductApi"
+        },
+        {
+          "target": "com.azure.apimanagement#ProductApiCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#ListProductApiByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#ProductCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#ListProductByService"
+        },
+        {
+          "target": "com.azure.apimanagement#ListProductByTags"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeys"
+        },
+        {
+          "target": "com.azure.apimanagement#GetQuotaByPeriodKeys"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateQuotaByCounterKeys"
         },
         {
           "target": "com.azure.apimanagement#ListQuotaByCounterKeysByService"
@@ -69175,91 +69094,442 @@
           "target": "com.azure.apimanagement#ListRegionByService"
         },
         {
-          "target": "com.azure.apimanagement#ListReportByApi"
-        },
-        {
-          "target": "com.azure.apimanagement#ListReportByGeo"
-        },
-        {
-          "target": "com.azure.apimanagement#ListReportByOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#ListReportByProduct"
-        },
-        {
           "target": "com.azure.apimanagement#ListReportByRequest"
-        },
-        {
-          "target": "com.azure.apimanagement#ListReportBySubscription"
         },
         {
           "target": "com.azure.apimanagement#ListReportByTime"
         },
         {
+          "target": "com.azure.apimanagement#ListReportBySubscription"
+        },
+        {
+          "target": "com.azure.apimanagement#ListReportByGeo"
+        },
+        {
+          "target": "com.azure.apimanagement#ListReportByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#ListReportByOperation"
+        },
+        {
           "target": "com.azure.apimanagement#ListReportByUser"
         },
         {
-          "target": "com.azure.apimanagement#ListSubscription"
+          "target": "com.azure.apimanagement#ListReportByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteGlobalSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#GlobalSchemaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetGlobalSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#ListGlobalSchemaByService"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiManagementSkus"
         },
         {
           "target": "com.azure.apimanagement#ListSubscriptionSecrets"
         },
         {
-          "target": "com.azure.apimanagement#ListTagApiLinkByProduct"
+          "target": "com.azure.apimanagement#RegenerateSubscriptionSecondaryKey"
         },
         {
-          "target": "com.azure.apimanagement#ListTagByApi"
+          "target": "com.azure.apimanagement#RegenerateSubscriptionPrimaryKey"
         },
         {
-          "target": "com.azure.apimanagement#ListTagByOperation"
+          "target": "com.azure.apimanagement#DeleteSubscription"
         },
         {
-          "target": "com.azure.apimanagement#ListTagByProduct"
+          "target": "com.azure.apimanagement#UpdateSubscription"
         },
         {
-          "target": "com.azure.apimanagement#ListTagByService"
+          "target": "com.azure.apimanagement#SubscriptionCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#ListTagOperationLinkByProduct"
+          "target": "com.azure.apimanagement#GetSubscription"
         },
         {
-          "target": "com.azure.apimanagement#ListTagProductLinkByProduct"
+          "target": "com.azure.apimanagement#ListSubscription"
         },
         {
           "target": "com.azure.apimanagement#ListTagResourceByService"
         },
         {
-          "target": "com.azure.apimanagement#ListTenantAccessByService"
+          "target": "com.azure.apimanagement#DeleteTagProductLink"
+        },
+        {
+          "target": "com.azure.apimanagement#TagProductLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTagProductLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagProductLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteTagOperationLink"
+        },
+        {
+          "target": "com.azure.apimanagement#TagOperationLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTagOperationLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagOperationLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteTagApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#TagApiLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTagApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagApiLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteTag"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateTag"
+        },
+        {
+          "target": "com.azure.apimanagement#TagCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTag"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTagByService"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTenantConfigurationSyncState"
+        },
+        {
+          "target": "com.azure.apimanagement#ValidateTenantConfiguration"
+        },
+        {
+          "target": "com.azure.apimanagement#TenantConfigurationSave"
+        },
+        {
+          "target": "com.azure.apimanagement#DeployTenantConfiguration"
+        },
+        {
+          "target": "com.azure.apimanagement#RegenerateTenantAccessGitSecondaryKey"
+        },
+        {
+          "target": "com.azure.apimanagement#RegenerateTenantAccessGitPrimaryKey"
         },
         {
           "target": "com.azure.apimanagement#ListTenantAccessSecrets"
         },
         {
-          "target": "com.azure.apimanagement#ListUserByService"
+          "target": "com.azure.apimanagement#RegenerateTenantAccessSecondaryKey"
         },
         {
-          "target": "com.azure.apimanagement#ListUserGroup"
+          "target": "com.azure.apimanagement#RegenerateTenantAccessPrimaryKey"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateTenantAccess"
+        },
+        {
+          "target": "com.azure.apimanagement#CreateTenantAccess"
+        },
+        {
+          "target": "com.azure.apimanagement#GetTenantAccess"
+        },
+        {
+          "target": "com.azure.apimanagement#ListTenantAccessByService"
+        },
+        {
+          "target": "com.azure.apimanagement#SendUserConfirmationPassword"
+        },
+        {
+          "target": "com.azure.apimanagement#GetUserSharedAccessToken"
         },
         {
           "target": "com.azure.apimanagement#ListUserIdentities"
         },
         {
+          "target": "com.azure.apimanagement#GetUserSubscription"
+        },
+        {
           "target": "com.azure.apimanagement#ListUserSubscription"
         },
         {
-          "target": "com.azure.apimanagement#ListWorkspaceApiByService"
+          "target": "com.azure.apimanagement#ListUserGroup"
+        },
+        {
+          "target": "com.azure.apimanagement#GenerateUserSsoUrl"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteUser"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateUser"
+        },
+        {
+          "target": "com.azure.apimanagement#UserCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetUser"
+        },
+        {
+          "target": "com.azure.apimanagement#ListUserByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceBackend"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceBackend"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceBackendCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceBackend"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceBackendByWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#RefreshWorkspaceCertificateSecret"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceCertificate"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceCertificateCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceCertificate"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceCertificateByWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceApiDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceApiDiagnosticCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceApiDiagnostic"
         },
         {
           "target": "com.azure.apimanagement#ListWorkspaceApiDiagnosticByWorkspace"
         },
         {
-          "target": "com.azure.apimanagement#ListWorkspaceApiOperationByApi"
+          "target": "com.azure.apimanagement#DeleteWorkspaceDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceDiagnosticCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceDiagnostic"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceDiagnosticByWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#GetApiManagementWorkspaceLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListApiManagementWorkspaceLinkByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceLogger"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceLogger"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceLoggerCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceLogger"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceLoggerByWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceTagProductLink"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceTagProductLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceTagProductLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceTagProductLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceTagOperationLink"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceTagOperationLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceTagOperationLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceTagOperationLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceTagApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceTagApiLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceTagApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceTagApiLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceTag"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceTag"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceTagCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceTag"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceTagByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceProductPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceProductPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceProductPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceProductPolicyByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceProductGroupLink"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceProductGroupLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceProductGroupLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceProductGroupLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceProductApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceProductApiLinkCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceProductApiLink"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceProductApiLinkByProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceProductCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceProduct"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceProductByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceApiSchemaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceApiSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceApiSchemaByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceApiPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceApiPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceApiPolicyByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiOperationPolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceApiOperationPolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceApiOperationPolicy"
         },
         {
           "target": "com.azure.apimanagement#ListWorkspaceApiOperationPolicyByOperation"
         },
         {
-          "target": "com.azure.apimanagement#ListWorkspaceApiPolicyByApi"
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceApiOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceApiOperationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceApiOperation"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceApiOperationByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiRelease"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceApiRelease"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceApiReleaseCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceApiRelease"
         },
         {
           "target": "com.azure.apimanagement#ListWorkspaceApiReleaseByService"
@@ -69268,460 +69538,190 @@
           "target": "com.azure.apimanagement#ListWorkspaceApiRevisionByService"
         },
         {
-          "target": "com.azure.apimanagement#ListWorkspaceApiSchemaByApi"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceApiVersionSetByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceBackendByWorkspace"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceCertificateByWorkspace"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceDiagnosticByWorkspace"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceGlobalSchemaByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceGroupByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceGroupUser"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceLoggerByWorkspace"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceNamedValueByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceNamedValueValue"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceNotificationByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceNotificationRecipientEmailByNotification"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceNotificationRecipientUserByNotification"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspacePolicyByApi"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspacePolicyFragmentByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspacePolicyFragmentReferences"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceProductApiLinkByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceProductByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceProductGroupLinkByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceProductPolicyByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceSubscriptionSecrets"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceTagApiLinkByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceTagByService"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceTagOperationLinkByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#ListWorkspaceTagProductLinkByProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#LoggerCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#MigrateApiManagementServiceToStv2"
-        },
-        {
-          "target": "com.azure.apimanagement#NamedValueCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#NotificationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#NotificationRecipientEmailCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#NotificationRecipientUserCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#OpenIdConnectProviderCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PerformConnectivityCheckAsync"
-        },
-        {
-          "target": "com.azure.apimanagement#PolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PolicyFragmentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PolicyRestrictionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PolicyRestrictionValidationsByService"
-        },
-        {
-          "target": "com.azure.apimanagement#PortalConfigCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PortalRevisionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PostAuthorizationLoginLink"
-        },
-        {
-          "target": "com.azure.apimanagement#PrivateEndpointConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductApiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductApiLinkCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductGroupCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductGroupLinkCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#ProductWikiCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#PurgeDeletedService"
-        },
-        {
-          "target": "com.azure.apimanagement#RefreshCertificateSecret"
-        },
-        {
-          "target": "com.azure.apimanagement#RefreshNamedValueSecret"
-        },
-        {
-          "target": "com.azure.apimanagement#RefreshWorkspaceCertificateSecret"
-        },
-        {
-          "target": "com.azure.apimanagement#RefreshWorkspaceNamedValueSecret"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateGatewayKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateSubscriptionPrimaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateSubscriptionSecondaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateTenantAccessGitPrimaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateTenantAccessGitSecondaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateTenantAccessPrimaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateTenantAccessSecondaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateWorkspaceSubscriptionPrimaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RegenerateWorkspaceSubscriptionSecondaryKey"
-        },
-        {
-          "target": "com.azure.apimanagement#RestoreApiManagementService"
-        },
-        {
-          "target": "com.azure.apimanagement#SendUserConfirmationPassword"
-        },
-        {
-          "target": "com.azure.apimanagement#SubscriptionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#TagApiLinkCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#TagCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#TagOperationLinkCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#TagProductLinkCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#TenantConfigurationSave"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApi"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiGateway"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiIssue"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiManagementService"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiOperation"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiRelease"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiVersionSet"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateApiWiki"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateAuthorizationServer"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateBackend"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateCache"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateDiagnostic"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateDocumentation"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateEmailTemplate"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateGateway"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateGraphQLApiResolver"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateGroup"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateIdentityProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateLogger"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateNamedValue"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateOpenIdConnectProvider"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdatePolicyRestriction"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdatePortalConfig"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdatePortalRevision"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateProduct"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateProductWiki"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateQuotaByCounterKeys"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateQuotaByPeriodKeys"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateSubscription"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateTag"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateTenantAccess"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateUser"
-        },
-        {
-          "target": "com.azure.apimanagement#UpdateWorkspace"
+          "target": "com.azure.apimanagement#DeleteWorkspaceApi"
         },
         {
           "target": "com.azure.apimanagement#UpdateWorkspaceApi"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceApiDiagnostic"
+          "target": "com.azure.apimanagement#WorkspaceApiCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceApiOperation"
+          "target": "com.azure.apimanagement#GetWorkspaceApi"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceApiRelease"
+          "target": "com.azure.apimanagement#ListWorkspaceApiByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceApiVersionSet"
         },
         {
           "target": "com.azure.apimanagement#UpdateWorkspaceApiVersionSet"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceBackend"
+          "target": "com.azure.apimanagement#WorkspaceApiVersionSetCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceDiagnostic"
+          "target": "com.azure.apimanagement#GetWorkspaceApiVersionSet"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceGroup"
+          "target": "com.azure.apimanagement#ListWorkspaceApiVersionSetByService"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceLogger"
+          "target": "com.azure.apimanagement#ListWorkspaceSubscriptionSecrets"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceNamedValue"
+          "target": "com.azure.apimanagement#RegenerateWorkspaceSubscriptionSecondaryKey"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceProduct"
+          "target": "com.azure.apimanagement#RegenerateWorkspaceSubscriptionPrimaryKey"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceSubscription"
         },
         {
           "target": "com.azure.apimanagement#UpdateWorkspaceSubscription"
         },
         {
-          "target": "com.azure.apimanagement#UpdateWorkspaceTag"
+          "target": "com.azure.apimanagement#WorkspaceSubscriptionCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#UserCreateOrUpdate"
+          "target": "com.azure.apimanagement#GetWorkspaceSubscription"
         },
         {
-          "target": "com.azure.apimanagement#ValidateTenantConfiguration"
+          "target": "com.azure.apimanagement#ListWorkspaceSubscription"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceApiCreateOrUpdate"
+          "target": "com.azure.apimanagement#DeleteWorkspaceGroupUser"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceApiDiagnosticCreateOrUpdate"
+          "target": "com.azure.apimanagement#CreateWorkspaceGroupUser"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceApiOperationCreateOrUpdate"
+          "target": "com.azure.apimanagement#ListWorkspaceGroupUser"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceApiOperationPolicyCreateOrUpdate"
+          "target": "com.azure.apimanagement#DeleteWorkspaceGroup"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceApiPolicyCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceApiReleaseCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceApiSchemaCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceApiVersionSetCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceBackendCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceCertificateCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceDiagnosticCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceGlobalSchemaCreateOrUpdate"
+          "target": "com.azure.apimanagement#UpdateWorkspaceGroup"
         },
         {
           "target": "com.azure.apimanagement#WorkspaceGroupCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceLoggerCreateOrUpdate"
+          "target": "com.azure.apimanagement#GetWorkspaceGroup"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceNamedValueCreateOrUpdate"
+          "target": "com.azure.apimanagement#ListWorkspaceGroupByService"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceNotificationCreateOrUpdate"
+          "target": "com.azure.apimanagement#ListWorkspacePolicyFragmentReferences"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceNotificationRecipientEmailCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspaceNotificationRecipientUserCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.apimanagement#WorkspacePolicyCreateOrUpdate"
+          "target": "com.azure.apimanagement#DeleteWorkspacePolicyFragment"
         },
         {
           "target": "com.azure.apimanagement#WorkspacePolicyFragmentCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceProductApiLinkCreateOrUpdate"
+          "target": "com.azure.apimanagement#GetWorkspacePolicyFragment"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceProductCreateOrUpdate"
+          "target": "com.azure.apimanagement#ListWorkspacePolicyFragmentByService"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceProductGroupLinkCreateOrUpdate"
+          "target": "com.azure.apimanagement#DeleteWorkspaceNotificationRecipientEmail"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceProductPolicyCreateOrUpdate"
+          "target": "com.azure.apimanagement#WorkspaceNotificationRecipientEmailCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceSubscriptionCreateOrUpdate"
+          "target": "com.azure.apimanagement#ListWorkspaceNotificationRecipientEmailByNotification"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceTagApiLinkCreateOrUpdate"
+          "target": "com.azure.apimanagement#DeleteWorkspaceNotificationRecipientUser"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceTagCreateOrUpdate"
+          "target": "com.azure.apimanagement#WorkspaceNotificationRecipientUserCreateOrUpdate"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceTagOperationLinkCreateOrUpdate"
+          "target": "com.azure.apimanagement#ListWorkspaceNotificationRecipientUserByNotification"
         },
         {
-          "target": "com.azure.apimanagement#WorkspaceTagProductLinkCreateOrUpdate"
+          "target": "com.azure.apimanagement#WorkspaceNotificationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceNotification"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceNotificationByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceGlobalSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceGlobalSchemaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceGlobalSchema"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceGlobalSchemaByService"
+        },
+        {
+          "target": "com.azure.apimanagement#RefreshWorkspaceNamedValueSecret"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceNamedValueValue"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspaceNamedValue"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspaceNamedValue"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceNamedValueCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspaceNamedValue"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceNamedValueByService"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspacePolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspacePolicyCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspacePolicy"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspacePolicyByApi"
+        },
+        {
+          "target": "com.azure.apimanagement#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#WorkspaceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.apimanagement#GetWorkspace"
+        },
+        {
+          "target": "com.azure.apimanagement#ListWorkspaceByService"
+        },
+        {
+          "target": "com.azure.apimanagement#GetOperationsResult"
+        },
+        {
+          "target": "com.azure.apimanagement#GetOperationStatus"
         }
       ],
       "traits": {

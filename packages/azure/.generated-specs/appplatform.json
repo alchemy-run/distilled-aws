@@ -22522,256 +22522,142 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appplatform#ApiPortalCustomDomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#ApiPortalsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#ApmsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#ApplicationAcceleratorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#ApplicationLiveViewsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#AppsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#AppsGetResourceUploadUrl"
-        },
-        {
-          "target": "com.azure.appplatform#BindingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#BuildpackBindingCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#BuildServiceAgentPoolUpdatePut"
-        },
-        {
-          "target": "com.azure.appplatform#BuildServiceBuilderCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#BuildServiceCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#BuildServiceCreateOrUpdateBuild"
-        },
-        {
-          "target": "com.azure.appplatform#BuildServiceGetResourceUploadUrl"
-        },
-        {
-          "target": "com.azure.appplatform#CertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#CheckServiceNameAvailability"
-        },
-        {
-          "target": "com.azure.appplatform#ConfigServersUpdatePatch"
-        },
-        {
-          "target": "com.azure.appplatform#ConfigServersUpdatePut"
-        },
-        {
-          "target": "com.azure.appplatform#ConfigurationServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#ContainerRegistriesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#CustomDomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteApiPortal"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteApiPortalCustomDomain"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteApm"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteApp"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteApplicationAccelerator"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteApplicationLiveView"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteBinding"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteBuildpackBinding"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteBuildServiceBuild"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteBuildServiceBuilder"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteCertificate"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteConfigurationService"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteContainerRegistry"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteCustomDomain"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteCustomizedAccelerator"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteDeployment"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteDevToolPortal"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteGatewayCustomDomain"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteGatewayRouteConfig"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteGateways"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteService"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteServiceRegistry"
-        },
-        {
-          "target": "com.azure.appplatform#DeleteStorage"
-        },
-        {
-          "target": "com.azure.appplatform#DeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#DevToolPortalsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#DisableDeploymentRemoteDebugging"
+          "target": "com.azure.appplatform#EnablePredefinedAccelerator"
         },
         {
           "target": "com.azure.appplatform#DisablePredefinedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#DisableServiceApmGlobally"
+          "target": "com.azure.appplatform#GetPredefinedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#DisableServiceTestEndpoint"
+          "target": "com.azure.appplatform#ListPredefinedAccelerators"
         },
         {
-          "target": "com.azure.appplatform#EnableDeploymentRemoteDebugging"
+          "target": "com.azure.appplatform#ValidateCustomizedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#EnablePredefinedAccelerator"
+          "target": "com.azure.appplatform#DeleteCustomizedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#EnableServiceApmGlobally"
-        },
-        {
-          "target": "com.azure.appplatform#EnableServiceTestEndpoint"
-        },
-        {
-          "target": "com.azure.appplatform#FlushServiceVnetDnsSetting"
-        },
-        {
-          "target": "com.azure.appplatform#GatewayCustomDomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#GatewayRouteConfigsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#GatewaysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.appplatform#GenerateDeploymentHeapDump"
-        },
-        {
-          "target": "com.azure.appplatform#GenerateDeploymentThreadDump"
-        },
-        {
-          "target": "com.azure.appplatform#GetApiPortal"
-        },
-        {
-          "target": "com.azure.appplatform#GetApiPortalCustomDomain"
-        },
-        {
-          "target": "com.azure.appplatform#GetApm"
-        },
-        {
-          "target": "com.azure.appplatform#GetApp"
-        },
-        {
-          "target": "com.azure.appplatform#GetApplicationAccelerator"
-        },
-        {
-          "target": "com.azure.appplatform#GetApplicationLiveView"
-        },
-        {
-          "target": "com.azure.appplatform#GetBinding"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildpackBinding"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceAgentPool"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceBuild"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceBuilder"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceBuildResult"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceBuildResultLog"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceBuildService"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceSupportedBuildpack"
-        },
-        {
-          "target": "com.azure.appplatform#GetBuildServiceSupportedStack"
-        },
-        {
-          "target": "com.azure.appplatform#GetCertificate"
-        },
-        {
-          "target": "com.azure.appplatform#GetConfigServer"
-        },
-        {
-          "target": "com.azure.appplatform#GetConfigurationService"
-        },
-        {
-          "target": "com.azure.appplatform#GetContainerRegistry"
-        },
-        {
-          "target": "com.azure.appplatform#GetCustomDomain"
+          "target": "com.azure.appplatform#CustomizedAcceleratorsCreateOrUpdate"
         },
         {
           "target": "com.azure.appplatform#GetCustomizedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#GetDeployment"
+          "target": "com.azure.appplatform#ListCustomizedAccelerators"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteApplicationAccelerator"
+        },
+        {
+          "target": "com.azure.appplatform#ApplicationAcceleratorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetApplicationAccelerator"
+        },
+        {
+          "target": "com.azure.appplatform#ListApplicationAccelerators"
+        },
+        {
+          "target": "com.azure.appplatform#ValidateApiPortalDomain"
+        },
+        {
+          "target": "com.azure.appplatform#ListApiPortalCustomDomains"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteApiPortalCustomDomain"
+        },
+        {
+          "target": "com.azure.appplatform#ApiPortalCustomDomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetApiPortalCustomDomain"
+        },
+        {
+          "target": "com.azure.appplatform#ListApiPortals"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteApiPortal"
+        },
+        {
+          "target": "com.azure.appplatform#ApiPortalsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetApiPortal"
+        },
+        {
+          "target": "com.azure.appplatform#ValidateGatewaysDomain"
+        },
+        {
+          "target": "com.azure.appplatform#ListGatewayCustomDomains"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteGatewayCustomDomain"
+        },
+        {
+          "target": "com.azure.appplatform#GatewayCustomDomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetGatewayCustomDomain"
+        },
+        {
+          "target": "com.azure.appplatform#ListGatewayRouteConfigs"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteGatewayRouteConfig"
+        },
+        {
+          "target": "com.azure.appplatform#GatewayRouteConfigsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetGatewayRouteConfig"
+        },
+        {
+          "target": "com.azure.appplatform#ListGateways"
+        },
+        {
+          "target": "com.azure.appplatform#RestartGateways"
+        },
+        {
+          "target": "com.azure.appplatform#ListGatewaysEnvSecrets"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteGateways"
+        },
+        {
+          "target": "com.azure.appplatform#GatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetGateways"
+        },
+        {
+          "target": "com.azure.appplatform#ListServiceSupportedServerVersions"
+        },
+        {
+          "target": "com.azure.appplatform#ListSkus"
+        },
+        {
+          "target": "com.azure.appplatform#ListRuntimeVersionRuntimeVersions"
+        },
+        {
+          "target": "com.azure.appplatform#ListOperations"
+        },
+        {
+          "target": "com.azure.appplatform#ListServices"
+        },
+        {
+          "target": "com.azure.appplatform#ListServiceBySubscription"
+        },
+        {
+          "target": "com.azure.appplatform#StartDeploymentJFR"
+        },
+        {
+          "target": "com.azure.appplatform#GenerateDeploymentThreadDump"
+        },
+        {
+          "target": "com.azure.appplatform#GenerateDeploymentHeapDump"
         },
         {
           "target": "com.azure.appplatform#GetDeploymentLogFileUrl"
@@ -22780,100 +22666,22 @@
           "target": "com.azure.appplatform#GetDeploymentRemoteDebuggingConfig"
         },
         {
-          "target": "com.azure.appplatform#GetDevToolPortal"
+          "target": "com.azure.appplatform#DisableDeploymentRemoteDebugging"
         },
         {
-          "target": "com.azure.appplatform#GetGatewayCustomDomain"
+          "target": "com.azure.appplatform#EnableDeploymentRemoteDebugging"
         },
         {
-          "target": "com.azure.appplatform#GetGatewayRouteConfig"
+          "target": "com.azure.appplatform#RestartDeployment"
         },
         {
-          "target": "com.azure.appplatform#GetGateways"
+          "target": "com.azure.appplatform#StopDeployment"
         },
         {
-          "target": "com.azure.appplatform#GetMonitoringSettings"
-        },
-        {
-          "target": "com.azure.appplatform#GetPredefinedAccelerator"
-        },
-        {
-          "target": "com.azure.appplatform#GetService"
-        },
-        {
-          "target": "com.azure.appplatform#GetServiceRegistry"
-        },
-        {
-          "target": "com.azure.appplatform#GetStorage"
-        },
-        {
-          "target": "com.azure.appplatform#ListApiPortalCustomDomains"
-        },
-        {
-          "target": "com.azure.appplatform#ListApiPortals"
-        },
-        {
-          "target": "com.azure.appplatform#ListApms"
-        },
-        {
-          "target": "com.azure.appplatform#ListApmSecretKeys"
-        },
-        {
-          "target": "com.azure.appplatform#ListApplicationAccelerators"
-        },
-        {
-          "target": "com.azure.appplatform#ListApplicationLiveViews"
-        },
-        {
-          "target": "com.azure.appplatform#ListApps"
-        },
-        {
-          "target": "com.azure.appplatform#ListBindings"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildpackBinding"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildpackBindingForCluster"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceAgentPool"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceBuilder"
+          "target": "com.azure.appplatform#StartDeployment"
         },
         {
           "target": "com.azure.appplatform#ListBuildServiceBuilderDeployments"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceBuildResults"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceBuilds"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceBuildServices"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceSupportedBuildpacks"
-        },
-        {
-          "target": "com.azure.appplatform#ListBuildServiceSupportedStacks"
-        },
-        {
-          "target": "com.azure.appplatform#ListCertificates"
-        },
-        {
-          "target": "com.azure.appplatform#ListConfigurationServices"
-        },
-        {
-          "target": "com.azure.appplatform#ListContainerRegistries"
-        },
-        {
-          "target": "com.azure.appplatform#ListCustomDomains"
-        },
-        {
-          "target": "com.azure.appplatform#ListCustomizedAccelerators"
         },
         {
           "target": "com.azure.appplatform#ListDeploymentForCluster"
@@ -22882,55 +22690,97 @@
           "target": "com.azure.appplatform#ListDeployments"
         },
         {
-          "target": "com.azure.appplatform#ListDevToolPortals"
+          "target": "com.azure.appplatform#DeleteDeployment"
         },
         {
-          "target": "com.azure.appplatform#ListGatewayCustomDomains"
+          "target": "com.azure.appplatform#UpdateDeployment"
         },
         {
-          "target": "com.azure.appplatform#ListGatewayRouteConfigs"
+          "target": "com.azure.appplatform#DeploymentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ListGateways"
+          "target": "com.azure.appplatform#GetDeployment"
         },
         {
-          "target": "com.azure.appplatform#ListGatewaysEnvSecrets"
+          "target": "com.azure.appplatform#ValidateAppDomain"
         },
         {
-          "target": "com.azure.appplatform#ListOperations"
+          "target": "com.azure.appplatform#ListCustomDomains"
         },
         {
-          "target": "com.azure.appplatform#ListPredefinedAccelerators"
+          "target": "com.azure.appplatform#DeleteCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#ListRuntimeVersionRuntimeVersions"
+          "target": "com.azure.appplatform#UpdateCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#ListServiceBySubscription"
+          "target": "com.azure.appplatform#CustomDomainsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ListServiceGloballyEnabledApms"
+          "target": "com.azure.appplatform#GetCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#ListServiceRegistries"
+          "target": "com.azure.appplatform#CheckServiceNameAvailability"
         },
         {
-          "target": "com.azure.appplatform#ListServices"
+          "target": "com.azure.appplatform#ListCertificates"
         },
         {
-          "target": "com.azure.appplatform#ListServiceSupportedApmTypes"
+          "target": "com.azure.appplatform#DeleteCertificate"
         },
         {
-          "target": "com.azure.appplatform#ListServiceSupportedServerVersions"
+          "target": "com.azure.appplatform#CertificatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ListServiceTestKeys"
-        },
-        {
-          "target": "com.azure.appplatform#ListSkus"
+          "target": "com.azure.appplatform#GetCertificate"
         },
         {
           "target": "com.azure.appplatform#ListStorages"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteStorage"
+        },
+        {
+          "target": "com.azure.appplatform#StoragesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetStorage"
+        },
+        {
+          "target": "com.azure.appplatform#ListBindings"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteBinding"
+        },
+        {
+          "target": "com.azure.appplatform#UpdateBinding"
+        },
+        {
+          "target": "com.azure.appplatform#BindingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetBinding"
+        },
+        {
+          "target": "com.azure.appplatform#SetAppActiveDeployments"
+        },
+        {
+          "target": "com.azure.appplatform#AppsGetResourceUploadUrl"
+        },
+        {
+          "target": "com.azure.appplatform#ListApps"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteApp"
+        },
+        {
+          "target": "com.azure.appplatform#UpdateApp"
+        },
+        {
+          "target": "com.azure.appplatform#AppsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetApp"
         },
         {
           "target": "com.azure.appplatform#MonitoringSettingsUpdatePatch"
@@ -22939,79 +22789,229 @@
           "target": "com.azure.appplatform#MonitoringSettingsUpdatePut"
         },
         {
-          "target": "com.azure.appplatform#RegenerateServiceTestKey"
+          "target": "com.azure.appplatform#GetMonitoringSettings"
         },
         {
-          "target": "com.azure.appplatform#RestartDeployment"
+          "target": "com.azure.appplatform#BuildServiceAgentPoolUpdatePut"
         },
         {
-          "target": "com.azure.appplatform#RestartGateways"
+          "target": "com.azure.appplatform#GetBuildServiceAgentPool"
         },
         {
-          "target": "com.azure.appplatform#ServiceRegistriesCreateOrUpdate"
+          "target": "com.azure.appplatform#ListBuildServiceAgentPool"
         },
         {
-          "target": "com.azure.appplatform#ServicesCreateOrUpdate"
+          "target": "com.azure.appplatform#GetBuildServiceSupportedStack"
         },
         {
-          "target": "com.azure.appplatform#SetAppActiveDeployments"
+          "target": "com.azure.appplatform#ListBuildServiceSupportedStacks"
         },
         {
-          "target": "com.azure.appplatform#StartDeployment"
+          "target": "com.azure.appplatform#GetBuildServiceSupportedBuildpack"
         },
         {
-          "target": "com.azure.appplatform#StartDeploymentJFR"
+          "target": "com.azure.appplatform#ListBuildServiceSupportedBuildpacks"
         },
         {
-          "target": "com.azure.appplatform#StartService"
+          "target": "com.azure.appplatform#BuildServiceGetResourceUploadUrl"
         },
         {
-          "target": "com.azure.appplatform#StopDeployment"
+          "target": "com.azure.appplatform#ListBuildServiceBuilder"
         },
         {
-          "target": "com.azure.appplatform#StopService"
+          "target": "com.azure.appplatform#DeleteBuildServiceBuilder"
         },
         {
-          "target": "com.azure.appplatform#StoragesCreateOrUpdate"
+          "target": "com.azure.appplatform#BuildServiceBuilderCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#UpdateApp"
+          "target": "com.azure.appplatform#GetBuildServiceBuilder"
         },
         {
-          "target": "com.azure.appplatform#UpdateBinding"
+          "target": "com.azure.appplatform#GetBuildServiceBuildResultLog"
         },
         {
-          "target": "com.azure.appplatform#UpdateCustomDomain"
+          "target": "com.azure.appplatform#GetBuildServiceBuildResult"
         },
         {
-          "target": "com.azure.appplatform#UpdateDeployment"
+          "target": "com.azure.appplatform#ListBuildServiceBuildResults"
         },
         {
-          "target": "com.azure.appplatform#UpdateService"
+          "target": "com.azure.appplatform#ListBuildpackBinding"
         },
         {
-          "target": "com.azure.appplatform#ValidateApiPortalDomain"
+          "target": "com.azure.appplatform#DeleteBuildpackBinding"
         },
         {
-          "target": "com.azure.appplatform#ValidateAppDomain"
+          "target": "com.azure.appplatform#BuildpackBindingCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ValidateConfigServer"
+          "target": "com.azure.appplatform#GetBuildpackBinding"
         },
         {
-          "target": "com.azure.appplatform#ValidateConfigurationService"
+          "target": "com.azure.appplatform#ListBuildpackBindingForCluster"
         },
         {
-          "target": "com.azure.appplatform#ValidateConfigurationServiceResource"
+          "target": "com.azure.appplatform#DeleteBuildServiceBuild"
+        },
+        {
+          "target": "com.azure.appplatform#BuildServiceCreateOrUpdateBuild"
+        },
+        {
+          "target": "com.azure.appplatform#GetBuildServiceBuild"
+        },
+        {
+          "target": "com.azure.appplatform#ListBuildServiceBuilds"
+        },
+        {
+          "target": "com.azure.appplatform#BuildServiceCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetBuildServiceBuildService"
+        },
+        {
+          "target": "com.azure.appplatform#ListBuildServiceBuildServices"
         },
         {
           "target": "com.azure.appplatform#ValidateContainerRegistry"
         },
         {
-          "target": "com.azure.appplatform#ValidateCustomizedAccelerator"
+          "target": "com.azure.appplatform#DeleteContainerRegistry"
         },
         {
-          "target": "com.azure.appplatform#ValidateGatewaysDomain"
+          "target": "com.azure.appplatform#ContainerRegistriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetContainerRegistry"
+        },
+        {
+          "target": "com.azure.appplatform#ListContainerRegistries"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteDevToolPortal"
+        },
+        {
+          "target": "com.azure.appplatform#DevToolPortalsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetDevToolPortal"
+        },
+        {
+          "target": "com.azure.appplatform#ListDevToolPortals"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteApplicationLiveView"
+        },
+        {
+          "target": "com.azure.appplatform#ApplicationLiveViewsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetApplicationLiveView"
+        },
+        {
+          "target": "com.azure.appplatform#ListApplicationLiveViews"
+        },
+        {
+          "target": "com.azure.appplatform#ListServiceRegistries"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteServiceRegistry"
+        },
+        {
+          "target": "com.azure.appplatform#ServiceRegistriesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetServiceRegistry"
+        },
+        {
+          "target": "com.azure.appplatform#ValidateConfigurationServiceResource"
+        },
+        {
+          "target": "com.azure.appplatform#ValidateConfigurationService"
+        },
+        {
+          "target": "com.azure.appplatform#ListConfigurationServices"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteConfigurationService"
+        },
+        {
+          "target": "com.azure.appplatform#ConfigurationServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetConfigurationService"
+        },
+        {
+          "target": "com.azure.appplatform#ValidateConfigServer"
+        },
+        {
+          "target": "com.azure.appplatform#ConfigServersUpdatePatch"
+        },
+        {
+          "target": "com.azure.appplatform#ConfigServersUpdatePut"
+        },
+        {
+          "target": "com.azure.appplatform#GetConfigServer"
+        },
+        {
+          "target": "com.azure.appplatform#ListApmSecretKeys"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteApm"
+        },
+        {
+          "target": "com.azure.appplatform#ApmsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetApm"
+        },
+        {
+          "target": "com.azure.appplatform#ListApms"
+        },
+        {
+          "target": "com.azure.appplatform#DisableServiceApmGlobally"
+        },
+        {
+          "target": "com.azure.appplatform#EnableServiceApmGlobally"
+        },
+        {
+          "target": "com.azure.appplatform#ListServiceGloballyEnabledApms"
+        },
+        {
+          "target": "com.azure.appplatform#ListServiceSupportedApmTypes"
+        },
+        {
+          "target": "com.azure.appplatform#FlushServiceVnetDnsSetting"
+        },
+        {
+          "target": "com.azure.appplatform#StartService"
+        },
+        {
+          "target": "com.azure.appplatform#StopService"
+        },
+        {
+          "target": "com.azure.appplatform#EnableServiceTestEndpoint"
+        },
+        {
+          "target": "com.azure.appplatform#DisableServiceTestEndpoint"
+        },
+        {
+          "target": "com.azure.appplatform#RegenerateServiceTestKey"
+        },
+        {
+          "target": "com.azure.appplatform#ListServiceTestKeys"
+        },
+        {
+          "target": "com.azure.appplatform#DeleteService"
+        },
+        {
+          "target": "com.azure.appplatform#UpdateService"
+        },
+        {
+          "target": "com.azure.appplatform#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.appplatform#GetService"
         }
       ],
       "traits": {

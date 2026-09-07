@@ -2661,13 +2661,13 @@
           "target": "com.huggingface.kernels#DuplicateXetFiles"
         },
         {
+          "target": "com.huggingface.kernels#ListKernels"
+        },
+        {
           "target": "com.huggingface.kernels#GetKernel"
         },
         {
           "target": "com.huggingface.kernels#GetKernelRevision"
-        },
-        {
-          "target": "com.huggingface.kernels#ListKernels"
         }
       ],
       "traits": {

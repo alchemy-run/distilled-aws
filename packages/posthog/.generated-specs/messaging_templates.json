@@ -931,25 +931,25 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.messaging_templates#ListMessagingTemplates"
+        },
+        {
           "target": "com.posthog.messaging_templates#CreateMessagingTemplate"
         },
         {
           "target": "com.posthog.messaging_templates#GetMessagingTemplate"
         },
         {
-          "target": "com.posthog.messaging_templates#ListMessagingTemplates"
+          "target": "com.posthog.messaging_templates#UpdateMessagingTemplate"
+        },
+        {
+          "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesPartial"
         },
         {
           "target": "com.posthog.messaging_templates#MessagingTemplatesDestroy"
         },
         {
-          "target": "com.posthog.messaging_templates#UpdateMessagingTemplate"
-        },
-        {
           "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesDesignPartial"
-        },
-        {
-          "target": "com.posthog.messaging_templates#UpdateMessagingTemplatesPartial"
         }
       ],
       "traits": {

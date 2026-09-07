@@ -798,13 +798,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.user_interviews#ListUserInterviews"
+        },
+        {
           "target": "com.posthog.user_interviews#CreateUserInterview"
         },
         {
           "target": "com.posthog.user_interviews#GetUserInterview"
-        },
-        {
-          "target": "com.posthog.user_interviews#ListUserInterviews"
         },
         {
           "target": "com.posthog.user_interviews#UpdateUserInterview"

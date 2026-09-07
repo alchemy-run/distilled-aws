@@ -2860,13 +2860,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.verifications#ListVerifications"
+        },
+        {
           "target": "com.whop.verifications#CreateVerification"
         },
         {
           "target": "com.whop.verifications#GetVerification"
-        },
-        {
-          "target": "com.whop.verifications#ListVerifications"
         },
         {
           "target": "com.whop.verifications#UpdateVerification"

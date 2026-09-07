@@ -19920,208 +19920,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.logic#CancelWorkflowRun"
+          "target": "com.azure.logic#ListOperations"
         },
         {
-          "target": "com.azure.logic#DeleteIntegrationAccount"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountAgreement"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountAssembly"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountBatchConfiguration"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountCertificate"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountMap"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountPartner"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountSchema"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationAccountSession"
-        },
-        {
-          "target": "com.azure.logic#DeleteIntegrationServiceEnvironment"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApiOperations"
         },
         {
           "target": "com.azure.logic#DeleteIntegrationServiceEnvironmentManagedApis"
         },
         {
-          "target": "com.azure.logic#DeleteWorkflow"
-        },
-        {
-          "target": "com.azure.logic#DisableWorkflow"
-        },
-        {
-          "target": "com.azure.logic#EnableWorkflow"
-        },
-        {
-          "target": "com.azure.logic#GenerateWorkflowUpgradedDefinition"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccount"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountAgreement"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountAssembly"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountBatchConfiguration"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountCertificate"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountMap"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountPartner"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountSchema"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationAccountSession"
-        },
-        {
-          "target": "com.azure.logic#GetIntegrationServiceEnvironment"
+          "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApis"
         },
         {
           "target": "com.azure.logic#GetIntegrationServiceEnvironmentManagedApis"
         },
         {
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApis"
+        },
+        {
           "target": "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealth"
         },
         {
-          "target": "com.azure.logic#GetWorkflow"
+          "target": "com.azure.logic#RestartIntegrationServiceEnvironment"
         },
         {
-          "target": "com.azure.logic#GetWorkflowRun"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentSkus"
         },
         {
-          "target": "com.azure.logic#GetWorkflowRunAction"
+          "target": "com.azure.logic#DeleteIntegrationServiceEnvironment"
         },
         {
-          "target": "com.azure.logic#GetWorkflowRunActionRepetition"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistory"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowRunActionRequestHistory"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowRunActionScopeRepetition"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowRunOperation"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowTrigger"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowTriggerHistory"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowTriggerSchemaJson"
-        },
-        {
-          "target": "com.azure.logic#GetWorkflowVersion"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountAgreementsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountAssembliesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountBatchConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountMapsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountPartnersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountSchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountSessionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#IntegrationAccountsLogTrackingEvents"
+          "target": "com.azure.logic#UpdateIntegrationServiceEnvironment"
         },
         {
           "target": "com.azure.logic#IntegrationServiceEnvironmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#ListIntegrationAccountAgreementContentCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountAgreements"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountAssemblies"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountAssemblyContentCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountBatchConfigurations"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountBySubscription"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountCertificates"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountKeyVaultKeys"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountMapContentCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountMaps"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountPartnerContentCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountPartners"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountSchemaContentCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountSchemas"
-        },
-        {
-          "target": "com.azure.logic#ListIntegrationAccountSessions"
+          "target": "com.azure.logic#GetIntegrationServiceEnvironment"
         },
         {
           "target": "com.azure.logic#ListIntegrationServiceEnvironmentByResourceGroup"
@@ -20130,112 +19965,277 @@
           "target": "com.azure.logic#ListIntegrationServiceEnvironmentBySubscription"
         },
         {
-          "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApiOperations"
+          "target": "com.azure.logic#DeleteIntegrationAccountSession"
         },
         {
-          "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApis"
+          "target": "com.azure.logic#IntegrationAccountSessionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#ListIntegrationServiceEnvironmentSkus"
+          "target": "com.azure.logic#GetIntegrationAccountSession"
         },
         {
-          "target": "com.azure.logic#ListOperations"
+          "target": "com.azure.logic#ListIntegrationAccountSessions"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountCertificate"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountCertificate"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountCertificates"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountAgreementContentCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountAgreement"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountAgreementsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountAgreement"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountAgreements"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountPartnerContentCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountPartner"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountPartnersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountPartner"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountPartners"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountMapContentCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountMap"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountMapsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountMap"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountMaps"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountSchemaContentCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountSchema"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountSchemasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountSchema"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountSchemas"
+        },
+        {
+          "target": "com.azure.logic#RegenerateIntegrationAccountAccessKey"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountsLogTrackingEvents"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountKeyVaultKeys"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountBatchConfiguration"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountBatchConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountBatchConfiguration"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountBatchConfigurations"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountAssemblyContentCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccountAssembly"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountAssembliesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccountAssembly"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountAssemblies"
+        },
+        {
+          "target": "com.azure.logic#DeleteIntegrationAccount"
+        },
+        {
+          "target": "com.azure.logic#UpdateIntegrationAccount"
+        },
+        {
+          "target": "com.azure.logic#IntegrationAccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetIntegrationAccount"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.logic#ListIntegrationAccountBySubscription"
+        },
+        {
+          "target": "com.azure.logic#ValidateWorkflowByLocation"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRunOperation"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRunActionScopeRepetition"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActionScopeRepetitions"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRunActionRequestHistory"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActionRequestHistories"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistory"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActionRepetitionsRequestHistories"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActionRepetitionExpressionTraces"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRunActionRepetition"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActionRepetitions"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActionExpressionTraces"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRunAction"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRunActions"
+        },
+        {
+          "target": "com.azure.logic#CancelWorkflowRun"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowRun"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowRuns"
+        },
+        {
+          "target": "com.azure.logic#WorkflowTriggerHistoriesResubmit"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowTriggerHistory"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowTriggerHistories"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowVersionTriggerCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowTriggerCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#SetWorkflowTriggerState"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowTriggerSchemaJson"
+        },
+        {
+          "target": "com.azure.logic#TriggerRunWorkflow"
+        },
+        {
+          "target": "com.azure.logic#ResetWorkflowTrigger"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowTrigger"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowTriggers"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflowVersion"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowVersions"
+        },
+        {
+          "target": "com.azure.logic#ValidateWorkflowByResourceGroup"
+        },
+        {
+          "target": "com.azure.logic#RegenerateWorkflowAccessKey"
+        },
+        {
+          "target": "com.azure.logic#MoveWorkflow"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowSwagger"
+        },
+        {
+          "target": "com.azure.logic#ListWorkflowCallbackUrl"
+        },
+        {
+          "target": "com.azure.logic#GenerateWorkflowUpgradedDefinition"
+        },
+        {
+          "target": "com.azure.logic#EnableWorkflow"
+        },
+        {
+          "target": "com.azure.logic#DisableWorkflow"
+        },
+        {
+          "target": "com.azure.logic#DeleteWorkflow"
+        },
+        {
+          "target": "com.azure.logic#UpdateWorkflow"
+        },
+        {
+          "target": "com.azure.logic#WorkflowsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.logic#GetWorkflow"
         },
         {
           "target": "com.azure.logic#ListWorkflowByResourceGroup"
         },
         {
           "target": "com.azure.logic#ListWorkflowBySubscription"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActionExpressionTraces"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActionRepetitionExpressionTraces"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActionRepetitions"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActionRepetitionsRequestHistories"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActionRequestHistories"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActions"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRunActionScopeRepetitions"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowRuns"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowSwagger"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowTriggerCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowTriggerHistories"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowTriggers"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowVersions"
-        },
-        {
-          "target": "com.azure.logic#ListWorkflowVersionTriggerCallbackUrl"
-        },
-        {
-          "target": "com.azure.logic#MoveWorkflow"
-        },
-        {
-          "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApis"
-        },
-        {
-          "target": "com.azure.logic#RegenerateIntegrationAccountAccessKey"
-        },
-        {
-          "target": "com.azure.logic#RegenerateWorkflowAccessKey"
-        },
-        {
-          "target": "com.azure.logic#ResetWorkflowTrigger"
-        },
-        {
-          "target": "com.azure.logic#RestartIntegrationServiceEnvironment"
-        },
-        {
-          "target": "com.azure.logic#SetWorkflowTriggerState"
-        },
-        {
-          "target": "com.azure.logic#TriggerRunWorkflow"
-        },
-        {
-          "target": "com.azure.logic#UpdateIntegrationAccount"
-        },
-        {
-          "target": "com.azure.logic#UpdateIntegrationServiceEnvironment"
-        },
-        {
-          "target": "com.azure.logic#UpdateWorkflow"
-        },
-        {
-          "target": "com.azure.logic#ValidateWorkflowByLocation"
-        },
-        {
-          "target": "com.azure.logic#ValidateWorkflowByResourceGroup"
-        },
-        {
-          "target": "com.azure.logic#WorkflowsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.logic#WorkflowTriggerHistoriesResubmit"
         }
       ],
       "traits": {

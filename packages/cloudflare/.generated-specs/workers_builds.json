@@ -4559,25 +4559,25 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.workers_builds#GetAccountLimits"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#GetBuildsByVersion"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#GetLatestBuilds"
+        },
+        {
           "target": "com.cloudflare.workers_builds#CancelBuild"
         },
         {
-          "target": "com.cloudflare.workers_builds#CreateToken"
+          "target": "com.cloudflare.workers_builds#GetBuild"
         },
         {
-          "target": "com.cloudflare.workers_builds#CreateTrigger"
+          "target": "com.cloudflare.workers_builds#ListBuilds"
         },
         {
-          "target": "com.cloudflare.workers_builds#DeleteReposConnection"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#DeleteToken"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#DeleteTrigger"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariable"
+          "target": "com.cloudflare.workers_builds#GetBuildsLog"
         },
         {
           "target": "com.cloudflare.workers_builds#DeployHooksCreate"
@@ -4598,37 +4598,34 @@
           "target": "com.cloudflare.workers_builds#DeployHooksUpdate"
         },
         {
-          "target": "com.cloudflare.workers_builds#GetAccountLimits"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#GetBuild"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#GetBuildsByVersion"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#GetBuildsLog"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#GetLatestBuilds"
-        },
-        {
           "target": "com.cloudflare.workers_builds#GetReposConfigAutofill"
         },
         {
-          "target": "com.cloudflare.workers_builds#ListBuilds"
+          "target": "com.cloudflare.workers_builds#DeleteReposConnection"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#UpsertReposConnection"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#CreateToken"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeleteToken"
         },
         {
           "target": "com.cloudflare.workers_builds#ListTokens"
         },
         {
-          "target": "com.cloudflare.workers_builds#ListTriggers"
-        },
-        {
-          "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariables"
+          "target": "com.cloudflare.workers_builds#CreateTrigger"
         },
         {
           "target": "com.cloudflare.workers_builds#TriggersCreateBuild"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#DeleteTrigger"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#ListTriggers"
         },
         {
           "target": "com.cloudflare.workers_builds#TriggersPurgeCache"
@@ -4637,7 +4634,10 @@
           "target": "com.cloudflare.workers_builds#UpdateTrigger"
         },
         {
-          "target": "com.cloudflare.workers_builds#UpsertReposConnection"
+          "target": "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariable"
+        },
+        {
+          "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariables"
         },
         {
           "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariable"

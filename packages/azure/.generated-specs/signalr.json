@@ -5780,49 +5780,109 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.signalr#CheckSignalRNameAvailability"
-        },
-        {
-          "target": "com.azure.signalr#DeleteSignalR"
-        },
-        {
-          "target": "com.azure.signalr#DeleteSignalRCustomCertificate"
-        },
-        {
-          "target": "com.azure.signalr#DeleteSignalRCustomDomain"
-        },
-        {
-          "target": "com.azure.signalr#DeleteSignalRPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.signalr#DeleteSignalRReplicas"
+          "target": "com.azure.signalr#ListSignalRSkus"
         },
         {
           "target": "com.azure.signalr#DeleteSignalRSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.signalr#GetSignalR"
-        },
-        {
-          "target": "com.azure.signalr#GetSignalRCustomCertificate"
-        },
-        {
-          "target": "com.azure.signalr#GetSignalRCustomDomain"
-        },
-        {
-          "target": "com.azure.signalr#GetSignalRPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.signalr#GetSignalRReplicas"
-        },
-        {
-          "target": "com.azure.signalr#GetSignalRReplicaSharedPrivateLinkResource"
+          "target": "com.azure.signalr#SignalRSharedPrivateLinkResourcesCreateOrUpdate"
         },
         {
           "target": "com.azure.signalr#GetSignalRSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.signalr#ListOperations"
+          "target": "com.azure.signalr#ListSignalRSharedPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.signalr#RestartSignalR"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRReplicaSkus"
+        },
+        {
+          "target": "com.azure.signalr#SignalRReplicaSharedPrivateLinkResourcesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.signalr#GetSignalRReplicaSharedPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRReplicaSharedPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.signalr#RestartSignalRReplicas"
+        },
+        {
+          "target": "com.azure.signalr#DeleteSignalRReplicas"
+        },
+        {
+          "target": "com.azure.signalr#UpdateSignalRReplicas"
+        },
+        {
+          "target": "com.azure.signalr#SignalRReplicasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.signalr#GetSignalRReplicas"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRReplicas"
+        },
+        {
+          "target": "com.azure.signalr#RegenerateSignalRKey"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.signalr#DeleteSignalRPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.signalr#UpdateSignalRPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.signalr#GetSignalRPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRKeys"
+        },
+        {
+          "target": "com.azure.signalr#DeleteSignalRCustomDomain"
+        },
+        {
+          "target": "com.azure.signalr#SignalRCustomDomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.signalr#GetSignalRCustomDomain"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRCustomDomains"
+        },
+        {
+          "target": "com.azure.signalr#DeleteSignalRCustomCertificate"
+        },
+        {
+          "target": "com.azure.signalr#SignalRCustomCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.signalr#GetSignalRCustomCertificate"
+        },
+        {
+          "target": "com.azure.signalr#ListSignalRCustomCertificates"
+        },
+        {
+          "target": "com.azure.signalr#DeleteSignalR"
+        },
+        {
+          "target": "com.azure.signalr#UpdateSignalR"
+        },
+        {
+          "target": "com.azure.signalr#SignalRCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.signalr#GetSignalR"
         },
         {
           "target": "com.azure.signalr#ListSignalRByResourceGroup"
@@ -5831,73 +5891,13 @@
           "target": "com.azure.signalr#ListSignalRBySubscription"
         },
         {
-          "target": "com.azure.signalr#ListSignalRCustomCertificates"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRCustomDomains"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRKeys"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRReplicas"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRReplicaSharedPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRReplicaSkus"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRSharedPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.signalr#ListSignalRSkus"
-        },
-        {
           "target": "com.azure.signalr#ListUsages"
         },
         {
-          "target": "com.azure.signalr#RegenerateSignalRKey"
+          "target": "com.azure.signalr#CheckSignalRNameAvailability"
         },
         {
-          "target": "com.azure.signalr#RestartSignalR"
-        },
-        {
-          "target": "com.azure.signalr#RestartSignalRReplicas"
-        },
-        {
-          "target": "com.azure.signalr#SignalRCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.signalr#SignalRCustomCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.signalr#SignalRCustomDomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.signalr#SignalRReplicasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.signalr#SignalRReplicaSharedPrivateLinkResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.signalr#SignalRSharedPrivateLinkResourcesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.signalr#UpdateSignalR"
-        },
-        {
-          "target": "com.azure.signalr#UpdateSignalRPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.signalr#UpdateSignalRReplicas"
+          "target": "com.azure.signalr#ListOperations"
         }
       ],
       "traits": {

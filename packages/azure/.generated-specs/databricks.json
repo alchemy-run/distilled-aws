@@ -4367,76 +4367,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databricks#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.databricks#DeleteAccessConnector"
-        },
-        {
-          "target": "com.azure.databricks#DeletePrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.databricks#DeleteVNetPeering"
         },
         {
-          "target": "com.azure.databricks#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.databricks#GetAccessConnector"
-        },
-        {
-          "target": "com.azure.databricks#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.databricks#GetPrivateLinkResource"
+          "target": "com.azure.databricks#VNetPeeringCreateOrUpdate"
         },
         {
           "target": "com.azure.databricks#GetVNetPeering"
         },
         {
+          "target": "com.azure.databricks#ListVNetPeeringByWorkspace"
+        },
+        {
+          "target": "com.azure.databricks#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.databricks#ListPrivateLinkResources"
+        },
+        {
+          "target": "com.azure.databricks#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.databricks#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.databricks#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.databricks#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.databricks#ListOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.databricks#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.databricks#UpdateWorkspace"
+        },
+        {
+          "target": "com.azure.databricks#WorkspacesCreateOrUpdate"
+        },
+        {
           "target": "com.azure.databricks#GetWorkspace"
         },
         {
+          "target": "com.azure.databricks#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.databricks#DeleteAccessConnector"
+        },
+        {
+          "target": "com.azure.databricks#UpdateAccessConnector"
+        },
+        {
+          "target": "com.azure.databricks#AccessConnectorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.databricks#GetAccessConnector"
+        },
+        {
           "target": "com.azure.databricks#ListAccessConnectorByResourceGroup"
+        },
+        {
+          "target": "com.azure.databricks#ListWorkspaceBySubscription"
         },
         {
           "target": "com.azure.databricks#ListAccessConnectorBySubscription"
         },
         {
           "target": "com.azure.databricks#ListOperations"
-        },
-        {
-          "target": "com.azure.databricks#ListOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.databricks#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.databricks#ListPrivateLinkResources"
-        },
-        {
-          "target": "com.azure.databricks#ListVNetPeeringByWorkspace"
-        },
-        {
-          "target": "com.azure.databricks#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.databricks#ListWorkspaceBySubscription"
-        },
-        {
-          "target": "com.azure.databricks#UpdateAccessConnector"
-        },
-        {
-          "target": "com.azure.databricks#UpdateWorkspace"
-        },
-        {
-          "target": "com.azure.databricks#VNetPeeringCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.databricks#WorkspacesCreateOrUpdate"
         }
       ],
       "traits": {

@@ -2251,7 +2251,16 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.data_catalog#ListDataCatalogCertifications"
+        },
+        {
           "target": "com.posthog.data_catalog#CreateDataCatalogCertification"
+        },
+        {
+          "target": "com.posthog.data_catalog#GetDataCatalogCertification"
+        },
+        {
+          "target": "com.posthog.data_catalog#DataCatalogCertificationsDestroy"
         },
         {
           "target": "com.posthog.data_catalog#CreateDataCatalogCertificationsCertify"
@@ -2260,19 +2269,31 @@
           "target": "com.posthog.data_catalog#CreateDataCatalogCertificationsDeprecate"
         },
         {
+          "target": "com.posthog.data_catalog#ListDataCatalogMetrics"
+        },
+        {
           "target": "com.posthog.data_catalog#CreateDataCatalogMetrics"
         },
         {
-          "target": "com.posthog.data_catalog#CreateDataCatalogMetricsRun"
+          "target": "com.posthog.data_catalog#GetDataCatalogMetrics"
         },
         {
-          "target": "com.posthog.data_catalog#CreateDataCatalogRelationshipProposal"
+          "target": "com.posthog.data_catalog#UpdateDataCatalogMetrics"
         },
         {
-          "target": "com.posthog.data_catalog#DataCatalogCertificationsDestroy"
+          "target": "com.posthog.data_catalog#UpdateDataCatalogMetricsPartial"
+        },
+        {
+          "target": "com.posthog.data_catalog#DataCatalogMetricsDestroy"
         },
         {
           "target": "com.posthog.data_catalog#DataCatalogMetricsApproveCreate"
+        },
+        {
+          "target": "com.posthog.data_catalog#DataCatalogMetricsRefreshFromInsightCreate"
+        },
+        {
+          "target": "com.posthog.data_catalog#CreateDataCatalogMetricsRun"
         },
         {
           "target": "com.posthog.data_catalog#DataCatalogMetricsBulkApproveCreate"
@@ -2281,40 +2302,19 @@
           "target": "com.posthog.data_catalog#DataCatalogMetricsBulkDeleteCreate"
         },
         {
-          "target": "com.posthog.data_catalog#DataCatalogMetricsDestroy"
+          "target": "com.posthog.data_catalog#ListDataCatalogRelationshipProposals"
         },
         {
-          "target": "com.posthog.data_catalog#DataCatalogMetricsRefreshFromInsightCreate"
+          "target": "com.posthog.data_catalog#CreateDataCatalogRelationshipProposal"
+        },
+        {
+          "target": "com.posthog.data_catalog#GetDataCatalogRelationshipProposal"
         },
         {
           "target": "com.posthog.data_catalog#DataCatalogRelationshipProposalsAcceptCreate"
         },
         {
           "target": "com.posthog.data_catalog#DataCatalogRelationshipProposalsRejectCreate"
-        },
-        {
-          "target": "com.posthog.data_catalog#GetDataCatalogCertification"
-        },
-        {
-          "target": "com.posthog.data_catalog#GetDataCatalogMetrics"
-        },
-        {
-          "target": "com.posthog.data_catalog#GetDataCatalogRelationshipProposal"
-        },
-        {
-          "target": "com.posthog.data_catalog#ListDataCatalogCertifications"
-        },
-        {
-          "target": "com.posthog.data_catalog#ListDataCatalogMetrics"
-        },
-        {
-          "target": "com.posthog.data_catalog#ListDataCatalogRelationshipProposals"
-        },
-        {
-          "target": "com.posthog.data_catalog#UpdateDataCatalogMetrics"
-        },
-        {
-          "target": "com.posthog.data_catalog#UpdateDataCatalogMetricsPartial"
         }
       ],
       "traits": {

@@ -38134,280 +38134,7 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedPodProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedPodProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedServiceProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedServiceProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1DeleteNodeProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1DeleteNodeProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodAttach"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodExec"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodPortforward"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedServiceProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedServiceProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNodeProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1GetNodeProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedPodProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedPodProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedServiceProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedServiceProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PatchNodeProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PatchNodeProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodAttach"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodExec"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodPortforward"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedServiceProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedServiceProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNodeProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PostNodeProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedPodProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedPodProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedServiceProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedServiceProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PutNodeProxy"
-        },
-        {
-          "target": "com.kubernetes.core#ConnectCoreV1PutNodeProxyWithPath"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1Namespace"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedBinding"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedConfigMap"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedEndpoints"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedLimitRange"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedPersistentVolumeClaim"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedPod"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedPodBinding"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedPodEviction"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedPodTemplate"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedReplicationController"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedResourceQuota"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedSecret"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedServiceAccount"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1NamespacedServiceAccountToken"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1Node"
-        },
-        {
-          "target": "com.kubernetes.core#CreateCoreV1PersistentVolume"
-        },
-        {
-          "target": "com.kubernetes.core#CreateLifecycleV1alpha1NamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#CreateLifecycleV1alpha1NamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedConfigMap"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedEndpoints"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedLimitRange"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedPersistentVolumeClaim"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedPod"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedPodTemplate"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedReplicationController"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedResourceQuota"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedSecret"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedServiceAccount"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionNode"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1CollectionPersistentVolume"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1Namespace"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedConfigMap"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedEndpoints"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedLimitRange"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedPersistentVolumeClaim"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedPod"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedPodTemplate"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedReplicationController"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedResourceQuota"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedSecret"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1NamespacedServiceAccount"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1Node"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteCoreV1PersistentVolume"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1CollectionNamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1CollectionNamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1NamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1NamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#GetAPIVersions"
-        },
-        {
-          "target": "com.kubernetes.core#GetCodeVersion"
+          "target": "com.kubernetes.core#GetServiceAccountIssuerOpenIDConfiguration"
         },
         {
           "target": "com.kubernetes.core#GetCoreAPIVersions"
@@ -38416,19 +38143,10 @@
           "target": "com.kubernetes.core#GetCoreV1APIResources"
         },
         {
-          "target": "com.kubernetes.core#GetLifecycleAPIGroup"
-        },
-        {
-          "target": "com.kubernetes.core#GetLifecycleV1alpha1APIResources"
-        },
-        {
-          "target": "com.kubernetes.core#GetServiceAccountIssuerOpenIDConfiguration"
-        },
-        {
-          "target": "com.kubernetes.core#GetServiceAccountIssuerOpenIDKeyset"
-        },
-        {
           "target": "com.kubernetes.core#ListCoreV1ComponentStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1ComponentStatus"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1ConfigMapForAllNamespaces"
@@ -38446,49 +38164,541 @@
           "target": "com.kubernetes.core#ListCoreV1Namespace"
         },
         {
+          "target": "com.kubernetes.core#CreateCoreV1Namespace"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedBinding"
+        },
+        {
           "target": "com.kubernetes.core#ListCoreV1NamespacedConfigMap"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedConfigMap"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedConfigMap"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedConfigMap"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedConfigMap"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedConfigMap"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedConfigMap"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1NamespacedEndpoints"
         },
         {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedEndpoints"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedEndpoints"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedEndpoints"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedEndpoints"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedEndpoints"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedEndpoints"
+        },
+        {
           "target": "com.kubernetes.core#ListCoreV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedEvent"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedEvent"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1NamespacedLimitRange"
         },
         {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedLimitRange"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedLimitRange"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedLimitRange"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedLimitRange"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedLimitRange"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedLimitRange"
+        },
+        {
           "target": "com.kubernetes.core#ListCoreV1NamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedPersistentVolumeClaim"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPersistentVolumeClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPersistentVolumeClaimStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPersistentVolumeClaimStatus"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1NamespacedPod"
         },
         {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedPod"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedPod"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPod"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPod"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPod"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedPod"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodAttach"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodAttach"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedPodBinding"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodEphemeralcontainers"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodEphemeralcontainers"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodEphemeralcontainers"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedPodEviction"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodExec"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodExec"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodLog"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodPortforward"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodPortforward"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedPodProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedPodProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedPodProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedPodProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedPodProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedPodProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedPodProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedPodProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodResize"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodResize"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodResize"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodStatus"
+        },
+        {
           "target": "com.kubernetes.core#ListCoreV1NamespacedPodTemplate"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedPodTemplate"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedPodTemplate"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodTemplate"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodTemplate"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodTemplate"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedPodTemplate"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1NamespacedReplicationController"
         },
         {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedReplicationController"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedReplicationController"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedReplicationController"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedReplicationController"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedReplicationController"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedReplicationController"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedReplicationControllerScale"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedReplicationControllerScale"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedReplicationControllerScale"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedReplicationControllerStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedReplicationControllerStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedReplicationControllerStatus"
+        },
+        {
           "target": "com.kubernetes.core#ListCoreV1NamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedResourceQuota"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedResourceQuotaStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedResourceQuotaStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedResourceQuotaStatus"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1NamespacedSecret"
         },
         {
-          "target": "com.kubernetes.core#ListCoreV1NamespacedService"
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedSecret"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedSecret"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedSecret"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedSecret"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedSecret"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedSecret"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1NamespacedServiceAccount"
         },
         {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedServiceAccount"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedServiceAccount"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedServiceAccount"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedServiceAccount"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedServiceAccount"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedServiceAccount"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedServiceAccountToken"
+        },
+        {
+          "target": "com.kubernetes.core#ListCoreV1NamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1NamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1NamespacedService"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedServiceProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedServiceProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedServiceProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedServiceProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedServiceProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNamespacedServiceProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNamespacedServiceProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PutNamespacedServiceProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PatchNamespacedServiceProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1DeleteNamespacedServiceProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespacedServiceStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedServiceStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespacedServiceStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1Namespace"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1Namespace"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1Namespace"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1Namespace"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespaceFinalize"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NamespaceStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NamespaceStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NamespaceStatus"
+        },
+        {
           "target": "com.kubernetes.core#ListCoreV1Node"
+        },
+        {
+          "target": "com.kubernetes.core#CreateCoreV1Node"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionNode"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1Node"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1Node"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1Node"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1Node"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNodeProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNodeProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PutNodeProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PatchNodeProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1DeleteNodeProxy"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1GetNodeProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PostNodeProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PutNodeProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1PatchNodeProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ConnectCoreV1DeleteNodeProxyWithPath"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1NodeStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1NodeStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1NodeStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ListCoreV1PersistentVolumeClaimForAllNamespaces"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1PersistentVolume"
         },
         {
-          "target": "com.kubernetes.core#ListCoreV1PersistentVolumeClaimForAllNamespaces"
+          "target": "com.kubernetes.core#CreateCoreV1PersistentVolume"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1CollectionPersistentVolume"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1PersistentVolume"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1PersistentVolume"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1PersistentVolume"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteCoreV1PersistentVolume"
+        },
+        {
+          "target": "com.kubernetes.core#ReadCoreV1PersistentVolumeStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceCoreV1PersistentVolumeStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchCoreV1PersistentVolumeStatus"
         },
         {
           "target": "com.kubernetes.core#ListCoreV1PodForAllNamespaces"
@@ -38512,303 +38722,6 @@
           "target": "com.kubernetes.core#ListCoreV1ServiceForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.core#ListLifecycleV1alpha1EvictionForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.core#ListLifecycleV1alpha1EvictionRequestForAllNamespaces"
-        },
-        {
-          "target": "com.kubernetes.core#ListLifecycleV1alpha1NamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#ListLifecycleV1alpha1NamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#LogFileHandler"
-        },
-        {
-          "target": "com.kubernetes.core#LogFileListHandler"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1Namespace"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedConfigMap"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedEndpoints"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedLimitRange"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPersistentVolumeClaim"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPersistentVolumeClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPod"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodEphemeralcontainers"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodResize"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedPodTemplate"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedReplicationController"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedReplicationControllerScale"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedReplicationControllerStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedResourceQuota"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedResourceQuotaStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedSecret"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedServiceAccount"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespacedServiceStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NamespaceStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1Node"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1NodeStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1PersistentVolume"
-        },
-        {
-          "target": "com.kubernetes.core#PatchCoreV1PersistentVolumeStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEvictionRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEvictionStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1ComponentStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1Namespace"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedConfigMap"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedEndpoints"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedLimitRange"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPersistentVolumeClaim"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPersistentVolumeClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPod"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodEphemeralcontainers"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodLog"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodResize"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedPodTemplate"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedReplicationController"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedReplicationControllerScale"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedReplicationControllerStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedResourceQuota"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedResourceQuotaStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedSecret"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedServiceAccount"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespacedServiceStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NamespaceStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1Node"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1NodeStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1PersistentVolume"
-        },
-        {
-          "target": "com.kubernetes.core#ReadCoreV1PersistentVolumeStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEvictionRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEvictionStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1Namespace"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedConfigMap"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedEndpoints"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedEvent"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedLimitRange"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPersistentVolumeClaim"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPersistentVolumeClaimStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPod"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodEphemeralcontainers"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodResize"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedPodTemplate"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedReplicationController"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedReplicationControllerScale"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedReplicationControllerStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedResourceQuota"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedResourceQuotaStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedSecret"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedServiceAccount"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespacedServiceStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespaceFinalize"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NamespaceStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1Node"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1NodeStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1PersistentVolume"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceCoreV1PersistentVolumeStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEviction"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEvictionRequest"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEvictionRequestStatus"
-        },
-        {
-          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEvictionStatus"
-        },
-        {
           "target": "com.kubernetes.core#WatchCoreV1ConfigMapListForAllNamespaces"
         },
         {
@@ -38821,97 +38734,97 @@
           "target": "com.kubernetes.core#WatchCoreV1LimitRangeListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1Namespace"
-        },
-        {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedConfigMap"
+          "target": "com.kubernetes.core#WatchCoreV1NamespaceList"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedConfigMapList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedEndpoints"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedConfigMap"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedEndpointsList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedEvent"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedEndpoints"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedEventList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedLimitRange"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedEvent"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedLimitRangeList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedPersistentVolumeClaim"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedLimitRange"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedPersistentVolumeClaimList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedPod"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedPersistentVolumeClaim"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedPodList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedPodTemplate"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedPod"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedPodTemplateList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedReplicationController"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedPodTemplate"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedReplicationControllerList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedResourceQuota"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedReplicationController"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedResourceQuotaList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedSecret"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedResourceQuota"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedSecretList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedService"
-        },
-        {
-          "target": "com.kubernetes.core#WatchCoreV1NamespacedServiceAccount"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedSecret"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedServiceAccountList"
         },
         {
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedServiceAccount"
+        },
+        {
           "target": "com.kubernetes.core#WatchCoreV1NamespacedServiceList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1NamespaceList"
+          "target": "com.kubernetes.core#WatchCoreV1NamespacedService"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1Node"
+          "target": "com.kubernetes.core#WatchCoreV1Namespace"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1NodeList"
         },
         {
-          "target": "com.kubernetes.core#WatchCoreV1PersistentVolume"
+          "target": "com.kubernetes.core#WatchCoreV1Node"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1PersistentVolumeClaimListForAllNamespaces"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1PersistentVolumeList"
+        },
+        {
+          "target": "com.kubernetes.core#WatchCoreV1PersistentVolume"
         },
         {
           "target": "com.kubernetes.core#WatchCoreV1PodListForAllNamespaces"
@@ -38935,22 +38848,109 @@
           "target": "com.kubernetes.core#WatchCoreV1ServiceListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.core#WatchLifecycleV1alpha1EvictionListForAllNamespaces"
+          "target": "com.kubernetes.core#GetAPIVersions"
+        },
+        {
+          "target": "com.kubernetes.core#GetLifecycleAPIGroup"
+        },
+        {
+          "target": "com.kubernetes.core#GetLifecycleV1alpha1APIResources"
+        },
+        {
+          "target": "com.kubernetes.core#ListLifecycleV1alpha1EvictionRequestForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.core#ListLifecycleV1alpha1EvictionForAllNamespaces"
+        },
+        {
+          "target": "com.kubernetes.core#ListLifecycleV1alpha1NamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#CreateLifecycleV1alpha1NamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1CollectionNamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1NamespacedEvictionRequest"
+        },
+        {
+          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEvictionRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEvictionRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEvictionRequestStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ListLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#CreateLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1CollectionNamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#DeleteLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#ReadLifecycleV1alpha1NamespacedEvictionStatus"
+        },
+        {
+          "target": "com.kubernetes.core#ReplaceLifecycleV1alpha1NamespacedEvictionStatus"
+        },
+        {
+          "target": "com.kubernetes.core#PatchLifecycleV1alpha1NamespacedEvictionStatus"
         },
         {
           "target": "com.kubernetes.core#WatchLifecycleV1alpha1EvictionRequestListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEviction"
+          "target": "com.kubernetes.core#WatchLifecycleV1alpha1EvictionListForAllNamespaces"
         },
         {
-          "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEvictionList"
+          "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEvictionRequestList"
         },
         {
           "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEvictionRequest"
         },
         {
-          "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEvictionRequestList"
+          "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEvictionList"
+        },
+        {
+          "target": "com.kubernetes.core#WatchLifecycleV1alpha1NamespacedEviction"
+        },
+        {
+          "target": "com.kubernetes.core#LogFileListHandler"
+        },
+        {
+          "target": "com.kubernetes.core#LogFileHandler"
+        },
+        {
+          "target": "com.kubernetes.core#GetServiceAccountIssuerOpenIDKeyset"
+        },
+        {
+          "target": "com.kubernetes.core#GetCodeVersion"
         }
       ],
       "traits": {

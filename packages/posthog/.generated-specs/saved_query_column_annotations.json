@@ -463,22 +463,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.saved_query_column_annotations#ListSavedQueryColumnAnnotations"
+        },
+        {
           "target": "com.posthog.saved_query_column_annotations#CreateSavedQueryColumnAnnotation"
         },
         {
           "target": "com.posthog.saved_query_column_annotations#GetSavedQueryColumnAnnotation"
         },
         {
-          "target": "com.posthog.saved_query_column_annotations#ListSavedQueryColumnAnnotations"
-        },
-        {
-          "target": "com.posthog.saved_query_column_annotations#SavedQueryColumnAnnotationsDestroy"
-        },
-        {
           "target": "com.posthog.saved_query_column_annotations#UpdateSavedQueryColumnAnnotation"
         },
         {
           "target": "com.posthog.saved_query_column_annotations#UpdateSavedQueryColumnAnnotationsPartial"
+        },
+        {
+          "target": "com.posthog.saved_query_column_annotations#SavedQueryColumnAnnotationsDestroy"
         }
       ],
       "traits": {

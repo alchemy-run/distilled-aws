@@ -1749,19 +1749,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.hetzner.certificates#CreateCertificate"
+          "target": "com.hetzner.certificates#ListCertificates"
         },
         {
-          "target": "com.hetzner.certificates#DeleteCertificate"
+          "target": "com.hetzner.certificates#CreateCertificate"
         },
         {
           "target": "com.hetzner.certificates#GetCertificate"
         },
         {
-          "target": "com.hetzner.certificates#ListCertificates"
+          "target": "com.hetzner.certificates#UpdateCertificate"
         },
         {
-          "target": "com.hetzner.certificates#UpdateCertificate"
+          "target": "com.hetzner.certificates#DeleteCertificate"
         }
       ],
       "traits": {

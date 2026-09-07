@@ -42383,622 +42383,622 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.managednetworkfabric#AccessControlListsResync"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CommitL2IsolationDomainConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CommitL3IsolationDomainConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CommitNetworkFabricBatchStatus"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CommitNetworkFabricConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CommitRoutePolicyConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateAccessControlList"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateExternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateInternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateInternetGatewayRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateInternetGateways"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateIpCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateIpExtendedCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateIpPrefix"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateL2IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateL3IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNeighborGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkBootstrapDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkBootstrapInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkFabricController"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkMonitor"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkPacketBroker"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkRack"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkTap"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkTapRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateNetworkToNetworkInterconnect"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#CreateRoutePolicy"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteAccessControlList"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteExternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteInternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteInternetGatewayRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteInternetGateways"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteIpCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteIpExtendedCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteIpPrefix"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteL2IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteL3IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNeighborGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkBootstrapDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkBootstrapInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkFabricController"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkMonitor"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkPacketBroker"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkRack"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkTap"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkTapRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteNetworkToNetworkInterconnect"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#DeleteRoutePolicy"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetAccessControlList"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetExternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetInternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetInternetGatewayRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetInternetGateways"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetIpCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetIpExtendedCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetIpPrefix"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetL2IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetL3IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNeighborGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkBootstrapDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkBootstrapInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkDeviceSkus"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkFabricController"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkFabricSkus"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkFabricTopology"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkMonitor"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkPacketBroker"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkRack"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkTap"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkTapRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetNetworkToNetworkInterconnect"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#GetRoutePolicy"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListAccessControlListByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListAccessControlListBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListExternalNetworkByL3IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListInternalNetworkByL3IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListInternetGatewayRuleByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListInternetGatewayRuleBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListInternetGatewaysByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListInternetGatewaysBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListIpCommunityByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListIpCommunityBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListIpExtendedCommunityByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListIpExtendedCommunityBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListIpPrefixByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListIpPrefixBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListL2IsolationDomainByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListL2IsolationDomainBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListL3IsolationDomainByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListL3IsolationDomainBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNeighborGroupByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNeighborGroupBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkBootstrapDeviceByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkBootstrapDeviceBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkBootstrapInterfaceByNetworkBootstrapDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkDeviceByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkDeviceBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkDeviceSkusBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkFabricByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkFabricBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkFabricControllerByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkFabricControllerBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkFabricSkusBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkInterfaceByNetworkDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkMonitorByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkMonitorBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkPacketBrokerByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkPacketBrokerBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkRackByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkRackBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkTapByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkTapBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkTapRuleByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkTapRuleBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListNetworkToNetworkInterconnectByNetworkFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListOperations"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListRoutePolicyByResourceGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ListRoutePolicyBySubscription"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#LockNetworkFabricFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NeighborGroupsResync"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkBootstrapDevicesResyncPasswords"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkBootstrapDevicesUpgrade"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkDevicesResyncCertificates"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkDevicesResyncPasswords"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkDevicesUpgrade"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsArmConfigurationDiff"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsDeprovision"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsDiscardCommitBatch"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsResyncCertificates"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsResyncPasswords"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsUpgrade"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkFabricsViewDeviceConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkTapRulesResync"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#NetworkTapsResync"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#ProvisionNetworkFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RebootNetworkBootstrapDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RebootNetworkDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RefreshNetworkBootstrapDeviceConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RefreshNetworkDeviceConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RefreshNetworkFabricConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RotateNetworkFabricCertificates"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RotateNetworkFabricPasswords"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RunNetworkDeviceRoCommand"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#RunNetworkDeviceRwCommand"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateAccessControlList"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateAccessControlListAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateExternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateExternalNetworkAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateExternalNetworkBfdAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateExternalNetworkStaticRouteBfdAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternalNetwork"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkBfdAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkBgpAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkStaticRouteBfdAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternetGatewayRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateInternetGateways"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateIpCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateIpExtendedCommunity"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateIpPrefix"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateL2IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateL2IsolationDomainAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateL3IsolationDomain"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateL3IsolationDomainAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNeighborGroup"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapDeviceAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapInterfaceAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkDevice"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkDeviceAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkFabric"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkFabricController"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkFabricInfraManagementBfdConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkFabricWorkloadManagementBfdConfiguration"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkInterface"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkInterfaceAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkMonitor"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkMonitorAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkPacketBroker"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkRack"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkTap"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkTapAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkTapRule"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkTapRuleAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnect"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnectAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnectBfdAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeState"
-        },
-        {
-          "target": "com.azure.managednetworkfabric#UpdateRoutePolicy"
+          "target": "com.azure.managednetworkfabric#ValidateRoutePolicyConfiguration"
         },
         {
           "target": "com.azure.managednetworkfabric#UpdateRoutePolicyAdministrativeState"
         },
         {
-          "target": "com.azure.managednetworkfabric#ValidateAccessControlListConfiguration"
+          "target": "com.azure.managednetworkfabric#CommitRoutePolicyConfiguration"
         },
         {
-          "target": "com.azure.managednetworkfabric#ValidateL2IsolationDomainConfiguration"
+          "target": "com.azure.managednetworkfabric#DeleteRoutePolicy"
         },
         {
-          "target": "com.azure.managednetworkfabric#ValidateL3IsolationDomainConfiguration"
+          "target": "com.azure.managednetworkfabric#UpdateRoutePolicy"
         },
         {
-          "target": "com.azure.managednetworkfabric#ValidateNetworkFabricConfiguration"
+          "target": "com.azure.managednetworkfabric#CreateRoutePolicy"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetRoutePolicy"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListRoutePolicyByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkTapAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkTapsResync"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkTap"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkTap"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkTap"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkTap"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkTapByResourceGroup"
         },
         {
           "target": "com.azure.managednetworkfabric#ValidateNetworkTapRuleConfiguration"
         },
         {
-          "target": "com.azure.managednetworkfabric#ValidateRoutePolicyConfiguration"
+          "target": "com.azure.managednetworkfabric#UpdateNetworkTapRuleAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkTapRulesResync"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkTapRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkTapRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkTapRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkTapRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkTapRuleByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkRack"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkRack"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkRack"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkRack"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkRackByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkPacketBroker"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkPacketBroker"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkPacketBroker"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkPacketBroker"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkPacketBrokerByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkMonitorAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkMonitor"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkMonitor"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkMonitor"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkMonitor"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkMonitorByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsViewDeviceConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ValidateNetworkFabricConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsUpgrade"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkFabricWorkloadManagementBfdConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkFabricInfraManagementBfdConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RotateNetworkFabricPasswords"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RotateNetworkFabricCertificates"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsResyncPasswords"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsResyncCertificates"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RefreshNetworkFabricConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ProvisionNetworkFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnectNpbStaticRouteBfdAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnectBfdAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnectAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkToNetworkInterconnect"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkToNetworkInterconnect"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkToNetworkInterconnect"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkToNetworkInterconnect"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkToNetworkInterconnectByNetworkFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#LockNetworkFabricFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkFabricTopology"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsDiscardCommitBatch"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsDeprovision"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CommitNetworkFabricConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CommitNetworkFabricBatchStatus"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkFabricsArmConfigurationDiff"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkFabric"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkFabricByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkFabricController"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkFabricController"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkFabricController"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkFabricController"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkFabricControllerByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkDevicesUpgrade"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkDeviceAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RunNetworkDeviceRwCommand"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RunNetworkDeviceRoCommand"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkDevicesResyncPasswords"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkDevicesResyncCertificates"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RefreshNetworkDeviceConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RebootNetworkDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkInterfaceAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkInterfaceByNetworkDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkDeviceByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkBootstrapDevicesUpgrade"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapDeviceAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NetworkBootstrapDevicesResyncPasswords"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RefreshNetworkBootstrapDeviceConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#RebootNetworkBootstrapDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapInterfaceAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkBootstrapInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkBootstrapInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkBootstrapInterface"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkBootstrapInterfaceByNetworkBootstrapDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNetworkBootstrapDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNetworkBootstrapDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNetworkBootstrapDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkBootstrapDevice"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkBootstrapDeviceByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#NeighborGroupsResync"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteNeighborGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateNeighborGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateNeighborGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNeighborGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNeighborGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ValidateL3IsolationDomainConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateL3IsolationDomainAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkStaticRouteBfdAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkBgpAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkBfdAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternalNetworkAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteInternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateInternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetInternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListInternalNetworkByL3IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateExternalNetworkStaticRouteBfdAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateExternalNetworkBfdAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateExternalNetworkAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteExternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateExternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateExternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetExternalNetwork"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListExternalNetworkByL3IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CommitL3IsolationDomainConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteL3IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateL3IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateL3IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetL3IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListL3IsolationDomainByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ValidateL2IsolationDomainConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateL2IsolationDomainAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CommitL2IsolationDomainConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteL2IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateL2IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateL2IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetL2IsolationDomain"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListL2IsolationDomainByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteIpPrefix"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateIpPrefix"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateIpPrefix"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetIpPrefix"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListIpPrefixByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteIpExtendedCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateIpExtendedCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateIpExtendedCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetIpExtendedCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListIpExtendedCommunityByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteIpCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateIpCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateIpCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetIpCommunity"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListIpCommunityByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteInternetGateways"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternetGateways"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateInternetGateways"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetInternetGateways"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListInternetGatewaysByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteInternetGatewayRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateInternetGatewayRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateInternetGatewayRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetInternetGatewayRule"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListInternetGatewayRuleByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ValidateAccessControlListConfiguration"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateAccessControlListAdministrativeState"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#AccessControlListsResync"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#DeleteAccessControlList"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#UpdateAccessControlList"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#CreateAccessControlList"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetAccessControlList"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListAccessControlListByResourceGroup"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListRoutePolicyBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkTapBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkTapRuleBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkRackBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkPacketBrokerBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkMonitorBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkFabricBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkFabricSkus"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkFabricSkusBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkFabricControllerBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkDeviceBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#GetNetworkDeviceSkus"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkDeviceSkusBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNetworkBootstrapDeviceBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListNeighborGroupBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListL3IsolationDomainBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListL2IsolationDomainBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListIpPrefixBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListIpExtendedCommunityBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListIpCommunityBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListInternetGatewaysBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListInternetGatewayRuleBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListAccessControlListBySubscription"
+        },
+        {
+          "target": "com.azure.managednetworkfabric#ListOperations"
         }
       ],
       "traits": {

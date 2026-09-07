@@ -2512,7 +2512,16 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.modal.app#DisconnectAppClient"
+        },
+        {
           "target": "com.modal.app#AppCountLogs"
+        },
+        {
+          "target": "com.modal.app#CreateApp"
+        },
+        {
+          "target": "com.modal.app#DeployApp"
         },
         {
           "target": "com.modal.app#AppDeploymentHistory"
@@ -2545,27 +2554,6 @@
           "target": "com.modal.app#AppHeartbeat"
         },
         {
-          "target": "com.modal.app#AppRollback"
-        },
-        {
-          "target": "com.modal.app#AppRollover"
-        },
-        {
-          "target": "com.modal.app#AppSetObjects"
-        },
-        {
-          "target": "com.modal.app#AppSetTags"
-        },
-        {
-          "target": "com.modal.app#CreateApp"
-        },
-        {
-          "target": "com.modal.app#DeployApp"
-        },
-        {
-          "target": "com.modal.app#DisconnectAppClient"
-        },
-        {
           "target": "com.modal.app#ListApp"
         },
         {
@@ -2576,6 +2564,18 @@
         },
         {
           "target": "com.modal.app#PublishApp"
+        },
+        {
+          "target": "com.modal.app#AppRollback"
+        },
+        {
+          "target": "com.modal.app#AppRollover"
+        },
+        {
+          "target": "com.modal.app#AppSetObjects"
+        },
+        {
+          "target": "com.modal.app#AppSetTags"
         },
         {
           "target": "com.modal.app#StopApp"

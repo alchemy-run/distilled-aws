@@ -2696,76 +2696,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.authorization#CreateRoleAssignment"
-        },
-        {
-          "target": "com.azure.authorization#CreateRoleAssignmentById"
-        },
-        {
-          "target": "com.azure.authorization#DeleteRoleAssignment"
-        },
-        {
-          "target": "com.azure.authorization#DeleteRoleAssignmentById"
-        },
-        {
-          "target": "com.azure.authorization#DeleteRoleDefinition"
-        },
-        {
-          "target": "com.azure.authorization#GetDenyAssignment"
+          "target": "com.azure.authorization#ListDenyAssignmentForScope"
         },
         {
           "target": "com.azure.authorization#GetDenyAssignmentById"
         },
         {
-          "target": "com.azure.authorization#GetProviderOperationsMetadata"
+          "target": "com.azure.authorization#GetDenyAssignment"
         },
         {
-          "target": "com.azure.authorization#GetRoleAssignment"
-        },
-        {
-          "target": "com.azure.authorization#GetRoleAssignmentById"
-        },
-        {
-          "target": "com.azure.authorization#GetRoleDefinition"
-        },
-        {
-          "target": "com.azure.authorization#ListDenyAssignmentForResource"
+          "target": "com.azure.authorization#ListDenyAssignments"
         },
         {
           "target": "com.azure.authorization#ListDenyAssignmentForResourceGroup"
         },
         {
-          "target": "com.azure.authorization#ListDenyAssignmentForScope"
+          "target": "com.azure.authorization#ListDenyAssignmentForResource"
         },
         {
-          "target": "com.azure.authorization#ListDenyAssignments"
+          "target": "com.azure.authorization#GetProviderOperationsMetadata"
+        },
+        {
+          "target": "com.azure.authorization#ListProviderOperationsMetadata"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForResourceGroup"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForResource"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForSubscription"
+        },
+        {
+          "target": "com.azure.authorization#DeleteRoleAssignment"
+        },
+        {
+          "target": "com.azure.authorization#CreateRoleAssignment"
+        },
+        {
+          "target": "com.azure.authorization#GetRoleAssignment"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleAssignmentForScope"
+        },
+        {
+          "target": "com.azure.authorization#DeleteRoleAssignmentById"
+        },
+        {
+          "target": "com.azure.authorization#CreateRoleAssignmentById"
+        },
+        {
+          "target": "com.azure.authorization#GetRoleAssignmentById"
+        },
+        {
+          "target": "com.azure.authorization#ListRoleDefinitions"
+        },
+        {
+          "target": "com.azure.authorization#DeleteRoleDefinition"
+        },
+        {
+          "target": "com.azure.authorization#RoleDefinitionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.authorization#GetRoleDefinition"
         },
         {
           "target": "com.azure.authorization#ListPermissionsForResource"
         },
         {
           "target": "com.azure.authorization#ListPermissionsForResourceGroup"
-        },
-        {
-          "target": "com.azure.authorization#ListProviderOperationsMetadata"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForResource"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForResourceGroup"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForScope"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleAssignmentForSubscription"
-        },
-        {
-          "target": "com.azure.authorization#ListRoleDefinitions"
-        },
-        {
-          "target": "com.azure.authorization#RoleDefinitionsCreateOrUpdate"
         }
       ],
       "traits": {

@@ -2733,64 +2733,64 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.persons#CreatePersonsBatchByDistinctIds"
-        },
-        {
-          "target": "com.posthog.persons#CreatePersonsBatchByUuid"
-        },
-        {
-          "target": "com.posthog.persons#CreatePersonsSplit"
-        },
-        {
-          "target": "com.posthog.persons#GetPerson"
-        },
-        {
-          "target": "com.posthog.persons#GetPersonsActivity"
-        },
-        {
-          "target": "com.posthog.persons#GetPersonsAllActivity"
-        },
-        {
-          "target": "com.posthog.persons#GetPersonsCohort"
-        },
-        {
-          "target": "com.posthog.persons#GetPersonsPropertiesAtTime"
-        },
-        {
-          "target": "com.posthog.persons#GetPersonsPropertiesTimeline"
-        },
-        {
-          "target": "com.posthog.persons#GetPersonsValue"
-        },
-        {
           "target": "com.posthog.persons#ListPersons"
         },
         {
-          "target": "com.posthog.persons#ListPersonsDeletionStatus"
-        },
-        {
-          "target": "com.posthog.persons#ListPersonsEmails"
-        },
-        {
-          "target": "com.posthog.persons#ListPersonsPushNotifications"
-        },
-        {
-          "target": "com.posthog.persons#PersonsBulkDeleteCreate"
-        },
-        {
-          "target": "com.posthog.persons#PersonsDeletePropertyCreate"
-        },
-        {
-          "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreate"
-        },
-        {
-          "target": "com.posthog.persons#PersonsUpdatePropertyCreate"
+          "target": "com.posthog.persons#GetPerson"
         },
         {
           "target": "com.posthog.persons#UpdatePerson"
         },
         {
           "target": "com.posthog.persons#UpdatePersonsPartial"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsActivity"
+        },
+        {
+          "target": "com.posthog.persons#PersonsDeletePropertyCreate"
+        },
+        {
+          "target": "com.posthog.persons#ListPersonsEmails"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsPropertiesTimeline"
+        },
+        {
+          "target": "com.posthog.persons#ListPersonsPushNotifications"
+        },
+        {
+          "target": "com.posthog.persons#CreatePersonsSplit"
+        },
+        {
+          "target": "com.posthog.persons#PersonsUpdatePropertyCreate"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsAllActivity"
+        },
+        {
+          "target": "com.posthog.persons#CreatePersonsBatchByDistinctIds"
+        },
+        {
+          "target": "com.posthog.persons#CreatePersonsBatchByUuid"
+        },
+        {
+          "target": "com.posthog.persons#PersonsBulkDeleteCreate"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsCohort"
+        },
+        {
+          "target": "com.posthog.persons#ListPersonsDeletionStatus"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsPropertiesAtTime"
+        },
+        {
+          "target": "com.posthog.persons#PersonsResetPersonDistinctIdCreate"
+        },
+        {
+          "target": "com.posthog.persons#GetPersonsValue"
         }
       ],
       "traits": {

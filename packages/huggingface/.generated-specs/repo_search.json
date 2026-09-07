@@ -11023,10 +11023,10 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.huggingface.repo_search#QuickSearchPost"
+          "target": "com.huggingface.repo_search#SearchQuick"
         },
         {
-          "target": "com.huggingface.repo_search#SearchQuick"
+          "target": "com.huggingface.repo_search#QuickSearchPost"
         }
       ],
       "traits": {

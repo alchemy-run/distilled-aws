@@ -2797,7 +2797,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.companies#CreateApiKeyCompany"
+          "target": "com.whop.companies#ListCompany"
         },
         {
           "target": "com.whop.companies#CreateCompany"
@@ -2806,10 +2806,10 @@
           "target": "com.whop.companies#GetCompany"
         },
         {
-          "target": "com.whop.companies#ListCompany"
+          "target": "com.whop.companies#UpdateCompany"
         },
         {
-          "target": "com.whop.companies#UpdateCompany"
+          "target": "com.whop.companies#CreateApiKeyCompany"
         }
       ],
       "traits": {

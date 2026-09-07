@@ -2558,13 +2558,19 @@
       "version": "1.0",
       "operations": [
         {
+          "target": "com.azure.manufacturingplatform#ListManufacturingDataServiceAvailableVersions"
+        },
+        {
           "target": "com.azure.manufacturingplatform#DeleteManufacturingDataService"
         },
         {
-          "target": "com.azure.manufacturingplatform#GetManufacturingDataService"
+          "target": "com.azure.manufacturingplatform#UpdateManufacturingDataService"
         },
         {
-          "target": "com.azure.manufacturingplatform#ListManufacturingDataServiceAvailableVersions"
+          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.manufacturingplatform#GetManufacturingDataService"
         },
         {
           "target": "com.azure.manufacturingplatform#ListManufacturingDataServiceByResourceGroup"
@@ -2574,12 +2580,6 @@
         },
         {
           "target": "com.azure.manufacturingplatform#ListOperations"
-        },
-        {
-          "target": "com.azure.manufacturingplatform#ManufacturingDataServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.manufacturingplatform#UpdateManufacturingDataService"
         }
       ],
       "traits": {

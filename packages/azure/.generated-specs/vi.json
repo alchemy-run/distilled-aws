@@ -2937,37 +2937,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.vi#AccountsCreateOrUpdate"
+          "target": "com.azure.vi#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.vi#CheckAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.vi#DeleteAccount"
+          "target": "com.azure.vi#ListPrivateLinkResourceByAccount"
         },
         {
           "target": "com.azure.vi#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.vi#GenerateAccessToken"
-        },
-        {
-          "target": "com.azure.vi#GenerateExtensionAccessToken"
-        },
-        {
-          "target": "com.azure.vi#GenerateExtensionRestrictedViewerAccessToken"
-        },
-        {
-          "target": "com.azure.vi#GenerateRestrictedViewerAccessToken"
-        },
-        {
-          "target": "com.azure.vi#GetAccount"
+          "target": "com.azure.vi#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
           "target": "com.azure.vi#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.vi#GetPrivateLinkResource"
+          "target": "com.azure.vi#ListPrivateEndpointConnectionByAccount"
+        },
+        {
+          "target": "com.azure.vi#GenerateExtensionRestrictedViewerAccessToken"
+        },
+        {
+          "target": "com.azure.vi#GenerateExtensionAccessToken"
+        },
+        {
+          "target": "com.azure.vi#GenerateRestrictedViewerAccessToken"
+        },
+        {
+          "target": "com.azure.vi#GenerateAccessToken"
+        },
+        {
+          "target": "com.azure.vi#DeleteAccount"
+        },
+        {
+          "target": "com.azure.vi#UpdateAccount"
+        },
+        {
+          "target": "com.azure.vi#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.vi#GetAccount"
         },
         {
           "target": "com.azure.vi#ListAccountByResourceGroup"
@@ -2976,19 +2985,10 @@
           "target": "com.azure.vi#ListAccounts"
         },
         {
+          "target": "com.azure.vi#CheckAccountNameAvailability"
+        },
+        {
           "target": "com.azure.vi#ListOperations"
-        },
-        {
-          "target": "com.azure.vi#ListPrivateEndpointConnectionByAccount"
-        },
-        {
-          "target": "com.azure.vi#ListPrivateLinkResourceByAccount"
-        },
-        {
-          "target": "com.azure.vi#PrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.vi#UpdateAccount"
         }
       ],
       "traits": {

@@ -13877,124 +13877,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactManifestsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ArtifactStoresCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupSchemasCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteArtifactManifest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPoints"
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaState"
         },
         {
           "target": "com.azure.hybridnetwork#DeleteConfigurationGroupSchema"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteConfigurationGroupValue"
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchema"
         },
         {
-          "target": "com.azure.hybridnetwork#DeleteNetworkFunction"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeletePublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteSite"
-        },
-        {
-          "target": "com.azure.hybridnetwork#DeleteSiteNetworkService"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ExecuteNetworkFunctionRequest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetArtifactManifest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetComponent"
+          "target": "com.azure.hybridnetwork#ConfigurationGroupSchemasCreateOrUpdate"
         },
         {
           "target": "com.azure.hybridnetwork#GetConfigurationGroupSchema"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetConfigurationGroupValue"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkFunction"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetProxyArtifact"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetPublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetSite"
-        },
-        {
-          "target": "com.azure.hybridnetwork#GetSiteNetworkService"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactManifestByArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactManifestCredential"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactStoreByPublisher"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactStoreNetworkFabricControllerPrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListArtifactStorePrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#ListComponentByNetworkFunction"
         },
         {
           "target": "com.azure.hybridnetwork#ListConfigurationGroupSchemaByPublisher"
@@ -14006,28 +13901,178 @@
           "target": "com.azure.hybridnetwork#ListConfigurationGroupValueBySubscription"
         },
         {
+          "target": "com.azure.hybridnetwork#DeleteConfigurationGroupValue"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTags"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ConfigurationGroupValuesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetConfigurationGroupValue"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListComponentByNetworkFunction"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetComponent"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ExecuteNetworkFunctionRequest"
+        },
+        {
           "target": "com.azure.hybridnetwork#ListNetworkFunctionByResourceGroup"
         },
         {
           "target": "com.azure.hybridnetwork#ListNetworkFunctionBySubscription"
         },
         {
-          "target": "com.azure.hybridnetwork#ListNetworkFunctionDefinitionGroupByPublisher"
+          "target": "com.azure.hybridnetwork#DeleteNetworkFunction"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTags"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkFunctionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkFunction"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionState"
         },
         {
           "target": "com.azure.hybridnetwork#ListNetworkFunctionDefinitionVersionByNetworkFunctionDefinitionGroup"
         },
         {
-          "target": "com.azure.hybridnetwork#ListNetworkServiceDesignGroupByPublisher"
+          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkFunctionDefinitionGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkFunctionDefinitionGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListNetworkFunctionDefinitionGroupByPublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionState"
         },
         {
           "target": "com.azure.hybridnetwork#ListNetworkServiceDesignVersionByNetworkServiceDesignGroup"
         },
         {
+          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignVersion"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteNetworkServiceDesignGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetNetworkServiceDesignGroup"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListNetworkServiceDesignGroupByPublisher"
+        },
+        {
           "target": "com.azure.hybridnetwork#ListOperations"
         },
         {
-          "target": "com.azure.hybridnetwork#ListProxyArtifact"
+          "target": "com.azure.hybridnetwork#UpdateArtifactManifestState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactManifestCredential"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteArtifactManifest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateArtifactManifest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ArtifactManifestsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetArtifactManifest"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactManifestByArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactStorePrivateEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ApproveArtifactStorePrivateEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactStoreNetworkFabricControllerPrivateEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteArtifactStoreNetworkFabricControllerEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#AddArtifactStoreNetworkFabricControllerEndPoints"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ArtifactStoresCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetArtifactStore"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListArtifactStoreByPublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeletePublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdatePublisher"
+        },
+        {
+          "target": "com.azure.hybridnetwork#PublishersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetPublisher"
         },
         {
           "target": "com.azure.hybridnetwork#ListPublisherByResourceGroup"
@@ -14036,10 +14081,31 @@
           "target": "com.azure.hybridnetwork#ListPublisherBySubscription"
         },
         {
+          "target": "com.azure.hybridnetwork#UpdateProxyArtifactState"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetProxyArtifact"
+        },
+        {
+          "target": "com.azure.hybridnetwork#ListProxyArtifact"
+        },
+        {
           "target": "com.azure.hybridnetwork#ListSiteByResourceGroup"
         },
         {
           "target": "com.azure.hybridnetwork#ListSiteBySubscription"
+        },
+        {
+          "target": "com.azure.hybridnetwork#DeleteSite"
+        },
+        {
+          "target": "com.azure.hybridnetwork#UpdateSiteTags"
+        },
+        {
+          "target": "com.azure.hybridnetwork#SitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetSite"
         },
         {
           "target": "com.azure.hybridnetwork#ListSiteNetworkServiceByResourceGroup"
@@ -14048,82 +14114,16 @@
           "target": "com.azure.hybridnetwork#ListSiteNetworkServiceBySubscription"
         },
         {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkFunctionDefinitionVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkFunctionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#NetworkServiceDesignVersionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#PublishersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#RemoveArtifactStorePrivateEndPoints"
-        },
-        {
-          "target": "com.azure.hybridnetwork#SiteNetworkServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#SitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateArtifactManifest"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateArtifactManifestState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateArtifactStore"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchema"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupSchemaState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateConfigurationGroupValueTags"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionDefinitionVersionState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkFunctionTags"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignGroup"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersion"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateNetworkServiceDesignVersionState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdateProxyArtifactState"
-        },
-        {
-          "target": "com.azure.hybridnetwork#UpdatePublisher"
+          "target": "com.azure.hybridnetwork#DeleteSiteNetworkService"
         },
         {
           "target": "com.azure.hybridnetwork#UpdateSiteNetworkServiceTags"
         },
         {
-          "target": "com.azure.hybridnetwork#UpdateSiteTags"
+          "target": "com.azure.hybridnetwork#SiteNetworkServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hybridnetwork#GetSiteNetworkService"
         }
       ],
       "traits": {

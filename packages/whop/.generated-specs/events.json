@@ -2639,13 +2639,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.events#ListEvents"
+        },
+        {
           "target": "com.whop.events#CreateEvent"
         },
         {
           "target": "com.whop.events#GetPulse"
-        },
-        {
-          "target": "com.whop.events#ListEvents"
         },
         {
           "target": "com.whop.events#ValidatePixel"

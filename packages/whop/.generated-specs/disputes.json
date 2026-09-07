@@ -4857,28 +4857,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.disputes#GetDispute"
+          "target": "com.whop.disputes#ListDisputes"
         },
         {
           "target": "com.whop.disputes#GetDisputeSummary"
         },
         {
-          "target": "com.whop.disputes#ListDisputes"
-        },
-        {
-          "target": "com.whop.disputes#SubmitDispute"
-        },
-        {
-          "target": "com.whop.disputes#SubmitEvidenceDispute"
+          "target": "com.whop.disputes#GetDispute"
         },
         {
           "target": "com.whop.disputes#UpdateDispute"
         },
         {
-          "target": "com.whop.disputes#UpdateEvidenceDispute"
+          "target": "com.whop.disputes#SubmitDispute"
         },
         {
           "target": "com.whop.disputes#UploadDisputeEvidence"
+        },
+        {
+          "target": "com.whop.disputes#SubmitEvidenceDispute"
+        },
+        {
+          "target": "com.whop.disputes#UpdateEvidenceDispute"
         }
       ],
       "traits": {

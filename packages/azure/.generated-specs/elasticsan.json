@@ -4655,73 +4655,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.elasticsan#CreateElasticSan"
+          "target": "com.azure.elasticsan#DeleteVolume"
         },
         {
-          "target": "com.azure.elasticsan#CreatePrivateEndpointConnection"
+          "target": "com.azure.elasticsan#UpdateVolume"
         },
         {
           "target": "com.azure.elasticsan#CreateVolume"
         },
         {
-          "target": "com.azure.elasticsan#CreateVolumeGroup"
-        },
-        {
-          "target": "com.azure.elasticsan#CreateVolumeSnapshot"
-        },
-        {
-          "target": "com.azure.elasticsan#DeleteElasticSan"
-        },
-        {
-          "target": "com.azure.elasticsan#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.elasticsan#DeleteVolume"
-        },
-        {
-          "target": "com.azure.elasticsan#DeleteVolumeGroup"
-        },
-        {
-          "target": "com.azure.elasticsan#DeleteVolumeSnapshot"
-        },
-        {
-          "target": "com.azure.elasticsan#GetElasticSan"
-        },
-        {
-          "target": "com.azure.elasticsan#GetPrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.elasticsan#GetVolume"
-        },
-        {
-          "target": "com.azure.elasticsan#GetVolumeGroup"
-        },
-        {
-          "target": "com.azure.elasticsan#GetVolumeSnapshot"
-        },
-        {
-          "target": "com.azure.elasticsan#ListElasticSanByResourceGroup"
-        },
-        {
-          "target": "com.azure.elasticsan#ListElasticSanBySubscription"
-        },
-        {
-          "target": "com.azure.elasticsan#ListOperations"
-        },
-        {
-          "target": "com.azure.elasticsan#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.elasticsan#ListPrivateLinkResourceByElasticSan"
-        },
-        {
-          "target": "com.azure.elasticsan#ListSkus"
         },
         {
           "target": "com.azure.elasticsan#ListVolumeByVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#ListVolumeGroupByElasticSan"
+          "target": "com.azure.elasticsan#DeleteVolumeSnapshot"
+        },
+        {
+          "target": "com.azure.elasticsan#CreateVolumeSnapshot"
+        },
+        {
+          "target": "com.azure.elasticsan#GetVolumeSnapshot"
         },
         {
           "target": "com.azure.elasticsan#ListVolumeSnapshotByVolumeGroup"
@@ -4730,16 +4685,61 @@
           "target": "com.azure.elasticsan#RestoreVolumesPre"
         },
         {
-          "target": "com.azure.elasticsan#UpdateElasticSan"
+          "target": "com.azure.elasticsan#VolumesPreBackup"
         },
         {
-          "target": "com.azure.elasticsan#UpdateVolume"
+          "target": "com.azure.elasticsan#DeleteVolumeGroup"
         },
         {
           "target": "com.azure.elasticsan#UpdateVolumeGroup"
         },
         {
-          "target": "com.azure.elasticsan#VolumesPreBackup"
+          "target": "com.azure.elasticsan#CreateVolumeGroup"
+        },
+        {
+          "target": "com.azure.elasticsan#GetVolumeGroup"
+        },
+        {
+          "target": "com.azure.elasticsan#ListVolumeGroupByElasticSan"
+        },
+        {
+          "target": "com.azure.elasticsan#ListPrivateLinkResourceByElasticSan"
+        },
+        {
+          "target": "com.azure.elasticsan#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.elasticsan#CreatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.elasticsan#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.elasticsan#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.elasticsan#DeleteElasticSan"
+        },
+        {
+          "target": "com.azure.elasticsan#UpdateElasticSan"
+        },
+        {
+          "target": "com.azure.elasticsan#CreateElasticSan"
+        },
+        {
+          "target": "com.azure.elasticsan#GetElasticSan"
+        },
+        {
+          "target": "com.azure.elasticsan#ListElasticSanByResourceGroup"
+        },
+        {
+          "target": "com.azure.elasticsan#ListSkus"
+        },
+        {
+          "target": "com.azure.elasticsan#ListElasticSanBySubscription"
+        },
+        {
+          "target": "com.azure.elasticsan#ListOperations"
         }
       ],
       "traits": {

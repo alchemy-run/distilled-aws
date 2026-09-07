@@ -10499,58 +10499,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.marketplacecatalog#GetProductGetByBillingAccount"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#GetProductGetByBillingProfile"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#GetProductGetBySubscription"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#GetProductGetByTenant"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#GetSkusByBillingAccount"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#GetSkusByBillingProfile"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListEdgeZonesProducts"
+          "target": "com.azure.marketplacecatalog#ListOperations"
         },
         {
           "target": "com.azure.marketplacecatalog#ListGetApiKeys"
         },
         {
-          "target": "com.azure.marketplacecatalog#ListOperations"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListProductListByBillingAccount"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListProductListByBillingProfile"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListProductListBySubscription"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListProductListByTenant"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListSkusByBillingAccount"
-        },
-        {
-          "target": "com.azure.marketplacecatalog#ListSkusByBillingProfile"
+          "target": "com.azure.marketplacecatalog#PostRevokeApiKey"
         },
         {
           "target": "com.azure.marketplacecatalog#PostCreateApiKey"
         },
         {
-          "target": "com.azure.marketplacecatalog#PostRevokeApiKey"
+          "target": "com.azure.marketplacecatalog#ListEdgeZonesProducts"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#GetProductGetBySubscription"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#ListProductListBySubscription"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#GetProductGetByTenant"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#ListProductListByTenant"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#GetProductGetByBillingAccount"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#ListProductListByBillingAccount"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#GetProductGetByBillingProfile"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#ListProductListByBillingProfile"
         },
         {
           "target": "com.azure.marketplacecatalog#SearchPostArm"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#GetSkusByBillingAccount"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#ListSkusByBillingAccount"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#GetSkusByBillingProfile"
+        },
+        {
+          "target": "com.azure.marketplacecatalog#ListSkusByBillingProfile"
         }
       ],
       "traits": {

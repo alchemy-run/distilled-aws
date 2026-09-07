@@ -1378,7 +1378,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.bounty_submissions#CancelBountySubmission"
+          "target": "com.whop.bounty_submissions#ListBountySubmissions"
         },
         {
           "target": "com.whop.bounty_submissions#CreateBountySubmission"
@@ -1387,7 +1387,7 @@
           "target": "com.whop.bounty_submissions#GetBountySubmission"
         },
         {
-          "target": "com.whop.bounty_submissions#ListBountySubmissions"
+          "target": "com.whop.bounty_submissions#CancelBountySubmission"
         },
         {
           "target": "com.whop.bounty_submissions#SubmitBountySubmission"

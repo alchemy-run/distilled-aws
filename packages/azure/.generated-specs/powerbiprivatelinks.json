@@ -1800,46 +1800,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.powerbiprivatelinks#CreatePowerBIResource"
+          "target": "com.azure.powerbiprivatelinks#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.powerbiprivatelinks#CreatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#DeletePowerBIResource"
-        },
-        {
-          "target": "com.azure.powerbiprivatelinks#DeletePrivateEndpointConnection"
-        },
-        {
           "target": "com.azure.powerbiprivatelinks#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.powerbiprivatelinks#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.powerbiprivatelinks#GetPrivateLinkServiceResourceOperationResult"
-        },
-        {
-          "target": "com.azure.powerbiprivatelinks#ListOperations"
-        },
-        {
-          "target": "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceName"
         },
         {
           "target": "com.azure.powerbiprivatelinks#ListPrivateEndpointConnectionByResource"
         },
         {
+          "target": "com.azure.powerbiprivatelinks#GetPrivateLinkResource"
+        },
+        {
           "target": "com.azure.powerbiprivatelinks#ListPrivateLinkResourceByResource"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#DeletePowerBIResource"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#UpdatePowerBIResource"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#CreatePowerBIResource"
+        },
+        {
+          "target": "com.azure.powerbiprivatelinks#ListPowerBIResourceByResourceName"
         },
         {
           "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServiceByResourceGroup"
         },
         {
+          "target": "com.azure.powerbiprivatelinks#GetPrivateLinkServiceResourceOperationResult"
+        },
+        {
           "target": "com.azure.powerbiprivatelinks#ListPrivateLinkServicesForPowerBIBySubscriptionId"
         },
         {
-          "target": "com.azure.powerbiprivatelinks#UpdatePowerBIResource"
+          "target": "com.azure.powerbiprivatelinks#ListOperations"
         }
       ],
       "traits": {

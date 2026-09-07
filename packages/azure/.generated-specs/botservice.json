@@ -5850,70 +5850,61 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.botservice#CreateBot"
-        },
-        {
-          "target": "com.azure.botservice#CreateBotConnection"
-        },
-        {
-          "target": "com.azure.botservice#CreateChannel"
-        },
-        {
-          "target": "com.azure.botservice#CreatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.botservice#DeleteBot"
-        },
-        {
-          "target": "com.azure.botservice#DeleteBotConnection"
-        },
-        {
-          "target": "com.azure.botservice#DeleteChannel"
+          "target": "com.azure.botservice#ListPrivateLinkResourceByBotResource"
         },
         {
           "target": "com.azure.botservice#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.botservice#EmailCreateSignInUrl"
-        },
-        {
-          "target": "com.azure.botservice#GetBot"
-        },
-        {
-          "target": "com.azure.botservice#GetBotCheckNameAvailability"
-        },
-        {
-          "target": "com.azure.botservice#GetBotConnection"
-        },
-        {
-          "target": "com.azure.botservice#GetChannel"
-        },
-        {
-          "target": "com.azure.botservice#GetHostSettings"
-        },
-        {
-          "target": "com.azure.botservice#GetOperationResult"
+          "target": "com.azure.botservice#CreatePrivateEndpointConnection"
         },
         {
           "target": "com.azure.botservice#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.botservice#GetQnAMakerEndpointKeys"
+          "target": "com.azure.botservice#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.botservice#ListBotByResourceGroup"
+          "target": "com.azure.botservice#GetOperationResult"
+        },
+        {
+          "target": "com.azure.botservice#GetHostSettings"
         },
         {
           "target": "com.azure.botservice#ListBotConnectionByBotService"
         },
         {
-          "target": "com.azure.botservice#ListBotConnectionServiceProviders"
+          "target": "com.azure.botservice#DeleteBotConnection"
+        },
+        {
+          "target": "com.azure.botservice#UpdateBotConnection"
+        },
+        {
+          "target": "com.azure.botservice#CreateBotConnection"
+        },
+        {
+          "target": "com.azure.botservice#GetBotConnection"
         },
         {
           "target": "com.azure.botservice#ListBotConnectionWithSecrets"
         },
         {
-          "target": "com.azure.botservice#ListBots"
+          "target": "com.azure.botservice#GetQnAMakerEndpointKeys"
+        },
+        {
+          "target": "com.azure.botservice#ListBotConnectionServiceProviders"
+        },
+        {
+          "target": "com.azure.botservice#ListOperations"
+        },
+        {
+          "target": "com.azure.botservice#GetBotCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.botservice#EmailCreateSignInUrl"
+        },
+        {
+          "target": "com.azure.botservice#RegenerateDirectLineKeys"
         },
         {
           "target": "com.azure.botservice#ListChannelByResourceGroup"
@@ -5922,25 +5913,34 @@
           "target": "com.azure.botservice#ListChannelWithKeys"
         },
         {
-          "target": "com.azure.botservice#ListOperations"
+          "target": "com.azure.botservice#DeleteChannel"
         },
         {
-          "target": "com.azure.botservice#ListPrivateEndpointConnections"
+          "target": "com.azure.botservice#UpdateChannel"
         },
         {
-          "target": "com.azure.botservice#ListPrivateLinkResourceByBotResource"
+          "target": "com.azure.botservice#CreateChannel"
         },
         {
-          "target": "com.azure.botservice#RegenerateDirectLineKeys"
+          "target": "com.azure.botservice#GetChannel"
+        },
+        {
+          "target": "com.azure.botservice#ListBots"
+        },
+        {
+          "target": "com.azure.botservice#ListBotByResourceGroup"
+        },
+        {
+          "target": "com.azure.botservice#DeleteBot"
         },
         {
           "target": "com.azure.botservice#UpdateBot"
         },
         {
-          "target": "com.azure.botservice#UpdateBotConnection"
+          "target": "com.azure.botservice#CreateBot"
         },
         {
-          "target": "com.azure.botservice#UpdateChannel"
+          "target": "com.azure.botservice#GetBot"
         }
       ],
       "traits": {

@@ -8212,163 +8212,163 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datashare#ActivateEmailRegistrationEmail"
-        },
-        {
-          "target": "com.azure.datashare#CancelShareSubscriptionSynchronization"
-        },
-        {
-          "target": "com.azure.datashare#CreateAccount"
-        },
-        {
-          "target": "com.azure.datashare#CreateDataSet"
-        },
-        {
-          "target": "com.azure.datashare#CreateDataSetMapping"
-        },
-        {
-          "target": "com.azure.datashare#CreateInvitation"
-        },
-        {
-          "target": "com.azure.datashare#CreateShare"
-        },
-        {
-          "target": "com.azure.datashare#CreateShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#CreateSynchronizationSettings"
-        },
-        {
-          "target": "com.azure.datashare#CreateTrigger"
-        },
-        {
-          "target": "com.azure.datashare#DeleteAccount"
-        },
-        {
-          "target": "com.azure.datashare#DeleteDataSet"
-        },
-        {
-          "target": "com.azure.datashare#DeleteDataSetMapping"
-        },
-        {
-          "target": "com.azure.datashare#DeleteInvitation"
-        },
-        {
-          "target": "com.azure.datashare#DeleteShare"
-        },
-        {
-          "target": "com.azure.datashare#DeleteShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#DeleteSynchronizationSettings"
+          "target": "com.azure.datashare#ListTriggerByShareSubscription"
         },
         {
           "target": "com.azure.datashare#DeleteTrigger"
         },
         {
-          "target": "com.azure.datashare#GetAccount"
-        },
-        {
-          "target": "com.azure.datashare#GetConsumerInvitation"
-        },
-        {
-          "target": "com.azure.datashare#GetDataSet"
-        },
-        {
-          "target": "com.azure.datashare#GetDataSetMapping"
-        },
-        {
-          "target": "com.azure.datashare#GetInvitation"
-        },
-        {
-          "target": "com.azure.datashare#GetProviderShareSubscriptionByShare"
-        },
-        {
-          "target": "com.azure.datashare#GetShare"
-        },
-        {
-          "target": "com.azure.datashare#GetShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#GetSynchronizationSettings"
+          "target": "com.azure.datashare#CreateTrigger"
         },
         {
           "target": "com.azure.datashare#GetTrigger"
         },
         {
-          "target": "com.azure.datashare#ListAccountByResourceGroup"
+          "target": "com.azure.datashare#ListSynchronizationSettingsByShare"
         },
         {
-          "target": "com.azure.datashare#ListAccountBySubscription"
+          "target": "com.azure.datashare#DeleteSynchronizationSettings"
         },
         {
-          "target": "com.azure.datashare#ListConsumerInvitationInvitations"
+          "target": "com.azure.datashare#CreateSynchronizationSettings"
         },
         {
-          "target": "com.azure.datashare#ListConsumerSourceDataSetByShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#ListDataSetByShare"
-        },
-        {
-          "target": "com.azure.datashare#ListDataSetMappingByShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#ListInvitationByShare"
-        },
-        {
-          "target": "com.azure.datashare#ListOperations"
-        },
-        {
-          "target": "com.azure.datashare#ListProviderShareSubscriptionByShare"
-        },
-        {
-          "target": "com.azure.datashare#ListShareByAccount"
+          "target": "com.azure.datashare#GetSynchronizationSettings"
         },
         {
           "target": "com.azure.datashare#ListShareSubscriptionByAccount"
         },
         {
-          "target": "com.azure.datashare#ListShareSubscriptionSourceShareSynchronizationSettings"
+          "target": "com.azure.datashare#DeleteShareSubscription"
         },
         {
-          "target": "com.azure.datashare#ListShareSubscriptionSynchronizationDetails"
+          "target": "com.azure.datashare#CreateShareSubscription"
         },
         {
-          "target": "com.azure.datashare#ListShareSubscriptionSynchronizations"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSynchronizationDetails"
-        },
-        {
-          "target": "com.azure.datashare#ListShareSynchronizations"
-        },
-        {
-          "target": "com.azure.datashare#ListSynchronizationSettingsByShare"
-        },
-        {
-          "target": "com.azure.datashare#ListTriggerByShareSubscription"
-        },
-        {
-          "target": "com.azure.datashare#ProviderShareSubscriptionsAdjust"
-        },
-        {
-          "target": "com.azure.datashare#ProviderShareSubscriptionsReinstate"
-        },
-        {
-          "target": "com.azure.datashare#RegisterEmailRegistrationEmail"
-        },
-        {
-          "target": "com.azure.datashare#RejectConsumerInvitationInvitation"
-        },
-        {
-          "target": "com.azure.datashare#RevokeProviderShareSubscription"
+          "target": "com.azure.datashare#GetShareSubscription"
         },
         {
           "target": "com.azure.datashare#ShareSubscriptionsSynchronize"
         },
         {
+          "target": "com.azure.datashare#ListShareSubscriptionSynchronizations"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSubscriptionSynchronizationDetails"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSubscriptionSourceShareSynchronizationSettings"
+        },
+        {
+          "target": "com.azure.datashare#ListConsumerSourceDataSetByShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#CancelShareSubscriptionSynchronization"
+        },
+        {
+          "target": "com.azure.datashare#ListShareByAccount"
+        },
+        {
+          "target": "com.azure.datashare#DeleteShare"
+        },
+        {
+          "target": "com.azure.datashare#CreateShare"
+        },
+        {
+          "target": "com.azure.datashare#GetShare"
+        },
+        {
+          "target": "com.azure.datashare#ListProviderShareSubscriptionByShare"
+        },
+        {
+          "target": "com.azure.datashare#GetProviderShareSubscriptionByShare"
+        },
+        {
+          "target": "com.azure.datashare#RevokeProviderShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#ProviderShareSubscriptionsReinstate"
+        },
+        {
+          "target": "com.azure.datashare#ProviderShareSubscriptionsAdjust"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSynchronizations"
+        },
+        {
+          "target": "com.azure.datashare#ListShareSynchronizationDetails"
+        },
+        {
+          "target": "com.azure.datashare#ListOperations"
+        },
+        {
+          "target": "com.azure.datashare#ListInvitationByShare"
+        },
+        {
+          "target": "com.azure.datashare#DeleteInvitation"
+        },
+        {
+          "target": "com.azure.datashare#CreateInvitation"
+        },
+        {
+          "target": "com.azure.datashare#GetInvitation"
+        },
+        {
+          "target": "com.azure.datashare#RegisterEmailRegistrationEmail"
+        },
+        {
+          "target": "com.azure.datashare#ActivateEmailRegistrationEmail"
+        },
+        {
+          "target": "com.azure.datashare#ListDataSetMappingByShareSubscription"
+        },
+        {
+          "target": "com.azure.datashare#DeleteDataSetMapping"
+        },
+        {
+          "target": "com.azure.datashare#CreateDataSetMapping"
+        },
+        {
+          "target": "com.azure.datashare#GetDataSetMapping"
+        },
+        {
+          "target": "com.azure.datashare#ListDataSetByShare"
+        },
+        {
+          "target": "com.azure.datashare#DeleteDataSet"
+        },
+        {
+          "target": "com.azure.datashare#CreateDataSet"
+        },
+        {
+          "target": "com.azure.datashare#GetDataSet"
+        },
+        {
+          "target": "com.azure.datashare#RejectConsumerInvitationInvitation"
+        },
+        {
+          "target": "com.azure.datashare#GetConsumerInvitation"
+        },
+        {
+          "target": "com.azure.datashare#ListConsumerInvitationInvitations"
+        },
+        {
+          "target": "com.azure.datashare#ListAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.datashare#DeleteAccount"
+        },
+        {
           "target": "com.azure.datashare#UpdateAccount"
+        },
+        {
+          "target": "com.azure.datashare#CreateAccount"
+        },
+        {
+          "target": "com.azure.datashare#GetAccount"
+        },
+        {
+          "target": "com.azure.datashare#ListAccountBySubscription"
         }
       ],
       "traits": {

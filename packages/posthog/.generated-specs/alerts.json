@@ -2767,28 +2767,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.alerts#AlertsDestroy"
+          "target": "com.posthog.alerts#ListAlerts"
         },
         {
           "target": "com.posthog.alerts#CreateAlert"
         },
         {
-          "target": "com.posthog.alerts#CreateAlertsSimulate"
-        },
-        {
-          "target": "com.posthog.alerts#CreateAlertsTestDelivery"
-        },
-        {
           "target": "com.posthog.alerts#GetAlert"
-        },
-        {
-          "target": "com.posthog.alerts#ListAlerts"
         },
         {
           "target": "com.posthog.alerts#UpdateAlert"
         },
         {
           "target": "com.posthog.alerts#UpdateAlertsPartial"
+        },
+        {
+          "target": "com.posthog.alerts#AlertsDestroy"
+        },
+        {
+          "target": "com.posthog.alerts#CreateAlertsTestDelivery"
+        },
+        {
+          "target": "com.posthog.alerts#CreateAlertsSimulate"
         }
       ],
       "traits": {

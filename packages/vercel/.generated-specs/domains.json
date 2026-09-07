@@ -2319,31 +2319,31 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.vercel.domains#ClaimDomainOwnership"
-        },
-        {
-          "target": "com.vercel.domains#CreateOrTransferDomain"
-        },
-        {
-          "target": "com.vercel.domains#DeleteDomain"
-        },
-        {
-          "target": "com.vercel.domains#GetDomain"
-        },
-        {
           "target": "com.vercel.domains#GetDomainConfig"
-        },
-        {
-          "target": "com.vercel.domains#GetDomainProjectDomains"
-        },
-        {
-          "target": "com.vercel.domains#GetDomains"
         },
         {
           "target": "com.vercel.domains#GetDomainVerificationRecord"
         },
         {
+          "target": "com.vercel.domains#ClaimDomainOwnership"
+        },
+        {
+          "target": "com.vercel.domains#GetDomainProjectDomains"
+        },
+        {
+          "target": "com.vercel.domains#GetDomain"
+        },
+        {
+          "target": "com.vercel.domains#GetDomains"
+        },
+        {
+          "target": "com.vercel.domains#CreateOrTransferDomain"
+        },
+        {
           "target": "com.vercel.domains#PatchDomain"
+        },
+        {
+          "target": "com.vercel.domains#DeleteDomain"
         }
       ],
       "traits": {

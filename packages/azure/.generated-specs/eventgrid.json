@@ -31035,361 +31035,43 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.eventgrid#ActivatePartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartner"
-        },
-        {
-          "target": "com.azure.eventgrid#CaCertificatesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#ChannelsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#ClientGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#ClientsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#DeactivatePartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteCaCertificate"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteChannel"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteClient"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteClientGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteDomain"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteDomainEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteDomainTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteDomainTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteNamespaceTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerConfiguration"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerRegistration"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePartnerTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePermissionBinding"
-        },
-        {
-          "target": "com.azure.eventgrid#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteSystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteSystemTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#DeleteTopicSpace"
-        },
-        {
-          "target": "com.azure.eventgrid#DomainEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#DomainsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#DomainTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#EventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetCaCertificate"
-        },
-        {
-          "target": "com.azure.eventgrid#GetChannel"
-        },
-        {
-          "target": "com.azure.eventgrid#GetChannelFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetClient"
-        },
-        {
-          "target": "com.azure.eventgrid#GetClientGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomain"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetExtensionTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributes"
-        },
-        {
           "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionFullUrl"
         },
         {
-          "target": "com.azure.eventgrid#GetPartnerConfiguration"
+          "target": "com.azure.eventgrid#ValidateNamespaceCustomDomainOwnership"
         },
         {
-          "target": "com.azure.eventgrid#GetPartnerNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerRegistration"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPermissionBinding"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventgrid#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributes"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicEventSubscriptionFullUrl"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicSpace"
-        },
-        {
-          "target": "com.azure.eventgrid#GetTopicType"
+          "target": "com.azure.eventgrid#ListVerifiedPartners"
         },
         {
           "target": "com.azure.eventgrid#GetVerifiedPartner"
         },
         {
-          "target": "com.azure.eventgrid#ListCaCertificateByNamespace"
+          "target": "com.azure.eventgrid#ListTopicTypeEventTypes"
         },
         {
-          "target": "com.azure.eventgrid#ListChannelByPartnerNamespace"
+          "target": "com.azure.eventgrid#GetTopicType"
         },
         {
-          "target": "com.azure.eventgrid#ListClientByNamespace"
+          "target": "com.azure.eventgrid#ListTopicTypes"
         },
         {
-          "target": "com.azure.eventgrid#ListClientGroupByNamespace"
+          "target": "com.azure.eventgrid#ListTopicSpaceByNamespace"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainByResourceGroup"
+          "target": "com.azure.eventgrid#DeleteTopicSpace"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainBySubscription"
+          "target": "com.azure.eventgrid#TopicSpacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainEventSubscriptions"
+          "target": "com.azure.eventgrid#GetTopicSpace"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainSharedAccessKeys"
+          "target": "com.azure.eventgrid#GetExtensionTopic"
         },
         {
-          "target": "com.azure.eventgrid#ListDomainTopicByDomain"
-        },
-        {
-          "target": "com.azure.eventgrid#ListDomainTopicEventSubscriptions"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionByDomainTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionByResource"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroupForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscriptionForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroupForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscriptionForTopicType"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceTopicByNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceTopicEventSubscriptionByNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListNamespaceTopicSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListOperations"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerConfigurationByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerConfigurationBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerNamespaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerNamespaceBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerNamespaceSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerRegistrationByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerRegistrationBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerTopicByResourceGroup"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerTopicBySubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPartnerTopicEventSubscriptionByPartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPermissionBindingByNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPrivateEndpointConnectionByResource"
-        },
-        {
-          "target": "com.azure.eventgrid#ListPrivateLinkResourceByResource"
+          "target": "com.azure.eventgrid#ListTopicEventTypes"
         },
         {
           "target": "com.azure.eventgrid#ListSystemTopicByResourceGroup"
@@ -31398,7 +31080,142 @@
           "target": "com.azure.eventgrid#ListSystemTopicBySubscription"
         },
         {
-          "target": "com.azure.eventgrid#ListSystemTopicEventSubscriptionBySystemTopic"
+          "target": "com.azure.eventgrid#DeleteSystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateSystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#SystemTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPrivateLinkResourceByResource"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPrivateEndpointConnectionByResource"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPermissionBindingByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePermissionBinding"
+        },
+        {
+          "target": "com.azure.eventgrid#PermissionBindingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPermissionBinding"
+        },
+        {
+          "target": "com.azure.eventgrid#DeactivatePartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ActivatePartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerTopicByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerTopicBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerRegistrationByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerRegistrationBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePartnerRegistration"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerRegistration"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerRegistrationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerRegistration"
+        },
+        {
+          "target": "com.azure.eventgrid#RegeneratePartnerNamespaceKey"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerNamespaceSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerNamespaceBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerNamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerConfigurationsUnauthorizePartner"
+        },
+        {
+          "target": "com.azure.eventgrid#AuthorizePartnerConfigurationPartner"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerConfigurationBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePartnerConfiguration"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerConfiguration"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerConfiguration"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateTopicKey"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicSharedAccessKeys"
         },
         {
           "target": "com.azure.eventgrid#ListTopicByResourceGroup"
@@ -31407,142 +31224,325 @@
           "target": "com.azure.eventgrid#ListTopicBySubscription"
         },
         {
-          "target": "com.azure.eventgrid#ListTopicEventSubscriptions"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicEventTypes"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicSharedAccessKeys"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicSpaceByNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicTypeEventTypes"
-        },
-        {
-          "target": "com.azure.eventgrid#ListTopicTypes"
-        },
-        {
-          "target": "com.azure.eventgrid#ListVerifiedPartners"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#NamespaceTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerConfigurationsUnauthorizePartner"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerNamespacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerRegistrationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#PartnerTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#PermissionBindingsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#RegenerateDomainKey"
-        },
-        {
-          "target": "com.azure.eventgrid#RegenerateNamespaceKey"
-        },
-        {
-          "target": "com.azure.eventgrid#RegenerateNamespaceTopicKey"
-        },
-        {
-          "target": "com.azure.eventgrid#RegeneratePartnerNamespaceKey"
-        },
-        {
-          "target": "com.azure.eventgrid#RegenerateTopicKey"
-        },
-        {
-          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#SystemTopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#TopicEventSubscriptionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#TopicsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#TopicSpacesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateChannel"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateDomain"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateDomainEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateNamespaceTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerConfiguration"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerNamespace"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerRegistration"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscription"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdatePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateSystemTopic"
-        },
-        {
-          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscription"
+          "target": "com.azure.eventgrid#DeleteTopic"
         },
         {
           "target": "com.azure.eventgrid#UpdateTopic"
         },
         {
+          "target": "com.azure.eventgrid#TopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListOperations"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateNamespaceTopicKey"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceTopicSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceTopicByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#NamespaceTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateNamespaceKey"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#NamespacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListDomainTopicEventSubscriptions"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionByDomainTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#ListDomainEventSubscriptions"
+        },
+        {
+          "target": "com.azure.eventgrid#ListTopicEventSubscriptions"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionByResource"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroupForTopicType"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscriptionForTopicType"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionRegionalBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroupForTopicType"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscriptionForTopicType"
+        },
+        {
+          "target": "com.azure.eventgrid#ListEventSubscriptionGlobalBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#ListPartnerTopicEventSubscriptionByPartnerTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#DeletePartnerTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdatePartnerTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#PartnerTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetPartnerTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#ListSystemTopicEventSubscriptionBySystemTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#GetEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscriptionFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteSystemTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateSystemTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#SystemTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetSystemTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteDomainEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateDomainEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteTopicEventSubscription"
+        },
+        {
           "target": "com.azure.eventgrid#UpdateTopicEventSubscription"
         },
         {
-          "target": "com.azure.eventgrid#ValidateNamespaceCustomDomainOwnership"
+          "target": "com.azure.eventgrid#TopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteDomainTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateDomainTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#EventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListNamespaceTopicEventSubscriptionByNamespaceTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteNamespaceTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateNamespaceTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#NamespaceTopicEventSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetNamespaceTopicEventSubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#GetTopicEventSubscriptionDeliveryAttributes"
+        },
+        {
+          "target": "com.azure.eventgrid#ListDomainTopicByDomain"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteDomainTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainTopicsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomainTopic"
+        },
+        {
+          "target": "com.azure.eventgrid#RegenerateDomainKey"
+        },
+        {
+          "target": "com.azure.eventgrid#ListDomainSharedAccessKeys"
+        },
+        {
+          "target": "com.azure.eventgrid#ListDomainByResourceGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ListDomainBySubscription"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteDomain"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateDomain"
+        },
+        {
+          "target": "com.azure.eventgrid#DomainsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetDomain"
+        },
+        {
+          "target": "com.azure.eventgrid#ListClientByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteClient"
+        },
+        {
+          "target": "com.azure.eventgrid#ClientsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetClient"
+        },
+        {
+          "target": "com.azure.eventgrid#ListClientGroupByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteClientGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#ClientGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetClientGroup"
+        },
+        {
+          "target": "com.azure.eventgrid#GetChannelFullUrl"
+        },
+        {
+          "target": "com.azure.eventgrid#ListChannelByPartnerNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteChannel"
+        },
+        {
+          "target": "com.azure.eventgrid#UpdateChannel"
+        },
+        {
+          "target": "com.azure.eventgrid#ChannelsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetChannel"
+        },
+        {
+          "target": "com.azure.eventgrid#ListCaCertificateByNamespace"
+        },
+        {
+          "target": "com.azure.eventgrid#DeleteCaCertificate"
+        },
+        {
+          "target": "com.azure.eventgrid#CaCertificatesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.eventgrid#GetCaCertificate"
         }
       ],
       "traits": {

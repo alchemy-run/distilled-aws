@@ -9571,130 +9571,130 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.batch#ActivateApplicationPackage"
-        },
-        {
           "target": "com.azure.batch#BatchAccountSynchronizeAutoStorageKeys"
-        },
-        {
-          "target": "com.azure.batch#CheckLocationNameAvailability"
-        },
-        {
-          "target": "com.azure.batch#CreateApplication"
-        },
-        {
-          "target": "com.azure.batch#CreateApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#CreateBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#CreatePool"
-        },
-        {
-          "target": "com.azure.batch#DeleteApplication"
-        },
-        {
-          "target": "com.azure.batch#DeleteApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#DeleteBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#DeletePool"
-        },
-        {
-          "target": "com.azure.batch#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.batch#DisablePoolAutoScale"
-        },
-        {
-          "target": "com.azure.batch#GetApplication"
-        },
-        {
-          "target": "com.azure.batch#GetApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#GetBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#GetBatchAccountDetector"
-        },
-        {
-          "target": "com.azure.batch#GetBatchAccountKeys"
-        },
-        {
-          "target": "com.azure.batch#GetLocationQuotas"
-        },
-        {
-          "target": "com.azure.batch#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.batch#GetPool"
-        },
-        {
-          "target": "com.azure.batch#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.batch#GetPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.batch#ListApplication"
-        },
-        {
-          "target": "com.azure.batch#ListApplicationPackage"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccountDetectors"
-        },
-        {
-          "target": "com.azure.batch#ListBatchAccountOutboundNetworkDependenciesEndpoints"
-        },
-        {
-          "target": "com.azure.batch#ListLocationSupportedVirtualMachineSkus"
-        },
-        {
-          "target": "com.azure.batch#ListNetworkSecurityPerimeterConfigurations"
-        },
-        {
-          "target": "com.azure.batch#ListOperations"
-        },
-        {
-          "target": "com.azure.batch#ListPoolByBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#ListPrivateEndpointConnectionByBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#ListPrivateLinkResourceByBatchAccount"
-        },
-        {
-          "target": "com.azure.batch#NetworkSecurityPerimeterReconcileConfiguration"
-        },
-        {
-          "target": "com.azure.batch#PoolStopResize"
         },
         {
           "target": "com.azure.batch#RegenerateBatchAccountKey"
         },
         {
-          "target": "com.azure.batch#UpdateApplication"
+          "target": "com.azure.batch#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.batch#UpdateBatchAccount"
+          "target": "com.azure.batch#ListPrivateLinkResourceByBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.batch#UpdatePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.batch#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.batch#ListPrivateEndpointConnectionByBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#PoolStopResize"
+        },
+        {
+          "target": "com.azure.batch#DisablePoolAutoScale"
+        },
+        {
+          "target": "com.azure.batch#DeletePool"
         },
         {
           "target": "com.azure.batch#UpdatePool"
         },
         {
-          "target": "com.azure.batch#UpdatePrivateEndpointConnection"
+          "target": "com.azure.batch#CreatePool"
+        },
+        {
+          "target": "com.azure.batch#GetPool"
+        },
+        {
+          "target": "com.azure.batch#ListPoolByBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#ListBatchAccountOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.batch#NetworkSecurityPerimeterReconcileConfiguration"
+        },
+        {
+          "target": "com.azure.batch#GetNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.batch#ListNetworkSecurityPerimeterConfigurations"
+        },
+        {
+          "target": "com.azure.batch#GetBatchAccountKeys"
+        },
+        {
+          "target": "com.azure.batch#GetBatchAccountDetector"
+        },
+        {
+          "target": "com.azure.batch#ListBatchAccountDetectors"
+        },
+        {
+          "target": "com.azure.batch#ActivateApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#DeleteApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#CreateApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#GetApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#ListApplicationPackage"
+        },
+        {
+          "target": "com.azure.batch#DeleteApplication"
+        },
+        {
+          "target": "com.azure.batch#UpdateApplication"
+        },
+        {
+          "target": "com.azure.batch#CreateApplication"
+        },
+        {
+          "target": "com.azure.batch#GetApplication"
+        },
+        {
+          "target": "com.azure.batch#ListApplication"
+        },
+        {
+          "target": "com.azure.batch#DeleteBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#UpdateBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#CreateBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#GetBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#ListBatchAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.batch#ListLocationSupportedVirtualMachineSkus"
+        },
+        {
+          "target": "com.azure.batch#GetLocationQuotas"
+        },
+        {
+          "target": "com.azure.batch#CheckLocationNameAvailability"
+        },
+        {
+          "target": "com.azure.batch#ListBatchAccount"
+        },
+        {
+          "target": "com.azure.batch#ListOperations"
         }
       ],
       "traits": {

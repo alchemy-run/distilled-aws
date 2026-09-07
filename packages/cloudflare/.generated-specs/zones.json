@@ -24241,6 +24241,12 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.zones#SettingsBulkEdit"
+        },
+        {
+          "target": "com.cloudflare.zones#ListSettings"
+        },
+        {
           "target": "com.cloudflare.zones#CreateEnvironment"
         },
         {
@@ -24292,9 +24298,6 @@
           "target": "com.cloudflare.zones#ListPlans"
         },
         {
-          "target": "com.cloudflare.zones#ListSettings"
-        },
-        {
           "target": "com.cloudflare.zones#ListZones"
         },
         {
@@ -24317,9 +24320,6 @@
         },
         {
           "target": "com.cloudflare.zones#RollbackEnvironment"
-        },
-        {
-          "target": "com.cloudflare.zones#SettingsBulkEdit"
         },
         {
           "target": "com.cloudflare.zones#TriggerActivationCheck"

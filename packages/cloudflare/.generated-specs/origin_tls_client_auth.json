@@ -884,22 +884,28 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.origin_tls_client_auth#CreateZoneCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#DeleteZoneCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#GetZoneCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#ListZoneCertificates"
+        },
+        {
           "target": "com.cloudflare.origin_tls_client_auth#CreateHostnameCertificate"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#CreateOriginTlsClientAuth"
         },
         {
-          "target": "com.cloudflare.origin_tls_client_auth#CreateZoneCertificate"
-        },
-        {
           "target": "com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificate"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#DeleteOriginTlsClientAuth"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#DeleteZoneCertificate"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#GetHostname"
@@ -914,16 +920,10 @@
           "target": "com.cloudflare.origin_tls_client_auth#GetSetting"
         },
         {
-          "target": "com.cloudflare.origin_tls_client_auth#GetZoneCertificate"
-        },
-        {
           "target": "com.cloudflare.origin_tls_client_auth#ListHostnameCertificates"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#ListOriginTlsClientAuths"
-        },
-        {
-          "target": "com.cloudflare.origin_tls_client_auth#ListZoneCertificates"
         },
         {
           "target": "com.cloudflare.origin_tls_client_auth#PutHostname"

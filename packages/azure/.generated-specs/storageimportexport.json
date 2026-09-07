@@ -1827,19 +1827,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storageimportexport#CreateJob"
+          "target": "com.azure.storageimportexport#ListOperations"
+        },
+        {
+          "target": "com.azure.storageimportexport#ListBitLockerKeys"
         },
         {
           "target": "com.azure.storageimportexport#DeleteJob"
         },
         {
+          "target": "com.azure.storageimportexport#UpdateJob"
+        },
+        {
+          "target": "com.azure.storageimportexport#CreateJob"
+        },
+        {
           "target": "com.azure.storageimportexport#GetJob"
-        },
-        {
-          "target": "com.azure.storageimportexport#GetLocation"
-        },
-        {
-          "target": "com.azure.storageimportexport#ListBitLockerKeys"
         },
         {
           "target": "com.azure.storageimportexport#ListJobByResourceGroup"
@@ -1848,13 +1851,10 @@
           "target": "com.azure.storageimportexport#ListJobBySubscription"
         },
         {
+          "target": "com.azure.storageimportexport#GetLocation"
+        },
+        {
           "target": "com.azure.storageimportexport#ListLocations"
-        },
-        {
-          "target": "com.azure.storageimportexport#ListOperations"
-        },
-        {
-          "target": "com.azure.storageimportexport#UpdateJob"
         }
       ],
       "traits": {

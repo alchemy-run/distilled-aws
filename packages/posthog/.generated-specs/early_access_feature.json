@@ -1046,22 +1046,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.early_access_feature#ListEarlyAccessFeature"
+        },
+        {
           "target": "com.posthog.early_access_feature#CreateEarlyAccessFeature"
         },
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroy"
-        },
-        {
           "target": "com.posthog.early_access_feature#GetEarlyAccessFeature"
-        },
-        {
-          "target": "com.posthog.early_access_feature#ListEarlyAccessFeature"
         },
         {
           "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeature"
         },
         {
           "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeaturePartial"
+        },
+        {
+          "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroy"
         }
       ],
       "traits": {

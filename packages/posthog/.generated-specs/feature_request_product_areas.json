@@ -296,10 +296,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.feature_request_product_areas#CreateFeatureRequestProductAreas"
+          "target": "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreas"
         },
         {
-          "target": "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreas"
+          "target": "com.posthog.feature_request_product_areas#CreateFeatureRequestProductAreas"
         },
         {
           "target": "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreas"

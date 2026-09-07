@@ -9767,193 +9767,193 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.discovery#BookshelfPrivateEndpointConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#BookshelvesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#ChatModelDeploymentsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#DeleteBookshelfPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#DeleteBookshelve"
-        },
-        {
-          "target": "com.azure.discovery#DeleteChatModelDeployment"
-        },
-        {
-          "target": "com.azure.discovery#DeleteNodePool"
-        },
-        {
           "target": "com.azure.discovery#DeleteProject"
-        },
-        {
-          "target": "com.azure.discovery#DeleteStorageAsset"
-        },
-        {
-          "target": "com.azure.discovery#DeleteStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#DeleteSupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#DeleteTool"
-        },
-        {
-          "target": "com.azure.discovery#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#DeleteWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#GetBookshelfPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#GetBookshelfPrivateLinkResource"
-        },
-        {
-          "target": "com.azure.discovery#GetBookshelve"
-        },
-        {
-          "target": "com.azure.discovery#GetChatModelDeployment"
-        },
-        {
-          "target": "com.azure.discovery#GetNodePool"
-        },
-        {
-          "target": "com.azure.discovery#GetProject"
-        },
-        {
-          "target": "com.azure.discovery#GetStorageAsset"
-        },
-        {
-          "target": "com.azure.discovery#GetStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#GetSupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#GetTool"
-        },
-        {
-          "target": "com.azure.discovery#GetWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#GetWorkspacePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.discovery#GetWorkspacePrivateLinkResource"
-        },
-        {
-          "target": "com.azure.discovery#ListBookshelfPrivateEndpointConnectionByBookshelf"
-        },
-        {
-          "target": "com.azure.discovery#ListBookshelfPrivateLinkResourceByBookshelf"
-        },
-        {
-          "target": "com.azure.discovery#ListBookshelveByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#ListBookshelveBySubscription"
-        },
-        {
-          "target": "com.azure.discovery#ListChatModelDeploymentByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#ListNodePoolBySupercomputer"
-        },
-        {
-          "target": "com.azure.discovery#ListOperations"
-        },
-        {
-          "target": "com.azure.discovery#ListProjectByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#ListStorageAssetByStorageContainer"
-        },
-        {
-          "target": "com.azure.discovery#ListStorageContainerByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#ListStorageContainerBySubscription"
-        },
-        {
-          "target": "com.azure.discovery#ListSupercomputerByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#ListSupercomputerBySubscription"
-        },
-        {
-          "target": "com.azure.discovery#ListToolByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#ListToolBySubscription"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspaceByResourceGroup"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspaceBySubscription"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspacePrivateEndpointConnectionByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#ListWorkspacePrivateLinkResourceByWorkspace"
-        },
-        {
-          "target": "com.azure.discovery#NodePoolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#ProjectsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#StorageAssetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#StorageContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#SupercomputersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#ToolsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.discovery#UpdateBookshelve"
-        },
-        {
-          "target": "com.azure.discovery#UpdateChatModelDeployment"
-        },
-        {
-          "target": "com.azure.discovery#UpdateNodePool"
         },
         {
           "target": "com.azure.discovery#UpdateProject"
         },
         {
-          "target": "com.azure.discovery#UpdateStorageAsset"
+          "target": "com.azure.discovery#ProjectsCreateOrUpdate"
         },
         {
-          "target": "com.azure.discovery#UpdateStorageContainer"
+          "target": "com.azure.discovery#GetProject"
         },
         {
-          "target": "com.azure.discovery#UpdateSupercomputer"
+          "target": "com.azure.discovery#ListProjectByWorkspace"
         },
         {
-          "target": "com.azure.discovery#UpdateTool"
+          "target": "com.azure.discovery#GetWorkspacePrivateLinkResource"
         },
         {
-          "target": "com.azure.discovery#UpdateWorkspace"
+          "target": "com.azure.discovery#ListWorkspacePrivateLinkResourceByWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#DeleteWorkspacePrivateEndpointConnection"
         },
         {
           "target": "com.azure.discovery#WorkspacePrivateEndpointConnectionsCreateOrUpdate"
         },
         {
+          "target": "com.azure.discovery#GetWorkspacePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspacePrivateEndpointConnectionByWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#DeleteChatModelDeployment"
+        },
+        {
+          "target": "com.azure.discovery#UpdateChatModelDeployment"
+        },
+        {
+          "target": "com.azure.discovery#ChatModelDeploymentsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetChatModelDeployment"
+        },
+        {
+          "target": "com.azure.discovery#ListChatModelDeploymentByWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#DeleteWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#UpdateWorkspace"
+        },
+        {
           "target": "com.azure.discovery#WorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetWorkspace"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspaceByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#DeleteTool"
+        },
+        {
+          "target": "com.azure.discovery#UpdateTool"
+        },
+        {
+          "target": "com.azure.discovery#ToolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetTool"
+        },
+        {
+          "target": "com.azure.discovery#ListToolByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#DeleteNodePool"
+        },
+        {
+          "target": "com.azure.discovery#UpdateNodePool"
+        },
+        {
+          "target": "com.azure.discovery#NodePoolsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetNodePool"
+        },
+        {
+          "target": "com.azure.discovery#ListNodePoolBySupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#DeleteSupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#UpdateSupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#SupercomputersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetSupercomputer"
+        },
+        {
+          "target": "com.azure.discovery#ListSupercomputerByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#DeleteStorageAsset"
+        },
+        {
+          "target": "com.azure.discovery#UpdateStorageAsset"
+        },
+        {
+          "target": "com.azure.discovery#StorageAssetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetStorageAsset"
+        },
+        {
+          "target": "com.azure.discovery#ListStorageAssetByStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#DeleteStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#UpdateStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#StorageContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetStorageContainer"
+        },
+        {
+          "target": "com.azure.discovery#ListStorageContainerByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#GetBookshelfPrivateLinkResource"
+        },
+        {
+          "target": "com.azure.discovery#ListBookshelfPrivateLinkResourceByBookshelf"
+        },
+        {
+          "target": "com.azure.discovery#DeleteBookshelfPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#BookshelfPrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetBookshelfPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.discovery#ListBookshelfPrivateEndpointConnectionByBookshelf"
+        },
+        {
+          "target": "com.azure.discovery#DeleteBookshelve"
+        },
+        {
+          "target": "com.azure.discovery#UpdateBookshelve"
+        },
+        {
+          "target": "com.azure.discovery#BookshelvesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.discovery#GetBookshelve"
+        },
+        {
+          "target": "com.azure.discovery#ListBookshelveByResourceGroup"
+        },
+        {
+          "target": "com.azure.discovery#ListWorkspaceBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListToolBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListSupercomputerBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListStorageContainerBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListBookshelveBySubscription"
+        },
+        {
+          "target": "com.azure.discovery#ListOperations"
         }
       ],
       "traits": {

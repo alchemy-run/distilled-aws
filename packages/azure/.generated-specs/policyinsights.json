@@ -9575,226 +9575,226 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.policyinsights#AttestationsCreateOrUpdateAtResource"
-        },
-        {
-          "target": "com.azure.policyinsights#AttestationsCreateOrUpdateAtResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#AttestationsCreateOrUpdateAtSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#CancelRemediationAtManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#CancelRemediationAtResource"
-        },
-        {
-          "target": "com.azure.policyinsights#CancelRemediationAtResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#CancelRemediationAtSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#CheckPolicyRestrictionAtManagementGroupScope"
-        },
-        {
-          "target": "com.azure.policyinsights#CheckPolicyRestrictionAtResourceGroupScope"
-        },
-        {
-          "target": "com.azure.policyinsights#CheckPolicyRestrictionAtSubscriptionScope"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteAttestationAtResource"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteAttestationAtResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteAttestationAtSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteRemediationAtManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteRemediationAtResource"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteRemediationAtResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#DeleteRemediationAtSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#GetAttestationAtResource"
-        },
-        {
-          "target": "com.azure.policyinsights#GetAttestationAtResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#GetAttestationAtSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#GetPolicyMetadataResource"
-        },
-        {
-          "target": "com.azure.policyinsights#GetRemediationAtManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#GetRemediationAtResource"
-        },
-        {
-          "target": "com.azure.policyinsights#GetRemediationAtResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#GetRemediationAtSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#ListAttestationForResource"
-        },
-        {
-          "target": "com.azure.policyinsights#ListAttestationForResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListAttestationForSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForPolicyDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForResource"
-        },
-        {
-          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForResourceGroupLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForSubscriptionLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#ListOperations"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForPolicyDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForPolicySetDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForResource"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForResourceGroupLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForSubscriptionLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyMetadata"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForPolicyDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForPolicySetDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForResource"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForResourceGroup"
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForResourceGroupLevelPolicyAssignment"
         },
         {
           "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForResourceGroupLevelPolicyAssignment"
         },
         {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForSubscriptionLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#ListRemediationDeploymentsAtManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListRemediationDeploymentsAtResource"
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForResourceGroupLevelPolicyAssignment"
         },
         {
           "target": "com.azure.policyinsights#ListRemediationDeploymentsAtResourceGroup"
         },
         {
-          "target": "com.azure.policyinsights#ListRemediationDeploymentsAtSubscription"
+          "target": "com.azure.policyinsights#CancelRemediationAtResourceGroup"
         },
         {
-          "target": "com.azure.policyinsights#ListRemediationForManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListRemediationForResource"
-        },
-        {
-          "target": "com.azure.policyinsights#ListRemediationForResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#ListRemediationForSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForPolicyDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForPolicySetDefinition"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForResource"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForResourceGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForResourceGroupLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForSubscription"
-        },
-        {
-          "target": "com.azure.policyinsights#PolicyStatesSummarizeForSubscriptionLevelPolicyAssignment"
-        },
-        {
-          "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtManagementGroup"
-        },
-        {
-          "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtResource"
+          "target": "com.azure.policyinsights#DeleteRemediationAtResourceGroup"
         },
         {
           "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtResourceGroup"
         },
         {
-          "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtSubscription"
+          "target": "com.azure.policyinsights#GetRemediationAtResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationForResourceGroup"
         },
         {
           "target": "com.azure.policyinsights#TriggerPolicyStateResourceGroupEvaluation"
         },
         {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#CheckPolicyRestrictionAtResourceGroupScope"
+        },
+        {
+          "target": "com.azure.policyinsights#DeleteAttestationAtResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#AttestationsCreateOrUpdateAtResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#GetAttestationAtResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListAttestationForResourceGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForResourceGroupLevelPolicyAssignment"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationDeploymentsAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#CancelRemediationAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#DeleteRemediationAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#GetRemediationAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationForSubscription"
+        },
+        {
           "target": "com.azure.policyinsights#TriggerPolicyStateSubscriptionEvaluation"
+        },
+        {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#CheckPolicyRestrictionAtSubscriptionScope"
+        },
+        {
+          "target": "com.azure.policyinsights#DeleteAttestationAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#AttestationsCreateOrUpdateAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#GetAttestationAtSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#ListAttestationForSubscription"
+        },
+        {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForPolicySetDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForPolicySetDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForPolicySetDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForPolicyDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForPolicyDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForPolicyDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForPolicyDefinition"
+        },
+        {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForSubscriptionLevelPolicyAssignment"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForSubscriptionLevelPolicyAssignment"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForSubscriptionLevelPolicyAssignment"
+        },
+        {
+          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForSubscriptionLevelPolicyAssignment"
+        },
+        {
+          "target": "com.azure.policyinsights#GetPolicyMetadataResource"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyMetadata"
+        },
+        {
+          "target": "com.azure.policyinsights#ListOperations"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationDeploymentsAtManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#CancelRemediationAtManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#DeleteRemediationAtManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#GetRemediationAtManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationForManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForManagementGroup"
+        },
+        {
+          "target": "com.azure.policyinsights#CheckPolicyRestrictionAtManagementGroupScope"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationDeploymentsAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#CancelRemediationAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#DeleteRemediationAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#RemediationsCreateOrUpdateAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#GetRemediationAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#ListRemediationForResource"
+        },
+        {
+          "target": "com.azure.policyinsights#PolicyStatesSummarizeForResource"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyStateQueryResultsForResource"
+        },
+        {
+          "target": "com.azure.policyinsights#ListPolicyEventQueryResultsForResource"
+        },
+        {
+          "target": "com.azure.policyinsights#ListComponentPolicyStateQueryResultsForResource"
+        },
+        {
+          "target": "com.azure.policyinsights#DeleteAttestationAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#AttestationsCreateOrUpdateAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#GetAttestationAtResource"
+        },
+        {
+          "target": "com.azure.policyinsights#ListAttestationForResource"
         }
       ],
       "traits": {

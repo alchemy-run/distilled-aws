@@ -199807,1231 +199807,394 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.network#AbortNetworkVirtualApplianceMigration"
+          "target": "com.azure.network#StopApplicationGateways"
         },
         {
-          "target": "com.azure.network#AddressPrefixSetsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#AdminRuleCollectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#AdminRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ApplicationGatewaysBackendHealth"
-        },
-        {
-          "target": "com.azure.network#ApplicationGatewaysBackendHealthOnDemand"
-        },
-        {
-          "target": "com.azure.network#ApplicationGatewaysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ApplicationSecurityGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#AzureFirewallsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#AzureFirewallsPacketCaptureOperation"
-        },
-        {
-          "target": "com.azure.network#BastionHostsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#CaptureAzureFirewallsPacket"
-        },
-        {
-          "target": "com.azure.network#CheckDnsNameAvailability"
-        },
-        {
-          "target": "com.azure.network#CheckNetworkWatcherConnectivity"
-        },
-        {
-          "target": "com.azure.network#CheckPrivateLinkServicePrivateLinkServiceVisibility"
-        },
-        {
-          "target": "com.azure.network#CheckPrivateLinkServicePrivateLinkServiceVisibilityByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#CheckVirtualNetworkIPAddressAvailability"
-        },
-        {
-          "target": "com.azure.network#CommitNetworkVirtualApplianceMigration"
-        },
-        {
-          "target": "com.azure.network#CommitsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ConfigurationPolicyGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ConnectionMonitorsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ConnectionPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ConnectivityConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#CreateIpamPool"
-        },
-        {
-          "target": "com.azure.network#CreateNetworkWatchersConnectionAnalyzer"
-        },
-        {
-          "target": "com.azure.network#CreatePacketCapture"
-        },
-        {
-          "target": "com.azure.network#CreateReachabilityAnalysisIntent"
-        },
-        {
-          "target": "com.azure.network#CreateReachabilityAnalysisRun"
-        },
-        {
-          "target": "com.azure.network#CreateStaticCidr"
-        },
-        {
-          "target": "com.azure.network#CreateVerifierWorkspace"
-        },
-        {
-          "target": "com.azure.network#CreateVipSwap"
-        },
-        {
-          "target": "com.azure.network#CustomIPPrefixesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#DdosCustomPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#DdosProtectionPlansCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#DeleteAddressPrefixSet"
-        },
-        {
-          "target": "com.azure.network#DeleteAdminRule"
-        },
-        {
-          "target": "com.azure.network#DeleteAdminRuleCollection"
-        },
-        {
-          "target": "com.azure.network#DeleteApplicationGatewayPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteApplicationGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteApplicationSecurityGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteAzureFirewall"
-        },
-        {
-          "target": "com.azure.network#DeleteBastionHost"
-        },
-        {
-          "target": "com.azure.network#DeleteBastionShareableLink"
-        },
-        {
-          "target": "com.azure.network#DeleteBastionShareableLinkByToken"
-        },
-        {
-          "target": "com.azure.network#DeleteCommit"
-        },
-        {
-          "target": "com.azure.network#DeleteConfigurationPolicyGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteConnectionMonitor"
-        },
-        {
-          "target": "com.azure.network#DeleteConnectionPolicy"
-        },
-        {
-          "target": "com.azure.network#DeleteConnectivityConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteCustomIPPrefix"
-        },
-        {
-          "target": "com.azure.network#DeleteDdosCustomPolicy"
-        },
-        {
-          "target": "com.azure.network#DeleteDdosProtectionPlan"
-        },
-        {
-          "target": "com.azure.network#DeleteDscpConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteCircuit"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteCircuitAuthorization"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteCircuitConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteCircuitPeering"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteCrossConnectionPeering"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRouteLag"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRoutePort"
-        },
-        {
-          "target": "com.azure.network#DeleteExpressRoutePortAuthorization"
-        },
-        {
-          "target": "com.azure.network#DeleteFirewallPolicy"
-        },
-        {
-          "target": "com.azure.network#DeleteFirewallPolicyDraft"
-        },
-        {
-          "target": "com.azure.network#DeleteFirewallPolicyKubeSelectorGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteFirewallPolicyRuleCollectionGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteFirewallPolicyRuleCollectionGroupDraft"
-        },
-        {
-          "target": "com.azure.network#DeleteFirstPartyServiceTag"
-        },
-        {
-          "target": "com.azure.network#DeleteFlowLog"
-        },
-        {
-          "target": "com.azure.network#DeleteHubRouteTable"
-        },
-        {
-          "target": "com.azure.network#DeleteHubVirtualNetworkConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteInboundNatRule"
-        },
-        {
-          "target": "com.azure.network#DeleteInterconnectGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteIpAllocation"
-        },
-        {
-          "target": "com.azure.network#DeleteIpamPool"
-        },
-        {
-          "target": "com.azure.network#DeleteIpGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteLoadBalancer"
-        },
-        {
-          "target": "com.azure.network#DeleteLoadBalancerBackendAddressPool"
-        },
-        {
-          "target": "com.azure.network#DeleteLocalNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteManagementGroupNetworkManagerConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteNatGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteNatRule"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkInterface"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkInterfaceTapConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkManager"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkManagerRoutingConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkProfile"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityGroup"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeter"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeterAccessRule"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeterAssociation"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeterLink"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeterLinkReference"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeterLoggingConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkSecurityPerimeterProfile"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkVirtualAppliance"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkVirtualApplianceConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkWatcher"
-        },
-        {
-          "target": "com.azure.network#DeleteNetworkWatchersConnectionAnalyzer"
-        },
-        {
-          "target": "com.azure.network#DeleteP2sVpnGateways"
-        },
-        {
-          "target": "com.azure.network#DeletePacketCapture"
-        },
-        {
-          "target": "com.azure.network#DeletePrivateDnsZoneGroup"
-        },
-        {
-          "target": "com.azure.network#DeletePrivateEndpoint"
-        },
-        {
-          "target": "com.azure.network#DeletePrivateLinkService"
-        },
-        {
-          "target": "com.azure.network#DeletePrivateLinkServicePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.network#DeletePublicIPAddress"
-        },
-        {
-          "target": "com.azure.network#DeletePublicIPPrefix"
-        },
-        {
-          "target": "com.azure.network#DeleteReachabilityAnalysisIntent"
-        },
-        {
-          "target": "com.azure.network#DeleteReachabilityAnalysisRun"
-        },
-        {
-          "target": "com.azure.network#DeleteRoute"
-        },
-        {
-          "target": "com.azure.network#DeleteRouteFilter"
-        },
-        {
-          "target": "com.azure.network#DeleteRouteFilterRule"
-        },
-        {
-          "target": "com.azure.network#DeleteRouteMap"
-        },
-        {
-          "target": "com.azure.network#DeleteRouteTable"
-        },
-        {
-          "target": "com.azure.network#DeleteRoutingIntent"
-        },
-        {
-          "target": "com.azure.network#DeleteRoutingRule"
-        },
-        {
-          "target": "com.azure.network#DeleteRoutingRuleCollection"
-        },
-        {
-          "target": "com.azure.network#DeleteScopeConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteSecurityAdminConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteSecurityPartnerProvider"
-        },
-        {
-          "target": "com.azure.network#DeleteSecurityRule"
-        },
-        {
-          "target": "com.azure.network#DeleteSecurityUserConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteSecurityUserRule"
-        },
-        {
-          "target": "com.azure.network#DeleteSecurityUserRuleCollection"
-        },
-        {
-          "target": "com.azure.network#DeleteServiceEndpointPolicy"
-        },
-        {
-          "target": "com.azure.network#DeleteServiceEndpointPolicyDefinition"
-        },
-        {
-          "target": "com.azure.network#DeleteServiceGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteStaticCidr"
-        },
-        {
-          "target": "com.azure.network#DeleteStaticMember"
-        },
-        {
-          "target": "com.azure.network#DeleteSubnet"
-        },
-        {
-          "target": "com.azure.network#DeleteSubscriptionNetworkManagerConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteVerifierWorkspace"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualApplianceSite"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualHub"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualHubBgpConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualHubIpConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualHubRouteTableV2s"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetwork"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetworkAppliance"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetworkGatewayConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetworkGatewayNatRule"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetworkPeering"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualNetworkTap"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualRouter"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualRouterPeering"
-        },
-        {
-          "target": "com.azure.network#DeleteVirtualWan"
-        },
-        {
-          "target": "com.azure.network#DeleteVpnConnection"
-        },
-        {
-          "target": "com.azure.network#DeleteVpnGateways"
-        },
-        {
-          "target": "com.azure.network#DeleteVpnServerConfiguration"
-        },
-        {
-          "target": "com.azure.network#DeleteVpnSite"
-        },
-        {
-          "target": "com.azure.network#DeleteWebApplicationFirewallPolicy"
-        },
-        {
-          "target": "com.azure.network#DeployFirewallPolicyDeployment"
-        },
-        {
-          "target": "com.azure.network#DisconnectActiveSessions"
-        },
-        {
-          "target": "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnections"
-        },
-        {
-          "target": "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnections"
-        },
-        {
-          "target": "com.azure.network#DownloadVpnSitesConfiguration"
-        },
-        {
-          "target": "com.azure.network#DscpConfigurationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExecuteNetworkVirtualApplianceMigration"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteCircuitAuthorizationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteCircuitConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteCircuitPeeringsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteCircuitsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteCrossConnectionPeeringsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteCrossConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteGatewaysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteLagsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRoutePortAuthorizationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRoutePortsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ExpressRouteProviderPort2"
-        },
-        {
-          "target": "com.azure.network#FirewallPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#FirewallPolicyDraftsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#FirewallPolicyKubeSelectorGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#FirewallPolicyRuleCollectionGroupDraftsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#FirewallPolicyRuleCollectionGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#FirstPartyServiceTagsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#FlowLogsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#GenerateExpressRouteLagLoa"
-        },
-        {
-          "target": "com.azure.network#GenerateExpressRoutePortLOA"
-        },
-        {
-          "target": "com.azure.network#GenerateP2sVpnGatewaysVpnProfile"
-        },
-        {
-          "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfile"
-        },
-        {
-          "target": "com.azure.network#Generatevirtualwanvpnserverconfigurationvpnprofile"
-        },
-        {
-          "target": "com.azure.network#GetActiveSessions"
-        },
-        {
-          "target": "com.azure.network#GetAddressPrefixSet"
-        },
-        {
-          "target": "com.azure.network#GetAdminRule"
-        },
-        {
-          "target": "com.azure.network#GetAdminRuleCollection"
-        },
-        {
-          "target": "com.azure.network#GetApplicationGatewayPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.network#GetApplicationGateways"
-        },
-        {
-          "target": "com.azure.network#GetApplicationGatewaysSslPredefinedPolicy"
-        },
-        {
-          "target": "com.azure.network#GetApplicationGatewayWafDynamicManifest"
-        },
-        {
-          "target": "com.azure.network#GetApplicationGatewayWafDynamicManifestsDefault"
-        },
-        {
-          "target": "com.azure.network#GetApplicationSecurityGroup"
-        },
-        {
-          "target": "com.azure.network#GetAzureFirewall"
-        },
-        {
-          "target": "com.azure.network#GetBastionHost"
-        },
-        {
-          "target": "com.azure.network#GetBastionShareableLink"
-        },
-        {
-          "target": "com.azure.network#GetCommit"
-        },
-        {
-          "target": "com.azure.network#GetConfigurationPolicyGroup"
-        },
-        {
-          "target": "com.azure.network#GetConnectionMonitor"
-        },
-        {
-          "target": "com.azure.network#GetConnectionPolicy"
-        },
-        {
-          "target": "com.azure.network#GetConnectivityConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetCustomIPPrefix"
-        },
-        {
-          "target": "com.azure.network#GetDdosCustomPolicy"
-        },
-        {
-          "target": "com.azure.network#GetDdosProtectionPlan"
-        },
-        {
-          "target": "com.azure.network#GetDefaultSecurityRule"
-        },
-        {
-          "target": "com.azure.network#GetDscpConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuit"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitAuthorization"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitCircuitLinkFailoverAllTestsDetails"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitCircuitLinkFailoverSingleTestDetails"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitConnection"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitPeering"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitPeeringStats"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCircuitStats"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteConnection"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCrossConnection"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteCrossConnectionPeering"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteGateways"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetails"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetails"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteGatewaysResiliencyInformation"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformation"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteLag"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteLagsLink"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteLagsMember"
-        },
-        {
-          "target": "com.azure.network#GetExpressRouteLink"
-        },
-        {
-          "target": "com.azure.network#GetExpressRoutePort"
-        },
-        {
-          "target": "com.azure.network#GetExpressRoutePortAuthorization"
-        },
-        {
-          "target": "com.azure.network#GetExpressRoutePortsLocation"
-        },
-        {
-          "target": "com.azure.network#GetFirewallPolicy"
-        },
-        {
-          "target": "com.azure.network#GetFirewallPolicyDraft"
-        },
-        {
-          "target": "com.azure.network#GetFirewallPolicyIdpsSignaturesOverride"
-        },
-        {
-          "target": "com.azure.network#GetFirewallPolicyKubeSelectorGroup"
-        },
-        {
-          "target": "com.azure.network#GetFirewallPolicyRuleCollectionGroup"
-        },
-        {
-          "target": "com.azure.network#GetFirewallPolicyRuleCollectionGroupDraft"
-        },
-        {
-          "target": "com.azure.network#GetFirstPartyServiceTag"
-        },
-        {
-          "target": "com.azure.network#GetFlowLog"
-        },
-        {
-          "target": "com.azure.network#GetHubRouteTable"
-        },
-        {
-          "target": "com.azure.network#GetHubVirtualNetworkConnection"
-        },
-        {
-          "target": "com.azure.network#GetInboundNatRule"
-        },
-        {
-          "target": "com.azure.network#GetInboundSecurityRule"
-        },
-        {
-          "target": "com.azure.network#GetInterconnectGroup"
-        },
-        {
-          "target": "com.azure.network#GetInterconnectGroupNodeAvailability"
-        },
-        {
-          "target": "com.azure.network#GetIpAllocation"
-        },
-        {
-          "target": "com.azure.network#GetIpamPool"
-        },
-        {
-          "target": "com.azure.network#GetIpamPoolPoolUsage"
-        },
-        {
-          "target": "com.azure.network#GetIpGroup"
-        },
-        {
-          "target": "com.azure.network#GetLoadBalancer"
-        },
-        {
-          "target": "com.azure.network#GetLoadBalancerBackendAddressPool"
-        },
-        {
-          "target": "com.azure.network#GetLoadBalancerFrontendIPConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetLoadBalancerLoadBalancingRule"
-        },
-        {
-          "target": "com.azure.network#GetLoadBalancerOutboundRule"
-        },
-        {
-          "target": "com.azure.network#GetLoadBalancerProbe"
-        },
-        {
-          "target": "com.azure.network#GetLocalNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#GetManagementGroupNetworkManagerConnection"
-        },
-        {
-          "target": "com.azure.network#GetNatGateways"
-        },
-        {
-          "target": "com.azure.network#GetNatRule"
-        },
-        {
-          "target": "com.azure.network#GetNetworkGroup"
-        },
-        {
-          "target": "com.azure.network#GetNetworkInterface"
-        },
-        {
-          "target": "com.azure.network#GetNetworkInterfaceCloudServiceNetworkInterface"
-        },
-        {
-          "target": "com.azure.network#GetNetworkInterfaceEffectiveRouteTable"
-        },
-        {
-          "target": "com.azure.network#GetNetworkInterfaceIPConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetNetworkInterfaceTapConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetNetworkManager"
-        },
-        {
-          "target": "com.azure.network#GetNetworkManagerRoutingConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetNetworkProfile"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityGroup"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeter"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterAccessRule"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterAssociation"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterLink"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterLinkReference"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterLoggingConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterOperationStatus"
-        },
-        {
-          "target": "com.azure.network#GetNetworkSecurityPerimeterProfile"
-        },
-        {
-          "target": "com.azure.network#GetNetworkVirtualAppliance"
-        },
-        {
-          "target": "com.azure.network#GetNetworkVirtualApplianceBootDiagnosticLogs"
-        },
-        {
-          "target": "com.azure.network#GetNetworkVirtualApplianceConnection"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcher"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherAzureReachabilityReport"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherFlowLogStatus"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherNetworkConfigurationDiagnostic"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherNextHop"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatchersConnectionAnalyzer"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherTopology"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherTroubleshooting"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherTroubleshootingResult"
-        },
-        {
-          "target": "com.azure.network#GetNetworkWatcherVMSecurityRules"
-        },
-        {
-          "target": "com.azure.network#GetP2sVpnGateways"
-        },
-        {
-          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealth"
-        },
-        {
-          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailed"
-        },
-        {
-          "target": "com.azure.network#GetPacketCapture"
-        },
-        {
-          "target": "com.azure.network#GetPacketCaptureStatus"
-        },
-        {
-          "target": "com.azure.network#GetPeerExpressRouteCircuitConnection"
-        },
-        {
-          "target": "com.azure.network#GetPrivateDnsZoneGroup"
-        },
-        {
-          "target": "com.azure.network#GetPrivateEndpoint"
-        },
-        {
-          "target": "com.azure.network#GetPrivateLinkService"
-        },
-        {
-          "target": "com.azure.network#GetPrivateLinkServicePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.network#GetPublicIPAddress"
-        },
-        {
-          "target": "com.azure.network#GetPublicIPAddressCloudServicePublicIPAddress"
-        },
-        {
-          "target": "com.azure.network#GetPublicIPPrefix"
-        },
-        {
-          "target": "com.azure.network#GetReachabilityAnalysisIntent"
-        },
-        {
-          "target": "com.azure.network#GetReachabilityAnalysisRun"
-        },
-        {
-          "target": "com.azure.network#GetRoute"
-        },
-        {
-          "target": "com.azure.network#GetRouteFilter"
-        },
-        {
-          "target": "com.azure.network#GetRouteFilterRule"
-        },
-        {
-          "target": "com.azure.network#GetRouteMap"
-        },
-        {
-          "target": "com.azure.network#GetRouteTable"
-        },
-        {
-          "target": "com.azure.network#GetRoutingIntent"
-        },
-        {
-          "target": "com.azure.network#GetRoutingRule"
-        },
-        {
-          "target": "com.azure.network#GetRoutingRuleCollection"
-        },
-        {
-          "target": "com.azure.network#GetScopeConnection"
-        },
-        {
-          "target": "com.azure.network#GetSecurityAdminConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetSecurityPartnerProvider"
-        },
-        {
-          "target": "com.azure.network#GetSecurityRule"
-        },
-        {
-          "target": "com.azure.network#GetSecurityUserConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetSecurityUserRule"
-        },
-        {
-          "target": "com.azure.network#GetSecurityUserRuleCollection"
-        },
-        {
-          "target": "com.azure.network#GetServiceEndpointPolicy"
-        },
-        {
-          "target": "com.azure.network#GetServiceEndpointPolicyDefinition"
-        },
-        {
-          "target": "com.azure.network#GetServiceGateways"
-        },
-        {
-          "target": "com.azure.network#GetServiceGatewaysAddressLocations"
-        },
-        {
-          "target": "com.azure.network#GetServiceGatewaysServices"
-        },
-        {
-          "target": "com.azure.network#GetStaticCidr"
-        },
-        {
-          "target": "com.azure.network#GetStaticMember"
-        },
-        {
-          "target": "com.azure.network#GetSubgroup"
-        },
-        {
-          "target": "com.azure.network#GetSubnet"
-        },
-        {
-          "target": "com.azure.network#GetSubscriptionNetworkManagerConnection"
-        },
-        {
-          "target": "com.azure.network#GetVerifierWorkspace"
-        },
-        {
-          "target": "com.azure.network#GetVipSwap"
-        },
-        {
-          "target": "com.azure.network#GetVirtualApplianceSite"
-        },
-        {
-          "target": "com.azure.network#GetVirtualApplianceSkus"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHub"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHubBgpConnection"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHubEffectiveVirtualHubRoutes"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHubInboundRoutes"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHubIpConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHubOutboundRoutes"
-        },
-        {
-          "target": "com.azure.network#GetVirtualHubRouteTableV2s"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetwork"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkAppliance"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewayConnection"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewayConnectionIkeSas"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewayConnectionSharedKey"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewayNatRule"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysAdvertisedRoutes"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysBgpPeerStatus"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysEffectiveRoutes"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetails"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetails"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysLearnedRoutes"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysResiliencyInformation"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysRoutesInformation"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientConnectionHealth"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientIpsecParameters"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrl"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkPeering"
-        },
-        {
-          "target": "com.azure.network#GetVirtualNetworkTap"
-        },
-        {
-          "target": "com.azure.network#GetVirtualRouter"
-        },
-        {
-          "target": "com.azure.network#GetVirtualRouterPeering"
-        },
-        {
-          "target": "com.azure.network#GetVirtualWan"
-        },
-        {
-          "target": "com.azure.network#GetVpnConnection"
-        },
-        {
-          "target": "com.azure.network#GetVpnGateways"
-        },
-        {
-          "target": "com.azure.network#GetVpnLinkConnectionAllSharedKeys"
-        },
-        {
-          "target": "com.azure.network#GetVpnLinkConnectionDefaultSharedKey"
-        },
-        {
-          "target": "com.azure.network#GetVpnLinkConnectionIkeSas"
-        },
-        {
-          "target": "com.azure.network#GetVpnServerConfiguration"
-        },
-        {
-          "target": "com.azure.network#GetVpnSite"
-        },
-        {
-          "target": "com.azure.network#GetVpnSiteLink"
-        },
-        {
-          "target": "com.azure.network#GetVpnSiteLinkConnection"
-        },
-        {
-          "target": "com.azure.network#GetWebApplicationFirewallPolicy"
-        },
-        {
-          "target": "com.azure.network#GetWebCategory"
-        },
-        {
-          "target": "com.azure.network#HubRouteTablesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#HubVirtualNetworkConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#InboundNatRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#InboundSecurityRuleCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#InterconnectGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysAbortMigration"
-        },
-        {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysCommitMigration"
-        },
-        {
-          "target": "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigration"
-        },
-        {
-          "target": "com.azure.network#IpAllocationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#IpGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ListActiveConnectivityConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListActiveSecurityAdminRules"
-        },
-        {
-          "target": "com.azure.network#ListAddressPrefixSets"
-        },
-        {
-          "target": "com.azure.network#ListAdminRuleCollections"
-        },
-        {
-          "target": "com.azure.network#ListAdminRules"
-        },
-        {
-          "target": "com.azure.network#ListApplicationGatewayPrivateEndpointConnections"
+          "target": "com.azure.network#StartApplicationGateways"
         },
         {
           "target": "com.azure.network#ListApplicationGatewayPrivateLinkResources"
         },
         {
+          "target": "com.azure.network#DeleteApplicationGatewayPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.network#UpdateApplicationGatewayPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.network#GetApplicationGatewayPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.network#ListApplicationGatewayPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.network#ApplicationGatewaysBackendHealthOnDemand"
+        },
+        {
+          "target": "com.azure.network#ApplicationGatewaysBackendHealth"
+        },
+        {
+          "target": "com.azure.network#DeleteApplicationGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateApplicationGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#ApplicationGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetApplicationGateways"
+        },
+        {
           "target": "com.azure.network#ListApplicationGateways"
+        },
+        {
+          "target": "com.azure.network#DeleteWebApplicationFirewallPolicy"
+        },
+        {
+          "target": "com.azure.network#WebApplicationFirewallPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetWebApplicationFirewallPolicy"
+        },
+        {
+          "target": "com.azure.network#ListWebApplicationFirewallPolicies"
+        },
+        {
+          "target": "com.azure.network#GetApplicationGatewayWafDynamicManifestsDefault"
+        },
+        {
+          "target": "com.azure.network#GetApplicationGatewayWafDynamicManifest"
         },
         {
           "target": "com.azure.network#ListApplicationGatewaysAll"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableRequestHeaders"
+          "target": "com.azure.network#ListApplicationGatewaysAvailableWafRuleSets"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableResponseHeaders"
-        },
-        {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableServerVariables"
-        },
-        {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableSslOptions"
+          "target": "com.azure.network#GetApplicationGatewaysSslPredefinedPolicy"
         },
         {
           "target": "com.azure.network#ListApplicationGatewaysAvailableSslPredefinedPolicies"
         },
         {
-          "target": "com.azure.network#ListApplicationGatewaysAvailableWafRuleSets"
+          "target": "com.azure.network#ListApplicationGatewaysAvailableSslOptions"
         },
         {
-          "target": "com.azure.network#ListApplicationSecurityGroupAll"
+          "target": "com.azure.network#ListApplicationGatewaysAvailableServerVariables"
         },
         {
-          "target": "com.azure.network#ListApplicationSecurityGroups"
+          "target": "com.azure.network#ListApplicationGatewaysAvailableResponseHeaders"
         },
         {
-          "target": "com.azure.network#ListAvailableDelegations"
+          "target": "com.azure.network#ListApplicationGatewaysAvailableRequestHeaders"
         },
         {
-          "target": "com.azure.network#ListAvailableEndpointServices"
+          "target": "com.azure.network#ListWebApplicationFirewallPolicyAll"
         },
         {
-          "target": "com.azure.network#ListAvailablePrivateEndpointTypeByResourceGroup"
+          "target": "com.azure.network#GetWebCategory"
         },
         {
-          "target": "com.azure.network#ListAvailablePrivateEndpointTypes"
+          "target": "com.azure.network#ListWebCategoryBySubscription"
         },
         {
-          "target": "com.azure.network#ListAvailableResourceGroupDelegations"
+          "target": "com.azure.network#DeleteServiceEndpointPolicyDefinition"
         },
         {
-          "target": "com.azure.network#ListAvailableServiceAliasByResourceGroup"
+          "target": "com.azure.network#ServiceEndpointPolicyDefinitionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#ListAvailableServiceAliases"
+          "target": "com.azure.network#GetServiceEndpointPolicyDefinition"
+        },
+        {
+          "target": "com.azure.network#ListServiceEndpointPolicyDefinitionByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteServiceEndpointPolicy"
+        },
+        {
+          "target": "com.azure.network#UpdateServiceEndpointPolicyTags"
+        },
+        {
+          "target": "com.azure.network#ServiceEndpointPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetServiceEndpointPolicy"
+        },
+        {
+          "target": "com.azure.network#ListServiceEndpointPolicyByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteRouteFilterRule"
+        },
+        {
+          "target": "com.azure.network#RouteFilterRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRouteFilterRule"
+        },
+        {
+          "target": "com.azure.network#ListRouteFilterRuleByRouteFilter"
+        },
+        {
+          "target": "com.azure.network#DeleteRouteFilter"
+        },
+        {
+          "target": "com.azure.network#UpdateRouteFilterTags"
+        },
+        {
+          "target": "com.azure.network#RouteFiltersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRouteFilter"
+        },
+        {
+          "target": "com.azure.network#ListRouteFilterByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRoutePortAuthorization"
+        },
+        {
+          "target": "com.azure.network#ExpressRoutePortAuthorizationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRoutePortAuthorization"
+        },
+        {
+          "target": "com.azure.network#ListExpressRoutePortAuthorizations"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteLagsMember"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteLagsMembers"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteLagsLink"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteLagsLinks"
+        },
+        {
+          "target": "com.azure.network#GenerateExpressRouteLagLoa"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteLag"
+        },
+        {
+          "target": "com.azure.network#UpdateExpressRouteLag"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteLagsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteLag"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteLagByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCrossConnectionRoutesTableSummary"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCrossConnectionRoutesTable"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCrossConnectionArpTable"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteCrossConnectionPeering"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteCrossConnectionPeeringsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCrossConnectionPeering"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCrossConnectionPeerings"
+        },
+        {
+          "target": "com.azure.network#UpdateExpressRouteCrossConnectionTags"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteCrossConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCrossConnection"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCrossConnectionByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#StopExpressRouteCircuitCircuitLinkFailoverTest"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitStats"
+        },
+        {
+          "target": "com.azure.network#StartExpressRouteCircuitCircuitLinkFailoverTest"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitPeeringStats"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitRoutesTableSummary"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitRoutesTable"
+        },
+        {
+          "target": "com.azure.network#GetPeerExpressRouteCircuitConnection"
+        },
+        {
+          "target": "com.azure.network#ListPeerExpressRouteCircuitConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteCircuitConnection"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteCircuitConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitConnection"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitConnections"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitArpTable"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteCircuitPeering"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteCircuitPeeringsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitPeering"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitPeerings"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitCircuitLinkFailoverSingleTestDetails"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitCircuitLinkFailoverAllTestsDetails"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteCircuitAuthorization"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteCircuitAuthorizationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuitAuthorization"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitAuthorizations"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteCircuit"
+        },
+        {
+          "target": "com.azure.network#UpdateExpressRouteCircuitTags"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteCircuitsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteCircuit"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuits"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteLink"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteLinks"
+        },
+        {
+          "target": "com.azure.network#GenerateExpressRoutePortLOA"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRoutePort"
+        },
+        {
+          "target": "com.azure.network#UpdateExpressRoutePortTags"
+        },
+        {
+          "target": "com.azure.network#ExpressRoutePortsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRoutePort"
+        },
+        {
+          "target": "com.azure.network#ListExpressRoutePortByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListServiceEndpointPolicies"
+        },
+        {
+          "target": "com.azure.network#ListRouteFilters"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteServiceProviders"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteProviderPort2"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteProviderPortsLocation"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteLags"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCrossConnections"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteCircuitAll"
+        },
+        {
+          "target": "com.azure.network#ListBgpServiceCommunities"
+        },
+        {
+          "target": "com.azure.network#GetExpressRoutePortsLocation"
+        },
+        {
+          "target": "com.azure.network#ListExpressRoutePortsLocations"
+        },
+        {
+          "target": "com.azure.network#ListExpressRoutePorts"
+        },
+        {
+          "target": "com.azure.network#AzureFirewallsPacketCaptureOperation"
+        },
+        {
+          "target": "com.azure.network#CaptureAzureFirewallsPacket"
+        },
+        {
+          "target": "com.azure.network#ListAzureFirewallLearnedPrefixes"
+        },
+        {
+          "target": "com.azure.network#DeleteAzureFirewall"
+        },
+        {
+          "target": "com.azure.network#UpdateAzureFirewallTags"
+        },
+        {
+          "target": "com.azure.network#AzureFirewallsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetAzureFirewall"
+        },
+        {
+          "target": "com.azure.network#ListAzureFirewalls"
         },
         {
           "target": "com.azure.network#ListAzureFirewallAll"
@@ -201040,151 +200203,37 @@
           "target": "com.azure.network#ListAzureFirewallFqdnTagAll"
         },
         {
-          "target": "com.azure.network#ListAzureFirewallLearnedPrefixes"
+          "target": "com.azure.network#PatchFirewallPolicyIdpsSignaturesOverride"
         },
         {
-          "target": "com.azure.network#ListAzureFirewalls"
+          "target": "com.azure.network#PutFirewallPolicyIdpsSignaturesOverride"
         },
         {
-          "target": "com.azure.network#ListBastionHostByResourceGroup"
+          "target": "com.azure.network#GetFirewallPolicyIdpsSignaturesOverride"
         },
         {
-          "target": "com.azure.network#ListBastionHosts"
+          "target": "com.azure.network#ListFirewallPolicyIdpsSignaturesOverrides"
         },
         {
-          "target": "com.azure.network#ListBgpServiceCommunities"
+          "target": "com.azure.network#DeleteFirewallPolicyRuleCollectionGroupDraft"
         },
         {
-          "target": "com.azure.network#ListCommits"
+          "target": "com.azure.network#FirewallPolicyRuleCollectionGroupDraftsCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#ListConfigurationPolicyGroupByVpnServerConfiguration"
+          "target": "com.azure.network#GetFirewallPolicyRuleCollectionGroupDraft"
         },
         {
-          "target": "com.azure.network#ListConnectionMonitors"
+          "target": "com.azure.network#DeleteFirewallPolicyRuleCollectionGroup"
         },
         {
-          "target": "com.azure.network#ListConnectionPolicies"
+          "target": "com.azure.network#FirewallPolicyRuleCollectionGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#ListConnectivityConfigurations"
+          "target": "com.azure.network#GetFirewallPolicyRuleCollectionGroup"
         },
         {
-          "target": "com.azure.network#ListCustomIPPrefixAll"
-        },
-        {
-          "target": "com.azure.network#ListCustomIPPrefixes"
-        },
-        {
-          "target": "com.azure.network#ListDdosCustomPolicies"
-        },
-        {
-          "target": "com.azure.network#ListDdosCustomPolicyAll"
-        },
-        {
-          "target": "com.azure.network#ListDdosProtectionPlanByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListDdosProtectionPlans"
-        },
-        {
-          "target": "com.azure.network#ListDefaultSecurityRules"
-        },
-        {
-          "target": "com.azure.network#ListDscpConfiguration"
-        },
-        {
-          "target": "com.azure.network#ListDscpConfigurationAll"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitAll"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitArpTable"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitAuthorizations"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitConnections"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitPeerings"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitRoutesTable"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuitRoutesTableSummary"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCircuits"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteConnections"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCrossConnectionArpTable"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCrossConnectionByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCrossConnectionPeerings"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCrossConnectionRoutesTable"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCrossConnectionRoutesTableSummary"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteCrossConnections"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteGatewaysByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteGatewaysBySubscription"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteLagByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteLags"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteLagsLinks"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteLagsMembers"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteLinks"
-        },
-        {
-          "target": "com.azure.network#ListExpressRoutePortAuthorizations"
-        },
-        {
-          "target": "com.azure.network#ListExpressRoutePortByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListExpressRoutePorts"
-        },
-        {
-          "target": "com.azure.network#ListExpressRoutePortsLocations"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteProviderPortsLocation"
-        },
-        {
-          "target": "com.azure.network#ListExpressRouteServiceProviders"
-        },
-        {
-          "target": "com.azure.network#ListFirewallPolicies"
-        },
-        {
-          "target": "com.azure.network#ListFirewallPolicyAll"
+          "target": "com.azure.network#ListFirewallPolicyRuleCollectionGroups"
         },
         {
           "target": "com.azure.network#ListFirewallPolicyIdpsSignatures"
@@ -201193,61 +200242,133 @@
           "target": "com.azure.network#ListFirewallPolicyIdpsSignaturesFilterValues"
         },
         {
-          "target": "com.azure.network#ListFirewallPolicyIdpsSignaturesOverrides"
+          "target": "com.azure.network#DeleteFirewallPolicyKubeSelectorGroup"
+        },
+        {
+          "target": "com.azure.network#FirewallPolicyKubeSelectorGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetFirewallPolicyKubeSelectorGroup"
         },
         {
           "target": "com.azure.network#ListFirewallPolicyKubeSelectorGroups"
         },
         {
-          "target": "com.azure.network#ListFirewallPolicyRuleCollectionGroups"
+          "target": "com.azure.network#DeleteFirewallPolicyDraft"
         },
         {
-          "target": "com.azure.network#ListFirstPartyServiceTagAll"
+          "target": "com.azure.network#FirewallPolicyDraftsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetFirewallPolicyDraft"
+        },
+        {
+          "target": "com.azure.network#DeployFirewallPolicyDeployment"
+        },
+        {
+          "target": "com.azure.network#DeleteFirewallPolicy"
+        },
+        {
+          "target": "com.azure.network#UpdateFirewallPolicyTags"
+        },
+        {
+          "target": "com.azure.network#FirewallPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetFirewallPolicy"
+        },
+        {
+          "target": "com.azure.network#ListFirewallPolicies"
+        },
+        {
+          "target": "com.azure.network#ListFirewallPolicyAll"
+        },
+        {
+          "target": "com.azure.network#DeleteFirstPartyServiceTag"
+        },
+        {
+          "target": "com.azure.network#UpdateFirstPartyServiceTagTags"
+        },
+        {
+          "target": "com.azure.network#FirstPartyServiceTagsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetFirstPartyServiceTag"
         },
         {
           "target": "com.azure.network#ListFirstPartyServiceTags"
         },
         {
-          "target": "com.azure.network#ListFlowLogs"
+          "target": "com.azure.network#ListFirstPartyServiceTagAll"
         },
         {
-          "target": "com.azure.network#ListHubRouteTables"
+          "target": "com.azure.network#GetSubgroup"
         },
         {
-          "target": "com.azure.network#ListHubVirtualNetworkConnections"
+          "target": "com.azure.network#ListSubgroups"
         },
         {
-          "target": "com.azure.network#ListInboundNatRules"
+          "target": "com.azure.network#GetInterconnectGroupNodeAvailability"
         },
         {
-          "target": "com.azure.network#ListInterconnectGroupAll"
+          "target": "com.azure.network#DeleteInterconnectGroup"
+        },
+        {
+          "target": "com.azure.network#UpdateInterconnectGroupTags"
+        },
+        {
+          "target": "com.azure.network#InterconnectGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetInterconnectGroup"
         },
         {
           "target": "com.azure.network#ListInterconnectGroups"
         },
         {
-          "target": "com.azure.network#ListIpAllocationByResourceGroup"
+          "target": "com.azure.network#ListInterconnectGroupAll"
         },
         {
-          "target": "com.azure.network#ListIpAllocations"
+          "target": "com.azure.network#GetLoadBalancerProbe"
         },
         {
-          "target": "com.azure.network#ListIpamPoolAssociatedResources"
+          "target": "com.azure.network#ListLoadBalancerProbes"
         },
         {
-          "target": "com.azure.network#ListIpamPools"
+          "target": "com.azure.network#GetLoadBalancerOutboundRule"
         },
         {
-          "target": "com.azure.network#ListIpGroupByResourceGroup"
+          "target": "com.azure.network#ListLoadBalancerOutboundRules"
         },
         {
-          "target": "com.azure.network#ListIpGroups"
+          "target": "com.azure.network#ListLoadBalancerNetworkInterfaces"
         },
         {
-          "target": "com.azure.network#ListLoadBalancerAll"
+          "target": "com.azure.network#MigrateLoadBalancerToIpBased"
         },
         {
-          "target": "com.azure.network#ListLoadBalancerBackendAddressPools"
+          "target": "com.azure.network#LoadBalancerLoadBalancingRulesHealth"
+        },
+        {
+          "target": "com.azure.network#GetLoadBalancerLoadBalancingRule"
+        },
+        {
+          "target": "com.azure.network#ListLoadBalancerLoadBalancingRules"
+        },
+        {
+          "target": "com.azure.network#DeleteInboundNatRule"
+        },
+        {
+          "target": "com.azure.network#InboundNatRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetInboundNatRule"
+        },
+        {
+          "target": "com.azure.network#ListInboundNatRules"
+        },
+        {
+          "target": "com.azure.network#GetLoadBalancerFrontendIPConfiguration"
         },
         {
           "target": "com.azure.network#ListLoadBalancerFrontendIPConfigurations"
@@ -201256,709 +200377,55 @@
           "target": "com.azure.network#ListLoadBalancerInboundNatRulePortMappings"
         },
         {
-          "target": "com.azure.network#ListLoadBalancerLoadBalancingRules"
-        },
-        {
-          "target": "com.azure.network#ListLoadBalancerNetworkInterfaces"
-        },
-        {
-          "target": "com.azure.network#ListLoadBalancerOutboundRules"
-        },
-        {
-          "target": "com.azure.network#ListLoadBalancerProbes"
-        },
-        {
-          "target": "com.azure.network#ListLoadBalancers"
-        },
-        {
-          "target": "com.azure.network#ListLocalNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#ListManagementGroupNetworkManagerConnections"
-        },
-        {
-          "target": "com.azure.network#ListNatGateways"
-        },
-        {
-          "target": "com.azure.network#ListNatGatewaysAll"
-        },
-        {
-          "target": "com.azure.network#ListNatRuleByVpnGateway"
-        },
-        {
-          "target": "com.azure.network#ListNetworkGroups"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceAll"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceCloudServiceNetworkInterfaces"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceCloudServiceRoleInstanceNetworkInterfaces"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceEffectiveNetworkSecurityGroups"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceIPConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceLoadBalancers"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaces"
-        },
-        {
-          "target": "com.azure.network#ListNetworkInterfaceTapConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListNetworkManagerBySubscription"
-        },
-        {
-          "target": "com.azure.network#ListNetworkManagerDeploymentStatus"
-        },
-        {
-          "target": "com.azure.network#ListNetworkManagerEffectiveConnectivityConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListNetworkManagerEffectiveSecurityAdminRules"
-        },
-        {
-          "target": "com.azure.network#ListNetworkManagerRoutingConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListNetworkManagers"
-        },
-        {
-          "target": "com.azure.network#ListNetworkProfileAll"
-        },
-        {
-          "target": "com.azure.network#ListNetworkProfiles"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityGroupAll"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityGroups"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterAccessRules"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterAssociableResourceTypes"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterAssociations"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterBySubscription"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterLinkReferences"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterLinks"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterLoggingConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterProfiles"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeters"
-        },
-        {
-          "target": "com.azure.network#ListNetworkSecurityPerimeterServiceTags"
-        },
-        {
-          "target": "com.azure.network#ListNetworkVirtualApplianceByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListNetworkVirtualApplianceConnections"
-        },
-        {
-          "target": "com.azure.network#ListNetworkVirtualAppliances"
-        },
-        {
-          "target": "com.azure.network#ListNetworkWatcherAll"
-        },
-        {
-          "target": "com.azure.network#ListNetworkWatcherAvailableProviders"
-        },
-        {
-          "target": "com.azure.network#ListNetworkWatchers"
-        },
-        {
-          "target": "com.azure.network#ListNetworkWatchersConnectionAnalyzers"
-        },
-        {
-          "target": "com.azure.network#ListOperations"
-        },
-        {
-          "target": "com.azure.network#ListP2sVpnGateways"
-        },
-        {
-          "target": "com.azure.network#ListP2sVpnGatewaysByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListPacketCaptures"
-        },
-        {
-          "target": "com.azure.network#ListPeerExpressRouteCircuitConnections"
-        },
-        {
-          "target": "com.azure.network#ListPrivateDnsZoneGroups"
-        },
-        {
-          "target": "com.azure.network#ListPrivateEndpointBySubscription"
-        },
-        {
-          "target": "com.azure.network#ListPrivateEndpoints"
-        },
-        {
-          "target": "com.azure.network#ListPrivateLinkServiceAutoApprovedPrivateLinkServices"
-        },
-        {
-          "target": "com.azure.network#ListPrivateLinkServiceAutoApprovedPrivateLinkServicesByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListPrivateLinkServiceBySubscription"
-        },
-        {
-          "target": "com.azure.network#ListPrivateLinkServicePrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.network#ListPrivateLinkServices"
-        },
-        {
-          "target": "com.azure.network#ListPublicIPAddressAll"
-        },
-        {
-          "target": "com.azure.network#ListPublicIPAddressCloudServicePublicIPAddresses"
-        },
-        {
-          "target": "com.azure.network#ListPublicIPAddressCloudServiceRoleInstancePublicIPAddresses"
-        },
-        {
-          "target": "com.azure.network#ListPublicIPAddresses"
-        },
-        {
-          "target": "com.azure.network#ListPublicIPPrefixAll"
-        },
-        {
-          "target": "com.azure.network#ListPublicIPPrefixes"
-        },
-        {
-          "target": "com.azure.network#ListReachabilityAnalysisIntents"
-        },
-        {
-          "target": "com.azure.network#ListReachabilityAnalysisRuns"
-        },
-        {
-          "target": "com.azure.network#ListResourceNavigationLinks"
-        },
-        {
-          "target": "com.azure.network#ListRouteFilterByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListRouteFilterRuleByRouteFilter"
-        },
-        {
-          "target": "com.azure.network#ListRouteFilters"
-        },
-        {
-          "target": "com.azure.network#ListRouteMaps"
-        },
-        {
-          "target": "com.azure.network#ListRoutes"
-        },
-        {
-          "target": "com.azure.network#ListRouteTableAll"
-        },
-        {
-          "target": "com.azure.network#ListRouteTables"
-        },
-        {
-          "target": "com.azure.network#ListRoutingIntent"
-        },
-        {
-          "target": "com.azure.network#ListRoutingRuleCollections"
-        },
-        {
-          "target": "com.azure.network#ListRoutingRules"
-        },
-        {
-          "target": "com.azure.network#ListScopeConnections"
-        },
-        {
-          "target": "com.azure.network#ListSecurityAdminConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListSecurityPartnerProviderByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListSecurityPartnerProviders"
-        },
-        {
-          "target": "com.azure.network#ListSecurityRules"
-        },
-        {
-          "target": "com.azure.network#ListSecurityUserConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListSecurityUserRuleCollections"
-        },
-        {
-          "target": "com.azure.network#ListSecurityUserRules"
-        },
-        {
-          "target": "com.azure.network#ListServiceAssociationLinks"
-        },
-        {
-          "target": "com.azure.network#ListServiceEndpointPolicies"
-        },
-        {
-          "target": "com.azure.network#ListServiceEndpointPolicyByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListServiceEndpointPolicyDefinitionByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListServiceGateways"
-        },
-        {
-          "target": "com.azure.network#ListServiceGatewaysAll"
-        },
-        {
-          "target": "com.azure.network#ListServiceTagInformation"
-        },
-        {
-          "target": "com.azure.network#ListServiceTags"
-        },
-        {
-          "target": "com.azure.network#ListStaticCidrs"
-        },
-        {
-          "target": "com.azure.network#ListStaticMembers"
-        },
-        {
-          "target": "com.azure.network#ListSubgroups"
-        },
-        {
-          "target": "com.azure.network#ListSubnets"
-        },
-        {
-          "target": "com.azure.network#ListSubscriptionNetworkManagerConnections"
-        },
-        {
-          "target": "com.azure.network#ListUsages"
-        },
-        {
-          "target": "com.azure.network#ListVerifierWorkspaces"
-        },
-        {
-          "target": "com.azure.network#ListVipSwap"
-        },
-        {
-          "target": "com.azure.network#ListVirtualApplianceSites"
-        },
-        {
-          "target": "com.azure.network#ListVirtualApplianceSkus"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubBgpConnectionAdvertisedRoutes"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubBgpConnectionLearnedRoutes"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubBgpConnections"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubIpConfiguration"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubRouteTableV2s"
-        },
-        {
-          "target": "com.azure.network#ListVirtualHubs"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkAll"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkApplianceAll"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkAppliances"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkDdosProtectionStatus"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkGatewayConnections"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkGatewayNatRuleByVirtualNetworkGateway"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkGatewaysConnections"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkGatewaysRadiusSecrets"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkPeerings"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworks"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkTapAll"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkTapByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVirtualNetworkUsage"
-        },
-        {
-          "target": "com.azure.network#ListVirtualRouterByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVirtualRouterPeerings"
-        },
-        {
-          "target": "com.azure.network#ListVirtualRouters"
-        },
-        {
-          "target": "com.azure.network#ListVirtualWanByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVirtualWans"
-        },
-        {
-          "target": "com.azure.network#ListVpnConnectionByVpnGateway"
-        },
-        {
-          "target": "com.azure.network#ListVpnGateways"
-        },
-        {
-          "target": "com.azure.network#ListVpnGatewaysByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVpnLinkConnectionByVpnConnection"
-        },
-        {
-          "target": "com.azure.network#ListVpnLinkConnectionDefaultSharedKey"
-        },
-        {
-          "target": "com.azure.network#ListVpnServerConfigurationByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVpnServerConfigurationRadiusSecrets"
-        },
-        {
-          "target": "com.azure.network#ListVpnServerConfigurations"
-        },
-        {
-          "target": "com.azure.network#ListVpnServerConfigurationsAssociatedWithVirtualWan"
-        },
-        {
-          "target": "com.azure.network#ListVpnSiteByResourceGroup"
-        },
-        {
-          "target": "com.azure.network#ListVpnSiteLinkByVpnSite"
-        },
-        {
-          "target": "com.azure.network#ListVpnSites"
-        },
-        {
-          "target": "com.azure.network#ListWebApplicationFirewallPolicies"
-        },
-        {
-          "target": "com.azure.network#ListWebApplicationFirewallPolicyAll"
-        },
-        {
-          "target": "com.azure.network#ListWebCategoryBySubscription"
+          "target": "com.azure.network#DeleteLoadBalancerBackendAddressPool"
         },
         {
           "target": "com.azure.network#LoadBalancerBackendAddressPoolsCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#LoadBalancerLoadBalancingRulesHealth"
+          "target": "com.azure.network#GetLoadBalancerBackendAddressPool"
+        },
+        {
+          "target": "com.azure.network#ListLoadBalancerBackendAddressPools"
+        },
+        {
+          "target": "com.azure.network#DeleteLoadBalancer"
+        },
+        {
+          "target": "com.azure.network#UpdateLoadBalancerTags"
         },
         {
           "target": "com.azure.network#LoadBalancersCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#LocalNetworkGatewaysCreateOrUpdate"
+          "target": "com.azure.network#GetLoadBalancer"
         },
         {
-          "target": "com.azure.network#ManagementGroupNetworkManagerConnectionsCreateOrUpdate"
+          "target": "com.azure.network#ListLoadBalancers"
         },
         {
-          "target": "com.azure.network#MigrateLoadBalancerToIpBased"
+          "target": "com.azure.network#SwapLoadBalancerPublicIpAddresses"
         },
         {
-          "target": "com.azure.network#MoveVirtualNetworkIpConfigurations"
+          "target": "com.azure.network#ListLoadBalancerAll"
         },
         {
-          "target": "com.azure.network#NatGatewaysCreateOrUpdate"
+          "target": "com.azure.network#DeleteVirtualNetworkTap"
         },
         {
-          "target": "com.azure.network#NatRulesCreateOrUpdate"
+          "target": "com.azure.network#UpdateVirtualNetworkTapTags"
         },
         {
-          "target": "com.azure.network#NetworkGroupsCreateOrUpdate"
+          "target": "com.azure.network#VirtualNetworkTapsCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#NetworkInterfacesCreateOrUpdate"
+          "target": "com.azure.network#GetVirtualNetworkTap"
         },
         {
-          "target": "com.azure.network#NetworkInterfaceTapConfigurationsCreateOrUpdate"
+          "target": "com.azure.network#ListVirtualNetworkTapByResourceGroup"
         },
         {
-          "target": "com.azure.network#NetworkManagerRoutingConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkManagersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterAccessRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterAccessRulesReconcile"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterAssociationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterAssociationsReconcile"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterLinksCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimeterProfilesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkSecurityPerimetersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkVirtualApplianceConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkVirtualAppliancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#NetworkVirtualAppliancesPrepareMigration"
-        },
-        {
-          "target": "com.azure.network#NetworkVirtualAppliancesReimage"
-        },
-        {
-          "target": "com.azure.network#NetworkWatchersConnectionAnalyzersQuery"
-        },
-        {
-          "target": "com.azure.network#NetworkWatchersConnectionAnalyzersUpdateTags"
-        },
-        {
-          "target": "com.azure.network#NetworkWatchersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#P2sVpnGatewaysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#PatchFirewallPolicyIdpsSignaturesOverride"
-        },
-        {
-          "target": "com.azure.network#PatchNetworkManager"
-        },
-        {
-          "target": "com.azure.network#PatchNetworkSecurityPerimeter"
-        },
-        {
-          "target": "com.azure.network#PostNetworkManagerCommit"
-        },
-        {
-          "target": "com.azure.network#PrivateDnsZoneGroupsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#PrivateEndpointsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#PrivateLinkServicesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#PublicIPAddressesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#PublicIPAddressesDdosProtectionStatus"
-        },
-        {
-          "target": "com.azure.network#PublicIPAddressesDisassociateCloudServiceReservedPublicIp"
-        },
-        {
-          "target": "com.azure.network#PublicIPAddressesReserveCloudServicePublicIpAddress"
-        },
-        {
-          "target": "com.azure.network#PublicIPPrefixesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#PutBastionShareableLink"
-        },
-        {
-          "target": "com.azure.network#PutFirewallPolicyIdpsSignaturesOverride"
-        },
-        {
-          "target": "com.azure.network#ResetP2SVpnGateways"
-        },
-        {
-          "target": "com.azure.network#ResetVirtualNetworkGatewayConnectionConnection"
-        },
-        {
-          "target": "com.azure.network#ResetVirtualNetworkGatewayConnectionSharedKey"
-        },
-        {
-          "target": "com.azure.network#ResetVirtualNetworkGateways"
-        },
-        {
-          "target": "com.azure.network#ResetVirtualNetworkGatewaysVpnClientSharedKey"
-        },
-        {
-          "target": "com.azure.network#ResetVpnGateways"
-        },
-        {
-          "target": "com.azure.network#ResetVpnLinkConnectionConnection"
-        },
-        {
-          "target": "com.azure.network#RestartNetworkVirtualAppliance"
-        },
-        {
-          "target": "com.azure.network#RouteFilterRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RouteFiltersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RouteMapsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RoutesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RouteTablesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RoutingIntentCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RoutingRuleCollectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#RoutingRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ScopeConnectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SecurityAdminConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SecurityPartnerProvidersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SecurityRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SecurityUserConfigurationsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SecurityUserRuleCollectionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SecurityUserRulesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ServiceEndpointPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ServiceEndpointPolicyDefinitionsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#ServiceGatewaysCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#SetNetworkWatcherFlowLogConfiguration"
-        },
-        {
-          "target": "com.azure.network#SetVirtualNetworkGatewayConnectionSharedKey"
-        },
-        {
-          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParameters"
-        },
-        {
-          "target": "com.azure.network#StartApplicationGateways"
-        },
-        {
-          "target": "com.azure.network#StartExpressRouteCircuitCircuitLinkFailoverTest"
-        },
-        {
-          "target": "com.azure.network#StartExpressRouteGatewaysSiteFailoverTest"
-        },
-        {
-          "target": "com.azure.network#StartVirtualNetworkGatewayConnectionPacketCapture"
-        },
-        {
-          "target": "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation"
-        },
-        {
-          "target": "com.azure.network#StartVirtualNetworkGatewaysPacketCapture"
-        },
-        {
-          "target": "com.azure.network#StartVpnConnectionPacketCapture"
-        },
-        {
-          "target": "com.azure.network#StartVpnGatewaysPacketCapture"
-        },
-        {
-          "target": "com.azure.network#StaticMembersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#StopApplicationGateways"
-        },
-        {
-          "target": "com.azure.network#StopConnectionMonitor"
-        },
-        {
-          "target": "com.azure.network#StopExpressRouteCircuitCircuitLinkFailoverTest"
-        },
-        {
-          "target": "com.azure.network#StopExpressRouteGatewaysSiteFailoverTest"
-        },
-        {
-          "target": "com.azure.network#StopPacketCapture"
-        },
-        {
-          "target": "com.azure.network#StopVirtualNetworkGatewayConnectionPacketCapture"
+          "target": "com.azure.network#VirtualNetworkGatewaysSupportedVpnDevices"
         },
         {
           "target": "com.azure.network#StopVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation"
@@ -201967,211 +200434,73 @@
           "target": "com.azure.network#StopVirtualNetworkGatewaysPacketCapture"
         },
         {
-          "target": "com.azure.network#StopVpnConnectionPacketCapture"
+          "target": "com.azure.network#StartVirtualNetworkGatewaysExpressRouteSiteFailoverSimulation"
         },
         {
-          "target": "com.azure.network#StopVpnGatewaysPacketCapture"
+          "target": "com.azure.network#StartVirtualNetworkGatewaysPacketCapture"
         },
         {
-          "target": "com.azure.network#SubnetsCreateOrUpdate"
+          "target": "com.azure.network#SetVirtualNetworkGatewaysVpnclientIpsecParameters"
         },
         {
-          "target": "com.azure.network#SubnetsPrepareNetworkPolicies"
+          "target": "com.azure.network#ResetVirtualNetworkGatewaysVpnClientSharedKey"
         },
         {
-          "target": "com.azure.network#SubnetsUnprepareNetworkPolicies"
+          "target": "com.azure.network#ResetVirtualNetworkGateways"
         },
         {
-          "target": "com.azure.network#SubscriptionNetworkManagerConnectionsCreateOrUpdate"
+          "target": "com.azure.network#InvokeVirtualNetworkGatewaysPrepareMigration"
         },
         {
-          "target": "com.azure.network#SupportedSecurityProviders"
-        },
-        {
-          "target": "com.azure.network#SwapLoadBalancerPublicIpAddresses"
-        },
-        {
-          "target": "com.azure.network#UpdateApplicationGatewayPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.network#UpdateApplicationGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateApplicationSecurityGroupTags"
-        },
-        {
-          "target": "com.azure.network#UpdateAzureFirewallTags"
-        },
-        {
-          "target": "com.azure.network#UpdateBastionHostTags"
-        },
-        {
-          "target": "com.azure.network#UpdateConnectionMonitorTags"
-        },
-        {
-          "target": "com.azure.network#UpdateCustomIPPrefixTags"
-        },
-        {
-          "target": "com.azure.network#UpdateDdosCustomPolicyTags"
-        },
-        {
-          "target": "com.azure.network#UpdateDdosProtectionPlanTags"
-        },
-        {
-          "target": "com.azure.network#UpdateExpressRouteCircuitTags"
-        },
-        {
-          "target": "com.azure.network#UpdateExpressRouteCrossConnectionTags"
-        },
-        {
-          "target": "com.azure.network#UpdateExpressRouteGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateExpressRouteLag"
-        },
-        {
-          "target": "com.azure.network#UpdateExpressRoutePortTags"
-        },
-        {
-          "target": "com.azure.network#UpdateFirewallPolicyTags"
-        },
-        {
-          "target": "com.azure.network#UpdateFirstPartyServiceTagTags"
-        },
-        {
-          "target": "com.azure.network#UpdateFlowLogTags"
-        },
-        {
-          "target": "com.azure.network#UpdateInterconnectGroupTags"
-        },
-        {
-          "target": "com.azure.network#UpdateIpAllocationTags"
-        },
-        {
-          "target": "com.azure.network#UpdateIpamPool"
-        },
-        {
-          "target": "com.azure.network#UpdateIpGroupGroups"
-        },
-        {
-          "target": "com.azure.network#UpdateLoadBalancerTags"
-        },
-        {
-          "target": "com.azure.network#UpdateLocalNetworkGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateNatGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateNetworkInterfaceTags"
-        },
-        {
-          "target": "com.azure.network#UpdateNetworkProfileTags"
-        },
-        {
-          "target": "com.azure.network#UpdateNetworkSecurityGroupTags"
-        },
-        {
-          "target": "com.azure.network#UpdateNetworkVirtualApplianceTags"
-        },
-        {
-          "target": "com.azure.network#UpdateNetworkWatcherTags"
-        },
-        {
-          "target": "com.azure.network#UpdateP2sVpnGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdatePrivateLinkServicePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.network#UpdatePublicIPAddressTags"
-        },
-        {
-          "target": "com.azure.network#UpdatePublicIPPrefixTags"
-        },
-        {
-          "target": "com.azure.network#UpdateRouteFilterTags"
-        },
-        {
-          "target": "com.azure.network#UpdateRouteTableTags"
-        },
-        {
-          "target": "com.azure.network#UpdateSecurityPartnerProviderTags"
-        },
-        {
-          "target": "com.azure.network#UpdateServiceEndpointPolicyTags"
-        },
-        {
-          "target": "com.azure.network#UpdateServiceGatewaysAddressLocations"
-        },
-        {
-          "target": "com.azure.network#UpdateServiceGatewaysServices"
-        },
-        {
-          "target": "com.azure.network#UpdateServiceGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVerifierWorkspace"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualHubTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualNetworkApplianceTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewayConnectionTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualNetworkTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualNetworkTapTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVirtualWanTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVpnGatewaysTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVpnServerConfigurationTags"
-        },
-        {
-          "target": "com.azure.network#UpdateVpnSiteTags"
-        },
-        {
-          "target": "com.azure.network#VerifyNetworkWatcherIPFlow"
-        },
-        {
-          "target": "com.azure.network#VirtualApplianceSitesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#VirtualHubBgpConnectionCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#VirtualHubIpConfigurationCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#VirtualHubRouteTableV2sCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#VirtualHubsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#VirtualNetworkAppliancesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.network#VirtualNetworkGatewayConnectionsCreateOrUpdate"
+          "target": "com.azure.network#DeleteVirtualNetworkGatewayNatRule"
         },
         {
           "target": "com.azure.network#VirtualNetworkGatewayNatRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#VirtualNetworkGatewaysCreateOrUpdate"
+          "target": "com.azure.network#GetVirtualNetworkGatewayNatRule"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkGatewayNatRuleByVirtualNetworkGateway"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkGatewaysRadiusSecrets"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnProfilePackageUrl"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientIpsecParameters"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysVpnclientConnectionHealth"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysRoutesInformation"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysResiliencyInformation"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysLearnedRoutes"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverSingleTestDetails"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysFailoverAllTestDetails"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysEffectiveRoutes"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysBgpPeerStatus"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewaysAdvertisedRoutes"
+        },
+        {
+          "target": "com.azure.network#GenerateVirtualNetworkGatewaysVpnProfile"
         },
         {
           "target": "com.azure.network#VirtualNetworkGatewaysGeneratevpnclientpackage"
@@ -202180,46 +200509,1717 @@
           "target": "com.azure.network#VirtualNetworkGatewaysInvokeExecuteMigration"
         },
         {
-          "target": "com.azure.network#VirtualNetworkGatewaysSupportedVpnDevices"
+          "target": "com.azure.network#DisconnectVirtualNetworkGatewaysVirtualNetworkGatewayVpnConnections"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkGatewaysConnections"
+        },
+        {
+          "target": "com.azure.network#InvokeVirtualNetworkGatewaysCommitMigration"
+        },
+        {
+          "target": "com.azure.network#InvokeVirtualNetworkGatewaysAbortMigration"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualNetworkGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateVirtualNetworkGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#VirtualNetworkGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGateways"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkGateways"
+        },
+        {
+          "target": "com.azure.network#DeleteLocalNetworkGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateLocalNetworkGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#LocalNetworkGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetLocalNetworkGateways"
+        },
+        {
+          "target": "com.azure.network#ListLocalNetworkGateways"
         },
         {
           "target": "com.azure.network#VirtualNetworkGatewaysVpnDeviceConfigurationScript"
         },
         {
-          "target": "com.azure.network#VirtualNetworkPeeringsCreateOrUpdate"
+          "target": "com.azure.network#StopVirtualNetworkGatewayConnectionPacketCapture"
         },
         {
-          "target": "com.azure.network#VirtualNetworksCreateOrUpdate"
+          "target": "com.azure.network#StartVirtualNetworkGatewayConnectionPacketCapture"
         },
         {
-          "target": "com.azure.network#VirtualNetworkTapsCreateOrUpdate"
+          "target": "com.azure.network#ResetVirtualNetworkGatewayConnectionSharedKey"
+        },
+        {
+          "target": "com.azure.network#SetVirtualNetworkGatewayConnectionSharedKey"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewayConnectionSharedKey"
+        },
+        {
+          "target": "com.azure.network#ResetVirtualNetworkGatewayConnectionConnection"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewayConnectionIkeSas"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualNetworkGatewayConnection"
+        },
+        {
+          "target": "com.azure.network#UpdateVirtualNetworkGatewayConnectionTags"
+        },
+        {
+          "target": "com.azure.network#VirtualNetworkGatewayConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkGatewayConnection"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkGatewayConnections"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkTapAll"
+        },
+        {
+          "target": "com.azure.network#ListNetworkManagerEffectiveSecurityAdminRules"
+        },
+        {
+          "target": "com.azure.network#ListNetworkManagerEffectiveConnectivityConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteSecurityUserRule"
+        },
+        {
+          "target": "com.azure.network#SecurityUserRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSecurityUserRule"
+        },
+        {
+          "target": "com.azure.network#ListSecurityUserRules"
+        },
+        {
+          "target": "com.azure.network#DeleteSecurityUserRuleCollection"
+        },
+        {
+          "target": "com.azure.network#SecurityUserRuleCollectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSecurityUserRuleCollection"
+        },
+        {
+          "target": "com.azure.network#ListSecurityUserRuleCollections"
+        },
+        {
+          "target": "com.azure.network#DeleteSecurityUserConfiguration"
+        },
+        {
+          "target": "com.azure.network#SecurityUserConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSecurityUserConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListSecurityUserConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteAdminRule"
+        },
+        {
+          "target": "com.azure.network#AdminRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetAdminRule"
+        },
+        {
+          "target": "com.azure.network#ListAdminRules"
+        },
+        {
+          "target": "com.azure.network#DeleteAdminRuleCollection"
+        },
+        {
+          "target": "com.azure.network#AdminRuleCollectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetAdminRuleCollection"
+        },
+        {
+          "target": "com.azure.network#ListAdminRuleCollections"
+        },
+        {
+          "target": "com.azure.network#DeleteSecurityAdminConfiguration"
+        },
+        {
+          "target": "com.azure.network#SecurityAdminConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSecurityAdminConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListSecurityAdminConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteScopeConnection"
+        },
+        {
+          "target": "com.azure.network#ScopeConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetScopeConnection"
+        },
+        {
+          "target": "com.azure.network#ListScopeConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteRoutingRule"
+        },
+        {
+          "target": "com.azure.network#RoutingRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRoutingRule"
+        },
+        {
+          "target": "com.azure.network#ListRoutingRules"
+        },
+        {
+          "target": "com.azure.network#DeleteRoutingRuleCollection"
+        },
+        {
+          "target": "com.azure.network#RoutingRuleCollectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRoutingRuleCollection"
+        },
+        {
+          "target": "com.azure.network#ListRoutingRuleCollections"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkManagerRoutingConfiguration"
+        },
+        {
+          "target": "com.azure.network#NetworkManagerRoutingConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkManagerRoutingConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListNetworkManagerRoutingConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteStaticMember"
+        },
+        {
+          "target": "com.azure.network#StaticMembersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetStaticMember"
+        },
+        {
+          "target": "com.azure.network#ListStaticMembers"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkGroup"
+        },
+        {
+          "target": "com.azure.network#NetworkGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkGroup"
+        },
+        {
+          "target": "com.azure.network#ListNetworkGroups"
+        },
+        {
+          "target": "com.azure.network#ListNetworkManagerDeploymentStatus"
+        },
+        {
+          "target": "com.azure.network#ListActiveSecurityAdminRules"
+        },
+        {
+          "target": "com.azure.network#ListActiveConnectivityConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteConnectivityConfiguration"
+        },
+        {
+          "target": "com.azure.network#ConnectivityConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetConnectivityConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListConnectivityConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteCommit"
+        },
+        {
+          "target": "com.azure.network#CommitsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetCommit"
+        },
+        {
+          "target": "com.azure.network#ListCommits"
+        },
+        {
+          "target": "com.azure.network#PostNetworkManagerCommit"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkManager"
+        },
+        {
+          "target": "com.azure.network#PatchNetworkManager"
+        },
+        {
+          "target": "com.azure.network#NetworkManagersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkManager"
+        },
+        {
+          "target": "com.azure.network#ListNetworkManagers"
+        },
+        {
+          "target": "com.azure.network#ListNetworkManagerBySubscription"
+        },
+        {
+          "target": "com.azure.network#DeleteSubscriptionNetworkManagerConnection"
+        },
+        {
+          "target": "com.azure.network#SubscriptionNetworkManagerConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSubscriptionNetworkManagerConnection"
+        },
+        {
+          "target": "com.azure.network#ListSubscriptionNetworkManagerConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteManagementGroupNetworkManagerConnection"
+        },
+        {
+          "target": "com.azure.network#ManagementGroupNetworkManagerConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetManagementGroupNetworkManagerConnection"
+        },
+        {
+          "target": "com.azure.network#ListManagementGroupNetworkManagerConnections"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterAssociationsReconcile"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeterAssociation"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterAssociationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterAssociation"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterAssociations"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterAccessRulesReconcile"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeterAccessRule"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterAccessRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterAccessRule"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterAccessRules"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeterProfile"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterProfile"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterProfiles"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeterLoggingConfiguration"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterLoggingConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterLoggingConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterLoggingConfigurations"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeterLink"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimeterLinksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterLink"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterLinks"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeterLinkReference"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterLinkReference"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterLinkReferences"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityPerimeter"
+        },
+        {
+          "target": "com.azure.network#PatchNetworkSecurityPerimeter"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityPerimetersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeter"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeters"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterBySubscription"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterAssociableResourceTypes"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityPerimeterServiceTags"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityPerimeterOperationStatus"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherTroubleshooting"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherTopology"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherVMSecurityRules"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherTroubleshootingResult"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherFlowLogStatus"
+        },
+        {
+          "target": "com.azure.network#StopPacketCapture"
+        },
+        {
+          "target": "com.azure.network#GetPacketCaptureStatus"
+        },
+        {
+          "target": "com.azure.network#DeletePacketCapture"
+        },
+        {
+          "target": "com.azure.network#CreatePacketCapture"
+        },
+        {
+          "target": "com.azure.network#GetPacketCapture"
+        },
+        {
+          "target": "com.azure.network#ListPacketCaptures"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherNextHop"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherNetworkConfigurationDiagnostic"
+        },
+        {
+          "target": "com.azure.network#VerifyNetworkWatcherIPFlow"
+        },
+        {
+          "target": "com.azure.network#DeleteFlowLog"
+        },
+        {
+          "target": "com.azure.network#UpdateFlowLogTags"
+        },
+        {
+          "target": "com.azure.network#FlowLogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetFlowLog"
+        },
+        {
+          "target": "com.azure.network#ListFlowLogs"
+        },
+        {
+          "target": "com.azure.network#CheckNetworkWatcherConnectivity"
+        },
+        {
+          "target": "com.azure.network#StopConnectionMonitor"
+        },
+        {
+          "target": "com.azure.network#DeleteConnectionMonitor"
+        },
+        {
+          "target": "com.azure.network#UpdateConnectionMonitorTags"
+        },
+        {
+          "target": "com.azure.network#ConnectionMonitorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetConnectionMonitor"
+        },
+        {
+          "target": "com.azure.network#ListConnectionMonitors"
+        },
+        {
+          "target": "com.azure.network#NetworkWatchersConnectionAnalyzersQuery"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkWatchersConnectionAnalyzer"
+        },
+        {
+          "target": "com.azure.network#NetworkWatchersConnectionAnalyzersUpdateTags"
+        },
+        {
+          "target": "com.azure.network#CreateNetworkWatchersConnectionAnalyzer"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatchersConnectionAnalyzer"
+        },
+        {
+          "target": "com.azure.network#ListNetworkWatchersConnectionAnalyzers"
+        },
+        {
+          "target": "com.azure.network#SetNetworkWatcherFlowLogConfiguration"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcherAzureReachabilityReport"
+        },
+        {
+          "target": "com.azure.network#ListNetworkWatcherAvailableProviders"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkWatcher"
+        },
+        {
+          "target": "com.azure.network#UpdateNetworkWatcherTags"
+        },
+        {
+          "target": "com.azure.network#NetworkWatchersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkWatcher"
+        },
+        {
+          "target": "com.azure.network#ListNetworkWatchers"
+        },
+        {
+          "target": "com.azure.network#ListNetworkWatcherAll"
+        },
+        {
+          "target": "com.azure.network#ListOperations"
+        },
+        {
+          "target": "com.azure.network#UpdateServiceGatewaysServices"
+        },
+        {
+          "target": "com.azure.network#UpdateServiceGatewaysAddressLocations"
+        },
+        {
+          "target": "com.azure.network#GetServiceGatewaysServices"
+        },
+        {
+          "target": "com.azure.network#GetServiceGatewaysAddressLocations"
+        },
+        {
+          "target": "com.azure.network#DeleteServiceGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateServiceGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#ServiceGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetServiceGateways"
+        },
+        {
+          "target": "com.azure.network#ListServiceGateways"
+        },
+        {
+          "target": "com.azure.network#ListServiceGatewaysAll"
+        },
+        {
+          "target": "com.azure.network#GetPublicIPAddressCloudServicePublicIPAddress"
+        },
+        {
+          "target": "com.azure.network#ListPublicIPAddressCloudServiceRoleInstancePublicIPAddresses"
+        },
+        {
+          "target": "com.azure.network#GetNetworkInterfaceCloudServiceNetworkInterface"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceCloudServiceRoleInstanceNetworkInterfaces"
+        },
+        {
+          "target": "com.azure.network#ListPublicIPAddressCloudServicePublicIPAddresses"
+        },
+        {
+          "target": "com.azure.network#CreateVipSwap"
+        },
+        {
+          "target": "com.azure.network#GetVipSwap"
+        },
+        {
+          "target": "com.azure.network#ListVipSwap"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceCloudServiceNetworkInterfaces"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualRouterPeering"
         },
         {
           "target": "com.azure.network#VirtualRouterPeeringsCreateOrUpdate"
         },
         {
+          "target": "com.azure.network#GetVirtualRouterPeering"
+        },
+        {
+          "target": "com.azure.network#ListVirtualRouterPeerings"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualRouter"
+        },
+        {
           "target": "com.azure.network#VirtualRoutersCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#VirtualWansCreateOrUpdate"
+          "target": "com.azure.network#GetVirtualRouter"
         },
         {
-          "target": "com.azure.network#VpnConnectionsCreateOrUpdate"
+          "target": "com.azure.network#ListVirtualRouterByResourceGroup"
         },
         {
-          "target": "com.azure.network#VpnGatewaysCreateOrUpdate"
+          "target": "com.azure.network#DeleteVirtualNetworkPeering"
         },
         {
-          "target": "com.azure.network#VpnLinkConnectionsSetOrInitDefaultSharedKey"
+          "target": "com.azure.network#VirtualNetworkPeeringsCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#VpnServerConfigurationsCreateOrUpdate"
+          "target": "com.azure.network#GetVirtualNetworkPeering"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkPeerings"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkUsage"
+        },
+        {
+          "target": "com.azure.network#SubnetsUnprepareNetworkPolicies"
+        },
+        {
+          "target": "com.azure.network#ListServiceAssociationLinks"
+        },
+        {
+          "target": "com.azure.network#ListResourceNavigationLinks"
+        },
+        {
+          "target": "com.azure.network#SubnetsPrepareNetworkPolicies"
+        },
+        {
+          "target": "com.azure.network#DeleteSubnet"
+        },
+        {
+          "target": "com.azure.network#SubnetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSubnet"
+        },
+        {
+          "target": "com.azure.network#ListSubnets"
+        },
+        {
+          "target": "com.azure.network#MoveVirtualNetworkIpConfigurations"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkDdosProtectionStatus"
+        },
+        {
+          "target": "com.azure.network#CheckVirtualNetworkIPAddressAvailability"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualNetwork"
+        },
+        {
+          "target": "com.azure.network#UpdateVirtualNetworkTags"
+        },
+        {
+          "target": "com.azure.network#VirtualNetworksCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetwork"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworks"
+        },
+        {
+          "target": "com.azure.network#DeleteSecurityPartnerProvider"
+        },
+        {
+          "target": "com.azure.network#UpdateSecurityPartnerProviderTags"
+        },
+        {
+          "target": "com.azure.network#SecurityPartnerProvidersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSecurityPartnerProvider"
+        },
+        {
+          "target": "com.azure.network#ListSecurityPartnerProviderByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteRoute"
+        },
+        {
+          "target": "com.azure.network#RoutesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRoute"
+        },
+        {
+          "target": "com.azure.network#ListRoutes"
+        },
+        {
+          "target": "com.azure.network#DeleteRouteTable"
+        },
+        {
+          "target": "com.azure.network#UpdateRouteTableTags"
+        },
+        {
+          "target": "com.azure.network#RouteTablesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRouteTable"
+        },
+        {
+          "target": "com.azure.network#ListRouteTables"
+        },
+        {
+          "target": "com.azure.network#DeletePublicIPPrefix"
+        },
+        {
+          "target": "com.azure.network#UpdatePublicIPPrefixTags"
+        },
+        {
+          "target": "com.azure.network#PublicIPPrefixesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetPublicIPPrefix"
+        },
+        {
+          "target": "com.azure.network#ListPublicIPPrefixes"
+        },
+        {
+          "target": "com.azure.network#PublicIPAddressesReserveCloudServicePublicIpAddress"
+        },
+        {
+          "target": "com.azure.network#PublicIPAddressesDisassociateCloudServiceReservedPublicIp"
+        },
+        {
+          "target": "com.azure.network#PublicIPAddressesDdosProtectionStatus"
+        },
+        {
+          "target": "com.azure.network#DeletePublicIPAddress"
+        },
+        {
+          "target": "com.azure.network#UpdatePublicIPAddressTags"
+        },
+        {
+          "target": "com.azure.network#PublicIPAddressesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetPublicIPAddress"
+        },
+        {
+          "target": "com.azure.network#ListPublicIPAddresses"
+        },
+        {
+          "target": "com.azure.network#DeletePrivateLinkServicePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.network#UpdatePrivateLinkServicePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.network#GetPrivateLinkServicePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.network#ListPrivateLinkServicePrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.network#DeletePrivateLinkService"
+        },
+        {
+          "target": "com.azure.network#PrivateLinkServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetPrivateLinkService"
+        },
+        {
+          "target": "com.azure.network#ListPrivateLinkServices"
+        },
+        {
+          "target": "com.azure.network#DeletePrivateDnsZoneGroup"
+        },
+        {
+          "target": "com.azure.network#PrivateDnsZoneGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetPrivateDnsZoneGroup"
+        },
+        {
+          "target": "com.azure.network#ListPrivateDnsZoneGroups"
+        },
+        {
+          "target": "com.azure.network#DeletePrivateEndpoint"
+        },
+        {
+          "target": "com.azure.network#PrivateEndpointsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetPrivateEndpoint"
+        },
+        {
+          "target": "com.azure.network#ListPrivateEndpoints"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualApplianceSite"
+        },
+        {
+          "target": "com.azure.network#VirtualApplianceSitesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualApplianceSite"
+        },
+        {
+          "target": "com.azure.network#ListVirtualApplianceSites"
+        },
+        {
+          "target": "com.azure.network#RestartNetworkVirtualAppliance"
+        },
+        {
+          "target": "com.azure.network#NetworkVirtualAppliancesReimage"
+        },
+        {
+          "target": "com.azure.network#NetworkVirtualAppliancesPrepareMigration"
+        },
+        {
+          "target": "com.azure.network#InboundSecurityRuleCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetInboundSecurityRule"
+        },
+        {
+          "target": "com.azure.network#GetNetworkVirtualApplianceBootDiagnosticLogs"
+        },
+        {
+          "target": "com.azure.network#ExecuteNetworkVirtualApplianceMigration"
+        },
+        {
+          "target": "com.azure.network#CommitNetworkVirtualApplianceMigration"
+        },
+        {
+          "target": "com.azure.network#AbortNetworkVirtualApplianceMigration"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkVirtualAppliance"
+        },
+        {
+          "target": "com.azure.network#UpdateNetworkVirtualApplianceTags"
+        },
+        {
+          "target": "com.azure.network#NetworkVirtualAppliancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkVirtualAppliance"
+        },
+        {
+          "target": "com.azure.network#ListNetworkVirtualApplianceByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteSecurityRule"
+        },
+        {
+          "target": "com.azure.network#SecurityRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetSecurityRule"
+        },
+        {
+          "target": "com.azure.network#ListSecurityRules"
+        },
+        {
+          "target": "com.azure.network#GetDefaultSecurityRule"
+        },
+        {
+          "target": "com.azure.network#ListDefaultSecurityRules"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkSecurityGroup"
+        },
+        {
+          "target": "com.azure.network#UpdateNetworkSecurityGroupTags"
+        },
+        {
+          "target": "com.azure.network#NetworkSecurityGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkSecurityGroup"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityGroups"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkProfile"
+        },
+        {
+          "target": "com.azure.network#UpdateNetworkProfileTags"
+        },
+        {
+          "target": "com.azure.network#NetworkProfilesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkProfile"
+        },
+        {
+          "target": "com.azure.network#ListNetworkProfiles"
+        },
+        {
+          "target": "com.azure.network#DeleteReachabilityAnalysisRun"
+        },
+        {
+          "target": "com.azure.network#CreateReachabilityAnalysisRun"
+        },
+        {
+          "target": "com.azure.network#GetReachabilityAnalysisRun"
+        },
+        {
+          "target": "com.azure.network#ListReachabilityAnalysisRuns"
+        },
+        {
+          "target": "com.azure.network#DeleteReachabilityAnalysisIntent"
+        },
+        {
+          "target": "com.azure.network#CreateReachabilityAnalysisIntent"
+        },
+        {
+          "target": "com.azure.network#GetReachabilityAnalysisIntent"
+        },
+        {
+          "target": "com.azure.network#ListReachabilityAnalysisIntents"
+        },
+        {
+          "target": "com.azure.network#DeleteVerifierWorkspace"
+        },
+        {
+          "target": "com.azure.network#UpdateVerifierWorkspace"
+        },
+        {
+          "target": "com.azure.network#CreateVerifierWorkspace"
+        },
+        {
+          "target": "com.azure.network#GetVerifierWorkspace"
+        },
+        {
+          "target": "com.azure.network#ListVerifierWorkspaces"
+        },
+        {
+          "target": "com.azure.network#DeleteStaticCidr"
+        },
+        {
+          "target": "com.azure.network#CreateStaticCidr"
+        },
+        {
+          "target": "com.azure.network#GetStaticCidr"
+        },
+        {
+          "target": "com.azure.network#ListStaticCidrs"
+        },
+        {
+          "target": "com.azure.network#ListIpamPoolAssociatedResources"
+        },
+        {
+          "target": "com.azure.network#GetIpamPoolPoolUsage"
+        },
+        {
+          "target": "com.azure.network#DeleteIpamPool"
+        },
+        {
+          "target": "com.azure.network#UpdateIpamPool"
+        },
+        {
+          "target": "com.azure.network#CreateIpamPool"
+        },
+        {
+          "target": "com.azure.network#GetIpamPool"
+        },
+        {
+          "target": "com.azure.network#ListIpamPools"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkInterfaceTapConfiguration"
+        },
+        {
+          "target": "com.azure.network#NetworkInterfaceTapConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkInterfaceTapConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceTapConfigurations"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceLoadBalancers"
+        },
+        {
+          "target": "com.azure.network#GetNetworkInterfaceIPConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceIPConfigurations"
+        },
+        {
+          "target": "com.azure.network#GetNetworkInterfaceEffectiveRouteTable"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceEffectiveNetworkSecurityGroups"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkInterface"
+        },
+        {
+          "target": "com.azure.network#UpdateNetworkInterfaceTags"
+        },
+        {
+          "target": "com.azure.network#NetworkInterfacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkInterface"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaces"
+        },
+        {
+          "target": "com.azure.network#DeleteNatGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateNatGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#NatGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNatGateways"
+        },
+        {
+          "target": "com.azure.network#ListNatGateways"
+        },
+        {
+          "target": "com.azure.network#CheckPrivateLinkServicePrivateLinkServiceVisibilityByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListAvailableServiceAliasByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListAvailablePrivateEndpointTypeByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListAvailableResourceGroupDelegations"
+        },
+        {
+          "target": "com.azure.network#ListPrivateLinkServiceAutoApprovedPrivateLinkServicesByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteIpGroup"
+        },
+        {
+          "target": "com.azure.network#UpdateIpGroupGroups"
+        },
+        {
+          "target": "com.azure.network#IpGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetIpGroup"
+        },
+        {
+          "target": "com.azure.network#ListIpGroupByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteDscpConfiguration"
+        },
+        {
+          "target": "com.azure.network#DscpConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetDscpConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListDscpConfiguration"
+        },
+        {
+          "target": "com.azure.network#DeleteDdosProtectionPlan"
+        },
+        {
+          "target": "com.azure.network#UpdateDdosProtectionPlanTags"
+        },
+        {
+          "target": "com.azure.network#DdosProtectionPlansCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetDdosProtectionPlan"
+        },
+        {
+          "target": "com.azure.network#ListDdosProtectionPlanByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteDdosCustomPolicy"
+        },
+        {
+          "target": "com.azure.network#UpdateDdosCustomPolicyTags"
+        },
+        {
+          "target": "com.azure.network#DdosCustomPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetDdosCustomPolicy"
+        },
+        {
+          "target": "com.azure.network#ListDdosCustomPolicies"
+        },
+        {
+          "target": "com.azure.network#DeleteCustomIPPrefix"
+        },
+        {
+          "target": "com.azure.network#UpdateCustomIPPrefixTags"
+        },
+        {
+          "target": "com.azure.network#CustomIPPrefixesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetCustomIPPrefix"
+        },
+        {
+          "target": "com.azure.network#ListCustomIPPrefixes"
+        },
+        {
+          "target": "com.azure.network#GetBastionShareableLink"
+        },
+        {
+          "target": "com.azure.network#GetActiveSessions"
+        },
+        {
+          "target": "com.azure.network#DisconnectActiveSessions"
+        },
+        {
+          "target": "com.azure.network#DeleteBastionShareableLinkByToken"
+        },
+        {
+          "target": "com.azure.network#DeleteBastionShareableLink"
+        },
+        {
+          "target": "com.azure.network#PutBastionShareableLink"
+        },
+        {
+          "target": "com.azure.network#DeleteBastionHost"
+        },
+        {
+          "target": "com.azure.network#UpdateBastionHostTags"
+        },
+        {
+          "target": "com.azure.network#BastionHostsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetBastionHost"
+        },
+        {
+          "target": "com.azure.network#ListBastionHostByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteAddressPrefixSet"
+        },
+        {
+          "target": "com.azure.network#AddressPrefixSetsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetAddressPrefixSet"
+        },
+        {
+          "target": "com.azure.network#ListAddressPrefixSets"
+        },
+        {
+          "target": "com.azure.network#DeleteApplicationSecurityGroup"
+        },
+        {
+          "target": "com.azure.network#UpdateApplicationSecurityGroupTags"
+        },
+        {
+          "target": "com.azure.network#ApplicationSecurityGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetApplicationSecurityGroup"
+        },
+        {
+          "target": "com.azure.network#ListApplicationSecurityGroups"
+        },
+        {
+          "target": "com.azure.network#DeleteIpAllocation"
+        },
+        {
+          "target": "com.azure.network#UpdateIpAllocationTags"
+        },
+        {
+          "target": "com.azure.network#IpAllocationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetIpAllocation"
+        },
+        {
+          "target": "com.azure.network#ListIpAllocationByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListVirtualRouters"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkAll"
+        },
+        {
+          "target": "com.azure.network#ListSecurityPartnerProviders"
+        },
+        {
+          "target": "com.azure.network#ListRouteTableAll"
+        },
+        {
+          "target": "com.azure.network#ListPublicIPPrefixAll"
+        },
+        {
+          "target": "com.azure.network#ListPublicIPAddressAll"
+        },
+        {
+          "target": "com.azure.network#ListPrivateLinkServiceBySubscription"
+        },
+        {
+          "target": "com.azure.network#ListPrivateEndpointBySubscription"
+        },
+        {
+          "target": "com.azure.network#ListNetworkVirtualAppliances"
+        },
+        {
+          "target": "com.azure.network#GetVirtualApplianceSkus"
+        },
+        {
+          "target": "com.azure.network#ListVirtualApplianceSkus"
+        },
+        {
+          "target": "com.azure.network#ListNetworkSecurityGroupAll"
+        },
+        {
+          "target": "com.azure.network#ListNetworkProfileAll"
+        },
+        {
+          "target": "com.azure.network#ListNetworkInterfaceAll"
+        },
+        {
+          "target": "com.azure.network#ListNatGatewaysAll"
+        },
+        {
+          "target": "com.azure.network#ListAvailableEndpointServices"
+        },
+        {
+          "target": "com.azure.network#ListUsages"
+        },
+        {
+          "target": "com.azure.network#ListServiceTags"
+        },
+        {
+          "target": "com.azure.network#ListServiceTagInformation"
+        },
+        {
+          "target": "com.azure.network#CheckPrivateLinkServicePrivateLinkServiceVisibility"
+        },
+        {
+          "target": "com.azure.network#CheckDnsNameAvailability"
+        },
+        {
+          "target": "com.azure.network#ListAvailableServiceAliases"
+        },
+        {
+          "target": "com.azure.network#ListAvailablePrivateEndpointTypes"
+        },
+        {
+          "target": "com.azure.network#ListAvailableDelegations"
+        },
+        {
+          "target": "com.azure.network#ListPrivateLinkServiceAutoApprovedPrivateLinkServices"
+        },
+        {
+          "target": "com.azure.network#ListIpGroups"
+        },
+        {
+          "target": "com.azure.network#ListDscpConfigurationAll"
+        },
+        {
+          "target": "com.azure.network#ListDdosProtectionPlans"
+        },
+        {
+          "target": "com.azure.network#ListDdosCustomPolicyAll"
+        },
+        {
+          "target": "com.azure.network#ListCustomIPPrefixAll"
+        },
+        {
+          "target": "com.azure.network#ListBastionHosts"
+        },
+        {
+          "target": "com.azure.network#ListApplicationSecurityGroupAll"
+        },
+        {
+          "target": "com.azure.network#ListIpAllocations"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualNetworkAppliance"
+        },
+        {
+          "target": "com.azure.network#UpdateVirtualNetworkApplianceTags"
+        },
+        {
+          "target": "com.azure.network#VirtualNetworkAppliancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualNetworkAppliance"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkAppliances"
+        },
+        {
+          "target": "com.azure.network#ListVirtualNetworkApplianceAll"
+        },
+        {
+          "target": "com.azure.network#GetVpnSiteLink"
+        },
+        {
+          "target": "com.azure.network#ListVpnSiteLinkByVpnSite"
+        },
+        {
+          "target": "com.azure.network#DeleteVpnSite"
+        },
+        {
+          "target": "com.azure.network#UpdateVpnSiteTags"
         },
         {
           "target": "com.azure.network#VpnSitesCreateOrUpdate"
         },
         {
-          "target": "com.azure.network#WebApplicationFirewallPoliciesCreateOrUpdate"
+          "target": "com.azure.network#GetVpnSite"
+        },
+        {
+          "target": "com.azure.network#ListVpnSiteByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListVpnServerConfigurationRadiusSecrets"
+        },
+        {
+          "target": "com.azure.network#DeleteConfigurationPolicyGroup"
+        },
+        {
+          "target": "com.azure.network#ConfigurationPolicyGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetConfigurationPolicyGroup"
+        },
+        {
+          "target": "com.azure.network#ListConfigurationPolicyGroupByVpnServerConfiguration"
+        },
+        {
+          "target": "com.azure.network#DeleteVpnServerConfiguration"
+        },
+        {
+          "target": "com.azure.network#UpdateVpnServerConfigurationTags"
+        },
+        {
+          "target": "com.azure.network#VpnServerConfigurationsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVpnServerConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListVpnServerConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListVpnLinkConnectionDefaultSharedKey"
+        },
+        {
+          "target": "com.azure.network#VpnLinkConnectionsSetOrInitDefaultSharedKey"
+        },
+        {
+          "target": "com.azure.network#GetVpnLinkConnectionDefaultSharedKey"
+        },
+        {
+          "target": "com.azure.network#GetVpnLinkConnectionAllSharedKeys"
+        },
+        {
+          "target": "com.azure.network#ResetVpnLinkConnectionConnection"
+        },
+        {
+          "target": "com.azure.network#GetVpnLinkConnectionIkeSas"
+        },
+        {
+          "target": "com.azure.network#GetVpnSiteLinkConnection"
+        },
+        {
+          "target": "com.azure.network#ListVpnLinkConnectionByVpnConnection"
+        },
+        {
+          "target": "com.azure.network#StopVpnConnectionPacketCapture"
+        },
+        {
+          "target": "com.azure.network#StartVpnConnectionPacketCapture"
+        },
+        {
+          "target": "com.azure.network#DeleteVpnConnection"
+        },
+        {
+          "target": "com.azure.network#VpnConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVpnConnection"
+        },
+        {
+          "target": "com.azure.network#ListVpnConnectionByVpnGateway"
+        },
+        {
+          "target": "com.azure.network#StopVpnGatewaysPacketCapture"
+        },
+        {
+          "target": "com.azure.network#StartVpnGatewaysPacketCapture"
+        },
+        {
+          "target": "com.azure.network#ResetVpnGateways"
+        },
+        {
+          "target": "com.azure.network#DeleteNatRule"
+        },
+        {
+          "target": "com.azure.network#NatRulesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNatRule"
+        },
+        {
+          "target": "com.azure.network#ListNatRuleByVpnGateway"
+        },
+        {
+          "target": "com.azure.network#DeleteVpnGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateVpnGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#VpnGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVpnGateways"
+        },
+        {
+          "target": "com.azure.network#ListVpnGatewaysByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListVpnServerConfigurationsAssociatedWithVirtualWan"
+        },
+        {
+          "target": "com.azure.network#DownloadVpnSitesConfiguration"
+        },
+        {
+          "target": "com.azure.network#SupportedSecurityProviders"
+        },
+        {
+          "target": "com.azure.network#Generatevirtualwanvpnserverconfigurationvpnprofile"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualWan"
+        },
+        {
+          "target": "com.azure.network#UpdateVirtualWanTags"
+        },
+        {
+          "target": "com.azure.network#VirtualWansCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualWan"
+        },
+        {
+          "target": "com.azure.network#ListVirtualWanByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteRoutingIntent"
+        },
+        {
+          "target": "com.azure.network#RoutingIntentCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRoutingIntent"
+        },
+        {
+          "target": "com.azure.network#ListRoutingIntent"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualHubRouteTableV2s"
+        },
+        {
+          "target": "com.azure.network#VirtualHubRouteTableV2sCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHubRouteTableV2s"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubRouteTableV2s"
+        },
+        {
+          "target": "com.azure.network#DeleteRouteMap"
+        },
+        {
+          "target": "com.azure.network#RouteMapsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetRouteMap"
+        },
+        {
+          "target": "com.azure.network#ListRouteMaps"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHubOutboundRoutes"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualHubIpConfiguration"
+        },
+        {
+          "target": "com.azure.network#VirtualHubIpConfigurationCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHubIpConfiguration"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubIpConfiguration"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHubInboundRoutes"
+        },
+        {
+          "target": "com.azure.network#DeleteHubVirtualNetworkConnection"
+        },
+        {
+          "target": "com.azure.network#HubVirtualNetworkConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetHubVirtualNetworkConnection"
+        },
+        {
+          "target": "com.azure.network#ListHubVirtualNetworkConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteHubRouteTable"
+        },
+        {
+          "target": "com.azure.network#HubRouteTablesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetHubRouteTable"
+        },
+        {
+          "target": "com.azure.network#ListHubRouteTables"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHubEffectiveVirtualHubRoutes"
+        },
+        {
+          "target": "com.azure.network#DeleteConnectionPolicy"
+        },
+        {
+          "target": "com.azure.network#ConnectionPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetConnectionPolicy"
+        },
+        {
+          "target": "com.azure.network#ListConnectionPolicies"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubBgpConnectionLearnedRoutes"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubBgpConnectionAdvertisedRoutes"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualHubBgpConnection"
+        },
+        {
+          "target": "com.azure.network#VirtualHubBgpConnectionCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHubBgpConnection"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubBgpConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteVirtualHub"
+        },
+        {
+          "target": "com.azure.network#UpdateVirtualHubTags"
+        },
+        {
+          "target": "com.azure.network#VirtualHubsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetVirtualHub"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ResetP2SVpnGateways"
+        },
+        {
+          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealthDetailed"
+        },
+        {
+          "target": "com.azure.network#GetP2sVpnGatewaysP2sVpnConnectionHealth"
+        },
+        {
+          "target": "com.azure.network#GenerateP2sVpnGatewaysVpnProfile"
+        },
+        {
+          "target": "com.azure.network#DisconnectP2sVpnGatewaysP2sVpnConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteP2sVpnGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateP2sVpnGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#P2sVpnGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetP2sVpnGateways"
+        },
+        {
+          "target": "com.azure.network#ListP2sVpnGatewaysByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#DeleteNetworkVirtualApplianceConnection"
+        },
+        {
+          "target": "com.azure.network#NetworkVirtualApplianceConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetNetworkVirtualApplianceConnection"
+        },
+        {
+          "target": "com.azure.network#ListNetworkVirtualApplianceConnections"
+        },
+        {
+          "target": "com.azure.network#StopExpressRouteGatewaysSiteFailoverTest"
+        },
+        {
+          "target": "com.azure.network#StartExpressRouteGatewaysSiteFailoverTest"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteGatewaysRoutesInformation"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteGatewaysResiliencyInformation"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteGatewaysFailoverSingleTestDetails"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteGatewaysFailoverAllTestsDetails"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteConnection"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteConnection"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteConnections"
+        },
+        {
+          "target": "com.azure.network#DeleteExpressRouteGateways"
+        },
+        {
+          "target": "com.azure.network#UpdateExpressRouteGatewaysTags"
+        },
+        {
+          "target": "com.azure.network#ExpressRouteGatewaysCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.network#GetExpressRouteGateways"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteGatewaysByResourceGroup"
+        },
+        {
+          "target": "com.azure.network#ListVpnSites"
+        },
+        {
+          "target": "com.azure.network#ListVpnServerConfigurations"
+        },
+        {
+          "target": "com.azure.network#ListVpnGateways"
+        },
+        {
+          "target": "com.azure.network#ListVirtualWans"
+        },
+        {
+          "target": "com.azure.network#ListVirtualHubs"
+        },
+        {
+          "target": "com.azure.network#ListP2sVpnGateways"
+        },
+        {
+          "target": "com.azure.network#ListExpressRouteGatewaysBySubscription"
         }
       ],
       "traits": {

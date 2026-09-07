@@ -5004,10 +5004,37 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.notebooks#CancelNotebooksWidget"
+          "target": "com.posthog.notebooks#ListNotebooks"
         },
         {
           "target": "com.posthog.notebooks#CreateNotebook"
+        },
+        {
+          "target": "com.posthog.notebooks#ListNotebooksSharing"
+        },
+        {
+          "target": "com.posthog.notebooks#CreateNotebooksSharingPassword"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksSharingPasswordsDestroy"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksSharingRefreshCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#GetNotebook"
+        },
+        {
+          "target": "com.posthog.notebooks#UpdateNotebook"
+        },
+        {
+          "target": "com.posthog.notebooks#UpdateNotebooksPartial"
+        },
+        {
+          "target": "com.posthog.notebooks#NotebooksDestroy"
+        },
+        {
+          "target": "com.posthog.notebooks#GetNotebooksActivity"
         },
         {
           "target": "com.posthog.notebooks#CreateNotebooksCollabMarkdownSave"
@@ -5019,61 +5046,16 @@
           "target": "com.posthog.notebooks#CreateNotebooksCollabSave"
         },
         {
-          "target": "com.posthog.notebooks#CreateNotebooksKernelConfig"
-        },
-        {
-          "target": "com.posthog.notebooks#CreateNotebooksSharingPassword"
-        },
-        {
-          "target": "com.posthog.notebooks#CreateNotebooksSqlV2Run"
-        },
-        {
-          "target": "com.posthog.notebooks#CreateNotebooksSqlV2RunsInterrupt"
-        },
-        {
-          "target": "com.posthog.notebooks#GenerateNotebooksWidget"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebook"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebooksActivity"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebooksAllActivity"
-        },
-        {
           "target": "com.posthog.notebooks#GetNotebooksCollabStream"
         },
         {
-          "target": "com.posthog.notebooks#GetNotebooksKernelComputeOption"
+          "target": "com.posthog.notebooks#NotebooksHogqlExecuteCreate"
+        },
+        {
+          "target": "com.posthog.notebooks#CreateNotebooksKernelConfig"
         },
         {
           "target": "com.posthog.notebooks#GetNotebooksKernelDataframe"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebooksKernelStatus"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebooksRecordingComment"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebooksSqlV2Run"
-        },
-        {
-          "target": "com.posthog.notebooks#GetNotebooksSqlV2State"
-        },
-        {
-          "target": "com.posthog.notebooks#ListNotebooks"
-        },
-        {
-          "target": "com.posthog.notebooks#ListNotebooksSharing"
-        },
-        {
-          "target": "com.posthog.notebooks#NotebooksDestroy"
-        },
-        {
-          "target": "com.posthog.notebooks#NotebooksHogqlExecuteCreate"
         },
         {
           "target": "com.posthog.notebooks#NotebooksKernelExecuteCreate"
@@ -5088,16 +5070,31 @@
           "target": "com.posthog.notebooks#NotebooksKernelStartCreate"
         },
         {
+          "target": "com.posthog.notebooks#GetNotebooksKernelStatus"
+        },
+        {
           "target": "com.posthog.notebooks#NotebooksKernelStopCreate"
         },
         {
-          "target": "com.posthog.notebooks#NotebooksSharingPasswordsDestroy"
+          "target": "com.posthog.notebooks#CreateNotebooksSqlV2Run"
         },
         {
-          "target": "com.posthog.notebooks#NotebooksSharingRefreshCreate"
+          "target": "com.posthog.notebooks#GetNotebooksSqlV2Run"
+        },
+        {
+          "target": "com.posthog.notebooks#CreateNotebooksSqlV2RunsInterrupt"
+        },
+        {
+          "target": "com.posthog.notebooks#GetNotebooksSqlV2State"
+        },
+        {
+          "target": "com.posthog.notebooks#CancelNotebooksWidget"
         },
         {
           "target": "com.posthog.notebooks#NotebooksWidgetFrame"
+        },
+        {
+          "target": "com.posthog.notebooks#GenerateNotebooksWidget"
         },
         {
           "target": "com.posthog.notebooks#NotebooksWidgetRevert"
@@ -5112,10 +5109,13 @@
           "target": "com.posthog.notebooks#NotebooksWidgetVersions"
         },
         {
-          "target": "com.posthog.notebooks#UpdateNotebook"
+          "target": "com.posthog.notebooks#GetNotebooksAllActivity"
         },
         {
-          "target": "com.posthog.notebooks#UpdateNotebooksPartial"
+          "target": "com.posthog.notebooks#GetNotebooksKernelComputeOption"
+        },
+        {
+          "target": "com.posthog.notebooks#GetNotebooksRecordingComment"
         }
       ],
       "traits": {

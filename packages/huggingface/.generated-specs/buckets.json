@@ -2038,10 +2038,22 @@
       "version": "0.0.1",
       "operations": [
         {
+          "target": "com.huggingface.buckets#DuplicateXetFiles"
+        },
+        {
+          "target": "com.huggingface.buckets#XetWriteToken"
+        },
+        {
+          "target": "com.huggingface.buckets#XetReadToken"
+        },
+        {
+          "target": "com.huggingface.buckets#GetResourceGroup"
+        },
+        {
           "target": "com.huggingface.buckets#AddResourceGroup"
         },
         {
-          "target": "com.huggingface.buckets#BatchFileOperations"
+          "target": "com.huggingface.buckets#GetBucketDetails"
         },
         {
           "target": "com.huggingface.buckets#CreateBucket"
@@ -2050,34 +2062,22 @@
           "target": "com.huggingface.buckets#DeleteBucket"
         },
         {
-          "target": "com.huggingface.buckets#DuplicateXetFiles"
-        },
-        {
-          "target": "com.huggingface.buckets#GetBucketDetails"
-        },
-        {
-          "target": "com.huggingface.buckets#GetFileMetadata"
-        },
-        {
-          "target": "com.huggingface.buckets#GetResourceGroup"
-        },
-        {
-          "target": "com.huggingface.buckets#ListFiles"
+          "target": "com.huggingface.buckets#UpdateBucketSettings"
         },
         {
           "target": "com.huggingface.buckets#ListNamespaceBuckets"
         },
         {
+          "target": "com.huggingface.buckets#GetFileMetadata"
+        },
+        {
+          "target": "com.huggingface.buckets#BatchFileOperations"
+        },
+        {
+          "target": "com.huggingface.buckets#ListFiles"
+        },
+        {
           "target": "com.huggingface.buckets#ListPathsInfo"
-        },
-        {
-          "target": "com.huggingface.buckets#UpdateBucketSettings"
-        },
-        {
-          "target": "com.huggingface.buckets#XetReadToken"
-        },
-        {
-          "target": "com.huggingface.buckets#XetWriteToken"
         }
       ],
       "traits": {

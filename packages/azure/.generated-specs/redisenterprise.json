@@ -5728,73 +5728,73 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.redisenterprise#AccessPolicyAssignmentCreateUpdate"
-        },
-        {
-          "target": "com.azure.redisenterprise#CreateDatabase"
-        },
-        {
-          "target": "com.azure.redisenterprise#CreateRedisEnterprise"
-        },
-        {
-          "target": "com.azure.redisenterprise#DatabasesForceLinkToReplicationGroup"
-        },
-        {
           "target": "com.azure.redisenterprise#DatabasesUpgradeDBRedisVersion"
-        },
-        {
-          "target": "com.azure.redisenterprise#DeleteAccessPolicyAssignment"
-        },
-        {
-          "target": "com.azure.redisenterprise#DeleteDatabase"
-        },
-        {
-          "target": "com.azure.redisenterprise#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.redisenterprise#DeleteRedisEnterprise"
-        },
-        {
-          "target": "com.azure.redisenterprise#ExportDatabase"
         },
         {
           "target": "com.azure.redisenterprise#FlushDatabase"
         },
         {
-          "target": "com.azure.redisenterprise#GetAccessPolicyAssignment"
+          "target": "com.azure.redisenterprise#DatabasesForceLinkToReplicationGroup"
         },
         {
-          "target": "com.azure.redisenterprise#GetDatabase"
+          "target": "com.azure.redisenterprise#UnlinkDatabasesForce"
         },
         {
-          "target": "com.azure.redisenterprise#GetOperationsStatus"
+          "target": "com.azure.redisenterprise#ListPrivateLinkResourceByCluster"
+        },
+        {
+          "target": "com.azure.redisenterprise#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.redisenterprise#PutPrivateEndpointConnection"
         },
         {
           "target": "com.azure.redisenterprise#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.redisenterprise#GetRedisEnterprise"
+          "target": "com.azure.redisenterprise#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.redisenterprise#ImportDatabase"
+          "target": "com.azure.redisenterprise#ListRedisEnterpriseSkusForScaling"
         },
         {
           "target": "com.azure.redisenterprise#ListAccessPolicyAssignment"
         },
         {
-          "target": "com.azure.redisenterprise#ListDatabaseByCluster"
+          "target": "com.azure.redisenterprise#DeleteAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redisenterprise#AccessPolicyAssignmentCreateUpdate"
+        },
+        {
+          "target": "com.azure.redisenterprise#GetAccessPolicyAssignment"
+        },
+        {
+          "target": "com.azure.redisenterprise#ExportDatabase"
+        },
+        {
+          "target": "com.azure.redisenterprise#ImportDatabase"
+        },
+        {
+          "target": "com.azure.redisenterprise#RegenerateDatabaseKey"
         },
         {
           "target": "com.azure.redisenterprise#ListDatabaseKeys"
         },
         {
-          "target": "com.azure.redisenterprise#ListOperations"
+          "target": "com.azure.redisenterprise#DeleteDatabase"
         },
         {
-          "target": "com.azure.redisenterprise#ListPrivateEndpointConnections"
+          "target": "com.azure.redisenterprise#UpdateDatabase"
         },
         {
-          "target": "com.azure.redisenterprise#ListPrivateLinkResourceByCluster"
+          "target": "com.azure.redisenterprise#CreateDatabase"
+        },
+        {
+          "target": "com.azure.redisenterprise#GetDatabase"
+        },
+        {
+          "target": "com.azure.redisenterprise#ListDatabaseByCluster"
         },
         {
           "target": "com.azure.redisenterprise#ListRedisEnterprise"
@@ -5803,22 +5803,22 @@
           "target": "com.azure.redisenterprise#ListRedisEnterpriseByResourceGroup"
         },
         {
-          "target": "com.azure.redisenterprise#ListRedisEnterpriseSkusForScaling"
-        },
-        {
-          "target": "com.azure.redisenterprise#PutPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.redisenterprise#RegenerateDatabaseKey"
-        },
-        {
-          "target": "com.azure.redisenterprise#UnlinkDatabasesForce"
-        },
-        {
-          "target": "com.azure.redisenterprise#UpdateDatabase"
+          "target": "com.azure.redisenterprise#DeleteRedisEnterprise"
         },
         {
           "target": "com.azure.redisenterprise#UpdateRedisEnterprise"
+        },
+        {
+          "target": "com.azure.redisenterprise#CreateRedisEnterprise"
+        },
+        {
+          "target": "com.azure.redisenterprise#GetRedisEnterprise"
+        },
+        {
+          "target": "com.azure.redisenterprise#GetOperationsStatus"
+        },
+        {
+          "target": "com.azure.redisenterprise#ListOperations"
         }
       ],
       "traits": {

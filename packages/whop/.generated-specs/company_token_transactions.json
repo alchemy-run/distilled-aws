@@ -834,13 +834,13 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.company_token_transactions#ListCompanyTokenTransaction"
+        },
+        {
           "target": "com.whop.company_token_transactions#CreateCompanyTokenTransaction"
         },
         {
           "target": "com.whop.company_token_transactions#GetCompanyTokenTransaction"
-        },
-        {
-          "target": "com.whop.company_token_transactions#ListCompanyTokenTransaction"
         }
       ],
       "traits": {

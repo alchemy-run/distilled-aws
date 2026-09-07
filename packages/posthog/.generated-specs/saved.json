@@ -1171,7 +1171,22 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.saved#ListSaved"
+        },
+        {
           "target": "com.posthog.saved#CreateSaved"
+        },
+        {
+          "target": "com.posthog.saved#GetSaved"
+        },
+        {
+          "target": "com.posthog.saved#UpdateSavedPartial"
+        },
+        {
+          "target": "com.posthog.saved#SavedDestroy"
+        },
+        {
+          "target": "com.posthog.saved#SavedRegenerateCreate"
         },
         {
           "target": "com.posthog.saved#CreateSavedCapture"
@@ -1181,21 +1196,6 @@
         },
         {
           "target": "com.posthog.saved#CreateSavedPrewarm"
-        },
-        {
-          "target": "com.posthog.saved#GetSaved"
-        },
-        {
-          "target": "com.posthog.saved#ListSaved"
-        },
-        {
-          "target": "com.posthog.saved#SavedDestroy"
-        },
-        {
-          "target": "com.posthog.saved#SavedRegenerateCreate"
-        },
-        {
-          "target": "com.posthog.saved#UpdateSavedPartial"
         }
       ],
       "traits": {

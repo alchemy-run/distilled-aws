@@ -3287,34 +3287,7 @@
       "version": "1.1.4",
       "operations": [
         {
-          "target": "com.github.agents#AddSelectedRepoToOrgSecret"
-        },
-        {
-          "target": "com.github.agents#AddSelectedRepoToOrgVariable"
-        },
-        {
-          "target": "com.github.agents#CreateOrgVariable"
-        },
-        {
-          "target": "com.github.agents#CreateOrUpdateOrgSecret"
-        },
-        {
-          "target": "com.github.agents#CreateOrUpdateRepoSecret"
-        },
-        {
-          "target": "com.github.agents#CreateRepoVariable"
-        },
-        {
-          "target": "com.github.agents#DeleteOrgSecret"
-        },
-        {
-          "target": "com.github.agents#DeleteOrgVariable"
-        },
-        {
-          "target": "com.github.agents#DeleteRepoSecret"
-        },
-        {
-          "target": "com.github.agents#DeleteRepoVariable"
+          "target": "com.github.agents#ListOrgSecrets"
         },
         {
           "target": "com.github.agents#GetOrgPublicKey"
@@ -3323,22 +3296,49 @@
           "target": "com.github.agents#GetOrgSecret"
         },
         {
-          "target": "com.github.agents#GetOrgVariable"
+          "target": "com.github.agents#CreateOrUpdateOrgSecret"
         },
         {
-          "target": "com.github.agents#GetRepoPublicKey"
+          "target": "com.github.agents#DeleteOrgSecret"
         },
         {
-          "target": "com.github.agents#GetRepoSecret"
+          "target": "com.github.agents#ListSelectedReposForOrgSecret"
         },
         {
-          "target": "com.github.agents#GetRepoVariable"
+          "target": "com.github.agents#SetSelectedReposForOrgSecret"
         },
         {
-          "target": "com.github.agents#ListOrgSecrets"
+          "target": "com.github.agents#AddSelectedRepoToOrgSecret"
+        },
+        {
+          "target": "com.github.agents#RemoveSelectedRepoFromOrgSecret"
         },
         {
           "target": "com.github.agents#ListOrgVariables"
+        },
+        {
+          "target": "com.github.agents#CreateOrgVariable"
+        },
+        {
+          "target": "com.github.agents#GetOrgVariable"
+        },
+        {
+          "target": "com.github.agents#UpdateOrgVariable"
+        },
+        {
+          "target": "com.github.agents#DeleteOrgVariable"
+        },
+        {
+          "target": "com.github.agents#ListSelectedReposForOrgVariable"
+        },
+        {
+          "target": "com.github.agents#SetSelectedReposForOrgVariable"
+        },
+        {
+          "target": "com.github.agents#AddSelectedRepoToOrgVariable"
+        },
+        {
+          "target": "com.github.agents#RemoveSelectedRepoFromOrgVariable"
         },
         {
           "target": "com.github.agents#ListRepoOrganizationSecrets"
@@ -3350,31 +3350,31 @@
           "target": "com.github.agents#ListRepoSecrets"
         },
         {
+          "target": "com.github.agents#GetRepoPublicKey"
+        },
+        {
+          "target": "com.github.agents#GetRepoSecret"
+        },
+        {
+          "target": "com.github.agents#CreateOrUpdateRepoSecret"
+        },
+        {
+          "target": "com.github.agents#DeleteRepoSecret"
+        },
+        {
           "target": "com.github.agents#ListRepoVariables"
         },
         {
-          "target": "com.github.agents#ListSelectedReposForOrgSecret"
+          "target": "com.github.agents#CreateRepoVariable"
         },
         {
-          "target": "com.github.agents#ListSelectedReposForOrgVariable"
-        },
-        {
-          "target": "com.github.agents#RemoveSelectedRepoFromOrgSecret"
-        },
-        {
-          "target": "com.github.agents#RemoveSelectedRepoFromOrgVariable"
-        },
-        {
-          "target": "com.github.agents#SetSelectedReposForOrgSecret"
-        },
-        {
-          "target": "com.github.agents#SetSelectedReposForOrgVariable"
-        },
-        {
-          "target": "com.github.agents#UpdateOrgVariable"
+          "target": "com.github.agents#GetRepoVariable"
         },
         {
           "target": "com.github.agents#UpdateRepoVariable"
+        },
+        {
+          "target": "com.github.agents#DeleteRepoVariable"
         }
       ],
       "traits": {

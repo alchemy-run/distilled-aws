@@ -1133,22 +1133,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.machinelearning#DeleteWorkspace"
-        },
-        {
-          "target": "com.azure.machinelearning#GetWorkspace"
-        },
-        {
-          "target": "com.azure.machinelearning#ListOperations"
+          "target": "com.azure.machinelearning#ListWorkspaces"
         },
         {
           "target": "com.azure.machinelearning#ListWorkspaceByResourceGroup"
         },
         {
-          "target": "com.azure.machinelearning#ListWorkspaces"
+          "target": "com.azure.machinelearning#ListWorkspaceWorkspaceKeys"
         },
         {
-          "target": "com.azure.machinelearning#ListWorkspaceWorkspaceKeys"
+          "target": "com.azure.machinelearning#WorkspacesResyncStorageKeys"
+        },
+        {
+          "target": "com.azure.machinelearning#DeleteWorkspace"
         },
         {
           "target": "com.azure.machinelearning#UpdateWorkspace"
@@ -1157,7 +1154,10 @@
           "target": "com.azure.machinelearning#WorkspacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.machinelearning#WorkspacesResyncStorageKeys"
+          "target": "com.azure.machinelearning#GetWorkspace"
+        },
+        {
+          "target": "com.azure.machinelearning#ListOperations"
         }
       ],
       "traits": {

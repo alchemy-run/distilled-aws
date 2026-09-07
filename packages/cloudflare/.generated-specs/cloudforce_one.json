@@ -2786,6 +2786,27 @@
       "version": "4.0",
       "operations": [
         {
+          "target": "com.cloudflare.cloudforce_one#RequestsConstants"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#DeleteRequest"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#ListRequests"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#RequestsQuota"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#RequestsTypes"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#UpdateRequest"
+        },
+        {
+          "target": "com.cloudflare.cloudforce_one#GetRequestsAsset"
+        },
+        {
           "target": "com.cloudflare.cloudforce_one#BulkCreateThreatEvents"
         },
         {
@@ -2822,9 +2843,6 @@
           "target": "com.cloudflare.cloudforce_one#CreateThreatEventTag"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#DeleteRequest"
-        },
-        {
           "target": "com.cloudflare.cloudforce_one#DeleteRequestAsset"
         },
         {
@@ -2858,9 +2876,6 @@
           "target": "com.cloudflare.cloudforce_one#GetRequestPriority"
         },
         {
-          "target": "com.cloudflare.cloudforce_one#GetRequestsAsset"
-        },
-        {
           "target": "com.cloudflare.cloudforce_one#GetScanResult"
         },
         {
@@ -2874,9 +2889,6 @@
         },
         {
           "target": "com.cloudflare.cloudforce_one#GetThreatEventRaw"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#ListRequests"
         },
         {
           "target": "com.cloudflare.cloudforce_one#ListScanConfigs"
@@ -2922,18 +2934,6 @@
         },
         {
           "target": "com.cloudflare.cloudforce_one#RawThreatEventDataset"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsConstants"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsQuota"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#RequestsTypes"
-        },
-        {
-          "target": "com.cloudflare.cloudforce_one#UpdateRequest"
         },
         {
           "target": "com.cloudflare.cloudforce_one#UpdateRequestAsset"

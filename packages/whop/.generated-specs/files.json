@@ -648,7 +648,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.files#CompleteFile"
+          "target": "com.whop.files#ListFiles"
         },
         {
           "target": "com.whop.files#CreateFile"
@@ -657,7 +657,7 @@
           "target": "com.whop.files#GetFile"
         },
         {
-          "target": "com.whop.files#ListFiles"
+          "target": "com.whop.files#CompleteFile"
         }
       ],
       "traits": {

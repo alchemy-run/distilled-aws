@@ -3659,58 +3659,61 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingId"
+          "target": "com.azure.resourcehealth#ListAvailabilityStatusByResourceGroup"
         },
         {
-          "target": "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingId"
-        },
-        {
-          "target": "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingId"
-        },
-        {
-          "target": "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingId"
-        },
-        {
-          "target": "com.azure.resourcehealth#EventGetByTenantIdAndTrackingId"
-        },
-        {
-          "target": "com.azure.resourcehealth#GetAvailabilityStatusByResource"
-        },
-        {
-          "target": "com.azure.resourcehealth#GetChildAvailabilityStatusByResource"
-        },
-        {
-          "target": "com.azure.resourcehealth#GetEmergingIssue"
+          "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventId"
         },
         {
           "target": "com.azure.resourcehealth#GetImpactedResource"
         },
         {
-          "target": "com.azure.resourcehealth#GetImpactedResourceByTenantId"
-        },
-        {
-          "target": "com.azure.resourcehealth#GetMetadataEntity"
-        },
-        {
           "target": "com.azure.resourcehealth#ImpactedResourcesListBySubscriptionIdAndEventId"
         },
         {
-          "target": "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventId"
+          "target": "com.azure.resourcehealth#EventFetchDetailsBySubscriptionIdAndTrackingId"
         },
         {
-          "target": "com.azure.resourcehealth#ListAvailabilityStatusByResourceGroup"
+          "target": "com.azure.resourcehealth#EventFetchBilllingCommunicationDetailsBySubscriptionIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#ListEventBySubscriptionId"
         },
         {
           "target": "com.azure.resourcehealth#ListAvailabilityStatusBySubscriptionId"
         },
         {
-          "target": "com.azure.resourcehealth#ListAvailabilityStatuses"
+          "target": "com.azure.resourcehealth#ListOperations"
         },
         {
-          "target": "com.azure.resourcehealth#ListChildAvailabilityStatuses"
+          "target": "com.azure.resourcehealth#GetMetadataEntity"
         },
         {
-          "target": "com.azure.resourcehealth#ListChildResources"
+          "target": "com.azure.resourcehealth#ListMetadata"
+        },
+        {
+          "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventId"
+        },
+        {
+          "target": "com.azure.resourcehealth#GetImpactedResourceByTenantId"
+        },
+        {
+          "target": "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventFetchDetailsByTenantIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#EventGetByTenantIdAndTrackingId"
+        },
+        {
+          "target": "com.azure.resourcehealth#ListEventByTenantId"
+        },
+        {
+          "target": "com.azure.resourcehealth#GetEmergingIssue"
         },
         {
           "target": "com.azure.resourcehealth#ListEmergingIssues"
@@ -3719,22 +3722,19 @@
           "target": "com.azure.resourcehealth#ListEventBySingleResource"
         },
         {
-          "target": "com.azure.resourcehealth#ListEventBySubscriptionId"
+          "target": "com.azure.resourcehealth#ListChildResources"
         },
         {
-          "target": "com.azure.resourcehealth#ListEventByTenantId"
+          "target": "com.azure.resourcehealth#GetChildAvailabilityStatusByResource"
         },
         {
-          "target": "com.azure.resourcehealth#ListMetadata"
+          "target": "com.azure.resourcehealth#ListChildAvailabilityStatuses"
         },
         {
-          "target": "com.azure.resourcehealth#ListOperations"
+          "target": "com.azure.resourcehealth#GetAvailabilityStatusByResource"
         },
         {
-          "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventId"
-        },
-        {
-          "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventId"
+          "target": "com.azure.resourcehealth#ListAvailabilityStatuses"
         }
       ],
       "traits": {

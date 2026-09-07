@@ -809,22 +809,22 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.datacatalog#ADCCatalogsListtByResourceGroup"
-        },
-        {
           "target": "com.azure.datacatalog#DeleteADCCatalog"
+        },
+        {
+          "target": "com.azure.datacatalog#UpdateADCCatalog"
+        },
+        {
+          "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdate"
         },
         {
           "target": "com.azure.datacatalog#GetADCCatalog"
         },
         {
-          "target": "com.azure.datacatalog#ListADCOperations"
+          "target": "com.azure.datacatalog#ADCCatalogsListtByResourceGroup"
         },
         {
-          "target": "com.azure.datacatalog#UpdateADCCatalog"
+          "target": "com.azure.datacatalog#ListADCOperations"
         }
       ],
       "traits": {

@@ -884,19 +884,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.audiences#AddAudiencePeople"
+          "target": "com.whop.audiences#ListAudiences"
         },
         {
           "target": "com.whop.audiences#CreateAudience"
         },
         {
+          "target": "com.whop.audiences#UpdateAudience"
+        },
+        {
           "target": "com.whop.audiences#DeleteAudience"
         },
         {
-          "target": "com.whop.audiences#ListAudiences"
-        },
-        {
-          "target": "com.whop.audiences#UpdateAudience"
+          "target": "com.whop.audiences#AddAudiencePeople"
         }
       ],
       "traits": {

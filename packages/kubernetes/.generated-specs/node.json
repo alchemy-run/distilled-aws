@@ -1948,15 +1948,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.node#CreateNodeV1RuntimeClass"
-        },
-        {
-          "target": "com.kubernetes.node#DeleteNodeV1CollectionRuntimeClass"
-        },
-        {
-          "target": "com.kubernetes.node#DeleteNodeV1RuntimeClass"
-        },
-        {
           "target": "com.kubernetes.node#GetNodeAPIGroup"
         },
         {
@@ -1966,7 +1957,10 @@
           "target": "com.kubernetes.node#ListNodeV1RuntimeClass"
         },
         {
-          "target": "com.kubernetes.node#PatchNodeV1RuntimeClass"
+          "target": "com.kubernetes.node#CreateNodeV1RuntimeClass"
+        },
+        {
+          "target": "com.kubernetes.node#DeleteNodeV1CollectionRuntimeClass"
         },
         {
           "target": "com.kubernetes.node#ReadNodeV1RuntimeClass"
@@ -1975,10 +1969,16 @@
           "target": "com.kubernetes.node#ReplaceNodeV1RuntimeClass"
         },
         {
-          "target": "com.kubernetes.node#WatchNodeV1RuntimeClass"
+          "target": "com.kubernetes.node#PatchNodeV1RuntimeClass"
+        },
+        {
+          "target": "com.kubernetes.node#DeleteNodeV1RuntimeClass"
         },
         {
           "target": "com.kubernetes.node#WatchNodeV1RuntimeClassList"
+        },
+        {
+          "target": "com.kubernetes.node#WatchNodeV1RuntimeClass"
         }
       ],
       "traits": {

@@ -1364,25 +1364,28 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.business_knowledge#ListBusinessKnowledgeDocumentsWindow"
+        },
+        {
           "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchList"
+        },
+        {
+          "target": "com.posthog.business_knowledge#ListBusinessKnowledgeGapSuggestions"
         },
         {
           "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptCreate"
         },
         {
-          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptTopicCreate"
-        },
-        {
-          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesDestroy"
-        },
-        {
-          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesRefreshCreate"
-        },
-        {
           "target": "com.posthog.business_knowledge#CreateBusinessKnowledgeGapSuggestionsDismiss"
         },
         {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptTopicCreate"
+        },
+        {
           "target": "com.posthog.business_knowledge#CreateBusinessKnowledgeGapSuggestionsDismissTopic"
+        },
+        {
+          "target": "com.posthog.business_knowledge#ListBusinessKnowledgeSources"
         },
         {
           "target": "com.posthog.business_knowledge#CreateBusinessKnowledgeSource"
@@ -1391,19 +1394,16 @@
           "target": "com.posthog.business_knowledge#GetBusinessKnowledgeSource"
         },
         {
-          "target": "com.posthog.business_knowledge#GetBusinessKnowledgeSourcesText"
-        },
-        {
-          "target": "com.posthog.business_knowledge#ListBusinessKnowledgeDocumentsWindow"
-        },
-        {
-          "target": "com.posthog.business_knowledge#ListBusinessKnowledgeGapSuggestions"
-        },
-        {
-          "target": "com.posthog.business_knowledge#ListBusinessKnowledgeSources"
-        },
-        {
           "target": "com.posthog.business_knowledge#UpdateBusinessKnowledgeSourcesPartial"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesDestroy"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesRefreshCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#GetBusinessKnowledgeSourcesText"
         }
       ],
       "traits": {

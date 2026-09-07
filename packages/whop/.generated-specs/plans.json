@@ -3521,22 +3521,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.plans#CalculatePlanTax"
+          "target": "com.whop.plans#ListPlans"
         },
         {
           "target": "com.whop.plans#CreatePlan"
         },
         {
-          "target": "com.whop.plans#DeletePlan"
-        },
-        {
           "target": "com.whop.plans#GetPlan"
         },
         {
-          "target": "com.whop.plans#ListPlans"
+          "target": "com.whop.plans#UpdatePlan"
         },
         {
-          "target": "com.whop.plans#UpdatePlan"
+          "target": "com.whop.plans#DeletePlan"
+        },
+        {
+          "target": "com.whop.plans#CalculatePlanTax"
         }
       ],
       "traits": {

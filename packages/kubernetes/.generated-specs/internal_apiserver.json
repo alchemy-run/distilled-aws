@@ -2197,15 +2197,6 @@
       "version": "unversioned",
       "operations": [
         {
-          "target": "com.kubernetes.internal_apiserver#CreateInternalApiserverV1alpha1StorageVersion"
-        },
-        {
-          "target": "com.kubernetes.internal_apiserver#DeleteInternalApiserverV1alpha1CollectionStorageVersion"
-        },
-        {
-          "target": "com.kubernetes.internal_apiserver#DeleteInternalApiserverV1alpha1StorageVersion"
-        },
-        {
           "target": "com.kubernetes.internal_apiserver#GetInternalApiserverAPIGroup"
         },
         {
@@ -2215,28 +2206,37 @@
           "target": "com.kubernetes.internal_apiserver#ListInternalApiserverV1alpha1StorageVersion"
         },
         {
-          "target": "com.kubernetes.internal_apiserver#PatchInternalApiserverV1alpha1StorageVersion"
+          "target": "com.kubernetes.internal_apiserver#CreateInternalApiserverV1alpha1StorageVersion"
         },
         {
-          "target": "com.kubernetes.internal_apiserver#PatchInternalApiserverV1alpha1StorageVersionStatus"
+          "target": "com.kubernetes.internal_apiserver#DeleteInternalApiserverV1alpha1CollectionStorageVersion"
         },
         {
           "target": "com.kubernetes.internal_apiserver#ReadInternalApiserverV1alpha1StorageVersion"
         },
         {
-          "target": "com.kubernetes.internal_apiserver#ReadInternalApiserverV1alpha1StorageVersionStatus"
+          "target": "com.kubernetes.internal_apiserver#ReplaceInternalApiserverV1alpha1StorageVersion"
         },
         {
-          "target": "com.kubernetes.internal_apiserver#ReplaceInternalApiserverV1alpha1StorageVersion"
+          "target": "com.kubernetes.internal_apiserver#PatchInternalApiserverV1alpha1StorageVersion"
+        },
+        {
+          "target": "com.kubernetes.internal_apiserver#DeleteInternalApiserverV1alpha1StorageVersion"
+        },
+        {
+          "target": "com.kubernetes.internal_apiserver#ReadInternalApiserverV1alpha1StorageVersionStatus"
         },
         {
           "target": "com.kubernetes.internal_apiserver#ReplaceInternalApiserverV1alpha1StorageVersionStatus"
         },
         {
-          "target": "com.kubernetes.internal_apiserver#WatchInternalApiserverV1alpha1StorageVersion"
+          "target": "com.kubernetes.internal_apiserver#PatchInternalApiserverV1alpha1StorageVersionStatus"
         },
         {
           "target": "com.kubernetes.internal_apiserver#WatchInternalApiserverV1alpha1StorageVersionList"
+        },
+        {
+          "target": "com.kubernetes.internal_apiserver#WatchInternalApiserverV1alpha1StorageVersion"
         }
       ],
       "traits": {

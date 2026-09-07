@@ -2342,7 +2342,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.memberships#AddFreeDaysMembership"
+          "target": "com.whop.memberships#ListMemberships"
+        },
+        {
+          "target": "com.whop.memberships#InviteMembership"
+        },
+        {
+          "target": "com.whop.memberships#GetMembership"
+        },
+        {
+          "target": "com.whop.memberships#UpdateMembership"
         },
         {
           "target": "com.whop.memberships#CancelMembership"
@@ -2351,31 +2360,22 @@
           "target": "com.whop.memberships#ExtendMembership"
         },
         {
-          "target": "com.whop.memberships#GetMembership"
-        },
-        {
-          "target": "com.whop.memberships#InviteMembership"
-        },
-        {
-          "target": "com.whop.memberships#ListMemberships"
-        },
-        {
           "target": "com.whop.memberships#PauseMembership"
         },
         {
           "target": "com.whop.memberships#ResumeMembership"
         },
         {
-          "target": "com.whop.memberships#ResyncAccessMembership"
-        },
-        {
           "target": "com.whop.memberships#TransferMembership"
         },
         {
-          "target": "com.whop.memberships#UncancelMembership"
+          "target": "com.whop.memberships#AddFreeDaysMembership"
         },
         {
-          "target": "com.whop.memberships#UpdateMembership"
+          "target": "com.whop.memberships#ResyncAccessMembership"
+        },
+        {
+          "target": "com.whop.memberships#UncancelMembership"
         }
       ],
       "traits": {

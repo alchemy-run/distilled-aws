@@ -2253,7 +2253,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.accounts#AccountsDestroy"
+          "target": "com.posthog.accounts#ListAccounts"
         },
         {
           "target": "com.posthog.accounts#CreateAccount"
@@ -2262,13 +2262,19 @@
           "target": "com.posthog.accounts#GetAccount"
         },
         {
-          "target": "com.posthog.accounts#ListAccounts"
+          "target": "com.posthog.accounts#UpdateAccount"
         },
         {
-          "target": "com.posthog.accounts#ListAccountsEmailThreadMessages"
+          "target": "com.posthog.accounts#UpdateAccountsPartial"
+        },
+        {
+          "target": "com.posthog.accounts#AccountsDestroy"
         },
         {
           "target": "com.posthog.accounts#ListAccountsEmailThreads"
+        },
+        {
+          "target": "com.posthog.accounts#ListAccountsEmailThreadMessages"
         },
         {
           "target": "com.posthog.accounts#ListAccountsMeetings"
@@ -2277,16 +2283,10 @@
           "target": "com.posthog.accounts#ListAccountsSummaries"
         },
         {
-          "target": "com.posthog.accounts#ListAccountsSupportTicketMessages"
-        },
-        {
           "target": "com.posthog.accounts#ListAccountsSupportTickets"
         },
         {
-          "target": "com.posthog.accounts#UpdateAccount"
-        },
-        {
-          "target": "com.posthog.accounts#UpdateAccountsPartial"
+          "target": "com.posthog.accounts#ListAccountsSupportTicketMessages"
         }
       ],
       "traits": {

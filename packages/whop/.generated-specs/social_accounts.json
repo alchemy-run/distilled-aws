@@ -1750,10 +1750,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.social_accounts#ConnectSocialAccount"
+          "target": "com.whop.social_accounts#ListSocialAccounts"
         },
         {
           "target": "com.whop.social_accounts#CreateSocialAccount"
+        },
+        {
+          "target": "com.whop.social_accounts#ConnectSocialAccount"
         },
         {
           "target": "com.whop.social_accounts#DeleteSocialAccount"
@@ -1763,9 +1766,6 @@
         },
         {
           "target": "com.whop.social_accounts#ListSocialAccountPosts"
-        },
-        {
-          "target": "com.whop.social_accounts#ListSocialAccounts"
         }
       ],
       "traits": {

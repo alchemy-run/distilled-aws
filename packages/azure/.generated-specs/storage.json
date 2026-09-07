@@ -23415,313 +23415,214 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storage#AbortStorageAccountHierarchicalNamespaceMigration"
+          "target": "com.azure.storage#DeleteTable"
         },
         {
-          "target": "com.azure.storage#AdvancedPlatformMetricsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storage#BlobContainersCreateOrUpdateImmutabilityPolicy"
-        },
-        {
-          "target": "com.azure.storage#BlobContainersLease"
-        },
-        {
-          "target": "com.azure.storage#BlobContainersObjectLevelWorm"
-        },
-        {
-          "target": "com.azure.storage#BlobInventoryPoliciesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storage#CheckStorageAccountNameAvailability"
-        },
-        {
-          "target": "com.azure.storage#ClearBlobContainerLegalHold"
-        },
-        {
-          "target": "com.azure.storage#ContextCacheContainersCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storage#ContextCachesCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.storage#CreateBlobContainer"
-        },
-        {
-          "target": "com.azure.storage#CreateConnector"
-        },
-        {
-          "target": "com.azure.storage#CreateDataShare"
-        },
-        {
-          "target": "com.azure.storage#CreateFileShare"
-        },
-        {
-          "target": "com.azure.storage#CreateQueue"
-        },
-        {
-          "target": "com.azure.storage#CreateStorageAccount"
-        },
-        {
-          "target": "com.azure.storage#CreateStorageTaskAssignment"
+          "target": "com.azure.storage#UpdateTable"
         },
         {
           "target": "com.azure.storage#CreateTable"
         },
         {
-          "target": "com.azure.storage#DeleteAdvancedPlatformMetrics"
-        },
-        {
-          "target": "com.azure.storage#DeleteBlobContainer"
-        },
-        {
-          "target": "com.azure.storage#DeleteBlobContainerImmutabilityPolicy"
-        },
-        {
-          "target": "com.azure.storage#DeleteBlobInventoryPolicy"
-        },
-        {
-          "target": "com.azure.storage#DeleteConnector"
-        },
-        {
-          "target": "com.azure.storage#DeleteContextCach"
-        },
-        {
-          "target": "com.azure.storage#DeleteContextCacheContainer"
-        },
-        {
-          "target": "com.azure.storage#DeleteDataShare"
-        },
-        {
-          "target": "com.azure.storage#DeleteFileShare"
-        },
-        {
-          "target": "com.azure.storage#DeleteLocalUser"
-        },
-        {
-          "target": "com.azure.storage#DeleteManagementPolicy"
-        },
-        {
-          "target": "com.azure.storage#DeleteObjectReplicationPolicy"
-        },
-        {
-          "target": "com.azure.storage#DeletePrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.storage#DeleteQueue"
-        },
-        {
-          "target": "com.azure.storage#DeleteStorageAccount"
-        },
-        {
-          "target": "com.azure.storage#DeleteStorageTaskAssignment"
-        },
-        {
-          "target": "com.azure.storage#DeleteTable"
-        },
-        {
-          "target": "com.azure.storage#ExtendBlobContainerImmutabilityPolicy"
-        },
-        {
-          "target": "com.azure.storage#FileSharesLease"
-        },
-        {
-          "target": "com.azure.storage#GetAdvancedPlatformMetrics"
-        },
-        {
-          "target": "com.azure.storage#GetBlobContainer"
-        },
-        {
-          "target": "com.azure.storage#GetBlobContainerImmutabilityPolicy"
-        },
-        {
-          "target": "com.azure.storage#GetBlobInventoryPolicy"
-        },
-        {
-          "target": "com.azure.storage#GetBlobServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#GetConnector"
-        },
-        {
-          "target": "com.azure.storage#GetContextCach"
-        },
-        {
-          "target": "com.azure.storage#GetContextCacheContainer"
-        },
-        {
-          "target": "com.azure.storage#GetDataShare"
-        },
-        {
-          "target": "com.azure.storage#GetDeletedAccount"
-        },
-        {
-          "target": "com.azure.storage#GetEncryptionScope"
-        },
-        {
-          "target": "com.azure.storage#GetFileServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#GetFileServiceServiceUsage"
-        },
-        {
-          "target": "com.azure.storage#GetFileShare"
-        },
-        {
-          "target": "com.azure.storage#GetLocalUser"
-        },
-        {
-          "target": "com.azure.storage#GetManagementPolicy"
-        },
-        {
-          "target": "com.azure.storage#GetNetworkSecurityPerimeterConfiguration"
-        },
-        {
-          "target": "com.azure.storage#GetObjectReplicationPolicy"
-        },
-        {
-          "target": "com.azure.storage#GetPrivateEndpointConnection"
-        },
-        {
-          "target": "com.azure.storage#GetQueue"
-        },
-        {
-          "target": "com.azure.storage#GetQueueServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#GetStorageAccountCustomerInitiatedMigration"
-        },
-        {
-          "target": "com.azure.storage#GetStorageAccountProperties"
-        },
-        {
-          "target": "com.azure.storage#GetStorageTaskAssignment"
-        },
-        {
           "target": "com.azure.storage#GetTable"
-        },
-        {
-          "target": "com.azure.storage#GetTableServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#ListAdvancedPlatformMetrics"
-        },
-        {
-          "target": "com.azure.storage#ListBlobContainers"
-        },
-        {
-          "target": "com.azure.storage#ListBlobInventoryPolicies"
-        },
-        {
-          "target": "com.azure.storage#ListBlobServices"
-        },
-        {
-          "target": "com.azure.storage#ListConnectorByStorageAccount"
-        },
-        {
-          "target": "com.azure.storage#ListContextCachByResourceGroup"
-        },
-        {
-          "target": "com.azure.storage#ListContextCachBySubscription"
-        },
-        {
-          "target": "com.azure.storage#ListContextCacheContainerByContextCache"
-        },
-        {
-          "target": "com.azure.storage#ListDataShareByStorageAccount"
-        },
-        {
-          "target": "com.azure.storage#ListDeletedAccounts"
-        },
-        {
-          "target": "com.azure.storage#ListEncryptionScopes"
-        },
-        {
-          "target": "com.azure.storage#ListFileServices"
-        },
-        {
-          "target": "com.azure.storage#ListFileServiceServiceUsages"
-        },
-        {
-          "target": "com.azure.storage#ListFileShares"
-        },
-        {
-          "target": "com.azure.storage#ListLocalUserKeys"
-        },
-        {
-          "target": "com.azure.storage#ListLocalUsers"
-        },
-        {
-          "target": "com.azure.storage#ListNetworkSecurityPerimeterConfigurations"
-        },
-        {
-          "target": "com.azure.storage#ListObjectReplicationPolicies"
-        },
-        {
-          "target": "com.azure.storage#ListOperations"
-        },
-        {
-          "target": "com.azure.storage#ListPrivateEndpointConnections"
-        },
-        {
-          "target": "com.azure.storage#ListPrivateLinkResourceByStorageAccount"
-        },
-        {
-          "target": "com.azure.storage#ListQueue2"
-        },
-        {
-          "target": "com.azure.storage#ListQueueServices2"
-        },
-        {
-          "target": "com.azure.storage#ListSkus"
-        },
-        {
-          "target": "com.azure.storage#ListStorageAccountAccountSAS"
-        },
-        {
-          "target": "com.azure.storage#ListStorageAccountByResourceGroup"
-        },
-        {
-          "target": "com.azure.storage#ListStorageAccountKeys"
-        },
-        {
-          "target": "com.azure.storage#ListStorageAccounts"
-        },
-        {
-          "target": "com.azure.storage#ListStorageAccountServiceSAS"
-        },
-        {
-          "target": "com.azure.storage#ListStorageTaskAssignmentInstancesReport"
-        },
-        {
-          "target": "com.azure.storage#ListStorageTaskAssignments"
-        },
-        {
-          "target": "com.azure.storage#ListStorageTaskAssignmentsInstancesReport"
         },
         {
           "target": "com.azure.storage#ListTable"
         },
         {
+          "target": "com.azure.storage#SetTableServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#GetTableServiceServiceProperties"
+        },
+        {
           "target": "com.azure.storage#ListTableServices2"
         },
         {
-          "target": "com.azure.storage#ListUsageByLocation"
+          "target": "com.azure.storage#StopStorageTaskAssignmentAssignment"
         },
         {
-          "target": "com.azure.storage#LocalUsersCreateOrUpdate"
+          "target": "com.azure.storage#ListStorageTaskAssignmentInstancesReport"
         },
         {
-          "target": "com.azure.storage#LockBlobContainerImmutabilityPolicy"
+          "target": "com.azure.storage#DeleteStorageTaskAssignment"
         },
         {
-          "target": "com.azure.storage#ManagementPoliciesCreateOrUpdate"
+          "target": "com.azure.storage#UpdateStorageTaskAssignment"
+        },
+        {
+          "target": "com.azure.storage#CreateStorageTaskAssignment"
+        },
+        {
+          "target": "com.azure.storage#GetStorageTaskAssignment"
+        },
+        {
+          "target": "com.azure.storage#ListStorageTaskAssignments"
+        },
+        {
+          "target": "com.azure.storage#StorageAccountsCustomerInitiatedMigration"
+        },
+        {
+          "target": "com.azure.storage#RevokeStorageAccountUserDelegationKeys"
+        },
+        {
+          "target": "com.azure.storage#RestoreStorageAccountBlobRanges"
+        },
+        {
+          "target": "com.azure.storage#ListStorageTaskAssignmentsInstancesReport"
+        },
+        {
+          "target": "com.azure.storage#RegenerateStorageAccountKey"
+        },
+        {
+          "target": "com.azure.storage#DeleteQueue"
+        },
+        {
+          "target": "com.azure.storage#UpdateQueue"
+        },
+        {
+          "target": "com.azure.storage#CreateQueue"
+        },
+        {
+          "target": "com.azure.storage#GetQueue"
+        },
+        {
+          "target": "com.azure.storage#ListQueue2"
+        },
+        {
+          "target": "com.azure.storage#SetQueueServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#GetQueueServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#ListQueueServices2"
+        },
+        {
+          "target": "com.azure.storage#ListPrivateLinkResourceByStorageAccount"
+        },
+        {
+          "target": "com.azure.storage#DeletePrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.storage#PutPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.storage#GetPrivateEndpointConnection"
+        },
+        {
+          "target": "com.azure.storage#ListPrivateEndpointConnections"
+        },
+        {
+          "target": "com.azure.storage#DeleteObjectReplicationPolicy"
+        },
+        {
+          "target": "com.azure.storage#ObjectReplicationPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetObjectReplicationPolicy"
+        },
+        {
+          "target": "com.azure.storage#ListObjectReplicationPolicies"
         },
         {
           "target": "com.azure.storage#NetworkSecurityPerimeterConfigurationsReconcile"
         },
         {
-          "target": "com.azure.storage#ObjectReplicationPoliciesCreateOrUpdate"
+          "target": "com.azure.storage#GetNetworkSecurityPerimeterConfiguration"
+        },
+        {
+          "target": "com.azure.storage#ListNetworkSecurityPerimeterConfigurations"
+        },
+        {
+          "target": "com.azure.storage#DeleteManagementPolicy"
+        },
+        {
+          "target": "com.azure.storage#ManagementPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetManagementPolicy"
+        },
+        {
+          "target": "com.azure.storage#RegenerateLocalUserPassword"
+        },
+        {
+          "target": "com.azure.storage#ListLocalUserKeys"
+        },
+        {
+          "target": "com.azure.storage#DeleteLocalUser"
+        },
+        {
+          "target": "com.azure.storage#LocalUsersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetLocalUser"
+        },
+        {
+          "target": "com.azure.storage#ListLocalUsers"
+        },
+        {
+          "target": "com.azure.storage#ListStorageAccountServiceSAS"
+        },
+        {
+          "target": "com.azure.storage#ListStorageAccountKeys"
+        },
+        {
+          "target": "com.azure.storage#ListStorageAccountAccountSAS"
+        },
+        {
+          "target": "com.azure.storage#DeleteBlobInventoryPolicy"
+        },
+        {
+          "target": "com.azure.storage#BlobInventoryPoliciesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetBlobInventoryPolicy"
+        },
+        {
+          "target": "com.azure.storage#ListBlobInventoryPolicies"
+        },
+        {
+          "target": "com.azure.storage#StorageAccountsHierarchicalNamespaceMigration"
+        },
+        {
+          "target": "com.azure.storage#GetFileServiceServiceUsage"
+        },
+        {
+          "target": "com.azure.storage#ListFileServiceServiceUsages"
+        },
+        {
+          "target": "com.azure.storage#RestoreFileShare"
+        },
+        {
+          "target": "com.azure.storage#FileSharesLease"
+        },
+        {
+          "target": "com.azure.storage#DeleteFileShare"
+        },
+        {
+          "target": "com.azure.storage#UpdateFileShare"
+        },
+        {
+          "target": "com.azure.storage#CreateFileShare"
+        },
+        {
+          "target": "com.azure.storage#GetFileShare"
+        },
+        {
+          "target": "com.azure.storage#ListFileShares"
+        },
+        {
+          "target": "com.azure.storage#SetFileServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#GetFileServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#ListFileServices"
+        },
+        {
+          "target": "com.azure.storage#StorageAccountsFailover"
         },
         {
           "target": "com.azure.storage#PatchEncryptionScope"
@@ -23730,82 +23631,181 @@
           "target": "com.azure.storage#PutEncryptionScope"
         },
         {
-          "target": "com.azure.storage#PutPrivateEndpointConnection"
+          "target": "com.azure.storage#GetEncryptionScope"
         },
         {
-          "target": "com.azure.storage#RegenerateLocalUserPassword"
+          "target": "com.azure.storage#ListEncryptionScopes"
         },
         {
-          "target": "com.azure.storage#RegenerateStorageAccountKey"
-        },
-        {
-          "target": "com.azure.storage#RestoreFileShare"
-        },
-        {
-          "target": "com.azure.storage#RestoreStorageAccountBlobRanges"
-        },
-        {
-          "target": "com.azure.storage#RevokeStorageAccountUserDelegationKeys"
-        },
-        {
-          "target": "com.azure.storage#SetBlobContainerLegalHold"
-        },
-        {
-          "target": "com.azure.storage#SetBlobServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#SetFileServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#SetQueueServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#SetTableServiceServiceProperties"
-        },
-        {
-          "target": "com.azure.storage#StopStorageTaskAssignmentAssignment"
-        },
-        {
-          "target": "com.azure.storage#StorageAccountsCustomerInitiatedMigration"
-        },
-        {
-          "target": "com.azure.storage#StorageAccountsFailover"
-        },
-        {
-          "target": "com.azure.storage#StorageAccountsHierarchicalNamespaceMigration"
-        },
-        {
-          "target": "com.azure.storage#TestConnectorExistingConnection"
-        },
-        {
-          "target": "com.azure.storage#UpdateBlobContainer"
-        },
-        {
-          "target": "com.azure.storage#UpdateConnector"
-        },
-        {
-          "target": "com.azure.storage#UpdateContextCach"
-        },
-        {
-          "target": "com.azure.storage#UpdateContextCacheContainer"
+          "target": "com.azure.storage#DeleteDataShare"
         },
         {
           "target": "com.azure.storage#UpdateDataShare"
         },
         {
-          "target": "com.azure.storage#UpdateFileShare"
+          "target": "com.azure.storage#CreateDataShare"
         },
         {
-          "target": "com.azure.storage#UpdateQueue"
+          "target": "com.azure.storage#GetDataShare"
+        },
+        {
+          "target": "com.azure.storage#ListDataShareByStorageAccount"
+        },
+        {
+          "target": "com.azure.storage#TestConnectorExistingConnection"
+        },
+        {
+          "target": "com.azure.storage#DeleteConnector"
+        },
+        {
+          "target": "com.azure.storage#UpdateConnector"
+        },
+        {
+          "target": "com.azure.storage#CreateConnector"
+        },
+        {
+          "target": "com.azure.storage#GetConnector"
+        },
+        {
+          "target": "com.azure.storage#ListConnectorByStorageAccount"
+        },
+        {
+          "target": "com.azure.storage#SetBlobContainerLegalHold"
+        },
+        {
+          "target": "com.azure.storage#BlobContainersObjectLevelWorm"
+        },
+        {
+          "target": "com.azure.storage#BlobContainersLease"
+        },
+        {
+          "target": "com.azure.storage#LockBlobContainerImmutabilityPolicy"
+        },
+        {
+          "target": "com.azure.storage#ExtendBlobContainerImmutabilityPolicy"
+        },
+        {
+          "target": "com.azure.storage#DeleteBlobContainerImmutabilityPolicy"
+        },
+        {
+          "target": "com.azure.storage#BlobContainersCreateOrUpdateImmutabilityPolicy"
+        },
+        {
+          "target": "com.azure.storage#GetBlobContainerImmutabilityPolicy"
+        },
+        {
+          "target": "com.azure.storage#ClearBlobContainerLegalHold"
+        },
+        {
+          "target": "com.azure.storage#DeleteBlobContainer"
+        },
+        {
+          "target": "com.azure.storage#UpdateBlobContainer"
+        },
+        {
+          "target": "com.azure.storage#CreateBlobContainer"
+        },
+        {
+          "target": "com.azure.storage#GetBlobContainer"
+        },
+        {
+          "target": "com.azure.storage#ListBlobContainers"
+        },
+        {
+          "target": "com.azure.storage#SetBlobServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#GetBlobServiceServiceProperties"
+        },
+        {
+          "target": "com.azure.storage#ListBlobServices"
+        },
+        {
+          "target": "com.azure.storage#DeleteAdvancedPlatformMetrics"
+        },
+        {
+          "target": "com.azure.storage#AdvancedPlatformMetricsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetAdvancedPlatformMetrics"
+        },
+        {
+          "target": "com.azure.storage#ListAdvancedPlatformMetrics"
+        },
+        {
+          "target": "com.azure.storage#GetStorageAccountCustomerInitiatedMigration"
+        },
+        {
+          "target": "com.azure.storage#AbortStorageAccountHierarchicalNamespaceMigration"
+        },
+        {
+          "target": "com.azure.storage#DeleteStorageAccount"
         },
         {
           "target": "com.azure.storage#UpdateStorageAccount"
         },
         {
-          "target": "com.azure.storage#UpdateStorageTaskAssignment"
+          "target": "com.azure.storage#CreateStorageAccount"
         },
         {
-          "target": "com.azure.storage#UpdateTable"
+          "target": "com.azure.storage#GetStorageAccountProperties"
+        },
+        {
+          "target": "com.azure.storage#ListStorageAccountByResourceGroup"
+        },
+        {
+          "target": "com.azure.storage#DeleteContextCacheContainer"
+        },
+        {
+          "target": "com.azure.storage#UpdateContextCacheContainer"
+        },
+        {
+          "target": "com.azure.storage#ContextCacheContainersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetContextCacheContainer"
+        },
+        {
+          "target": "com.azure.storage#ListContextCacheContainerByContextCache"
+        },
+        {
+          "target": "com.azure.storage#DeleteContextCach"
+        },
+        {
+          "target": "com.azure.storage#UpdateContextCach"
+        },
+        {
+          "target": "com.azure.storage#ContextCachesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storage#GetContextCach"
+        },
+        {
+          "target": "com.azure.storage#ListContextCachByResourceGroup"
+        },
+        {
+          "target": "com.azure.storage#ListStorageAccounts"
+        },
+        {
+          "target": "com.azure.storage#ListSkus"
+        },
+        {
+          "target": "com.azure.storage#ListUsageByLocation"
+        },
+        {
+          "target": "com.azure.storage#GetDeletedAccount"
+        },
+        {
+          "target": "com.azure.storage#ListDeletedAccounts"
+        },
+        {
+          "target": "com.azure.storage#ListContextCachBySubscription"
+        },
+        {
+          "target": "com.azure.storage#CheckStorageAccountNameAvailability"
+        },
+        {
+          "target": "com.azure.storage#ListOperations"
         }
       ],
       "traits": {

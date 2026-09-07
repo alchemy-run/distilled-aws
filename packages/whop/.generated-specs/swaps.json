@@ -956,6 +956,9 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.whop.swaps#ListSwaps"
+        },
+        {
           "target": "com.whop.swaps#CreateSwap"
         },
         {
@@ -963,9 +966,6 @@
         },
         {
           "target": "com.whop.swaps#GetSwap"
-        },
-        {
-          "target": "com.whop.swaps#ListSwaps"
         }
       ],
       "traits": {

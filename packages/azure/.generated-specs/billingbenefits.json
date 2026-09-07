@@ -15066,241 +15066,241 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.billingbenefits#CancelConditionalCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#CancelCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#CancelDiscount"
-        },
-        {
-          "target": "com.azure.billingbenefits#CancelMacc"
-        },
-        {
-          "target": "com.azure.billingbenefits#ConditionalCreditsCreateOrUpdate"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateDiscount"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateFreeService"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateMacc"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateReservationOrderAlias"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateSavingsPlanOrderAlias"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreateSource"
-        },
-        {
-          "target": "com.azure.billingbenefits#CreditsChangeSponsor"
-        },
-        {
-          "target": "com.azure.billingbenefits#DeleteConditionalCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#DeleteCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#DeleteDiscount"
-        },
-        {
-          "target": "com.azure.billingbenefits#DeleteFreeService"
-        },
-        {
-          "target": "com.azure.billingbenefits#DeleteMacc"
-        },
-        {
-          "target": "com.azure.billingbenefits#DeleteSource"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOps"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOps"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetConditionalCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimary"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetConditionalCreditTransaction"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetContributorFromPrimary"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetCreditTransaction"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetDiscount"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetFreeService"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetMacc"
+          "target": "com.azure.billingbenefits#MaccsWriteOff"
         },
         {
           "target": "com.azure.billingbenefits#GetMaccTransaction"
         },
         {
-          "target": "com.azure.billingbenefits#GetReservationOrderAlias"
+          "target": "com.azure.billingbenefits#ListMaccTransactionByParent"
         },
         {
-          "target": "com.azure.billingbenefits#GetSavingsPlan"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetSavingsPlanOrder"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetSavingsPlanOrderAlias"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetSource"
-        },
-        {
-          "target": "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOps"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListApplicableMaccs"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListBillingAccountCatalogGroupsOps"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListBillingProfileCatalogGroupsOps"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListConditionalCreditByResourceGroup"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListConditionalCreditBySubscription"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromApplicableConditionalCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromPrimary"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListConditionalCreditsScope"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListConditionalCreditTransactionByParent"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListContributorFromApplicableMacc"
+          "target": "com.azure.billingbenefits#GetContributorFromPrimary"
         },
         {
           "target": "com.azure.billingbenefits#ListContributorFromPrimary"
         },
         {
-          "target": "com.azure.billingbenefits#ListCreditApplicable"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListCreditByResourceGroup"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListCreditBySubscription"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListCreditTransactionByParent"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListDiscountsResourceGroup"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListDiscountsScope"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListDiscountsSubscription"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListFreeServiceByResourceGroup"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListFreeServiceBySubscription"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListMaccByResourceGroup"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListMaccBySubscription"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListMaccTransactionByParent"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListOperations"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListSavingsPlan"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListSavingsPlanAll"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListSavingsPlanOrder"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListSellerResource"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListSourceByCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#ListSubscriptionCatalogGroupsOps"
-        },
-        {
           "target": "com.azure.billingbenefits#MaccsChargeShortfall"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsWriteOff"
+          "target": "com.azure.billingbenefits#CancelMacc"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanOrderElevate"
-        },
-        {
-          "target": "com.azure.billingbenefits#SavingsPlanValidateUpdate"
-        },
-        {
-          "target": "com.azure.billingbenefits#UpdateConditionalCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#UpdateCredit"
-        },
-        {
-          "target": "com.azure.billingbenefits#UpdateDiscount"
-        },
-        {
-          "target": "com.azure.billingbenefits#UpdateFreeService"
+          "target": "com.azure.billingbenefits#DeleteMacc"
         },
         {
           "target": "com.azure.billingbenefits#UpdateMacc"
         },
         {
-          "target": "com.azure.billingbenefits#UpdateSavingsPlan"
+          "target": "com.azure.billingbenefits#CreateMacc"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetMacc"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListMaccByResourceGroup"
+        },
+        {
+          "target": "com.azure.billingbenefits#DeleteFreeService"
+        },
+        {
+          "target": "com.azure.billingbenefits#UpdateFreeService"
+        },
+        {
+          "target": "com.azure.billingbenefits#CreateFreeService"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetFreeService"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListFreeServiceByResourceGroup"
+        },
+        {
+          "target": "com.azure.billingbenefits#CancelDiscount"
+        },
+        {
+          "target": "com.azure.billingbenefits#DeleteDiscount"
+        },
+        {
+          "target": "com.azure.billingbenefits#UpdateDiscount"
+        },
+        {
+          "target": "com.azure.billingbenefits#CreateDiscount"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetDiscount"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListDiscountsResourceGroup"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetCreditTransaction"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListCreditTransactionByParent"
+        },
+        {
+          "target": "com.azure.billingbenefits#DeleteSource"
         },
         {
           "target": "com.azure.billingbenefits#UpdateSource"
         },
         {
+          "target": "com.azure.billingbenefits#CreateSource"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetSource"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListSourceByCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#CreditsChangeSponsor"
+        },
+        {
+          "target": "com.azure.billingbenefits#CancelCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#DeleteCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#UpdateCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#CreateCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListCreditByResourceGroup"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetConditionalCreditTransaction"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListConditionalCreditTransactionByParent"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimary"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromPrimary"
+        },
+        {
+          "target": "com.azure.billingbenefits#CancelConditionalCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#DeleteConditionalCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#UpdateConditionalCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#ConditionalCreditsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetConditionalCredit"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListConditionalCreditByResourceGroup"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListMaccBySubscription"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListFreeServiceBySubscription"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListDiscountsSubscription"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListCreditBySubscription"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListConditionalCreditBySubscription"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOps"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListSubscriptionCatalogGroupsOps"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListContributorFromApplicableMacc"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListApplicableMaccs"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromApplicableConditionalCredit"
+        },
+        {
           "target": "com.azure.billingbenefits#ValidateBenefit"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListSavingsPlanAll"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanValidateUpdate"
+        },
+        {
+          "target": "com.azure.billingbenefits#UpdateSavingsPlan"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetSavingsPlan"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListSavingsPlan"
+        },
+        {
+          "target": "com.azure.billingbenefits#SavingsPlanOrderElevate"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetSavingsPlanOrder"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListSavingsPlanOrder"
+        },
+        {
+          "target": "com.azure.billingbenefits#CreateSavingsPlanOrderAlias"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetSavingsPlanOrderAlias"
+        },
+        {
+          "target": "com.azure.billingbenefits#CreateReservationOrderAlias"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetReservationOrderAlias"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListOperations"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListSellerResource"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOps"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListBillingAccountCatalogGroupsOps"
+        },
+        {
+          "target": "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOps"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListBillingProfileCatalogGroupsOps"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListDiscountsScope"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListCreditApplicable"
+        },
+        {
+          "target": "com.azure.billingbenefits#ListConditionalCreditsScope"
         }
       ],
       "traits": {

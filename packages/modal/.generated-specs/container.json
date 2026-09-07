@@ -950,10 +950,16 @@
           "target": "com.modal.container#ContainerCheckpoint"
         },
         {
+          "target": "com.modal.container#ExecContainer"
+        },
+        {
           "target": "com.modal.container#ContainerExecPutInput"
         },
         {
           "target": "com.modal.container#ContainerExecWait"
+        },
+        {
+          "target": "com.modal.container#ExecContainerFilesystem"
         },
         {
           "target": "com.modal.container#ContainerHeartbeat"
@@ -969,12 +975,6 @@
         },
         {
           "target": "com.modal.container#ContainerServerLifecycleReady"
-        },
-        {
-          "target": "com.modal.container#ExecContainer"
-        },
-        {
-          "target": "com.modal.container#ExecContainerFilesystem"
         },
         {
           "target": "com.modal.container#StopContainer"

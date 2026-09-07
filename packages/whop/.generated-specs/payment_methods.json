@@ -5064,13 +5064,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.payment_methods#DeletePaymentMethod"
+          "target": "com.whop.payment_methods#ListPaymentMethod"
         },
         {
           "target": "com.whop.payment_methods#GetPaymentMethod"
         },
         {
-          "target": "com.whop.payment_methods#ListPaymentMethod"
+          "target": "com.whop.payment_methods#DeletePaymentMethod"
         }
       ],
       "traits": {

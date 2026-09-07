@@ -735,19 +735,19 @@
       "version": "1.0.0",
       "operations": [
         {
+          "target": "com.posthog.account_track_rules#ListAccountTrackRules"
+        },
+        {
+          "target": "com.posthog.account_track_rules#UpdateAccountTrackRule"
+        },
+        {
           "target": "com.posthog.account_track_rules#CreateAccountTrackRulesPreview"
         },
         {
           "target": "com.posthog.account_track_rules#CreateAccountTrackRulesRun"
         },
         {
-          "target": "com.posthog.account_track_rules#ListAccountTrackRules"
-        },
-        {
           "target": "com.posthog.account_track_rules#ListAccountTrackRulesRuns"
-        },
-        {
-          "target": "com.posthog.account_track_rules#UpdateAccountTrackRule"
         }
       ],
       "traits": {
