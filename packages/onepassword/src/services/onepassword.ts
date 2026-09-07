@@ -1044,154 +1044,6 @@ export const GetVaultsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVaultsResponse",
 }) as any as S.Schema<GetVaultsResponse>;
 
-export type PatchItemOp = "add" | "remove" | "replace";
-export const PatchItemOp = /*@__PURE__*/ S.String;
-
-export interface PatchItem {
-  op: PatchItemOp | (string & {});
-  /** An RFC6901 JSON Pointer pointing to the Item document, an Item Attribute, and Item Field by Field ID, or an Item Field Attribute */
-  path: string;
-  value?: unknown;
-}
-export const PatchItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    op: PatchItemOp,
-    path: S.String,
-    value: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "PatchItem" }) as any as S.Schema<PatchItem>;
-
-export type Patch = Array<PatchItem>;
-export const Patch = /*@__PURE__*/ S.Array(PatchItem) as any as S.Schema<Patch>;
-
-export interface PatchVaultItemRequest {
-  /** The UUID of the Vault the item is in */
-  vaultUuid: string;
-  /** The UUID of the Item to update */
-  itemUuid: string;
-  body?: Patch;
-}
-export const PatchVaultItemRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vaultUuid: S.String.pipe(T.Label()),
-    itemUuid: S.String.pipe(T.Label()),
-    body: S.optional(Patch.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/vaults/{vaultUuid}/items/{itemUuid}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PatchVaultItemRequest",
-}) as any as S.Schema<PatchVaultItemRequest>;
-
-export type PatchVaultItemResponseVault = CreateVaultItemRequestVault;
-export const PatchVaultItemResponseVault = CreateVaultItemRequestVault;
-
-export type PatchVaultItemResponseCategory =
-  | "LOGIN"
-  | "PASSWORD"
-  | "API_CREDENTIAL"
-  | "SERVER"
-  | "DATABASE"
-  | "CREDIT_CARD"
-  | "MEMBERSHIP"
-  | "PASSPORT"
-  | "SOFTWARE_LICENSE"
-  | "OUTDOOR_LICENSE"
-  | "SECURE_NOTE"
-  | "WIRELESS_ROUTER"
-  | "BANK_ACCOUNT"
-  | "DRIVER_LICENSE"
-  | "IDENTITY"
-  | "REWARD_PROGRAM"
-  | "DOCUMENT"
-  | "EMAIL_ACCOUNT"
-  | "SOCIAL_SECURITY_NUMBER"
-  | "MEDICAL_RECORD"
-  | "SSH_KEY"
-  | "CUSTOM";
-export const PatchVaultItemResponseCategory = /*@__PURE__*/ S.String;
-
-export type PatchVaultItemResponseUrlsItem = CreateVaultItemRequestUrlsItem;
-export const PatchVaultItemResponseUrlsItem = CreateVaultItemRequestUrlsItem;
-
-export type PatchVaultItemResponseUrlsList =
-  Array<CreateVaultItemRequestUrlsItem>;
-export const PatchVaultItemResponseUrlsList = /*@__PURE__*/ S.Array(
-  CreateVaultItemRequestUrlsItem,
-) as any as S.Schema<PatchVaultItemResponseUrlsList>;
-
-export type PatchVaultItemResponseTagsList = Array<string>;
-export const PatchVaultItemResponseTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PatchVaultItemResponseTagsList>;
-
-export type PatchVaultItemResponseState = "ARCHIVED" | "DELETED";
-export const PatchVaultItemResponseState = /*@__PURE__*/ S.String;
-
-export type PatchVaultItemResponseSectionsItem =
-  CreateVaultItemRequestSectionsItem;
-export const PatchVaultItemResponseSectionsItem =
-  CreateVaultItemRequestSectionsItem;
-
-export type PatchVaultItemResponseSectionsList =
-  Array<CreateVaultItemRequestSectionsItem>;
-export const PatchVaultItemResponseSectionsList = /*@__PURE__*/ S.Array(
-  CreateVaultItemRequestSectionsItem,
-) as any as S.Schema<PatchVaultItemResponseSectionsList>;
-
-export type PatchVaultItemResponseFieldsList = Array<Field>;
-export const PatchVaultItemResponseFieldsList = /*@__PURE__*/ S.Array(
-  Field,
-) as any as S.Schema<PatchVaultItemResponseFieldsList>;
-
-export type PatchVaultItemResponseFilesList = Array<File>;
-export const PatchVaultItemResponseFilesList = /*@__PURE__*/ S.Array(
-  File,
-) as any as S.Schema<PatchVaultItemResponseFilesList>;
-
-export interface PatchVaultItemResponse {
-  id?: string;
-  title?: string;
-  vault: CreateVaultItemRequestVault;
-  category: PatchVaultItemResponseCategory;
-  urls?: PatchVaultItemResponseUrlsList;
-  favorite?: boolean;
-  tags?: PatchVaultItemResponseTagsList;
-  version?: number;
-  state?: PatchVaultItemResponseState;
-  createdAt?: string;
-  updatedAt?: string;
-  lastEditedBy?: string;
-  sections?: PatchVaultItemResponseSectionsList;
-  fields?: PatchVaultItemResponseFieldsList;
-  files?: PatchVaultItemResponseFilesList;
-}
-export const PatchVaultItemResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    title: S.optional(S.String),
-    vault: CreateVaultItemRequestVault,
-    category: PatchVaultItemResponseCategory,
-    urls: S.optional(PatchVaultItemResponseUrlsList),
-    favorite: S.optional(S.Boolean),
-    tags: S.optional(PatchVaultItemResponseTagsList),
-    version: S.optional(S.Number),
-    state: S.optional(PatchVaultItemResponseState),
-    createdAt: S.optional(S.String),
-    updatedAt: S.optional(S.String),
-    lastEditedBy: S.optional(S.String),
-    sections: S.optional(PatchVaultItemResponseSectionsList),
-    fields: S.optional(PatchVaultItemResponseFieldsList),
-    files: S.optional(PatchVaultItemResponseFilesList),
-  }),
-).annotate({
-  identifier: "PatchVaultItemResponse",
-}) as any as S.Schema<PatchVaultItemResponse>;
-
 export type UpdateVaultItemRequestVault = CreateVaultItemRequestVault;
 export const UpdateVaultItemRequestVault = CreateVaultItemRequestVault;
 
@@ -1403,6 +1255,160 @@ export const UpdateVaultItemResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateVaultItemResponse",
 }) as any as S.Schema<UpdateVaultItemResponse>;
 
+export type PatchItemOp = "add" | "remove" | "replace";
+export const PatchItemOp = /*@__PURE__*/ S.String;
+
+export interface PatchItem {
+  op: PatchItemOp | (string & {});
+  /** An RFC6901 JSON Pointer pointing to the Item document, an Item Attribute, and Item Field by Field ID, or an Item Field Attribute */
+  path: string;
+  value?: unknown;
+}
+export const PatchItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    op: PatchItemOp,
+    path: S.String,
+    value: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "PatchItem" }) as any as S.Schema<PatchItem>;
+
+export type Patch = Array<PatchItem>;
+export const Patch = /*@__PURE__*/ S.Array(PatchItem) as any as S.Schema<Patch>;
+
+export interface UpdateVaultItemByItemUuidRequest {
+  /** The UUID of the Vault the item is in */
+  vaultUuid: string;
+  /** The UUID of the Item to update */
+  itemUuid: string;
+  body?: Patch;
+}
+export const UpdateVaultItemByItemUuidRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vaultUuid: S.String.pipe(T.Label()),
+    itemUuid: S.String.pipe(T.Label()),
+    body: S.optional(Patch.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/vaults/{vaultUuid}/items/{itemUuid}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVaultItemByItemUuidRequest",
+}) as any as S.Schema<UpdateVaultItemByItemUuidRequest>;
+
+export type UpdateVaultItemByItemUuidResponseVault =
+  CreateVaultItemRequestVault;
+export const UpdateVaultItemByItemUuidResponseVault =
+  CreateVaultItemRequestVault;
+
+export type UpdateVaultItemByItemUuidResponseCategory =
+  | "LOGIN"
+  | "PASSWORD"
+  | "API_CREDENTIAL"
+  | "SERVER"
+  | "DATABASE"
+  | "CREDIT_CARD"
+  | "MEMBERSHIP"
+  | "PASSPORT"
+  | "SOFTWARE_LICENSE"
+  | "OUTDOOR_LICENSE"
+  | "SECURE_NOTE"
+  | "WIRELESS_ROUTER"
+  | "BANK_ACCOUNT"
+  | "DRIVER_LICENSE"
+  | "IDENTITY"
+  | "REWARD_PROGRAM"
+  | "DOCUMENT"
+  | "EMAIL_ACCOUNT"
+  | "SOCIAL_SECURITY_NUMBER"
+  | "MEDICAL_RECORD"
+  | "SSH_KEY"
+  | "CUSTOM";
+export const UpdateVaultItemByItemUuidResponseCategory = /*@__PURE__*/ S.String;
+
+export type UpdateVaultItemByItemUuidResponseUrlsItem =
+  CreateVaultItemRequestUrlsItem;
+export const UpdateVaultItemByItemUuidResponseUrlsItem =
+  CreateVaultItemRequestUrlsItem;
+
+export type UpdateVaultItemByItemUuidResponseUrlsList =
+  Array<CreateVaultItemRequestUrlsItem>;
+export const UpdateVaultItemByItemUuidResponseUrlsList = /*@__PURE__*/ S.Array(
+  CreateVaultItemRequestUrlsItem,
+) as any as S.Schema<UpdateVaultItemByItemUuidResponseUrlsList>;
+
+export type UpdateVaultItemByItemUuidResponseTagsList = Array<string>;
+export const UpdateVaultItemByItemUuidResponseTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateVaultItemByItemUuidResponseTagsList>;
+
+export type UpdateVaultItemByItemUuidResponseState = "ARCHIVED" | "DELETED";
+export const UpdateVaultItemByItemUuidResponseState = /*@__PURE__*/ S.String;
+
+export type UpdateVaultItemByItemUuidResponseSectionsItem =
+  CreateVaultItemRequestSectionsItem;
+export const UpdateVaultItemByItemUuidResponseSectionsItem =
+  CreateVaultItemRequestSectionsItem;
+
+export type UpdateVaultItemByItemUuidResponseSectionsList =
+  Array<CreateVaultItemRequestSectionsItem>;
+export const UpdateVaultItemByItemUuidResponseSectionsList =
+  /*@__PURE__*/ S.Array(
+    CreateVaultItemRequestSectionsItem,
+  ) as any as S.Schema<UpdateVaultItemByItemUuidResponseSectionsList>;
+
+export type UpdateVaultItemByItemUuidResponseFieldsList = Array<Field>;
+export const UpdateVaultItemByItemUuidResponseFieldsList =
+  /*@__PURE__*/ S.Array(
+    Field,
+  ) as any as S.Schema<UpdateVaultItemByItemUuidResponseFieldsList>;
+
+export type UpdateVaultItemByItemUuidResponseFilesList = Array<File>;
+export const UpdateVaultItemByItemUuidResponseFilesList = /*@__PURE__*/ S.Array(
+  File,
+) as any as S.Schema<UpdateVaultItemByItemUuidResponseFilesList>;
+
+export interface UpdateVaultItemByItemUuidResponse {
+  id?: string;
+  title?: string;
+  vault: CreateVaultItemRequestVault;
+  category: UpdateVaultItemByItemUuidResponseCategory;
+  urls?: UpdateVaultItemByItemUuidResponseUrlsList;
+  favorite?: boolean;
+  tags?: UpdateVaultItemByItemUuidResponseTagsList;
+  version?: number;
+  state?: UpdateVaultItemByItemUuidResponseState;
+  createdAt?: string;
+  updatedAt?: string;
+  lastEditedBy?: string;
+  sections?: UpdateVaultItemByItemUuidResponseSectionsList;
+  fields?: UpdateVaultItemByItemUuidResponseFieldsList;
+  files?: UpdateVaultItemByItemUuidResponseFilesList;
+}
+export const UpdateVaultItemByItemUuidResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+    vault: CreateVaultItemRequestVault,
+    category: UpdateVaultItemByItemUuidResponseCategory,
+    urls: S.optional(UpdateVaultItemByItemUuidResponseUrlsList),
+    favorite: S.optional(S.Boolean),
+    tags: S.optional(UpdateVaultItemByItemUuidResponseTagsList),
+    version: S.optional(S.Number),
+    state: S.optional(UpdateVaultItemByItemUuidResponseState),
+    createdAt: S.optional(S.String),
+    updatedAt: S.optional(S.String),
+    lastEditedBy: S.optional(S.String),
+    sections: S.optional(UpdateVaultItemByItemUuidResponseSectionsList),
+    fields: S.optional(UpdateVaultItemByItemUuidResponseFieldsList),
+    files: S.optional(UpdateVaultItemByItemUuidResponseFilesList),
+  }),
+).annotate({
+  identifier: "UpdateVaultItemByItemUuidResponse",
+}) as any as S.Schema<UpdateVaultItemByItemUuidResponse>;
+
 export type CreateVaultItemError =
   | BadRequest
   | Forbidden
@@ -1605,21 +1611,6 @@ export const getVaults: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchVaultItemError = Forbidden | NotFound | OnepasswordOpError;
-/** Update a subset of Item attributes Applies a modified [RFC6902 JSON Patch](https://tools.ietf.org/html/rfc6902) document to an Item or ItemField. This endpoint only supports `add`, `remove` and `replace` operations. When modifying a specific ItemField, the ItemField's ID in the `path` attribute of the operation object: `/fields/{fieldId}` */
-export const patchVaultItem: API.OperationMethod<
-  PatchVaultItemRequest,
-  PatchVaultItemResponse,
-  PatchVaultItemError,
-  OnepasswordOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchVaultItemRequest,
-  output: PatchVaultItemResponse,
-  errors: [Forbidden, NotFound, UnknownOnepasswordError],
-  protocol: OnepasswordProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateVaultItemError =
   | BadRequest
   | Forbidden
@@ -1635,6 +1626,24 @@ export const updateVaultItem: API.OperationMethod<
   input: UpdateVaultItemRequest,
   output: UpdateVaultItemResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownOnepasswordError],
+  protocol: OnepasswordProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVaultItemByItemUuidError =
+  | Forbidden
+  | NotFound
+  | OnepasswordOpError;
+/** Update a subset of Item attributes Applies a modified [RFC6902 JSON Patch](https://tools.ietf.org/html/rfc6902) document to an Item or ItemField. This endpoint only supports `add`, `remove` and `replace` operations. When modifying a specific ItemField, the ItemField's ID in the `path` attribute of the operation object: `/fields/{fieldId}` */
+export const updateVaultItemByItemUuid: API.OperationMethod<
+  UpdateVaultItemByItemUuidRequest,
+  UpdateVaultItemByItemUuidResponse,
+  UpdateVaultItemByItemUuidError,
+  OnepasswordOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVaultItemByItemUuidRequest,
+  output: UpdateVaultItemByItemUuidResponse,
+  errors: [Forbidden, NotFound, UnknownOnepasswordError],
   protocol: OnepasswordProtocol,
   retry: Retry.Retry,
 }));
