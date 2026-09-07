@@ -189,6 +189,12 @@
     },
     {
       "path": "./packages/paypal/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/plaid/tsconfig.json"
+    },
+    {
+      "path": "./packages/plaid/tsconfig.scripts.json"
     }
   ]
 }

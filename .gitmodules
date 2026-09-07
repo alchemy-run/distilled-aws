@@ -148,3 +148,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-paypal.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/plaid/specs/spec-mirror-plaid"]
+	path = packages/plaid/specs/spec-mirror-plaid
+	url = https://github.com/distilled-mirror/spec-mirror-plaid.git
+	ignore = dirty
+	shallow = true
