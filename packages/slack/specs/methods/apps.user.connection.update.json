@@ -1,0 +1,62 @@
+{
+  "desc": "Updates the connection status between a user and an app.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "users:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_id",
+      "status"
+    ],
+    "discardAdditionalProperties": true,
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "allow": [
+          "granular_bot",
+          "oauth"
+        ],
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_id": {
+        "desc": "The ID of the user for the status update.",
+        "type": "string",
+        "example": "U12345678",
+        "logged": true,
+        "schema": "user_id"
+      },
+      "status": {
+        "desc": "The status that should be set for the user.",
+        "type": "string",
+        "example": "connected",
+        "enum": [
+          "connected",
+          "disconnected"
+        ]
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "app_not_found": {
+      "desc": "The app was not found."
+    },
+    "invalid_auth": {
+      "desc": "The token doesn't have access to this endpoint."
+    },
+    "app_not_subscribed": {
+      "desc": "The app is not subscribed to the required events."
+    },
+    "user_not_found": {
+      "desc": "Value passed for `user_id` was invalid."
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "desc": "Opens or resumes a direct message or multi-person direct message.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "channels:manage",
+      "groups:write",
+      "im:write",
+      "mpim:write"
+    ],
+    "user": [
+      "channels:write",
+      "groups:write",
+      "im:write",
+      "mpim:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Resume a conversation by supplying an `im` or `mpim`'s ID. Or provide the `users` field instead.",
+        "subtype": "channel_group",
+        "anyOf": [
+          {
+            "type": "string",
+            "subtype": "channel_group"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "return_im": {
+        "desc": "Boolean, indicates you want the full IM channel definition in the response.",
+        "type": "boolean"
+      },
+      "users": {
+        "desc": "Comma separated lists of users. If only one user is included, this creates a 1:1 DM.  The ordering of the users is preserved whenever a multi-person direct message is returned. Supply a `channel` when not supplying `users`.",
+        "type": "string",
+        "subtype": "users"
+      },
+      "prevent_creation": {
+        "desc": "Do not create a direct message or multi-person direct message. This is used to see if there is an existing dm or mpdm.",
+        "default": false,
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "already_open": {
+        "type": "boolean"
+      },
+      "no_op": {
+        "type": "boolean"
+      },
+      "channel": {
+        "oneOf": [
+          {
+            "schema": "conversation"
+          },
+          {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "schema": "channel"
+              }
+            }
+          }
+        ]
+      },
+      "app_home": {
+        "schema": "home"
+      },
+      "home_view": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "schema": "view"
+          }
+        ]
+      }
+    }
+  },
+  "warnings": {
+    "no_op": {
+      "desc": "Slack did nothing when serving this request but it did not fail."
+    },
+    "already_open": {
+      "desc": "The conversation was already open so Slack did nothing."
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "invalid_user_combination": {
+      "desc": "All external people must already be in at least one channel together to send a message."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "not_enough_users": {
+      "desc": "Needs at least 2 users to open"
+    },
+    "too_many_users": {
+      "desc": "Needs at most 8 users to open"
+    },
+    "user_disabled": {
+      "desc": "A specified `user` has been disabled."
+    },
+    "user_not_found": {
+      "desc": "Value(s) passed for `users` was invalid."
+    },
+    "user_not_visible": {
+      "desc": "The calling user is restricted from seeing the requested user."
+    },
+    "users_list_not_supplied": {
+      "desc": "Missing `users` in request"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "desc": "Denies a request to invite an external user to a channel",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "invite_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "invite_id": {
+        "desc": "ID of the requested shared channel invite to deny.",
+        "schema": "invite_id"
+      },
+      "message": {
+        "type": "string",
+        "desc": "Optional message explaining why the request to invite was denied."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "invite_not_found": {
+      "desc": "We couldn't find a Slack Connect channel invite with the ID provided."
+    },
+    "user_not_found": {
+      "desc": "We could not find the user who made the invite request."
+    },
+    "team_not_found": {
+      "desc": "We could not find the team which made the invite request."
+    },
+    "channel_not_found": {
+      "desc": "We could not find the channel where the request was made."
+    },
+    "invite_already_approved": {
+      "desc": "This invite was already approved."
+    },
+    "invite_already_denied": {
+      "desc": "This invite was already denied."
+    },
+    "invite_expired": {
+      "desc": "This invite is expired."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the invite from being denied."
+    },
+    "internal_error": {
+      "desc": "Something unexpected went wrong."
+    },
+    "message_too_long": {
+      "desc": "If the passed in deny message is greater than 560 characters."
+    }
+  }
+}

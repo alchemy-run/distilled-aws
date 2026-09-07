@@ -1,0 +1,67 @@
+{
+  "desc": "Rename an emoji.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name",
+      "new_name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "type": "string",
+        "desc": "The name of the emoji to be renamed. Colons (`:myemoji:`) around the value are not required, although they may be included."
+      },
+      "new_name": {
+        "type": "string",
+        "desc": "The new name of the emoji."
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cannot_resolve_alias": {
+      "desc": "The alias emoji could not be resolved"
+    },
+    "error_bad_name_i18n": {
+      "desc": "Value passed for `new_name` was invalid."
+    },
+    "error_invalid_emoji_to_rename": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "error_missing_name": {
+      "desc": "Value passed for `name` is missing or empty."
+    },
+    "error_name_taken": {
+      "desc": "Value passed for `name` already exists."
+    },
+    "error_name_taken_i18n": {
+      "desc": "The name has already been taken by another emoji, in the international set. Emoji must have unique names."
+    },
+    "failed_to_fetch_active_team": {
+      "desc": "There are no active teams on the org and we need at least one."
+    },
+    "failed_to_rename_emoji": {
+      "desc": "The emoji could not be renamed."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and Admins."
+    }
+  }
+}

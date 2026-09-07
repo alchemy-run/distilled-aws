@@ -1,0 +1,67 @@
+{
+  "desc": "Add an emoji alias.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name",
+      "alias_for"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "type": "string",
+        "desc": "The new alias for the specified emoji. Any wrapping whitespace or colons will be automatically trimmed."
+      },
+      "alias_for": {
+        "type": "string",
+        "desc": "Name of the emoji for which the alias is being made. Any wrapping whitespace or colons will be automatically trimmed."
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "emoji_limit_reached": {
+      "desc": "Unable to add emoji due to limit reached."
+    },
+    "error_bad_name_i18n": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "error_invalid_alias": {
+      "desc": "Value passed for `alias_for` does not exist."
+    },
+    "error_missing_name": {
+      "desc": "Value passed for `name` is missing or empty."
+    },
+    "error_name_taken": {
+      "desc": "Value passed for `name` already exists."
+    },
+    "error_name_taken_i18n": {
+      "desc": "The name has already been taken by another emoji, in the international set. Emoji must have unique names."
+    },
+    "failed_to_alias_emoji": {
+      "desc": "Failed to alias the specified emoji."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "no_alias_selected": {
+      "desc": "Value passed for `alias_for` was invalid."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and Admins."
+    }
+  }
+}

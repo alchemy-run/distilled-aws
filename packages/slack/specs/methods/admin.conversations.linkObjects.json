@@ -1,0 +1,88 @@
+{
+  "desc": "Link a Salesforce record to a channel",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:manage_objects"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "record_id",
+      "salesforce_org_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel ID for Slack channel that will be linked to a Salesforce record.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "record_id": {
+        "type": "string",
+        "desc": "Salesforce record ID (15 or 18 digit accepted). See [here](https://help.salesforce.com/s/articleView?id=000385008&type=1) for how to look up record ID.",
+        "example": "0019000000DmehKAAR"
+      },
+      "salesforce_org_id": {
+        "type": "string",
+        "desc": "Salesforce org ID (15 or 18 digit accepted). See [here](https://help.salesforce.com/s/articleView?id=000385215&type=1) for how to look up Salesforce org ID.",
+        "example": "00DGC00000024hsuWY"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "channel_already_exists": {
+      "desc": "Object is linked to a different channel."
+    },
+    "channel_conversion_incomplete": {
+      "desc": "An active channel conversion is preventing linking."
+    },
+    "channel_is_archived": {
+      "desc": "Channel is archived."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` is invalid."
+    },
+    "channel_not_org_wide_shared": {
+      "desc": "Channel is not Org-wide shared."
+    },
+    "channel_shared_with_nonapproved_team": {
+      "desc": "Channel is shared with a non-approved external team."
+    },
+    "config_not_found": {
+      "desc": "Missing record configuration."
+    },
+    "invalid_channel_type": {
+      "desc": "Channel type cannot be linked."
+    },
+    "name_taken": {
+      "desc": "A channel cannot be created with the given name."
+    },
+    "not_allowed_for_grid_workspace": {
+      "desc": "Channel type is not allowed for this Enterprise org workspace."
+    },
+    "restricted_action": {
+      "desc": "User does not have access to perform this action."
+    },
+    "record_channel_already_exists": {
+      "desc": "Record is linked to a different channel."
+    },
+    "record_channel_cannot_be_externally_shared": {
+      "desc": "Channel cannot be linked because it is externally shared."
+    },
+    "record_not_found": {
+      "desc": "Value passed for `record_id` is invalid."
+    }
+  }
+}

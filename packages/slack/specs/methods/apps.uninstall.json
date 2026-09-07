@@ -1,0 +1,62 @@
+{
+  "desc": "Uninstalls your app from a workspace.",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "client_id",
+      "client_secret"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "client_id": {
+        "desc": "Issued when you created your application.",
+        "example": "56579136444.26251006572",
+        "type": "string"
+      },
+      "client_secret": {
+        "desc": "Issued when you created your application.",
+        "example": "f25b5ceaf8a3c2a2c4f52bb4f0b0499e",
+        "type": "string",
+        "subtype": "password"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "uninstalled"
+    ],
+    "properties": {
+      "uninstalled": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "bad_client_secret": {
+      "desc": "Value passed for `client_secret` was invalid."
+    },
+    "client_id_token_mismatch": {
+      "desc": "The provided client ID and token do not belong to the same app."
+    },
+    "internal_error": {
+      "desc": "Internal error uninstall"
+    },
+    "invalid_client_id": {
+      "desc": "Value passed for `client_id` was invalid."
+    },
+    "no_permission": {
+      "desc": "Granular bot not allowed to uninstall"
+    }
+  }
+}

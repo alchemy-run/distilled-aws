@@ -1,0 +1,66 @@
+{
+  "desc": "List all users in a User Group.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "usergroups:read"
+    ],
+    "user": [
+      "usergroups:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "usergroup"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "include_disabled": {
+        "desc": "Include results for disabled User Groups.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "usergroup": {
+        "desc": "The encoded ID of the User Group.",
+        "example": "S0604QSJC",
+        "type": "string",
+        "subtype": "user_group"
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "The user group's encoded team ID. Required if org token is used."
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "users"
+    ],
+    "type": "object",
+    "properties": {
+      "users": {
+        "type": "array"
+      }
+    }
+  },
+  "errors": {
+    "no_such_subteam": {
+      "desc": "No usergroup found with the given ID."
+    },
+    "plan_upgrade_required": {
+      "desc": "This workspace does not have access to User Groups, as that feature is only available on Standard and above plans."
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    }
+  }
+}

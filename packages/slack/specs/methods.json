@@ -1,0 +1,2221 @@
+[
+  {
+    "name": "admin.analytics.getFile",
+    "description": "Retrieve analytics data for a given date, presented as a compressed JSON file",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.analytics.messages.activity",
+    "description": "Retrieves activity metrics for messages from a given channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.analytics.messages.metadata",
+    "description": "Retrieves metadata for a list of messages from a given channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.activities.list",
+    "description": "Get logs for a specified team/org",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.approve",
+    "description": "Approve an app for installation on a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.approved.list",
+    "description": "List approved apps for an org or workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.clearResolution",
+    "description": "Clear an app resolution",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.config.lookup",
+    "description": "Look up the app config for connectors by their IDs",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.config.set",
+    "description": "Set the app config for a connector",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.mcp.servers.list",
+    "description": "List third-party app MCP servers approved for an organization, derived from the org's MCP server allowlist. Entries reflect allowlist state, not install/scope liveness: servers of apps that are uninstalled (but not deleted) are still listed.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.mcp.servers.permissions.list",
+    "description": "List MCP servers for an app with their access control permissions",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.mcp.servers.permissions.set",
+    "description": "Set the access control permission for who can use an MCP server",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.permissions.add",
+    "description": "Grant permission for entities to access an app that has its permission type set to named_entities",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.permissions.list",
+    "description": "Returns the permission type of an app and if applicable, includes the entities that have been granted access",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.permissions.remove",
+    "description": "Revoke an entity's access to an app that has its permission type set to named_entities",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.permissions.set",
+    "description": "Set the permission type for who can access an app",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.requests.cancel",
+    "description": "Cancel app request for team",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.requests.list",
+    "description": "List app requests for a team/workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.restrict",
+    "description": "Restrict an app for installation on a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.restricted.list",
+    "description": "List restricted apps for an org or workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.apps.uninstall",
+    "description": "Uninstall an app from one or many workspaces, or an entire enterprise organization.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.audit.anomaly.allow.getItem",
+    "description": "API to allow Enterprise org admins to read the allow list of IP blocks and ASNs from the enterprise configuration.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.audit.anomaly.allow.updateItem",
+    "description": "API to allow Enterprise org admins to write/overwrite the allow list of IP blocks and ASNs from the enterprise configuration.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.auth.policy.assignEntities",
+    "description": "Assign entities to a particular authentication policy.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.auth.policy.getEntities",
+    "description": "Fetch all the entities assigned to a particular authentication policy by name.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.auth.policy.removeEntities",
+    "description": "Remove specified entities from a specified authentication policy.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.barriers.create",
+    "description": "Create an Information Barrier",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.barriers.delete",
+    "description": "Delete an existing Information Barrier",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.barriers.list",
+    "description": "Get all Information Barriers for your organization",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.barriers.update",
+    "description": "Update an existing Information Barrier",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.archive",
+    "description": "Archive a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.bulkArchive",
+    "description": "Archive public or private channels in bulk.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.bulkDelete",
+    "description": "Delete public or private channels in bulk",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.bulkMove",
+    "description": "Move public or private channels in bulk.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.bulkSetExcludeFromSlackAi",
+    "description": "Exclude channels from Slack AI in bulk",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.convertToPrivate",
+    "description": "Convert a public channel to a private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.convertToPublic",
+    "description": "Convert a private channel to a public channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.create",
+    "description": "Create a public or private channel-based conversation.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.createForObjects",
+    "description": "Create a Salesforce channel for the corresponding object provided.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.delete",
+    "description": "Delete a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.disconnectShared",
+    "description": "Disconnect a connected channel from one or more workspaces.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.ekm.listOriginalConnectedChannelInfo",
+    "description": "List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.getConversationPrefs",
+    "description": "Get conversation preferences for a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.getCustomRetention",
+    "description": "This API endpoint can be used by any admin to get a conversation's retention policy.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.getTeams",
+    "description": "Get all the workspaces a given public or private channel is connected to within this Enterprise org.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.invite",
+    "description": "Invite a user to a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.linkObjects",
+    "description": "Link a Salesforce record to a channel",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.lookup",
+    "description": "Returns channels on the given team using the filters.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.removeCustomRetention",
+    "description": "This API endpoint can be used by any admin to remove a conversation's retention policy.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.rename",
+    "description": "Rename a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.restrictAccess.addGroup",
+    "description": "Add an allowlist of IDP groups for accessing a channel",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.restrictAccess.listGroups",
+    "description": "List all IDP Groups linked to a channel",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.restrictAccess.removeGroup",
+    "description": "Remove a linked IDP group linked from a private channel",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.search",
+    "description": "Search for public or private channels in an Enterprise organization.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.setConversationPrefs",
+    "description": "Set the posting permissions for a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.setCustomRetention",
+    "description": "This API endpoint can be used by any admin to set a conversation's retention policy.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.setTeams",
+    "description": "Set the workspaces in an Enterprise org that connect to a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.unarchive",
+    "description": "Unarchive a public or private channel.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.conversations.unlinkObjects",
+    "description": "Unlink a Salesforce record from a channel",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.emoji.add",
+    "description": "Add an emoji.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.emoji.addAlias",
+    "description": "Add an emoji alias.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.emoji.list",
+    "description": "List emoji for an Enterprise organization.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.emoji.remove",
+    "description": "Remove an emoji across an Enterprise organization",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.emoji.rename",
+    "description": "Rename an emoji.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.functions.list",
+    "description": "Look up functions by a set of apps.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.functions.permissions.lookup",
+    "description": "Lookup the visibility of multiple Slack functions and include the users if it is limited to particular named entities.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.functions.permissions.set",
+    "description": "Set the visibility of a Slack function and define the users or workspaces if it is set to named_entities.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.inviteRequests.approve",
+    "description": "Approve a workspace invite request.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.inviteRequests.approved.list",
+    "description": "List all approved workspace invite requests.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.inviteRequests.denied.list",
+    "description": "List all denied workspace invite requests.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.inviteRequests.deny",
+    "description": "Deny a workspace invite request.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.inviteRequests.list",
+    "description": "List all pending workspace invite requests.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.roles.addAssignments",
+    "description": "Adds members to the specified role with the specified scopes",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.roles.listAssignments",
+    "description": "Lists assignments for all roles across entities. Options to scope results by any combination of roles or entities",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.roles.removeAssignments",
+    "description": "Removes a set of users from a role for the given scopes and entities",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.admins.list",
+    "description": "List all of the admins on a given workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.create",
+    "description": "Create an Enterprise team.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.list",
+    "description": "List all teams in an Enterprise organization",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.owners.list",
+    "description": "List all of the owners on a given workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.settings.info",
+    "description": "Fetch information about settings in a workspace",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.settings.setDefaultChannels",
+    "description": "Set the default channels of a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.settings.setDescription",
+    "description": "Set the description of a given workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.settings.setDiscoverability",
+    "description": "An API method that allows admins to set the discoverability of a given workspace",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.settings.setIcon",
+    "description": "Sets the icon of a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.teams.settings.setName",
+    "description": "Set the name of a given workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.usergroups.addChannels",
+    "description": "Add up to one hundred default channels to an IDP group.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.usergroups.addTeams",
+    "description": "Associate one or more default workspaces with an organization-wide IDP group.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.usergroups.listChannels",
+    "description": "List the channels linked to an org-level IDP group (user group).",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.usergroups.removeChannels",
+    "description": "Remove one or more default channels from an org-level IDP group (user group).",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.assign",
+    "description": "Add an Enterprise user to a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.getExpiration",
+    "description": "Fetches the expiration timestamp for a guest",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.invite",
+    "description": "Invite a user to a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.list",
+    "description": "List users on a workspace",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.remove",
+    "description": "Remove a user from a workspace.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.clearSettings",
+    "description": "Clear user-specific session settings—the session duration and what happens when the client closes—for a list of users.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.getSettings",
+    "description": "Get user-specific session settings—the session duration and what happens when the client closes—given a list of users.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.invalidate",
+    "description": "Revoke a single session for a user. The user will be forced to login to Slack.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.list",
+    "description": "List active user sessions for an organization",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.reset",
+    "description": "Wipes all valid sessions on all devices for a given user",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.resetBulk",
+    "description": "Enqueues an asynchronous job to wipe all valid sessions on all devices for a given list of users",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.session.setSettings",
+    "description": "Configure the user-level session settings—the session duration and what happens when the client closes—for one or more users.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.setAdmin",
+    "description": "Set an existing regular user or owner to be a workspace or org admin.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.setExpiration",
+    "description": "Set an expiration for a guest user",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.setOwner",
+    "description": "Set an existing regular user or admin to be a workspace or org owner.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.setRegular",
+    "description": "Set an existing guest user, admin user, or owner to be a regular user.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.users.unsupportedVersions.export",
+    "description": "Ask Slackbot to send you an export listing all workspace members using unsupported software, presented as a zipped CSV file.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.collaborators.add",
+    "description": "Add collaborators to workflows within the team or enterprise",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.collaborators.remove",
+    "description": "Remove collaborators from workflows within the team or enterprise",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.permissions.lookup",
+    "description": "Look up the permissions for a set of workflows",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.search",
+    "description": "Search workflows within the team or enterprise",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.triggers.types.permissions.lookup",
+    "description": "List the permissions for using each trigger type.",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.triggers.types.permissions.set",
+    "description": "Set the permissions for using a trigger type",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "admin.workflows.unpublish",
+    "description": "Unpublish workflows within the team or enterprise",
+    "family": [
+      "admin"
+    ]
+  },
+  {
+    "name": "api.test",
+    "description": "Checks API calling code.",
+    "family": [
+      "api"
+    ]
+  },
+  {
+    "name": "apps.activities.list",
+    "description": "Get logs for a specified app",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.auth.external.delete",
+    "description": "Delete external auth tokens only on the Slack side",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.auth.external.get",
+    "description": "Get the access token for the provided token ID",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.connections.open",
+    "description": "Generate a temporary Socket Mode WebSocket URL that your app can connect to in order to receive events and interactive payloads over.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.bulkDelete",
+    "description": "Delete items from a datastore in bulk",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.bulkGet",
+    "description": "Get items from a datastore in bulk",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.bulkPut",
+    "description": "Creates or replaces existing items in bulk",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.count",
+    "description": "Count the number of items in a datastore that match a query",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.delete",
+    "description": "Delete an item from a datastore",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.get",
+    "description": "Get an item from a datastore",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.put",
+    "description": "Creates a new item, or replaces an old item with a new item.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.query",
+    "description": "Query a datastore for items",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.datastore.update",
+    "description": "Edits an existing item's attributes, or adds a new item if it does not already exist.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.event.authorizations.list",
+    "description": "Get a list of authorizations for the given event context. Each authorization represents an app installation that the event is visible to.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.icon.set",
+    "description": "Sets the app icon",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.manifest.create",
+    "description": "Create an app from an app manifest.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.manifest.delete",
+    "description": "Permanently deletes an app created through app manifests. When called with a manager app token, this method can only delete apps that were created by that manager app.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.manifest.export",
+    "description": "Export an app manifest from an existing app. When called with a manager app token, this method can only export apps that were created by that manager app.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.manifest.update",
+    "description": "Update an app from an app manifest. When called with a manager app token, this method can only update apps that were created by that manager app.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.manifest.validate",
+    "description": "Validate an app manifest",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.uninstall",
+    "description": "Uninstalls your app from a workspace.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "apps.user.connection.update",
+    "description": "Updates the connection status between a user and an app.",
+    "family": [
+      "apps"
+    ]
+  },
+  {
+    "name": "assistant.search.context",
+    "description": "Searches messages, files, channels and users across your Slack organization.",
+    "family": [
+      "assistant"
+    ]
+  },
+  {
+    "name": "assistant.search.info",
+    "description": "Returns search capabilities on a given team.",
+    "family": [
+      "assistant"
+    ]
+  },
+  {
+    "name": "assistant.threads.setStatus",
+    "description": "Set the status for an AI assistant thread.",
+    "family": [
+      "assistant"
+    ]
+  },
+  {
+    "name": "assistant.threads.setSuggestedPrompts",
+    "description": "Set suggested prompts for the given assistant thread",
+    "family": [
+      "assistant"
+    ]
+  },
+  {
+    "name": "assistant.threads.setTitle",
+    "description": "Set the title for the given assistant thread",
+    "family": [
+      "assistant"
+    ]
+  },
+  {
+    "name": "auth.revoke",
+    "description": "Revokes a token.",
+    "family": [
+      "auth"
+    ]
+  },
+  {
+    "name": "auth.teams.list",
+    "description": "Obtain a full list of workspaces your org-wide app has been approved for.",
+    "family": [
+      "auth"
+    ]
+  },
+  {
+    "name": "auth.test",
+    "description": "Checks authentication & identity.",
+    "family": [
+      "auth"
+    ]
+  },
+  {
+    "name": "blocks.validate",
+    "description": "Validates blocks, messages, and views Block Kit JSON payloads.",
+    "family": [
+      "blocks"
+    ]
+  },
+  {
+    "name": "bookmarks.add",
+    "description": "Add bookmark to a channel.",
+    "family": [
+      "bookmarks"
+    ]
+  },
+  {
+    "name": "bookmarks.edit",
+    "description": "Edit bookmark.",
+    "family": [
+      "bookmarks"
+    ]
+  },
+  {
+    "name": "bookmarks.list",
+    "description": "List bookmark for the channel.",
+    "family": [
+      "bookmarks"
+    ]
+  },
+  {
+    "name": "bookmarks.remove",
+    "description": "Remove bookmark from the channel.",
+    "family": [
+      "bookmarks"
+    ]
+  },
+  {
+    "name": "bots.info",
+    "description": "Gets information about a bot user.",
+    "family": [
+      "bots"
+    ]
+  },
+  {
+    "name": "calls.add",
+    "description": "Registers a new Call.",
+    "family": [
+      "calls"
+    ]
+  },
+  {
+    "name": "calls.end",
+    "description": "Ends a Call.",
+    "family": [
+      "calls"
+    ]
+  },
+  {
+    "name": "calls.info",
+    "description": "Returns information about a Call.",
+    "family": [
+      "calls"
+    ]
+  },
+  {
+    "name": "calls.participants.add",
+    "description": "Registers new participants added to a Call.",
+    "family": [
+      "calls"
+    ]
+  },
+  {
+    "name": "calls.participants.remove",
+    "description": "Registers participants removed from a Call.",
+    "family": [
+      "calls"
+    ]
+  },
+  {
+    "name": "calls.update",
+    "description": "Updates information about a Call.",
+    "family": [
+      "calls"
+    ]
+  },
+  {
+    "name": "canvases.access.delete",
+    "description": "Remove access to a canvas for specified entities",
+    "family": [
+      "canvases"
+    ]
+  },
+  {
+    "name": "canvases.access.set",
+    "description": "Sets the access level to a canvas for specified entities",
+    "family": [
+      "canvases"
+    ]
+  },
+  {
+    "name": "canvases.create",
+    "description": "Create canvas for a user",
+    "family": [
+      "canvases"
+    ]
+  },
+  {
+    "name": "canvases.delete",
+    "description": "Deletes a canvas",
+    "family": [
+      "canvases"
+    ]
+  },
+  {
+    "name": "canvases.edit",
+    "description": "Update an existing canvas",
+    "family": [
+      "canvases"
+    ]
+  },
+  {
+    "name": "canvases.sections.lookup",
+    "description": "Find sections matching the provided criteria",
+    "family": [
+      "canvases"
+    ]
+  },
+  {
+    "name": "chat.appendStream",
+    "description": "Appends text to an existing streaming conversation.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.delete",
+    "description": "Deletes a message.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.deleteScheduledMessage",
+    "description": "Deletes a pending scheduled message from the queue.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.getPermalink",
+    "description": "Retrieve a permalink URL for a specific extant message",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.meMessage",
+    "description": "Share a me message into a channel.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.postEphemeral",
+    "description": "Sends an ephemeral message to a user in a channel.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.postMessage",
+    "description": "Sends a message to a channel.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.scheduledMessages.list",
+    "description": "Returns a list of scheduled messages.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.scheduleMessage",
+    "description": "Schedules a message to be sent to a channel.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.startStream",
+    "description": "Starts a new streaming conversation.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.stopStream",
+    "description": "Stops a streaming conversation.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.unfurl",
+    "description": "Provide custom unfurl behavior for user-posted URLs",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "chat.update",
+    "description": "Updates a message.",
+    "family": [
+      "chat"
+    ]
+  },
+  {
+    "name": "conversations.acceptSharedInvite",
+    "description": "Accepts an invitation to a Slack Connect channel.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.approveSharedInvite",
+    "description": "Approves an invitation to a Slack Connect channel",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.archive",
+    "description": "Archives a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.canvases.create",
+    "description": "Create a channel canvas for a channel",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.close",
+    "description": "Closes a direct message or multi-person direct message.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.create",
+    "description": "Initiates a public or private channel-based conversation",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.declineSharedInvite",
+    "description": "Declines a Slack Connect channel invite.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.externalInvitePermissions.set",
+    "description": "Upgrade or downgrade Slack Connect channel permissions between 'can post only' and 'can post and invite'.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.history",
+    "description": "Fetches a conversation's history of messages and events.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.info",
+    "description": "Retrieve information about a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.invite",
+    "description": "Invites users to a channel.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.inviteShared",
+    "description": "Sends an invitation to a Slack Connect channel",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.join",
+    "description": "Joins an existing conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.kick",
+    "description": "Removes a user from a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.leave",
+    "description": "Leaves a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.list",
+    "description": "Lists all channels in a Slack team.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.listConnectInvites",
+    "description": "Lists shared channel invites that have been generated or received but have not been approved by all parties",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.mark",
+    "description": "Sets the read cursor in a channel.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.members",
+    "description": "Retrieve members of a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.open",
+    "description": "Opens or resumes a direct message or multi-person direct message.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.rename",
+    "description": "Renames a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.replies",
+    "description": "Retrieve a thread of messages posted to a conversation",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.requestSharedInvite.approve",
+    "description": "Approves a request to add an external user to a channel and sends them a Slack Connect invite",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.requestSharedInvite.deny",
+    "description": "Denies a request to invite an external user to a channel",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.requestSharedInvite.list",
+    "description": "Lists requests to add external users to channels with ability to filter.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.setPurpose",
+    "description": "Sets the channel description.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.setTopic",
+    "description": "Sets the topic for a conversation.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "conversations.unarchive",
+    "description": "Reverses conversation archival.",
+    "family": [
+      "conversations"
+    ]
+  },
+  {
+    "name": "dialog.open",
+    "description": "Open a dialog with a user",
+    "family": [
+      "dialog"
+    ]
+  },
+  {
+    "name": "dnd.endDnd",
+    "description": "Ends the current user's Do Not Disturb session immediately.",
+    "family": [
+      "dnd"
+    ]
+  },
+  {
+    "name": "dnd.endSnooze",
+    "description": "Ends the current user's snooze mode immediately.",
+    "family": [
+      "dnd"
+    ]
+  },
+  {
+    "name": "dnd.info",
+    "description": "Retrieves a user's current Do Not Disturb status.",
+    "family": [
+      "dnd"
+    ]
+  },
+  {
+    "name": "dnd.setSnooze",
+    "description": "Turns on Do Not Disturb mode for the current user, or changes its duration.",
+    "family": [
+      "dnd"
+    ]
+  },
+  {
+    "name": "dnd.teamInfo",
+    "description": "Retrieves the Do Not Disturb status for up to 50 users on a team.",
+    "family": [
+      "dnd"
+    ]
+  },
+  {
+    "name": "emoji.list",
+    "description": "Lists custom emoji for a team.",
+    "family": [
+      "emoji"
+    ]
+  },
+  {
+    "name": "entity.acknowledgeCommentAction",
+    "description": "Acknowledge a comment mutation (edit, delete, or post) on a work object entity. Apps call this endpoint to confirm they have processed a comment action, and the backend emits a dedicated RTM event to the user.",
+    "family": [
+      "entity"
+    ]
+  },
+  {
+    "name": "entity.presentComments",
+    "description": "Provide comments for work objects. Apps call this endpoint to send per-user flexpane comment data to the client.",
+    "family": [
+      "entity"
+    ]
+  },
+  {
+    "name": "entity.presentDetails",
+    "description": "Provide custom flexpane behavior for Work Objects. Apps call this endpoint to send per-user flexpane metadata to the client.",
+    "family": [
+      "entity"
+    ]
+  },
+  {
+    "name": "files.comments.delete",
+    "description": "Deletes an existing comment on a file.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.completeUploadExternal",
+    "description": "Finishes an upload started with files.getUploadURLExternal",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.delete",
+    "description": "Deletes a file.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.getUploadURLExternal",
+    "description": "Gets a URL for an edge external file upload",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.info",
+    "description": "Gets information about a file.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.list",
+    "description": "List files for a team, in a channel, or from a user with applied filters.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.remote.add",
+    "description": "Adds a file from a remote service",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.remote.info",
+    "description": "Retrieve information about a remote file added to Slack",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.remote.list",
+    "description": "Retrieve information about a remote file added to Slack",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.remote.remove",
+    "description": "Remove a remote file.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.remote.share",
+    "description": "Share a remote file into a channel.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.remote.update",
+    "description": "Updates an existing remote file.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.revokePublicURL",
+    "description": "Revokes public/external sharing access for a file",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.sharedPublicURL",
+    "description": "Enables a file for public/external sharing.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "files.upload",
+    "description": "Uploads or creates a file.",
+    "family": [
+      "files"
+    ]
+  },
+  {
+    "name": "functions.completeError",
+    "description": "Signal that a function failed to complete",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.completeSuccess",
+    "description": "Signal the successful completion of a function",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.distributions.permissions.add",
+    "description": "Grant users access to a custom slack function if its permission_type is set to named_entities",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.distributions.permissions.list",
+    "description": "List the access type of a custom slack function and include the users, team or org ids with access if its permission_type is set to named_entities",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.distributions.permissions.remove",
+    "description": "Revoke user access to a custom slack function if permission_type set to named_entities",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.distributions.permissions.set",
+    "description": "Set the access type of a custom slack function and define the users, team or org ids to be granted access if permission_type is set to named_entities",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.workflows.steps.list",
+    "description": "List the steps of a specific function of a workflow's versions",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "functions.workflows.steps.responses.export",
+    "description": "Download form responses of a workflow",
+    "family": [
+      "functions"
+    ]
+  },
+  {
+    "name": "slackLists.access.delete",
+    "description": "Revoke access to a List for specified entities.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.access.set",
+    "description": "Set the access level to a List for specified entities.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.create",
+    "description": "Create a List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.download.get",
+    "description": "Retrieve List download URL from an export job to download List contents.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.download.start",
+    "description": "Initiate a job to export List contents.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.items.create",
+    "description": "Add a new item to an existing List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.items.delete",
+    "description": "Deletes an item from an existing List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.items.deleteMultiple",
+    "description": "Deletes multiple items from an existing List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.items.info",
+    "description": "Get a row from a List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.items.list",
+    "description": "Get records from a List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.items.update",
+    "description": "Updates cells in a List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "slackLists.update",
+    "description": "Update a List.",
+    "family": [
+      "lists"
+    ]
+  },
+  {
+    "name": "migration.exchange",
+    "description": "For Enterprise organization workspaces, map local user IDs to global user IDs",
+    "family": [
+      "migration"
+    ]
+  },
+  {
+    "name": "oauth.access",
+    "description": "Exchanges a temporary OAuth verifier code for an access token.",
+    "family": [
+      "oauth"
+    ]
+  },
+  {
+    "name": "oauth.v2.access",
+    "description": "Exchanges a temporary OAuth verifier code for an access token.",
+    "family": [
+      "oauth"
+    ]
+  },
+  {
+    "name": "oauth.v2.exchange",
+    "description": "Exchanges a legacy access token for a new expiring access token and refresh token",
+    "family": [
+      "oauth"
+    ]
+  },
+  {
+    "name": "oauth.v2.user.access",
+    "description": "Exchanges a temporary OAuth verifier code for a user access token.",
+    "family": [
+      "oauth"
+    ]
+  },
+  {
+    "name": "openid.connect.token",
+    "description": "Exchanges a temporary OAuth verifier code for an access token for Sign in with Slack.",
+    "family": [
+      "openid"
+    ]
+  },
+  {
+    "name": "openid.connect.userInfo",
+    "description": "Get the identity of a user who has authorized Sign in with Slack.",
+    "family": [
+      "openid"
+    ]
+  },
+  {
+    "name": "pins.add",
+    "description": "Pins an item to a channel.",
+    "family": [
+      "pins"
+    ]
+  },
+  {
+    "name": "pins.list",
+    "description": "Lists items pinned to a channel.",
+    "family": [
+      "pins"
+    ]
+  },
+  {
+    "name": "pins.remove",
+    "description": "Un-pins an item from a channel.",
+    "family": [
+      "pins"
+    ]
+  },
+  {
+    "name": "reactions.add",
+    "description": "Adds a reaction to an item.",
+    "family": [
+      "reactions"
+    ]
+  },
+  {
+    "name": "reactions.get",
+    "description": "Gets reactions for an item.",
+    "family": [
+      "reactions"
+    ]
+  },
+  {
+    "name": "reactions.list",
+    "description": "Lists reactions made by a user.",
+    "family": [
+      "reactions"
+    ]
+  },
+  {
+    "name": "reactions.remove",
+    "description": "Removes a reaction from an item.",
+    "family": [
+      "reactions"
+    ]
+  },
+  {
+    "name": "reminders.add",
+    "description": "Creates a reminder.",
+    "family": [
+      "reminders"
+    ]
+  },
+  {
+    "name": "reminders.complete",
+    "description": "Marks a reminder as complete.",
+    "family": [
+      "reminders"
+    ]
+  },
+  {
+    "name": "reminders.delete",
+    "description": "Deletes a reminder.",
+    "family": [
+      "reminders"
+    ]
+  },
+  {
+    "name": "reminders.info",
+    "description": "Gets information about a reminder.",
+    "family": [
+      "reminders"
+    ]
+  },
+  {
+    "name": "reminders.list",
+    "description": "Lists all reminders created by or for a given user.",
+    "family": [
+      "reminders"
+    ]
+  },
+  {
+    "name": "rtm.connect",
+    "description": "Starts a Real Time Messaging session.",
+    "family": [
+      "rtm"
+    ]
+  },
+  {
+    "name": "rtm.start",
+    "description": "Deprecated: Starts a Real Time Messaging session. Use rtm.connect instead.",
+    "family": [
+      "rtm"
+    ]
+  },
+  {
+    "name": "search.all",
+    "description": "Searches for messages and files matching a query.",
+    "family": [
+      "search"
+    ]
+  },
+  {
+    "name": "search.files",
+    "description": "Searches for files matching a query.",
+    "family": [
+      "search"
+    ]
+  },
+  {
+    "name": "search.messages",
+    "description": "Searches for messages matching a query.",
+    "family": [
+      "search"
+    ]
+  },
+  {
+    "name": "stars.add",
+    "description": "Save an item for later. Formerly known as adding a star.",
+    "family": [
+      "stars"
+    ]
+  },
+  {
+    "name": "stars.list",
+    "description": "Listed a user's saved items, formerly known as stars.",
+    "family": [
+      "stars"
+    ]
+  },
+  {
+    "name": "stars.remove",
+    "description": "Removes a saved item (star) from an item.",
+    "family": [
+      "stars"
+    ]
+  },
+  {
+    "name": "team.accessLogs",
+    "description": "Gets the access logs for the current team.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.billableInfo",
+    "description": "Gets billable users information for the current team.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.billing.info",
+    "description": "Reads a workspace's billing plan information.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.externalTeams.disconnect",
+    "description": "Disconnect an external organization.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.externalTeams.list",
+    "description": "Returns a list of all the external teams connected and details about the connection.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.info",
+    "description": "Gets information about the current team.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.integrationLogs",
+    "description": "Gets the integration logs for the current team.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.preferences.list",
+    "description": "Retrieve a list of a workspace's team preferences.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "team.profile.get",
+    "description": "Retrieve a team's profile.",
+    "family": [
+      "team"
+    ]
+  },
+  {
+    "name": "tooling.tokens.rotate",
+    "description": "Exchanges a refresh token for a new app configuration token.",
+    "family": [
+      "tooling"
+    ]
+  },
+  {
+    "name": "usergroups.create",
+    "description": "Create a User Group.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "usergroups.disable",
+    "description": "Disable an existing User Group.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "usergroups.enable",
+    "description": "Enable a User Group.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "usergroups.list",
+    "description": "List all User Groups for a team.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "usergroups.update",
+    "description": "Update an existing User Group.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "usergroups.users.list",
+    "description": "List all users in a User Group.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "usergroups.users.update",
+    "description": "Update the list of users for a user group.",
+    "family": [
+      "usergroups"
+    ]
+  },
+  {
+    "name": "users.conversations",
+    "description": "List conversations the calling user is a member of.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.deletePhoto",
+    "description": "Delete the user profile photo",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.discoverableContacts.lookup",
+    "description": "Look up an email address to see if someone is discoverable on Slack",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.getPresence",
+    "description": "Gets user presence information.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.identity",
+    "description": "Get a user's identity.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.info",
+    "description": "Gets information about a user.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.list",
+    "description": "Lists all users in a Slack team.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.lookupByEmail",
+    "description": "Find a user with an email address.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.profile.get",
+    "description": "Retrieve a user's profile information, including their custom status.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.profile.set",
+    "description": "Set a user's profile information, including custom status.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.setActive",
+    "description": "Marked a user as active. Deprecated and non-functional.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.setPhoto",
+    "description": "Set the user profile photo",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "users.setPresence",
+    "description": "Manually sets user presence.",
+    "family": [
+      "users"
+    ]
+  },
+  {
+    "name": "views.open",
+    "description": "Open a view for a user.",
+    "family": [
+      "views"
+    ]
+  },
+  {
+    "name": "views.publish",
+    "description": "Publish a static view for a User.",
+    "family": [
+      "views"
+    ]
+  },
+  {
+    "name": "views.push",
+    "description": "Push a view onto the stack of a root view.",
+    "family": [
+      "views"
+    ]
+  },
+  {
+    "name": "views.update",
+    "description": "Update an existing view.",
+    "family": [
+      "views"
+    ]
+  },
+  {
+    "name": "workflows.featured.add",
+    "description": "Add featured workflows to a channel.",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.featured.list",
+    "description": "List the featured workflows for specified channels.",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.featured.remove",
+    "description": "Remove featured workflows from a channel.",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.featured.set",
+    "description": "Set featured workflows for a channel.",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.triggers.permissions.add",
+    "description": "Allows users to run a trigger that has its permission type set to named_entities",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.triggers.permissions.list",
+    "description": "Returns the permission type of a trigger and if applicable, includes the entities that have been granted access",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.triggers.permissions.remove",
+    "description": "Revoke an entity's access to a trigger that has its permission type set to named_entities",
+    "family": [
+      "workflows"
+    ]
+  },
+  {
+    "name": "workflows.triggers.permissions.set",
+    "description": "Set the permission type for who can run a trigger",
+    "family": [
+      "workflows"
+    ]
+  }
+]

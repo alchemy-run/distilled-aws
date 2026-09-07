@@ -1,0 +1,79 @@
+{
+  "desc": "Create canvas for a user",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "canvases:write"
+    ],
+    "user": [
+      "canvases:write"
+    ],
+    "seamless_user": [
+      "seamless.user"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Auth token with which to authenticate the session",
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "title": {
+        "type": "string",
+        "example": "Your Brilliant Title",
+        "desc": "Title of the newly created canvas"
+      },
+      "document_content": {
+        "example": "{\"type\": \"markdown\", \"markdown\": \"> standalone canvas!\"}",
+        "desc": "Structure describing the type and value of the content to create. The markdown content is limited to 1 MiB (1,048,576 characters).",
+        "schema": "selection"
+      },
+      "channel_id": {
+        "desc": "Channel ID of the channel the canvas will be tabbed in. This is a required field for free teams.",
+        "type": "string",
+        "subtype": "channel",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "canvas_id"
+    ],
+    "properties": {
+      "canvas_id": {
+        "desc": "Encoded ID of the canvas",
+        "schema": "file_id"
+      }
+    }
+  },
+  "errors": {
+    "canvas_disabled_user_team": {
+      "desc": "Canvas is disabled on user's team"
+    },
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "canvas_creation_failed": {
+      "desc": "Canvas was unable to be created."
+    },
+    "free_teams_cannot_create_non_tabbed_canvases": {
+      "desc": "Free teams cannot create non-tabbed standalone canvases"
+    },
+    "free_team_canvas_tab_already_exists": {
+      "desc": "Free teams are limited to one canvas tab per channel"
+    },
+    "free_teams_cannot_create_standalone_canvases": {
+      "desc": "Free teams cannot create standalone canvases"
+    }
+  }
+}

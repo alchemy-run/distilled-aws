@@ -1,0 +1,119 @@
+{
+  "desc": "List third-party app MCP servers approved for an organization, derived from the org's MCP server allowlist. Entries reflect allowlist state, not install/scope liveness: servers of apps that are uninstalled (but not deleted) are still listed.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to return. Must be between 1 - 1000 both inclusive.",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+        "example": "5c3e53d5"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "servers"
+    ],
+    "properties": {
+      "servers": {
+        "type": "array",
+        "maxItems": 1000,
+        "items": {
+          "type": "object",
+          "required": [
+            "server_id",
+            "server_name",
+            "url",
+            "auth_type",
+            "app_id",
+            "app_name"
+          ],
+          "properties": {
+            "server_id": {
+              "type": "string",
+              "desc": "Encoded ID of the MCP server",
+              "example": "Amcp0000000001"
+            },
+            "server_name": {
+              "type": "string",
+              "desc": "Name of the MCP server"
+            },
+            "url": {
+              "type": "string",
+              "desc": "The URL of the MCP server"
+            },
+            "auth_type": {
+              "desc": "The authentication type for the MCP server",
+              "schema": ""
+            },
+            "app_id": {
+              "type": "string",
+              "desc": "Encoded ID of the app that provides this MCP server",
+              "example": "A0000000001"
+            },
+            "app_name": {
+              "type": "string",
+              "desc": "Name of the app that provides this MCP server"
+            }
+          }
+        }
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "invalid_auth": {
+      "desc": "Invalid authorization token"
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "not_an_enterprise": {
+      "desc": "This feature is only available on Enterprise Grid plans."
+    },
+    "internal_error": {
+      "desc": "Internal error"
+    },
+    "feature_not_enabled": {
+      "desc": "The MCP server admin API feature is not enabled for this team."
+    }
+  }
+}

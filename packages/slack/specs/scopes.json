@@ -1,0 +1,1974 @@
+[
+  {
+    "name": "admin",
+    "description": "Administer a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.audit.anomaly.allow.getItem",
+      "admin.audit.anomaly.allow.updateItem",
+      "team.accessLogs",
+      "team.billableInfo",
+      "team.integrationLogs"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.analytics:read",
+    "description": "Access analytics data about the organization",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.analytics.getFile"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.app_activities:read",
+    "description": "View execution logs within an organization",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.apps.activities.list"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.apps:read",
+    "description": "View apps and app requests in a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.apps.approved.list",
+      "admin.apps.config.lookup",
+      "admin.apps.requests.list",
+      "admin.apps.restricted.list"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.apps:write",
+    "description": "Manage apps in a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.apps.approve",
+      "admin.apps.clearResolution",
+      "admin.apps.config.set",
+      "admin.apps.requests.cancel",
+      "admin.apps.restrict",
+      "admin.apps.uninstall"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.barriers:read",
+    "description": "Read information barriers in the organization",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.barriers.list"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.barriers:write",
+    "description": "Manage information barriers in the organization",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.barriers.create",
+      "admin.barriers.delete",
+      "admin.barriers.update"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.chat:read",
+    "description": "Read messages in conversations",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "oversight.chat.info"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.chat:write",
+    "description": "Delete, restore, and update messages in conversations",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "oversight.chat.delete",
+      "oversight.chat.restore",
+      "oversight.chat.update"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.conversations:manage_objects",
+    "description": "Manage channel details and create conversations related to external connections, objects, and records",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.conversations.createForObjects",
+      "admin.conversations.linkObjects"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.conversations:read",
+    "description": "View the channel's member list, topic, purpose and channel name",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.conversations.ekm.listOriginalConnectedChannelInfo",
+      "admin.conversations.getConversationPrefs",
+      "admin.conversations.getCustomRetention",
+      "admin.conversations.getTeams",
+      "admin.conversations.lookup",
+      "admin.conversations.restrictAccess.listGroups",
+      "admin.conversations.search",
+      "oversight.conversations.info",
+      "oversight.conversations.list",
+      "oversight.conversations.members",
+      "oversight.user.conversations"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.conversations:write",
+    "description": "Start a new conversation, modify a conversation and modify channel details",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.conversations.archive",
+      "admin.conversations.bulkArchive",
+      "admin.conversations.bulkDelete",
+      "admin.conversations.bulkMove",
+      "admin.conversations.convertToPrivate",
+      "admin.conversations.convertToPublic",
+      "admin.conversations.create",
+      "admin.conversations.delete",
+      "admin.conversations.disconnectShared",
+      "admin.conversations.invite",
+      "admin.conversations.removeCustomRetention",
+      "admin.conversations.rename",
+      "admin.conversations.restrictAccess.addGroup",
+      "admin.conversations.restrictAccess.removeGroup",
+      "admin.conversations.setConversationPrefs",
+      "admin.conversations.setCustomRetention",
+      "admin.conversations.setTeams",
+      "admin.conversations.unarchive",
+      "admin.conversations.unlinkObjects"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.invites:read",
+    "description": "View a workspace's invites and invite requests",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.inviteRequests.approved.list",
+      "admin.inviteRequests.denied.list",
+      "admin.inviteRequests.list"
+    ],
+    "compatible_events": [
+      "invite_requested"
+    ],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.invites:write",
+    "description": "Invite members to a workspace and approve or deny invitation requests",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.inviteRequests.approve",
+      "admin.inviteRequests.deny"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.roles:read",
+    "description": "List role assignments for your workspace.",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.roles.listAssignments"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.roles:write",
+    "description": "Add and remove role assignments for your workspace.",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.roles.addAssignments",
+      "admin.roles.removeAssignments"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.teams:read",
+    "description": "Access information about a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.emoji.list",
+      "admin.teams.admins.list",
+      "admin.teams.list",
+      "admin.teams.owners.list",
+      "admin.teams.settings.info",
+      "oversight.enterprise.info"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.teams:write",
+    "description": "Make changes to a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.emoji.add",
+      "admin.emoji.addAlias",
+      "admin.emoji.remove",
+      "admin.emoji.rename",
+      "admin.teams.create",
+      "admin.teams.settings.setDefaultChannels",
+      "admin.teams.settings.setDescription",
+      "admin.teams.settings.setDiscoverability",
+      "admin.teams.settings.setIcon",
+      "admin.teams.settings.setName",
+      "admin.usergroups.addTeams"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.usergroups:read",
+    "description": "Access information about user groups",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.usergroups.listChannels"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.usergroups:write",
+    "description": "Make changes to your usergroups",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.usergroups.addChannels",
+      "admin.usergroups.removeChannels"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.users:read",
+    "description": "Access a workspace's profile information",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.auth.policy.getEntities",
+      "admin.users.list",
+      "admin.users.session.getSettings",
+      "admin.users.session.list",
+      "admin.users.unsupportedVersions.export",
+      "oversight.user.info",
+      "oversight.users.list"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.users:write",
+    "description": "Modify account information",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.auth.policy.assignEntities",
+      "admin.auth.policy.removeEntities",
+      "admin.users.assign",
+      "admin.users.invite",
+      "admin.users.remove",
+      "admin.users.session.clearSettings",
+      "admin.users.session.invalidate",
+      "admin.users.session.reset",
+      "admin.users.session.resetBulk",
+      "admin.users.session.setSettings",
+      "admin.users.setAdmin",
+      "admin.users.setExpiration",
+      "admin.users.setOwner",
+      "admin.users.setRegular"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.workflows:read",
+    "description": "View all workflows in a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.functions.list",
+      "admin.functions.permissions.lookup",
+      "admin.functions.permissions.set",
+      "admin.workflows.permissions.lookup",
+      "admin.workflows.search"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "admin.workflows:write",
+    "description": "Manage workflows in a workspace",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "admin.workflows.collaborators.add",
+      "admin.workflows.collaborators.remove",
+      "admin.workflows.unpublish"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Admin"
+    ]
+  },
+  {
+    "name": "app_configurations:read",
+    "description": "Read app configuration info via App Manifest APIs. When used by a manager app, access is restricted to apps created by that manager app.",
+    "token_types": [
+      "Configuration"
+    ],
+    "scope_families": [],
+    "compatible_api_methods": [
+      "apps.manifest.export",
+      "functions.distributions.permissions.list"
+    ]
+  },
+  {
+    "name": "app_configurations:write",
+    "description": "Create apps and write app configuration info via App Manifest APIs. When used by a manager app, access is restricted to apps created by that manager app.",
+    "token_types": [
+      "Configuration"
+    ],
+    "scope_families": [],
+    "compatible_api_methods": [
+      "apps.manifest.create",
+      "apps.manifest.delete",
+      "apps.manifest.update",
+      "apps.manifest.validate",
+      "functions.distributions.permissions.add",
+      "functions.distributions.permissions.remove",
+      "functions.distributions.permissions.set"
+    ]
+  },
+  {
+    "name": "app_mentions:read",
+    "description": "View messages that directly mention your Slack app in conversations that the app is in",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "apps.requests:write",
+    "description": "Create or cancel an App Approval request on user's behalf",
+    "token_types": [
+      "User"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "assistant:write",
+    "description": "Allow your Slack app to act as an App Agent",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "assistant.threads.setStatus",
+      "assistant.threads.setSuggestedPrompts",
+      "assistant.threads.setTitle"
+    ],
+    "compatible_events": [
+      "app_context_changed"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "auditlogs:read",
+    "description": "View events from all workspaces, channels and users (Enterprise orgs only)",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "authorizations:read",
+    "description": "Grants permission to list authorizations associated with the Events API",
+    "token_types": [
+      "App-level"
+    ],
+    "scope_families": [],
+    "compatible_api_methods": [
+      "apps.event.authorizations.list"
+    ]
+  },
+  {
+    "name": "bookmarks:read",
+    "description": "List bookmarks",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "bookmarks.list",
+      "workflows.featured.list"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "bookmarks:write",
+    "description": "Create, edit, and remove bookmarks",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "bookmarks.add",
+      "bookmarks.edit",
+      "bookmarks.remove",
+      "workflows.featured.add",
+      "workflows.featured.remove",
+      "workflows.featured.set"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "bot",
+    "description": "Add the ability for people to direct message or mention @your_slack_app",
+    "token_types": [
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "calls:read",
+    "description": "View information about ongoing and past calls",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "calls.info"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "calls:write",
+    "description": "Start and manage calls in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "calls.add",
+      "calls.end",
+      "calls.participants.add",
+      "calls.participants.remove",
+      "calls.update"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "canvases:read",
+    "description": "Access contents of canvases created inside Slack.",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "canvases.sections.lookup"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "canvases:write",
+    "description": "your Slack app will be able to create, edit and remove canvases, Create, edit and remove canvases",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "canvases.access.delete",
+      "canvases.access.set",
+      "canvases.create",
+      "canvases.delete",
+      "canvases.edit",
+      "conversations.canvases.create"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "channels:history",
+    "description": "View messages and other content in public channels that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.history",
+      "conversations.replies"
+    ],
+    "compatible_events": [
+      "assistant_app_thread",
+      "channel_convert_to_private",
+      "channel_history_changed",
+      "channel_posting_permissions",
+      "document_mention",
+      "ekm_access_denied",
+      "me_message",
+      "message",
+      "message.channels",
+      "message_changed",
+      "message_deleted",
+      "message_replied",
+      "reminder_add",
+      "reply_broadcast",
+      "thread_broadcast"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "channels:join",
+    "description": "Join public channels in a workspace",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.join"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "channels:manage",
+    "description": "Manage public channels that your Slack app has been added to and create new ones",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.archive",
+      "conversations.close",
+      "conversations.create",
+      "conversations.kick",
+      "conversations.leave",
+      "conversations.mark",
+      "conversations.rename",
+      "conversations.unarchive"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "channels:read",
+    "description": "View basic information about public channels in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.info",
+      "conversations.list",
+      "conversations.members",
+      "conversations.open",
+      "users.conversations"
+    ],
+    "compatible_events": [
+      "channel_archive",
+      "channel_created",
+      "channel_deleted",
+      "channel_left",
+      "channel_rename",
+      "channel_shared",
+      "channel_unarchive",
+      "channel_unshared",
+      "member_joined_channel",
+      "member_left_channel"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "channels:write",
+    "description": "Manage a user's public channels and create new ones on a user's behalf",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "conversations.archive",
+      "conversations.close",
+      "conversations.create",
+      "conversations.join",
+      "conversations.kick",
+      "conversations.leave",
+      "conversations.mark",
+      "conversations.rename",
+      "conversations.unarchive"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "channels:write.invites",
+    "description": "Invite members to public channels",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.invite"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "channels:write.topic",
+    "description": "Set the description of public channels",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.setPurpose",
+      "conversations.setTopic"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "chat:write",
+    "description": "Send messages as your Slack app",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "assistant.threads.setStatus",
+      "chat.delete",
+      "chat.deleteScheduledMessage",
+      "chat.meMessage",
+      "chat.postEphemeral",
+      "chat.postMessage",
+      "chat.scheduleMessage",
+      "chat.update"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "chat:write.customize",
+    "description": "Send messages as your Slack app with a customized username and avatar",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "chat:write.public",
+    "description": "Send messages to channels your Slack app isn't a member of",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "client",
+    "description": "Receive all events from a workspace in real time",
+    "token_types": [],
+    "compatible_api_methods": [
+      "admin.workflows.triggers.types.permissions.lookup",
+      "admin.workflows.triggers.types.permissions.set"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "commands",
+    "description": "Add shortcuts and slash commands that people can use",
+    "token_types": [
+      "Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "connections:write",
+    "description": "Grants permission to generate websocket URIs and connect to Socket Mode",
+    "token_types": [
+      "App-level"
+    ],
+    "scope_families": [],
+    "compatible_api_methods": [
+      "apps.connections.open"
+    ]
+  },
+  {
+    "name": "conversations.connect:manage",
+    "description": "Allows your Slack app to manage Slack Connect channels",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.approveSharedInvite",
+      "conversations.declineSharedInvite",
+      "conversations.externalInvitePermissions.set",
+      "conversations.listConnectInvites",
+      "conversations.requestSharedInvite.approve",
+      "conversations.requestSharedInvite.deny",
+      "conversations.requestSharedInvite.list",
+      "team.externalTeams.disconnect",
+      "team.externalTeams.list",
+      "users.discoverableContacts.lookup"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "conversations.connect:read",
+    "description": "Receive Slack Connect invite events sent to the channels your Slack app is in",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "conversations.connect:write",
+    "description": "Create Slack Connect invitations for channels that your Slack app has been added to, and accept invitations sent to your Slack app",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.acceptSharedInvite",
+      "conversations.inviteShared"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "datastore:read",
+    "description": "View and see data from Slack App Datastore",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "apps.datastore.bulkGet",
+      "apps.datastore.count",
+      "apps.datastore.get",
+      "apps.datastore.query"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "datastore:write",
+    "description": "Write data to Slack App Datastore",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "apps.datastore.bulkDelete",
+      "apps.datastore.bulkPut",
+      "apps.datastore.delete",
+      "apps.datastore.put",
+      "apps.datastore.update"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "dnd:read",
+    "description": "View Do Not Disturb settings for people in a workspace",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "dnd.info",
+      "dnd.teamInfo"
+    ],
+    "compatible_events": [
+      "dnd_updated",
+      "dnd_updated_user"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "dnd:write",
+    "description": "Edit a user's Do Not Disturb settings",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "dnd.endDnd",
+      "dnd.endSnooze",
+      "dnd.setSnooze"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "email",
+    "description": "View a user's email address",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "emoji:read",
+    "description": "View custom emoji in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "emoji.list"
+    ],
+    "compatible_events": [
+      "emoji_changed"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "files:read",
+    "description": "View files shared in channels and conversations that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "files.info",
+      "files.list"
+    ],
+    "compatible_events": [
+      "file_change",
+      "file_comment_added",
+      "file_comment_deleted",
+      "file_comment_edited",
+      "file_created",
+      "file_deleted",
+      "file_public",
+      "file_shared",
+      "file_unshared"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "files:write",
+    "description": "Upload, edit, and delete files as your Slack app",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "files.comments.delete",
+      "files.completeUploadExternal",
+      "files.delete",
+      "files.getUploadURLExternal",
+      "files.revokePublicURL",
+      "files.sharedPublicURL",
+      "files.upload"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "groups:history",
+    "description": "View messages and other content in private channels that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.history",
+      "conversations.replies"
+    ],
+    "compatible_events": [
+      "assistant_app_thread",
+      "channel_convert_to_private",
+      "channel_history_changed",
+      "channel_posting_permissions",
+      "document_mention",
+      "ekm_access_denied",
+      "group_history_changed",
+      "me_message",
+      "message",
+      "message.groups",
+      "message_changed",
+      "message_deleted",
+      "message_replied",
+      "reminder_add",
+      "reply_broadcast",
+      "thread_broadcast"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "groups:read",
+    "description": "View basic information about private channels that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.info",
+      "conversations.list",
+      "conversations.members",
+      "conversations.open",
+      "users.conversations"
+    ],
+    "compatible_events": [
+      "channel_shared",
+      "channel_unshared",
+      "group_archive",
+      "group_close",
+      "group_deleted",
+      "group_left",
+      "group_open",
+      "group_rename",
+      "group_unarchive",
+      "member_joined_channel",
+      "member_left_channel"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "groups:write",
+    "description": "Manage private channels that your Slack app has been added to and create new ones",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.archive",
+      "conversations.close",
+      "conversations.create",
+      "conversations.kick",
+      "conversations.leave",
+      "conversations.mark",
+      "conversations.rename",
+      "conversations.unarchive"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "groups:write.invites",
+    "description": "Invite members to private channels",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.invite"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "groups:write.topic",
+    "description": "Set the description of private channels",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.setPurpose",
+      "conversations.setTopic"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "hosting:read",
+    "description": "View and see information about Slack apps",
+    "token_types": [
+      "User"
+    ],
+    "scope_families": [],
+    "compatible_api_methods": [
+      "apps.activities.list"
+    ]
+  },
+  {
+    "name": "hosting:write",
+    "description": "Manage and deploy Slack apps",
+    "token_types": [
+      "User"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "identify",
+    "description": "View information about a user's identity",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "im:history",
+    "description": "View messages and other content in direct messages that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.history",
+      "conversations.replies"
+    ],
+    "compatible_events": [
+      "assistant_app_thread",
+      "channel_convert_to_private",
+      "channel_posting_permissions",
+      "document_mention",
+      "ekm_access_denied",
+      "im_history_changed",
+      "me_message",
+      "message",
+      "message.im",
+      "message_changed",
+      "message_deleted",
+      "message_replied",
+      "reminder_add",
+      "reply_broadcast",
+      "thread_broadcast"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "im:read",
+    "description": "View basic information about direct messages that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.info",
+      "conversations.list",
+      "conversations.members",
+      "users.conversations"
+    ],
+    "compatible_events": [
+      "im_close",
+      "im_created",
+      "im_open"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "im:write",
+    "description": "Start direct messages with people",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.archive",
+      "conversations.close",
+      "conversations.create",
+      "conversations.kick",
+      "conversations.leave",
+      "conversations.mark",
+      "conversations.rename",
+      "conversations.unarchive",
+      "conversations.open"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "im:write.topic",
+    "description": "Set the description in direct messages",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.setPurpose",
+      "conversations.setTopic"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "incoming-webhook",
+    "description": "Post messages to specific channels in Slack",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "links:read",
+    "description": "View URLs in messages",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [
+      "link_shared"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "links:write",
+    "description": "Show previews of URLs in messages",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "chat.unfurl"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "links.embed:write",
+    "description": "Embed video player URLs in messages and app surfaces",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "lists:read",
+    "description": "View Slack Lists",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "slackLists.download.get",
+      "slackLists.download.start",
+      "slackLists.items.info",
+      "slackLists.items.list"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "lists:write",
+    "description": "Create, edit, and delete Slack Lists",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "slackLists.access.delete",
+      "slackLists.access.set",
+      "slackLists.create",
+      "slackLists.items.create",
+      "slackLists.items.delete",
+      "slackLists.items.deleteMultiple",
+      "slackLists.items.update",
+      "slackLists.update"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "mcp:connect",
+    "description": "Allows your Slack app to connect to Slack AI features through Model Context Protocol (MCP) servers",
+    "token_types": [
+      "Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "metadata.message:read",
+    "description": "Allows your Slack app to read message metadata in channels that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [
+      "message_metadata_deleted",
+      "message_metadata_posted",
+      "message_metadata_updated"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "mpim:history",
+    "description": "View messages and other content in group direct messages that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.history",
+      "conversations.replies"
+    ],
+    "compatible_events": [
+      "assistant_app_thread",
+      "channel_convert_to_private",
+      "channel_history_changed",
+      "channel_posting_permissions",
+      "document_mention",
+      "ekm_access_denied",
+      "me_message",
+      "message",
+      "message.mpim",
+      "message_changed",
+      "message_deleted",
+      "message_replied",
+      "reminder_add",
+      "reply_broadcast",
+      "thread_broadcast"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "mpim:read",
+    "description": "View basic information about group direct messages that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.info",
+      "conversations.list",
+      "conversations.members",
+      "conversations.open",
+      "users.conversations"
+    ],
+    "compatible_events": [
+      "member_joined_channel"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "mpim:write",
+    "description": "Start group direct messages with people",
+    "token_types": [
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.archive",
+      "conversations.close",
+      "conversations.create",
+      "conversations.kick",
+      "conversations.leave",
+      "conversations.mark",
+      "conversations.rename",
+      "conversations.unarchive"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "mpim:write.topic",
+    "description": "Set the description in group direct messages",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "conversations.setPurpose",
+      "conversations.setTopic"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "openid",
+    "description": "View information about a user's identity",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "openid.connect.userInfo"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "pins:read",
+    "description": "View pinned content in channels and conversations that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "pins.list"
+    ],
+    "compatible_events": [
+      "pin_added",
+      "pin_removed",
+      "workflow_step_deleted"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "pins:write",
+    "description": "Add and remove pinned messages and files",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "pins.add",
+      "pins.remove"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "profile",
+    "description": "View a user's Slack avatar and Slack workspace's basic information",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "reactions:read",
+    "description": "View emoji reactions and their associated content in channels and conversations that your Slack app has been added to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "reactions.get",
+      "reactions.list"
+    ],
+    "compatible_events": [
+      "reaction_added",
+      "reaction_removed"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "reactions:write",
+    "description": "Add and edit emoji reactions",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "reactions.add",
+      "reactions.remove"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "reminders:read",
+    "description": "View reminders created by your Slack app",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "reminders.info",
+      "reminders.list"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "reminders:write",
+    "description": "Add, remove, or mark reminders as complete",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "reminders.add",
+      "reminders.complete",
+      "reminders.delete"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "remote_files:read",
+    "description": "View remote files added by the app in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "files.remote.info",
+      "files.remote.list"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "remote_files:share",
+    "description": "Share remote files on a user's behalf",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "files.remote.share"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "remote_files:write",
+    "description": "Add, edit, and delete remote files on a user's behalf",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "files.remote.add",
+      "files.remote.remove",
+      "files.remote.update"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "search:read",
+    "description": "Search a workspace's content",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "search.all",
+      "search.files",
+      "search.messages"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.enterprise",
+    "description": "Search content in your enterprise.",
+    "token_types": [
+      "Bot",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.files",
+    "description": "Search a workspace's content in files",
+    "token_types": [
+      "Bot",
+      "Legacy Bot",
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.im",
+    "description": "Search a workspace's content in direct messages",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.mpim",
+    "description": "Search a workspace's content in group direct messages",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.private",
+    "description": "Search a workspace's content in private channels",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.public",
+    "description": "Search a workspace's content in public channels",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "assistant.search.context",
+      "assistant.search.info"
+    ],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "search:read.users",
+    "description": "Search a workspace's users",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": [
+      "Search"
+    ]
+  },
+  {
+    "name": "stars:read",
+    "description": "View a user's starred messages and files",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "stars.list"
+    ],
+    "compatible_events": [
+      "star_added",
+      "star_removed"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "stars:write",
+    "description": "Add or remove stars for a user",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "stars.add",
+      "stars.remove"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "team:read",
+    "description": "View the name, email domain, and icon for workspaces your Slack app is connected to",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [
+      "team.externalTeams.list",
+      "team.info",
+      "users.discoverableContacts.lookup"
+    ],
+    "compatible_events": [
+      "email_domain_changed",
+      "team_domain_change",
+      "team_rename"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "team.billing:read",
+    "description": "Allows your Slack app to read the billing plan for workspaces your Slack app has been installed to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "team.billing.info"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "team.preferences:read",
+    "description": "Allows your Slack app to read the preferences for workspaces your Slack app has been installed to",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "team.preferences.list"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "tokens.basic",
+    "description": "Execute methods without needing a scope",
+    "token_types": [
+      "User",
+      "Bot",
+      "Legacy Bot"
+    ],
+    "scope_families": [],
+    "compatible_api_methods": [
+      "migration.exchange"
+    ]
+  },
+  {
+    "name": "triggers:read",
+    "description": "Read new Platform triggers",
+    "token_types": [
+      "Bot"
+    ],
+    "compatible_api_methods": [
+      "workflows.triggers.permissions.list"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "triggers:write",
+    "description": "Create new Platform triggers",
+    "token_types": [
+      "Bot"
+    ],
+    "compatible_api_methods": [
+      "workflows.triggers.permissions.add",
+      "workflows.triggers.permissions.remove",
+      "workflows.triggers.permissions.set"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "usergroups:read",
+    "description": "View user groups in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "usergroups.list",
+      "usergroups.users.list"
+    ],
+    "compatible_events": [
+      "subteam_created",
+      "subteam_members_changed",
+      "subteam_self_added",
+      "subteam_self_removed",
+      "subteam_updated"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "usergroups:write",
+    "description": "Create and manage user groups",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "usergroups.create",
+      "usergroups.disable",
+      "usergroups.enable",
+      "usergroups.update",
+      "usergroups.users.update"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "users:read",
+    "description": "View people in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "bots.info",
+      "users.getPresence",
+      "users.info",
+      "users.list"
+    ],
+    "compatible_events": [
+      "team_join",
+      "user_change",
+      "user_status_changed",
+      "user_profile_changed"
+    ],
+    "scope_families": []
+  },
+  {
+    "name": "users:read.email",
+    "description": "View email addresses of people in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "users.lookupByEmail"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "users:write",
+    "description": "Set presence for your Slack app",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "users.setActive",
+      "users.setPresence"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "users.profile:read",
+    "description": "View profile details about people in a workspace",
+    "token_types": [
+      "Bot",
+      "User",
+      "Legacy Bot"
+    ],
+    "compatible_api_methods": [
+      "team.profile.get",
+      "users.profile.get"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "users.profile:write",
+    "description": "Edit a user's profile information and status",
+    "token_types": [
+      "User"
+    ],
+    "compatible_api_methods": [
+      "users.deletePhoto",
+      "users.profile.set",
+      "users.setPhoto"
+    ],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "workflows.templates:read",
+    "description": "Manage Slack workflow template on user's behalf",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  },
+  {
+    "name": "workflows.templates:write",
+    "description": "Write Slack workflow template on user's behalf",
+    "token_types": [
+      "Bot",
+      "User"
+    ],
+    "compatible_api_methods": [],
+    "compatible_events": [],
+    "scope_families": []
+  }
+]

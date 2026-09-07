@@ -1,0 +1,74 @@
+{
+  "desc": "Cancel app request for team",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "request_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "request_id": {
+        "desc": "The id of the request to cancel.",
+        "example": "Ar12345",
+        "type": "string",
+        "schema": "app_request_id"
+      },
+      "team_id": {
+        "desc": "The ID of the workspace where this request belongs",
+        "example": "T12345",
+        "subtype": "team",
+        "schema": "team_id"
+      },
+      "enterprise_id": {
+        "desc": "The ID of the enterprise where this request belongs",
+        "example": "E12345",
+        "subtype": "enterprise",
+        "schema": "enterprise_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "app_management_app_not_installed_on_org": {
+      "desc": "The app management app must be installed on the org."
+    },
+    "feature_not_enabled": {
+      "desc": "Returned when the Admin APIs feature is not enabled for this team"
+    },
+    "invalid_request_id": {
+      "desc": "The `request_id` passed is invalid."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and admins"
+    },
+    "request_already_resolved": {
+      "desc": "The app request has already been resolved"
+    },
+    "team_not_found": {
+      "desc": "Returned when team id is not found."
+    },
+    "too_many_teams_provided": {
+      "desc": "Please provide only `team_id` OR `enterprise_id`"
+    },
+    "restricted_action": {
+      "desc": "User is not authorized to perform this action"
+    },
+    "invalid_auth": {
+      "desc": "invalid token or actor does not have access"
+    }
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "desc": "Lookup the visibility of multiple Slack functions and include the users if it is limited to particular named entities.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.workflows:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "function_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "function_ids": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1000,
+        "desc": "An array of function IDs to get permissions for",
+        "items": {
+          "schema": "function_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "permissions",
+      "errors",
+      "metadata"
+    ],
+    "properties": {
+      "permissions": {
+        "type": "object",
+        "patternProperties": {
+          "^Fn[A-Z0-9]{8,}$": {
+            "type": "object",
+            "required": [
+              "distribution",
+              "allowed_by_admin",
+              "allowed_entities"
+            ],
+            "properties": {
+              "distribution": {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "everyone",
+                      "app_collaborators",
+                      "named_entities"
+                    ]
+                  },
+                  "user_ids": {
+                    "type": "array",
+                    "items": {
+                      "schema": "user_id"
+                    }
+                  }
+                }
+              },
+              "allowed_by_admin": {
+                "schema": "functions_permissions_admin_list_item"
+              },
+              "allowed_entities": {
+                "schema": "functions_permissions_list_item"
+              },
+              "private_channel_access": {
+                "type": "object",
+                "required": [
+                  "permission"
+                ],
+                "properties": {
+                  "permission": {
+                    "type": "string",
+                    "enum": [
+                      "everyone",
+                      "named_entities",
+                      "no_one",
+                      "unset"
+                    ]
+                  },
+                  "user_ids": {
+                    "type": "array",
+                    "desc": "List of user IDs to allow for `named_entities` visibility.",
+                    "example": "['U00000001', 'U00000002', 'U00000003']",
+                    "items": {
+                      "schema": "user_id"
+                    }
+                  },
+                  "team_ids": {
+                    "type": "array",
+                    "desc": "List of team IDs to allow for `named_entities` visibility.",
+                    "example": "['T00000001', 'T00000002', 'T00000003']",
+                    "items": {
+                      "schema": "workspace_id"
+                    }
+                  },
+                  "org_ids": {
+                    "type": "array",
+                    "desc": "List of org IDs to allow for `named_entities` visibility.",
+                    "example": "['E00000001', 'E00000002', 'E00000003']",
+                    "items": {
+                      "schema": "enterprise_id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "patternProperties": {
+          "^Fn[A-Z0-9]{8,}$": {
+            "type": "object",
+            "properties": {
+              "workflows_using": {
+                "type": "integer",
+                "desc": "The number of workflows with a step function of this type."
+              }
+            }
+          }
+        }
+      },
+      "errors": {
+        "type": "object",
+        "patternProperties": {
+          "function_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "restricted_action": {
+      "desc": "User does not have access to this API."
+    }
+  }
+}

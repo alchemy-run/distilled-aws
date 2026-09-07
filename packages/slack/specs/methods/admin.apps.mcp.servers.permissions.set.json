@@ -1,0 +1,115 @@
+{
+  "desc": "Set the access control permission for who can use an MCP server",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id",
+      "server_id",
+      "permission_type"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "type": "string",
+        "desc": "Encoded ID of the app",
+        "example": "A0000000001"
+      },
+      "server_id": {
+        "type": "string",
+        "desc": "Encoded ID of the MCP server",
+        "example": "Amcp0000000001"
+      },
+      "permission_type": {
+        "desc": "The type of permission that defines who can use this MCP server",
+        "type": "string",
+        "enum": [
+          "everyone",
+          "no_one",
+          "named_entities",
+          "named_entities_exclude"
+        ]
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of user IDs to set for named_entities or named_entities_exclude",
+        "example": "['U00000001', 'U00000002']",
+        "items": {
+          "schema": "user_id"
+        },
+        "maxItems": 200,
+        "uniqueItems": true
+      },
+      "usergroup_ids": {
+        "type": "array",
+        "desc": "List of encoded usergroup IDs",
+        "example": "S00000001,S00000002",
+        "items": {
+          "schema": "subteam_id"
+        },
+        "maxItems": 200,
+        "uniqueItems": true
+      }
+    }
+  },
+  "output": {
+    "schema": "mcp_server_acl"
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "invalid_auth": {
+      "desc": "Invalid authorization token"
+    },
+    "app_not_found": {
+      "desc": "This app does not exist."
+    },
+    "server_not_found": {
+      "desc": "The specified MCP server does not exist for this app."
+    },
+    "not_an_enterprise": {
+      "desc": "This feature is only available on Enterprise Grid plans."
+    },
+    "feature_not_enabled": {
+      "desc": "The MCP server ACL feature is not enabled for this team."
+    },
+    "invalid_permission_type": {
+      "desc": "The permission_type value is not valid."
+    },
+    "named_entities_cannot_be_empty": {
+      "desc": "Must pass at least one valid named entity when permission_type is named_entities or named_entities_exclude."
+    },
+    "no_valid_named_entities": {
+      "desc": "None of the provided named entities were valid."
+    },
+    "too_many_named_entities": {
+      "desc": "Too many named entities provided."
+    },
+    "user_not_found": {
+      "desc": "One or more user IDs are not valid."
+    },
+    "usergroup_not_found": {
+      "desc": "One or more usergroup IDs are not valid."
+    },
+    "server_acl_type_broader_than_app": {
+      "desc": "The chosen permission type is broader than the app-level ACL allows."
+    },
+    "server_acl_entities_not_in_scope": {
+      "desc": "One or more entities in the server ACL are not in scope of the app-level ACL."
+    }
+  }
+}

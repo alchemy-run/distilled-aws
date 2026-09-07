@@ -110,6 +110,13 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "render" },
   { package: "resend" },
   { package: "sentry" },
+  {
+    package: "slack",
+    // Slack publishes no machine-readable description; the SDK is built
+    // from the JSON twins of docs.slack.dev method pages, committed under
+    // packages/slack/specs by scripts/download-docs.ts.
+    blocked: "docs.slack.dev method JSON twins are committed in-repo",
+  },
   { package: "spacetimedb" },
   { package: "squarespace" },
   { package: "stripe" },

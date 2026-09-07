@@ -1,0 +1,182 @@
+{
+  "desc": "List active user sessions for an organization",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID of the workspace you'd like active sessions for. If you pass a `team_id`, you'll need to pass a `user_id` as well.",
+        "example": "T1234",
+        "type": "string"
+      },
+      "user_id": {
+        "desc": "The ID of user you'd like active sessions for. If you pass a `user_id`, you'll need to pass a `team_id` as well.",
+        "example": "U1234",
+        "type": "string"
+      },
+      "limit": {
+        "default": 1000,
+        "desc": "The maximum number of items to return. Must be between 1 - 1000 both inclusive.",
+        "example": "100",
+        "maximum": 1000,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "cursor": {
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "example": "5c3e53d5",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "active_sessions"
+    ],
+    "properties": {
+      "response_metadata": {
+        "required": [
+          "next_cursor"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "active_sessions": {
+        "type": "array",
+        "desc": "Active user session data",
+        "items": {
+          "type": "object",
+          "required": [
+            "user_id",
+            "team_id",
+            "session_id",
+            "created"
+          ],
+          "properties": {
+            "user_id": {
+              "type": "string",
+              "desc": "Encoded ID of the user"
+            },
+            "team_id": {
+              "type": "string",
+              "desc": "Encoded ID of the team"
+            },
+            "session_id": {
+              "type": "integer",
+              "desc": "ID of the session"
+            },
+            "recent": {
+              "type": "object",
+              "properties": {
+                "device_hardware": {
+                  "type": "string",
+                  "desc": "Type of device"
+                },
+                "os": {
+                  "type": "string",
+                  "desc": "Type of OS"
+                },
+                "os_version": {
+                  "type": "string",
+                  "desc": "Version of the OS"
+                },
+                "slack_client_version": {
+                  "type": "string",
+                  "desc": "Version of the Slack client (if available)"
+                },
+                "ip": {
+                  "type": "string",
+                  "desc": "IP address"
+                }
+              }
+            },
+            "created": {
+              "type": "object",
+              "properties": {
+                "device_hardware": {
+                  "type": "string",
+                  "desc": "Type of device used when session was created"
+                },
+                "os": {
+                  "type": "string",
+                  "desc": "Type of OS used when session was created"
+                },
+                "os_version": {
+                  "type": "string",
+                  "desc": "Version of the OS used when session was created"
+                },
+                "slack_client_version": {
+                  "type": "string",
+                  "desc": "Version of the Slack client (if available) used when session was created"
+                },
+                "ip": {
+                  "type": "string",
+                  "desc": "IP address used when session was created"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "admin_unauthorized": {
+      "desc": "The owner of this token isn't authorized to list sessions."
+    },
+    "bots_not_allowed": {
+      "desc": "Bot sessions are not listed by this method."
+    },
+    "feature_not_enabled": {
+      "desc": "This method is only available to Enterprise customers."
+    },
+    "invalid_auth": {
+      "desc": "The provided token doesn't have access to this endpoint."
+    },
+    "invalid_cursor": {
+      "desc": "The cursor passed was invalid."
+    },
+    "no_active_sessions": {
+      "desc": "No active sessions were found."
+    },
+    "not_an_admin": {
+      "desc": "The owner of this token isn't an Org Owner or Admin."
+    },
+    "missing_team": {
+      "desc": "A `team_id` must be provided with a `user_id`."
+    },
+    "missing_user": {
+      "desc": "A `user_id` must be provided with a `team_id`."
+    },
+    "team_not_found": {
+      "desc": "There was an error finding the requested workspace."
+    },
+    "unknown_method": {
+      "desc": "This method is currently not available."
+    },
+    "user_not_found": {
+      "desc": "There was an error finding the requested user."
+    }
+  }
+}

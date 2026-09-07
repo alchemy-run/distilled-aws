@@ -1,0 +1,536 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.stars#AddStarRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to add star to, or channel where the message to add star to was posted (used with `timestamp`)."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File to add star to."
+          }
+        },
+        "file_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File comment to add star to."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to add star to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.stars#AddStarResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.stars#AddStar": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.stars#AddStarRequest"
+      },
+      "output": {
+        "target": "com.slack.stars#AddStarResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/stars.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Save an item for later. Formerly known as adding a star.\n\nRequired scopes — user: `stars:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_starred` — The specified item has already been starred by the authenticated user.\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Channel, private group, or DM specified by `channel` does not exist\n  - `external_channel_migrating` — Channel is undergoing active migration\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `file_not_found` — File specified by `file` does not exist.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — `file`, `file_comment`, `channel` and `timestamp` was not specified.\n\nSee https://docs.slack.dev/reference/methods/stars.add"
+      }
+    },
+    "com.slack.stars#ListStarsRequest": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more details."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to list stars in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase0Type": {
+      "type": "enum",
+      "members": {
+        "MESSAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase0Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_create": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase1Type": {
+      "type": "enum",
+      "members": {
+        "FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_create": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase2Type": {
+      "type": "enum",
+      "members": {
+        "FILE_COMMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file_comment"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase2Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_create": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase3Type": {
+      "type": "enum",
+      "members": {
+        "CHANNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "channel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase3": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase3Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_create": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase4Type": {
+      "type": "enum",
+      "members": {
+        "IM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "im"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase4": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase4Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_create": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase5Type": {
+      "type": "enum",
+      "members": {
+        "GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItemCase5": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase5Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "date_create": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase0"
+        },
+        "Case1": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase1"
+        },
+        "Case2": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase2"
+        },
+        "Case3": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase3"
+        },
+        "Case4": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase4"
+        },
+        "Case5": {
+          "target": "com.slack.stars#ListStarsResponseItemsItemCase5"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.stars#ListStarsResponseItemsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.stars#ListStarsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.stars#ListStarsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.slack.stars#ListStarsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paging": {
+          "target": "smithy.api#Document"
+        },
+        "response_metadata": {
+          "target": "com.slack.stars#ListStarsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.stars#ListStars": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.stars#ListStarsRequest"
+      },
+      "output": {
+        "target": "com.slack.stars#ListStarsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/stars.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "(Deprecated) Listed a user's saved items, formerly known as stars.\n\nRequired scopes — user: `stars:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/stars.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
+      }
+    },
+    "com.slack.stars#RemoveStarRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to remove star from, or channel where the message to remove star from was posted (used with `timestamp`)."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File to remove star from."
+          }
+        },
+        "file_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File comment to remove star from."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to remove star from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.stars#RemoveStarResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.stars#RemoveStar": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.stars#RemoveStarRequest"
+      },
+      "output": {
+        "target": "com.slack.stars#RemoveStarResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/stars.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a saved item (star) from an item.\n\nRequired scopes — user: `stars:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Channel, private group, or DM specified by `channel` does not exist\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `file_not_found` — File specified by `file` does not exist.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — `file`, `file_comment`, `channel` and `timestamp` was not specified.\n  - `not_starred` — The specified item is not currently starred by the authenticated user.\n\nSee https://docs.slack.dev/reference/methods/stars.remove"
+      }
+    },
+    "com.slack.stars#Stars": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.stars#AddStar"
+        },
+        {
+          "target": "com.slack.stars#ListStars"
+        },
+        {
+          "target": "com.slack.stars#RemoveStar"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — stars"
+      }
+    }
+  }
+}

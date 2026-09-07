@@ -1,0 +1,352 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.bookmarks#AddBookmarkRequestAccessLevel": {
+      "type": "enum",
+      "members": {
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The level that we are setting the file's permission to (read or write)"
+      }
+    },
+    "com.slack.bookmarks#AddBookmarkRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to add bookmark in. Required for public channels."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title for the bookmark.",
+            "smithy.api#required": {}
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to bookmark."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the bookmark i.e link.",
+            "smithy.api#required": {}
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji tag to apply to the link."
+          }
+        },
+        "entity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the entity being bookmarked. Only applies to message and file types."
+          }
+        },
+        "access_level": {
+          "target": "com.slack.bookmarks#AddBookmarkRequestAccessLevel",
+          "traits": {
+            "smithy.api#documentation": "The level that we are setting the file's permission to (read or write)"
+          }
+        },
+        "parent_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of this bookmark's parent"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.bookmarks#AddBookmarkResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "bookmark": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.bookmarks#AddBookmark": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.bookmarks#AddBookmarkRequest"
+      },
+      "output": {
+        "target": "com.slack.bookmarks#AddBookmarkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/bookmarks.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add bookmark to a channel.\n\nRequired scopes — bot: `bookmarks:write`; user: `bookmarks:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Actor lacks access to the requested resource.\n  - `cannot_bookmark_from_external_org` — File is an external file and cannot be bookmarked.\n  - `cannot_bookmark_restricted_sharing_enabled` — File has restricted sharing enabled and cannot be bookmarked.\n  - `channel_not_found` — Channel cannot be found.\n  - `file_already_added` — The file has already been added to the folder.\n  - `file_not_found` — File cannot be found.\n  - `invalid_bookmark_type` — Bookmark type is not valid.\n  - `invalid_app_action_type` — App action type is not valid.\n  - `invalid_shortcut_type` — Shortcut type is not valid.\n  - `invalid_child_type` — Child type is not valid.\n  - `invalid_emoji` — Invalid emoji, does not follow the pattern of a valid emoji name.\n  - `invalid_entity_id` — Invalid entity_id, file or message type bookmark should have original file or message ID.\n  - `invalid_link` — Invalid link, link should begin with either http:// or https://.\n  - `invalid_parent_type` — Parent type is not valid.\n  - `not_implemented` — bookmarking not available for the user.\n  - `parent_bookmark_disabled` — Parent bookmark feature flag is off.\n  - `parent_with_link` — Parent bookmark should not have link.\n  - `permission_denied` — No permission to perform this operation.\n  - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications\n  - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels\n  - `slack_connect_blocked_file_type` — Files with certain extensions are blocked from being uploaded in all Slack Connect communications\n  - `too_many_bookmarks` — Bookmark limit reached for channel.\n  - `too_many_tabs` — tab limit reached for channel.\n  - `too_many_requests` — Too many concurrent requests. Please retry.\n\nSee https://docs.slack.dev/reference/methods/bookmarks.add"
+      }
+    },
+    "com.slack.bookmarks#EditBookmarkRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to update bookmark in. Required for public channels."
+          }
+        },
+        "bookmark_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bookmark to update. Required for public channels."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title for the bookmark."
+          }
+        },
+        "link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to bookmark."
+          }
+        },
+        "emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji tag to apply to the link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.bookmarks#EditBookmarkResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "bookmark": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.bookmarks#EditBookmark": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.bookmarks#EditBookmarkRequest"
+      },
+      "output": {
+        "target": "com.slack.bookmarks#EditBookmarkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/bookmarks.edit",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit bookmark.\n\nRequired scopes — bot: `bookmarks:write`; user: `bookmarks:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Actor lacks access to the requested resource.\n  - `channel_not_found` — Channel cannot be found.\n  - `invalid_bookmark_type` — Bookmark type is not valid.\n  - `invalid_emoji` — Invalid emoji, does not follow the pattern of a valid emoji name.\n  - `invalid_link` — Invalid link, link should begin with either http:// or https://.\n  - `not_found` — Bookmark cannot be found.\n  - `not_implemented` — bookmarking not available for the user.\n  - `parent_with_link` — Parent bookmark should not have link.\n  - `permission_denied` — No permission to perform this operation.\n  - `slack_connect_file_upload_sharing_blocked` — Admin has disabled File uploads in all Slack Connect communications\n  - `slack_connect_clip_sharing_blocked` — Admin has disabled Clip sharing in Slack Connect channels\n  - `slack_connect_blocked_file_type` — Files with certain extensions are blocked from being uploaded in all Slack Connect communications\n\nSee https://docs.slack.dev/reference/methods/bookmarks.edit"
+      }
+    },
+    "com.slack.bookmarks#ListBookmarksRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to list bookmarks in. Required for public channels."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.bookmarks#ListBookmarksResponseBookmarksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.bookmarks#ListBookmarksResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "bookmarks": {
+          "target": "com.slack.bookmarks#ListBookmarksResponseBookmarksList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.bookmarks#ListBookmarks": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.bookmarks#ListBookmarksRequest"
+      },
+      "output": {
+        "target": "com.slack.bookmarks#ListBookmarksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/bookmarks.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List bookmark for the channel.\n\nRequired scopes — bot: `bookmarks:read`; user: `bookmarks:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Actor lacks access to the requested resource.\n  - `channel_not_found` — Channel cannot be found.\n  - `not_implemented` — bookmarking not available for the user.\n\nSee https://docs.slack.dev/reference/methods/bookmarks.list"
+      }
+    },
+    "com.slack.bookmarks#RemoveBookmarkRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to remove bookmark. Required for public channels."
+          }
+        },
+        "bookmark_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bookmark to remove. Required for public channels."
+          }
+        },
+        "quip_section_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Quip section ID to unbookmark"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.bookmarks#RemoveBookmarkResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.bookmarks#RemoveBookmark": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.bookmarks#RemoveBookmarkRequest"
+      },
+      "output": {
+        "target": "com.slack.bookmarks#RemoveBookmarkResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/bookmarks.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove bookmark from the channel.\n\nRequired scopes — bot: `bookmarks:write`; user: `bookmarks:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — Actor lacks access to the requested resource.\n  - `channel_not_found` — Channel cannot be found.\n  - `user_not_found` — User cannot be found.\n  - `invalid_bookmark_type` — Bookmark type is not valid.\n  - `not_found` — Bookmark cannot be found.\n  - `not_implemented` — bookmarking not available for the user.\n  - `permission_denied` — No permission to perform this operation.\n\nSee https://docs.slack.dev/reference/methods/bookmarks.remove"
+      }
+    },
+    "com.slack.bookmarks#Bookmarks": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.bookmarks#AddBookmark"
+        },
+        {
+          "target": "com.slack.bookmarks#EditBookmark"
+        },
+        {
+          "target": "com.slack.bookmarks#ListBookmarks"
+        },
+        {
+          "target": "com.slack.bookmarks#RemoveBookmark"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — bookmarks"
+      }
+    }
+  }
+}

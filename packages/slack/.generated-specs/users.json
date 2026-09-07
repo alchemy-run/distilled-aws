@@ -1,0 +1,941 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.users#UsersConversationsRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "exclude_archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "exclude_archived",
+            "smithy.api#documentation": "Set to `true` to exclude archived channels from the list"
+          }
+        },
+        "exclude_muted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "exclude_muted",
+            "smithy.api#documentation": "Set to `true` to exclude muted channels from the list"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached. Must be an integer with a max value of 999."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to list conversations in, required if org token is used"
+          }
+        },
+        "types": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "types",
+            "smithy.api#documentation": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "Browse conversations by a specific user ID's membership. Non-public channels are restricted to those where the calling user shares membership."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#UsersConversationsResponseChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.users#UsersConversationsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.users#UsersConversationsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "channels": {
+          "target": "com.slack.users#UsersConversationsResponseChannelsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.users#UsersConversationsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#UsersConversations": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#UsersConversationsRequest"
+      },
+      "output": {
+        "target": "com.slack.users#UsersConversationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.conversations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List conversations the calling user is a member of.\n\nRequired scopes — bot: `groups:read`, `im:read`, `mpim:read`, `channels:read`; user: `groups:read`, `im:read`, `mpim:read`, `channels:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `invalid_limit` — Value passed for `limit` is not understood.\n  - `invalid_types` — Value passed for `type` could not be used based on the method's capabilities or the permission scopes granted to the used token.\n  - `method_not_supported_for_channel_type` — This type of conversation cannot be used with this method.\n  - `missing_argument` — A required argument is missing.\n  - `missing_scope` — The calling token is not granted the necessary scopes to complete this operation.\n\nSee https://docs.slack.dev/reference/methods/users.conversations",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "channels",
+          "pageSize": "limit"
+        }
+      }
+    },
+    "com.slack.users#DeletePhotoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#DeletePhoto": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.users#DeletePhotoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.deletePhoto",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the user profile photo\n\nRequired scopes — user: `users.profile:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — An unexpected error occurred.\n\nSee https://docs.slack.dev/reference/methods/users.deletePhoto"
+      }
+    },
+    "com.slack.users#LookupDiscoverableContactRequest": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#LookupDiscoverableContactResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "is_discoverable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#LookupDiscoverableContact": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#LookupDiscoverableContactRequest"
+      },
+      "output": {
+        "target": "com.slack.users#LookupDiscoverableContactResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users.discoverableContacts.lookup",
+          "code": 200
+        },
+        "smithy.api#documentation": "Look up an email address to see if someone is discoverable on Slack\n\nRequired scopes — bot: `conversations.connect:manage`, `team:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `not_allowed` — user is not allowed to call this API\n  - `ratelimited` — too many attempts\n  - `invalid_arguments` — Invalid arguments (including exceeding character count)\n  - `restricted_action` — user is restricted from calling this API\n  - `not_an_enterprise` — The token does not belong to an enterprise.\n\nSee https://docs.slack.dev/reference/methods/users.discoverableContacts.lookup"
+      }
+    },
+    "com.slack.users#GetPresenceRequest": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "User to get presence info on. Defaults to the authed user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#GetPresenceResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "last_activity": {
+          "target": "smithy.api#Integer"
+        },
+        "manual_away": {
+          "target": "smithy.api#Boolean"
+        },
+        "presence": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "online": {
+          "target": "smithy.api#Boolean"
+        },
+        "connection_count": {
+          "target": "smithy.api#Integer"
+        },
+        "auto_away": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#GetPresence": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#GetPresenceRequest"
+      },
+      "output": {
+        "target": "com.slack.users#GetPresenceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.getPresence",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets user presence information.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 3\n\nSee https://docs.slack.dev/reference/methods/users.getPresence"
+      }
+    },
+    "com.slack.users#UsersIdentityResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#UsersIdentity": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.users#UsersIdentityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.identity",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a user's identity.\n\nRequired scopes — user: `identity:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Internal error\n  - `invalid_user_id` — Invalid user id provided\n  - `email_not_verified` — user email has not been verified\n\nSee https://docs.slack.dev/reference/methods/users.identity"
+      }
+    },
+    "com.slack.users#UsersInfoRequest": {
+      "type": "structure",
+      "members": {
+        "include_locale": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_locale",
+            "smithy.api#documentation": "Set this to `true` to receive the locale for this user. Defaults to `false`"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "User to get info on"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#UsersInfoResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.users#UsersInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#Document"
+        },
+        "users": {
+          "target": "com.slack.users#UsersInfoResponseUsersList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#UsersInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#UsersInfoRequest"
+      },
+      "output": {
+        "target": "com.slack.users#UsersInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information about a user.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `too_many_users` — Too many users.\n  - `user_not_found` — Value passed for `user` was invalid.\n  - `user_not_visible` — The requested user is not visible to the calling user\n\nSee https://docs.slack.dev/reference/methods/users.info"
+      }
+    },
+    "com.slack.users#ListUsersRequest": {
+      "type": "structure",
+      "members": {
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail."
+          }
+        },
+        "include_locale": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_locale",
+            "smithy.api#documentation": "Set this to `true` to receive the locale for users. Defaults to `false`"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. Providing no `limit` value will result in Slack attempting to deliver you the entire result set. If the collection is too large you may experience `limit_required` or HTTP 500 errors."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to list users in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#ListUsersResponseMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.users#ListUsersResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.users#ListUsersResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "members": {
+          "target": "com.slack.users#ListUsersResponseMembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "cache_ts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.users#ListUsersResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#ListUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#ListUsersRequest"
+      },
+      "output": {
+        "target": "com.slack.users#ListUsersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all users in a Slack team.\n\nRequired scopes — bot: `users:read`; user: `users:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `limit_required` — For large teams a limit is required.\n  - `missing_argument` — A required argument is missing.\n\nSee https://docs.slack.dev/reference/methods/users.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "members",
+          "pageSize": "limit"
+        }
+      }
+    },
+    "com.slack.users#LookupByEmailRequest": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "email",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "An email address belonging to a user in the workspace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#LookupByEmailResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#LookupByEmail": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#LookupByEmailRequest"
+      },
+      "output": {
+        "target": "com.slack.users#LookupByEmailResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.lookupByEmail",
+          "code": 200
+        },
+        "smithy.api#documentation": "Find a user with an email address.\n\nRequired scopes — bot: `users:read.email`; user: `users:read.email`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `enterprise_is_restricted` — This method was called with an inappropriate enterprise-level token.\n  - `users_not_found` — Value passed for `user` was invalid.\n\nSee https://docs.slack.dev/reference/methods/users.lookupByEmail"
+      }
+    },
+    "com.slack.users#GetProfileRequest": {
+      "type": "structure",
+      "members": {
+        "include_labels": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_labels",
+            "smithy.api#documentation": "Include labels for each ID in custom profile fields. Using this parameter will heavily rate-limit your requests and is not recommended."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "User to retrieve profile info for"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#GetProfileResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "profile": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#GetProfile": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#GetProfileRequest"
+      },
+      "output": {
+        "target": "com.slack.users#GetProfileResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users.profile.get",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a user's profile information, including their custom status.\n\nRequired scopes — bot: `users.profile:read`; user: `users.profile:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `user_not_found` — Value passed for `user` was invalid.\n  - `token_revoked` — The token being used is not valid.\n  - `ratelimited` — You are attempting to call this method too frequently.\n\nSee https://docs.slack.dev/reference/methods/users.profile.get"
+      }
+    },
+    "com.slack.users#SetProfileRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of a single key to set. Usable only if `profile` is not passed."
+          }
+        },
+        "profile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of user to change. This argument may only be specified by admins on paid teams."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value to set a single key to. Usable only if `profile` is not passed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#SetProfileResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "profile": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email_pending": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#SetProfile": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#SetProfileRequest"
+      },
+      "output": {
+        "target": "com.slack.users#SetProfileResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users.profile.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a user's profile information, including custom status.\n\nRequired scopes — user: `users.profile:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `cannot_update_admin_user` — Only a primary owner can update the profile of an admin.\n  - `email_taken` — email taken\n  - `invalid_profile` — Profile object passed in is not valid JSON (make sure it is URL encoded!).\n  - `must_clear_both_status_text_and_status_emoji` — Clearing the status requires setting both `status_text` and `status_emoji` to ''.\n  - `name_not_allowed` — name cannot contain URL.\n  - `not_admin` — Only admins can update the profile of another user. Some fields, like `email` may only be updated by an admin.\n  - `not_app_admin` — Only team owners and selected members can update the profile of a bot user.\n  - `partial_profile_set_failed` — Failed to set user profile.\n  - `profile_set_failed` — Failed to set user profile.\n  - `reserved_name` — First or last name are reserved.\n  - `sudo_required` — Request requires sudo session.\n  - `too_long` — You attempted to set a custom status but it was longer than the maximum allowed, 100.\n  - `permission_denied` — Permission denied.\n  - `username_same` — Username is the same as the current username.\n  - `invalid_emoji_not_allowed` — Invalid emoji not allowed.\n  - `invalid_ooo_message` — Invalid Out of Office message.\n  - `invalid_starts_with_at` — Name cannot start with @.\n\nSee https://docs.slack.dev/reference/methods/users.profile.set"
+      }
+    },
+    "com.slack.users#SetActiveResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#SetActive": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.users#SetActiveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users.setActive",
+          "code": 200
+        },
+        "smithy.api#documentation": "Marked a user as active. Deprecated and non-functional.\n\nRequired scopes — bot: `users:write`; user: `users:write`\n\nRate limit tier: 2\n\nSee https://docs.slack.dev/reference/methods/users.setActive"
+      }
+    },
+    "com.slack.users#SetPhotoRequest": {
+      "type": "structure",
+      "members": {
+        "crop_w": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Width/height of crop box (always square)"
+          }
+        },
+        "crop_x": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "X coordinate of top-left corner of crop box"
+          }
+        },
+        "crop_y": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Y coordinate of top-left corner of crop box"
+          }
+        },
+        "image": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "File contents via `multipart/form-data`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#SetPhotoResponseProfileMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.users#SetPhotoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "profile": {
+          "target": "com.slack.users#SetPhotoResponseProfileMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#SetPhoto": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#SetPhotoRequest"
+      },
+      "output": {
+        "target": "com.slack.users#SetPhotoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users.setPhoto",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the user profile photo\n\nRequired scopes — user: `users.profile:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_image` — The uploaded image could not be processed - try passing a JPEG, GIF or PNG\n  - `internal_error` — An unexpected error occurred.\n  - `too_large` — The uploaded image had excessive dimensions\n  - `too_many_frames` — An animated GIF with too many frames was uploaded\n\nSee https://docs.slack.dev/reference/methods/users.setPhoto",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.users#SetPresenceRequestPresence": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "AWAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "away"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Either `auto` or `away`"
+      }
+    },
+    "com.slack.users#SetPresenceRequest": {
+      "type": "structure",
+      "members": {
+        "presence": {
+          "target": "com.slack.users#SetPresenceRequestPresence",
+          "traits": {
+            "smithy.api#documentation": "Either `auto` or `away`",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.users#SetPresenceResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.users#SetPresence": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.users#SetPresenceRequest"
+      },
+      "output": {
+        "target": "com.slack.users#SetPresenceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users.setPresence",
+          "code": 200
+        },
+        "smithy.api#documentation": "Manually sets user presence.\n\nRequired scopes — bot: `users:write`; user: `users:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_presence` — Value passed for `presence` was invalid.\n\nSee https://docs.slack.dev/reference/methods/users.setPresence"
+      }
+    },
+    "com.slack.users#Users": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.users#UsersConversations"
+        },
+        {
+          "target": "com.slack.users#DeletePhoto"
+        },
+        {
+          "target": "com.slack.users#LookupDiscoverableContact"
+        },
+        {
+          "target": "com.slack.users#GetPresence"
+        },
+        {
+          "target": "com.slack.users#UsersIdentity"
+        },
+        {
+          "target": "com.slack.users#UsersInfo"
+        },
+        {
+          "target": "com.slack.users#ListUsers"
+        },
+        {
+          "target": "com.slack.users#LookupByEmail"
+        },
+        {
+          "target": "com.slack.users#GetProfile"
+        },
+        {
+          "target": "com.slack.users#SetProfile"
+        },
+        {
+          "target": "com.slack.users#SetActive"
+        },
+        {
+          "target": "com.slack.users#SetPhoto"
+        },
+        {
+          "target": "com.slack.users#SetPresence"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — users"
+      }
+    }
+  }
+}

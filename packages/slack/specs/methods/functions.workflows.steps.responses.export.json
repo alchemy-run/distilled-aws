@@ -1,0 +1,64 @@
+{
+  "desc": "Download form responses of a workflow",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "step_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "workflow_id": {
+        "desc": "The workflow ID, starts with Wf*",
+        "type": "string"
+      },
+      "workflow": {
+        "type": "string",
+        "desc": "The workflow encoded ID or workflow reference",
+        "example": "#/workflows/my-workflow"
+      },
+      "workflow_app_id": {
+        "type": "string",
+        "desc": "The app tied to the workflow reference."
+      },
+      "step_id": {
+        "type": "string",
+        "desc": "The ID of the OpenForm step to export."
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to the functions on this team."
+    },
+    "workflows_export_csv_not_enabled": {
+      "desc": "Downloading form responses is not allowed. Admin pref needs to be enabled."
+    },
+    "unknown_workflow_id": {
+      "desc": "The passed in workflow_id is invalid."
+    },
+    "unknown_step_id": {
+      "desc": "The passed in step_id is invalid."
+    },
+    "invalid_arguments": {
+      "desc": "The arguments passed in are invalid."
+    },
+    "unknown_app_id": {
+      "desc": "The passed in workflow_app_id is invalid."
+    }
+  }
+}

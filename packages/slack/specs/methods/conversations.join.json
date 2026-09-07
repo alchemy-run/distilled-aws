@@ -1,0 +1,79 @@
+{
+  "desc": "Joins an existing conversation.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "channels:write"
+    ],
+    "bot": [
+      "channels:join"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "ID of conversation to join",
+        "type": "string",
+        "subtype": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "conversation"
+      },
+      "response_metadata": {
+        "type": "object",
+        "title": "Response metadata",
+        "properties": {
+          "warnings": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "channel_is_limited_access": {
+      "desc": "The user has no access to the channel. This is only applicable to private Salesforce record channels."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "too_many_members": {
+      "desc": "The membership in the channel has exceeded our maximum member limit. No more users can join the channel."
+    }
+  }
+}

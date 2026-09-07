@@ -1,0 +1,96 @@
+{
+  "desc": "Grant permission for entities to access an app that has its permission type set to named_entities",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "type": "string",
+        "desc": "Encoded ID of the app",
+        "example": "A0000000001"
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of user IDs to allow for named_entities visibility",
+        "example": "['U00000001', 'U00000002', 'U00000003']",
+        "items": {
+          "schema": "user_id"
+        },
+        "maxItems": 50,
+        "uniqueItems": true
+      },
+      "usergroup_ids": {
+        "type": "array",
+        "desc": "List of encoded usergroup IDs",
+        "example": "S00000001,S00000002",
+        "items": {
+          "schema": "subteam_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "schema": "app_acl"
+  },
+  "errors": {
+    "invalid_auth": {
+      "desc": "Invalid authorization token"
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "invalid_permission_type": {
+      "desc": "This app requires permission_type to be set as named_entities before adding users."
+    },
+    "no_valid_named_entities": {
+      "desc": "None of the provided named entities were valid"
+    },
+    "too_many_named_entities": {
+      "desc": "Too many named entities passed into the app permissions setting."
+    },
+    "app_not_found": {
+      "desc": "This app does not exist."
+    },
+    "not_an_enterprise": {
+      "desc": "This feature is only available on Enterprise Grid plans."
+    },
+    "app_acl_not_found": {
+      "desc": "This app does not have an ACL."
+    },
+    "internal_error": {
+      "desc": "Internal error"
+    },
+    "user_not_found": {
+      "desc": "Value passed for `user_ids` was invalid."
+    },
+    "invalid_entities": {
+      "desc": "Invalid entities."
+    },
+    "invalid_channel_restriction_mode": {
+      "desc": "Cannot add channels when channel_restriction_mode is all_channels. Use set to configure a restriction mode first."
+    },
+    "channel_not_found": {
+      "desc": "One or more channel IDs are not valid."
+    },
+    "failed_to_update_channels": {
+      "desc": "An error occurred while updating the channel restriction list."
+    }
+  }
+}

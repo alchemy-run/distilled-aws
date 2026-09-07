@@ -1,0 +1,75 @@
+{
+  "desc": "Clear user-specific session settings—the session duration and what happens when the client closes—for a list of users.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_ids": {
+        "desc": "The IDs of users you'd like to clear session settings for.",
+        "example": "['U1234']",
+        "items": {
+          "type": "string",
+          "schema": "user_id"
+        },
+        "type": "array"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "admin_unauthorized": {
+      "desc": "The owner of this token isn't authorized to clear sessions."
+    },
+    "bots_not_allowed": {
+      "desc": "Bot users may not have their settings cleared."
+    },
+    "feature_not_enabled": {
+      "desc": "This method is only available to Enterprise customers."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request—please retry."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_auth": {
+      "desc": "The provided token doesn't have access to this endpoint."
+    },
+    "not_an_admin": {
+      "desc": "The owner of this token isn't an Org Owner or Admin."
+    },
+    "unknown_method": {
+      "desc": "This method is currently not available."
+    },
+    "user_not_found": {
+      "desc": "There was an error finding a requested user."
+    }
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "desc": "Sends a message to a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ],
+    "user": [
+      "chat:write"
+    ]
+  },
+  "rate_limits": "t5",
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "as_user": {
+        "desc": "(Legacy) Pass true to post the message as the authed user instead of as a bot. Defaults to false. Can only be used by classic apps. See [legacy `as_user` parameter](#legacy_as_user) below.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "attachments": {
+        "desc": "A JSON-based array of structured attachments, presented as a URL-encoded string.",
+        "example": "[{\"pretext\": \"pre-hello\", \"text\": \"text-world\"}]",
+        "anyOf": [
+          {
+            "type": "string",
+            "subtype": "attachments"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "blocks": {
+        "desc": "A JSON-based array of structured blocks, presented as a URL-encoded string.",
+        "example": "[{\"type\": \"section\", \"text\": {\"type\": \"plain_text\", \"text\": \"Hello world\"}}]",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "channel": {
+        "desc": "An encoded ID or channel name that represents a channel, private group, or IM channel to send the message to. See [below](#channels) for more details.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "current_draft_last_updated_ts": {
+        "desc": "This field represents the timestamp of the draft's last update at the time this API is called. If the current message is a draft, this field can be provided to ensure synchronization with the server.",
+        "example": "1524523204.000192",
+        "type": "string"
+      },
+      "icon_emoji": {
+        "desc": "Emoji to use as the icon for this message. Overrides `icon_url`.",
+        "example": ":chart_with_upwards_trend:",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "icon_url": {
+        "desc": "URL to an image to use as the icon for this message.",
+        "example": "http://lorempixel.com/48/48",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "link_names": {
+        "desc": "Find and link user groups. No longer supports linking individual users; use syntax shown in [Mentioning Users](/messaging/formatting-message-text#mentioning-users) instead.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "markdown_text": {
+        "desc": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters.",
+        "type": "string",
+        "example": "**This is bold text**"
+      },
+      "metadata": {
+        "desc": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. You can also provide Work Object entity metadata using this parameter. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+        "example": "{\"event_type\": \"task_created\", \"event_payload\": { \"id\": \"11223\", \"title\": \"Redesign Homepage\"}}",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "mrkdwn": {
+        "default": "true",
+        "desc": "Disable Slack markup parsing by setting to `false`. Enabled by default.",
+        "example": "false",
+        "type": "boolean"
+      },
+      "parse": {
+        "desc": "Change how messages are treated. See [below](#formatting).",
+        "example": "full",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "reply_broadcast": {
+        "desc": "Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "text": {
+        "desc": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail.",
+        "example": "Hello world",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "thread_ts": {
+        "desc": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead.",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "unfurl_links": {
+        "desc": "Pass true to enable unfurling of primarily text-based content.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "unfurl_media": {
+        "desc": "Pass false to disable unfurling of media content.",
+        "example": "false",
+        "type": "boolean"
+      },
+      "username": {
+        "desc": "Set your bot's user name.",
+        "example": "My Bot",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "channel",
+      "ts"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "channel"
+      },
+      "ts": {
+        "schema": "ts"
+      },
+      "message": {
+        "schema": "message"
+      },
+      "is_duplicate": {
+        "desc": "Pass true if duplicate message is attempted to be sent.",
+        "example": "true",
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "errors": {
+    "app_access_restricted": {
+      "desc": "The user does not have permission to use this app."
+    },
+    "as_user_not_supported": {
+      "desc": "The `as_user` parameter does not function with workspace apps."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "draft_already_deleted": {
+      "desc": "The draft has already been deleted."
+    },
+    "draft_already_sent": {
+      "desc": "The draft has already been sent."
+    },
+    "draft_has_conflict": {
+      "desc": "The client draft version is out of sync with the server draft version."
+    },
+    "draft_not_found": {
+      "desc": "The draft was not found."
+    },
+    "duplicate_channel_not_found": {
+      "desc": "Channel associated with `client_msg_id` was invalid."
+    },
+    "duplicate_message_not_found": {
+      "desc": "No duplicate message exists associated with `client_msg_id`."
+    },
+    "ekm_access_denied": {
+      "desc": "Your message couldn’t be sent because your admins have disabled sending messages to this channel."
+    },
+    "invalid_blocks": {
+      "desc": "Blocks submitted with this message are not valid."
+    },
+    "invalid_blocks_format": {
+      "desc": "The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax."
+    },
+    "invalid_metadata_format": {
+      "desc": "Invalid metadata format provided."
+    },
+    "invalid_metadata_schema": {
+      "desc": "Invalid metadata schema provided."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "markdown_text_conflict": {
+      "desc": "Markdown text cannot be used in conjunction with `blocks` or `text` argument."
+    },
+    "message_limit_exceeded": {
+      "desc": "Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces."
+    },
+    "messages_tab_disabled": {
+      "desc": "Messages tab for the app is disabled."
+    },
+    "metadata_must_be_sent_from_app": {
+      "desc": "Message metadata can only be posted or updated using an app-level token."
+    },
+    "metadata_too_large": {
+      "desc": "Metadata exceeds size limit."
+    },
+    "msg_blocks_too_long": {
+      "desc": "Blocks submitted with this message are too long."
+    },
+    "no_text": {
+      "desc": "No message text provided."
+    },
+    "not_in_channel": {
+      "desc": "Cannot post user messages to a channel they are not in."
+    },
+    "rate_limited": {
+      "desc": "Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from posting."
+    },
+    "restricted_action_non_threadable_channel": {
+      "desc": "Cannot post thread replies into a non_threadable channel."
+    },
+    "restricted_action_read_only_channel": {
+      "desc": "Cannot post any message into a read-only channel."
+    },
+    "restricted_action_thread_locked": {
+      "desc": "Cannot post replies to a thread that has been locked by admins."
+    },
+    "restricted_action_thread_only_channel": {
+      "desc": "Cannot post top-level messages into a thread-only channel."
+    },
+    "send_on_behalf_not_allowed": {
+      "desc": "Cannot send on behalf of the provided user."
+    },
+    "slack_connect_canvas_sharing_blocked": {
+      "desc": "Admin has disabled Canvas File sharing in all Slack Connect communications."
+    },
+    "slack_connect_file_link_sharing_blocked": {
+      "desc": "Admin has disabled Slack File sharing in all Slack Connect communications."
+    },
+    "slack_connect_lists_sharing_blocked": {
+      "desc": "Admin has disabled Lists sharing in all Slack Connect communications."
+    },
+    "team_not_found": {
+      "desc": "This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`."
+    },
+    "too_many_attachments": {
+      "desc": "Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message."
+    },
+    "too_many_contact_cards": {
+      "desc": "Too many contact_cards were provided with this message. A maximum of 10 contact cards are allowed on a message."
+    },
+    "cannot_reply_to_message": {
+      "desc": "This message type cannot have thread replies."
+    },
+    "missing_file_data": {
+      "desc": "Attempted to share a file but some required data was missing."
+    },
+    "attachment_payload_limit_exceeded": {
+      "desc": "Attachment payload size is too long."
+    }
+  }
+}

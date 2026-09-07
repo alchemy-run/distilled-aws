@@ -1,0 +1,66 @@
+{
+  "desc": "Set the default channels of a workspace.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "channel_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "ID for the workspace to set the default channel for.",
+        "schema": "workspace_id"
+      },
+      "channel_ids": {
+        "desc": "An array of channel IDs.",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 100,
+        "items": {
+          "schema": "channel_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {}
+  },
+  "errors": {
+    "failed_to_set_default_channels": {
+      "desc": "We encountered an error while trying to set the default channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_auth": {
+      "desc": "The given token is not authorized for the requested `team_id`."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and admins."
+    },
+    "one_or_more_invalid_channels": {
+      "desc": "One or more of the passed channel IDs was invalid."
+    },
+    "restricted_action": {
+      "desc": "The actor does not have admin permissions for the team in context"
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    }
+  }
+}

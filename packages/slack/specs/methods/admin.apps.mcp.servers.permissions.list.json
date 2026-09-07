@@ -1,0 +1,66 @@
+{
+  "desc": "List MCP servers for an app with their access control permissions",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "type": "string",
+        "desc": "Encoded ID of the app",
+        "example": "A0000000001"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "servers"
+    ],
+    "properties": {
+      "servers": {
+        "type": "array",
+        "maxItems": 500,
+        "items": {
+          "schema": ""
+        }
+      }
+    }
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "invalid_auth": {
+      "desc": "Invalid authorization token"
+    },
+    "app_not_found": {
+      "desc": "This app does not exist."
+    },
+    "not_an_enterprise": {
+      "desc": "This feature is only available on Enterprise Grid plans."
+    },
+    "feature_not_enabled": {
+      "desc": "The MCP server ACL feature is not enabled for this team."
+    },
+    "internal_error": {
+      "desc": "An internal error occurred while resolving the app's approved domains or ACLs. Retry the request."
+    }
+  }
+}

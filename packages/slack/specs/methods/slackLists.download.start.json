@@ -1,0 +1,77 @@
+{
+  "desc": "Initiate a job to export List contents.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:read"
+    ],
+    "user": [
+      "lists:read"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "list_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List to export.",
+        "example": "F1234567",
+        "type": "string",
+        "subtype": "list",
+        "schema": "file_id"
+      },
+      "include_archived": {
+        "type": "boolean",
+        "default": false
+      },
+      "format": {
+        "desc": "Format of the export. Defaults to `csv` for backward compatibility. Use `json` for a complete, hierarchical export.",
+        "schema": "list_export_format",
+        "default": "csv"
+      },
+      "include_threads": {
+        "desc": "Include each item's conversation thread in the export. Only applies when `format` is `json`.",
+        "type": "boolean",
+        "default": false
+      },
+      "include_attachments": {
+        "desc": "Include file attachment metadata and access paths in the export. Only applies when `format` is `json`.",
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "job_id"
+    ],
+    "properties": {
+      "job_id": {
+        "type": "integer",
+        "example": "1205208491474",
+        "desc": "The ID of the recently started job to export the List."
+      }
+    }
+  },
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "permission_denied": {
+      "desc": "The bot does not have permission to perform this action."
+    },
+    "unknown_method": {
+      "desc": "Feature not enabled for this team."
+    }
+  }
+}

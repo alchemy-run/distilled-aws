@@ -1,0 +1,122 @@
+{
+  "desc": "Updates cells in a List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:write"
+    ],
+    "user": [
+      "lists:write"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "list_id",
+      "cells"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List to add or update cells.",
+        "example": "F01ABCDE2FG",
+        "type": "string",
+        "subtype": "list"
+      },
+      "cells": {
+        "type": "array",
+        "desc": "Cells to update.",
+        "minItems": 1,
+        "maxItems": 100,
+        "example": "[{\"row_id\":\"Rec014K005UQJ\",\"column_id\":\"Col014K005UQJ\",\"user\":[\"U01284PCR98\", \"U0137181B5H\"]}]",
+        "items": {
+          "schema": "list_cell_with_new_rows"
+        }
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "row_not_found": {
+      "desc": "The row was not found."
+    },
+    "column_not_found": {
+      "desc": "The column was not found."
+    },
+    "file_not_found": {
+      "desc": "Invalid file ID for this List."
+    },
+    "invalid_input_type": {
+      "desc": "Supplied value key or value type is invalid for the given column type."
+    },
+    "invalid_row_id": {
+      "desc": "Invalid row ID for this List."
+    },
+    "invalid_column_id": {
+      "desc": "Invalid column ID for this List."
+    },
+    "permission_denied": {
+      "desc": "The user does not have permission to perform this action."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    },
+    "channel_not_found": {
+      "desc": "The channel cannot be found."
+    },
+    "uneditable_column": {
+      "desc": "The column cannot be updated."
+    },
+    "invalid_blocks": {
+      "desc": "Rich text payload supplied is invalid."
+    },
+    "invalid_text_block": {
+      "desc": "Rich text payload supplied is invalid."
+    },
+    "invalid_email": {
+      "desc": "Email supplied is invalid."
+    },
+    "invalid_link": {
+      "desc": "Message archive link supplied is invalid."
+    },
+    "invalid_date": {
+      "desc": "Date supplied is invalid."
+    },
+    "invalid_option_id": {
+      "desc": "Option supplied is invalid."
+    },
+    "row_id_not_provided": {
+      "desc": "The `row_id` or `row_id_to_create` field must be provided."
+    },
+    "column_id_not_provided": {
+      "desc": "The `column_id` or `column_id_to_create` field must be provided."
+    },
+    "over_cell_fields_limit": {
+      "desc": "The supplied cell fields are over the cell field maximum."
+    },
+    "invalid_message": {
+      "desc": "Invalid message provided."
+    },
+    "invalid_attachment": {
+      "desc": "Invalid attachment provided."
+    },
+    "invalid_phone_number": {
+      "desc": "Invalid phone number provided."
+    },
+    "invalid_vote_value": {
+      "desc": "Invalid vote value is supplied."
+    }
+  }
+}

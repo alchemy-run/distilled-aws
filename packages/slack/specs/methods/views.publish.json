@@ -1,0 +1,75 @@
+{
+  "desc": "Publish a static view for a User.",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "no_scope_required": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_id",
+      "view"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_id": {
+        "type": "string",
+        "example": "U0BPQUNTA",
+        "desc": "`id` of the user you want publish a view to."
+      },
+      "view": {
+        "desc": "A [view payload](/reference/views). This must be a JSON-encoded string.",
+        "schema": "publishable-view"
+      },
+      "hash": {
+        "type": "string",
+        "desc": "A string that represents view state to protect against possible race conditions.",
+        "example": "156772938.1827394"
+      },
+      "interactivity_pointer": {
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "view"
+    ],
+    "properties": {
+      "view": {
+        "schema": "publishable-view"
+      }
+    }
+  },
+  "errors": {
+    "duplicate_external_id": {
+      "desc": "Error returned when the given `external_id` has already be used."
+    },
+    "hash_conflict": {
+      "desc": "Error returned when the provided `hash` doesn't match the current stored value."
+    },
+    "missing_profile_id": {
+      "desc": "A profile id was not provided when trying to publish a view of type profile."
+    },
+    "not_allowed_token_type": {
+      "desc": "The type of token your app used when requesting this method is not allowed."
+    },
+    "not_enabled": {
+      "desc": "Error returned if a `home` view is published but the Home tab isn't enabled for the app."
+    },
+    "not_implemented": {
+      "desc": "The profile view experiment is not enabled for this user."
+    },
+    "view_too_large": {
+      "desc": "Error returned if the provided view is greater than 250kb."
+    }
+  }
+}

@@ -1,0 +1,846 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.workflows#AddFeaturedRequestTriggerIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Comma-separated array of trigger IDs to add; max 15"
+      }
+    },
+    "com.slack.workflows#AddFeaturedRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to add featured workflow in.",
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_ids": {
+          "target": "com.slack.workflows#AddFeaturedRequestTriggerIdsList",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated array of trigger IDs to add; max 15",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#AddFeaturedResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#AddFeatured": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#AddFeaturedRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#AddFeaturedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.featured.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add featured workflows to a channel.\n\nRequired scopes — bot: `bookmarks:write`; user: `bookmarks:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_not_supported` — Method not yet supported\n  - `restricted_action` — User does not have access to this method.\n  - `error_modifying_workflows` — Error modifying workflows\n\nSee https://docs.slack.dev/reference/methods/workflows.featured.add"
+      }
+    },
+    "com.slack.workflows#ListFeaturedRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Comma-separated array of channel IDs to list featured workflows for."
+      }
+    },
+    "com.slack.workflows#ListFeaturedRequest": {
+      "type": "structure",
+      "members": {
+        "channel_ids": {
+          "target": "com.slack.workflows#ListFeaturedRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated array of channel IDs to list featured workflows for.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsItemTriggersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsItemTriggersList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsItemTriggersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of triggers associated with channel"
+      }
+    },
+    "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsItem": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel where workflows are featured",
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsItemTriggersList",
+          "traits": {
+            "smithy.api#documentation": "Array of triggers associated with channel",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.workflows#ListFeaturedResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "featured_workflows": {
+          "target": "com.slack.workflows#ListFeaturedResponseFeaturedWorkflowsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#ListFeatured": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#ListFeaturedRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#ListFeaturedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.featured.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the featured workflows for specified channels.\n\nRequired scopes — bot: `bookmarks:read`; user: `bookmarks:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_not_supported` — Method not yet supported\n  - `restricted_action` — User does not have access to this method.\n  - `channel_not_found` — Channel not found.\n  - `error_invalid_channels` — Invalid channels provided.\n\nSee https://docs.slack.dev/reference/methods/workflows.featured.list"
+      }
+    },
+    "com.slack.workflows#RemoveFeaturedRequestTriggerIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Comma-separated array of trigger IDs to remove; max 15"
+      }
+    },
+    "com.slack.workflows#RemoveFeaturedRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to remove featured workflow from.",
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_ids": {
+          "target": "com.slack.workflows#RemoveFeaturedRequestTriggerIdsList",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated array of trigger IDs to remove; max 15",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#RemoveFeaturedResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#RemoveFeatured": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#RemoveFeaturedRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#RemoveFeaturedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.featured.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove featured workflows from a channel.\n\nRequired scopes — bot: `bookmarks:write`; user: `bookmarks:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_not_supported` — Method not yet supported\n  - `restricted_action` — User does not have access to this method.\n  - `error_modifying_workflows` — Error modifying workflows\n\nSee https://docs.slack.dev/reference/methods/workflows.featured.remove"
+      }
+    },
+    "com.slack.workflows#SetFeaturedRequestTriggerIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Comma-separated array of trigger IDs that will replace any existing featured workflows in the channel; max 15"
+      }
+    },
+    "com.slack.workflows#SetFeaturedRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel to set featured workflows in.",
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_ids": {
+          "target": "com.slack.workflows#SetFeaturedRequestTriggerIdsList",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated array of trigger IDs that will replace any existing featured workflows in the channel; max 15",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#SetFeaturedResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#SetFeatured": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#SetFeaturedRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#SetFeaturedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.featured.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set featured workflows for a channel.\n\nRequired scopes — bot: `bookmarks:write`; user: `bookmarks:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_not_supported` — Method not yet supported\n  - `restricted_action` — User does not have access to this method.\n  - `error_modifying_workflows` — Error modifying workflows\n\nSee https://docs.slack.dev/reference/methods/workflows.featured.set"
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissionsRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded user IDs"
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissionsRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded channel IDs"
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissionsRequestTeamIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded workspace IDs"
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissionsRequestOrgIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded organization IDs"
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the trigger",
+            "smithy.api#required": {}
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.workflows#AddTriggersPermissionsRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded user IDs"
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.workflows#AddTriggersPermissionsRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded channel IDs"
+          }
+        },
+        "team_ids": {
+          "target": "com.slack.workflows#AddTriggersPermissionsRequestTeamIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded workspace IDs"
+          }
+        },
+        "org_ids": {
+          "target": "com.slack.workflows#AddTriggersPermissionsRequestOrgIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded organization IDs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#AddTriggersPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#AddTriggersPermissionsRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#AddTriggersPermissionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.triggers.permissions.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Allows users to run a trigger that has its permission type set to named_entities\n\nRequired scopes — bot: `triggers:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `channel_not_found` — One or more of the listed channels could not be found.\n  - `connected_org_denied` — The workspace admin does not allow connected organizations to be named_entities.\n  - `connected_team_denied` — The workspace admin does not allow connected teams to be named_entities.\n  - `connected_user_denied` — The workspace admin does not allow connected users to be named_entities.\n  - `invalid_permission_type` — This trigger requires permission_type to be set as named_entities before adding users.\n  - `no_valid_named_entities` — None of the provided named entities were valid\n  - `org_not_connected` — One of more of the listed organizations were not connected.\n  - `org_not_found` — One or more of the listed organizations could not be found.\n  - `shared_channel_denied` — The workspace admin does not allow shared channels to be named_entities.\n  - `team_not_connected` — One of more of the listed teams were not connected by org.\n  - `team_not_found` — One or more of the listed teams could not be found.\n  - `too_many_named_entities` — Too many named entities passed into the trigger permissions setting.\n  - `trigger_not_found` — This trigger does not exist.\n  - `unknown_method` — This method does not exist.\n  - `user_not_found` — One or more of the listed users could not be found.\n\nSee https://docs.slack.dev/reference/methods/workflows.triggers.permissions.add"
+      }
+    },
+    "com.slack.workflows#ListTriggersPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the trigger",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#ListTriggersPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#ListTriggersPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#ListTriggersPermissionsRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#ListTriggersPermissionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.triggers.permissions.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the permission type of a trigger and if applicable, includes the entities that have been granted access\n\nRequired scopes — bot: `triggers:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `unknown_method` — This method does not exist.\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `trigger_not_found` — This trigger does not exist.\n\nSee https://docs.slack.dev/reference/methods/workflows.triggers.permissions.list"
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded user IDs"
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded channel IDs"
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsRequestTeamIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded workspace IDs"
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsRequestOrgIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded organization IDs"
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the trigger",
+            "smithy.api#required": {}
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded user IDs"
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded channel IDs"
+          }
+        },
+        "team_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsRequestTeamIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded workspace IDs"
+          }
+        },
+        "org_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsRequestOrgIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded organization IDs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsResponsePermissionType": {
+      "type": "enum",
+      "members": {
+        "EVERYONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "everyone"
+          }
+        },
+        "APP_COLLABORATORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app_collaborators"
+          }
+        },
+        "NAMED_ENTITIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "named_entities"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsResponseUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of encoded user IDs."
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsResponseChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of encoded channel IDs."
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsResponseTeamIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Encoded workspace IDs."
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsResponseOrgIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.workflows#RemoveTriggersPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "permission_type": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsResponsePermissionType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsResponseUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of encoded user IDs."
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsResponseChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "A list of encoded channel IDs."
+          }
+        },
+        "team_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsResponseTeamIdsList",
+          "traits": {
+            "smithy.api#documentation": "Encoded workspace IDs."
+          }
+        },
+        "org_ids": {
+          "target": "com.slack.workflows#RemoveTriggersPermissionsResponseOrgIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#RemoveTriggersPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#RemoveTriggersPermissionsRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#RemoveTriggersPermissionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.triggers.permissions.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke an entity's access to a trigger that has its permission type set to named_entities\n\nRequired scopes — bot: `triggers:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `connected_org_denied` — The workspace admin does not allow connected organizations to be named_entities.\n  - `connected_team_denied` — The workspace admin does not allow connected teams to be named_entities.\n  - `connected_user_denied` — The workspace admin does not allow connected users to be named_entities.\n  - `named_entities_cannot_be_empty` — There must be at least one valid named entity\n  - `org_not_connected` — One of more of the listed organizations were not connected.\n  - `org_not_found` — One or more of the listed organizations could not be found.\n  - `shared_channel_denied` — The workspace admin does not allow shared channels to be named_entities.\n  - `trigger_not_found` — This trigger does not exist.\n  - `invalid_permission_type` — This trigger requires permission_type to be set as named_entities before adding users.\n  - `too_many_named_entities` — Too many named entities passed into the trigger permissions setting.\n  - `unknown_method` — This method does not exist.\n\nSee https://docs.slack.dev/reference/methods/workflows.triggers.permissions.remove"
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsRequestPermissionType": {
+      "type": "enum",
+      "members": {
+        "EVERYONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "everyone"
+          }
+        },
+        "APP_COLLABORATORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "app_collaborators"
+          }
+        },
+        "NAMED_ENTITIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "named_entities"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of permission that defines who can run a trigger"
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded user IDs"
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded channel IDs"
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsRequestTeamIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded workspace IDs"
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsRequestOrgIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of encoded organization IDs"
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the trigger",
+            "smithy.api#required": {}
+          }
+        },
+        "permission_type": {
+          "target": "com.slack.workflows#SetTriggersPermissionsRequestPermissionType",
+          "traits": {
+            "smithy.api#documentation": "The type of permission that defines who can run a trigger",
+            "smithy.api#required": {}
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.workflows#SetTriggersPermissionsRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded user IDs"
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.workflows#SetTriggersPermissionsRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded channel IDs"
+          }
+        },
+        "team_ids": {
+          "target": "com.slack.workflows#SetTriggersPermissionsRequestTeamIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded workspace IDs"
+          }
+        },
+        "org_ids": {
+          "target": "com.slack.workflows#SetTriggersPermissionsRequestOrgIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of encoded organization IDs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.workflows#SetTriggersPermissions": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.workflows#SetTriggersPermissionsRequest"
+      },
+      "output": {
+        "target": "com.slack.workflows#SetTriggersPermissionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/workflows.triggers.permissions.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the permission type for who can run a trigger\n\nRequired scopes — bot: `triggers:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `access_denied` — This actor does not have access to the permissions on this resource.\n  - `channel_not_found` — One or more of the listed channels could not be found.\n  - `connected_org_denied` — The workspace admin does not allow connected organizations to be named_entities.\n  - `connected_team_denied` — The workspace admin does not allow connected teams to be named_entities.\n  - `connected_user_denied` — The workspace admin does not allow connected users to be named_entities.\n  - `external_workspace_denied` — The channel selected is not on the workflow team.\n  - `invalid_permission_type` — This function requires permission_type to be set as named_entities before adding users.\n  - `named_entities_cannot_be_empty` — Must pass at least one valid named entity.\n  - `no_valid_named_entities` — None of the provided named entities were valid\n  - `org_not_found` — One or more of the listed organizations could not be found.\n  - `org_not_connected` — One of more of the listed organizations were not connected.\n  - `shared_channel_denied` — The workspace admin does not allow shared channels to be named_entities.\n  - `team_not_connected` — One of more of the listed teams were not connected by org.\n  - `team_not_found` — One or more of the listed teams could not be found.\n  - `too_many_named_entities` — Too many named_entities passed into the trigger permissions setting.\n  - `trigger_not_found` — This trigger does not exist.\n  - `unknown_method` — This method does not exist.\n  - `user_not_found` — One or more of the listed users could not be found.\n\nSee https://docs.slack.dev/reference/methods/workflows.triggers.permissions.set"
+      }
+    },
+    "com.slack.workflows#Workflows": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.workflows#AddFeatured"
+        },
+        {
+          "target": "com.slack.workflows#ListFeatured"
+        },
+        {
+          "target": "com.slack.workflows#RemoveFeatured"
+        },
+        {
+          "target": "com.slack.workflows#SetFeatured"
+        },
+        {
+          "target": "com.slack.workflows#AddTriggersPermissions"
+        },
+        {
+          "target": "com.slack.workflows#ListTriggersPermissions"
+        },
+        {
+          "target": "com.slack.workflows#RemoveTriggersPermissions"
+        },
+        {
+          "target": "com.slack.workflows#SetTriggersPermissions"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — workflows"
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "desc": "Delete external auth tokens only on the Slack side",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "desc": "The id of the app whose tokens you want to delete",
+        "example": "A12345",
+        "type": "string"
+      },
+      "provider_key": {
+        "desc": "The provider key of the provider whose tokens you want to delete",
+        "type": "string"
+      },
+      "external_token_id": {
+        "desc": "The id of the token that you want to delete",
+        "type": "string"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "unable_to_delete": {
+      "desc": "There was an error deleting tokens"
+    },
+    "providers_not_found": {
+      "desc": "The provided `provider_key` is invalid"
+    },
+    "no_tokens_found": {
+      "desc": "No tokens found to delete"
+    },
+    "method_not_supported": {
+      "desc": "This API method is not supported"
+    },
+    "app_not_found": {
+      "desc": "The provided `app_id` was not found"
+    },
+    "token_not_found": {
+      "desc": "The token pointed to by the external_token_id input is not found"
+    },
+    "invalid_auth": {
+      "desc": "The token used to invoke this API doesn't have permission to delete the token pointed to by the external_token_id input"
+    },
+    "invalid_args": {
+      "desc": "The arguments provided to this API are invalid"
+    }
+  }
+}

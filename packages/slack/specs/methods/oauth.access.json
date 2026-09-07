@@ -1,0 +1,315 @@
+{
+  "desc": "Exchanges a temporary OAuth verifier code for an access token.",
+  "http_method": "POST",
+  "scope": {},
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "properties": {
+      "client_id": {
+        "type": "string",
+        "desc": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+        "example": "2141029472.691202649728"
+      },
+      "client_secret": {
+        "type": "string",
+        "subtype": "password",
+        "desc": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+        "example": "e1b9e11dfcd19c1982d5de12921e17e8c"
+      },
+      "code": {
+        "type": "string",
+        "desc": "The `code` param returned via the OAuth callback.",
+        "example": "4724469134.4644010092847.232b4e6d82c333b475fc30f5f5a341d294feb1a94392c2fd791f7ab7731a443d1a"
+      },
+      "redirect_uri": {
+        "type": "string",
+        "desc": "This must match the originally submitted URI (if one was sent).",
+        "example": "http://example.com"
+      },
+      "single_channel": {
+        "type": "boolean",
+        "default": "false",
+        "desc": "Request the user to add your app only to a single channel. Only valid with a [legacy workspace app](https://docs.slack.dev/changelog/2021-03-workspace-apps-to-retire-in-august-2021).",
+        "example": "true"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "access_token",
+      "team_id"
+    ],
+    "properties": {
+      "token_type": {
+        "type": "string"
+      },
+      "app_id": {
+        "type": "string"
+      },
+      "app_user_id": {
+        "type": "string"
+      },
+      "team_name": {
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "access_token": {
+        "type": "string"
+      },
+      "authorizing_user": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "app_home": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "installer_user": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string"
+          },
+          "app_home": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "scopes": {
+        "type": "object",
+        "properties": {
+          "app_home": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "team": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "group": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mpim": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "im": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "scope": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "bot": {
+        "type": "object",
+        "properties": {
+          "bot_user_id": {
+            "type": "string"
+          },
+          "bot_access_token": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          }
+        }
+      },
+      "refresh_token": {
+        "type": "string"
+      },
+      "expires_in": {
+        "type": "integer"
+      },
+      "user": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "image_24": {
+            "type": "string"
+          },
+          "image_32": {
+            "type": "string"
+          },
+          "image_48": {
+            "type": "string"
+          },
+          "image_72": {
+            "type": "string"
+          },
+          "image_192": {
+            "type": "string"
+          },
+          "image_512": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "access_token": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string"
+          }
+        }
+      },
+      "team": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "image_34": {
+            "type": "string"
+          },
+          "image_44": {
+            "type": "string"
+          },
+          "image_68": {
+            "type": "string"
+          },
+          "image_88": {
+            "type": "string"
+          },
+          "image_102": {
+            "type": "string"
+          },
+          "image_132": {
+            "type": "string"
+          },
+          "image_230": {
+            "type": "string"
+          },
+          "image_default": {
+            "type": "boolean"
+          },
+          "image_original": {
+            "type": "string"
+          }
+        }
+      },
+      "enterprise_id": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "incoming_webhook": {
+        "type": "object",
+        "properties": {
+          "channel": {
+            "type": "string"
+          },
+          "channel_id": {
+            "type": "string"
+          },
+          "configuration_url": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "single_channel_id": {
+        "type": "string"
+      }
+    },
+    "type": "object"
+  },
+  "errors": {
+    "bad_client_secret": {
+      "desc": "Value passed for `client_secret` was invalid."
+    },
+    "bad_redirect_uri": {
+      "desc": "Value passed for `redirect_uri` did not match the `redirect_uri` in the original request."
+    },
+    "code_already_used": {
+      "desc": "Value passed for `code` was already exchanged."
+    },
+    "internal_error": {
+      "desc": "Something went wrong during app installation."
+    },
+    "invalid_client_id": {
+      "desc": "Value passed for `client_id` was invalid."
+    },
+    "invalid_code": {
+      "desc": "Value passed for `code` was invalid."
+    },
+    "invalid_token": {
+      "desc": "Invalid refresh token."
+    },
+    "missing_resource": {
+      "desc": "Missing permission resource."
+    },
+    "ratelimited": {
+      "desc": "Too many requests made in succession."
+    },
+    "oauth_authorization_url_mismatch": {
+      "desc": "The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/authorize."
+    },
+    "user_email_unverified": {
+      "desc": "The users email is unverified"
+    }
+  }
+}

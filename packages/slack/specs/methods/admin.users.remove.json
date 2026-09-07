@@ -1,0 +1,64 @@
+{
+  "desc": "Remove a user from a workspace.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "user_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID (`T1234`) of the workspace.",
+        "schema": "workspace_id"
+      },
+      "user_id": {
+        "desc": "The ID of the user to remove.",
+        "type": "string",
+        "example": "W12345678",
+        "schema": "user_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cannot_modify_primary_owner": {
+      "desc": "The primary owner cannot be modified."
+    },
+    "failed_to_remove_user_from_workspace": {
+      "desc": "Removing this user from the workspace failed."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_auth": {
+      "desc": "The request could not be authorized"
+    },
+    "invalid_permissions": {
+      "desc": "This method is only accessible by org owners and admins."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    },
+    "user_already_deleted": {
+      "desc": "The requested user has already been marked as deleted."
+    },
+    "user_not_found": {
+      "desc": "The user was not found."
+    }
+  }
+}

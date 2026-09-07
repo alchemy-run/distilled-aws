@@ -1,0 +1,60 @@
+{
+  "desc": "List bookmark for the channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "bookmarks:read"
+    ],
+    "user": [
+      "bookmarks:read"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "Channel to list bookmarks in. Required for public channels.",
+        "type": "string",
+        "subtype": "channel",
+        "required_for_public": true
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "bookmarks"
+    ],
+    "properties": {
+      "bookmarks": {
+        "type": "array",
+        "items": {
+          "schema": "bookmark"
+        }
+      }
+    }
+  },
+  "errors": {
+    "access_denied": {
+      "desc": "Actor lacks access to the requested resource."
+    },
+    "channel_not_found": {
+      "desc": "Channel cannot be found."
+    },
+    "not_implemented": {
+      "desc": "bookmarking not available for the user."
+    }
+  }
+}

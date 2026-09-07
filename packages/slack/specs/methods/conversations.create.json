@@ -1,0 +1,109 @@
+{
+  "desc": "Initiates a public or private channel-based conversation",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "is_private": {
+        "desc": "Create a private channel instead of a public one",
+        "example": "true",
+        "type": "boolean"
+      },
+      "name": {
+        "desc": "Name of the public or private channel to create",
+        "example": "mychannel",
+        "type": "string"
+      },
+      "team_id": {
+        "desc": "encoded team id to create the channel in, required if org token is used",
+        "subtype": "team",
+        "anyOf": [
+          {
+            "type": "string",
+            "subtype": "team"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "conversation"
+      }
+    }
+  },
+  "errors": {
+    "cannot_create_channel": {
+      "desc": "This channel is unable to be created."
+    },
+    "invalid_name": {
+      "desc": "Value passed for `name` was invalid."
+    },
+    "invalid_name_maxlength": {
+      "desc": "Value passed for `name` exceeded max length."
+    },
+    "invalid_name_punctuation": {
+      "desc": "Value passed for `name` contained only punctuation."
+    },
+    "invalid_name_required": {
+      "desc": "Value passed for `name` was empty."
+    },
+    "invalid_name_specials": {
+      "desc": "Value passed for `name` contained unallowed special characters or upper case characters."
+    },
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "name_taken": {
+      "desc": "A channel cannot be created with the given name."
+    },
+    "no_channel": {
+      "desc": "Value passed for `name` was empty."
+    },
+    "restricted_action": {
+      "desc": "A team (workspace) preference prevents the authenticated user from creating channels."
+    },
+    "canvas_disabled_user_team": {
+      "desc": "Canvas is disabled on user's team"
+    }
+  }
+}

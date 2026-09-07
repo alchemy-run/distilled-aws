@@ -1,0 +1,176 @@
+{
+  "desc": "List the permissions for using each trigger type.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "client"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_type_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "trigger_type_ids": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1000,
+        "desc": "The trigger type IDs for which to get the permissions.",
+        "example": "['FTT01', 'FTT02', 'FTT03']",
+        "items": {
+          "schema": "function_trigger_type_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "permissions",
+      "metadata"
+    ],
+    "properties": {
+      "permissions": {
+        "type": "object",
+        "patternProperties": {
+          "^Ftt[A-Z0-9]{4,}$": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "permission": {
+                "type": "string",
+                "enum": [
+                  "everyone",
+                  "named_entities",
+                  "no_one"
+                ]
+              },
+              "user_ids": {
+                "type": "array",
+                "desc": "List of user IDs to allow for `named_entities` visibility.",
+                "example": "['U00000001', 'U00000002', 'U00000003']",
+                "items": {
+                  "schema": "user_id"
+                }
+              },
+              "team_ids": {
+                "type": "array",
+                "desc": "List of team IDs to allow for `named_entities` visibility.",
+                "example": "['T00000001', 'T00000002', 'T00000003']",
+                "items": {
+                  "schema": "workspace_id"
+                }
+              },
+              "org_ids": {
+                "type": "array",
+                "desc": "List of org IDs to allow for `named_entities` visibility.",
+                "example": "['E00000001', 'E00000002', 'E00000003']",
+                "items": {
+                  "schema": "enterprise_id"
+                }
+              },
+              "permissions": {
+                "type": "object",
+                "desc": "Object of permissions for the trigger type keyed by permission type.",
+                "patternProperties": {
+                  "trigger_type|private_channel_access|private_channel_message_access": {
+                    "type": "object",
+                    "required": [
+                      "permission"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "permission": {
+                        "type": "string",
+                        "enum": [
+                          "everyone",
+                          "named_entities",
+                          "no_one"
+                        ]
+                      },
+                      "user_ids": {
+                        "type": "array",
+                        "desc": "List of user IDs to allow for named_entities visibility",
+                        "example": "['U00000001', 'U00000002', 'U00000003']",
+                        "items": {
+                          "schema": "user_id"
+                        }
+                      },
+                      "team_ids": {
+                        "type": "array",
+                        "desc": "List of team IDs to allow for named_entities visibility",
+                        "example": "['T00000001', 'T00000002', 'T00000003']",
+                        "items": {
+                          "schema": "workspace_id"
+                        }
+                      },
+                      "org_ids": {
+                        "type": "array",
+                        "desc": "List of org IDs to allow for named_entities visibility",
+                        "example": "['E00000001', 'E00000002', 'E00000003']",
+                        "items": {
+                          "schema": "enterprise_id"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "metadata": {
+        "type": "object",
+        "patternProperties": {
+          "^Ftt[A-Z0-9]{4,}$": {
+            "type": "object",
+            "required": [
+              "date_released",
+              "workflows_using",
+              "available_in_workflow_builder"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "date_released": {
+                "type": "integer",
+                "desc": "The date this trigger type was released."
+              },
+              "workflows_using": {
+                "type": "integer",
+                "desc": "The number of workflows with a trigger of this type."
+              },
+              "available_in_workflow_builder": {
+                "type": "boolean",
+                "desc": "Whether the trigger available for use in Workflow Builder."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "restricted_action": {
+      "desc": "This actor does not have access to view the permissions on this resource"
+    },
+    "trigger_type_id_not_found": {
+      "desc": "The given trigger type ID(s) do not map to valid trigger types"
+    }
+  },
+  "warnings": {
+    "one_or_more_trigger_type_ids_not_found": {
+      "desc": "One or more of the given IDs do not map to a valid trigger type"
+    }
+  }
+}

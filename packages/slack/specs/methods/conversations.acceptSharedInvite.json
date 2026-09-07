@@ -1,0 +1,176 @@
+{
+  "desc": "Accepts an invitation to a Slack Connect channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_name": {
+        "desc": "Name of the channel. If the channel does not exist already in your workspace, this name is the one that the channel will take.",
+        "example": "puppies-r-us",
+        "type": "string"
+      },
+      "is_private": {
+        "desc": "Whether the channel should be private.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "free_trial_accepted": {
+        "desc": "Whether you'd like to use your workspace's free trial to begin using Slack Connect.",
+        "type": "boolean"
+      },
+      "invite_id": {
+        "desc": "ID of the invite that you’d like to accept. Must provide either `invite_id` or `channel_id`. See the [`shared_channel_invite_received`](/reference/events/shared_channel_invite_received) event payload for more details on how to retrieve the ID of the invitation.",
+        "schema": "invite_id"
+      },
+      "channel_id": {
+        "desc": "ID of the channel that you'd like to accept. Must provide either `invite_id` or `channel_id`.",
+        "schema": "channel_id"
+      },
+      "team_id": {
+        "subtype": "team",
+        "desc": "The ID of the workspace to accept the channel in. If an org-level token is used to call this method, the `team_id` argument is required.",
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "implicit_approval",
+      "channel_id",
+      "invite_id",
+      "can_open_scdm"
+    ],
+    "properties": {
+      "implicit_approval": {
+        "desc": "Indicates if the shared channel invite was implicitly approved by the away team.",
+        "type": "boolean"
+      },
+      "channel_id": {
+        "schema": "channel_id"
+      },
+      "invite_id": {
+        "schema": "invite_id"
+      },
+      "can_open_scdm": {
+        "desc": "Indicates if the acceptor can SCDM the inviter",
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_conversion_in_progress": {
+      "desc": "Unable to create a channel connection while a channel conversion is in progress"
+    },
+    "connection_limit_exceeded": {
+      "desc": "This channel has hit the limit of external connections."
+    },
+    "email_does_not_match": {
+      "desc": "User's email does not match the email in the invite."
+    },
+    "failed_to_start_trial": {
+      "desc": "Unable to initiate a trial on shared invite acceptance"
+    },
+    "has_already_connected_to_org": {
+      "desc": "A team on the workspace of the org is already in the channel."
+    },
+    "invalid_arguments": {
+      "desc": "Invalid API arguments were provided. Either `sig` or `invite_id` must be specified."
+    },
+    "invalid_emoji_not_allowed": {
+      "desc": "The desired name contains emoji."
+    },
+    "invalid_host_team": {
+      "desc": "The host workspace is invalid."
+    },
+    "invalid_link": {
+      "desc": "We couldn't find an invite associated with the ID provided."
+    },
+    "invalid_name": {
+      "desc": "The value passed for `channel_name` was invalid."
+    },
+    "invalid_name_maxlength": {
+      "desc": "The value passed for `channel_name` exceeded the maximum length."
+    },
+    "invalid_name_punctuation": {
+      "desc": "The value passed for `channel_name` contained only punctuation."
+    },
+    "invalid_name_required": {
+      "desc": "The value passed for `channel_name` was empty."
+    },
+    "invalid_name_specials": {
+      "desc": "The value passed for `channel_name` contained unallowed special characters or upper case characters."
+    },
+    "invite_from_same_org": {
+      "desc": "You can't accept an invite from the same org or workspace."
+    },
+    "invite_not_found": {
+      "desc": "We couldn't find a Slack Connect channel invite with the ID provided."
+    },
+    "invalid_privacy": {
+      "desc": "An invalid channel privacy was provided."
+    },
+    "invalid_recipient_team": {
+      "desc": "The accepting team does not match the expected recipient team."
+    },
+    "invalid_target_team": {
+      "desc": "The target workspace is invalid."
+    },
+    "invite_used": {
+      "desc": "This invite has already been accepted."
+    },
+    "is_pending_connected_to_org": {
+      "desc": "A team pending to join the channel is on the org of the team trying to accept."
+    },
+    "legacy_connection_invalid_org": {
+      "desc": "Teams not previously connected to this legacy channel can't connect."
+    },
+    "legacy_connection_limit_exceeded": {
+      "desc": "You cannot share a legacy ESC channel with a third team"
+    },
+    "name_taken": {
+      "desc": "The desired channel name is already taken in your workspace."
+    },
+    "not_allowed_for_grid_workspace": {
+      "desc": "Acceptance is not allowed for this workspace."
+    },
+    "not_paid": {
+      "desc": "This workspace doesn't have access to this feature."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from creating private channels."
+    },
+    "team_not_found": {
+      "desc": "The team provided in the `team_id` argument does not exits."
+    },
+    "user_cannot_create_channel": {
+      "desc": "This user is not allowed to create a channel."
+    },
+    "user_is_restricted": {
+      "desc": "This user is restricted and cannot accept the invite."
+    },
+    "user_not_found": {
+      "desc": "The user accepting the invite is not a member of the team provided in the `team_id` argument."
+    },
+    "user_required_to_accept_as_private_but_cannot": {
+      "desc": "This uer cannot accept a private channel invitation."
+    }
+  }
+}

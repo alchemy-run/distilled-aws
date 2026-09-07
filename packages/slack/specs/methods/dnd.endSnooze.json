@@ -1,0 +1,63 @@
+{
+  "desc": "Ends the current user's snooze mode immediately.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "dnd:write"
+    ]
+  },
+  "json_input_supported": true,
+  "user_scope_only": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "dnd_enabled",
+      "next_dnd_start_ts",
+      "next_dnd_end_ts",
+      "snooze_enabled"
+    ],
+    "type": "object",
+    "properties": {
+      "snooze_enabled": {
+        "type": "boolean"
+      },
+      "dnd_enabled": {
+        "type": "boolean"
+      },
+      "next_dnd_end_ts": {
+        "type": "integer"
+      },
+      "next_dnd_start_ts": {
+        "type": "integer"
+      },
+      "snooze_endtime": {
+        "type": "integer"
+      },
+      "snooze_remaining": {
+        "type": "integer"
+      },
+      "dnd_profile_status": {
+        "schema": "dnd_profile_status"
+      }
+    }
+  },
+  "errors": {
+    "snooze_end_failed": {
+      "desc": "There was a problem setting the user's Do Not Disturb status"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "desc": "Gets a URL for an edge external file upload",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "files:write"
+    ],
+    "user": [
+      "files:write"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "length",
+      "filename"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "length": {
+        "desc": "Size in bytes of the file being uploaded.",
+        "example": "53072",
+        "type": "integer",
+        "minimum": 1
+      },
+      "filename": {
+        "desc": "Name of the file being uploaded.",
+        "example": "laughingoutloudcat.jpg",
+        "type": "string"
+      },
+      "snippet_type": {
+        "desc": "Syntax type of the snippet being uploaded.",
+        "example": "python",
+        "type": "string",
+        "default": null
+      },
+      "alt_txt": {
+        "desc": "Description of image for screen-reader.",
+        "example": "Aerial view of the Bixby Bridge and coastline of the Big Sur area in California",
+        "default": null,
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file_id",
+      "upload_url"
+    ],
+    "properties": {
+      "file_id": {
+        "schema": "file_id"
+      },
+      "upload_url": {
+        "type": "string"
+      }
+    }
+  },
+  "errors": {
+    "alt_txt_too_large": {
+      "desc": "Description for the image is longer than the limit of 1000 character"
+    },
+    "file_upload_size_restricted": {
+      "desc": "The size of provided file is too large, as the team has restricted uploads of large files."
+    },
+    "file_uploads_disabled": {
+      "desc": "Team has disabled all file uploads."
+    },
+    "missing_argument": {
+      "desc": "A required argument was not provided. Typically only occurs when the `length` provided is 0."
+    },
+    "snippet_too_large": {
+      "desc": "The provided `length` is too large to create a snippet, which are limited to 1MB."
+    },
+    "storage_limit_reached": {
+      "desc": "File storage limit has been reached. This occurs when free teams have uploaded 5GB of files."
+    },
+    "unknown_snippet_type": {
+      "desc": "The provided `snippet_type` is not a supported type."
+    },
+    "unknown_subtype": {
+      "desc": "The provided `subtype` is not a supported type."
+    },
+    "file_type_not_allowed": {
+      "desc": "The file type is not allowed."
+    },
+    "file_uploads_except_images_disabled": {
+      "desc": "File uploads except images are disabled."
+    }
+  }
+}

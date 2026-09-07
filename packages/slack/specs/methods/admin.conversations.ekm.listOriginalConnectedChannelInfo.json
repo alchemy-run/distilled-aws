@@ -1,0 +1,113 @@
+{
+  "desc": "List all disconnected channels—i.e., channels that were once connected to other workspaces and then disconnected—and the corresponding original channel IDs for key revocation with EKM.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_ids": {
+        "type": "string",
+        "desc": "A comma-separated list of channels to filter to."
+      },
+      "team_ids": {
+        "type": "string",
+        "desc": "A comma-separated list of the workspaces to which the channels you would like returned belong."
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to return. Must be between 1 - 1000 both inclusive.",
+        "example": "100",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "example": "5c3e53d5"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channels"
+    ],
+    "properties": {
+      "response_metadata": {
+        "required": [
+          "next_cursor"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "channels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "internal_team_ids",
+            "original_connected_host_id",
+            "original_connected_channel_id"
+          ],
+          "properties": {
+            "id": {
+              "schema": "channel"
+            },
+            "internal_team_ids": {
+              "type": "array",
+              "items": {
+                "schema": "workspace_id"
+              }
+            },
+            "original_connected_host_id": {
+              "schema": "workspace_id"
+            },
+            "original_connected_channel_id": {
+              "schema": "channel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "invalid_cursor": {
+      "desc": "Invalid cursor."
+    },
+    "invalid_limit": {
+      "desc": "The value passed for `limit` was not valid."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by Org owners and Admins."
+    },
+    "not_enabled": {
+      "desc": "The API endpoint is not enabled for your team."
+    },
+    "restricted_action": {
+      "desc": "The caller of this API is not allowed to perform this operation."
+    },
+    "unsupported_arguments": {
+      "desc": "The provided method arguments are not supported."
+    }
+  }
+}

@@ -1,0 +1,344 @@
+{
+  "desc": "Get a user's identity.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "identity:read"
+    ]
+  },
+  "user_scope_only": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      }
+    }
+  },
+  "output": {
+    "disableShapeUnification": true,
+    "anyOf": [
+      {
+        "description": "Schema for 'identity.basic' scope",
+        "type": "object",
+        "required": [
+          "user",
+          "team"
+        ],
+        "properties": {
+          "user": {
+            "type": "object",
+            "required": [
+              "name",
+              "id"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "schema": "user_id"
+              }
+            }
+          },
+          "team": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "schema": "workspace_id"
+              }
+            }
+          }
+        }
+      },
+      {
+        "description": "Schema for 'identity.basic,identity.email' scopes",
+        "type": "object",
+        "required": [
+          "user",
+          "team"
+        ],
+        "properties": {
+          "user": {
+            "type": "object",
+            "required": [
+              "name",
+              "id",
+              "email"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "schema": "user_id"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              }
+            }
+          },
+          "team": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "schema": "workspace_id"
+              }
+            }
+          }
+        }
+      },
+      {
+        "description": "Schema for 'identity.basic,identity.avatar' scopes",
+        "type": "object",
+        "required": [
+          "user",
+          "team"
+        ],
+        "properties": {
+          "user": {
+            "type": "object",
+            "required": [
+              "name",
+              "id",
+              "image_24",
+              "image_32",
+              "image_48",
+              "image_72",
+              "image_192",
+              "image_512"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "id": {
+                "schema": "user_id"
+              },
+              "image_24": {
+                "type": "string",
+                "format": "url"
+              },
+              "image_32": {
+                "type": "string",
+                "format": "url"
+              },
+              "image_48": {
+                "type": "string",
+                "format": "url"
+              },
+              "image_72": {
+                "type": "string",
+                "format": "url"
+              },
+              "image_192": {
+                "type": "string",
+                "format": "url"
+              },
+              "image_512": {
+                "type": "string",
+                "format": "url"
+              }
+            }
+          },
+          "team": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "schema": "workspace_id"
+              }
+            }
+          }
+        }
+      },
+      {
+        "description": "Schema for 'identity.basic,identity.team' scopes",
+        "type": "object",
+        "required": [
+          "user",
+          "team"
+        ],
+        "properties": {
+          "user": {
+            "anyOf": [
+              {
+                "type": "object",
+                "required": [
+                  "name",
+                  "id",
+                  "image_24",
+                  "image_32",
+                  "image_48",
+                  "image_72",
+                  "image_192",
+                  "image_512"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "schema": "user_id"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "image_24": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_32": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_48": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_72": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_192": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_512": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_1024": {
+                    "type": "string",
+                    "format": "url"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "name",
+                  "id"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "schema": "user_id"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "team": {
+            "anyOf": [
+              {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name",
+                  "domain",
+                  "image_34",
+                  "image_44",
+                  "image_68",
+                  "image_88",
+                  "image_102",
+                  "image_132",
+                  "image_230"
+                ],
+                "properties": {
+                  "id": {
+                    "schema": "workspace_id"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "image_34": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_44": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_68": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_88": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_102": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_132": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_230": {
+                    "type": "string",
+                    "format": "url"
+                  },
+                  "image_default": {
+                    "type": "boolean"
+                  },
+                  "image_original": {
+                    "type": "string",
+                    "format": "url"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "schema": "workspace_id"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "Internal error"
+    },
+    "invalid_user_id": {
+      "desc": "Invalid user id provided"
+    },
+    "email_not_verified": {
+      "desc": "user email has not been verified"
+    }
+  }
+}

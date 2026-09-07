@@ -1,0 +1,125 @@
+{
+  "desc": "Query a datastore for items",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "datastore:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "datastore"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "datastore": {
+        "desc": "Name of the datastore",
+        "type": "string"
+      },
+      "expression": {
+        "desc": "A query filter expression",
+        "type": "string",
+        "example": "#artist = :artist_name"
+      },
+      "expression_attributes": {
+        "desc": "A map of attributes referenced in expression",
+        "type": "object",
+        "example": "{ \"#artist\": \"artist\" }"
+      },
+      "expression_values": {
+        "desc": "A map of values referenced in expression",
+        "type": "object",
+        "example": "{ \":artist_name\": \"Fred Rogers\" }"
+      },
+      "app_id": {
+        "desc": "Required if calling with user token",
+        "schema": "app_id"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+        "example": "5c3e53d5"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to evaluate for a given request (not necessarily the number of matching items). If the given request dataset size exceeds 1 MB before reaching the limit, the returned item count will likely be less than the limit. In any case where there are more items available beyond an imposed limit, a `next_cursor` value will be provided for use in subsequent requests.",
+        "example": "100",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "datastore": {
+        "desc": "name of the datastore",
+        "type": "string"
+      },
+      "items": {
+        "desc": "attribute names and values of the items",
+        "example": "[{\"id\": \"7c6dd137\", \"artist\": \"Fred Rogers\", \"song\": \"Won't You Be My Neighbor?\"}]",
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "invalid_arguments": {
+      "desc": "The request is missing required arguments."
+    },
+    "invalid_datastore": {
+      "desc": "The provided datastore is invalid."
+    },
+    "invalid_auth": {
+      "desc": "Not authorized to access datastore items."
+    },
+    "app_not_hosted": {
+      "desc": "The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps."
+    },
+    "datastore_error": {
+      "desc": "Datastore error"
+    },
+    "access_denied": {
+      "desc": "Not authorized to access the datastore."
+    },
+    "invalid_app_id": {
+      "desc": "The app_id provided is not valid for team and user."
+    },
+    "free_team_not_allowed": {
+      "desc": "Datastore query not allowed on a free team."
+    },
+    "team_quota_exceeded": {
+      "desc": "Total number of requests exceeded team quota."
+    },
+    "datastore_migration_in_progress": {
+      "desc": "The datastore is currently unavailable due to an in progress Enterprise org migration."
+    },
+    "restricted_plan_level": {
+      "desc": "Feature is not available on this team"
+    }
+  }
+}

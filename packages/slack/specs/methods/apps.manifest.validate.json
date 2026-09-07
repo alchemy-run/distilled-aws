@@ -1,0 +1,99 @@
+{
+  "desc": "Validate an app manifest",
+  "http_method": "POST",
+  "scope": {
+    "configuration": [
+      "app_configurations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "manifest"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "An [app configuration access token](/authentication/tokens#config).",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "manifest": {
+        "type": "string",
+        "desc": "The manifest to be validated. Will be validated against the [app manifest schema - read our guide](/app-manifests/configuring-apps-with-app-manifests#fields)."
+      },
+      "app_id": {
+        "desc": "The ID of the app whose configuration you want to validate.",
+        "schema": "app_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "errors"
+    ],
+    "properties": {
+      "errors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "message",
+            "code"
+          ],
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "pointer": {
+              "type": "string"
+            }
+          }
+        },
+        "desc": "Non-blocking warnings from app manifest validation."
+      }
+    }
+  },
+  "errors": {
+    "app_not_eligible": {
+      "desc": "The specified app is not eligible for this API."
+    },
+    "invalid_app": {
+      "desc": "An app created from the provided manifest would not be valid."
+    },
+    "invalid_app_id": {
+      "desc": "The app id passed is invalid."
+    },
+    "invalid_manifest": {
+      "desc": "The provided manifest file does not validate against schema."
+    },
+    "failed_adding_collaborator": {
+      "desc": "Failed writing a collaborator record for this new app"
+    },
+    "failed_creating_app": {
+      "desc": "Failed to create the app model"
+    },
+    "unknown_method": {
+      "desc": "Unknown method"
+    },
+    "no_permission": {
+      "desc": "User described by the used token does not have proper permissions to take this action."
+    },
+    "app_not_owned_by_manager_app": {
+      "desc": "The specified app is not managed by the calling manager app. A manager app can only validate apps that it originally created via apps.manifest.create."
+    }
+  }
+}

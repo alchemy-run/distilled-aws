@@ -1,0 +1,72 @@
+{
+  "desc": "List all of the admins on a given workspace.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "limit": {
+        "desc": "The maximum number of items to return.",
+        "type": "integer",
+        "example": "200"
+      },
+      "cursor": {
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "type": "string",
+        "example": "dXNlcjpVMEc5V0ZYTlo="
+      },
+      "team_id": {
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "admin_ids"
+    ],
+    "properties": {
+      "admin_ids": {
+        "type": "array",
+        "items": {
+          "schema": "user_id"
+        }
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_auth": {
+      "desc": "The given token is not authorized for the requested `team_id`."
+    },
+    "invalid_cursor": {
+      "desc": "Invalid cursor."
+    },
+    "invalid_limit": {
+      "desc": "Limit must be between 1 and 1000 inclusive."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and admins."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "desc": "Search for public or private channels in an Enterprise organization.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_ids": {
+        "desc": "Comma separated string of team IDs, signifying the internal workspaces to search through.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": "T00000000,T00000001"
+      },
+      "connected_team_ids": {
+        "desc": "Array of encoded team IDs, signifying the external orgs to search through.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": "['T00000000','T00000001']"
+      },
+      "query": {
+        "desc": "Name of the the channel to query by.",
+        "type": "string",
+        "example": "announcement"
+      },
+      "limit": {
+        "desc": "Maximum number of items to be returned. Must be between 1 - 20 both inclusive. Default is 10.",
+        "type": "integer",
+        "default": 10,
+        "minimum": 1,
+        "maximum": 20,
+        "example": "20"
+      },
+      "cursor": {
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "type": "string",
+        "example": "dXNlcjpVMEc5V0ZYTlo="
+      },
+      "search_channel_types": {
+        "desc": "The type of channel to include or exclude in the search. For example `private` will search private channels, while `private_exclude` will exclude them. For a full list of types, check the [Types section](#types).",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": "private,archived"
+      },
+      "sort": {
+        "desc": "Possible values are `relevant` (search ranking based on what we think is closest), `name` (alphabetical), `member_count` (number of users in the channel), and `created` (date channel was created). You can optionally pair this with the `sort_dir` arg to change how it is sorted ",
+        "type": "string",
+        "example": "name",
+        "default": "member_count"
+      },
+      "sort_dir": {
+        "desc": "Sort direction. Possible values are `asc` for ascending order like (1, 2, 3) or (a, b, c), and `desc` for descending order like (3, 2, 1) or (c, b, a)",
+        "type": "string",
+        "example": "asc",
+        "default": "desc"
+      },
+      "total_count_only": {
+        "desc": "Only return the total_count of channels. Omits channel data and allows access for admins without channel manager permissions.",
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "conversations",
+      "next_cursor",
+      "total_count"
+    ],
+    "properties": {
+      "conversations": {
+        "type": "array",
+        "items": {
+          "schema": "channel"
+        }
+      },
+      "next_cursor": {
+        "type": "string",
+        "desc": "Encoded string for the next cursor value"
+      },
+      "total_count": {
+        "type": "integer",
+        "desc": "Total number of channels that exist in the search index and match the query string"
+      },
+      "error": {
+        "type": "string",
+        "desc": "A string representation of the error type"
+      }
+    }
+  },
+  "errors": {
+    "connected_team_passed_in_is_not_top_level_team": {
+      "desc": "One of the orgs provided in the external connected teams filter is not a top level team."
+    },
+    "external_team_not_connected_to_this_org": {
+      "desc": "One of the teams provided in the external connected teams filter is not connected to the org."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided doesn't have access to this method."
+    },
+    "invalid_auth": {
+      "desc": "The token provided does not belong to an Enterprise organization, or a specified workspace wasn't part of this Enterprise."
+    },
+    "invalid_cursor": {
+      "desc": "The provided cursor is not valid, often due to not urlencoding query parameters."
+    },
+    "invalid_search_channel_type": {
+      "desc": "An invalid `search_channel_types` arg was passed. Make sure there are no spaces between your args and that each is one of the enumerated options listed above."
+    },
+    "invalid_sort": {
+      "desc": "The provided `sort` argument wasn't valid."
+    },
+    "invalid_sort_dir": {
+      "desc": "The provided `sort_dir` argument wasn't valid."
+    },
+    "not_allowed": {
+      "desc": "The authenticated user does not have the permission to call this method."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an Org Admin or Owner."
+    },
+    "not_an_enterprise": {
+      "desc": "This endpoint can only be called by an Enterprise organization."
+    },
+    "team_not_found": {
+      "desc": "One of the workspaces provided in the list wasn't found."
+    }
+  }
+}

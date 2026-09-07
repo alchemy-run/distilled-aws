@@ -1,0 +1,57 @@
+{
+  "desc": "Set the name of a given workspace.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "ID for the workspace to set the name for.",
+        "schema": "workspace_id"
+      },
+      "name": {
+        "type": "string",
+        "desc": "The new name of the workspace."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "failed_to_set_name": {
+      "desc": "Returned when there is an error to set the name"
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "team_not_found": {
+      "desc": "Returned when team_id  can’t be resolved"
+    }
+  }
+}

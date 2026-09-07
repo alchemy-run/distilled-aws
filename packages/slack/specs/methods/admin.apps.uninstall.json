@@ -1,0 +1,73 @@
+{
+  "desc": "Uninstall an app from one or many workspaces, or an entire enterprise organization.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "desc": "The ID of the app to uninstall.",
+        "example": "A12345",
+        "type": "string"
+      },
+      "team_ids": {
+        "type": "string",
+        "desc": "IDs of the teams to uninstall from (max 100). With an org-level token, this or `enterprise_id` is required."
+      },
+      "enterprise_id": {
+        "desc": "The enterprise to completely uninstall the application from (across all workspaces). With an org-level token, this or `team_ids` is required.",
+        "example": "E12345",
+        "type": "string"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "app_not_found": {
+      "desc": "The provided `app_id` was not found."
+    },
+    "can_not_uninstall": {
+      "desc": "This application can not be uninstalled via the API."
+    },
+    "enterprise_not_found": {
+      "desc": "The provided `enterprise_id` was not found."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "must_revoke_access": {
+      "desc": "Organization-deployed apps cannot be uninstalled from specific workspaces using this API."
+    },
+    "permission_denied": {
+      "desc": "You do not have permission to uninstall applications from the reqeusted org or workspaces."
+    },
+    "specify_enterprise_or_teams": {
+      "desc": "Provide exactly one of `enterprise_id` or `team_ids`."
+    },
+    "teams_not_found": {
+      "desc": "One or more of the provided `team_ids` were not found."
+    },
+    "too_many_teams": {
+      "desc": "Too many IDs are present in `team_ids`."
+    },
+    "restricted_action": {
+      "desc": "the user is not authorized to perform this action"
+    }
+  }
+}

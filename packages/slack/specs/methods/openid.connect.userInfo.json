@@ -1,0 +1,127 @@
+{
+  "desc": "Get the identity of a user who has authorized Sign in with Slack.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "openid"
+    ]
+  },
+  "user_scope_only": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "sub",
+      "https://slack.com/user_id"
+    ],
+    "type": "object",
+    "properties": {
+      "sub": {
+        "type": "string"
+      },
+      "https://slack.com/user_id": {
+        "type": "string"
+      },
+      "https://slack.com/team_id": {
+        "type": "string"
+      },
+      "https://slack.com/enterprise_id": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "email_verified": {
+        "type": "boolean"
+      },
+      "date_email_verified": {
+        "type": "integer"
+      },
+      "locale": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "given_name": {
+        "type": "string"
+      },
+      "family_name": {
+        "type": "string"
+      },
+      "picture": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_24": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_32": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_48": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_72": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_192": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_512": {
+        "type": "string"
+      },
+      "https://slack.com/user_image_1024": {
+        "type": "string"
+      },
+      "https://slack.com/team_name": {
+        "type": "string"
+      },
+      "https://slack.com/team_domain": {
+        "type": "string"
+      },
+      "https://slack.com/enterprise_name": {
+        "type": "string"
+      },
+      "https://slack.com/enterprise_domain": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_34": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_44": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_68": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_88": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_102": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_132": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_230": {
+        "type": "string"
+      },
+      "https://slack.com/team_image_default": {
+        "type": "boolean"
+      }
+    }
+  }
+}

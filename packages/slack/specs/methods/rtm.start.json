@@ -1,0 +1,126 @@
+{
+  "desc": "Deprecated: Starts a Real Time Messaging session. Use rtm.connect instead.",
+  "http_method": "GET",
+  "scope": {},
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "simple_latest": {
+        "desc": "Return timestamp only for latest message object of each channel (improves performance).",
+        "type": "boolean"
+      },
+      "no_unreads": {
+        "desc": "Skip unread counts for each channel (improves performance).",
+        "type": "boolean"
+      },
+      "mpim_aware": {
+        "desc": "Returns MPIMs to the client in the API response.",
+        "type": "boolean"
+      },
+      "presence_sub": {
+        "desc": "Only deliver presence events when requested by subscription. See [presence subscriptions](/apis/web-api/user-presence-and-status#subscriptions).",
+        "type": "boolean",
+        "default": "true"
+      },
+      "batch_presence_aware": {
+        "desc": "Batch presence deliveries via subscription. Enabling changes the shape of `presence_change` events. See [batch presence](/apis/web-api/user-presence-and-status#batching).",
+        "example": "1",
+        "type": "boolean",
+        "default": "false"
+      },
+      "no_latest": {
+        "desc": "Exclude latest timestamps for channels, groups, mpims, and ims. Automatically sets `no_unreads` to `1`",
+        "type": "boolean",
+        "default": "0",
+        "example": "1"
+      },
+      "include_locale": {
+        "desc": "Set this to `true` to receive the locale for users and channels. Defaults to `false`",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "url",
+      "team",
+      "self"
+    ],
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "self": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "schema": "user_id"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "team": {
+        "required": [
+          "id",
+          "name",
+          "domain"
+        ],
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "id": {
+            "schema": "workspace_id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enterprise_id": {
+            "schema": "enterprise_id"
+          },
+          "enterprise_name": {
+            "schema": "enterprise_name"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "method_deprecated": {
+      "desc": "`rtm.start` is deprecated. Please use `rtm.connect` instead of `rtm.start`. Read https://docs.slack.dev/changelog/2021-10-rtm-start-to-stop for more info."
+    },
+    "migration_in_progress": {
+      "desc": "Workspace is being migrated between servers. See [the `team_migration_started` event documentation](/reference/events/team_migration_started) for details."
+    },
+    "rtm_connect_required": {
+      "desc": "`rtm.start` is deprecated. Please use `rtm.connect` instead of `rtm.start`. Read https://docs.slack.dev/changelog/2021-10-rtm-start-to-stop for more info."
+    }
+  },
+  "warnings": {
+    "member_list_truncated": {
+      "desc": "A `members` array included in a channel object was truncated at 1500 results. Use `conversations.members` to retrieve all results."
+    },
+    "method_deprecated": {
+      "desc": "`rtm.start` is deprecated. Please use `rtm.connect` instead of `rtm.start`. Read https://docs.slack.dev/changelog/2021-10-rtm-start-to-stop for more info."
+    }
+  }
+}

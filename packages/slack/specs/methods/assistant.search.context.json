@@ -1,0 +1,520 @@
+{
+  "desc": "Searches messages, files, channels and users across your Slack organization.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "search:read.public",
+      "search:read.private",
+      "search:read.im",
+      "search:read.mpim",
+      "search:read.files",
+      "search:read.users"
+    ],
+    "bot": [
+      "search:read.public",
+      "search:read.files",
+      "search:read.users"
+    ]
+  },
+  "rate_limits": "t5",
+  "json_input_supported": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "query"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "type": "string",
+        "subtype": "auth",
+        "org_app": {
+          "allowed": true,
+          "derive_team_context_from": "token"
+        },
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "query": {
+        "desc": "User prompt or search query",
+        "example": "What is project gizmo?",
+        "type": "string"
+      },
+      "action_token": {
+        "desc": "Send `action_token` as received in a message event.",
+        "example": "12345.98765.abcd2358fdea",
+        "type": "string"
+      },
+      "channel_types": {
+        "default": "public_channel",
+        "desc": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`.",
+        "example": "public_channel,private_channel",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "public_channel",
+            "private_channel",
+            "mpim",
+            "im"
+          ]
+        },
+        "hidden": false
+      },
+      "content_types": {
+        "default": "messages",
+        "desc": "Content types to include, a comma-separated list of any combination of `messages`, `files`, `channels`, `users`.",
+        "example": "messages,files",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "messages",
+            "files",
+            "enterprise",
+            "channels",
+            "users"
+          ]
+        },
+        "hidden": false
+      },
+      "include_bots": {
+        "default": null,
+        "desc": "Whether the results should include bots.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "include_deleted_users": {
+        "default": false,
+        "desc": "Whether to include deleted users in the user search results. Defaults to false.",
+        "example": "false",
+        "logged": true,
+        "type": "boolean"
+      },
+      "before": {
+        "desc": "UNIX timestamp filter. If present, filters for results before this date.",
+        "example": "1754670081",
+        "type": "integer"
+      },
+      "after": {
+        "desc": "UNIX timestamp filter. If present, filters for results after this date.",
+        "example": "1754670081",
+        "type": "integer"
+      },
+      "include_context_messages": {
+        "desc": "Whether to include context messages surrounding the main message result. Defaults to false if unspecified.",
+        "type": "boolean",
+        "example": "true",
+        "default": false
+      },
+      "context_channel_id": {
+        "desc": "Context channel ID to support scoping the search when applicable.",
+        "schema": "channel",
+        "subtype": "channel"
+      },
+      "cursor": {
+        "desc": "The cursor returned by the API. Leave this blank for the first request and use this to get the next page of results.",
+        "example": "asf91j9jfd",
+        "type": "string"
+      },
+      "limit": {
+        "desc": "Number of results to return, up to a max of 20. Defaults to 20.",
+        "example": "20",
+        "type": "integer"
+      },
+      "sort": {
+        "type": "string",
+        "desc": "The field to sort the results by. Defaults to score. Can be one of: score, timestamp.",
+        "enum": [
+          "score",
+          "timestamp"
+        ],
+        "default": "score"
+      },
+      "sort_dir": {
+        "type": "string",
+        "desc": "The direction to sort the results by. Defaults to desc.",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "default": "desc"
+      },
+      "include_message_blocks": {
+        "type": "boolean",
+        "desc": "Whether to return the message blocks in the response.",
+        "default": false
+      },
+      "highlight": {
+        "type": "boolean",
+        "desc": "Whether to highlight the search query in the results. Defaults to false if unspecified.",
+        "default": false
+      },
+      "term_clauses": {
+        "type": "array",
+        "desc": "A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form).",
+        "minItems": 1,
+        "maxItems": 5,
+        "items": {
+          "type": "string",
+          "desc": "A term clause is a string that contains search terms separated by whitespace. Our API will return results matching at least 1 term within the clause. For example, if your clause is `double electron capture`, then the search result will only need to match one of the terms `double`, `electron`, or `capture`.",
+          "example": "banana milkshake",
+          "minLength": 1,
+          "maxLength": 500
+        }
+      },
+      "modifiers": {
+        "type": "string",
+        "desc": "A string containing only modifiers in the format of `modifier:value`. Search results returned will match the modifier value. For now modifiers only affect term clauses.",
+        "example": "has:pin before:yesterday",
+        "minLength": 1,
+        "maxLength": 500
+      },
+      "include_archived_channels": {
+        "type": "boolean",
+        "desc": "Whether to include archived channels in the search results.",
+        "default": false
+      },
+      "disable_semantic_search": {
+        "type": "boolean",
+        "desc": "Whether to disable semantic search. When true, only keyword-based search is used. Defaults to false.",
+        "default": false
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "results"
+    ],
+    "properties": {
+      "results": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "author_name",
+                "author_user_id",
+                "team_id",
+                "channel_id",
+                "channel_name",
+                "message_ts",
+                "content",
+                "is_author_bot",
+                "permalink"
+              ],
+              "properties": {
+                "author_name": {
+                  "desc": "Full name of the user who authored the message.",
+                  "type": "string"
+                },
+                "author_email": {
+                  "desc": "Email address of the user who authored the message, if visible to the searching user.",
+                  "type": "string",
+                  "example": "marshall@goliathnationalbank.com"
+                },
+                "author_user_id": {
+                  "schema": "user_id",
+                  "desc": "ID of the user who authored the message."
+                },
+                "team_id": {
+                  "schema": "team_id",
+                  "desc": "ID of the workspace in which the message was sent."
+                },
+                "channel_id": {
+                  "schema": "channel",
+                  "desc": "ID of the channel in which the message was sent."
+                },
+                "channel_name": {
+                  "desc": "Name of the channel in which the message was sent.",
+                  "type": "string"
+                },
+                "message_ts": {
+                  "schema": "ts",
+                  "desc": "Slack-format timestamp at which the message was sent.",
+                  "type": "string"
+                },
+                "content": {
+                  "desc": "Content from the retrieved message.",
+                  "type": "string"
+                },
+                "is_author_bot": {
+                  "type": "boolean",
+                  "desc": "Whether the message was authored by a bot (app) or not."
+                },
+                "permalink": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "context_messages": {
+                  "type": "object",
+                  "properties": {
+                    "before": {
+                      "type": "array",
+                      "desc": "Messages before the current message, if applicable.",
+                      "items": {
+                        "schema": "context_msg"
+                      }
+                    },
+                    "after": {
+                      "type": "array",
+                      "desc": "Messages after the current message.",
+                      "items": {
+                        "schema": "context_msg"
+                      }
+                    }
+                  }
+                },
+                "blocks": {
+                  "type": "array",
+                  "desc": "Blocks from the retrieved message."
+                },
+                "reply_count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "author_name",
+                "author_user_id",
+                "uploader_user_id",
+                "team_id",
+                "file_id",
+                "date_created",
+                "date_updated",
+                "title",
+                "file_type",
+                "permalink",
+                "content"
+              ],
+              "properties": {
+                "author_name": {
+                  "desc": "Full name of the user who uploaded or created the file.",
+                  "type": "string"
+                },
+                "author_email": {
+                  "desc": "Email address of the user who uploaded or created the file, if visible to the searching user",
+                  "type": "string",
+                  "example": "marshall@goliathnationalbank.com"
+                },
+                "author_user_id": {
+                  "schema": "user_id",
+                  "desc": "ID of the user who uploaded or created the file."
+                },
+                "uploader_user_id": {
+                  "schema": "user_id",
+                  "desc": "ID of the user who uploaded the file."
+                },
+                "team_id": {
+                  "schema": "team_id",
+                  "desc": "ID of the workspace in which the file was uploaded."
+                },
+                "file_id": {
+                  "schema": "file_id",
+                  "desc": "ID of the file."
+                },
+                "date_created": {
+                  "desc": "Epoch timestamp in microseconds at which the file was created.",
+                  "type": "integer"
+                },
+                "date_updated": {
+                  "desc": "Epoch timestamp in microseconds at which the file was uploaded.",
+                  "type": "integer"
+                },
+                "title": {
+                  "desc": "Title of the file",
+                  "type": "string"
+                },
+                "file_type": {
+                  "desc": "Type of the file.",
+                  "type": "string"
+                },
+                "permalink": {
+                  "desc": "Permanent link to the file in Slack.",
+                  "type": "string",
+                  "format": "uri"
+                },
+                "content": {
+                  "desc": "Content from the retrieved file.",
+                  "type": "string"
+                },
+                "size": {
+                  "desc": "Size of the file in bytes.",
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "enterprise": {
+            "type": "array",
+            "items": {
+              "schema": "external-record"
+            }
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "team_id",
+                "creator_user_id",
+                "date_created",
+                "date_updated",
+                "name",
+                "permalink",
+                "is_archived"
+              ],
+              "properties": {
+                "team_id": {
+                  "schema": "team_id",
+                  "desc": "ID of the workspace in which the channel was created."
+                },
+                "creator_user_id": {
+                  "schema": "user_id",
+                  "desc": "ID of the user who created the channel."
+                },
+                "creator_name": {
+                  "desc": "Full name of the user who created the channel.",
+                  "type": "string"
+                },
+                "date_created": {
+                  "desc": "Epoch timestamp in microseconds at which the channel was created.",
+                  "type": "integer"
+                },
+                "date_updated": {
+                  "desc": "Epoch timestamp in microseconds at which the channel was updated.",
+                  "type": "integer"
+                },
+                "name": {
+                  "desc": "Name of the channel.",
+                  "type": "string"
+                },
+                "topic": {
+                  "desc": "Topic of the channel.",
+                  "type": "string"
+                },
+                "purpose": {
+                  "desc": "Purpose of the channel.",
+                  "type": "string"
+                },
+                "permalink": {
+                  "desc": "Permanent link to the channel in Slack.",
+                  "type": "string",
+                  "format": "uri"
+                },
+                "is_archived": {
+                  "type": "boolean",
+                  "desc": "Whether the channel is archived."
+                }
+              }
+            }
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "user_id",
+                "permalink",
+                "full_name",
+                "title",
+                "timezone",
+                "email"
+              ],
+              "properties": {
+                "user_id": {
+                  "type": "string",
+                  "desc": "The encoded user ID",
+                  "example": "U029UHAVA1X"
+                },
+                "permalink": {
+                  "type": "string",
+                  "desc": "The permalink to the user in Slack",
+                  "example": "https://salesforce.enterprise.slack.com/team/U029UHAVA1X"
+                },
+                "profile_pic_permalink": {
+                  "type": "string",
+                  "desc": "The permalink to the user's profile photo.",
+                  "example": "https://avatars.slack-edge.com/2023-08-09/5739941374304_d04c0f1e5aeb5fc6aa45_original.jpg"
+                },
+                "full_name": {
+                  "type": "string",
+                  "desc": "The user's full name, which might be different from the display name.",
+                  "example": "Jamie Scheinblum"
+                },
+                "title": {
+                  "type": "string",
+                  "desc": "The user's job title.",
+                  "example": "Senior Product Manager"
+                },
+                "timezone": {
+                  "type": "string",
+                  "desc": "The user's local timezone.",
+                  "example": "America/Los_Angeles"
+                },
+                "email": {
+                  "type": "string",
+                  "desc": "The user's email address.",
+                  "example": "jamie@salesforce.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string",
+            "desc": "The cursor you can use to fetch the next set of results. When there are no more results, `next_cursor` will be an empty string.",
+            "example": "asf91j9jfd112"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "Internal error."
+    },
+    "rate_limited": {
+      "desc": "Rate limited."
+    },
+    "missing_query": {
+      "desc": "Missing query."
+    },
+    "query_too_long": {
+      "desc": "Query too long."
+    },
+    "feature_not_enabled": {
+      "desc": "The feature is not available on the current workspace."
+    },
+    "invalid_action_token": {
+      "desc": "The `action_token` provided is not valid."
+    },
+    "invalid_cursor": {
+      "desc": "The cursormark provided is not valid."
+    },
+    "context_channel_not_found": {
+      "desc": "Specified `context_channel_id` is invalid or the user lacks permission to view it."
+    },
+    "missing_scope": {
+      "desc": "The requested channel types are not allowed by the provided scopes."
+    },
+    "assistant_search_context_disabled": {
+      "desc": "We're having issues returning your search results. Please wait and try again."
+    }
+  }
+}

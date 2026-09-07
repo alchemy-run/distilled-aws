@@ -1,0 +1,99 @@
+{
+  "desc": "Add an allowlist of IDP groups for accessing a channel",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "group_id",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The workspace where the channel exists. This argument is required for channels only tied to one workspace, and optional for channels that are shared across an organization.",
+        "schema": "workspace_id"
+      },
+      "group_id": {
+        "desc": "The [IDP Group](https://slack.com/help/articles/115001435788-Connect-identity-provider-groups-to-your-Enterprise-organization) ID to be an allowlist for the private channel.",
+        "schema": "subteam_id"
+      },
+      "channel_id": {
+        "desc": "The channel to link this group to.",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "cannot_add_more_channels_to_group": {
+      "desc": "The maximum number of channels have already been linked to the group."
+    },
+    "cannot_add_more_groups_to_channel": {
+      "desc": "The maximum number of groups have already been linked to the channel."
+    },
+    "channel_is_not_private": {
+      "desc": "The channel is a public channel, a multi-party direct message, a direct message, or is externally-shared."
+    },
+    "channel_not_found": {
+      "desc": "`channel_id` can’t be found."
+    },
+    "default_channel_restricted": {
+      "desc": "The channel is a default channel on the workspace."
+    },
+    "feature_not_enabled": {
+      "desc": "Feature not enabled"
+    },
+    "group_already_linked_to_channel": {
+      "desc": "The IDP group is already linked to the channel"
+    },
+    "group_must_not_be_empty": {
+      "desc": "The IDP group is currently empty."
+    },
+    "group_not_found": {
+      "desc": "`group_id` can’t be found."
+    },
+    "invalid_auth": {
+      "desc": "Token does not belong to enterprise or team id passed in not part of this enterprise"
+    },
+    "invalid_channel": {
+      "desc": "The channel can’t be linked to an IDP group (i.e., it's a public channel or external shared channel)."
+    },
+    "invalid_channel_type": {
+      "desc": "The channel is a public channel, a multi-party direct message, a direct message, or is externally-shared."
+    },
+    "no_channel_memberships": {
+      "desc": "The channel has no members."
+    },
+    "not_an_admin": {
+      "desc": "This token does not belong to an Org Admin or Owner."
+    },
+    "team_not_found": {
+      "desc": "`team_id` can’t be found."
+    },
+    "unable_to_link_idp_group_and_channel": {
+      "desc": "The IDP group and the channel cannot be linked."
+    }
+  }
+}

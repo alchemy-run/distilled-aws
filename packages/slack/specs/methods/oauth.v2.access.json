@@ -1,0 +1,261 @@
+{
+  "desc": "Exchanges a temporary OAuth verifier code for an access token.",
+  "http_method": "POST",
+  "scope": {},
+  "rate_limits": "t5",
+  "args": {
+    "type": "object",
+    "properties": {
+      "client_id": {
+        "desc": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+        "example": "2141029472.691202649728",
+        "type": "string"
+      },
+      "client_secret": {
+        "desc": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+        "example": "e1b9e11dfcd19c1982d5de12921e17e8c",
+        "type": "string"
+      },
+      "code": {
+        "desc": "The `code` param returned via the OAuth callback.",
+        "example": "4724469134.4644010092847.232b4e6d82c333b475fc30f5f5a341d294feb1a94392c2fd791f7ab7731a443d1a",
+        "type": "string"
+      },
+      "code_verifier": {
+        "desc": "The code_verifier param used to generate the code_challenge originally. Used for PKCE.",
+        "example": "secret12345",
+        "type": "string"
+      },
+      "redirect_uri": {
+        "desc": "This must match the originally submitted URI (if one was sent).",
+        "example": "http://example.com",
+        "type": "string"
+      },
+      "grant_type": {
+        "desc": "The `grant_type` param as described in the OAuth spec.",
+        "example": "authorization_code",
+        "type": "string"
+      },
+      "refresh_token": {
+        "desc": "The `refresh_token` param as described in the OAuth spec.",
+        "example": "xoxe-1-abcdefg",
+        "type": "string"
+      },
+      "assertion": {
+        "desc": "Identity assertion JWT authorization grant",
+        "example": "eyJhbGciOiJSUzI1NiIsInR…",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "desc": "Credentials and other app installation information",
+    "type": "object",
+    "required": [
+      "app_id",
+      "team",
+      "enterprise"
+    ],
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "desc": "A bot access token. Only present if requested at the start of the auth flow."
+      },
+      "token_type": {
+        "type": "string",
+        "desc": "The type of access token. Only present if a bot token was requested at the start of the auth flow.",
+        "enum": [
+          "granular_bot"
+        ]
+      },
+      "scope": {
+        "type": "string",
+        "desc": "Comma-separated list of scopes granted to the token. Only present if a bot token was requested at the start of the auth flow."
+      },
+      "bot_user_id": {
+        "type": "string",
+        "subtype": "user",
+        "desc": "The user ID of the bot user corresponding to the token. Only present if a bot token was requested at the start of the auth flow."
+      },
+      "user_id": {
+        "type": "string",
+        "subtype": "user",
+        "desc": "The user ID of the bot user corresponding to the token. Only present during a refresh_token grant_type for a user access token."
+      },
+      "app_id": {
+        "type": "string",
+        "subtype": "app",
+        "desc": "ID of the app being installed or re-installed."
+      },
+      "is_enterprise_install": {
+        "type": "boolean",
+        "desc": "Boolean flag indicating whether the generated token is Enterprise-level token or not."
+      },
+      "expires_in": {
+        "type": "integer",
+        "desc": "Time until this credential expires, if it expires at all."
+      },
+      "refresh_token": {
+        "type": "string",
+        "desc": "Refresh token for this credential."
+      },
+      "team": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "desc": "Details about the installing user, and the user token if one was requested at the start of the auth flow.",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "subtype": "team",
+                "desc": "ID of the team into which the app is being installed or re-installed."
+              },
+              "name": {
+                "desc": "Name of the team into which the app is being installed or re-installed.",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "enterprise": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "desc": "Details about the installing team, and the user token if one was requested at the start of the auth flow.",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "subtype": "team",
+                "desc": "ID of the enterprise into which the app is being installed or re-installed."
+              },
+              "name": {
+                "desc": "Name of the enterprise into which the app is being installed or re-installed.",
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "authed_user": {
+        "type": "object",
+        "desc": "Details about the installing user, and the user token if one was requested at the start of the auth flow.",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "subtype": "user",
+            "desc": "ID of the installing user. If a user token was requested, this is also the ID of the user to which the user token authenticates."
+          },
+          "access_token": {
+            "type": "string",
+            "desc": "A user token. Only presented if requested at the start of the auth flow."
+          },
+          "token_type": {
+            "type": "string",
+            "desc": "The type of the access token. Only present if a user token was requested at the start of the auth flow.",
+            "enum": [
+              "user"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "desc": "Comma-separated list of scopes granted to the user token. Only present if a user token was requested at the start of the auth flow."
+          },
+          "expires_in": {
+            "type": "integer",
+            "desc": "Time until this credential expires, if it expires at all."
+          },
+          "refresh_token": {
+            "type": "string",
+            "desc": "Refresh token for this credential."
+          }
+        }
+      },
+      "incoming_webhook": {
+        "type": "object",
+        "desc": "Details about a newly-created incoming webhook. Only present if an incoming webhook was requested at the start of the auth flow.",
+        "required": [
+          "channel",
+          "channel_id",
+          "configuration_url",
+          "url"
+        ],
+        "properties": {
+          "channel": {
+            "type": "string",
+            "desc": "Name of channel."
+          },
+          "channel_id": {
+            "type": "string",
+            "subtype": "channel",
+            "desc": "Encoded ID of channel."
+          },
+          "configuration_url": {
+            "type": "string",
+            "desc": "URL for managing the webhook."
+          },
+          "url": {
+            "type": "string",
+            "desc": "Endpoint for triggering the wehbook."
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "bad_client_secret": {
+      "desc": "Value passed for `client_secret` was invalid."
+    },
+    "bad_redirect_uri": {
+      "desc": "Value passed for `redirect_uri` did not match the `redirect_uri` in the original request."
+    },
+    "cannot_install_an_org_installed_app": {
+      "desc": "Returned when the the org-installed app cannot be installed on a workspace."
+    },
+    "invalid_client_id": {
+      "desc": "Value passed for `client_id` was invalid."
+    },
+    "invalid_code": {
+      "desc": "Value passed for `code` was invalid."
+    },
+    "invalid_grant_type": {
+      "desc": "Value passed for `grant_type` was invalid."
+    },
+    "invalid_refresh_token": {
+      "desc": "The given refresh token is invalid."
+    },
+    "no_scopes": {
+      "desc": "Missing `scope` in the request."
+    },
+    "oauth_authorization_url_mismatch": {
+      "desc": "The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/v2/authorize."
+    },
+    "preview_feature_not_available": {
+      "desc": "Returned when the API method is not yet available on the team in context."
+    },
+    "user_email_unverified": {
+      "desc": "The users email is unverified."
+    },
+    "pkce_not_allowed": {
+      "desc": "The app is not allowed to use the PKCE flow."
+    },
+    "invalid_code_verifier": {
+      "desc": "The code_verifier is invalid."
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "desc": "Set the app config for a connector",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "desc": "The encoded app ID to set the app config for",
+        "example": "A12345",
+        "schema": "app_id"
+      },
+      "workflow_auth_strategy": {
+        "type": "string",
+        "enum": [
+          "builder_choice",
+          "end_user_only"
+        ],
+        "desc": "The workflow auth permission. Can be one of `builder_choice` or `end_user_only`."
+      },
+      "rich_link_preview_type": {
+        "type": "string",
+        "enum": [
+          "all_details",
+          "limited_details",
+          "no_preview",
+          "default_to_global_setting"
+        ],
+        "desc": "Indicates the app-level override for rich link preview. Unsupported for free teams."
+      },
+      "domain_restrictions": {
+        "type": "object",
+        "desc": "Domain restrictions for the app. Should be an object with two properties: `urls` and `emails`. Each is an array of strings, and each sets the allowed URLs and emails for connector authorization, respectively.",
+        "properties": {
+          "urls": {
+            "type": "array",
+            "desc": "List of URLs for allowed connector authorization",
+            "example": "['slack.pagerduty.com', 'salesforce.okta.com']",
+            "items": {
+              "type": "string"
+            }
+          },
+          "emails": {
+            "type": "array",
+            "desc": "List of emails for allowed connector authorization",
+            "example": "['slack-corp.com', 'salesforce.com']",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "no_domains_provided": {
+      "desc": "At least one allowed domain must be specified if populating the argument"
+    },
+    "too_many_domains_provided": {
+      "desc": "Too many domains provided. Please provide 50 or less for each type of domain"
+    },
+    "url_restriction_not_supported": {
+      "desc": "URL restriction is not supported for this app."
+    },
+    "invalid_domains": {
+      "desc": "At least one URL or email is invalid"
+    },
+    "invalid_app": {
+      "desc": "App is invalid"
+    },
+    "invalid_workflow_auth_strategy": {
+      "desc": "workflow auth strategy is invalid"
+    },
+    "restricted_plan_level": {
+      "desc": "The given parameter is not supported on this team."
+    },
+    "unknown_method": {
+      "desc": "This method does not exist."
+    }
+  }
+}

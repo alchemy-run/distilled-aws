@@ -1,0 +1,130 @@
+{
+  "desc": "Exchanges a temporary OAuth verifier code for an access token for Sign in with Slack.",
+  "http_method": "POST",
+  "scope": {},
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "properties": {
+      "client_id": {
+        "desc": "Issued when you created your application.",
+        "example": "2141029472.691202649728",
+        "type": "string"
+      },
+      "client_secret": {
+        "desc": "Issued when you created your application.",
+        "example": "e1b9e11dfcd19c1982d5de12921e17e8c",
+        "type": "string"
+      },
+      "code": {
+        "desc": "The `code` param returned via the OAuth callback.",
+        "example": "4724469134.4644010092847.232b4e6d82c333b475fc30f5f5a341d294feb1a94392c2fd791f7ab7731a443d1a",
+        "type": "string"
+      },
+      "redirect_uri": {
+        "desc": "This must match the originally submitted URI (if one was sent).",
+        "example": "http://example.com",
+        "type": "string"
+      },
+      "grant_type": {
+        "desc": "The `grant_type` param as described in the OAuth spec.",
+        "example": "authorization_code",
+        "type": "string",
+        "enum": [
+          "authorization_code",
+          "refresh_token"
+        ]
+      },
+      "refresh_token": {
+        "desc": "The `refresh_token` param as described in the OAuth spec.",
+        "example": "xoxe-1-abcdefg",
+        "type": "string"
+      },
+      "code_verifier": {
+        "desc": "PKCE code verifier (RFC 7636). Required when the authorization request included a `code_challenge`.",
+        "example": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk",
+        "type": "string",
+        "minLength": 43,
+        "maxLength": 128
+      }
+    }
+  },
+  "output": {
+    "desc": "OpenID Connect Response",
+    "type": "object",
+    "required": [
+      "access_token",
+      "token_type"
+    ],
+    "properties": {
+      "access_token": {
+        "type": "string",
+        "desc": ""
+      },
+      "token_type": {
+        "type": "string",
+        "desc": "",
+        "enum": [
+          "Bearer"
+        ]
+      },
+      "id_token": {
+        "type": "string",
+        "desc": ""
+      },
+      "state": {
+        "type": "string",
+        "desc": ""
+      },
+      "expires_in": {
+        "type": "integer",
+        "desc": "Time until this credential expires, if it expires at all"
+      },
+      "refresh_token": {
+        "type": "string",
+        "desc": "Refresh token for this credential"
+      }
+    }
+  },
+  "errors": {
+    "bad_client_secret": {
+      "desc": "The value passed for `client_secret` was invalid."
+    },
+    "bad_redirect_uri": {
+      "desc": "The value passed for `redirect_uri` did not match the `redirect_uri` in the original request."
+    },
+    "cannot_install_an_org_installed_app": {
+      "desc": "An org-installed app cannot be installed on a workspace."
+    },
+    "invalid_client": {
+      "desc": "Client authentication failed (unknown `client_id` or bad `client_secret`)."
+    },
+    "invalid_client_id": {
+      "desc": "The value passed for `client_id` was invalid."
+    },
+    "invalid_code": {
+      "desc": "The value passed for `code` was invalid."
+    },
+    "invalid_grant": {
+      "desc": "The authorization code is invalid, expired, revoked, or the PKCE `code_verifier` does not match."
+    },
+    "invalid_grant_type": {
+      "desc": "The value passed for `grant_type` was invalid."
+    },
+    "invalid_refresh_token": {
+      "desc": "The given refresh token is invalid."
+    },
+    "invalid_request": {
+      "desc": "The request is missing a required parameter or includes an invalid parameter value."
+    },
+    "oauth_authorization_url_mismatch": {
+      "desc": "The OAuth flow was initiated on an incorrect version of the authorization URL. The flow must be initiated via /openid/connect/authorize ."
+    },
+    "preview_feature_not_available": {
+      "desc": "The API method is not yet available on the team."
+    },
+    "unsupported_grant_type": {
+      "desc": "The `grant_type` is not supported by this endpoint."
+    }
+  }
+}

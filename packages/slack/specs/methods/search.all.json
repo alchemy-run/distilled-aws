@@ -1,0 +1,240 @@
+{
+  "desc": "Searches for messages and files matching a query.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "search:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "query"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "count": {
+        "default": 20,
+        "type": "integer",
+        "subtype": "paging"
+      },
+      "highlight": {
+        "desc": "Pass a value of `true` to enable query highlight markers (see below).",
+        "example": "true",
+        "type": "boolean"
+      },
+      "page": {
+        "default": 1,
+        "type": "integer",
+        "subtype": "paging"
+      },
+      "query": {
+        "desc": "Search query. May contains booleans, etc.",
+        "example": "pickleface",
+        "type": "string"
+      },
+      "sort": {
+        "default": "score",
+        "desc": "Return matches sorted by either `score` or `timestamp`.",
+        "example": "timestamp",
+        "type": "string"
+      },
+      "sort_dir": {
+        "default": "desc",
+        "desc": "Change sort direction to ascending (`asc`) or descending (`desc`).",
+        "example": "asc",
+        "type": "string",
+        "enum": [
+          "asc",
+          "desc"
+        ]
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "encoded team id to search in, required if org token is used"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "files": {
+        "matches": {
+          "minItems": 0,
+          "type": "array"
+        },
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "last": {
+              "type": "integer",
+              "example": 2,
+              "desc": "Last result id"
+            },
+            "total_count": {
+              "type": "integer",
+              "example": 2,
+              "desc": "Total count of results"
+            },
+            "page_count": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Number of pages"
+            },
+            "per_page": {
+              "type": "integer",
+              "example": 20,
+              "desc": "Number of results per page"
+            },
+            "page": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Current page"
+            },
+            "first": {
+              "type": "integer",
+              "example": 1,
+              "desc": "First result id"
+            }
+          }
+        },
+        "total": {
+          "type": "integer",
+          "example": 351,
+          "desc": "Total number of file search results."
+        },
+        "paging": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "example": 20,
+              "desc": "Number of results per page"
+            },
+            "total": {
+              "type": "integer",
+              "example": 2,
+              "desc": "Number of results"
+            },
+            "page": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Current page"
+            },
+            "pages": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Number of pages"
+            }
+          }
+        }
+      },
+      "callstack": {
+        "type": "string",
+        "optional": true
+      },
+      "messages": {
+        "matches": {
+          "minItems": 0,
+          "type": "array"
+        },
+        "pagination": {
+          "type": "object",
+          "properties": {
+            "last": {
+              "type": "integer",
+              "example": 2,
+              "desc": "Last result id"
+            },
+            "total_count": {
+              "type": "integer",
+              "example": 2,
+              "desc": "Total count of results"
+            },
+            "page_count": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Number of pages"
+            },
+            "per_page": {
+              "type": "integer",
+              "example": 20,
+              "desc": "Number of results per page"
+            },
+            "page": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Current page"
+            },
+            "first": {
+              "type": "integer",
+              "example": 1,
+              "desc": "First result id"
+            }
+          }
+        },
+        "total": {
+          "type": "integer",
+          "example": 351,
+          "desc": "Total number of message search results."
+        },
+        "paging": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "example": 20,
+              "desc": "Number of results per page"
+            },
+            "total": {
+              "type": "integer",
+              "example": 2,
+              "desc": "Number of results"
+            },
+            "page": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Current page"
+            },
+            "pages": {
+              "type": "integer",
+              "example": 1,
+              "desc": "Number of pages"
+            }
+          }
+        }
+      },
+      "posts": {
+        "matches": {
+          "minItems": 0,
+          "type": "array"
+        },
+        "total": {
+          "type": "integer",
+          "example": 351,
+          "desc": "Total number of matching posts."
+        }
+      },
+      "query": {
+        "type": "string",
+        "optional": false,
+        "example": "pickleface",
+        "desc": "Search query."
+      }
+    }
+  },
+  "errors": {
+    "no_query": {
+      "desc": "No query was provided."
+    }
+  }
+}

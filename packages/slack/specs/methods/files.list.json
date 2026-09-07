@@ -1,0 +1,153 @@
+{
+  "desc": "List files for a team, in a channel, or from a user with applied filters.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "files:read"
+    ],
+    "user": [
+      "files:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Filter files appearing in a specific channel, indicated by its ID.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "count": {
+        "default": 100,
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "subtype": "paging"
+      },
+      "page": {
+        "default": 1,
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "subtype": "paging"
+      },
+      "show_files_hidden_by_limit": {
+        "desc": "Show truncated file info for files hidden due to being too old, and the team who owns the file being over the file limit.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "team_id": {
+        "desc": "encoded team id to list files in, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      },
+      "ts_from": {
+        "desc": "Filter files created after this timestamp (inclusive).",
+        "example": "123456789",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "ts_to": {
+        "desc": "Filter files created before this timestamp (inclusive).",
+        "example": "123456789",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "types": {
+        "default": "all",
+        "desc": "Filter files by type ([see below](#file_types)). You can pass multiple values in the types argument, like `types=spaces,snippets`.The default value is `all`, which does not filter the list.",
+        "example": "images",
+        "type": "string"
+      },
+      "user": {
+        "desc": "Filter files created by a single user.",
+        "type": "string",
+        "subtype": "user"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "files"
+    ],
+    "properties": {
+      "files": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "created": {
+              "type": "integer"
+            },
+            "user": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "paging": {
+        "type": "object",
+        "required": [
+          "pages",
+          "page",
+          "total"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "pages": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "slack_connect_canvas_sharing_blocked": {
+      "desc": "Admin has disabled sharing of Canvas links in all Slack Connect communications"
+    },
+    "user_not_found": {
+      "desc": "Value passed for `user` was invalid"
+    },
+    "unknown_type": {
+      "desc": "Value passed for `types` was invalid"
+    }
+  }
+}

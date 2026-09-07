@@ -1,0 +1,86 @@
+{
+  "desc": "Remove specified entities from a specified authentication policy.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "policy_name",
+      "entity_ids",
+      "entity_type"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "policy_name": {
+        "desc": "The name of the policy to remove entities from. Currently, `email_password` is the only policy that may be used with this method.",
+        "type": "string",
+        "example": "email_password"
+      },
+      "entity_type": {
+        "desc": "The type of entity to assign to the policy. Currently, `USER` is supported.",
+        "schema": "entity_types"
+      },
+      "entity_ids": {
+        "desc": "Encoded IDs of the entities you'd like to remove from the policy.",
+        "example": "['U1234']",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1000,
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "entity_total_count"
+    ],
+    "properties": {
+      "entity_total_count": {
+        "type": "integer",
+        "desc": "Count of entities under the policy and provided filter conditions",
+        "example": "50"
+      }
+    }
+  },
+  "errors": {
+    "entity_not_found": {
+      "desc": "At least one `entity_id` was not found"
+    },
+    "feature_not_enabled": {
+      "desc": "This method is only available to Enterprise customers."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request—please retry."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_auth": {
+      "desc": "The provided token doesn't have access to this endpoint."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by Org Owners and Admins."
+    },
+    "policy_not_found": {
+      "desc": "The `policy_name` could not be found."
+    },
+    "ratelimited": {
+      "desc": "The rate limit for this endpoint has been reached."
+    }
+  }
+}

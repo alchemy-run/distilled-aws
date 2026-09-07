@@ -1,0 +1,82 @@
+{
+  "desc": "Checks authentication & identity.",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "no_scope_required": true,
+  "rate_limits": "t5",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "user_id": {
+        "schema": "user_id"
+      },
+      "url": {
+        "type": "string"
+      },
+      "team_id": {
+        "schema": "team_id"
+      },
+      "user": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "team": {
+        "type": "string"
+      },
+      "app_id": {
+        "schema": "app_id"
+      },
+      "app_name": {
+        "type": "string"
+      },
+      "enterprise_id": {
+        "schema": "enterprise_id"
+      },
+      "bot_id": {
+        "schema": "bot_id"
+      },
+      "is_enterprise_install": {
+        "type": "boolean"
+      },
+      "expires_in": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "An internal error has been found."
+    },
+    "invalid_auth": {
+      "desc": "Method was called with invalid credentials"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "desc": "Configure the user-level session settings—the session duration and what happens when the client closes—for one or more users.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_ids": {
+        "desc": "The list of up to 1,000 user IDs to apply the session settings for",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1000,
+        "example": "['U12345','U67890']",
+        "items": {
+          "type": "string",
+          "schema": "user_id"
+        }
+      },
+      "duration": {
+        "desc": "The session duration, in seconds. The minimum value is 28800, which represents 8 hours; the max value is 315569520 or 10 years (that's a long Slack session).",
+        "type": "integer",
+        "example": "86400",
+        "minimum": 180,
+        "maximum": 315569520,
+        "default": null
+      },
+      "desktop_app_browser_quit": {
+        "desc": "Terminate the session when the client—either the desktop app or a browser window—is closed.",
+        "type": "boolean",
+        "example": "true",
+        "default": null
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "admin_unauthorized": {
+      "desc": "The token provided doesn't have permission to revoke a session."
+    },
+    "at_least_one_session_setting_required": {
+      "desc": "At least one session setting is required."
+    },
+    "bots_not_allowed": {
+      "desc": "Bot sessions are not listed by this method."
+    },
+    "feature_not_enabled": {
+      "desc": "This method is only available for Enterprise organizations."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request—please retry."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_auth": {
+      "desc": "The token doesn't have access to this endpoint."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by Org Owners and Admins"
+    },
+    "ratelimited": {
+      "desc": "The rate limit for this endpoint has been reached."
+    },
+    "unable_to_update_existing_sessions": {
+      "desc": "The session settings could not be applied to users' existing sessions."
+    },
+    "unknown_method": {
+      "desc": "This method is currently not available."
+    },
+    "user_not_found": {
+      "desc": "At least one of the requested users doesn't exist."
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "desc": "Gets information about a file.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "files:read"
+    ],
+    "user": [
+      "files:read"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "file"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "count": {
+        "default": 100,
+        "type": "integer",
+        "subtype": "paging"
+      },
+      "cursor": {
+        "desc": "Parameter for pagination. File comments are paginated for a single file. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection of comments. See [pagination](/apis/web-api/pagination) for more details.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "file": {
+        "desc": "Specify a file by providing its ID.",
+        "example": "F2147483862",
+        "type": "string",
+        "subtype": "file"
+      },
+      "limit": {
+        "default": 0,
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached.",
+        "example": "20",
+        "type": "integer"
+      },
+      "page": {
+        "default": 1,
+        "type": "integer",
+        "subtype": "paging"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "properties": {
+      "file": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "comments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "comment",
+            "created",
+            "id",
+            "is_intro",
+            "timestamp",
+            "user"
+          ],
+          "properties": {
+            "comment": {
+              "type": "string"
+            },
+            "created": {
+              "type": "number"
+            },
+            "id": {
+              "type": "string"
+            },
+            "is_intro": {
+              "type": "boolean"
+            },
+            "timestamp": {
+              "type": "number"
+            },
+            "user": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "content": {
+        "type": "string"
+      },
+      "content_html": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "content_highlight_html": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "errors": {
+    "access_denied": {
+      "desc": "Unable to access the file (slack connect)"
+    },
+    "file_deleted": {
+      "desc": "The requested file has been deleted"
+    },
+    "file_not_found": {
+      "desc": "Value passed for `file` was invalid"
+    },
+    "canvas_globally_disabled": {
+      "desc": "Canvas is disabled for this team"
+    },
+    "canvas_disabled_user_team": {
+      "desc": "Canvas is disabled on user's team for connected Channels"
+    },
+    "canvas_disabled_file_team": {
+      "desc": "Canvas is disabled on file's team"
+    },
+    "not_visible": {
+      "desc": "Do not have permission to view the file"
+    },
+    "template_not_visible": {
+      "desc": "Do not have permissions to view this template"
+    },
+    "slack_connect_canvas_sharing_blocked": {
+      "desc": "Admin has disabled sharing of Canvas links in all Slack Connect communications"
+    }
+  }
+}

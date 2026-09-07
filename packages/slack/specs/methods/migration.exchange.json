@@ -1,0 +1,81 @@
+{
+  "desc": "For Enterprise organization workspaces, map local user IDs to global user IDs",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "tokens.basic"
+    ],
+    "user": [
+      "tokens.basic"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "users"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "users": {
+        "desc": "A comma-separated list of user ids, up to 400 per request",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 400
+      },
+      "team_id": {
+        "type": "string",
+        "subtype": "team",
+        "desc": "Specify team_id starts with `T` in case of Org Token"
+      },
+      "to_old": {
+        "desc": "Specify `true` to convert `W` global user IDs to workspace-specific `U` IDs. Defaults to `false`.",
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "team_id",
+      "enterprise_id",
+      "user_id_map"
+    ],
+    "properties": {
+      "team_id": {
+        "type": "string"
+      },
+      "enterprise_id": {
+        "type": "string"
+      },
+      "user_id_map": {
+        "type": "object",
+        "title": "A mapping of provided user IDs with mapped user IDs"
+      },
+      "invalid_user_ids": {
+        "type": "array",
+        "title": "A list of User IDs that cannot be mapped or found",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "errors": {
+    "not_enterprise_team": {
+      "desc": "The workspace associated with the token is not part of an Enterprise organization. User IDs have not changed and there is nothing to map."
+    },
+    "too_many_users": {
+      "desc": "Too many user IDs provided in `users`. Up to 400 user IDs are allowed per request."
+    }
+  }
+}

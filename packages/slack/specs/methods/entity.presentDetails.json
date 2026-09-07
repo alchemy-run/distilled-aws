@@ -1,0 +1,77 @@
+{
+  "desc": "Provide custom flexpane behavior for Work Objects. Apps call this endpoint to send per-user flexpane metadata to the client.",
+  "http_method": "POST",
+  "scope": "none",
+  "rate_limits": "t3",
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "org_app": {
+          "allowed": true,
+          "derive_team_context_from": "token"
+        },
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "metadata": {
+        "desc": "URL-encoded JSON object containing flexpane metadata from the app that will be conformed to a Work Object metadata schema, keyed by entity ID.",
+        "type": "object"
+      },
+      "trigger_id": {
+        "type": "string",
+        "desc": "A reference to the original user action that initiated the request."
+      },
+      "user_auth_required": {
+        "default": "0",
+        "desc": "Set to true (or 1) to indicate that the user must authenticate to view full flexpane data.",
+        "type": "boolean"
+      },
+      "user_auth_url": {
+        "desc": "A custom URL to which users are directed for authentication if required.",
+        "example": "https://example.com/onboarding?user_id=xxx",
+        "type": "string"
+      },
+      "error": {
+        "schema": "error"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "invalid_metadata": {
+      "desc": "The provided `metadata` argument could not be parsed or understood."
+    },
+    "feature_not_enabled": {
+      "desc": "temporarily gating API"
+    },
+    "invalid_app_id": {
+      "desc": "App ID is not a valid format"
+    },
+    "user_auth_url_missing": {
+      "desc": "User auth url is required if user_auth_required is true"
+    },
+    "invalid_trigger_id": {
+      "desc": "Trigger id is not valid"
+    },
+    "entity_metadata_does_not_match_trigger": {
+      "desc": "The provided entity's ID does not match the ID of the entity used to initiate the request"
+    },
+    "missing_interactivity_url": {
+      "desc": "App does not have an interactivity URL configured"
+    },
+    "missing_options_load_url": {
+      "desc": "App does not have an options load URL configured"
+    },
+    "invalid_auth": {
+      "desc": "Invalid token provided"
+    }
+  }
+}

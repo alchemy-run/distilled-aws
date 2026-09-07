@@ -1,0 +1,58 @@
+{
+  "desc": "Retrieve a permalink URL for a specific extant message",
+  "http_method": "GET",
+  "scope": {},
+  "no_scope_required": true,
+  "rate_limits": "t5",
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "message_ts"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "The ID of the conversation or channel containing the message",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "message_ts": {
+        "type": "string",
+        "subtype": "timestamp",
+        "desc": "A message's `ts` value, uniquely identifying it within a channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "permalink",
+      "channel"
+    ],
+    "properties": {
+      "permalink": {
+        "type": "string"
+      },
+      "channel": {
+        "type": "string",
+        "subtype": "channel"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "message_not_found": {
+      "desc": "The message identified by `message_ts` could not be found."
+    }
+  }
+}

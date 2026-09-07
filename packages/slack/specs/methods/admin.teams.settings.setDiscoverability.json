@@ -1,0 +1,60 @@
+{
+  "desc": "An API method that allows admins to set the discoverability of a given workspace",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "discoverability"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID of the workspace to set discoverability on.",
+        "schema": "workspace_id"
+      },
+      "discoverability": {
+        "type": "string",
+        "desc": "This workspace's discovery setting. It must be set to one of `open`, `invite_only`, `closed`, or `unlisted`."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "discoverability_setting_invalid": {
+      "desc": "The discovery setting must be set to one of `open`, `invite_only`, `closed`, or `unlisted`."
+    },
+    "failed_to_set_discoverability": {
+      "desc": "There was an error setting the discoverability of this workspace."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "team_not_found": {
+      "desc": "The `team_id` was not found."
+    }
+  }
+}

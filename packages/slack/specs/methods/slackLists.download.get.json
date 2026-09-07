@@ -1,0 +1,86 @@
+{
+  "desc": "Retrieve List download URL from an export job to download List contents.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:read"
+    ],
+    "user": [
+      "lists:read"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "job_id",
+      "list_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "list_id": {
+        "desc": "ID of the List to export.",
+        "example": "F1234567",
+        "type": "string",
+        "subtype": "list",
+        "schema": "file_id"
+      },
+      "job_id": {
+        "type": "string",
+        "example": "Le48SKT566",
+        "desc": "The ID of the recently started job to export the List."
+      },
+      "format": {
+        "desc": "Format the export was started with. Must match the `format` passed to `slackLists.download.start`. Defaults to `csv`.",
+        "schema": "list_export_format",
+        "default": "csv"
+      },
+      "include_threads": {
+        "desc": "Must match the `include_threads` passed to `slackLists.download.start`. The returned `download_url` carries this through so the served export matches what was generated. Only applies when `format` is `json`.",
+        "type": "boolean",
+        "default": false
+      },
+      "include_attachments": {
+        "desc": "Must match the `include_attachments` passed to `slackLists.download.start`. The returned `download_url` carries this through so the served export matches what was generated. Only applies when `format` is `json`.",
+        "type": "boolean",
+        "default": false
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "status"
+    ],
+    "properties": {
+      "status": {
+        "type": "string",
+        "desc": "Current status of the export job.",
+        "schema": "list_export_status"
+      },
+      "download_url": {
+        "type": "string",
+        "desc": "The URL at which to download the CSV."
+      }
+    }
+  },
+  "errors": {
+    "list_not_found": {
+      "desc": "The List was not found."
+    },
+    "permission_denied": {
+      "desc": "The bot does not have permission to perform this action."
+    },
+    "unknown_method": {
+      "desc": "Feature not enabled for this team."
+    },
+    "job_not_found": {
+      "desc": "Could not find an export job matching that ID."
+    }
+  }
+}

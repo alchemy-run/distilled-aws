@@ -1,0 +1,317 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.entity#AcknowledgeCommentActionRequestCommentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The full comment data. Required for edit and post actions. See the [comment schema](/messaging/work-objects-comments#entity-present-comments-method) for the full list of properties."
+      }
+    },
+    "com.slack.entity#AcknowledgeCommentActionRequest": {
+      "type": "structure",
+      "members": {
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A reference to the original user action that initiated the comment mutation",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "com.slack.entity#AcknowledgeCommentActionRequestCommentMap",
+          "traits": {
+            "smithy.api#documentation": "The full comment data. Required for edit and post actions. See the [comment schema](/messaging/work-objects-comments#entity-present-comments-method) for the full list of properties."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message if the action failed in the app. When present, signals that the mutation could not be completed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.entity#AcknowledgeCommentActionResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.entity#AcknowledgeCommentAction": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.entity#AcknowledgeCommentActionRequest"
+      },
+      "output": {
+        "target": "com.slack.entity#AcknowledgeCommentActionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/entity.acknowledgeCommentAction",
+          "code": 200
+        },
+        "smithy.api#documentation": "Acknowledge a comment mutation (edit, delete, or post) on a work object entity. Apps call this endpoint to confirm they have processed a comment action, and the backend emits a dedicated RTM event to the user.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_not_found` — when the API isn't available to the caller\n  - `invalid_trigger_id` — Trigger id is not valid\n  - `invalid_app_id` — App ID is not a valid format\n  - `invalid_auth` — Invalid token provided\n  - `invalid_action` — The comment data does not match the original trigger context (e.g., comment_id or thread_root_id mismatch)\n  - `missing_comment_data` — Required comment fields are missing for the given action type\n  - `not_allowed` — User is not enrolled in comment syncing\n  - `invalid_sender_schema` — The sender field could not be transformed to a valid user schema\n\nSee https://docs.slack.dev/reference/methods/entity.acknowledgeCommentAction"
+      }
+    },
+    "com.slack.entity#PresentCommentsRequestCommentsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.entity#PresentCommentsRequestCommentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.entity#PresentCommentsRequestCommentsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of comments to present to the user. See the [comment schema](/messaging/work-objects-comments#entity-present-comments-method) for the full list of properties."
+      }
+    },
+    "com.slack.entity#PresentCommentsRequest": {
+      "type": "structure",
+      "members": {
+        "comments": {
+          "target": "com.slack.entity#PresentCommentsRequestCommentsList",
+          "traits": {
+            "smithy.api#documentation": "Array of comments to present to the user. See the [comment schema](/messaging/work-objects-comments#entity-present-comments-method) for the full list of properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "App supplied cursor used for pagination, will be sent in the next request for comments"
+          }
+        },
+        "can_post_comment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the user has permissions to post comments"
+          }
+        },
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A reference to the original user action that initiated the request",
+            "smithy.api#required": {}
+          }
+        },
+        "delete_action_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The block action id that will be sent when a delete request is initiated for a comment."
+          }
+        },
+        "user_auth_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true (or 1) to indicate that the user must authenticate to see the comments data."
+          }
+        },
+        "user_auth_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A custom URL to which users are directed for authentication if required."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.entity#PresentCommentsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.entity#PresentCommentsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.entity#PresentCommentsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.entity#PresentComments": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.entity#PresentCommentsRequest"
+      },
+      "output": {
+        "target": "com.slack.entity#PresentCommentsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/entity.presentComments",
+          "code": 200
+        },
+        "smithy.api#documentation": "Provide comments for work objects. Apps call this endpoint to send per-user flexpane comment data to the client.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `method_not_found` — when the API isn't available to the caller\n  - `invalid_trigger_id` — Trigger id is not valid\n  - `invalid_app_id` — App ID is not a valid format\n  - `invalid_auth` — Invalid token provided\n  - `user_auth_url_missing` — User auth url is required if user_auth_required is true\n  - `missing_delete_action_id` — delete_action_id is required when any comment is marked can_delete\n\nSee https://docs.slack.dev/reference/methods/entity.presentComments"
+      }
+    },
+    "com.slack.entity#PresentDetailsRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "URL-encoded JSON object containing flexpane metadata from the app that will be conformed to a Work Object metadata schema, keyed by entity ID."
+      }
+    },
+    "com.slack.entity#PresentDetailsRequest": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.slack.entity#PresentDetailsRequestMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "URL-encoded JSON object containing flexpane metadata from the app that will be conformed to a Work Object metadata schema, keyed by entity ID."
+          }
+        },
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A reference to the original user action that initiated the request.",
+            "smithy.api#required": {}
+          }
+        },
+        "user_auth_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true (or 1) to indicate that the user must authenticate to view full flexpane data."
+          }
+        },
+        "user_auth_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A custom URL to which users are directed for authentication if required."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.entity#PresentDetailsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.entity#PresentDetails": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.entity#PresentDetailsRequest"
+      },
+      "output": {
+        "target": "com.slack.entity#PresentDetailsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/entity.presentDetails",
+          "code": 200
+        },
+        "smithy.api#documentation": "Provide custom flexpane behavior for Work Objects. Apps call this endpoint to send per-user flexpane metadata to the client.\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_metadata` — The provided `metadata` argument could not be parsed or understood.\n  - `feature_not_enabled` — temporarily gating API\n  - `invalid_app_id` — App ID is not a valid format\n  - `user_auth_url_missing` — User auth url is required if user_auth_required is true\n  - `invalid_trigger_id` — Trigger id is not valid\n  - `entity_metadata_does_not_match_trigger` — The provided entity's ID does not match the ID of the entity used to initiate the request\n  - `missing_interactivity_url` — App does not have an interactivity URL configured\n  - `missing_options_load_url` — App does not have an options load URL configured\n  - `invalid_auth` — Invalid token provided\n\nSee https://docs.slack.dev/reference/methods/entity.presentDetails"
+      }
+    },
+    "com.slack.entity#Entity": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.entity#AcknowledgeCommentAction"
+        },
+        {
+          "target": "com.slack.entity#PresentComments"
+        },
+        {
+          "target": "com.slack.entity#PresentDetails"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — entity"
+      }
+    }
+  }
+}

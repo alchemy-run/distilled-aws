@@ -1,0 +1,67 @@
+{
+  "desc": "Export an app manifest from an existing app. When called with a manager app token, this method can only export apps that were created by that manager app.",
+  "http_method": "POST",
+  "scope": {
+    "configuration": [
+      "app_configurations:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "app_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "An [app configuration access token](/authentication/tokens#config).",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "desc": "The ID of the app whose configuration you want to export as a manifest.",
+        "schema": "app_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "manifest"
+    ],
+    "properties": {
+      "manifest": {
+        "schema": "manifest"
+      }
+    }
+  },
+  "errors": {
+    "app_not_eligible": {
+      "desc": "The specified app is not eligible for this API."
+    },
+    "app_not_found": {
+      "desc": "The specified app was not found or has been deleted."
+    },
+    "failed_export": {
+      "desc": "Failed to export manifest for given app ID"
+    },
+    "internal_error": {
+      "desc": "Internal error."
+    },
+    "invalid_app_id": {
+      "desc": "The app ID passed is invalid."
+    },
+    "no_permission": {
+      "desc": "User does not have proper permissions."
+    },
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "app_not_owned_by_manager_app": {
+      "desc": "The specified app is not managed by the calling manager app. A manager app can only access apps that it originally created via apps.manifest.create."
+    }
+  }
+}

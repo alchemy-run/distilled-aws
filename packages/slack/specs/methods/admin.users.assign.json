@@ -1,0 +1,86 @@
+{
+  "desc": "Add an Enterprise user to a workspace.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "user_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID (`T1234`) of the workspace.",
+        "schema": "workspace_id"
+      },
+      "user_id": {
+        "desc": "The ID of the user to add to the workspace.",
+        "schema": "user_id"
+      },
+      "is_restricted": {
+        "desc": "True if user should be added to the workspace as a guest.",
+        "type": "boolean",
+        "example": "true",
+        "default": false
+      },
+      "is_ultra_restricted": {
+        "desc": "True if user should be added to the workspace as a single-channel guest.",
+        "type": "boolean",
+        "example": "true",
+        "default": false
+      },
+      "channel_ids": {
+        "desc": "Comma separated values of channel IDs to add user in the new workspace.",
+        "type": "string",
+        "example": "C123,C3456",
+        "default": ""
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team"
+    },
+    "invalid_role_for_user": {
+      "desc": "The requested status is incompatible with the user's role on another workspace."
+    },
+    "invited_user_not_created": {
+      "desc": "The invited user could not be created."
+    },
+    "invited_user_not_reactivated": {
+      "desc": "The invited user could not be reactivated."
+    },
+    "invitor_cannot_see_channel": {
+      "desc": "The invitor is not part of one or many channels that the user was requested to be added to"
+    },
+    "not_an_admin": {
+      "desc": "This method wasn't called by an admin."
+    },
+    "team_not_found": {
+      "desc": "`team_id was not found."
+    },
+    "user_already_team_member": {
+      "desc": "The given user is already active on the given team."
+    },
+    "user_is_bot": {
+      "desc": "The given user is a bot from an app. This api only works with humans."
+    },
+    "user_not_found": {
+      "desc": "`user_id` was not found."
+    }
+  }
+}

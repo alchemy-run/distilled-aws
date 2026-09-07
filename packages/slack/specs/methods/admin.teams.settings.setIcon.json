@@ -1,0 +1,59 @@
+{
+  "desc": "Sets the icon of a workspace.",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_id",
+      "image_url"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "image_url": {
+        "desc": "Image URL for the icon",
+        "type": "string",
+        "example": "http://mysite.com/icon.jpeg"
+      },
+      "team_id": {
+        "desc": "ID for the workspace to set the icon for.",
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {}
+  },
+  "errors": {
+    "failed_to_set_icon": {
+      "desc": "Setting the url in the database failed. This may be transient, please try again soon."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_auth": {
+      "desc": "The given token is not authorized for the requested `team_id`."
+    },
+    "invalid_url": {
+      "desc": "Invalid url."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and admins."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    }
+  }
+}

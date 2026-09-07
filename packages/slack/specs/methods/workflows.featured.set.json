@@ -1,0 +1,56 @@
+{
+  "desc": "Set featured workflows for a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "bookmarks:write"
+    ],
+    "user": [
+      "bookmarks:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id",
+      "trigger_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth"
+      },
+      "channel_id": {
+        "desc": "Channel to set featured workflows in.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "trigger_ids": {
+        "type": "array",
+        "desc": "Comma-separated array of trigger IDs that will replace any existing featured workflows in the channel; max 15",
+        "example": "[\"Ft012345\", \"Ft012346\"]",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "maxItems": 15
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "method_not_supported": {
+      "desc": "Method not yet supported"
+    },
+    "restricted_action": {
+      "desc": "User does not have access to this method."
+    },
+    "error_modifying_workflows": {
+      "desc": "Error modifying workflows"
+    }
+  }
+}

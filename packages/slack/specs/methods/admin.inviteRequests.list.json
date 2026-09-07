@@ -1,0 +1,83 @@
+{
+  "desc": "List all pending workspace invite requests.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.invites:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "ID for the workspace where the invite requests were made.",
+        "type": "string",
+        "example": ""
+      },
+      "cursor": {
+        "desc": "Value of the `next_cursor` field sent as part of the previous API response",
+        "type": "string",
+        "example": "5cweb43"
+      },
+      "limit": {
+        "desc": "The number of results that will be returned by the API on each invocation. Must be between 1 - 1000, both inclusive",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 1000,
+        "default": 100,
+        "example": "100"
+      }
+    }
+  },
+  "output": {
+    "desc": "returns all the properties of invite request object",
+    "type": "object",
+    "required": [
+      "invite_requests"
+    ],
+    "properties": {
+      "response_metadata": {
+        "required": [
+          "next_cursor"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "invite_requests": {
+        "type": "array",
+        "items": {
+          "schema": "invite_request"
+        }
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The Invite Request Admin APIs feature is not enabled"
+    },
+    "missing_scope": {
+      "desc": "This token doesn't have the scope required."
+    },
+    "not_an_admin": {
+      "desc": "This token doesn't have admin privileges."
+    },
+    "team_not_found": {
+      "desc": "The `team_id` specified wasn't found."
+    }
+  }
+}

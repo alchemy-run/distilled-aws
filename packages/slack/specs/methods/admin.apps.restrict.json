@@ -1,0 +1,87 @@
+{
+  "desc": "Restrict an app for installation on a workspace.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "desc": "The id of the app to restrict.",
+        "example": "A12345",
+        "type": "string"
+      },
+      "request_id": {
+        "desc": "The id of the request to restrict.",
+        "example": "Ar12345",
+        "type": "string"
+      },
+      "team_id": {
+        "desc": "The ID of the workspace to approve the app on",
+        "example": "T12345",
+        "schema": "team_id"
+      },
+      "enterprise_id": {
+        "desc": "The ID of the enterprise to approve the app on",
+        "example": "E12345",
+        "schema": "enterprise_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "app_management_app_not_installed_on_org": {
+      "desc": "The app management app must be installed on the org."
+    },
+    "custom_integration_not_allowed_at_enterprise": {
+      "desc": "Returned when the install request is for custom integration app."
+    },
+    "feature_not_enabled": {
+      "desc": "Returned when the Admin APIs feature is not enabled for this team"
+    },
+    "invalid_request_id": {
+      "desc": "The `request_id` passed is invalid."
+    },
+    "invalid_app_id": {
+      "desc": "The `app_id` passed is invalid."
+    },
+    "invalid_scopes": {
+      "desc": "Some of the provided scopes do not exist"
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and admins"
+    },
+    "request_already_resolved": {
+      "desc": "The app request has already been resolved"
+    },
+    "request_id_or_app_id_is_required": {
+      "desc": "Must include a `request_id` or `app_id`"
+    },
+    "request_id_required_for_custom_integrations": {
+      "desc": "A `request_id` is required for custom integrations"
+    },
+    "team_not_found": {
+      "desc": "Returned when team id is not found."
+    },
+    "too_many_ids_provided": {
+      "desc": "Please provide only `app_id` OR `request_id`"
+    },
+    "too_many_teams_provided": {
+      "desc": "Please provide only `team_id` OR `enterprise_id`"
+    }
+  }
+}

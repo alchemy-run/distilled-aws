@@ -1,0 +1,93 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.api#TestApiRequest": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error response to return"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.api#TestApiResponseArgsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.api#TestApiResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "args": {
+          "target": "com.slack.api#TestApiResponseArgsMap"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.api#TestApi": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.api#TestApiRequest"
+      },
+      "output": {
+        "target": "com.slack.api#TestApiResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api.test",
+          "code": 200
+        },
+        "smithy.api#documentation": "Checks API calling code.\n\nRate limit tier: 4\n\nSee https://docs.slack.dev/reference/methods/api.test"
+      }
+    },
+    "com.slack.api#Api": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.api#TestApi"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — api"
+      }
+    }
+  }
+}

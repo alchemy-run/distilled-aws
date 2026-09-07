@@ -1,0 +1,95 @@
+{
+  "desc": "Remove access to a canvas for specified entities",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "canvases:write"
+    ],
+    "user": [
+      "canvases:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "canvas_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "canvas_id": {
+        "desc": "Encoded ID of the canvas",
+        "example": "F1234ABCD",
+        "subtype": "canvas",
+        "schema": "file_id"
+      },
+      "channel_ids": {
+        "desc": "List of channels you wish to update access for",
+        "example": "[\"C1234ABCD\"]",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1,
+        "items": {
+          "schema": "channel_id"
+        }
+      },
+      "user_ids": {
+        "desc": "List of users you wish to update access for",
+        "example": "[\"U1234ABCD\"]",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1,
+        "items": {
+          "schema": "user_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "failed_to_update_channel_ids": {
+        "desc": "The channel IDs that could not be updated",
+        "type": "array",
+        "items": {
+          "schema": "channel"
+        }
+      },
+      "failed_to_update_user_ids": {
+        "desc": "The user IDs that could not be updated",
+        "type": "array",
+        "items": {
+          "schema": "user_id"
+        }
+      }
+    }
+  },
+  "errors": {
+    "canvas_not_found": {
+      "desc": "The canvas you wish to revoke permissions for is not available."
+    },
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "canvas_disabled_user_team": {
+      "desc": "Canvas is disabled on user's team."
+    },
+    "invalid_parameters": {
+      "desc": "One of user_ids and channel_ids must be defined."
+    },
+    "channel_not_found": {
+      "desc": "A channel could not be found."
+    },
+    "user_not_found": {
+      "desc": "A user could not be found."
+    }
+  }
+}

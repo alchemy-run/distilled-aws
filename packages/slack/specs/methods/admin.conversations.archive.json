@@ -1,0 +1,68 @@
+{
+  "desc": "Archive a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to archive.",
+        "example": "C12345",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "already_archived": {
+      "desc": "This channel has already been archived."
+    },
+    "cant_archive_general": {
+      "desc": "You cannot archive the 'general' channel."
+    },
+    "channel_not_found": {
+      "desc": "The value passed for `channel` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The value passed for `channel` was an MPDM, DM, or the 'general' channel."
+    },
+    "could_not_archive_channel": {
+      "desc": "The provided channel could not be archived."
+    },
+    "default_org_wide_channel": {
+      "desc": "The default org-wide channel cannot be archived."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided does not have access to this method."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from archiving this channel."
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "desc": "Fetches the expiration timestamp for a guest",
+  "http_method": "GET",
+  "scope": {
+    "user": [
+      "admin.users:read"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user_id": {
+        "schema": "user_id",
+        "desc": "The ID of the guest user to get the expiration for.",
+        "example": "U123ABC456"
+      },
+      "target_team": {
+        "desc": "If an org token is passed in and this team is on the org, it will operate on the workspace level on the specified team. Otherwise it will operate on the org or team in context.",
+        "example": "T123ABC456",
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "user": {
+      "required": [
+        "id",
+        "email",
+        "is_restricted",
+        "is_ultra_restricted"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "desc": "Encoded user ID"
+        },
+        "username": {
+          "type": "string",
+          "desc": "Username of user"
+        },
+        "email": {
+          "type": "string",
+          "desc": "Email address of user"
+        },
+        "is_restricted": {
+          "type": "boolean",
+          "desc": "Whether the user is a multi-channel guest."
+        },
+        "is_ultra_restricted": {
+          "type": "boolean",
+          "desc": "Whether the user is a single-channel guest."
+        },
+        "expiration_ts": {
+          "type": "number",
+          "desc": "Expiration timestamp for the guest user."
+        }
+      }
+    }
+  },
+  "errors": {
+    "paid_teams_only": {
+      "desc": "This feature is only accessible to paid teams"
+    },
+    "no_perms": {
+      "desc": "User does not have appropriate permissions."
+    },
+    "team_not_found": {
+      "desc": "Team not found"
+    },
+    "user_not_found": {
+      "desc": "User not found"
+    },
+    "not_permitted": {
+      "desc": "This action is not permitted"
+    },
+    "target_team_not_on_org": {
+      "desc": "Target team specified is not on the org in context"
+    },
+    "user_is_not_guest": {
+      "desc": "The user is not a guest"
+    }
+  }
+}

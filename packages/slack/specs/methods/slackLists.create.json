@@ -1,0 +1,120 @@
+{
+  "desc": "Create a List.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "lists:write"
+    ],
+    "user": [
+      "lists:write"
+    ]
+  },
+  "familyName": "lists",
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "name": {
+        "desc": "Name of the List.",
+        "example": "My List",
+        "type": "string"
+      },
+      "description_blocks": {
+        "desc": "A rich text description of the List.",
+        "example": "[{\"type\":\"rich_text\",\"elements\":[{\"type\":\"rich_text_section\",\"elements\":[{\"type\":\"text\",\"text\":\"List to keep track of tasks!\"}]}]}]",
+        "type": "array",
+        "items": {
+          "schema": "rich_text"
+        }
+      },
+      "schema": {
+        "desc": "Column definition for the List.",
+        "example": "[{ \"key\": \"task_name\", \"name\": \"Task Name\", \"type\": \"text\", \"is_primary_column\": true }, { \"key\": \"due_date\", \"name\": \"Due Date\", \"type\": \"date\" }, { \"key\": \"status\", \"name\": \"Status\", \"type\": \"select\", \"options\": { \"choices\": [ { \"value\": \"not_started\", \"label\": \"Not Started\", \"color\": \"red\" }, { \"value\": \"in_progress\", \"label\": \"In Progress\", \"color\": \"yellow\" }, { \"value\": \"completed\", \"label\": \"Completed\", \"color\": \"green\" } ] } }, { \"key\": \"assignee\", \"name\": \"Assignee\", \"type\": \"user\" }]",
+        "type": "array",
+        "items": {
+          "schema": "list_column"
+        }
+      },
+      "copy_from_list_id": {
+        "desc": "ID of the List to copy.",
+        "example": "F1234567",
+        "type": "string",
+        "subtype": "list",
+        "schema": "file_id"
+      },
+      "include_copied_list_records": {
+        "desc": "Boolean indicating whether to include records when a List is copied.",
+        "example": "false",
+        "type": "boolean"
+      },
+      "todo_mode": {
+        "type": "boolean",
+        "desc": "Boolean indicating whether the List should be used to track todo tasks.",
+        "example": "true",
+        "default": false
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "list_id"
+    ],
+    "properties": {
+      "list_id": {
+        "desc": "The ID of the List created.",
+        "example": "F12345678",
+        "schema": "file_id"
+      },
+      "list_metadata": {
+        "desc": "The metadata of the List created.",
+        "schema": "list_metadata"
+      }
+    }
+  },
+  "errors": {
+    "permission_denied": {
+      "desc": "The user does not have permission to perform this action."
+    },
+    "invalid_schema": {
+      "desc": "The schema was invalid."
+    },
+    "invalid_primary_column": {
+      "desc": "Missing or more than one primary column."
+    },
+    "team_not_found": {
+      "desc": "The team cannot be found."
+    },
+    "user_not_found": {
+      "desc": "The user cannot be found."
+    },
+    "over_list_file_maximum": {
+      "desc": "Cannot create any more List files."
+    },
+    "over_title_length_maximum": {
+      "desc": "Title can not exceed defined length."
+    },
+    "invalid_column_type": {
+      "desc": "Column type not allowed."
+    },
+    "missing_arg_copy_from_list_id": {
+      "desc": "Missing argument `copy_from_list_id`."
+    },
+    "invalid_copy_and_schema_args": {
+      "desc": "Cannot provide both `copy_from_list_id` and `schema`."
+    },
+    "over_column_maximum": {
+      "desc": "Cannot create List with more than allowed column count."
+    }
+  }
+}

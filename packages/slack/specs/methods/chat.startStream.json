@@ -1,0 +1,211 @@
+{
+  "desc": "Starts a new streaming conversation.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "thread_ts"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "org_app": {
+          "allowed": true,
+          "derive_team_context_from": "channel"
+        },
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "An encoded ID that represents a channel thread or DM.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "chunks": {
+        "desc": "Array of streaming chunks.",
+        "type": "array"
+      },
+      "markdown_text": {
+        "desc": "Accepts message text formatted in markdown. Limit this field to 12,000 characters.",
+        "type": "string",
+        "example": "**This is bold text**",
+        "hidden": false
+      },
+      "thread_ts": {
+        "desc": "Provide another message's `ts` value to reply to. Streamed messages should always be replies to a user request.",
+        "type": "string",
+        "example": "1721609600.123456"
+      },
+      "recipient_user_id": {
+        "desc": "The encoded ID of the user to receive the streaming text. Required when streaming to channels.",
+        "schema": "user_id"
+      },
+      "recipient_team_id": {
+        "desc": "The encoded ID of the team the user receiving the streaming text belongs to. Required when streaming to channels.",
+        "type": "string",
+        "example": "T0123456789"
+      },
+      "task_display_mode": {
+        "desc": "Specifies how tasks are displayed in the message. A `timeline` displays individual tasks with text in sequential order, `plan` displays all tasks together, with the first tasks's placement determining the placement of the rest of the tasks, and `dense` collapses consecutive tool calls into a single summarized task card.",
+        "type": "string",
+        "enum": [
+          "timeline",
+          "plan",
+          "dense"
+        ],
+        "default": "timeline",
+        "example": "plan"
+      },
+      "icon_emoji": {
+        "type": "string",
+        "desc": "Emoji to use as the icon for this message. Overrides `icon_url`.",
+        "example": ":chart_with_upwards_trend:"
+      },
+      "icon_url": {
+        "type": "string",
+        "desc": "Image URL to use as the icon for this message.",
+        "example": "http://lorempixel.com/48/48"
+      },
+      "username": {
+        "type": "string",
+        "desc": "The bot's username to display.",
+        "example": "My Bot"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "channel",
+      "ts"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "channel"
+      },
+      "ts": {
+        "desc": "The timestamp of the streaming message.",
+        "schema": "ts"
+      }
+    },
+    "type": "object"
+  },
+  "errors": {
+    "messaging_processing_failed": {
+      "desc": "Failed to process the message."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "duplicate_channel_not_found": {
+      "desc": "Channel associated with `client_msg_id` was invalid."
+    },
+    "duplicate_message_not_found": {
+      "desc": "No duplicate message exists associated with `client_msg_id`."
+    },
+    "ekm_access_denied": {
+      "desc": "Your message couldn’t be sent because your admins have disabled sending messages to this channel."
+    },
+    "invalid_blocks": {
+      "desc": "Blocks submitted with this message are not valid"
+    },
+    "invalid_chunks": {
+      "desc": "Chunks submitted with this message are not valid."
+    },
+    "invalid_blocks_format": {
+      "desc": "The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax."
+    },
+    "invalid_metadata_format": {
+      "desc": "Invalid metadata format provided"
+    },
+    "invalid_metadata_schema": {
+      "desc": "Invalid metadata schema provided"
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "message_limit_exceeded": {
+      "desc": "Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces"
+    },
+    "messages_tab_disabled": {
+      "desc": "Messages tab for the app is disabled."
+    },
+    "metadata_must_be_sent_from_app": {
+      "desc": "Message metadata can only be posted or updated using an app-level token"
+    },
+    "metadata_too_large": {
+      "desc": "Metadata exceeds size limit"
+    },
+    "msg_blocks_too_long": {
+      "desc": "Blocks submitted with this message are too long."
+    },
+    "msg_blocks_too_many": {
+      "desc": "Max blocks exceeded, blocks are limited to 50 per message."
+    },
+    "no_text": {
+      "desc": "No message text provided"
+    },
+    "not_in_channel": {
+      "desc": "Cannot post user messages to a channel they are not in."
+    },
+    "rate_limited": {
+      "desc": "Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information"
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from posting."
+    },
+    "restricted_action_non_threadable_channel": {
+      "desc": "Cannot post thread replies into a non_threadable channel."
+    },
+    "restricted_action_read_only_channel": {
+      "desc": "Cannot post any message into a read-only channel."
+    },
+    "restricted_action_thread_locked": {
+      "desc": "Cannot post replies to a thread that has been locked by admins."
+    },
+    "restricted_action_thread_only_channel": {
+      "desc": "Cannot post top-level messages into a thread-only channel."
+    },
+    "slack_connect_canvas_sharing_blocked": {
+      "desc": "Admin has disabled Canvas File sharing in all Slack Connect communications"
+    },
+    "slack_connect_file_link_sharing_blocked": {
+      "desc": "Admin has disabled Slack File sharing in all Slack Connect communications"
+    },
+    "slack_connect_lists_sharing_blocked": {
+      "desc": "Admin has disabled Lists sharing in all Slack Connect communications"
+    },
+    "team_not_found": {
+      "desc": "This error occurs if, when using an org-wide token, the `channel_name` is passed instead of the `channel_id`."
+    },
+    "channel_type_not_supported": {
+      "desc": "Channel type not supported"
+    },
+    "user_not_found": {
+      "desc": "User not found."
+    },
+    "missing_recipient_team_id": {
+      "desc": "Missing recipient team ID."
+    },
+    "missing_recipient_user_id": {
+      "desc": "Missing recipient user ID."
+    },
+    "not_subscribed_to_message_stream_stopped": {
+      "desc": "The app must be subscribed to the `message_stream_stopped` event to use `is_stoppable`."
+    }
+  },
+  "warnings": {
+    "message_truncated": {
+      "desc": "The `text` field of a message should have no more than 40,000 characters. We [truncate really long messages](/changelog/2018-04-truncating-really-long-messages)."
+    }
+  }
+}

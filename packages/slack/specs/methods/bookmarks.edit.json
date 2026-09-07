@@ -1,0 +1,104 @@
+{
+  "desc": "Edit bookmark.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "bookmarks:write"
+    ],
+    "user": [
+      "bookmarks:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "Channel to update bookmark in. Required for public channels.",
+        "type": "string",
+        "subtype": "channel",
+        "required_for_public": true
+      },
+      "bookmark_id": {
+        "desc": "Bookmark to update. Required for public channels.",
+        "type": "string",
+        "required_for_public": true
+      },
+      "title": {
+        "desc": "Title for the bookmark.",
+        "type": "string",
+        "maxLength": 256
+      },
+      "link": {
+        "desc": "Link to bookmark.",
+        "type": "string",
+        "maxLength": 2048
+      },
+      "emoji": {
+        "desc": "Emoji tag to apply to the link.",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "bookmark"
+    ],
+    "properties": {
+      "bookmark": {
+        "type": "object",
+        "schema": "bookmark"
+      }
+    }
+  },
+  "errors": {
+    "access_denied": {
+      "desc": "Actor lacks access to the requested resource."
+    },
+    "channel_not_found": {
+      "desc": "Channel cannot be found."
+    },
+    "invalid_bookmark_type": {
+      "desc": "Bookmark type is not valid."
+    },
+    "invalid_emoji": {
+      "desc": "Invalid emoji, does not follow the pattern of a valid emoji name."
+    },
+    "invalid_link": {
+      "desc": "Invalid link, link should begin with either http:// or https://."
+    },
+    "not_found": {
+      "desc": "Bookmark cannot be found."
+    },
+    "not_implemented": {
+      "desc": "bookmarking not available for the user."
+    },
+    "parent_with_link": {
+      "desc": "Parent bookmark should not have link."
+    },
+    "permission_denied": {
+      "desc": "No permission to perform this operation."
+    },
+    "slack_connect_file_upload_sharing_blocked": {
+      "desc": "Admin has disabled File uploads in all Slack Connect communications"
+    },
+    "slack_connect_clip_sharing_blocked": {
+      "desc": "Admin has disabled Clip sharing in Slack Connect channels"
+    },
+    "slack_connect_blocked_file_type": {
+      "desc": "Files with certain extensions are blocked from being uploaded in all Slack Connect communications"
+    }
+  }
+}

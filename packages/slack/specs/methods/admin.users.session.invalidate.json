@@ -1,0 +1,72 @@
+{
+  "desc": "Revoke a single session for a user. The user will be forced to login to Slack.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "user_id",
+      "session_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "ID of the workspace that the session belongs to.",
+        "example": "T1234",
+        "schema": "team_id"
+      },
+      "user_id": {
+        "desc": "ID of the user that the session belongs to.",
+        "example": "U12345",
+        "schema": "user_id"
+      },
+      "session_id": {
+        "desc": "ID of the session to invalidate.",
+        "example": "12345",
+        "type": "integer"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "admin_unauthorized": {
+      "desc": "The token provided doesn't have permission to revoke a session."
+    },
+    "cannot_invalidate_primary_owner": {
+      "desc": "Only the primary owner of an organization can invalidate a primary owner's sessions."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided can't call this method."
+    },
+    "invalid_auth": {
+      "desc": "The provided token doesn't have access to this endpoint."
+    },
+    "not_an_admin": {
+      "desc": "This method must be called by an Org Owner or Admin."
+    },
+    "session_invalidation_failed": {
+      "desc": "There was an error invalidating the session."
+    },
+    "session_not_found": {
+      "desc": "The requested session wasn't found."
+    },
+    "unknown_method": {
+      "desc": "This method is currently not available."
+    },
+    "user_not_found": {
+      "desc": "The requested user wasn't found."
+    }
+  }
+}

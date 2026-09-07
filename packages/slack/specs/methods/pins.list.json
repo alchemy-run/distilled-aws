@@ -1,0 +1,89 @@
+{
+  "desc": "Lists items pinned to a channel.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "pins:read"
+    ],
+    "user": [
+      "pins:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel to get pinned items for.",
+        "type": "string",
+        "subtype": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "type",
+            "created",
+            "created_by"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "file",
+                "message",
+                "file_comment"
+              ]
+            },
+            "created": {
+              "type": "integer"
+            },
+            "created_by": {
+              "schema": "user_id"
+            },
+            "channel": {
+              "schema": "channel"
+            },
+            "message": {
+              "schema": "message"
+            },
+            "file": {
+              "schema": "file"
+            },
+            "comment": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "count": {
+        "type": "integer"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "restricted_action": {
+      "desc": "The user does not have permission to view the channel."
+    }
+  }
+}

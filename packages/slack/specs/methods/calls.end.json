@@ -1,0 +1,64 @@
+{
+  "desc": "Ends a Call.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "calls:write"
+    ],
+    "user": [
+      "calls:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "id": {
+        "type": "string",
+        "desc": "`id` returned when registering the call using the [`calls.add`](/reference/methods/calls.add) method.",
+        "example": "R0E69JAIF"
+      },
+      "duration": {
+        "type": "integer",
+        "desc": "Call duration in seconds",
+        "example": "1800"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "call"
+    ],
+    "properties": {
+      "call": {
+        "schema": "info"
+      }
+    }
+  },
+  "errors": {
+    "inactive_call": {
+      "desc": "The Call has been already stopped."
+    },
+    "internal_error": {
+      "desc": "An unexpected error has occurred while ending the Call."
+    },
+    "invalid_call_id": {
+      "desc": "Invalid Call ID."
+    },
+    "not_implemented": {
+      "desc": "This method is not publicly available yet."
+    }
+  }
+}

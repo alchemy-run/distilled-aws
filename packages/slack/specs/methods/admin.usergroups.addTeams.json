@@ -1,0 +1,73 @@
+{
+  "desc": "Associate one or more default workspaces with an organization-wide IDP group.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "usergroup_id",
+      "team_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "usergroup_id": {
+        "desc": "An encoded usergroup (IDP Group) ID.",
+        "type": "string",
+        "example": "S12345678"
+      },
+      "team_ids": {
+        "desc": "A comma separated list of encoded team (workspace) IDs. Each workspace *MUST* belong to the organization associated with the token.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": "T12345678,T98765432"
+      },
+      "auto_provision": {
+        "desc": "When `true`, this method automatically creates new workspace accounts for the IDP group members.",
+        "type": "boolean",
+        "default": "false",
+        "example": "true"
+      }
+    }
+  },
+  "output": {},
+  "errors": {
+    "auto_provision_failure": {
+      "desc": "A failure occurred while assigning IDP group members to a specific workspace; see `errors` element for a list of failed team IDs."
+    },
+    "internal_error": {
+      "desc": "An unexpected error occurred."
+    },
+    "invalid_team_ids": {
+      "desc": "One or more team IDs provided were invalid; see the `errors` field in the response for the list of invalid team IDs."
+    },
+    "multi_workspace_restriction": {
+      "desc": "The IDP group has members that cannot be linked to more than one workspace."
+    },
+    "no_team_ids_given": {
+      "desc": "The `team_ids` parameter was empty."
+    },
+    "restricted_action": {
+      "desc": "The calling user cannot update the specified usergroup."
+    },
+    "team_limit_exceeded": {
+      "desc": "The number of teams associated with the org group would exceed the limit."
+    },
+    "usergroup_not_found": {
+      "desc": "`usergroup_id` wasn't found."
+    }
+  }
+}

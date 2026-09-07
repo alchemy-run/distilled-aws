@@ -1,0 +1,149 @@
+{
+  "desc": "Create an app from an app manifest.",
+  "http_method": "POST",
+  "scope": {
+    "configuration": [
+      "app_configurations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "manifest"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "An [app configuration access token](/authentication/tokens#config).",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "manifest": {
+        "type": "string",
+        "desc": "A JSON app manifest encoded as a string. This manifest **must** use a valid [app manifest schema - read our guide to creating one](/app-manifests/configuring-apps-with-app-manifests#fields)."
+      },
+      "team_id": {
+        "schema": "workspace_id",
+        "type": "string",
+        "desc": "When called with an org token, which specific team to create app on"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "app_id",
+      "credentials"
+    ],
+    "properties": {
+      "app_id": {
+        "schema": "app_id"
+      },
+      "credentials": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string"
+          },
+          "client_secret": {
+            "type": "string"
+          },
+          "verification_token": {
+            "type": "string"
+          },
+          "signing_secret": {
+            "type": "string"
+          }
+        }
+      },
+      "oauth_authorize_url": {
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string",
+        "desc": "The team ID where the app was created on"
+      },
+      "team_domain": {
+        "type": "string",
+        "desc": "The team domain where the app was created on"
+      },
+      "app_token": {
+        "type": "string"
+      }
+    }
+  },
+  "errors": {
+    "invalid_app": {
+      "desc": "An app created from the provided manifest would not be valid."
+    },
+    "invalid_arguments": {
+      "desc": "Invalid API arguments provided."
+    },
+    "invalid_manager_app": {
+      "desc": "The calling app is not enrolled as a manager app. Ensure the app has `app_configurations:write` in its configured scopes and its home team has manager app support enabled."
+    },
+    "invalid_manifest": {
+      "desc": "The provided manifest file does not validate against schema. Consult the additional errors field to locate specific issues."
+    },
+    "invalid_team_id": {
+      "desc": "The provided team ID is not valid"
+    },
+    "not_in_team": {
+      "desc": "Cannot create an app in a team that user is not a member of"
+    },
+    "failed_adding_collaborator": {
+      "desc": "Failed writing a collaborator record for this new app"
+    },
+    "failed_creating_app": {
+      "desc": "Failed to create the app model"
+    },
+    "failed_datastore_operation": {
+      "desc": "Failed while managing datastore infrastructure"
+    },
+    "failed_generating_app_token": {
+      "desc": "App level token failed to generate."
+    },
+    "feature_not_enabled": {
+      "desc": "The required feature is not enabled for this workspace."
+    },
+    "managed_app_limit_reached": {
+      "desc": "The manager app has reached the maximum number of managed apps it can create."
+    },
+    "ratelimited": {
+      "desc": "Too many calls in succession to create endpoint during a short period of time."
+    },
+    "socket_mode_not_enabled": {
+      "desc": "Socket mode is not enabled in manifest."
+    },
+    "enterprise_is_restricted": {
+      "desc": "Org-level tokens are not allowed."
+    },
+    "unknown_method": {
+      "desc": "Unknown method"
+    },
+    "dynamic_client_registration_invalid_redirect_uri": {
+      "desc": "The remote server rejected Slack's redirect URI during Dynamic Client Registration. The server must allowlist https://oauth2.slack.com/external/auth/callback as a valid redirect URI."
+    },
+    "dynamic_client_registration_failed": {
+      "desc": "Dynamic client registration failed for an MCP server that requires OAuth authentication."
+    },
+    "oauth_metadata_not_found": {
+      "desc": "Could not discover OAuth metadata for the MCP server. Ensure the server exposes a .well-known/oauth-authorization-server or .well-known/openid-configuration endpoint."
+    },
+    "dynamic_client_registration_not_supported": {
+      "desc": "The MCP server's OAuth metadata does not include a registration endpoint. The server may not support Dynamic Client Registration."
+    },
+    "dynamic_client_registration_missing_oauth_endpoints": {
+      "desc": "The MCP server's OAuth metadata is missing a required authorization or token endpoint."
+    },
+    "dynamic_client_registration_rejected": {
+      "desc": "The MCP server rejected the Dynamic Client Registration request."
+    },
+    "dynamic_client_registration_invalid_response": {
+      "desc": "The MCP server returned an invalid response during Dynamic Client Registration."
+    }
+  }
+}

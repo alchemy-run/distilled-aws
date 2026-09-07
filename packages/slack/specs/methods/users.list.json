@@ -1,0 +1,84 @@
+{
+  "desc": "Lists all users in a Slack team.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "users:read"
+    ],
+    "user": [
+      "users:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "cursor": {
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "include_locale": {
+        "desc": "Set this to `true` to receive the locale for users. Defaults to `false`",
+        "type": "boolean"
+      },
+      "limit": {
+        "default": 0,
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the users list hasn't been reached. Providing no `limit` value will result in Slack attempting to deliver you the entire result set. If the collection is too large you may experience `limit_required` or HTTP 500 errors.",
+        "example": "20",
+        "type": "number"
+      },
+      "team_id": {
+        "desc": "encoded team id to list users in, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "members",
+      "cache_ts"
+    ],
+    "properties": {
+      "members": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "schema": "user"
+        }
+      },
+      "cache_ts": {
+        "type": "integer"
+      },
+      "response_metadata": {
+        "schema": "response_metadata"
+      },
+      "offset": {
+        "type": "string"
+      }
+    }
+  },
+  "errors": {
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "limit_required": {
+      "desc": "For large teams a limit is required."
+    },
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    }
+  }
+}

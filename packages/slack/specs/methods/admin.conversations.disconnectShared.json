@@ -1,0 +1,93 @@
+{
+  "desc": "Disconnect a connected channel from one or more workspaces.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to be disconnected from some workspaces.",
+        "example": "C12345",
+        "schema": "channel"
+      },
+      "leaving_team_ids": {
+        "type": "array",
+        "desc": "Used for disconnecting a team from a shared channel. Only one team ID may be passed at a time.",
+        "items": {
+          "schema": "team_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "cannot_kick_home_team": {
+      "desc": "The originating workspace cannot be kicked from the channel."
+    },
+    "cannot_kick_team": {
+      "desc": "Only the originating workspace for a connected channel may remove other workspaces from the channel."
+    },
+    "channel_not_found": {
+      "desc": "The value passed for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The value passed for `channel_id` was an MPDM, DM, or the 'general' channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided does not have access to this method."
+    },
+    "leaving_team_not_in_channel": {
+      "desc": "The workspace being removed is not connected to the channel."
+    },
+    "leaving_team_required": {
+      "desc": "There are more than two teams in the channel—you must supplied a `leaving_team_id` parameter."
+    },
+    "missing_scope": {
+      "desc": "The provided token does not have the required scopes to use this method."
+    },
+    "no_teams_to_disconnect": {
+      "desc": "This channel is not shared, so there are no workspaces to disconnect."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an Org Admin or Owner."
+    },
+    "not_an_enterprise": {
+      "desc": "This endpoint can only be called for an Enterprise organization."
+    },
+    "not_supported": {
+      "desc": "The passed `channel_id` was a DM, MPDM, or the 'general' channel."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from disconnecting a channel."
+    },
+    "team_not_found": {
+      "desc": "At least one of the supplied `leaving_team_ids` are invalid."
+    }
+  }
+}

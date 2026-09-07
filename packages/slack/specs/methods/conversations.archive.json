@@ -1,0 +1,69 @@
+{
+  "desc": "Archives a conversation.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "ID of conversation to archive",
+        "subtype": "channel",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "already_archived": {
+      "desc": "Channel has already been archived."
+    },
+    "cant_archive_general": {
+      "desc": "You cannot archive the general channel"
+    },
+    "cant_archive_required": {
+      "desc": "You cannot archive a required channel"
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "not_in_channel": {
+      "desc": "The token can not be found in channel."
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the authenticated user from archiving."
+    }
+  }
+}

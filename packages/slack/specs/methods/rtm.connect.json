@@ -1,0 +1,90 @@
+{
+  "desc": "Starts a Real Time Messaging session.",
+  "http_method": "GET",
+  "scope": {},
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "batch_presence_aware": {
+        "default": false,
+        "desc": "Batch presence deliveries via subscription. Enabling changes the shape of `presence_change` events. See [batch presence](/apis/web-api/user-presence-and-status#batching).",
+        "example": "1",
+        "type": "boolean"
+      },
+      "presence_sub": {
+        "default": true,
+        "desc": "Only deliver presence events when requested by subscription. See [presence subscriptions](/apis/web-api/user-presence-and-status#subscriptions).",
+        "type": "boolean"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "url",
+      "team",
+      "self"
+    ],
+    "type": "object",
+    "properties": {
+      "url": {
+        "type": "string",
+        "format": "uri"
+      },
+      "self": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "schema": "user_id"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "team": {
+        "required": [
+          "id",
+          "name",
+          "domain"
+        ],
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "id": {
+            "schema": "workspace_id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enterprise_id": {
+            "schema": "enterprise_id"
+          },
+          "enterprise_name": {
+            "schema": "enterprise_name"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "migration_in_progress": {
+      "desc": "Team is being migrated between servers. See [the `team_migration_started` event documentation](/reference/events/team_migration_started) for details."
+    }
+  }
+}

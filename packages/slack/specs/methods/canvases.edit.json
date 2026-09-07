@@ -1,0 +1,73 @@
+{
+  "desc": "Update an existing canvas",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "canvases:write"
+    ],
+    "user": [
+      "canvases:write"
+    ],
+    "seamless_user": [
+      "seamless.user"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "canvas_id",
+      "changes"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Auth token with which to authenticate the session",
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "canvas_id": {
+        "desc": "Encoded ID of the canvas",
+        "example": "F1234ABCD",
+        "subtype": "canvas",
+        "schema": "file_id"
+      },
+      "changes": {
+        "desc": "List of changes to apply on the specified canvas. The markdown content of each change is limited to 1 MiB (1,048,576 characters).",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 1,
+        "items": {
+          "schema": "selection"
+        },
+        "example": "[{\"operation\":\"insert_before\",\"document_content\":{\"type\":\"markdown\",\"markdown\":\"Example content\"},\"section_id\":\"temp:C:AAAAAAAAAAAAAAAAAAAAAAAAAAAA\"}]"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "canvas_not_found": {
+      "desc": "The canvas you wish to apply changes to is not available."
+    },
+    "canvas_disabled_user_team": {
+      "desc": "Canvas is disabled on user's team"
+    },
+    "free_teams_cannot_edit_standalone_canvases": {
+      "desc": "Free teams cannot edit standalone canvases"
+    },
+    "restricted_action": {
+      "desc": "User does not have permission to perform this action."
+    },
+    "canvas_editing_failed": {
+      "desc": "The changes to the canvas failed to be applied."
+    },
+    "canvas_editing_locked": {
+      "desc": "Another edit to this canvas is currently in progress. Please retry after a short delay."
+    },
+    "canvas_too_large": {
+      "desc": "The canvas is too large to apply the requested changes. Reduce the size of the canvas or the edit and try again."
+    }
+  }
+}

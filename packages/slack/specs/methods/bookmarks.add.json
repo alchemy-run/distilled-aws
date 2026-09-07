@@ -1,0 +1,165 @@
+{
+  "desc": "Add bookmark to a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "bookmarks:write"
+    ],
+    "user": [
+      "bookmarks:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "title",
+      "type"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "Channel to add bookmark in. Required for public channels.",
+        "type": "string",
+        "subtype": "channel",
+        "required_for_public": true
+      },
+      "title": {
+        "desc": "Title for the bookmark.",
+        "type": "string",
+        "maxLength": 256
+      },
+      "link": {
+        "desc": "Link to bookmark.",
+        "type": "string",
+        "maxLength": 2048
+      },
+      "type": {
+        "desc": "Type of the bookmark i.e link.",
+        "type": "string"
+      },
+      "emoji": {
+        "desc": "Emoji tag to apply to the link.",
+        "type": "string"
+      },
+      "entity_id": {
+        "desc": "ID of the entity being bookmarked. Only applies to message and file types.",
+        "type": "string"
+      },
+      "access_level": {
+        "desc": "The level that we are setting the file's permission to (read or write)",
+        "type": "string",
+        "enum": [
+          "read",
+          "write"
+        ]
+      },
+      "parent_id": {
+        "type": "string",
+        "desc": "Id of this bookmark's parent"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "bookmark"
+    ],
+    "properties": {
+      "bookmark": {
+        "type": "object",
+        "schema": "bookmark"
+      }
+    }
+  },
+  "errors": {
+    "access_denied": {
+      "desc": "Actor lacks access to the requested resource."
+    },
+    "cannot_bookmark_from_external_org": {
+      "desc": "File is an external file and cannot be bookmarked."
+    },
+    "cannot_bookmark_restricted_sharing_enabled": {
+      "desc": "File has restricted sharing enabled and cannot be bookmarked."
+    },
+    "channel_not_found": {
+      "desc": "Channel cannot be found."
+    },
+    "file_already_added": {
+      "desc": "The file has already been added to the folder."
+    },
+    "file_not_found": {
+      "desc": "File cannot be found."
+    },
+    "invalid_bookmark_type": {
+      "desc": "Bookmark type is not valid."
+    },
+    "invalid_app_action_type": {
+      "desc": "App action type is not valid."
+    },
+    "invalid_shortcut_type": {
+      "desc": "Shortcut type is not valid."
+    },
+    "invalid_child_type": {
+      "desc": "Child type is not valid."
+    },
+    "invalid_emoji": {
+      "desc": "Invalid emoji, does not follow the pattern of a valid emoji name."
+    },
+    "invalid_entity_id": {
+      "desc": "Invalid entity_id, file or message type bookmark should have original file or message ID."
+    },
+    "invalid_link": {
+      "desc": "Invalid link, link should begin with either http:// or https://."
+    },
+    "invalid_parent_type": {
+      "desc": "Parent type is not valid."
+    },
+    "not_implemented": {
+      "desc": "bookmarking not available for the user."
+    },
+    "parent_bookmark_disabled": {
+      "desc": "Parent bookmark feature flag is off."
+    },
+    "parent_with_link": {
+      "desc": "Parent bookmark should not have link."
+    },
+    "permission_denied": {
+      "desc": "No permission to perform this operation."
+    },
+    "slack_connect_file_upload_sharing_blocked": {
+      "desc": "Admin has disabled File uploads in all Slack Connect communications"
+    },
+    "slack_connect_clip_sharing_blocked": {
+      "desc": "Admin has disabled Clip sharing in Slack Connect channels"
+    },
+    "slack_connect_blocked_file_type": {
+      "desc": "Files with certain extensions are blocked from being uploaded in all Slack Connect communications"
+    },
+    "too_many_bookmarks": {
+      "desc": "Bookmark limit reached for channel."
+    },
+    "too_many_tabs": {
+      "desc": "tab limit reached for channel."
+    },
+    "too_many_requests": {
+      "desc": "Too many concurrent requests. Please retry."
+    }
+  },
+  "warnings": {
+    "found_existing_app": {
+      "desc": "Found an existing bookmark with the same app_action_id for this channel."
+    },
+    "found_existing_shortcut": {
+      "desc": "Found an existing bookmark with the same shortcut_id for this channel."
+    }
+  }
+}

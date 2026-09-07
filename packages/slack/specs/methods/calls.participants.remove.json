@@ -1,0 +1,77 @@
+{
+  "desc": "Registers participants removed from a Call.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "calls:write"
+    ],
+    "user": [
+      "calls:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "id",
+      "users"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "id": {
+        "type": "string",
+        "desc": "`id` returned by the [`calls.add`](/reference/methods/calls.add) method.",
+        "example": "R0E69JAIF"
+      },
+      "users": {
+        "type": "array",
+        "items": {
+          "schema": "user"
+        },
+        "desc": "The list of users to remove as participants in the Call. [Read more on how to specify users here](/apis/web-api/using-the-calls-api#users).",
+        "example": "[{\"slack_id\": \"U1H77\"}, {\"external_id\": \"54321678\", \"display_name\": \"External User\", \"avatar_url\": \"https://example.com/users/avatar1234.jpg\"}]"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "call"
+    ],
+    "properties": {
+      "call": {
+        "schema": "info"
+      }
+    }
+  },
+  "errors": {
+    "bad_users": {
+      "desc": "At least one specified user is not part of the Call."
+    },
+    "inactive_call": {
+      "desc": "The Call has been already ended."
+    },
+    "internal_error": {
+      "desc": "An unexpected exception occurred while removing participants from the Call."
+    },
+    "invalid_call_id": {
+      "desc": "The specified Call wasn't found."
+    },
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "not_implemented": {
+      "desc": "This method is not available."
+    },
+    "user_not_found": {
+      "desc": "At least one specified user wasn't found."
+    }
+  }
+}

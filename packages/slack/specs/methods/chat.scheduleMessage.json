@@ -1,0 +1,217 @@
+{
+  "desc": "Schedules a message to be sent to a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ],
+    "user": [
+      "chat:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "post_at"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "as_user": {
+        "desc": "Set to `true` to post the message as the authed user, instead of as a bot. Defaults to false. Cannot be used by [new Slack apps](/quickstart). See [chat.postMessage](chat.postMessage#authorship).",
+        "example": "true",
+        "type": "boolean"
+      },
+      "attachments": {
+        "desc": "A JSON-based array of structured attachments, presented as a URL-encoded string.",
+        "example": "[{\"pretext\": \"pre-hello\", \"text\": \"text-world\"}]",
+        "type": "string"
+      },
+      "blocks": {
+        "desc": "A JSON-based array of structured blocks, presented as a URL-encoded string.",
+        "example": "[{\"type\": \"section\", \"text\": {\"type\": \"plain_text\", \"text\": \"Hello world\"}}]",
+        "type": "string"
+      },
+      "channel": {
+        "desc": "Channel, private group, or DM channel to send message to. Can be an encoded ID, or a name. See [below](#channels) for more details.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "link_names": {
+        "desc": "Find and link user groups. No longer supports linking individual users; use syntax shown in [Mentioning Users](/messaging/formatting-message-text#mentioning-users) instead.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "markdown_text": {
+        "desc": "Accepts message text formatted in markdown. This argument should not be used in conjunction with `blocks` or `text`. Limit this field to 12,000 characters.",
+        "type": "string",
+        "example": "**This is bold text**"
+      },
+      "parse": {
+        "desc": "Change how messages are treated. See [chat.postMessage](chat.postMessage#formatting).",
+        "example": "full",
+        "type": "string",
+        "enum": [
+          "none",
+          "full"
+        ]
+      },
+      "post_at": {
+        "desc": "Unix timestamp representing the future time the message should post to Slack.",
+        "example": "299876400",
+        "type": "integer"
+      },
+      "reply_broadcast": {
+        "desc": "Used in conjunction with `thread_ts` and indicates whether reply should be made visible to everyone in the channel or conversation. Defaults to `false`.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "text": {
+        "desc": "How this field works and whether it is required depends on other fields you use in your API call. [See below](#text_usage) for more detail.",
+        "example": "Hello world",
+        "type": "string"
+      },
+      "thread_ts": {
+        "desc": "Provide another message's `ts` value to make this message a reply. Avoid using a reply's `ts` value; use its parent instead.",
+        "type": "string"
+      },
+      "unfurl_links": {
+        "desc": "Pass true to enable unfurling of primarily text-based content.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "unfurl_media": {
+        "desc": "Pass false to disable unfurling of media content.",
+        "example": "false",
+        "type": "boolean"
+      },
+      "metadata": {
+        "desc": "JSON object with event_type and event_payload fields, presented as a URL-encoded string. Metadata you post to Slack is accessible to any app or user who is a member of that workspace.",
+        "example": "{\"event_type\": \"task_created\", \"event_payload\": { \"id\": \"11223\", \"title\": \"Redesign Homepage\"}}",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "channel",
+      "post_at",
+      "scheduled_message_id",
+      "message"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "channel"
+      },
+      "post_at": {
+        "type": "integer"
+      },
+      "scheduled_message_id": {
+        "type": "string"
+      },
+      "message": {
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "invalid_blocks": {
+      "desc": "Blocks submitted with this message are not valid"
+    },
+    "invalid_blocks_format": {
+      "desc": "The `blocks` is not a valid JSON object or doesn't match the Block Kit syntax."
+    },
+    "invalid_metadata_format": {
+      "desc": "Invalid metadata format provided"
+    },
+    "invalid_metadata_schema": {
+      "desc": "Invalid metadata schema provided"
+    },
+    "invalid_time": {
+      "desc": "value passed for `post_time` was invalid."
+    },
+    "markdown_text_conflict": {
+      "desc": "Markdown text cannot be used in conjunction with `blocks` or `text` argument.",
+      "hidden": true
+    },
+    "message_limit_exceeded": {
+      "desc": "Members on this team are sending too many messages. For more details, see https://slack.com/help/articles/115002422943-Usage-limits-for-free-workspaces"
+    },
+    "metadata_must_be_sent_from_app": {
+      "desc": "Message metadata can only be posted or updated using an app-level token"
+    },
+    "metadata_too_large": {
+      "desc": "Metadata exceeds size limit"
+    },
+    "msg_too_long": {
+      "desc": "Message text is too long"
+    },
+    "no_text": {
+      "desc": "No message text provided"
+    },
+    "not_in_channel": {
+      "desc": "Cannot post user messages to a channel they are not in."
+    },
+    "rate_limited": {
+      "desc": "Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information"
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from posting."
+    },
+    "restricted_action_non_threadable_channel": {
+      "desc": "Cannot post thread replies into a non_threadable channel."
+    },
+    "restricted_action_read_only_channel": {
+      "desc": "Cannot post any message into a read-only channel."
+    },
+    "restricted_action_thread_only_channel": {
+      "desc": "Cannot post top-level messages into a thread-only channel."
+    },
+    "restricted_too_many": {
+      "desc": "Too many messages were scheduled in the channel for a given period. See [usage info](/reference/methods/chat.scheduleMessage#restrictions) for additional details"
+    },
+    "slack_connect_file_link_sharing_blocked": {
+      "desc": "Admin has disabled Slack File sharing in all Slack Connect communications"
+    },
+    "time_in_past": {
+      "desc": "value passed for `post_time` was in the past."
+    },
+    "time_too_far": {
+      "desc": "value passed for `post_time` was too far into the future."
+    },
+    "too_many_attachments": {
+      "desc": "Too many attachments were provided with this message. A maximum of 100 attachments are allowed on a message."
+    },
+    "invalid_token": {
+      "desc": "The passed token is invalid or not supported by this method."
+    }
+  },
+  "warnings": {
+    "message_truncated": {
+      "desc": "The `text` field of a message should have no more than 40,000 characters. We [truncate really long messages](/changelog/2018-04-truncating-really-long-messages)."
+    }
+  }
+}

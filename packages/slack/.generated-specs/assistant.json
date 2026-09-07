@@ -1,0 +1,1035 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.assistant#SearchContextRequestChannelTypesItem": {
+      "type": "enum",
+      "members": {
+        "PUBLIC_CHANNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public_channel"
+          }
+        },
+        "PRIVATE_CHANNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private_channel"
+          }
+        },
+        "MPIM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mpim"
+          }
+        },
+        "IM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "im"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextRequestChannelTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.assistant#SearchContextRequestChannelTypesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`."
+      }
+    },
+    "com.slack.assistant#SearchContextRequestContentTypesItem": {
+      "type": "enum",
+      "members": {
+        "MESSAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "messages"
+          }
+        },
+        "FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "files"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "CHANNELS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "channels"
+          }
+        },
+        "USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "users"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextRequestContentTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.assistant#SearchContextRequestContentTypesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Content types to include, a comma-separated list of any combination of `messages`, `files`, `channels`, `users`."
+      }
+    },
+    "com.slack.assistant#SearchContextRequestSort": {
+      "type": "enum",
+      "members": {
+        "SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "score"
+          }
+        },
+        "TIMESTAMP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timestamp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The field to sort the results by. Defaults to score. Can be one of: score, timestamp."
+      }
+    },
+    "com.slack.assistant#SearchContextRequestSortDir": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The direction to sort the results by. Defaults to desc."
+      }
+    },
+    "com.slack.assistant#SearchContextRequestTermClausesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form)."
+      }
+    },
+    "com.slack.assistant#SearchContextRequest": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User prompt or search query",
+            "smithy.api#required": {}
+          }
+        },
+        "action_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Send `action_token` as received in a message event."
+          }
+        },
+        "channel_types": {
+          "target": "com.slack.assistant#SearchContextRequestChannelTypesList",
+          "traits": {
+            "smithy.api#documentation": "Mix and match channel types by providing a comma-separated list of any combination of `public_channel`, `private_channel`, `mpim`, `im`."
+          }
+        },
+        "content_types": {
+          "target": "com.slack.assistant#SearchContextRequestContentTypesList",
+          "traits": {
+            "smithy.api#documentation": "Content types to include, a comma-separated list of any combination of `messages`, `files`, `channels`, `users`."
+          }
+        },
+        "include_bots": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the results should include bots."
+          }
+        },
+        "include_deleted_users": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include deleted users in the user search results. Defaults to false."
+          }
+        },
+        "before": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "UNIX timestamp filter. If present, filters for results before this date."
+          }
+        },
+        "after": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "UNIX timestamp filter. If present, filters for results after this date."
+          }
+        },
+        "include_context_messages": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include context messages surrounding the main message result. Defaults to false if unspecified."
+          }
+        },
+        "context_channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Context channel ID to support scoping the search when applicable."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The cursor returned by the API. Leave this blank for the first request and use this to get the next page of results."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of results to return, up to a max of 20. Defaults to 20."
+          }
+        },
+        "sort": {
+          "target": "com.slack.assistant#SearchContextRequestSort",
+          "traits": {
+            "smithy.api#documentation": "The field to sort the results by. Defaults to score. Can be one of: score, timestamp."
+          }
+        },
+        "sort_dir": {
+          "target": "com.slack.assistant#SearchContextRequestSortDir",
+          "traits": {
+            "smithy.api#documentation": "The direction to sort the results by. Defaults to desc."
+          }
+        },
+        "include_message_blocks": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to return the message blocks in the response."
+          }
+        },
+        "highlight": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to highlight the search query in the results. Defaults to false if unspecified."
+          }
+        },
+        "term_clauses": {
+          "target": "com.slack.assistant#SearchContextRequestTermClausesList",
+          "traits": {
+            "smithy.api#documentation": "A list of term clauses. A term clause is a string with search terms. Search results returned will match every term clause specified (i.e., conjunctive normal form)."
+          }
+        },
+        "modifiers": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string containing only modifiers in the format of `modifier:value`. Search results returned will match the modifier value. For now modifiers only affect term clauses."
+          }
+        },
+        "include_archived_channels": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include archived channels in the search results."
+          }
+        },
+        "disable_semantic_search": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to disable semantic search. When true, only keyword-based search is used. Defaults to false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.assistant#SearchContextResponseResultsMessagesItemContextMessagesBeforeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Messages before the current message, if applicable."
+      }
+    },
+    "com.slack.assistant#SearchContextResponseResultsMessagesItemContextMessagesAfterList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Messages after the current message."
+      }
+    },
+    "com.slack.assistant#SearchContextResponseResultsMessagesItemContextMessages": {
+      "type": "structure",
+      "members": {
+        "before": {
+          "target": "com.slack.assistant#SearchContextResponseResultsMessagesItemContextMessagesBeforeList",
+          "traits": {
+            "smithy.api#documentation": "Messages before the current message, if applicable."
+          }
+        },
+        "after": {
+          "target": "com.slack.assistant#SearchContextResponseResultsMessagesItemContextMessagesAfterList",
+          "traits": {
+            "smithy.api#documentation": "Messages after the current message."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsMessagesItemBlocksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Blocks from the retrieved message."
+      }
+    },
+    "com.slack.assistant#SearchContextResponseResultsMessagesItem": {
+      "type": "structure",
+      "members": {
+        "author_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full name of the user who authored the message.",
+            "smithy.api#required": {}
+          }
+        },
+        "author_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the user who authored the message, if visible to the searching user."
+          }
+        },
+        "author_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who authored the message.",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the workspace in which the message was sent.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the channel in which the message was sent.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the channel in which the message was sent.",
+            "smithy.api#required": {}
+          }
+        },
+        "message_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack-format timestamp at which the message was sent.",
+            "smithy.api#required": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content from the retrieved message.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_author_bot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the message was authored by a bot (app) or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "permalink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "context_messages": {
+          "target": "com.slack.assistant#SearchContextResponseResultsMessagesItemContextMessages"
+        },
+        "blocks": {
+          "target": "com.slack.assistant#SearchContextResponseResultsMessagesItemBlocksList",
+          "traits": {
+            "smithy.api#documentation": "Blocks from the retrieved message."
+          }
+        },
+        "reply_count": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.assistant#SearchContextResponseResultsMessagesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsFilesItem": {
+      "type": "structure",
+      "members": {
+        "author_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full name of the user who uploaded or created the file.",
+            "smithy.api#required": {}
+          }
+        },
+        "author_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the user who uploaded or created the file, if visible to the searching user"
+          }
+        },
+        "author_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who uploaded or created the file.",
+            "smithy.api#required": {}
+          }
+        },
+        "uploader_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who uploaded the file.",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the workspace in which the file was uploaded.",
+            "smithy.api#required": {}
+          }
+        },
+        "file_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the file.",
+            "smithy.api#required": {}
+          }
+        },
+        "date_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Epoch timestamp in microseconds at which the file was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "date_updated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Epoch timestamp in microseconds at which the file was uploaded.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the file",
+            "smithy.api#required": {}
+          }
+        },
+        "file_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the file.",
+            "smithy.api#required": {}
+          }
+        },
+        "permalink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permanent link to the file in Slack.",
+            "smithy.api#required": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Content from the retrieved file.",
+            "smithy.api#required": {}
+          }
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the file in bytes."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.assistant#SearchContextResponseResultsFilesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsEnterpriseList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsChannelsItem": {
+      "type": "structure",
+      "members": {
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the workspace in which the channel was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "creator_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user who created the channel.",
+            "smithy.api#required": {}
+          }
+        },
+        "creator_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full name of the user who created the channel."
+          }
+        },
+        "date_created": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Epoch timestamp in microseconds at which the channel was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "date_updated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Epoch timestamp in microseconds at which the channel was updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the channel.",
+            "smithy.api#required": {}
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Topic of the channel."
+          }
+        },
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Purpose of the channel."
+          }
+        },
+        "permalink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permanent link to the channel in Slack.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the channel is archived.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.assistant#SearchContextResponseResultsChannelsItem"
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsUsersItem": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded user ID",
+            "smithy.api#required": {}
+          }
+        },
+        "permalink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The permalink to the user in Slack",
+            "smithy.api#required": {}
+          }
+        },
+        "profile_pic_permalink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The permalink to the user's profile photo."
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's full name, which might be different from the display name.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's job title.",
+            "smithy.api#required": {}
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's local timezone.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's email address.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResultsUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.assistant#SearchContextResponseResultsUsersItem"
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResults": {
+      "type": "structure",
+      "members": {
+        "messages": {
+          "target": "com.slack.assistant#SearchContextResponseResultsMessagesList"
+        },
+        "files": {
+          "target": "com.slack.assistant#SearchContextResponseResultsFilesList"
+        },
+        "enterprise": {
+          "target": "com.slack.assistant#SearchContextResponseResultsEnterpriseList"
+        },
+        "channels": {
+          "target": "com.slack.assistant#SearchContextResponseResultsChannelsList"
+        },
+        "users": {
+          "target": "com.slack.assistant#SearchContextResponseResultsUsersList"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.assistant#SearchContextResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.assistant#SearchContextResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "results": {
+          "target": "com.slack.assistant#SearchContextResponseResults",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.assistant#SearchContextResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.assistant#SearchContext": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.assistant#SearchContextRequest"
+      },
+      "output": {
+        "target": "com.slack.assistant#SearchContextResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/assistant.search.context",
+          "code": 200
+        },
+        "smithy.api#documentation": "Searches messages, files, channels and users across your Slack organization.\n\nRequired scopes — user: `search:read.public`, `search:read.private`, `search:read.im`, `search:read.mpim`, `search:read.files`, `search:read.users`; bot: `search:read.public`, `search:read.files`, `search:read.users`\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Internal error.\n  - `rate_limited` — Rate limited.\n  - `missing_query` — Missing query.\n  - `query_too_long` — Query too long.\n  - `feature_not_enabled` — The feature is not available on the current workspace.\n  - `invalid_action_token` — The `action_token` provided is not valid.\n  - `invalid_cursor` — The cursormark provided is not valid.\n  - `context_channel_not_found` — Specified `context_channel_id` is invalid or the user lacks permission to view it.\n  - `missing_scope` — The requested channel types are not allowed by the provided scopes.\n  - `assistant_search_context_disabled` — We're having issues returning your search results. Please wait and try again.\n\nSee https://docs.slack.dev/reference/methods/assistant.search.context"
+      }
+    },
+    "com.slack.assistant#SearchInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "is_ai_search_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether AI search is enabled for the team",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.assistant#SearchInfo": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.assistant#SearchInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/assistant.search.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns search capabilities on a given team.\n\nRequired scopes — user: `search:read.public`; bot: `search:read.public`\n\nRate limit tier: 2\n\nSee https://docs.slack.dev/reference/methods/assistant.search.info"
+      }
+    },
+    "com.slack.assistant#SetStatusRequestLoadingMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of messages to rotate through as a loading indicator. Maximum of 10 messages."
+      }
+    },
+    "com.slack.assistant#SetStatusRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID containing the assistant thread.",
+            "smithy.api#required": {}
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message timestamp of the thread of where to set the status.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Status of the specified bot user, e.g., 'is thinking...'. A two minute timeout applies, which will cause the status to be removed if no message has been sent.",
+            "smithy.api#required": {}
+          }
+        },
+        "loading_messages": {
+          "target": "com.slack.assistant#SetStatusRequestLoadingMessagesList",
+          "traits": {
+            "smithy.api#documentation": "The list of messages to rotate through as a loading indicator. Maximum of 10 messages."
+          }
+        },
+        "icon_emoji": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Emoji to use as the icon for this message. Overrides `icon_url`."
+          }
+        },
+        "icon_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image URL to use as the icon for this message."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bot's username to display."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.assistant#SetStatusResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.assistant#SetStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.assistant#SetStatusRequest"
+      },
+      "output": {
+        "target": "com.slack.assistant#SetStatusResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/assistant.threads.setStatus",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the status for an AI assistant thread.\n\nRequired scopes — bot: `chat:write`\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `channel_not_found` — Error returned when given an invalid channel_id\n  - `invalid_thread_ts` — Error returned when given an invalid thread_ts\n  - `reserved_username` — Reserved usernames are not allowed to be used.\n\nSee https://docs.slack.dev/reference/methods/assistant.threads.setStatus"
+      }
+    },
+    "com.slack.assistant#SetSuggestedPromptsRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID containing the assistant thread.",
+            "smithy.api#required": {}
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message timestamp of the thread to set suggested prompts for."
+          }
+        },
+        "prompts": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Each prompt should be supplied with its `title` and `message` attribute.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title for the list of provided prompts. For example: Suggested Prompts, Related Questions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.assistant#SetSuggestedPromptsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.assistant#SetSuggestedPrompts": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.assistant#SetSuggestedPromptsRequest"
+      },
+      "output": {
+        "target": "com.slack.assistant#SetSuggestedPromptsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/assistant.threads.setSuggestedPrompts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set suggested prompts for the given assistant thread\n\nRequired scopes — bot: `assistant:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_thread_ts` — Thread not found\n  - `channel_not_found` — Error returned when given an invalid channel_id\n  - `message_not_found` — Error returned when given an invalid message\n  - `not_agent_app` — This method requires the app to be configured as an agent. Enable the Agent feature in your app configuration at https://api.slack.com/apps.\n\nSee https://docs.slack.dev/reference/methods/assistant.threads.setSuggestedPrompts"
+      }
+    },
+    "com.slack.assistant#SetTitleRequest": {
+      "type": "structure",
+      "members": {
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel ID containing the assistant thread.",
+            "smithy.api#required": {}
+          }
+        },
+        "thread_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message timestamp of the thread to set suggested prompts for.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title to use for the thread.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.assistant#SetTitleResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.assistant#SetTitle": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.assistant#SetTitleRequest"
+      },
+      "output": {
+        "target": "com.slack.assistant#SetTitleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/assistant.threads.setTitle",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the title for the given assistant thread\n\nRequired scopes — bot: `assistant:write`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_thread_ts` — Thread not found\n  - `channel_not_found` — Error returned when given an invalid channel_id\n\nSee https://docs.slack.dev/reference/methods/assistant.threads.setTitle"
+      }
+    },
+    "com.slack.assistant#Assistant": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.assistant#SearchContext"
+        },
+        {
+          "target": "com.slack.assistant#SearchInfo"
+        },
+        {
+          "target": "com.slack.assistant#SetStatus"
+        },
+        {
+          "target": "com.slack.assistant#SetSuggestedPrompts"
+        },
+        {
+          "target": "com.slack.assistant#SetTitle"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — assistant"
+      }
+    }
+  }
+}

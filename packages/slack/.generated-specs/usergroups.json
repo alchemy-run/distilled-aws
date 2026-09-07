@@ -1,0 +1,672 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.usergroups#CreateUsergroupRequestChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group uses as a default."
+      }
+    },
+    "com.slack.usergroups#CreateUsergroupRequestAdditionalChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too."
+      }
+    },
+    "com.slack.usergroups#CreateUsergroupRequest": {
+      "type": "structure",
+      "members": {
+        "channels": {
+          "target": "com.slack.usergroups#CreateUsergroupRequestChannelsList",
+          "traits": {
+            "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group uses as a default."
+          }
+        },
+        "additional_channels": {
+          "target": "com.slack.usergroups#CreateUsergroupRequestAdditionalChannelsList",
+          "traits": {
+            "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the User Group."
+          }
+        },
+        "handle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A mention handle. Must be unique among channels, users and User Groups."
+          }
+        },
+        "include_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include the number of users in each User Group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name for the User Group. Must be unique among User Groups.",
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded team id where the user group has to be created, required if org token is used."
+          }
+        },
+        "enable_section": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Configure this user group to show as a sidebar section for all group members. Note: Only relevant if group has 1 or more default channels added."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#CreateUsergroupResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#CreateUsergroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#CreateUsergroupRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#CreateUsergroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/usergroups.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a User Group.\n\nRequired scopes — bot: `usergroups:write`; user: `usergroups:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_handle` — Handle is invalid\n  - `description_too_long` — Given usergroup description is too long\n  - `forbidden_handle` — Handle is invalid\n  - `handle_already_exists` — Handle is already in use on this workspace\n  - `invalid_channel_provided` — An invalid channel ID was provided\n  - `invalid_group_provided` — An invalid group ID was provided\n  - `missing_argument` — A required argument is missing.\n  - `missing_subteam_name` — Subteam name is required\n  - `name_already_exists` — Name is already in use on this workspace\n  - `name_too_long` — Name too long.\n  - `paid_teams_only` — Usergroups can only be used on paid Slack teams\n  - `permission_denied` — The user does not have permission to create a User Group.\n  - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.\n  - `target_team_not_on_org` — Target team specified is not on the org in context\n  - `target_team_must_be_specified_in_org_context` — No target team was specified but the team in context is an org\n\nSee https://docs.slack.dev/reference/methods/usergroups.create"
+      }
+    },
+    "com.slack.usergroups#DisableUsergroupRequest": {
+      "type": "structure",
+      "members": {
+        "include_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include the number of users in the User Group."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded target team id where the user group is, required if org token is used."
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded ID of the User Group to disable.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#DisableUsergroupResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#DisableUsergroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#DisableUsergroupRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#DisableUsergroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/usergroups.disable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable an existing User Group.\n\nRequired scopes — bot: `usergroups:write`; user: `usergroups:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `permission_denied` — The user does not have permission to disable the User Group.\n  - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.\n  - `target_team_not_on_org` — Target team specified is not on the org in context\n  - `target_team_must_be_specified_in_org_context` — No target team was specified but the team in context is an org\n\nSee https://docs.slack.dev/reference/methods/usergroups.disable"
+      }
+    },
+    "com.slack.usergroups#EnableUsergroupRequest": {
+      "type": "structure",
+      "members": {
+        "include_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include the number of users in the User Group."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded team id where the user group is, required if org token is used."
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded ID of the User Group to enable.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#EnableUsergroupResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#EnableUsergroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#EnableUsergroupRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#EnableUsergroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/usergroups.enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable a User Group.\n\nRequired scopes — bot: `usergroups:write`; user: `usergroups:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `permission_denied` — The user does not have permission to enables the User Group.\n  - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.\n\nSee https://docs.slack.dev/reference/methods/usergroups.enable"
+      }
+    },
+    "com.slack.usergroups#ListUsergroupsRequest": {
+      "type": "structure",
+      "members": {
+        "include_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_count",
+            "smithy.api#documentation": "Include the number of users in each User Group."
+          }
+        },
+        "include_disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_disabled",
+            "smithy.api#documentation": "Include results for disabled User Groups."
+          }
+        },
+        "include_users": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_users",
+            "smithy.api#documentation": "Include the list of users for each User Group."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "The user group's encoded team ID. Required if org token is used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#ListUsergroupsResponseUsergroupsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.usergroups#ListUsergroupsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "usergroups": {
+          "target": "com.slack.usergroups#ListUsergroupsResponseUsergroupsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#ListUsergroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#ListUsergroupsRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#ListUsergroupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/usergroups.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all User Groups for a team.\n\nRequired scopes — bot: `usergroups:read`; user: `usergroups:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `users_not_found` — Cannot find users on subteam.\n  - `invalid_team` — Cannot find subteam team.\n\nSee https://docs.slack.dev/reference/methods/usergroups.list"
+      }
+    },
+    "com.slack.usergroups#UpdateUsergroupRequestChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group uses as a default."
+      }
+    },
+    "com.slack.usergroups#UpdateUsergroupRequestAdditionalChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too."
+      }
+    },
+    "com.slack.usergroups#UpdateUsergroupRequest": {
+      "type": "structure",
+      "members": {
+        "channels": {
+          "target": "com.slack.usergroups#UpdateUsergroupRequestChannelsList",
+          "traits": {
+            "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group uses as a default."
+          }
+        },
+        "additional_channels": {
+          "target": "com.slack.usergroups#UpdateUsergroupRequestAdditionalChannelsList",
+          "traits": {
+            "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short description of the User Group."
+          }
+        },
+        "handle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A mention handle. Must be unique among channels, users and User Groups."
+          }
+        },
+        "include_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include the number of users in the User Group."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A name for the User Group. Must be unique among User Groups."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "encoded team id where the user group exists, required if org token is used"
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded ID of the User Group to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "enable_section": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Configure this user group to show as a sidebar section for all group members. Note: Only relevant if group has 1 or more default channels added."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#UpdateUsergroupResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#UpdateUsergroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#UpdateUsergroupRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#UpdateUsergroupResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/usergroups.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing User Group.\n\nRequired scopes — bot: `usergroups:write`; user: `usergroups:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_argument` — A required argument is missing.\n  - `paid_teams_only` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.\n  - `permission_denied` — The user does not have permission to update the User Group.\n  - `too_many_linked_channels` — This request exceeds the number of channels we supporting linking to a single usergroup.\n\nSee https://docs.slack.dev/reference/methods/usergroups.update"
+      }
+    },
+    "com.slack.usergroups#ListUsersRequest": {
+      "type": "structure",
+      "members": {
+        "include_disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_disabled",
+            "smithy.api#documentation": "Include results for disabled User Groups."
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "usergroup",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The encoded ID of the User Group."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "The user group's encoded team ID. Required if org token is used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#ListUsersResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.usergroups#ListUsersResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.slack.usergroups#ListUsersResponseUsersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#ListUsers": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#ListUsersRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#ListUsersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/usergroups.users.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all users in a User Group.\n\nRequired scopes — bot: `usergroups:read`; user: `usergroups:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_such_subteam` — No usergroup found with the given ID.\n  - `plan_upgrade_required` — This workspace does not have access to User Groups, as that feature is only available on Standard and above plans.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n\nSee https://docs.slack.dev/reference/methods/usergroups.users.list"
+      }
+    },
+    "com.slack.usergroups#UpdateUserRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A comma separated string of encoded user IDs that represent the entire list of users for the user group."
+      }
+    },
+    "com.slack.usergroups#UpdateUserRequestAdditionalChannelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too."
+      }
+    },
+    "com.slack.usergroups#UpdateUserRequest": {
+      "type": "structure",
+      "members": {
+        "include_count": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include the number of users in the user group."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "encoded team id where the user group exists, required if org token is used"
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded ID of the user group to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.slack.usergroups#UpdateUserRequestUsersList",
+          "traits": {
+            "smithy.api#documentation": "A comma separated string of encoded user IDs that represent the entire list of users for the user group.",
+            "smithy.api#required": {}
+          }
+        },
+        "additional_channels": {
+          "target": "com.slack.usergroups#UpdateUserRequestAdditionalChannelsList",
+          "traits": {
+            "smithy.api#documentation": "A comma separated string of encoded channel IDs for which the User Group can custom add usergroup members too."
+          }
+        },
+        "is_shared": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean to identify if the API is getting called when a shared section is getting shared"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.usergroups#UpdateUserResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "usergroup": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.usergroups#UpdateUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.usergroups#UpdateUserRequest"
+      },
+      "output": {
+        "target": "com.slack.usergroups#UpdateUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/usergroups.users.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the list of users for a user group.\n\nRequired scopes — bot: `usergroups:write`; user: `usergroups:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_users` — Value passed for `users` was empty or invalid.\n  - `failed_for_some_users` — User(s) are not in the workspace where this usergroup exists\n  - `missing_argument` — A required argument is missing.\n  - `no_users_provided` — Either the `users` field wasn't provided or an empty value was passed.\n  - `permission_denied` — The user does not have permission to update the list of users for a user group. Check workspace settings to confirm whether the calling user has permission.\n  - `plan_upgrade_required` — This workspace does not have access to user groups, as that feature is only available on Standard and above plans.\n  - `subteam_max_users_exceeded` — Exceeds maximum supported number of users per subteam.\n\nSee https://docs.slack.dev/reference/methods/usergroups.users.update"
+      }
+    },
+    "com.slack.usergroups#Usergroups": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.usergroups#CreateUsergroup"
+        },
+        {
+          "target": "com.slack.usergroups#DisableUsergroup"
+        },
+        {
+          "target": "com.slack.usergroups#EnableUsergroup"
+        },
+        {
+          "target": "com.slack.usergroups#ListUsergroups"
+        },
+        {
+          "target": "com.slack.usergroups#UpdateUsergroup"
+        },
+        {
+          "target": "com.slack.usergroups#ListUsers"
+        },
+        {
+          "target": "com.slack.usergroups#UpdateUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — usergroups"
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "desc": "Look up the permissions for a set of workflows",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.workflows:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "workflow_ids"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "workflow_ids": {
+        "desc": "An array of workflow IDs to look up permissions for",
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 50,
+        "items": {
+          "schema": "workflow_id"
+        }
+      },
+      "max_workflow_triggers": {
+        "desc": "Maximum number of triggers to fetch for each workflow when determining overall run permissions; max 1000",
+        "type": "integer",
+        "default": 100,
+        "maximum": 1000,
+        "minimum": 1
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "permissions"
+    ],
+    "properties": {}
+  },
+  "errors": {}
+}

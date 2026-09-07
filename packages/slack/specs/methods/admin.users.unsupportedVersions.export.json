@@ -1,0 +1,55 @@
+{
+  "desc": "Ask Slackbot to send you an export listing all workspace members using unsupported software, presented as a zipped CSV file.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:read"
+    ]
+  },
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "date_sessions_started": {
+        "desc": "Unix timestamp of a date to start looking for user sessions. If not provided will start six months ago.",
+        "type": "integer",
+        "default": 0
+      },
+      "date_end_of_support": {
+        "desc": "Unix timestamp of the date of past or upcoming end of support cycles. If not provided will include all announced end of support cycles.",
+        "type": "integer",
+        "default": 0
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "could_not_export": {
+      "desc": "For some reason, the export could not be started"
+    },
+    "invalid_auth": {
+      "desc": "Invalid authentication token provided."
+    },
+    "invalid_team_id": {
+      "desc": "The team ID passed is invalid"
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "not_authed": {
+      "desc": "No authentication token provided."
+    },
+    "not_an_enterprise": {
+      "desc": "Only enterprises are supported."
+    }
+  }
+}

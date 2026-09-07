@@ -1,0 +1,59 @@
+{
+  "desc": "Gets user presence information.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "users:read"
+    ],
+    "user": [
+      "users:read"
+    ]
+  },
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "user": {
+        "desc": "User to get presence info on. Defaults to the authed user.",
+        "type": "string",
+        "subtype": "user"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "presence"
+    ],
+    "type": "object",
+    "properties": {
+      "last_activity": {
+        "type": "integer"
+      },
+      "manual_away": {
+        "type": "boolean"
+      },
+      "presence": {
+        "type": "string"
+      },
+      "online": {
+        "type": "boolean"
+      },
+      "connection_count": {
+        "type": "integer"
+      },
+      "auto_away": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {}
+}

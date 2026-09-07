@@ -1,0 +1,52 @@
+{
+  "desc": "Signal the successful completion of a function",
+  "http_method": "POST",
+  "scope": {},
+  "no_scope_required": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "function_execution_id",
+      "outputs"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "function_execution_id": {
+        "type": "string",
+        "desc": "Context identifier that maps to the executed function",
+        "example": "Fx12345ABCDE"
+      },
+      "outputs": {
+        "type": "object",
+        "desc": "A JSON-based object that conforms to the [output parameters](https://docs.slack.dev/deno-slack-sdk/guides/creating-custom-functions#input-output) schema for the custom function defined in the manifest",
+        "example": "{\"customer_id\": \"U0BPQUNTA\"}"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "function_execution_not_found": {
+      "desc": "The specified function execution cannot be found."
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to this function execution."
+    },
+    "execution_not_in_running_state": {
+      "desc": "The function execution is no longer in a state to be completed."
+    },
+    "parameter_validation_failed": {
+      "desc": "There were problems when validating the outputs against the Function parameters. See API response for more details."
+    }
+  }
+}

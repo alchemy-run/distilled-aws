@@ -1,0 +1,1090 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.lists#DeleteAccessRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
+      }
+    },
+    "com.slack.lists#DeleteAccessRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
+      }
+    },
+    "com.slack.lists#DeleteAccessRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the List.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.lists#DeleteAccessRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.lists#DeleteAccessRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#DeleteAccessResponseFailedToUpdateChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The channel IDs that could not be updated."
+      }
+    },
+    "com.slack.lists#DeleteAccessResponseFailedToUpdateUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user IDs that could not be updated."
+      }
+    },
+    "com.slack.lists#DeleteAccessResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "failed_to_update_channel_ids": {
+          "target": "com.slack.lists#DeleteAccessResponseFailedToUpdateChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "The channel IDs that could not be updated."
+          }
+        },
+        "failed_to_update_user_ids": {
+          "target": "com.slack.lists#DeleteAccessResponseFailedToUpdateUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "The user IDs that could not be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#DeleteAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#DeleteAccessRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#DeleteAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.access.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke access to a List for specified entities.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `lists_disabled_user_team` — Lists is disabled on user's team.\n  - `list_not_found` — The List you wish to update permissions for is not available.\n  - `channel_not_found` — A channel could not be found.\n  - `failed_to_update_user_ids` — Failed to update the specified user IDs.\n  - `invalid_parameters` — One of `user_ids` or `channel_ids` must be defined, but not both.\n  - `restricted_action` — User does not have permission to perform this action.\n  - `user_not_found` — A user could not be found.\n\nSee https://docs.slack.dev/reference/methods/slackLists.access.delete",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#SetAccessRequestChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
+      }
+    },
+    "com.slack.lists#SetAccessRequestUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
+      }
+    },
+    "com.slack.lists#SetAccessRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of the List.",
+            "smithy.api#required": {}
+          }
+        },
+        "access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Desired level of access.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_ids": {
+          "target": "com.slack.lists#SetAccessRequestChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of channels you wish to update access for. Can only be used if `user_ids` is not provided."
+          }
+        },
+        "user_ids": {
+          "target": "com.slack.lists#SetAccessRequestUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of users you wish to update access for. Can only be used if `channel_ids` is not provided."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#SetAccessResponseFailedToUpdateChannelIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The channel IDs that could not be updated."
+      }
+    },
+    "com.slack.lists#SetAccessResponseFailedToUpdateUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The user IDs that could not be updated."
+      }
+    },
+    "com.slack.lists#SetAccessResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "failed_to_update_channel_ids": {
+          "target": "com.slack.lists#SetAccessResponseFailedToUpdateChannelIdsList",
+          "traits": {
+            "smithy.api#documentation": "The channel IDs that could not be updated."
+          }
+        },
+        "failed_to_update_user_ids": {
+          "target": "com.slack.lists#SetAccessResponseFailedToUpdateUserIdsList",
+          "traits": {
+            "smithy.api#documentation": "The user IDs that could not be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#SetAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#SetAccessRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#SetAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.access.set",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the access level to a List for specified entities.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `lists_disabled_user_team` — Lists is disabled on user's team.\n  - `list_not_found` — The List you wish to update permissions for is not available.\n  - `channel_not_found` — A channel could not be found.\n  - `failed_to_update_user_ids` — Failed to update the specified user IDs.\n  - `invalid_parameters` — One of `user_ids` or `channel_ids` must be defined, but not both.\n  - `restricted_action` — User does not have permission to perform this action.\n  - `user_not_found` — A user could not be found.\n\nSee https://docs.slack.dev/reference/methods/slackLists.access.set",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#CreateSlackListRequestDescriptionBlocksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A rich text description of the List."
+      }
+    },
+    "com.slack.lists#CreateSlackListRequestSchemaList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Column definition for the List."
+      }
+    },
+    "com.slack.lists#CreateSlackListRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the List.",
+            "smithy.api#required": {}
+          }
+        },
+        "description_blocks": {
+          "target": "com.slack.lists#CreateSlackListRequestDescriptionBlocksList",
+          "traits": {
+            "smithy.api#documentation": "A rich text description of the List."
+          }
+        },
+        "schema": {
+          "target": "com.slack.lists#CreateSlackListRequestSchemaList",
+          "traits": {
+            "smithy.api#documentation": "Column definition for the List."
+          }
+        },
+        "copy_from_list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List to copy."
+          }
+        },
+        "include_copied_list_records": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean indicating whether to include records when a List is copied."
+          }
+        },
+        "todo_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean indicating whether the List should be used to track todo tasks."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#CreateSlackListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the List created.",
+            "smithy.api#required": {}
+          }
+        },
+        "list_metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The metadata of the List created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#CreateSlackList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#CreateSlackListRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#CreateSlackListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a List.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `permission_denied` — The user does not have permission to perform this action.\n  - `invalid_schema` — The schema was invalid.\n  - `invalid_primary_column` — Missing or more than one primary column.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n  - `over_list_file_maximum` — Cannot create any more List files.\n  - `over_title_length_maximum` — Title can not exceed defined length.\n  - `invalid_column_type` — Column type not allowed.\n  - `missing_arg_copy_from_list_id` — Missing argument `copy_from_list_id`.\n  - `invalid_copy_and_schema_args` — Cannot provide both `copy_from_list_id` and `schema`.\n  - `over_column_maximum` — Cannot create List with more than allowed column count.\n\nSee https://docs.slack.dev/reference/methods/slackLists.create",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#DownloadGetRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List to export.",
+            "smithy.api#required": {}
+          }
+        },
+        "job_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the recently started job to export the List.",
+            "smithy.api#required": {}
+          }
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Format the export was started with. Must match the `format` passed to `slackLists.download.start`. Defaults to `csv`."
+          }
+        },
+        "include_threads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Must match the `include_threads` passed to `slackLists.download.start`. The returned `download_url` carries this through so the served export matches what was generated. Only applies when `format` is `json`."
+          }
+        },
+        "include_attachments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Must match the `include_attachments` passed to `slackLists.download.start`. The returned `download_url` carries this through so the served export matches what was generated. Only applies when `format` is `json`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#DownloadGetResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Current status of the export job.",
+            "smithy.api#required": {}
+          }
+        },
+        "download_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL at which to download the CSV."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#DownloadGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#DownloadGetRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#DownloadGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.download.get",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve List download URL from an export job to download List contents.\n\nRequired scopes — bot: `lists:read`; user: `lists:read`\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `permission_denied` — The bot does not have permission to perform this action.\n  - `unknown_method` — Feature not enabled for this team.\n  - `job_not_found` — Could not find an export job matching that ID.\n\nSee https://docs.slack.dev/reference/methods/slackLists.download.get",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#DownloadStartRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List to export.",
+            "smithy.api#required": {}
+          }
+        },
+        "include_archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Format of the export. Defaults to `csv` for backward compatibility. Use `json` for a complete, hierarchical export."
+          }
+        },
+        "include_threads": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include each item's conversation thread in the export. Only applies when `format` is `json`."
+          }
+        },
+        "include_attachments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include file attachment metadata and access paths in the export. Only applies when `format` is `json`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#DownloadStartResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "job_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the recently started job to export the List.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#DownloadStart": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#DownloadStartRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#DownloadStartResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.download.start",
+          "code": 200
+        },
+        "smithy.api#documentation": "Initiate a job to export List contents.\n\nRequired scopes — bot: `lists:read`; user: `lists:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `permission_denied` — The bot does not have permission to perform this action.\n  - `unknown_method` — Feature not enabled for this team.\n\nSee https://docs.slack.dev/reference/methods/slackLists.download.start",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#CreateItemRequestInitialFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Initial item data."
+      }
+    },
+    "com.slack.lists#CreateItemRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List to add the item to.",
+            "smithy.api#required": {}
+          }
+        },
+        "duplicated_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the record to make a copy of."
+          }
+        },
+        "parent_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the parent record for this subtask."
+          }
+        },
+        "initial_fields": {
+          "target": "com.slack.lists#CreateItemRequestInitialFieldsList",
+          "traits": {
+            "smithy.api#documentation": "Initial item data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#CreateItemResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "item": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#CreateItem": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#CreateItemRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#CreateItemResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.items.create",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a new item to an existing List.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `over_row_maximum` — Cannot create more items over the maximum.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n  - `duplicated_item_not_found` — The item to duplicate cannot be found.\n  - `invalid_option_id` — Option ID provided does not match column definition.\n  - `invalid_args` — The provided arguments are invalid.\n  - `uneditable_column` — Initial values provided for an uneditable column.\n  - `invalid_input_type` — The field value type does not match the column type.\n  - `invalid_column_id` — The column ID provided does not exist in the List.\n  - `over_cell_fields_limit` — Too many values provided for a single field.\n  - `file_not_found` — The attachment file could not be found.\n  - `invalid_vote_value` — Invalid value provided for a vote column.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.create",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#DeleteItemRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List containing the item.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of item to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#DeleteItemResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#DeleteItem": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#DeleteItemRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#DeleteItemResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.items.delete",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an item from an existing List.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `record_not_found` — The record was not found in the List.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.delete",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#DeleteMultipleRequestIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of items to delete."
+      }
+    },
+    "com.slack.lists#DeleteMultipleRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List containing the items.",
+            "smithy.api#required": {}
+          }
+        },
+        "ids": {
+          "target": "com.slack.lists#DeleteMultipleRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "IDs of items to delete.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#DeleteMultipleResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#DeleteMultiple": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#DeleteMultipleRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#DeleteMultipleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.items.deleteMultiple",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes multiple items from an existing List.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.deleteMultiple",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#ItemsInfoRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the row to get.",
+            "smithy.api#required": {}
+          }
+        },
+        "include_is_subscribed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to `true` to include `is_subscribed` data for the returned List row."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#ItemsInfoResponseSubtasksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.lists#ItemsInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "list": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "record": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "parent_task": {
+          "target": "smithy.api#Document"
+        },
+        "subtasks": {
+          "target": "com.slack.lists#ItemsInfoResponseSubtasksList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#ItemsInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#ItemsInfoRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#ItemsInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.items.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a row from a List.\n\nRequired scopes — bot: `lists:read`; user: `lists:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `record_not_found` — The record was not found in the List.\n  - `record_deleted` — The record has been deleted.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.info",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#ListItemsRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List.",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of records to return."
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Next cursor for pagination."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean indicating whether archived items or normal items should be returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#ListItemsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.lists#ListItemsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.lists#ListItemsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.slack.lists#ListItemsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "response_metadata": {
+          "target": "com.slack.lists#ListItemsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#ListItems": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#ListItemsRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#ListItemsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.items.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get records from a List.\n\nRequired scopes — bot: `lists:read`; user: `lists:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n  - `invalid_cursor` — Value passed for `cursor` was not valid or is no longer valid.\n  - `archive_not_supported` — Archiving is not supported.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.list",
+        "com.distilled.openapi#contentType": "form-urlencoded",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
+      }
+    },
+    "com.slack.lists#UpdateItemRequestCellsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Cells to update."
+      }
+    },
+    "com.slack.lists#UpdateItemRequest": {
+      "type": "structure",
+      "members": {
+        "list_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the List to add or update cells.",
+            "smithy.api#required": {}
+          }
+        },
+        "cells": {
+          "target": "com.slack.lists#UpdateItemRequestCellsList",
+          "traits": {
+            "smithy.api#documentation": "Cells to update.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#UpdateItemResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#UpdateItem": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#UpdateItemRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#UpdateItemResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.items.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates cells in a List.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `row_not_found` — The row was not found.\n  - `column_not_found` — The column was not found.\n  - `file_not_found` — Invalid file ID for this List.\n  - `invalid_input_type` — Supplied value key or value type is invalid for the given column type.\n  - `invalid_row_id` — Invalid row ID for this List.\n  - `invalid_column_id` — Invalid column ID for this List.\n  - `permission_denied` — The user does not have permission to perform this action.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n  - `channel_not_found` — The channel cannot be found.\n  - `uneditable_column` — The column cannot be updated.\n  - `invalid_blocks` — Rich text payload supplied is invalid.\n  - `invalid_text_block` — Rich text payload supplied is invalid.\n  - `invalid_email` — Email supplied is invalid.\n  - `invalid_link` — Message archive link supplied is invalid.\n  - `invalid_date` — Date supplied is invalid.\n  - `invalid_option_id` — Option supplied is invalid.\n  - `row_id_not_provided` — The `row_id` or `row_id_to_create` field must be provided.\n  - `column_id_not_provided` — The `column_id` or `column_id_to_create` field must be provided.\n  - `over_cell_fields_limit` — The supplied cell fields are over the cell field maximum.\n  - `invalid_message` — Invalid message provided.\n  - `invalid_attachment` — Invalid attachment provided.\n  - `invalid_phone_number` — Invalid phone number provided.\n  - `invalid_vote_value` — Invalid vote value is supplied.\n\nSee https://docs.slack.dev/reference/methods/slackLists.items.update",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#UpdateSlackListRequestDescriptionBlocksList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "A rich text description of the List."
+      }
+    },
+    "com.slack.lists#UpdateSlackListRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the List to update.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The updated name of the List."
+          }
+        },
+        "description_blocks": {
+          "target": "com.slack.lists#UpdateSlackListRequestDescriptionBlocksList",
+          "traits": {
+            "smithy.api#documentation": "A rich text description of the List."
+          }
+        },
+        "todo_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean indicating whether the List should be in todo mode."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.lists#UpdateSlackListResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.lists#UpdateSlackList": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.lists#UpdateSlackListRequest"
+      },
+      "output": {
+        "target": "com.slack.lists#UpdateSlackListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/slackLists.update",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a List.\n\nRequired scopes — bot: `lists:write`; user: `lists:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `list_not_found` — The List was not found.\n  - `team_not_found` — The team cannot be found.\n  - `user_not_found` — The user cannot be found.\n  - `list_edits_update_error` — Failed to update List metadata.\n  - `list_editor_upsert_error` — Failed to upsert List editor.\n  - `over_title_length_maximum` — Title can not exceed defined length.\n  - `file_channel_rename_error` — Failed to rename file channel based on file title.\n  - `unexpected_description_blocks_arg` — Unexpected description blocks argument.\n  - `missing_arguments` — No arguments were provided to update the List.\n\nSee https://docs.slack.dev/reference/methods/slackLists.update",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.lists#Lists": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.lists#DeleteAccess"
+        },
+        {
+          "target": "com.slack.lists#SetAccess"
+        },
+        {
+          "target": "com.slack.lists#CreateSlackList"
+        },
+        {
+          "target": "com.slack.lists#DownloadGet"
+        },
+        {
+          "target": "com.slack.lists#DownloadStart"
+        },
+        {
+          "target": "com.slack.lists#CreateItem"
+        },
+        {
+          "target": "com.slack.lists#DeleteItem"
+        },
+        {
+          "target": "com.slack.lists#DeleteMultiple"
+        },
+        {
+          "target": "com.slack.lists#ItemsInfo"
+        },
+        {
+          "target": "com.slack.lists#ListItems"
+        },
+        {
+          "target": "com.slack.lists#UpdateItem"
+        },
+        {
+          "target": "com.slack.lists#UpdateSlackList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — lists"
+      }
+    }
+  }
+}

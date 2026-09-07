@@ -1,0 +1,64 @@
+{
+  "desc": "Open a dialog with a user",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "no_scope_required": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_id",
+      "dialog"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "dialog": {
+        "desc": "The dialog definition. This must be a JSON-encoded string.",
+        "type": "string"
+      },
+      "trigger_id": {
+        "desc": "Exchange a trigger to post to the user.",
+        "example": "12345.98765.abcd2358fdea",
+        "type": "string",
+        "subtype": "app_trigger_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "app_missing_action_url": {
+      "desc": "The app associated with the used token doesn't have a Action URL configured in its interactive components settings."
+    },
+    "cannot_create_dialog": {
+      "desc": "Something exceptional occurred and the dialog could not be created."
+    },
+    "failed_sending_dialog": {
+      "desc": "Something exceptional occurred and the dialog could not be sent."
+    },
+    "invalid_trigger": {
+      "desc": "The provided `trigger_id` is invalid or cannot be used by this token."
+    },
+    "missing_dialog": {
+      "desc": "No `dialog` argument was presented."
+    },
+    "missing_trigger": {
+      "desc": "No `trigger_id` argument was presented."
+    },
+    "trigger_exchanged": {
+      "desc": "The provided `trigger_id` has already been exchanged."
+    },
+    "trigger_expired": {
+      "desc": "The provided `trigger_id` was presented after the 3 second limit."
+    },
+    "validation_errors": {
+      "desc": "The provided `dialog` could not be validated."
+    }
+  }
+}

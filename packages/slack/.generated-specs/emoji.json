@@ -1,0 +1,132 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.emoji#ListEmojiRequest": {
+      "type": "structure",
+      "members": {
+        "include_categories": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_categories",
+            "smithy.api#documentation": "Include a list of categories for Unicode emoji and the emoji in each category"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.emoji#ListEmojiResponseEmojiMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.emoji#ListEmojiResponseCategoriesItemEmojiNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.emoji#ListEmojiResponseCategoriesItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "emoji_names": {
+          "target": "com.slack.emoji#ListEmojiResponseCategoriesItemEmojiNamesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.emoji#ListEmojiResponseCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.emoji#ListEmojiResponseCategoriesItem"
+      },
+      "traits": {}
+    },
+    "com.slack.emoji#ListEmojiResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "cache_ts": {
+          "target": "smithy.api#String"
+        },
+        "emoji": {
+          "target": "com.slack.emoji#ListEmojiResponseEmojiMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "categories_version": {
+          "target": "smithy.api#String"
+        },
+        "categories": {
+          "target": "com.slack.emoji#ListEmojiResponseCategoriesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.emoji#ListEmoji": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.emoji#ListEmojiRequest"
+      },
+      "output": {
+        "target": "com.slack.emoji#ListEmojiResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/emoji.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists custom emoji for a team.\n\nRequired scopes — bot: `emoji:read`; user: `emoji:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — Invalid API arguments provided\n  - `unable_to_fetch_custom_emojis` — Unable to fetch custom emojis for team.\n\nSee https://docs.slack.dev/reference/methods/emoji.list"
+      }
+    },
+    "com.slack.emoji#Emoji": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.emoji#ListEmoji"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — emoji"
+      }
+    }
+  }
+}

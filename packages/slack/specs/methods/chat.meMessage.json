@@ -1,0 +1,72 @@
+{
+  "desc": "Share a me message into a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "chat:write"
+    ],
+    "user": [
+      "chat:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "text"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel to send message to. Can be a public channel, private group or IM channel. Can be an encoded ID, or a name.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "text": {
+        "desc": "Text of the message to send.",
+        "example": "Hello world",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "ts": {
+        "schema": "ts"
+      },
+      "channel": {
+        "schema": "channel"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "msg_too_long": {
+      "desc": "Message text is too long"
+    },
+    "no_text": {
+      "desc": "No message text provided"
+    },
+    "not_in_channel": {
+      "desc": "Cannot post user messages to a channel they are not in."
+    },
+    "rate_limited": {
+      "desc": "Application has posted too many messages, [read the Rate Limit documentation](/apis/web-api/rate-limits) for more information"
+    }
+  }
+}

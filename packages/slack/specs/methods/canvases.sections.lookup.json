@@ -1,0 +1,85 @@
+{
+  "desc": "Find sections matching the provided criteria",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "canvases:read"
+    ],
+    "user": [
+      "canvases:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "canvas_id",
+      "criteria"
+    ],
+    "properties": {
+      "token": {
+        "desc": "Auth token with which to authenticate the session",
+        "type": "string",
+        "subtype": "auth",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "canvas_id": {
+        "desc": "Encoded ID of the canvas",
+        "example": "F1234ABCD",
+        "subtype": "canvas",
+        "schema": "file_id"
+      },
+      "criteria": {
+        "example": "{\"section_types\": [\"any_header\"], \"contains_text\": \"CAN Report\"}",
+        "desc": "Filtering criteria",
+        "schema": "criteria"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "sections"
+    ],
+    "properties": {
+      "sections": {
+        "desc": "Sections in the canvas that match the provided criteria",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "child_section_ids": {
+              "desc": "IDs of child sections within a layout container (blockquote, callout, flexbox, or table).",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "canvas_deleted": {
+      "desc": "The canvas you wish to search is not available."
+    },
+    "canvas_disabled_user_team": {
+      "desc": "Canvas is disabled on user's team."
+    },
+    "canvas_not_found": {
+      "desc": "The canvas you wish to search for is not available."
+    },
+    "internal_error": {
+      "desc": "Something went wrong on our end, please try again."
+    }
+  }
+}

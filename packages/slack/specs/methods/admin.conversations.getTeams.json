@@ -1,0 +1,96 @@
+{
+  "desc": "Get all the workspaces a given public or private channel is connected to within this Enterprise org.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to determine connected workspaces within the organization for.",
+        "example": "C12345",
+        "schema": "channel"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+        "example": "5c3e53d5"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to return. Must be between 1 - 1000 both inclusive.",
+        "example": "100",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 1000
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok",
+      "team_ids"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The channel wasn't found or isn't connected to multiple workspaces."
+    },
+    "channel_type_not_supported": {
+      "desc": "The `channel_id` provided was a DM, MPDM, or the 'general' channel."
+    },
+    "could_not_get_teams": {
+      "desc": "Could not fetch the workspaces that the channel is shared with in this organization."
+    },
+    "external_channel_migrating": {
+      "desc": "The channel is actively being migrated"
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided doesn't have access to this method."
+    },
+    "invalid_cursor": {
+      "desc": "The provided cursor wasn't valid."
+    },
+    "invalid_limit": {
+      "desc": "The value passed for `limit` wasn't valid."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from listing the workspaces connected to a channel."
+    },
+    "unsupported_team_type": {
+      "desc": "This endpoint can only called by Enterprise organizations."
+    }
+  }
+}

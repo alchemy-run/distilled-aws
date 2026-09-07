@@ -1,0 +1,123 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.blocks#ValidateBlockRequestBlocksCase1ItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.blocks#ValidateBlockRequestBlocksCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.blocks#ValidateBlockRequestBlocksCase1ItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.blocks#ValidateBlockRequestBlocks": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.slack.blocks#ValidateBlockRequestBlocksCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A JSON-encoded array of [structured blocks](/reference/block-kit/blocks). Provide exactly one of `blocks`, `view`, or `message`."
+      }
+    },
+    "com.slack.blocks#ValidateBlockRequest": {
+      "type": "structure",
+      "members": {
+        "blocks": {
+          "target": "com.slack.blocks#ValidateBlockRequestBlocks",
+          "traits": {
+            "smithy.api#documentation": "A JSON-encoded array of [structured blocks](/reference/block-kit/blocks). Provide exactly one of `blocks`, `view`, or `message`."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A JSON-encoded [message payload](/messaging/creating-interactive-messages) to validate. Provide exactly one of `blocks`, `view`, or `message`."
+          }
+        },
+        "view": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A JSON-encoded [view payload](/reference/views) to validate. Provide exactly one of `blocks`, `view`, or `message`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.blocks#ValidateBlockResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.blocks#ValidateBlock": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.blocks#ValidateBlockRequest"
+      },
+      "output": {
+        "target": "com.slack.blocks#ValidateBlockResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/blocks.validate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Validates blocks, messages, and views Block Kit JSON payloads.\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `invalid_arguments` — The request arguments are invalid. Ensure you provide exactly one of `blocks`, `view`, or `message`, and that the value is valid JSON. Consult `response_metadata.messages` for details.\n  - `invalid_blocks` — The blocks array failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value.\n  - `invalid_view` — The view payload failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value.\n  - `invalid_message` — The message payload failed validation. The `errors` field contains a list of issues, each with a JSON pointer path to the invalid element, the constraint that failed, and the expected value.\n  - `ratelimited` — Too many requests. Reduce your request rate and retry after a brief wait.\n\nSee https://docs.slack.dev/reference/methods/blocks.validate"
+      }
+    },
+    "com.slack.blocks#Blocks": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.blocks#ValidateBlock"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — blocks"
+      }
+    }
+  }
+}

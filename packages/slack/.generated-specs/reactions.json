@@ -1,0 +1,408 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.reactions#AddReactionRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel where the message to add reaction to was posted.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reaction (emoji) name",
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to add reaction to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reactions#AddReactionResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reactions#AddReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reactions#AddReactionRequest"
+      },
+      "output": {
+        "target": "com.slack.reactions#AddReactionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/reactions.add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adds a reaction to an item.\n\nRequired scopes — bot: `reactions:write`; user: `reactions:write`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `already_reacted` — The specified item already has the user/reaction combination.\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Value passed for `channel` is invalid.\n  - `external_channel_migrating` — The channel is in the process of being migrated.\n  - `invalid_name` — Value passed for `name` was invalid.\n  - `is_archived` — Channel specified has been archived.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — combination of `channel` and `timestamp` was not specified.\n  - `not_reactable` — Whatever you passed in, like a `file` or `file_comment`, can't be reacted to anymore. Your app can react to messages though.\n  - `thread_locked` — Reactions are disabled as the specified message is part of a locked thread.\n  - `too_many_emoji` — The limit for distinct reactions (i.e emoji) on the item has been reached.\n  - `too_many_reactions` — The limit for reactions a person may add to the item has been reached.\n  - `no_access` — User does not have access to react to this canvas.\n\nSee https://docs.slack.dev/reference/methods/reactions.add"
+      }
+    },
+    "com.slack.reactions#GetReactionRequest": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "channel",
+            "smithy.api#documentation": "Channel where the message to get reactions for was posted."
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "file",
+            "smithy.api#documentation": "File to get reactions for."
+          }
+        },
+        "file_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "file_comment",
+            "smithy.api#documentation": "File comment to get reactions for."
+          }
+        },
+        "full": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "full",
+            "smithy.api#documentation": "If true always return the complete reaction list."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timestamp",
+            "smithy.api#documentation": "Timestamp of the message to get reactions for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reactions#GetReactionResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "comment": {
+          "target": "smithy.api#Document"
+        },
+        "message": {
+          "target": "smithy.api#Document"
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String"
+        },
+        "file": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reactions#GetReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reactions#GetReactionRequest"
+      },
+      "output": {
+        "target": "com.slack.reactions#GetReactionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/reactions.get",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets reactions for an item.\n\nRequired scopes — bot: `reactions:read`; user: `reactions:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — Value passed for `channel` was invalid.\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `file_not_found` — File specified by `file` does not exist.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — `file`, `file_comment`, or combination of `channel` and `timestamp` was not specified.\n\nSee https://docs.slack.dev/reference/methods/reactions.get"
+      }
+    },
+    "com.slack.reactions#ListReactionsRequest": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "Show reactions made by this user. Defaults to the authed user."
+          }
+        },
+        "full": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "full",
+            "smithy.api#documentation": "If true always return the complete reaction list."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "count"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor",
+            "smithy.api#documentation": "Parameter for pagination. Set `cursor` equal to the `next_cursor` attribute returned by the previous request's `response_metadata`. This parameter is optional, but pagination is mandatory: the default value simply fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more details."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the list hasn't been reached."
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "encoded team id to list reactions in, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reactions#ListReactionsResponseItemsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.reactions#ListReactionsResponseItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.slack.reactions#ListReactionsResponseItemsItemMap"
+      },
+      "traits": {}
+    },
+    "com.slack.reactions#ListReactionsResponseResponseMetadata": {
+      "type": "structure",
+      "members": {
+        "next_cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for the next page — pass as `cursor` on the next call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+      }
+    },
+    "com.slack.reactions#ListReactionsResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.slack.reactions#ListReactionsResponseItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paging": {
+          "target": "smithy.api#Document"
+        },
+        "response_metadata": {
+          "target": "com.slack.reactions#ListReactionsResponseResponseMetadata",
+          "traits": {
+            "smithy.api#documentation": "Pagination metadata. An empty `next_cursor` means the last page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reactions#ListReactions": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reactions#ListReactionsRequest"
+      },
+      "output": {
+        "target": "com.slack.reactions#ListReactionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/reactions.list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists reactions made by a user.\n\nRequired scopes — bot: `reactions:read`; user: `reactions:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `user_not_found` — Value passed for `user` was invalid.\n\nSee https://docs.slack.dev/reference/methods/reactions.list",
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "response_metadata.next_cursor",
+          "items": "items",
+          "pageSize": "limit"
+        }
+      }
+    },
+    "com.slack.reactions#RemoveReactionRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reaction (emoji) name.",
+            "smithy.api#required": {}
+          }
+        },
+        "file": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File to remove reaction from."
+          }
+        },
+        "file_comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File comment to remove reaction from."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Channel where the message to remove reaction from was posted."
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the message to remove reaction from."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.reactions#RemoveReactionResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.reactions#RemoveReaction": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.reactions#RemoveReactionRequest"
+      },
+      "output": {
+        "target": "com.slack.reactions#RemoveReactionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/reactions.remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes a reaction from an item.\n\nRequired scopes — bot: `reactions:write`; user: `reactions:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_timestamp` — Value passed for `timestamp` was invalid.\n  - `channel_not_found` — The specified channel was not found.\n  - `external_channel_migrating` — The reaction is in a channel that is being migrated\n  - `file_not_found` — File specified by `file` does not exist.\n  - `file_comment_not_found` — File comment specified by `file_comment` does not exist.\n  - `invalid_name` — Value passed for `name` was invalid.\n  - `message_not_found` — Message specified by `channel` and `timestamp` does not exist.\n  - `no_item_specified` — `file`, `file_comment`, or combination of `channel` and `timestamp` was not specified.\n  - `no_access` — The requestor does not have permission to perform this action on the specified item.\n  - `no_reaction` — The specified reaction does not exist, or the requestor is not the original reaction author.\n  - `thread_locked` — Reactions are disabled as the specified message is part of a locked thread.\n\nSee https://docs.slack.dev/reference/methods/reactions.remove"
+      }
+    },
+    "com.slack.reactions#Reactions": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.reactions#AddReaction"
+        },
+        {
+          "target": "com.slack.reactions#GetReaction"
+        },
+        {
+          "target": "com.slack.reactions#ListReactions"
+        },
+        {
+          "target": "com.slack.reactions#RemoveReaction"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — reactions"
+      }
+    }
+  }
+}

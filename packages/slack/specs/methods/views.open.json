@@ -1,0 +1,110 @@
+{
+  "desc": "Open a view for a user.",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "no_scope_required": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "view"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "trigger_id": {
+        "subtype": "app_trigger_id",
+        "desc": "Exchange a trigger to post to the user.",
+        "example": "12345.98765.abcd2358fdea",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "interactivity_pointer": {
+        "subtype": "app_trigger_id",
+        "desc": "Exchange an interactivity pointer to post to the user.",
+        "example": "12345.98765.abcd2358fdea",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "view": {
+        "desc": "A [view payload](/reference/views). This must be a JSON-encoded string.",
+        "allOf": [
+          {
+            "type": "object",
+            "coerce": true
+          },
+          {
+            "anyOf": [
+              {
+                "schema": "modal"
+              },
+              {
+                "schema": "workflow-step"
+              },
+              {
+                "schema": "app-notification-subscription-configuration"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "view"
+    ],
+    "properties": {
+      "view": {
+        "disableShapeUnification": true,
+        "anyOf": [
+          {
+            "schema": "modal"
+          },
+          {
+            "schema": "workflow-step"
+          },
+          {
+            "schema": "app-notification-subscription-configuration"
+          }
+        ]
+      }
+    }
+  },
+  "errors": {
+    "duplicate_external_id": {
+      "desc": "Error returned when the given `external_id` has already be used."
+    },
+    "exchanged_trigger_id": {
+      "desc": "The trigger_id was already exchanged in a previous call."
+    },
+    "expired_trigger_id": {
+      "desc": "The trigger_id is expired."
+    },
+    "invalid_trigger_id": {
+      "desc": "The trigger_id is invalid. The expected format for the trigger_id argument is \"132456.7890123.abcdef\"."
+    },
+    "view_too_large": {
+      "desc": "Error returned if the provided view is greater than 250kb."
+    }
+  }
+}

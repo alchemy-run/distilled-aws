@@ -1,0 +1,60 @@
+{
+  "desc": "Retrieve a user's profile information, including their custom status.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "users.profile:read"
+    ],
+    "user": [
+      "users.profile:read"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "include_labels": {
+        "default": "false",
+        "desc": "Include labels for each ID in custom profile fields. Using this parameter will heavily rate-limit your requests and is not recommended.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "user": {
+        "desc": "User to retrieve profile info for",
+        "type": "string",
+        "subtype": "user"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "profile"
+    ],
+    "properties": {
+      "profile": {
+        "schema": "user_profile"
+      }
+    }
+  },
+  "errors": {
+    "user_not_found": {
+      "desc": "Value passed for `user` was invalid."
+    },
+    "token_revoked": {
+      "desc": "The token being used is not valid."
+    },
+    "ratelimited": {
+      "desc": "You are attempting to call this method too frequently."
+    }
+  }
+}

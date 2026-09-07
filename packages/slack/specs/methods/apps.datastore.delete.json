@@ -1,0 +1,72 @@
+{
+  "desc": "Delete an item from a datastore",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "datastore:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "datastore",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "datastore": {
+        "desc": "name of the datastore",
+        "type": "string"
+      },
+      "id": {
+        "desc": "item id",
+        "type": "string",
+        "minLength": 1
+      },
+      "app_id": {
+        "schema": "app_id"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "invalid_arguments": {
+      "desc": "The request is missing required arguments."
+    },
+    "invalid_datastore": {
+      "desc": "The provided datastore is invalid."
+    },
+    "invalid_auth": {
+      "desc": "Not authorized to delete datastore items."
+    },
+    "app_not_hosted": {
+      "desc": "The app developer is not using a Slack-hosted environment. App datastores are exclusively available for Slack-hosted apps."
+    },
+    "datastore_error": {
+      "desc": "Datastore error"
+    },
+    "access_denied": {
+      "desc": "Not authorized to access the datastore."
+    },
+    "invalid_app_id": {
+      "desc": "The app_id provided is not valid for team and user."
+    },
+    "free_team_not_allowed": {
+      "desc": "Datastore delete not allowed on a free team."
+    },
+    "datastore_migration_in_progress": {
+      "desc": "The datastore is currently unavailable due to an in progress Enterprise org migration."
+    },
+    "restricted_plan_level": {
+      "desc": "Feature is not available on this team"
+    }
+  }
+}

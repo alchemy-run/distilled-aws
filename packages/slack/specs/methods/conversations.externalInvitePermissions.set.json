@@ -1,0 +1,75 @@
+{
+  "desc": "Upgrade or downgrade Slack Connect channel permissions between 'can post only' and 'can post and invite'.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "target_team",
+      "action"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "The channel ID to change external invite permissions for",
+        "example": "C123456",
+        "subtype": "channel",
+        "schema": "channel_id"
+      },
+      "target_team": {
+        "desc": "The encoded team ID of the target team.  Must be in the specified channel.",
+        "example": "T726G27TT",
+        "schema": "team_id"
+      },
+      "action": {
+        "desc": "Type of action to be taken: upgrade or downgrade",
+        "example": "upgrade",
+        "enum": [
+          "upgrade",
+          "downgrade"
+        ],
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Cannot find channel"
+    },
+    "not_supported": {
+      "desc": "Attempting to upgrade a channel that cannot be upgraded"
+    },
+    "restricted_action": {
+      "desc": "A team preference prevents the user from taking this action."
+    },
+    "invalid_target_team": {
+      "desc": "The target team provided is not valid for the channel."
+    },
+    "invalid_action": {
+      "desc": "The user did not provid a valid action. Valid actions are 'upgrade' or 'downgrade'."
+    }
+  }
+}

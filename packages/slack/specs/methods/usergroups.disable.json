@@ -1,0 +1,72 @@
+{
+  "desc": "Disable an existing User Group.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "usergroups:write"
+    ],
+    "user": [
+      "usergroups:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "usergroup"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "include_count": {
+        "desc": "Include the number of users in the User Group.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "team_id": {
+        "desc": "Encoded target team id where the user group is, required if org token is used.",
+        "subtype": "team",
+        "schema": "workspace_id"
+      },
+      "usergroup": {
+        "desc": "The encoded ID of the User Group to disable.",
+        "example": "S0604QSJC",
+        "schema": "subteam_id"
+      }
+    }
+  },
+  "output": {
+    "required": [
+      "usergroup"
+    ],
+    "type": "object",
+    "properties": {
+      "usergroup": {
+        "schema": "subteam"
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "permission_denied": {
+      "desc": "The user does not have permission to disable the User Group."
+    },
+    "plan_upgrade_required": {
+      "desc": "This workspace does not have access to User Groups, as that feature is only available on Standard and above plans."
+    },
+    "target_team_not_on_org": {
+      "desc": "Target team specified is not on the org in context"
+    },
+    "target_team_must_be_specified_in_org_context": {
+      "desc": "No target team was specified but the team in context is an org"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "desc": "List the channels linked to an org-level IDP group (user group).",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.usergroups:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "usergroup_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "usergroup_id": {
+        "desc": "ID of the IDP group to list default channels for.",
+        "example": "S00000000",
+        "schema": "subteam_id"
+      },
+      "team_id": {
+        "desc": "ID of the the workspace.",
+        "type": "string",
+        "example": "T00000000",
+        "schema": "workspace_id"
+      },
+      "include_num_members": {
+        "desc": "Flag to include or exclude the count of members per channel.",
+        "type": "boolean",
+        "example": "true"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channels"
+    ],
+    "properties": {
+      "channels": {
+        "type": "array",
+        "items": {
+          "schema": "channel"
+        }
+      },
+      "error": {
+        "type": "string",
+        "desc": "A string representation of the error type"
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this workspace."
+    },
+    "invalid_auth": {
+      "desc": "The workspace specified is not part of this Enterprise organization."
+    },
+    "invalid_user": {
+      "desc": "The calling user is not valid."
+    },
+    "not_allowed": {
+      "desc": "The calling user is not an admin or does not have necessary role"
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an Org Admin or Owner."
+    },
+    "not_an_enterprise": {
+      "desc": "The token passed in does not belong to an Enterprise organization."
+    },
+    "team_not_found": {
+      "desc": "The workspace was not found."
+    },
+    "usergroup_not_found": {
+      "desc": "The IDP group provided was not found."
+    },
+    "usergroup_not_linked_to_team": {
+      "desc": "The IDP group provided is not linked to the specified workspace."
+    }
+  }
+}

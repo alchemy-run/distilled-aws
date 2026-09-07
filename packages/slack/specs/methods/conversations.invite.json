@@ -1,0 +1,127 @@
+{
+  "desc": "Invites users to a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "channels:write.invites",
+      "groups:write.invites",
+      "channels:manage",
+      "groups:write",
+      "im:write",
+      "mpim:write"
+    ],
+    "user": [
+      "channels:write.invites",
+      "groups:write.invites",
+      "channels:write",
+      "groups:write",
+      "im:write",
+      "mpim:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "users"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "The ID of the public or private channel to invite user(s) to.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "force": {
+        "desc": "When set to `true` and multiple user IDs are provided, continue inviting the valid ones while disregarding invalid IDs. Defaults to `false`.",
+        "example": "true",
+        "default": "false",
+        "type": "boolean"
+      },
+      "users": {
+        "desc": "A comma separated list of user IDs. Up to 100 users may be listed.",
+        "type": "string",
+        "subtype": "users"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "channel": {
+        "schema": "conversation"
+      },
+      "group": {
+        "schema": "conversation"
+      },
+      "errors": {
+        "type": "array"
+      }
+    }
+  },
+  "errors": {
+    "already_in_channel": {
+      "desc": "Invited user is already in the channel."
+    },
+    "app_cannot_join_channel": {
+      "desc": "This app cannot be invited to this channel."
+    },
+    "cant_invite": {
+      "desc": "User cannot be invited to this channel."
+    },
+    "cant_invite_self": {
+      "desc": "Authenticated user cannot invite themselves to a channel."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "invitee_cant_see_channel": {
+      "desc": "The Enterprise org multi-workspace channel you are inviting a user to is not shared with any workspaces the user is currently a member of."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "org_user_not_in_team": {
+      "desc": "One or more members invited are part of the Enterprise organization but not the specific workspace you're interfacing with."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "no_permission": {
+      "desc": "User does not have permission to invite that specific user to the channel"
+    },
+    "no_external_invite_permission": {
+      "desc": "User does not have permission to invite that external user to the channel"
+    },
+    "no_user": {
+      "desc": "No value was passed for `users`."
+    },
+    "not_in_channel": {
+      "desc": "Authenticated user is not in the channel."
+    },
+    "ura_max_channels": {
+      "desc": "An invited user is a single-channel guest user ('ultra restricted access') that is already in the maximum number of conversations."
+    },
+    "user_is_restricted": {
+      "desc": "An invited user is a guest user that is restricted from accessing this conversation."
+    },
+    "user_not_found": {
+      "desc": "Value passed for `users` was invalid."
+    },
+    "external_channel_migrating": {
+      "desc": "External channel migrating."
+    }
+  }
+}

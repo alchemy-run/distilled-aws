@@ -1,0 +1,126 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.tooling#RotateTokenRequest": {
+      "type": "structure",
+      "members": {
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `xoxe` refresh token that was issued along with the old app configuration token.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.tooling#RotateTokenResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The app configuration token used to access App Manifest APIs",
+            "smithy.api#required": {}
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refresh token for this credential",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team associated with the access token.",
+            "smithy.api#required": {}
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the user associated with the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "exp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Expiration time (exp) identifies the expiration time on or after which the token must not be accepted for processing.",
+            "smithy.api#required": {}
+          }
+        },
+        "iat": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Issued at (iat) identifies the time at which the token was issued.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.tooling#RotateToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.tooling#RotateTokenRequest"
+      },
+      "output": {
+        "target": "com.slack.tooling#RotateTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/tooling.tokens.rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exchanges a refresh token for a new app configuration token.\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `internal_error` — Internal error\n  - `invalid_refresh_token` — The given refresh token is invalid.\n  - `unknown_error` — Temporary error for dev only restriction\n\nSee https://docs.slack.dev/reference/methods/tooling.tokens.rotate",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.tooling#Tooling": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.tooling#RotateToken"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — tooling"
+      }
+    }
+  }
+}

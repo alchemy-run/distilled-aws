@@ -1,0 +1,52 @@
+{
+  "desc": "Disconnect an external organization.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "conversations.connect:manage"
+    ]
+  },
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "target_team"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "target_team": {
+        "desc": "The team ID of the target team.",
+        "example": "T726G27TT",
+        "schema": "team_id"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "job_enqueued"
+    ],
+    "properties": {
+      "job_enqueued": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "missing_argument": {
+      "desc": "A required argument is missing."
+    },
+    "restricted_action": {
+      "desc": "The actor is restricted from archiving or disconnecting."
+    },
+    "invalid_target_team": {
+      "desc": "target team is invalid"
+    }
+  }
+}

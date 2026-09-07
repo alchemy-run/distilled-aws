@@ -1,0 +1,212 @@
+{
+  "desc": "Fetches a conversation's history of messages and events.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "groups:history",
+      "im:history",
+      "mpim:history",
+      "channels:history"
+    ],
+    "user": [
+      "groups:history",
+      "im:history",
+      "mpim:history",
+      "channels:history"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Conversation ID to fetch history for.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "cursor": {
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. Default value fetches the first \"page\" of the collection. See [pagination](/apis/web-api/pagination) for more detail.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "include_all_metadata": {
+        "default": 0,
+        "desc": "Return all metadata associated with this message.",
+        "type": "boolean",
+        "example": "true"
+      },
+      "inclusive": {
+        "default": 0,
+        "desc": "Include messages with `oldest` or `latest` timestamps in results. Ignored unless either timestamp is specified.",
+        "example": "true",
+        "type": "boolean"
+      },
+      "latest": {
+        "desc": "Only messages before this Unix timestamp will be included in results. Default is the current time.",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "limit": {
+        "default": "100",
+        "desc": "The maximum number of items to return. Fewer than the requested number of items may be returned, even if the end of the conversation history hasn't been reached. Maximum of 999.",
+        "example": "20",
+        "type": "number"
+      },
+      "oldest": {
+        "default": "0",
+        "desc": "Only messages after this Unix timestamp will be included in results.",
+        "type": "string",
+        "subtype": "timestamp"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "messages",
+      "has_more",
+      "channel_actions_ts",
+      "channel_actions_count"
+    ],
+    "properties": {
+      "messages": {
+        "type": "array",
+        "minItems": 0,
+        "items": {
+          "schema": "message"
+        }
+      },
+      "has_more": {
+        "type": "boolean"
+      },
+      "pin_count": {
+        "type": "integer"
+      },
+      "channel_actions_ts": {
+        "oneOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "channel_actions_count": {
+        "type": "integer"
+      },
+      "response_metadata": {
+        "required": [
+          "next_cursor"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "oldest": {
+        "type": "string"
+      },
+      "is_limited": {
+        "type": "boolean"
+      },
+      "latest": {
+        "type": "string"
+      },
+      "unread_count_display": {
+        "type": "integer"
+      },
+      "users": {
+        "type": "object"
+      },
+      "deleted": {
+        "type": "array",
+        "items": {
+          "schema": "ts"
+        }
+      },
+      "mutation_timestamps": {
+        "type": "object",
+        "required": [
+          "latest",
+          "updated",
+          "history_invalid"
+        ],
+        "properties": {
+          "latest": {
+            "schema": "ts"
+          },
+          "updated": {
+            "schema": "ts"
+          },
+          "history_invalid": {
+            "schema": "ts"
+          }
+        }
+      },
+      "deleted_overflow": {
+        "type": "boolean"
+      },
+      "warnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "next_ts": {
+        "type": "integer"
+      },
+      "latest_updates": {
+        "type": "object"
+      },
+      "unchanged_messages": {
+        "type": "array",
+        "items": {
+          "schema": "ts"
+        },
+        "date_joined": {
+          "type": "integer",
+          "desc": "Unix timestamp of when the user joined the channel",
+          "example": "1562002086"
+        }
+      }
+    }
+  },
+  "errors": {
+    "channel_is_limited_access": {
+      "desc": "The user has no access to the channel. This is only applicable to private Salesforce record channels."
+    },
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "invalid_metadata_filter_keys": {
+      "desc": "Value passed for `metadata_keys_to_include` was invalid. Must be valid json array of strings."
+    },
+    "invalid_ts_latest": {
+      "desc": "Value passed for `latest` was invalid"
+    },
+    "invalid_ts_oldest": {
+      "desc": "Value passed for `oldest` was invalid"
+    },
+    "not_in_channel": {
+      "desc": "The token used does not have access to the proper channel. Only user tokens can access public channels they are not in."
+    }
+  }
+}

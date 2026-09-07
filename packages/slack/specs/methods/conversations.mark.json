@@ -1,0 +1,65 @@
+{
+  "desc": "Sets the read cursor in a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write",
+      "channels:manage"
+    ],
+    "user": [
+      "groups:write",
+      "im:write",
+      "mpim:write",
+      "channels:write"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "ts"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel or conversation to set the read cursor for.",
+        "type": "string",
+        "subtype": "channel",
+        "example": "C012345678"
+      },
+      "ts": {
+        "desc": "Unique identifier of message you want marked as most recently seen in this conversation.",
+        "type": "string",
+        "subtype": "timestamp",
+        "example": "1593473566.000200"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "properties": {}
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "invalid_timestamp": {
+      "desc": "Value passed for `timestamp` was invalid."
+    },
+    "not_in_channel": {
+      "desc": "Caller is not a member of the channel."
+    }
+  }
+}

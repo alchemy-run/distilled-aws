@@ -1,0 +1,151 @@
+{
+  "desc": "Get conversation preferences for a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to get preferences for.",
+        "example": "C12345",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      },
+      "prefs": {
+        "type": "object",
+        "properties": {
+          "who_can_post": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "desc": "Comma separated string of user types",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": "admin,owner"
+              },
+              "user": {
+                "desc": "Comma separated string of user IDs",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": "U1234,U5678"
+              }
+            }
+          },
+          "can_thread": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "desc": "Comma separated string of user types",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": "admin,owner"
+              },
+              "user": {
+                "desc": "Comma separated string of user IDs",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "example": "U1234,U5678"
+              }
+            }
+          },
+          "membership_limit": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "desc": "Membership limit value",
+                "type": "integer"
+              }
+            }
+          },
+          "can_huddle": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "desc": "Can start a huddle",
+                "type": "boolean"
+              }
+            }
+          },
+          "enable_at_channel": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "desc": "Enable channel mentions in channel.",
+                "type": "boolean"
+              }
+            }
+          },
+          "enable_at_here": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "desc": "Enable here mentions in channel.",
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The value passed for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The provided `channel_id` was a DM, MPDM, or the 'general' channel."
+    },
+    "could_not_get_conversation_prefs": {
+      "desc": "There was an error getting the conversation preferences for this channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided does not have access to this method."
+    },
+    "missing_scope": {
+      "desc": "The token provided doesn't have the required scopes."
+    },
+    "not_an_admin": {
+      "desc": "The token provided is not associated with an Org Admin or Owner."
+    },
+    "not_an_enterprise": {
+      "desc": "This endpoint can only be called by an Enterprise organization."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from listing preferences."
+    }
+  }
+}

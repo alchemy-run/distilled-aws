@@ -1,0 +1,132 @@
+{
+  "desc": "Uploads or creates a file.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "files:write"
+    ],
+    "user": [
+      "files:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channels": {
+        "desc": "Comma-separated list of channel names or IDs where the file will be shared.",
+        "type": "string",
+        "subtype": "channels"
+      },
+      "content": {
+        "desc": "File contents via a POST variable. If omitting this parameter, you must provide a `file`.",
+        "example": "...",
+        "type": "string"
+      },
+      "file": {
+        "desc": "File contents via `multipart/form-data`. If omitting this parameter, you must submit `content`.",
+        "example": "...",
+        "schema": "post_file"
+      },
+      "filename": {
+        "desc": "Filename of file.",
+        "example": "foo.txt",
+        "type": "string"
+      },
+      "filetype": {
+        "desc": "A [file type](/reference/objects/file-object#file_types) identifier.",
+        "example": "php",
+        "type": "string"
+      },
+      "initial_comment": {
+        "desc": "The message text introducing the file in specified `channels`.",
+        "example": "Best!",
+        "type": "string"
+      },
+      "thread_ts": {
+        "desc": "Provide another message's `ts` value to upload this file as a reply. Never use a reply's `ts` value; use its parent instead.",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "title": {
+        "desc": "Title of file.",
+        "example": "My File",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "file"
+    ],
+    "properties": {
+      "file": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "created": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "warnings": {
+    "method_deprecated": {
+      "desc": "`files.upload` is deprecated. Please use modern upload methods. Read https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay for more info."
+    }
+  },
+  "errors": {
+    "blocked_file_type": {
+      "desc": "Admin has disabled uploading this type of file"
+    },
+    "channel_not_found": {
+      "desc": "At least one of the values passed for `channels` was invalid."
+    },
+    "invalid_channel": {
+      "desc": "One or more channels supplied are invalid"
+    },
+    "malware_detected": {
+      "desc": "This file may contain a virus or other malware and can't be uploaded to Slack"
+    },
+    "not_in_channel": {
+      "desc": "Authenticated user is not in the channel."
+    },
+    "post_contents_too_large": {
+      "desc": "File content is larger than 130kb."
+    },
+    "posting_to_general_channel_denied": {
+      "desc": "An admin has restricted posting to the #general channel."
+    },
+    "slack_connect_blocked_file_type": {
+      "desc": "File uploads with certain types are blocked in all Slack Connect communications"
+    },
+    "slack_connect_clip_sharing_blocked": {
+      "desc": "Admin has disabled Clip sharing in Slack Connect channels"
+    },
+    "slack_connect_file_upload_sharing_blocked": {
+      "desc": "Admin has disabled File uploads in all Slack Connect communications"
+    },
+    "invalid_thread_ts": {
+      "desc": "Value passed to thread_ts was invalid"
+    },
+    "method_deprecated": {
+      "desc": "This API is deprecated. Please refer to https://docs.slack.dev/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay"
+    }
+  }
+}

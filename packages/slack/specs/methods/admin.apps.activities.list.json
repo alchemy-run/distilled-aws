@@ -1,0 +1,140 @@
+{
+  "desc": "Get logs for a specified team/org",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.app_activities:read"
+    ]
+  },
+  "json_input_supported": false,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_id": {
+        "example": "A12345",
+        "desc": "The ID of the app to get activities from.",
+        "schema": "app_id"
+      },
+      "team_id": {
+        "type": "string",
+        "example": "T12345",
+        "desc": "The team who owns this log."
+      },
+      "cursor": {
+        "desc": "Paginate through collections of data by setting the `cursor` parameter to a `next_cursor` attribute returned by a previous request's `response_metadata`. See [pagination](/apis/web-api/pagination) for more detail.",
+        "example": "bG9nX2lkOjc5NjQ1NA==",
+        "type": "string"
+      },
+      "limit": {
+        "desc": "The maximum number of items to return.",
+        "example": "100",
+        "type": "integer"
+      },
+      "min_log_level": {
+        "desc": "The minimum log level of the log events to be returned. Defaults to `info`. Acceptable values (in order of relative importance from smallest to largest) are `trace`, `debug`, `info`, `warn`, `error` and `fatal`.",
+        "example": "info",
+        "type": "string"
+      },
+      "log_event_type": {
+        "desc": "The event type of log events to be returned.",
+        "example": "test_log_event",
+        "type": "string"
+      },
+      "source": {
+        "desc": "The source of log events to be returned. Acceptable values are `slack` and `developer`.",
+        "example": "slack",
+        "type": "string"
+      },
+      "component_type": {
+        "desc": "The component type of log events to be returned. Acceptable values are `events_api`, `workflows`, `functions` and `tables`.",
+        "example": "workflows",
+        "type": "string"
+      },
+      "component_id": {
+        "desc": "The component ID of log events to be returned. Will be `FnXXXXXX` for functions, and `WfXXXXXX` for workflows",
+        "example": "Wf013SMGL4V9",
+        "type": "string"
+      },
+      "trace_id": {
+        "desc": "The trace ID of log events to be returned.",
+        "example": "Tr432f2",
+        "type": "string"
+      },
+      "min_date_created": {
+        "desc": "The earliest timestamp of the log to retrieve (epoch microseconds).",
+        "example": "1646665572336251",
+        "type": "integer"
+      },
+      "max_date_created": {
+        "desc": "The latest timestamp of the log to retrieve (epoch microseconds).",
+        "example": "1646665572336299",
+        "type": "integer"
+      },
+      "sort_direction": {
+        "desc": "The direction you want the data sorted by (always by timestamp)",
+        "type": "string",
+        "example": "asc",
+        "enum": [
+          "asc",
+          "desc"
+        ]
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "activities"
+    ],
+    "properties": {
+      "activities": {
+        "items": {
+          "schema": "activity"
+        },
+        "type": "array"
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "internal_error": {
+      "desc": "Something went wrong on our end, please try again."
+    },
+    "invalid_app_id": {
+      "desc": "App ID provided is not valid."
+    },
+    "invalid_app": {
+      "desc": "App ID provided is not valid for team and user."
+    },
+    "invalid_args": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "invalid_team": {
+      "desc": "Team ID provided is not valid"
+    }
+  }
+}

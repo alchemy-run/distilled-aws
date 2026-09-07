@@ -1,0 +1,149 @@
+{
+  "desc": "Search workflows within the team or enterprise",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.workflows:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "query": {
+        "type": "string",
+        "desc": "A search query to filter for workflow name or description",
+        "example": "Time off"
+      },
+      "app_id": {
+        "desc": "The parent app ID for which to return workflows",
+        "example": "A12345",
+        "schema": "app_id"
+      },
+      "cursor": {
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "limit": {
+        "desc": "The number of results that will be returned by the API on each invocation",
+        "example": "20",
+        "type": "integer",
+        "default": 20,
+        "minimum": 1,
+        "maximum": 50
+      },
+      "no_collaborators": {
+        "desc": "Only include workflows with no collaborators in the result; default is false",
+        "type": "boolean",
+        "default": false
+      },
+      "collaborator_ids": {
+        "desc": "Only include workflows where all of the provided user IDs are a manager/collaborator of that workflow",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "num_trigger_ids": {
+        "desc": "Number of trigger IDs to fetch for each workflow; default is 10",
+        "type": "integer",
+        "default": 10,
+        "maximum": 100
+      },
+      "is_sales_elevate": {
+        "type": "boolean",
+        "desc": "Filter workflows by their Sales Elevate status"
+      },
+      "source": {
+        "desc": "Source of workflow creation, either from code or workflow builder",
+        "type": "string",
+        "enum": [
+          "code",
+          "workflow_builder",
+          "sales_home",
+          "agent"
+        ]
+      },
+      "sort": {
+        "desc": "The field used to sort the returned workflows",
+        "type": "string",
+        "default": "name",
+        "enum": [
+          "name"
+        ]
+      },
+      "sort_dir": {
+        "desc": "Sort direction. Possible values are `asc` for ascending order like (1, 2, 3) or (a, b, c), and `desc` for descending order like (3, 2, 1) or (c, b, a)",
+        "type": "string",
+        "default": "desc",
+        "enum": [
+          "asc",
+          "desc"
+        ]
+      },
+      "trigger_type_id": {
+        "desc": "Only include workflows with this trigger type",
+        "type": "string",
+        "schema": "function_trigger_type_id"
+      },
+      "publish_status": {
+        "desc": "Filter workflows by their published status",
+        "type": "string",
+        "enum": [
+          "all",
+          "published",
+          "unpublished"
+        ],
+        "default": "published"
+      },
+      "step_function_ids": {
+        "desc": "Only include workflows that use all of the provided step function ids",
+        "type": "array",
+        "items": {
+          "schema": "function_id"
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "workflows",
+      "total_found"
+    ],
+    "properties": {
+      "workflows": {
+        "type": "array",
+        "items": {
+          "schema": "workflow-with-trigger-ids"
+        }
+      },
+      "response_metadata": {
+        "schema": "response_metadata_new"
+      },
+      "total_found": {
+        "type": "integer",
+        "desc": "The total number of workflows that match this search criteria"
+      }
+    }
+  },
+  "errors": {
+    "invalid_cursor": {
+      "desc": "Value passed for `cursor` was not valid or is no longer valid."
+    },
+    "not_allowed": {
+      "desc": "The user is not allowed to access this API method."
+    }
+  }
+}

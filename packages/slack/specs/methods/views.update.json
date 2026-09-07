@@ -1,0 +1,67 @@
+{
+  "desc": "Update an existing view.",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "no_scope_required": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "view"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "view_id": {
+        "type": "string",
+        "desc": "A unique identifier of the view to be updated. Either `view_id` or `external_id` is required.",
+        "example": "VMM512F2U"
+      },
+      "external_id": {
+        "type": "string",
+        "desc": "A unique identifier of the view set by the developer. Must be unique for all views on a team. Max length of 255 characters. Either `view_id` or `external_id` is required.",
+        "example": "bmarley_view2"
+      },
+      "view": {
+        "desc": "A [view object](/reference/views). This must be a JSON-encoded string.",
+        "schema": "view"
+      },
+      "hash": {
+        "type": "string",
+        "desc": "A string that represents view state to protect against possible race conditions.",
+        "example": "156772938.1827394"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "view"
+    ],
+    "properties": {
+      "view": {
+        "schema": "view"
+      }
+    }
+  },
+  "errors": {
+    "duplicate_external_id": {
+      "desc": "Error returned when the given `external_id` has already be used."
+    },
+    "hash_conflict": {
+      "desc": "Error returned when the provided `hash` doesn't match the current stored value."
+    },
+    "not_found": {
+      "desc": "Error returned when the given `view_id` or `external_id` doesn't exist."
+    },
+    "view_too_large": {
+      "desc": "Error returned if the provided view is greater than 250kb."
+    }
+  }
+}

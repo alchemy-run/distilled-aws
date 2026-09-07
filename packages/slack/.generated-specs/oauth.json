@@ -1,0 +1,1087 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.oauth#OauthAccessRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme."
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `code` param returned via the OAuth callback."
+          }
+        },
+        "redirect_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This must match the originally submitted URI (if one was sent)."
+          }
+        },
+        "single_channel": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Request the user to add your app only to a single channel. Only valid with a [legacy workspace app](https://docs.slack.dev/changelog/2021-03-workspace-apps-to-retire-in-august-2021)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.oauth#OauthAccessResponseAuthorizingUser": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#String"
+        },
+        "app_home": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseInstallerUser": {
+      "type": "structure",
+      "members": {
+        "user_id": {
+          "target": "smithy.api#String"
+        },
+        "app_home": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopesAppHomeList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopesTeamList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopesChannelList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopesGroupList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopesMpimList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopesImList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseScopes": {
+      "type": "structure",
+      "members": {
+        "app_home": {
+          "target": "com.slack.oauth#OauthAccessResponseScopesAppHomeList"
+        },
+        "team": {
+          "target": "com.slack.oauth#OauthAccessResponseScopesTeamList"
+        },
+        "channel": {
+          "target": "com.slack.oauth#OauthAccessResponseScopesChannelList"
+        },
+        "group": {
+          "target": "com.slack.oauth#OauthAccessResponseScopesGroupList"
+        },
+        "mpim": {
+          "target": "com.slack.oauth#OauthAccessResponseScopesMpimList"
+        },
+        "im": {
+          "target": "com.slack.oauth#OauthAccessResponseScopesImList"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseBot": {
+      "type": "structure",
+      "members": {
+        "bot_user_id": {
+          "target": "smithy.api#String"
+        },
+        "bot_access_token": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "image_24": {
+          "target": "smithy.api#String"
+        },
+        "image_32": {
+          "target": "smithy.api#String"
+        },
+        "image_48": {
+          "target": "smithy.api#String"
+        },
+        "image_72": {
+          "target": "smithy.api#String"
+        },
+        "image_192": {
+          "target": "smithy.api#String"
+        },
+        "image_512": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "token_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "domain": {
+          "target": "smithy.api#String"
+        },
+        "image_34": {
+          "target": "smithy.api#String"
+        },
+        "image_44": {
+          "target": "smithy.api#String"
+        },
+        "image_68": {
+          "target": "smithy.api#String"
+        },
+        "image_88": {
+          "target": "smithy.api#String"
+        },
+        "image_102": {
+          "target": "smithy.api#String"
+        },
+        "image_132": {
+          "target": "smithy.api#String"
+        },
+        "image_230": {
+          "target": "smithy.api#String"
+        },
+        "image_default": {
+          "target": "smithy.api#Boolean"
+        },
+        "image_original": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponseIncomingWebhook": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String"
+        },
+        "channel_id": {
+          "target": "smithy.api#String"
+        },
+        "configuration_url": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.slack.oauth#OauthAccessResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "token_type": {
+          "target": "smithy.api#String"
+        },
+        "app_id": {
+          "target": "smithy.api#String"
+        },
+        "app_user_id": {
+          "target": "smithy.api#String"
+        },
+        "team_name": {
+          "target": "smithy.api#String"
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "authorizing_user": {
+          "target": "com.slack.oauth#OauthAccessResponseAuthorizingUser"
+        },
+        "installer_user": {
+          "target": "com.slack.oauth#OauthAccessResponseInstallerUser"
+        },
+        "scopes": {
+          "target": "com.slack.oauth#OauthAccessResponseScopes"
+        },
+        "scope": {
+          "target": "smithy.api#String"
+        },
+        "user_id": {
+          "target": "smithy.api#String"
+        },
+        "bot": {
+          "target": "com.slack.oauth#OauthAccessResponseBot"
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer"
+        },
+        "user": {
+          "target": "com.slack.oauth#OauthAccessResponseUser"
+        },
+        "team": {
+          "target": "com.slack.oauth#OauthAccessResponseTeam"
+        },
+        "enterprise_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "incoming_webhook": {
+          "target": "com.slack.oauth#OauthAccessResponseIncomingWebhook"
+        },
+        "single_channel_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.oauth#OauthAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.oauth#OauthAccessRequest"
+      },
+      "output": {
+        "target": "com.slack.oauth#OauthAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth.access",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exchanges a temporary OAuth verifier code for an access token.\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_client_secret` — Value passed for `client_secret` was invalid.\n  - `bad_redirect_uri` — Value passed for `redirect_uri` did not match the `redirect_uri` in the original request.\n  - `code_already_used` — Value passed for `code` was already exchanged.\n  - `internal_error` — Something went wrong during app installation.\n  - `invalid_client_id` — Value passed for `client_id` was invalid.\n  - `invalid_code` — Value passed for `code` was invalid.\n  - `invalid_token` — Invalid refresh token.\n  - `missing_resource` — Missing permission resource.\n  - `ratelimited` — Too many requests made in succession.\n  - `oauth_authorization_url_mismatch` — The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/authorize.\n  - `user_email_unverified` — The users email is unverified\n\nSee https://docs.slack.dev/reference/methods/oauth.access",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.oauth#V2AccessRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme."
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `code` param returned via the OAuth callback."
+          }
+        },
+        "code_verifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The code_verifier param used to generate the code_challenge originally. Used for PKCE."
+          }
+        },
+        "redirect_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This must match the originally submitted URI (if one was sent)."
+          }
+        },
+        "grant_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `grant_type` param as described in the OAuth spec."
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `refresh_token` param as described in the OAuth spec.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "assertion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity assertion JWT authorization grant"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.oauth#V2AccessResponseTokenType": {
+      "type": "enum",
+      "members": {
+        "GRANULAR_BOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "granular_bot"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of access token. Only present if a bot token was requested at the start of the auth flow."
+      }
+    },
+    "com.slack.oauth#V2AccessResponseTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team into which the app is being installed or re-installed.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the team into which the app is being installed or re-installed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the installing user, and the user token if one was requested at the start of the auth flow."
+      }
+    },
+    "com.slack.oauth#V2AccessResponseEnterprise": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the enterprise into which the app is being installed or re-installed.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the enterprise into which the app is being installed or re-installed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the installing team, and the user token if one was requested at the start of the auth flow."
+      }
+    },
+    "com.slack.oauth#V2AccessResponseAuthedUserTokenType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the access token. Only present if a user token was requested at the start of the auth flow."
+      }
+    },
+    "com.slack.oauth#V2AccessResponseAuthedUser": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the installing user. If a user token was requested, this is also the ID of the user to which the user token authenticates.",
+            "smithy.api#required": {}
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A user token. Only presented if requested at the start of the auth flow.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "token_type": {
+          "target": "com.slack.oauth#V2AccessResponseAuthedUserTokenType",
+          "traits": {
+            "smithy.api#documentation": "The type of the access token. Only present if a user token was requested at the start of the auth flow."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of scopes granted to the user token. Only present if a user token was requested at the start of the auth flow."
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time until this credential expires, if it expires at all."
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refresh token for this credential.",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the installing user, and the user token if one was requested at the start of the auth flow."
+      }
+    },
+    "com.slack.oauth#V2AccessResponseIncomingWebhook": {
+      "type": "structure",
+      "members": {
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of channel.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded ID of channel.",
+            "smithy.api#required": {}
+          }
+        },
+        "configuration_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for managing the webhook.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Endpoint for triggering the wehbook.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about a newly-created incoming webhook. Only present if an incoming webhook was requested at the start of the auth flow."
+      }
+    },
+    "com.slack.oauth#V2AccessResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A bot access token. Only present if requested at the start of the auth flow.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "token_type": {
+          "target": "com.slack.oauth#V2AccessResponseTokenType",
+          "traits": {
+            "smithy.api#documentation": "The type of access token. Only present if a bot token was requested at the start of the auth flow."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of scopes granted to the token. Only present if a bot token was requested at the start of the auth flow."
+          }
+        },
+        "bot_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user ID of the bot user corresponding to the token. Only present if a bot token was requested at the start of the auth flow."
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user ID of the bot user corresponding to the token. Only present during a refresh_token grant_type for a user access token."
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the app being installed or re-installed.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_enterprise_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean flag indicating whether the generated token is Enterprise-level token or not."
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time until this credential expires, if it expires at all."
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refresh token for this credential.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "team": {
+          "target": "com.slack.oauth#V2AccessResponseTeam",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enterprise": {
+          "target": "com.slack.oauth#V2AccessResponseEnterprise",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "authed_user": {
+          "target": "com.slack.oauth#V2AccessResponseAuthedUser",
+          "traits": {
+            "smithy.api#documentation": "Details about the installing user, and the user token if one was requested at the start of the auth flow."
+          }
+        },
+        "incoming_webhook": {
+          "target": "com.slack.oauth#V2AccessResponseIncomingWebhook",
+          "traits": {
+            "smithy.api#documentation": "Details about a newly-created incoming webhook. Only present if an incoming webhook was requested at the start of the auth flow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.oauth#V2Access": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.oauth#V2AccessRequest"
+      },
+      "output": {
+        "target": "com.slack.oauth#V2AccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth.v2.access",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exchanges a temporary OAuth verifier code for an access token.\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_client_secret` — Value passed for `client_secret` was invalid.\n  - `bad_redirect_uri` — Value passed for `redirect_uri` did not match the `redirect_uri` in the original request.\n  - `cannot_install_an_org_installed_app` — Returned when the the org-installed app cannot be installed on a workspace.\n  - `invalid_client_id` — Value passed for `client_id` was invalid.\n  - `invalid_code` — Value passed for `code` was invalid.\n  - `invalid_grant_type` — Value passed for `grant_type` was invalid.\n  - `invalid_refresh_token` — The given refresh token is invalid.\n  - `no_scopes` — Missing `scope` in the request.\n  - `oauth_authorization_url_mismatch` — The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/v2/authorize.\n  - `preview_feature_not_available` — Returned when the API method is not yet available on the team in context.\n  - `user_email_unverified` — The users email is unverified.\n  - `pkce_not_allowed` — The app is not allowed to use the PKCE flow.\n  - `invalid_code_verifier` — The code_verifier is invalid.\n\nSee https://docs.slack.dev/reference/methods/oauth.v2.access",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.oauth#V2ExchangeRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application.",
+            "smithy.api#required": {}
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.oauth#V2ExchangeResponseTokenType": {
+      "type": "enum",
+      "members": {
+        "BOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bot"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of access token."
+      }
+    },
+    "com.slack.oauth#V2ExchangeResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token_type": {
+          "target": "com.slack.oauth#V2ExchangeResponseTokenType",
+          "traits": {
+            "smithy.api#documentation": "The type of access token.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of scopes granted to the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "bot_user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user ID of the bot user corresponding to the token. Only present if a legacy bot access token is being exchanged."
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user ID of the user corresponding to the token. Only present if a legacy user access token is being exchanged."
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A new xoxe.xox(b|p) expiring access token to replace the legacy token.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Duration (in seconds) until the new access token expires.",
+            "smithy.api#required": {}
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The xoxe refresh token to obtain a new access token after the one returned expires.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enterprise": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.oauth#V2Exchange": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.oauth#V2ExchangeRequest"
+      },
+      "output": {
+        "target": "com.slack.oauth#V2ExchangeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth.v2.exchange",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exchanges a legacy access token for a new expiring access token and refresh token\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `authorization_not_found` — The underlying authorization for this token was revoked or is invalid.\n  - `bad_client_secret` — Value passed for `client_secret` was invalid.\n  - `internal_error` — A server-side error occurred.\n  - `invalid_client_id` — Value passed for `client_id` was invalid.\n  - `invalid_token` — The legacy token provided cannot be exchanged for a new pair of token credentials.\n  - `token_already_exchanged` — This token has already been exchanged for a pair of token credentials.\n  - `token_rotation_not_enabled` — The app does not have token rotation enabled.\n\nSee https://docs.slack.dev/reference/methods/oauth.v2.exchange",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.oauth#V2UserAccessRequest": {
+      "type": "structure",
+      "members": {
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme."
+          }
+        },
+        "client_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issued when you created your application. If possible, avoid sending `client_id` and `client_secret` as parameters in your request and instead supply the Client ID and Client Secret using the HTTP Basic authentication scheme.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `code` param returned via the OAuth callback."
+          }
+        },
+        "code_verifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The code_verifier param used to generate the code_challenge originally. Used for PKCE."
+          }
+        },
+        "redirect_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This must match the originally submitted URI (if one was sent)."
+          }
+        },
+        "grant_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `grant_type` param as described in the OAuth spec."
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `refresh_token` param as described in the OAuth spec.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "assertion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity assertion JWT authorization grant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.oauth#V2UserAccessResponseTokenType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of access token."
+      }
+    },
+    "com.slack.oauth#V2UserAccessResponseTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the team into which the app is being installed or re-installed.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the team into which the app is being installed or re-installed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the team."
+      }
+    },
+    "com.slack.oauth#V2UserAccessResponseEnterprise": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the enterprise into which the app is being installed or re-installed.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the enterprise into which the app is being installed or re-installed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details about the enterprise."
+      }
+    },
+    "com.slack.oauth#V2UserAccessResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A user access token.",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "token_type": {
+          "target": "com.slack.oauth#V2UserAccessResponseTokenType",
+          "traits": {
+            "smithy.api#documentation": "The type of access token.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of scopes granted to the token."
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user ID of the user corresponding to the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "app_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the app being installed or re-installed.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_enterprise_install": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean flag indicating whether the generated token is enterprise level token or not",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time until this credential expires, if it expires at all"
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Refresh token for this credential",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "team": {
+          "target": "com.slack.oauth#V2UserAccessResponseTeam",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enterprise": {
+          "target": "com.slack.oauth#V2UserAccessResponseEnterprise",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.oauth#V2UserAccess": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.oauth#V2UserAccessRequest"
+      },
+      "output": {
+        "target": "com.slack.oauth#V2UserAccessResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/oauth.v2.user.access",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exchanges a temporary OAuth verifier code for a user access token.\n\nRate limit tier: 5\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `bad_client_secret` — Value passed for `client_secret` was invalid.\n  - `bad_redirect_uri` — Value passed for `redirect_uri` did not match the `redirect_uri` in the original request.\n  - `cannot_install_an_org_installed_app` — Returned when the the org-installed app cannot be installed on a workspace.\n  - `invalid_client_id` — Value passed for `client_id` was invalid.\n  - `invalid_code` — Value passed for `code` was invalid.\n  - `invalid_grant_type` — Value passed for `grant_type` was invalid.\n  - `invalid_refresh_token` — The given refresh token is invalid.\n  - `no_scopes` — Missing `scope` in the request.\n  - `no_user_scopes` — Missing user `scope` in the auth request.\n  - `not_implemented` — Method not yet supported\n  - `oauth_authorization_url_mismatch` — The OAuth flow was initiated on an incorrect version of the authorization url. The flow must be initiated via /oauth/v2/authorize .\n  - `preview_feature_not_available` — Returned when the API method is not yet available on the team in context.\n  - `user_email_unverified` — The users email is unverified\n\nSee https://docs.slack.dev/reference/methods/oauth.v2.user.access",
+        "com.distilled.openapi#contentType": "form-urlencoded"
+      }
+    },
+    "com.slack.oauth#Oauth": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.oauth#OauthAccess"
+        },
+        {
+          "target": "com.slack.oauth#V2Access"
+        },
+        {
+          "target": "com.slack.oauth#V2Exchange"
+        },
+        {
+          "target": "com.slack.oauth#V2UserAccess"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — oauth"
+      }
+    }
+  }
+}

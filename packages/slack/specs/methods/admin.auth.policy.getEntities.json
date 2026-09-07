@@ -1,0 +1,125 @@
+{
+  "desc": "Fetch all the entities assigned to a particular authentication policy by name.",
+  "http_method": "POST",
+  "json_input_supported": true,
+  "scope": {
+    "user": [
+      "admin.users:read"
+    ]
+  },
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "policy_name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "policy_name": {
+        "desc": "The name of the policy to fetch entities for. Currently, `email_password` is the only policy that may be used with this method.",
+        "type": "string",
+        "example": "email_password"
+      },
+      "entity_type": {
+        "desc": "The type of entity to assign to the policy. Currently, `USER` is supported.",
+        "schema": "entity_types"
+      },
+      "limit": {
+        "type": "integer",
+        "desc": "The maximum number of items to return. Must be between 1 and 1000, both inclusive.",
+        "example": "100",
+        "default": 1000,
+        "minimum": 1,
+        "maximum": 1000
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "example": "5c3e53d5"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "entities",
+      "entity_total_count"
+    ],
+    "properties": {
+      "response_metadata": {
+        "required": [
+          "next_cursor"
+        ],
+        "type": "object",
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      },
+      "entities": {
+        "type": "array",
+        "desc": "Entities assigned to the policy",
+        "items": {
+          "type": "object",
+          "required": [
+            "entity_type",
+            "entity_id",
+            "date_added"
+          ],
+          "properties": {
+            "entity_type": {
+              "type": "string",
+              "desc": "The type of entity assigned to the policy. Informs the meaning of the entity_id."
+            },
+            "entity_id": {
+              "type": "string",
+              "desc": "Encoded ID of the assigned entity. user_id if the entity_type = USER"
+            },
+            "date_added": {
+              "type": "integer",
+              "desc": "The date this entity was assigned to this policy."
+            }
+          }
+        }
+      },
+      "entity_total_count": {
+        "type": "integer",
+        "desc": "Count of entities under the policy and provided filter conditions",
+        "example": "50"
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "This method is only available for Enterprise organizations."
+    },
+    "internal_error": {
+      "desc": "There was an internal error processing this request—please retry."
+    },
+    "invalid_arguments": {
+      "desc": "Required arguments either were not provided or contain invalid values."
+    },
+    "invalid_auth": {
+      "desc": "The token doesn't have access to this endpoint."
+    },
+    "invalid_cursor": {
+      "desc": "The cursor passed was invalid."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by Org Owners and Admins."
+    },
+    "policy_not_found": {
+      "desc": "The `policy_name` could not be found."
+    },
+    "ratelimited": {
+      "desc": "The rate limit for this endpoint has been reached."
+    }
+  }
+}

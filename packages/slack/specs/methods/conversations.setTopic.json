@@ -1,0 +1,89 @@
+{
+  "desc": "Sets the topic for a conversation.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "channels:write.topic",
+      "groups:write.topic",
+      "mpim:write.topic",
+      "im:write.topic",
+      "channels:manage",
+      "groups:write",
+      "im:write",
+      "mpim:write"
+    ],
+    "user": [
+      "channels:write.topic",
+      "groups:write.topic",
+      "mpim:write.topic",
+      "im:write.topic",
+      "channels:write",
+      "groups:write",
+      "im:write",
+      "mpim:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel",
+      "topic"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Conversation to set the topic of",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "topic": {
+        "desc": "The new topic string. Does not support formatting or linkification.",
+        "example": "Apply topically for best effects",
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "conversation"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "Value passed for `channel` was invalid."
+    },
+    "is_archived": {
+      "desc": "Channel has been archived."
+    },
+    "method_not_supported_for_channel_type": {
+      "desc": "This type of conversation cannot be used with this method."
+    },
+    "missing_scope": {
+      "desc": "The calling token is not granted the necessary scopes to complete this operation."
+    },
+    "not_in_channel": {
+      "desc": "Authenticated user is not in the channel."
+    },
+    "too_long": {
+      "desc": "Topic was longer than 250 characters."
+    },
+    "user_is_restricted": {
+      "desc": "Setting the topic is a restricted action."
+    }
+  }
+}

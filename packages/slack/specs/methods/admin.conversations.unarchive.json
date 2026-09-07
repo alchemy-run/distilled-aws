@@ -1,0 +1,68 @@
+{
+  "desc": "Unarchive a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to unarchive.",
+        "example": "C12345",
+        "schema": "channel"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_archived": {
+      "desc": "The passed channel is not currently archived."
+    },
+    "channel_not_found": {
+      "desc": "The value passed for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The value passed for `channel` was a DM, MPDM, or the 'general' channel"
+    },
+    "could_not_unarchive_channel": {
+      "desc": "The channel could not be unarchived."
+    },
+    "default_org_wide_channel": {
+      "desc": "You can't unarchive a default org-wide channel."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided doesn't have access to this method."
+    },
+    "missing_scope": {
+      "desc": "The token provided doesn't have the required scopes."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from unarchiving."
+    }
+  }
+}

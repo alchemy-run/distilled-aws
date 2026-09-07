@@ -1,0 +1,112 @@
+{
+  "desc": "Set the workspaces in an Enterprise org that connect to a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The encoded `channel_id` to add or remove to workspaces.",
+        "type": "string"
+      },
+      "team_id": {
+        "desc": "The workspace to which the channel belongs if the channel is a local workspace channel. Omit this argument if the channel is a cross-workspace or org-wide shared channel.",
+        "schema": "workspace_id"
+      },
+      "target_team_ids": {
+        "desc": "A comma-separated list of workspaces to which the channel should be shared. Not required if the channel is being shared org-wide.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "example": "T1234,T5678,T9012,T3456"
+      },
+      "org_channel": {
+        "desc": "True if channel has to be converted to an org channel",
+        "type": "boolean",
+        "example": "true",
+        "default": "false"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "channel"
+    ],
+    "properties": {
+      "channel": {
+        "schema": "channel"
+      }
+    }
+  },
+  "errors": {
+    "cannot_add_legacy_disconnected_channel_to_workspaces": {
+      "desc": "Cannot add legacy disconnected channel to workspaces"
+    },
+    "cannot_move_local_channel": {
+      "desc": "This API cannot be used to move a local channel from one workspace to another."
+    },
+    "channel_cannot_be_unshared": {
+      "desc": "Channel cannot be unshared from this workspace."
+    },
+    "channel_not_found": {
+      "desc": "The channel wasn't found or isn't shared to this workspace."
+    },
+    "channel_type_not_supported": {
+      "desc": "The requested `channel_id` is not a supported type of channel."
+    },
+    "could_not_set_teams_for_channel": {
+      "desc": "The requested `channel_id` has not been shared with the target workspace."
+    },
+    "default_org_wide_channel": {
+      "desc": "Default org wide channel cannot be unshared from a workspace."
+    },
+    "externally_shared_or_disconnected_channel": {
+      "desc": "The channel is or was externally shared."
+    },
+    "invalid_channel_id": {
+      "desc": "`channel_id` was invalid."
+    },
+    "invalid_target_team": {
+      "desc": "Target workspace is invalid."
+    },
+    "managed_channel_not_supported": {
+      "desc": "Cannot unshare a managed channel"
+    },
+    "name_taken": {
+      "desc": "The proposed new name for the channel is already in use within your organization."
+    },
+    "not_allowed_for_grid_workspace": {
+      "desc": "Slack Connect is not allowed for this Enterprise org workspace"
+    },
+    "not_enabled": {
+      "desc": "The API endpoint is not enabled for your team."
+    },
+    "restricted_action": {
+      "desc": "The caller of this API is not allowed to perform this operation."
+    },
+    "too_many_target_teams": {
+      "desc": "Too many `target_team_ids` were provided."
+    },
+    "unsupported_arguments": {
+      "desc": "The provided method arguments are not supported."
+    }
+  }
+}

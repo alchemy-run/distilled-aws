@@ -1,0 +1,73 @@
+{
+  "desc": "Un-pins an item from a channel.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "pins:write"
+    ],
+    "user": [
+      "pins:write"
+    ]
+  },
+  "json_input_supported": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "Channel where the item is pinned to.",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "timestamp": {
+        "desc": "Timestamp of the message to un-pin.",
+        "type": "string",
+        "subtype": "timestamp"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "bad_timestamp": {
+      "desc": "Value passed for `timestamp` was invalid."
+    },
+    "channel_not_found": {
+      "desc": "The `channel` argument was not specified or was invalid"
+    },
+    "external_channel_migrating": {
+      "desc": "Channel is undergoing an active migration."
+    },
+    "file_comment_not_found": {
+      "desc": "File comment specified by `file_comment` does not exist."
+    },
+    "file_not_found": {
+      "desc": "File specified by `file` does not exist."
+    },
+    "message_not_found": {
+      "desc": "Message specified by `channel` and `timestamp` does not exist."
+    },
+    "no_item_specified": {
+      "desc": "One of `file`, `file_comment`, or `timestamp` was not specified."
+    },
+    "no_pin": {
+      "desc": "The pin could not be found."
+    },
+    "not_pinned": {
+      "desc": "The specified item is not pinned to the channel."
+    },
+    "restricted_action": {
+      "desc": "The user does not have permission to remove pins from the channel."
+    }
+  }
+}

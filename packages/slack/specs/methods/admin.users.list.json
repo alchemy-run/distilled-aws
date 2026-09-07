@@ -1,0 +1,192 @@
+{
+  "desc": "List users on a workspace",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.users:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t4",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_id": {
+        "desc": "The ID (T1234) of a workspace. Filters results to just the specified workspace.",
+        "schema": "workspace_id"
+      },
+      "cursor": {
+        "type": "string",
+        "desc": "Set `cursor` to `next_cursor` returned by the previous call to list items in the next page.",
+        "example": "5c3e53d5"
+      },
+      "is_active": {
+        "type": "boolean",
+        "desc": "If true, only active users will be returned. If false, only deactivated users will be returned. Default is true."
+      },
+      "include_deactivated_user_workspaces": {
+        "type": "boolean",
+        "desc": "Only applies with org token and no team_id. If true, return `workspaces` for a user even if they may be deactivated on them. If false, return `workspaces` for a user only when user is active on them. Default is false."
+      },
+      "only_guests": {
+        "type": "boolean",
+        "desc": "If true, returns only guests and their expiration dates that belong to the team_id"
+      },
+      "include_admins": {
+        "type": "boolean",
+        "desc": "If true, only admin users will be returned (excludes owners). Returns all admins and owners when combined with `include_owners`. Cannot be used together with `only_guests`.",
+        "default": false
+      },
+      "include_owners": {
+        "type": "boolean",
+        "desc": "If true, only owner users will be returned. Cannot be used together with `only_guests`.",
+        "default": false
+      },
+      "limit": {
+        "desc": "Limit for how many users to be retrieved per page",
+        "type": "integer",
+        "example": "50",
+        "default": 100,
+        "minimum": 1,
+        "maximum": 100
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "users"
+    ],
+    "properties": {
+      "users": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "email",
+            "is_admin",
+            "is_owner",
+            "is_primary_owner",
+            "is_restricted",
+            "is_ultra_restricted",
+            "is_bot"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "desc": "Encoded user ID"
+            },
+            "username": {
+              "type": "string",
+              "desc": "Username of user"
+            },
+            "full_name": {
+              "type": "string",
+              "desc": "Full name of user"
+            },
+            "has_2fa": {
+              "type": "boolean",
+              "desc": "If 2FA is enabled. Only returned with org token and no team_id."
+            },
+            "has_sso": {
+              "type": "boolean",
+              "desc": "If SSO is enabled. Only returned with org token and no team_id."
+            },
+            "email": {
+              "type": "string",
+              "desc": "Email address of user"
+            },
+            "is_admin": {
+              "type": "boolean",
+              "desc": "Is this user an admin?"
+            },
+            "is_owner": {
+              "type": "boolean",
+              "desc": "Is this user an owner?"
+            },
+            "is_primary_owner": {
+              "type": "boolean",
+              "desc": "Is this user the primary owner of the workspace?"
+            },
+            "is_restricted": {
+              "type": "boolean",
+              "desc": "Is this user a restricted (guest) user?"
+            },
+            "is_ultra_restricted": {
+              "type": "boolean",
+              "desc": "Is this user an ultra-restricted user?"
+            },
+            "is_bot": {
+              "type": "boolean",
+              "desc": "Is this user a bot user?"
+            },
+            "expiration_ts": {
+              "type": "number",
+              "desc": "For a guest user, what is their expiration timestamp? (On workspaces only.)"
+            },
+            "roles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "desc": "Roles that a user has"
+            },
+            "last_active_ts": {
+              "type": "number",
+              "desc": "Last active timestamp for a user. Only applies with org token and no team_id"
+            },
+            "workspaces": {
+              "type": "array",
+              "items": {
+                "schema": "workspace_id"
+              },
+              "desc": "IDs of the workspaces that a user belongs to"
+            },
+            "is_active": {
+              "type": "boolean",
+              "desc": "Is this user active?"
+            },
+            "date_created": {
+              "type": "number",
+              "desc": "date of when the user was created, returned as epoch seconds"
+            },
+            "deactivated_ts": {
+              "type": "number",
+              "desc": "date of when the user was deactivated, returned as epoch seconds"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "invalid_arguments": {
+      "desc": "The passed arguments were invalid."
+    },
+    "invalid_auth": {
+      "desc": "This request could not be authorized."
+    },
+    "invalid_cursor": {
+      "desc": "The passed cursor could not be validated."
+    },
+    "team_not_found": {
+      "desc": "`team_id` was not found."
+    },
+    "include_deactivated_user_workspaces_invalid": {
+      "desc": "`include_deactivated_user_workspaces` only applies with org token and no team_id."
+    }
+  }
+}

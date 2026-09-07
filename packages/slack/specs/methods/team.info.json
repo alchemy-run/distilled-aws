@@ -1,0 +1,105 @@
+{
+  "desc": "Gets information about the current team.",
+  "http_method": "GET",
+  "scope": {
+    "bot": [
+      "team:read"
+    ],
+    "user": [
+      "team:read"
+    ]
+  },
+  "slack_connect_workspaces_allowed": true,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "domain": {
+        "desc": "Query by domain instead of team (only when team is null). This only works for domains in the same enterprise as the querying team token. This also expects the domain to belong to a team and not the enterprise itself. This is the value set up for the 'Joining This Workspace' workspace setting. If it contains more than one domain, the field will contain multiple comma-separated domain values. If no domain is set, the field is empty.",
+        "type": "string"
+      },
+      "team": {
+        "desc": "Team to get info about; if omitted, will return information about the current team.",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "disableShapeUnification": true,
+    "anyOf": [
+      {
+        "required": [
+          "team"
+        ],
+        "type": "object",
+        "properties": {
+          "team": {
+            "anyOf": [
+              {
+                "schema": "team-summary"
+              },
+              {
+                "schema": "team"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "required": [
+          "teams"
+        ],
+        "type": "object",
+        "properties": {
+          "teams": {
+            "items": {
+              "anyOf": [
+                {
+                  "schema": "team-summary"
+                },
+                {
+                  "schema": "team"
+                }
+              ]
+            },
+            "type": "array"
+          }
+        }
+      }
+    ]
+  },
+  "errors": {
+    "enterprise_not_found": {
+      "desc": "The `enterprise` was not found."
+    },
+    "fail_to_get_teams_for_restricted_user": {
+      "desc": "Failed to get teams for restricted user."
+    },
+    "missing_user": {
+      "desc": "The `user` was not found."
+    },
+    "org_not_found": {
+      "desc": "The `org` was not found."
+    },
+    "team_not_found": {
+      "desc": "The `team` was not found."
+    },
+    "team_not_on_enterprise": {
+      "desc": "Cannot query team by domain because team is not on an enterprise."
+    },
+    "user_not_found": {
+      "desc": "The `user` was not found."
+    }
+  }
+}

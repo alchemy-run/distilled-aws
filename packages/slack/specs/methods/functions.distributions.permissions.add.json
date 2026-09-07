@@ -1,0 +1,105 @@
+{
+  "desc": "Grant users access to a custom slack function if its permission_type is set to named_entities",
+  "http_method": "POST",
+  "scope": {
+    "configuration": [
+      "app_configurations:write"
+    ]
+  },
+  "no_scope_required": false,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "function_id": {
+        "type": "string",
+        "desc": "The encoded ID of the function",
+        "example": "Fn12345",
+        "schema": "function_id"
+      },
+      "function_callback_id": {
+        "type": "string",
+        "desc": "The callback ID defined in the function's definition file",
+        "example": "my_function"
+      },
+      "function_app_id": {
+        "type": "string",
+        "desc": "The encoded ID of the app",
+        "example": "A12345",
+        "schema": "app_id"
+      },
+      "user_ids": {
+        "type": "array",
+        "desc": "List of encoded user IDs",
+        "items": {
+          "schema": "user_id"
+        },
+        "example": "U1234,U2345,U3456"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "permission_type"
+    ],
+    "properties": {
+      "permission_type": {
+        "type": "string",
+        "enum": [
+          "everyone",
+          "app_collaborators",
+          "named_entities",
+          "system"
+        ]
+      },
+      "users": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "user_id": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "function_not_found": {
+      "desc": "This function does not exist."
+    },
+    "invalid_permission_type": {
+      "desc": "This function requires permission_type to be set as named_entities before adding users."
+    },
+    "user_not_found": {
+      "desc": "One or more of the named entities was not found."
+    },
+    "app_not_found": {
+      "desc": "This app does not exist."
+    }
+  }
+}

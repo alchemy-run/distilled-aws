@@ -1,0 +1,363 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.dnd#EndDndResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.dnd#EndDnd": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.dnd#EndDndResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dnd.endDnd",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ends the current user's Do Not Disturb session immediately.\n\nRequired scopes — user: `dnd:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `not_in_dnd` — The auth'd user isn't in DND mode.\n\nSee https://docs.slack.dev/reference/methods/dnd.endDnd"
+      }
+    },
+    "com.slack.dnd#EndSnoozeResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "snooze_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "dnd_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next_dnd_end_ts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next_dnd_start_ts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "snooze_endtime": {
+          "target": "smithy.api#Integer"
+        },
+        "snooze_remaining": {
+          "target": "smithy.api#Integer"
+        },
+        "dnd_profile_status": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.dnd#EndSnooze": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.slack.dnd#EndSnoozeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dnd.endSnooze",
+          "code": 200
+        },
+        "smithy.api#documentation": "Ends the current user's snooze mode immediately.\n\nRequired scopes — user: `dnd:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `snooze_end_failed` — There was a problem setting the user's Do Not Disturb status\n\nSee https://docs.slack.dev/reference/methods/dnd.endSnooze"
+      }
+    },
+    "com.slack.dnd#DndInfoRequest": {
+      "type": "structure",
+      "members": {
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "User to fetch status for (defaults to current user)"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "Encoded team id where passed in user param belongs, required if org token is used. If no user param is passed, then a team which has access to the app should be passed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.dnd#DndInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "dnd_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next_dnd_start_ts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next_dnd_end_ts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "snooze_enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "snooze_endtime": {
+          "target": "smithy.api#Integer"
+        },
+        "snooze_remaining": {
+          "target": "smithy.api#Integer"
+        },
+        "snooze_is_indefinite": {
+          "target": "smithy.api#Boolean"
+        },
+        "dnd_profile_status": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.dnd#DndInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.dnd#DndInfoRequest"
+      },
+      "output": {
+        "target": "com.slack.dnd#DndInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dnd.info",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves a user's current Do Not Disturb status.\n\nRequired scopes — bot: `dnd:read`; user: `dnd:read`\n\nRate limit tier: 3\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `user_not_found` — Value passed for `user` was invalid.\n  - `user_not_visible` — User is not visible for this request.\n\nSee https://docs.slack.dev/reference/methods/dnd.info"
+      }
+    },
+    "com.slack.dnd#SetSnoozeRequest": {
+      "type": "structure",
+      "members": {
+        "num_minutes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This argument is required. Number of minutes, from now, to snooze until.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.dnd#SetSnoozeResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "snooze_endtime": {
+          "target": "smithy.api#Integer"
+        },
+        "snooze_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "snooze_remaining": {
+          "target": "smithy.api#Integer"
+        },
+        "snooze_is_indefinite": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.dnd#SetSnooze": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.dnd#SetSnoozeRequest"
+      },
+      "output": {
+        "target": "com.slack.dnd#SetSnoozeResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dnd.setSnooze",
+          "code": 200
+        },
+        "smithy.api#documentation": "Turns on Do Not Disturb mode for the current user, or changes its duration.\n\nRequired scopes — user: `dnd:write`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `missing_duration` — No value provided for `num_minutes`\n  - `snooze_failed` — There was a problem setting the user's Do Not Disturb status\n  - `too_long` — The value for `num_minutes` was too large\n\nSee https://docs.slack.dev/reference/methods/dnd.setSnooze"
+      }
+    },
+    "com.slack.dnd#TeamInfoRequest": {
+      "type": "structure",
+      "members": {
+        "users": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "users",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Comma-separated list of users to fetch Do Not Disturb status for"
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "team_id",
+            "smithy.api#documentation": "Encoded team id where passed in users belong, required if org token is used"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.dnd#TeamInfoResponseUsersMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.slack.dnd#TeamInfoResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        },
+        "users": {
+          "target": "com.slack.dnd#TeamInfoResponseUsersMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.dnd#TeamInfo": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.dnd#TeamInfoRequest"
+      },
+      "output": {
+        "target": "com.slack.dnd#TeamInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/dnd.teamInfo",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the Do Not Disturb status for up to 50 users on a team.\n\nRequired scopes — bot: `dnd:read`; user: `dnd:read`\n\nRate limit tier: 2\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `no_users_provided` — Must provide more than one user.\n  - `user_not_visible` — User is not visible for this request.\n\nSee https://docs.slack.dev/reference/methods/dnd.teamInfo"
+      }
+    },
+    "com.slack.dnd#Dnd": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.dnd#EndDnd"
+        },
+        {
+          "target": "com.slack.dnd#EndSnooze"
+        },
+        {
+          "target": "com.slack.dnd#DndInfo"
+        },
+        {
+          "target": "com.slack.dnd#SetSnooze"
+        },
+        {
+          "target": "com.slack.dnd#TeamInfo"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — dnd"
+      }
+    }
+  }
+}

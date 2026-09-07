@@ -1,0 +1,54 @@
+{
+  "desc": "Deletes an existing comment on a file.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "files:write"
+    ],
+    "user": [
+      "files:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "file",
+      "id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "file": {
+        "desc": "File to delete a comment from.",
+        "example": "F1234567890",
+        "type": "string",
+        "subtype": "file"
+      },
+      "id": {
+        "desc": "The comment to delete.",
+        "example": "Fc1234567890",
+        "type": "string",
+        "subtype": "file_comment"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "cant_delete": {
+      "desc": "The requested comment could not be deleted."
+    },
+    "file_deleted": {
+      "desc": "The requested file was previously deleted."
+    },
+    "file_not_found": {
+      "desc": "The requested file could not be found."
+    }
+  }
+}

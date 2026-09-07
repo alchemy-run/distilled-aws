@@ -1,0 +1,53 @@
+{
+  "desc": "Remove a remote file.",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "remote_files:write"
+    ]
+  },
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "external_id": {
+        "desc": "Creator defined GUID for the file.",
+        "example": "123456",
+        "type": "string"
+      },
+      "file": {
+        "desc": "Specify a file by providing its ID.",
+        "example": "F2147483862",
+        "type": "string",
+        "subtype": "file"
+      }
+    }
+  },
+  "output": null,
+  "errors": {
+    "bot_user_required": {
+      "desc": "bot user token is required"
+    },
+    "file_not_found": {
+      "desc": "Value passed for `file` or `external_id` was invalid"
+    },
+    "file_under_review": {
+      "desc": "File passed is tombstoned for DLP review"
+    },
+    "invalid_args": {
+      "desc": "Invalid arguments passed to endpoint"
+    },
+    "too_many_ids": {
+      "desc": "The request specified both an external_id and a file, only one may be specified"
+    }
+  }
+}

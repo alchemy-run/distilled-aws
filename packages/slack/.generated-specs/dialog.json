@@ -1,0 +1,88 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.slack.dialog#DialogOpenRequest": {
+      "type": "structure",
+      "members": {
+        "dialog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The dialog definition. This must be a JSON-encoded string.",
+            "smithy.api#required": {}
+          }
+        },
+        "trigger_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exchange a trigger to post to the user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.slack.dialog#DialogOpenResponse": {
+      "type": "structure",
+      "members": {
+        "ok": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Always `true` (a failed call raises a typed error instead).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.slack.dialog#DialogOpen": {
+      "type": "operation",
+      "input": {
+        "target": "com.slack.dialog#DialogOpenRequest"
+      },
+      "output": {
+        "target": "com.slack.dialog#DialogOpenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/dialog.open",
+          "code": 200
+        },
+        "smithy.api#documentation": "Open a dialog with a user\n\nRate limit tier: 4\n\nMethod-specific errors (the `error` slug on the SlackError):\n  - `app_missing_action_url` — The app associated with the used token doesn't have a Action URL configured in its interactive components settings.\n  - `cannot_create_dialog` — Something exceptional occurred and the dialog could not be created.\n  - `failed_sending_dialog` — Something exceptional occurred and the dialog could not be sent.\n  - `invalid_trigger` — The provided `trigger_id` is invalid or cannot be used by this token.\n  - `missing_dialog` — No `dialog` argument was presented.\n  - `missing_trigger` — No `trigger_id` argument was presented.\n  - `trigger_exchanged` — The provided `trigger_id` has already been exchanged.\n  - `trigger_expired` — The provided `trigger_id` was presented after the 3 second limit.\n  - `validation_errors` — The provided `dialog` could not be validated.\n\nSee https://docs.slack.dev/reference/methods/dialog.open"
+      }
+    },
+    "com.slack.dialog#Dialog": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.slack.dialog#DialogOpen"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Slack Web API — dialog"
+      }
+    }
+  }
+}

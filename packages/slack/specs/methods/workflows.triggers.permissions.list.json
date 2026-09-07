@@ -1,0 +1,46 @@
+{
+  "desc": "Returns the permission type of a trigger and if applicable, includes the entities that have been granted access",
+  "http_method": "POST",
+  "scope": {
+    "bot": [
+      "triggers:read"
+    ]
+  },
+  "no_scope_required": false,
+  "json_input_supported": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "trigger_id"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "trigger_id": {
+        "type": "string",
+        "desc": "Encoded ID of the trigger",
+        "example": "Ft0000000001"
+      }
+    }
+  },
+  "output": {
+    "schema": "trigger-run-acl"
+  },
+  "errors": {
+    "unknown_method": {
+      "desc": "This method does not exist."
+    },
+    "access_denied": {
+      "desc": "This actor does not have access to the permissions on this resource."
+    },
+    "trigger_not_found": {
+      "desc": "This trigger does not exist."
+    }
+  }
+}

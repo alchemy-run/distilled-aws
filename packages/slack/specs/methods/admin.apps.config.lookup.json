@@ -1,0 +1,87 @@
+{
+  "desc": "Look up the app config for connectors by their IDs",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.apps:read"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "app_ids": {
+        "desc": "An array of app IDs to get app configs for",
+        "example": "A0A2R51A5,A0A2R51A6",
+        "type": "array",
+        "items": {
+          "schema": "app_id"
+        },
+        "maxItems": 100
+      },
+      "rich_link_preview_types": {
+        "desc": "return apps with the corresponding rich link preview layouts",
+        "example": "limited_details, no_preview",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "all_details",
+            "limited_details",
+            "no_preview",
+            "default_to_global_setting"
+          ]
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "configs"
+    ],
+    "properties": {
+      "configs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "app_id",
+            "workflow_auth_strategy",
+            "domain_restrictions"
+          ],
+          "properties": {
+            "app_id": {
+              "schema": "app_id"
+            },
+            "workflow_auth_strategy": {
+              "type": "string",
+              "enum": [
+                "builder_choice",
+                "end_user_only"
+              ]
+            },
+            "domain_restrictions": {
+              "schema": "admin_app_domain_list"
+            }
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "missing_args": {
+      "desc": "Either app_ids or rich_link_preview_types must be provided"
+    }
+  }
+}

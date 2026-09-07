@@ -1,0 +1,118 @@
+{
+  "desc": "Returns a list of scheduled messages.",
+  "http_method": "POST",
+  "scope": {},
+  "json_input_supported": true,
+  "no_scope_required": true,
+  "slack_connect_workspaces_allowed": true,
+  "rate_limits": "t3",
+  "args": {
+    "type": "object",
+    "required": [
+      "token"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel": {
+        "desc": "The channel of the scheduled messages",
+        "example": "C123456789",
+        "type": "string",
+        "subtype": "channel"
+      },
+      "cursor": {
+        "desc": "For pagination purposes, this is the `cursor` value returned from a previous call to `chat.scheduledmessages.list` indicating where you want to start this call from.",
+        "example": "dXNlcjpVMDYxTkZUVDI=",
+        "type": "string"
+      },
+      "latest": {
+        "desc": "A Unix timestamp of the latest value in the time range",
+        "example": "1562137200",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "limit": {
+        "desc": "Maximum number of original entries to return.",
+        "example": "100",
+        "type": "integer"
+      },
+      "oldest": {
+        "desc": "A Unix timestamp of the oldest value in the time range",
+        "example": "1562137200",
+        "type": "string",
+        "subtype": "timestamp"
+      },
+      "team_id": {
+        "desc": "encoded team id to list channels in, required if org token is used",
+        "type": "string",
+        "subtype": "team"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "scheduled_messages"
+    ],
+    "properties": {
+      "scheduled_messages": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "id",
+            "channel_id",
+            "post_at",
+            "date_created"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[Q][A-Z0-9]{8,}$"
+            },
+            "channel_id": {
+              "schema": "channel"
+            },
+            "post_at": {
+              "type": "integer",
+              "pattern": "^\\d{10}$"
+            },
+            "date_created": {
+              "type": "integer",
+              "pattern": "^\\d{10}$"
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "response_metadata": {
+        "type": "object",
+        "required": [
+          "next_cursor"
+        ],
+        "properties": {
+          "next_cursor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "errors": {
+    "invalid_channel": {
+      "desc": "The channel passed is invalid"
+    },
+    "invalid_cursor": {
+      "desc": "Provided cursor is invalid"
+    },
+    "invalid_token": {
+      "desc": "Token is invalid"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "desc": "Rename a public or private channel.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.conversations:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t2",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "channel_id",
+      "name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "channel_id": {
+        "desc": "The channel to rename.",
+        "example": "C12345",
+        "schema": "channel"
+      },
+      "name": {
+        "type": "string"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "ok"
+    ],
+    "properties": {
+      "ok": {
+        "type": "boolean"
+      }
+    }
+  },
+  "errors": {
+    "channel_not_found": {
+      "desc": "The value passed for `channel_id` was invalid."
+    },
+    "channel_type_not_supported": {
+      "desc": "The provided `channel_id` was a DM, MPDM, or the 'general' channel."
+    },
+    "could_not_rename_channel": {
+      "desc": "The channel could not be renamed."
+    },
+    "default_org_wide_channel": {
+      "desc": "The default org-wide channel can't be renamed."
+    },
+    "feature_not_enabled": {
+      "desc": "The token provided doesn't have access to this method."
+    },
+    "invalid_name_maxlength": {
+      "desc": "The channel name exceeds the maximum allowed length."
+    },
+    "name_taken": {
+      "desc": "The channel's name is already being used elsewhere."
+    },
+    "restricted_action": {
+      "desc": "A workspace preference prevents the authenticated user from renaming a channel."
+    }
+  }
+}

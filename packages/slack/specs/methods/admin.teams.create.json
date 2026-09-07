@@ -1,0 +1,83 @@
+{
+  "desc": "Create an Enterprise team.",
+  "http_method": "POST",
+  "scope": {
+    "user": [
+      "admin.teams:write"
+    ]
+  },
+  "json_input_supported": true,
+  "rate_limits": "t1",
+  "args": {
+    "type": "object",
+    "required": [
+      "token",
+      "team_domain",
+      "team_name"
+    ],
+    "properties": {
+      "token": {
+        "type": "string",
+        "subtype": "auth",
+        "desc": "Authentication token bearing required scopes. Tokens should be passed as an HTTP Authorization header or alternatively, as a POST parameter.",
+        "example": "xxxx-xxxxxxxxx-xxxx"
+      },
+      "team_domain": {
+        "type": "string",
+        "desc": "Team domain (for example, slacksoftballteam). Domains are limited to 21 characters."
+      },
+      "team_name": {
+        "type": "string",
+        "desc": "Team name (for example, Slack Softball Team)."
+      },
+      "team_description": {
+        "type": "string",
+        "desc": "Description for the team."
+      },
+      "team_discoverability": {
+        "type": "string",
+        "desc": "Who can join the team. A team's discoverability can be `open`, `closed`, `invite_only`, or `unlisted`."
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": [
+      "team"
+    ],
+    "properties": {
+      "team": {
+        "schema": "workspace_id"
+      }
+    }
+  },
+  "errors": {
+    "bad_url": {
+      "desc": "Invalid URL. Note that domains can be at most 21 characters."
+    },
+    "could_not_create_workspace": {
+      "desc": "The workspace could not be created."
+    },
+    "discoverability_setting_invalid": {
+      "desc": "The given discoverability setting is invalid."
+    },
+    "domain_taken": {
+      "desc": "The requested domain is taken."
+    },
+    "feature_not_enabled": {
+      "desc": "The Admin APIs feature is not enabled for this team."
+    },
+    "must_provide_team_domain": {
+      "desc": "No team domain has been provided."
+    },
+    "must_provide_team_name": {
+      "desc": "No team name has been provided."
+    },
+    "name_taken_in_org": {
+      "desc": "The team with the specified name already exists in the org."
+    },
+    "not_an_admin": {
+      "desc": "This method is only accessible by org owners and admins."
+    }
+  }
+}
