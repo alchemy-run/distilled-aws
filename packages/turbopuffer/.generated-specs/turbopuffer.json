@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.turbopuffer.api#GetV1NamespacesRequest": {
+    "com.turbopuffer.api#ListNamespacesRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -61,7 +62,7 @@
         "smithy.api#documentation": "A summary of a namespace."
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesResponseNamespacesList": {
+    "com.turbopuffer.api#ListNamespacesResponseNamespacesList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#NamespaceSummary"
@@ -70,11 +71,11 @@
         "smithy.api#documentation": "The list of namespaces."
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesResponse": {
+    "com.turbopuffer.api#ListNamespacesResponse": {
       "type": "structure",
       "members": {
         "namespaces": {
-          "target": "com.turbopuffer.api#GetV1NamespacesResponseNamespacesList",
+          "target": "com.turbopuffer.api#ListNamespacesResponseNamespacesList",
           "traits": {
             "smithy.api#documentation": "The list of namespaces."
           }
@@ -90,13 +91,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#GetV1Namespaces": {
+    "com.turbopuffer.api#ListNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#GetV1NamespacesRequest"
+        "target": "com.turbopuffer.api#ListNamespacesRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#GetV1NamespacesResponse"
+        "target": "com.turbopuffer.api#ListNamespacesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -107,7 +108,7 @@
         "smithy.api#documentation": "List namespaces."
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceSchemaRequest": {
+    "com.turbopuffer.api#GetNamespaceSchemaRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -332,7 +333,7 @@
         "smithy.api#documentation": "Configuration options for automatic embedding."
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceSchemaResponseBodyMap": {
+    "com.turbopuffer.api#GetNamespaceSchemaResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -344,11 +345,11 @@
         "smithy.api#documentation": "The response to a successful namespace schema request."
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceSchemaResponse": {
+    "com.turbopuffer.api#GetNamespaceSchemaResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.turbopuffer.api#GetV1NamespacesNamespaceSchemaResponseBodyMap",
+          "target": "com.turbopuffer.api#GetNamespaceSchemaResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -359,13 +360,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceSchema": {
+    "com.turbopuffer.api#GetNamespaceSchema": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#GetV1NamespacesNamespaceSchemaRequest"
+        "target": "com.turbopuffer.api#GetNamespaceSchemaRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#GetV1NamespacesNamespaceSchemaResponse"
+        "target": "com.turbopuffer.api#GetNamespaceSchemaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -390,7 +391,7 @@
         "smithy.api#documentation": "The schema for an attribute attached to a document."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaRequestBodyMap": {
+    "com.turbopuffer.api#CreateNamespaceSchemaRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -402,7 +403,7 @@
         "smithy.api#documentation": "The desired schema for the namespace."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaRequest": {
+    "com.turbopuffer.api#CreateNamespaceSchemaRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -414,7 +415,7 @@
           }
         },
         "body": {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaRequestBodyMap",
+          "target": "com.turbopuffer.api#CreateNamespaceSchemaRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {}
           }
@@ -424,7 +425,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaResponseBodyMap": {
+    "com.turbopuffer.api#CreateNamespaceSchemaResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -436,11 +437,11 @@
         "smithy.api#documentation": "The updated schema for the namespace."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaResponse": {
+    "com.turbopuffer.api#CreateNamespaceSchemaResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaResponseBodyMap",
+          "target": "com.turbopuffer.api#CreateNamespaceSchemaResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -451,13 +452,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceSchema": {
+    "com.turbopuffer.api#CreateNamespaceSchema": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaRequest"
+        "target": "com.turbopuffer.api#CreateNamespaceSchemaRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#PostV1NamespacesNamespaceSchemaResponse"
+        "target": "com.turbopuffer.api#CreateNamespaceSchemaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -468,7 +469,7 @@
         "smithy.api#documentation": "Update namespace schema."
       }
     },
-    "com.turbopuffer.api#GetV2NamespacesNamespaceMetadataRequest": {
+    "com.turbopuffer.api#GetNamespaceMetadataRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -710,10 +711,10 @@
         "smithy.api#documentation": "Configuration for namespace sharding, which partitions a namespace's documents across multiple internal shards to scale indexing and query throughput beyond a single machine.\nSharding can only be configured on a namespace's inaugural write, and cannot be added to or changed on an existing namespace.\n"
       }
     },
-    "com.turbopuffer.api#GetV2NamespacesNamespaceMetadata": {
+    "com.turbopuffer.api#GetNamespaceMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#GetV2NamespacesNamespaceMetadataRequest"
+        "target": "com.turbopuffer.api#GetNamespaceMetadataRequest"
       },
       "output": {
         "target": "com.turbopuffer.api#NamespaceMetadata"
@@ -741,7 +742,7 @@
         "smithy.api#documentation": "Configuration for namespace pinning."
       }
     },
-    "com.turbopuffer.api#PatchV1NamespacesNamespaceMetadataRequestPinning": {
+    "com.turbopuffer.api#UpdateNamespaceMetadataRequestPinning": {
       "type": "union",
       "members": {
         "Case0": {
@@ -755,7 +756,7 @@
         "smithy.api#documentation": "Configuration for namespace pinning.\n- Missing field: no change to pinning configuration\n- `null` or `false`: explicitly remove pinning\n- `true`: enable pinning with default configuration\n- Object: set pinning configuration\n"
       }
     },
-    "com.turbopuffer.api#PatchV1NamespacesNamespaceMetadataRequest": {
+    "com.turbopuffer.api#UpdateNamespaceMetadataRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -767,7 +768,7 @@
           }
         },
         "pinning": {
-          "target": "com.turbopuffer.api#PatchV1NamespacesNamespaceMetadataRequestPinning",
+          "target": "com.turbopuffer.api#UpdateNamespaceMetadataRequestPinning",
           "traits": {
             "smithy.api#documentation": "Configuration for namespace pinning.\n- Missing field: no change to pinning configuration\n- `null` or `false`: explicitly remove pinning\n- `true`: enable pinning with default configuration\n- Object: set pinning configuration\n",
             "com.distilled.openapi#nullable": {}
@@ -778,10 +779,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PatchV1NamespacesNamespaceMetadata": {
+    "com.turbopuffer.api#UpdateNamespaceMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PatchV1NamespacesNamespaceMetadataRequest"
+        "target": "com.turbopuffer.api#UpdateNamespaceMetadataRequest"
       },
       "output": {
         "target": "com.turbopuffer.api#NamespaceMetadata"
@@ -795,7 +796,7 @@
         "smithy.api#documentation": "Update metadata configuration for a namespace."
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceHintCacheWarmRequest": {
+    "com.turbopuffer.api#GetNamespaceHintCacheWarmRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -811,7 +812,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceHintCacheWarmResponse": {
+    "com.turbopuffer.api#GetNamespaceHintCacheWarmResponse": {
       "type": "structure",
       "members": {
         "status": {
@@ -829,13 +830,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#GetV1NamespacesNamespaceHintCacheWarm": {
+    "com.turbopuffer.api#GetNamespaceHintCacheWarm": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#GetV1NamespacesNamespaceHintCacheWarmRequest"
+        "target": "com.turbopuffer.api#GetNamespaceHintCacheWarmRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#GetV1NamespacesNamespaceHintCacheWarmResponse"
+        "target": "com.turbopuffer.api#GetNamespaceHintCacheWarmResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -846,7 +847,7 @@
         "smithy.api#documentation": "Signal turbopuffer to prepare for low-latency requests."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallRequest": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecallRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -892,7 +893,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Double"
@@ -955,7 +956,7 @@
         "smithy.api#documentation": "A dense vector encoded as an array of floats."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#Row"
@@ -964,18 +965,18 @@
         "smithy.api#documentation": "The true nearest neighbors with their distances and vectors."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthItem": {
       "type": "structure",
       "members": {
         "query_vector": {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemQueryVectorList",
+          "target": "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthItemQueryVectorList",
           "traits": {
             "smithy.api#documentation": "The query vector used for this search.",
             "smithy.api#required": {}
           }
         },
         "nearest_neighbors": {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList",
+          "target": "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthItemNearestNeighborsList",
           "traits": {
             "smithy.api#documentation": "The true nearest neighbors with their distances and vectors.",
             "smithy.api#required": {}
@@ -984,16 +985,16 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthList": {
       "type": "list",
       "member": {
-        "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthItem"
+        "target": "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthItem"
       },
       "traits": {
         "smithy.api#documentation": "Ground truth data including query vectors and true nearest neighbors. Only included when include_ground_truth is true."
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponse": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecallResponse": {
       "type": "structure",
       "members": {
         "avg_recall": {
@@ -1018,7 +1019,7 @@
           }
         },
         "ground_truth": {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponseGroundTruthList",
+          "target": "com.turbopuffer.api#CreateNamespaceDebugRecallResponseGroundTruthList",
           "traits": {
             "smithy.api#documentation": "Ground truth data including query vectors and true nearest neighbors. Only included when include_ground_truth is true."
           }
@@ -1028,13 +1029,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecall": {
+    "com.turbopuffer.api#CreateNamespaceDebugRecall": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallRequest"
+        "target": "com.turbopuffer.api#CreateNamespaceDebugRecallRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecallResponse"
+        "target": "com.turbopuffer.api#CreateNamespaceDebugRecallResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1093,28 +1094,28 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceRequestUpsertRowsList": {
+    "com.turbopuffer.api#UpdateNamespaceRequestUpsertRowsList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#Row"
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceRequestPatchRowsList": {
+    "com.turbopuffer.api#UpdateNamespaceRequestPatchRowsList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#Row"
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceRequestDeletesList": {
+    "com.turbopuffer.api#UpdateNamespaceRequestDeletesList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#Id"
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceRequestSchemaMap": {
+    "com.turbopuffer.api#UpdateNamespaceRequestSchemaMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1219,7 +1220,7 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceRequest": {
+    "com.turbopuffer.api#UpdateNamespaceRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -1234,16 +1235,16 @@
           "target": "com.turbopuffer.api#Columns"
         },
         "upsert_rows": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceRequestUpsertRowsList"
+          "target": "com.turbopuffer.api#UpdateNamespaceRequestUpsertRowsList"
         },
         "patch_columns": {
           "target": "com.turbopuffer.api#Columns"
         },
         "patch_rows": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceRequestPatchRowsList"
+          "target": "com.turbopuffer.api#UpdateNamespaceRequestPatchRowsList"
         },
         "deletes": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceRequestDeletesList"
+          "target": "com.turbopuffer.api#UpdateNamespaceRequestDeletesList"
         },
         "upsert_condition": {
           "target": "smithy.api#Document",
@@ -1267,7 +1268,7 @@
           "target": "smithy.api#Document"
         },
         "schema": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceRequestSchemaMap",
+          "target": "com.turbopuffer.api#UpdateNamespaceRequestSchemaMap",
           "traits": {
             "smithy.api#documentation": "The schema of the attributes attached to the documents.\n"
           }
@@ -1484,10 +1485,10 @@
         "smithy.api#documentation": "The performance information for a write request."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespace": {
+    "com.turbopuffer.api#UpdateNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceRequest"
+        "target": "com.turbopuffer.api#UpdateNamespaceRequest"
       },
       "output": {
         "target": "com.turbopuffer.api#WriteResult"
@@ -1501,7 +1502,7 @@
         "smithy.api#documentation": "Create, update, or delete documents."
       }
     },
-    "com.turbopuffer.api#DeleteV2NamespacesNamespaceRequest": {
+    "com.turbopuffer.api#DeleteNamespaceRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -1517,7 +1518,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#DeleteV2NamespacesNamespaceResponse": {
+    "com.turbopuffer.api#DeleteNamespaceResponse": {
       "type": "structure",
       "members": {
         "status": {
@@ -1532,13 +1533,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#DeleteV2NamespacesNamespace": {
+    "com.turbopuffer.api#DeleteNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#DeleteV2NamespacesNamespaceRequest"
+        "target": "com.turbopuffer.api#DeleteNamespaceRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#DeleteV2NamespacesNamespaceResponse"
+        "target": "com.turbopuffer.api#DeleteNamespaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1549,7 +1550,7 @@
         "smithy.api#documentation": "Delete namespace."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestConsistency": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestConsistency": {
       "type": "structure",
       "members": {
         "level": {
@@ -1586,7 +1587,7 @@
         "smithy.api#documentation": "Include exactly the specified attributes in the response.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestExcludeAttributesList": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestExcludeAttributesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1595,7 +1596,7 @@
         "smithy.api#documentation": "List of attribute names to exclude from the response. All other attributes will be included in the response.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestAggregateByMap": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestAggregateByMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1607,7 +1608,7 @@
         "smithy.api#documentation": "Aggregations to compute over all documents in the namespace that match the filters.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestGroupByList": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestGroupByList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1616,7 +1617,7 @@
         "smithy.api#documentation": "Groups documents by the specified attributes (the \"group key\") before computing aggregates. Aggregates are computed separately for each group.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestComputeAttributesMap": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestComputeAttributesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1680,7 +1681,7 @@
         "smithy.api#documentation": "Limits the number of documents with the same value for a set of attributes (the \"limit key\") that can appear in the results.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestLimit": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestLimit": {
       "type": "union",
       "members": {
         "Case0": {
@@ -1692,7 +1693,7 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequest": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -1707,7 +1708,7 @@
           "target": "smithy.api#Document"
         },
         "consistency": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestConsistency",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestConsistency",
           "traits": {
             "smithy.api#documentation": "The consistency level for a query."
           }
@@ -1734,25 +1735,25 @@
           "target": "com.turbopuffer.api#IncludeAttributes"
         },
         "exclude_attributes": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestExcludeAttributesList",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestExcludeAttributesList",
           "traits": {
             "smithy.api#documentation": "List of attribute names to exclude from the response. All other attributes will be included in the response.\n"
           }
         },
         "aggregate_by": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestAggregateByMap",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestAggregateByMap",
           "traits": {
             "smithy.api#documentation": "Aggregations to compute over all documents in the namespace that match the filters.\n"
           }
         },
         "group_by": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestGroupByList",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestGroupByList",
           "traits": {
             "smithy.api#documentation": "Groups documents by the specified attributes (the \"group key\") before computing aggregates. Aggregates are computed separately for each group.\n"
           }
         },
         "compute_attributes": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestComputeAttributesMap",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestComputeAttributesMap",
           "traits": {
             "smithy.api#documentation": "Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it.\n"
           }
@@ -1761,14 +1762,14 @@
           "target": "smithy.api#Document"
         },
         "limit": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequestLimit"
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestLimit"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponseAggregationsMap": {
+    "com.turbopuffer.api#CreateNamespaceQueryResponseAggregationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1790,14 +1791,14 @@
         "smithy.api#documentation": "A single aggregation group."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponseAggregationGroupsList": {
+    "com.turbopuffer.api#CreateNamespaceQueryResponseAggregationGroupsList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#AggregationGroup"
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponseRowsList": {
+    "com.turbopuffer.api#CreateNamespaceQueryResponseRowsList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#Row"
@@ -1854,17 +1855,17 @@
         "smithy.api#documentation": "The performance information for a query."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponse": {
+    "com.turbopuffer.api#CreateNamespaceQueryResponse": {
       "type": "structure",
       "members": {
         "aggregations": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponseAggregationsMap"
+          "target": "com.turbopuffer.api#CreateNamespaceQueryResponseAggregationsMap"
         },
         "aggregation_groups": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponseAggregationGroupsList"
+          "target": "com.turbopuffer.api#CreateNamespaceQueryResponseAggregationGroupsList"
         },
         "rows": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponseRowsList"
+          "target": "com.turbopuffer.api#CreateNamespaceQueryResponseRowsList"
         },
         "performance": {
           "target": "com.turbopuffer.api#QueryPerformance",
@@ -1883,13 +1884,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQuery": {
+    "com.turbopuffer.api#CreateNamespaceQuery": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryRequest"
+        "target": "com.turbopuffer.api#CreateNamespaceQueryRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryResponse"
+        "target": "com.turbopuffer.api#CreateNamespaceQueryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1900,7 +1901,7 @@
         "smithy.api#documentation": "Query, filter, full-text search and vector search documents."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestConsistency": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestConsistency2": {
       "type": "structure",
       "members": {
         "level": {
@@ -2027,7 +2028,7 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequestQueriesList": {
       "type": "list",
       "member": {
         "target": "com.turbopuffer.api#Query"
@@ -2058,7 +2059,7 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest": {
+    "com.turbopuffer.api#CreateNamespaceQueryRequest2": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2073,13 +2074,13 @@
           "target": "smithy.api#Document"
         },
         "consistency": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestConsistency",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestConsistency2",
           "traits": {
             "smithy.api#documentation": "The consistency level for a query."
           }
         },
         "queries": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequestQueriesList",
+          "target": "com.turbopuffer.api#CreateNamespaceQueryRequestQueriesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2173,10 +2174,10 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQuery": {
+    "com.turbopuffer.api#CreateNamespaceQuery2": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQueryRequest"
+        "target": "com.turbopuffer.api#CreateNamespaceQueryRequest2"
       },
       "output": {
         "target": "com.turbopuffer.api#MultiQueryResult"
@@ -2190,7 +2191,7 @@
         "smithy.api#documentation": "Issue multiple concurrent queries filter or search documents."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest": {
+    "com.turbopuffer.api#UpdateNamespaceByNamespaceRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2213,10 +2214,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadBranchFrom": {
+    "com.turbopuffer.api#UpdateNamespaceByNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadBranchFromRequest"
+        "target": "com.turbopuffer.api#UpdateNamespaceByNamespaceRequest"
       },
       "output": {
         "target": "com.turbopuffer.api#WriteResult"
@@ -2230,7 +2231,7 @@
         "smithy.api#documentation": "Creates an instant, copy-on-write clone of a namespace."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest": {
+    "com.turbopuffer.api#UpdateNamespaceByNamespaceRequest2": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2271,10 +2272,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadCopyFrom": {
+    "com.turbopuffer.api#UpdateNamespaceByNamespace2": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadCopyFromRequest"
+        "target": "com.turbopuffer.api#UpdateNamespaceByNamespaceRequest2"
       },
       "output": {
         "target": "com.turbopuffer.api#WriteResult"
@@ -2288,7 +2289,7 @@
         "smithy.api#documentation": "Copy all documents from another namespace into this one."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestConsistency": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequestConsistency": {
       "type": "structure",
       "members": {
         "level": {
@@ -2302,7 +2303,7 @@
         "smithy.api#documentation": "The consistency level for a query."
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequestExcludeAttributesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2311,7 +2312,7 @@
         "smithy.api#documentation": "List of attribute names to exclude from the response. All other attributes will be included in the response.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequestAggregateByMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2323,7 +2324,7 @@
         "smithy.api#documentation": "Aggregations to compute over all documents in the namespace that match the filters.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestGroupByList": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequestGroupByList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -2332,7 +2333,7 @@
         "smithy.api#documentation": "Groups documents by the specified attributes (the \"group key\") before computing aggregates. Aggregates are computed separately for each group.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequestComputeAttributesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2344,7 +2345,7 @@
         "smithy.api#documentation": "Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it.\n"
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestLimit": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequestLimit": {
       "type": "union",
       "members": {
         "Case0": {
@@ -2356,7 +2357,7 @@
       },
       "traits": {}
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequest": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryRequest": {
       "type": "structure",
       "members": {
         "namespace": {
@@ -2371,7 +2372,7 @@
           "target": "smithy.api#Document"
         },
         "consistency": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestConsistency",
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequestConsistency",
           "traits": {
             "smithy.api#documentation": "The consistency level for a query."
           }
@@ -2398,25 +2399,25 @@
           "target": "com.turbopuffer.api#IncludeAttributes"
         },
         "exclude_attributes": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestExcludeAttributesList",
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequestExcludeAttributesList",
           "traits": {
             "smithy.api#documentation": "List of attribute names to exclude from the response. All other attributes will be included in the response.\n"
           }
         },
         "aggregate_by": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestAggregateByMap",
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequestAggregateByMap",
           "traits": {
             "smithy.api#documentation": "Aggregations to compute over all documents in the namespace that match the filters.\n"
           }
         },
         "group_by": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestGroupByList",
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequestGroupByList",
           "traits": {
             "smithy.api#documentation": "Groups documents by the specified attributes (the \"group key\") before computing aggregates. Aggregates are computed separately for each group.\n"
           }
         },
         "compute_attributes": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestComputeAttributesMap",
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequestComputeAttributesMap",
           "traits": {
             "smithy.api#documentation": "Computes additional values on documents returned by a query. Each key is the name of the computed attribute; each value is an expression describing how to compute it.\n"
           }
@@ -2425,14 +2426,14 @@
           "target": "smithy.api#Document"
         },
         "limit": {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequestLimit"
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequestLimit"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryResponse": {
+    "com.turbopuffer.api#CreateNamespaceExplainQueryResponse": {
       "type": "structure",
       "members": {
         "plan_text": {
@@ -2446,13 +2447,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQuery": {
+    "com.turbopuffer.api#CreateNamespaceExplainQuery": {
       "type": "operation",
       "input": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryRequest"
+        "target": "com.turbopuffer.api#CreateNamespaceExplainQueryRequest"
       },
       "output": {
-        "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQueryResponse"
+        "target": "com.turbopuffer.api#CreateNamespaceExplainQueryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2468,46 +2469,46 @@
       "version": "0.0.1",
       "operations": [
         {
-          "target": "com.turbopuffer.api#GetV1Namespaces"
+          "target": "com.turbopuffer.api#ListNamespaces"
         },
         {
-          "target": "com.turbopuffer.api#GetV1NamespacesNamespaceSchema"
+          "target": "com.turbopuffer.api#GetNamespaceSchema"
         },
         {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceSchema"
+          "target": "com.turbopuffer.api#CreateNamespaceSchema"
         },
         {
-          "target": "com.turbopuffer.api#GetV2NamespacesNamespaceMetadata"
+          "target": "com.turbopuffer.api#GetNamespaceMetadata"
         },
         {
-          "target": "com.turbopuffer.api#PatchV1NamespacesNamespaceMetadata"
+          "target": "com.turbopuffer.api#UpdateNamespaceMetadata"
         },
         {
-          "target": "com.turbopuffer.api#GetV1NamespacesNamespaceHintCacheWarm"
+          "target": "com.turbopuffer.api#GetNamespaceHintCacheWarm"
         },
         {
-          "target": "com.turbopuffer.api#PostV1NamespacesNamespaceDebugRecall"
+          "target": "com.turbopuffer.api#CreateNamespaceDebugRecall"
         },
         {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespace"
+          "target": "com.turbopuffer.api#UpdateNamespace"
         },
         {
-          "target": "com.turbopuffer.api#DeleteV2NamespacesNamespace"
+          "target": "com.turbopuffer.api#DeleteNamespace"
         },
         {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQuery"
+          "target": "com.turbopuffer.api#CreateNamespaceQuery"
         },
         {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceQueryStainlessOverloadMultiQuery"
+          "target": "com.turbopuffer.api#CreateNamespaceQuery2"
         },
         {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadBranchFrom"
+          "target": "com.turbopuffer.api#UpdateNamespaceByNamespace"
         },
         {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceStainlessOverloadCopyFrom"
+          "target": "com.turbopuffer.api#UpdateNamespaceByNamespace2"
         },
         {
-          "target": "com.turbopuffer.api#PostV2NamespacesNamespaceExplainQuery"
+          "target": "com.turbopuffer.api#CreateNamespaceExplainQuery"
         }
       ],
       "traits": {
