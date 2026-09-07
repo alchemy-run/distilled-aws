@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.coolify.api#ListApplicationsRequest": {
@@ -4539,7 +4540,7 @@
         "smithy.api#documentation": "Create (Docker Image without git)\n\nCreate new application based on a prebuilt docker image (without git)."
       }
     },
-    "com.coolify.api#GetApplicationByUuidRequest": {
+    "com.coolify.api#GetApplicationRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -4555,10 +4556,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetApplicationByUuid": {
+    "com.coolify.api#GetApplication": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetApplicationByUuidRequest"
+        "target": "com.coolify.api#GetApplicationRequest"
       },
       "output": {
         "target": "com.coolify.api#Application"
@@ -5344,7 +5345,7 @@
         "smithy.api#documentation": "Update\n\nUpdate application by UUID."
       }
     },
-    "com.coolify.api#DeleteApplicationByUuidRequest": {
+    "com.coolify.api#DeleteApplicationRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -5388,7 +5389,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteApplicationByUuidResponse": {
+    "com.coolify.api#DeleteApplicationResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -5399,13 +5400,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteApplicationByUuid": {
+    "com.coolify.api#DeleteApplication": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteApplicationByUuidRequest"
+        "target": "com.coolify.api#DeleteApplicationRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteApplicationByUuidResponse"
+        "target": "com.coolify.api#DeleteApplicationResponse"
       },
       "errors": [
         {
@@ -7371,7 +7372,7 @@
         "smithy.api#documentation": "Create Cloud-init Script\n\nCreate a new cloud-init script for the authenticated team."
       }
     },
-    "com.coolify.api#GetCloudInitScriptByUuidRequest": {
+    "com.coolify.api#GetCloudInitScriptRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7386,10 +7387,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetCloudInitScriptByUuid": {
+    "com.coolify.api#GetCloudInitScript": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetCloudInitScriptByUuidRequest"
+        "target": "com.coolify.api#GetCloudInitScriptRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7460,7 +7461,7 @@
         "smithy.api#documentation": "Update Cloud-init Script\n\nUpdate a cloud-init script by UUID."
       }
     },
-    "com.coolify.api#DeleteCloudInitScriptByUuidRequest": {
+    "com.coolify.api#DeleteCloudInitScriptRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7475,10 +7476,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteCloudInitScriptByUuid": {
+    "com.coolify.api#DeleteCloudInitScript": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteCloudInitScriptByUuidRequest"
+        "target": "com.coolify.api#DeleteCloudInitScriptRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7689,7 +7690,7 @@
         "smithy.api#documentation": "Create Cloud Provider Token\n\nCreate a new cloud provider token. The token will be validated before being stored."
       }
     },
-    "com.coolify.api#GetCloudTokenByUuidRequest": {
+    "com.coolify.api#GetCloudTokenRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7705,7 +7706,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetCloudTokenByUuidResponse": {
+    "com.coolify.api#GetCloudTokenResponse": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7734,13 +7735,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#GetCloudTokenByUuid": {
+    "com.coolify.api#GetCloudToken": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetCloudTokenByUuidRequest"
+        "target": "com.coolify.api#GetCloudTokenRequest"
       },
       "output": {
-        "target": "com.coolify.api#GetCloudTokenByUuidResponse"
+        "target": "com.coolify.api#GetCloudTokenResponse"
       },
       "errors": [
         {
@@ -7814,7 +7815,7 @@
         "smithy.api#documentation": "Update Cloud Provider Token\n\nUpdate cloud provider token name."
       }
     },
-    "com.coolify.api#DeleteCloudTokenByUuidRequest": {
+    "com.coolify.api#DeleteCloudTokenRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -7830,7 +7831,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteCloudTokenByUuidResponse": {
+    "com.coolify.api#DeleteCloudTokenResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -7841,13 +7842,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteCloudTokenByUuid": {
+    "com.coolify.api#DeleteCloudToken": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteCloudTokenByUuidRequest"
+        "target": "com.coolify.api#DeleteCloudTokenRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteCloudTokenByUuidResponse"
+        "target": "com.coolify.api#DeleteCloudTokenResponse"
       },
       "errors": [
         {
@@ -8154,7 +8155,7 @@
         "smithy.api#documentation": "Create Backup\n\nCreate a new scheduled backup configuration for a database"
       }
     },
-    "com.coolify.api#GetDatabaseByUuidRequest": {
+    "com.coolify.api#GetDatabaseRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -8170,7 +8171,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetDatabaseByUuidResponse": {
+    "com.coolify.api#GetDatabaseResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -8185,13 +8186,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#GetDatabaseByUuid": {
+    "com.coolify.api#GetDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetDatabaseByUuidRequest"
+        "target": "com.coolify.api#GetDatabaseRequest"
       },
       "output": {
-        "target": "com.coolify.api#GetDatabaseByUuidResponse"
+        "target": "com.coolify.api#GetDatabaseResponse"
       },
       "errors": [
         {
@@ -8534,7 +8535,7 @@
         "smithy.api#documentation": "Update\n\nUpdate database by UUID."
       }
     },
-    "com.coolify.api#DeleteDatabaseByUuidRequest": {
+    "com.coolify.api#DeleteDatabaseRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -8578,7 +8579,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteDatabaseByUuidResponse": {
+    "com.coolify.api#DeleteDatabaseResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -8589,13 +8590,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteDatabaseByUuid": {
+    "com.coolify.api#DeleteDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteDatabaseByUuidRequest"
+        "target": "com.coolify.api#DeleteDatabaseRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteDatabaseByUuidResponse"
+        "target": "com.coolify.api#DeleteDatabaseResponse"
       },
       "errors": [
         {
@@ -12001,7 +12002,7 @@
         "smithy.api#documentation": "List\n\nList currently running deployments"
       }
     },
-    "com.coolify.api#GetDeploymentByUuidRequest": {
+    "com.coolify.api#GetDeploymentRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -12017,10 +12018,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetDeploymentByUuid": {
+    "com.coolify.api#GetDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetDeploymentByUuidRequest"
+        "target": "com.coolify.api#GetDeploymentRequest"
       },
       "output": {
         "target": "com.coolify.api#ApplicationDeploymentQueue"
@@ -12502,7 +12503,7 @@
         "smithy.api#documentation": "Create destination\n\nCreate a Docker network destination on a server owned by the authenticated team."
       }
     },
-    "com.coolify.api#GetDestinationByUuidRequest": {
+    "com.coolify.api#GetDestinationRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -12518,10 +12519,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetDestinationByUuid": {
+    "com.coolify.api#GetDestination": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetDestinationByUuidRequest"
+        "target": "com.coolify.api#GetDestinationRequest"
       },
       "output": {
         "target": "com.coolify.api#Destination"
@@ -12584,7 +12585,7 @@
         "smithy.api#documentation": "Update destination\n\nUpdate a Docker network destination name. Network cannot be changed via the API."
       }
     },
-    "com.coolify.api#DeleteDestinationByUuidRequest": {
+    "com.coolify.api#DeleteDestinationRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -12600,7 +12601,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteDestinationByUuidResponse": {
+    "com.coolify.api#DeleteDestinationResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -12611,13 +12612,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteDestinationByUuid": {
+    "com.coolify.api#DeleteDestination": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteDestinationByUuidRequest"
+        "target": "com.coolify.api#DeleteDestinationRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteDestinationByUuidResponse"
+        "target": "com.coolify.api#DeleteDestinationResponse"
       },
       "errors": [
         {
@@ -15234,7 +15235,7 @@
         "smithy.api#documentation": "Create\n\nCreate Project."
       }
     },
-    "com.coolify.api#GetProjectByUuidRequest": {
+    "com.coolify.api#GetProjectRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -15250,10 +15251,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetProjectByUuid": {
+    "com.coolify.api#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetProjectByUuidRequest"
+        "target": "com.coolify.api#GetProjectRequest"
       },
       "output": {
         "target": "com.coolify.api#Project"
@@ -15348,7 +15349,7 @@
         "smithy.api#documentation": "Update\n\nUpdate Project."
       }
     },
-    "com.coolify.api#DeleteProjectByUuidRequest": {
+    "com.coolify.api#DeleteProjectRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -15364,7 +15365,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteProjectByUuidResponse": {
+    "com.coolify.api#DeleteProjectResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -15375,13 +15376,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteProjectByUuid": {
+    "com.coolify.api#DeleteProject": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteProjectByUuidRequest"
+        "target": "com.coolify.api#DeleteProjectRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteProjectByUuidResponse"
+        "target": "com.coolify.api#DeleteProjectResponse"
       },
       "errors": [
         {
@@ -15984,7 +15985,7 @@
         "smithy.api#documentation": "Create S3 Storage\n\nCreate a new S3 storage configuration for the authenticated team."
       }
     },
-    "com.coolify.api#GetS3StorageByUuidRequest": {
+    "com.coolify.api#GetS3StorageRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -16000,7 +16001,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetS3StorageByUuidResponse": {
+    "com.coolify.api#GetS3StorageResponse": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -16041,13 +16042,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#GetS3StorageByUuid": {
+    "com.coolify.api#GetS3Storage": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetS3StorageByUuidRequest"
+        "target": "com.coolify.api#GetS3StorageRequest"
       },
       "output": {
-        "target": "com.coolify.api#GetS3StorageByUuidResponse"
+        "target": "com.coolify.api#GetS3StorageResponse"
       },
       "errors": [
         {
@@ -16165,7 +16166,7 @@
         "smithy.api#documentation": "Update S3 Storage\n\nUpdate S3 storage by UUID."
       }
     },
-    "com.coolify.api#DeleteS3StorageByUuidRequest": {
+    "com.coolify.api#DeleteS3StorageRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -16181,7 +16182,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteS3StorageByUuidResponse": {
+    "com.coolify.api#DeleteS3StorageResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -16192,13 +16193,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteS3StorageByUuid": {
+    "com.coolify.api#DeleteS3Storage": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteS3StorageByUuidRequest"
+        "target": "com.coolify.api#DeleteS3StorageRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteS3StorageByUuidResponse"
+        "target": "com.coolify.api#DeleteS3StorageResponse"
       },
       "errors": [
         {
@@ -19480,7 +19481,7 @@
         "smithy.api#documentation": "Create\n\nCreate Server."
       }
     },
-    "com.coolify.api#GetServerByUuidRequest": {
+    "com.coolify.api#GetServerRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -19496,10 +19497,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetServerByUuid": {
+    "com.coolify.api#GetServer": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetServerByUuidRequest"
+        "target": "com.coolify.api#GetServerRequest"
       },
       "output": {
         "target": "com.coolify.api#Server"
@@ -19681,7 +19682,7 @@
         "smithy.api#documentation": "Update\n\nUpdate Server."
       }
     },
-    "com.coolify.api#DeleteServerByUuidRequest": {
+    "com.coolify.api#DeleteServerRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -19697,7 +19698,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteServerByUuidResponse": {
+    "com.coolify.api#DeleteServerResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -19708,13 +19709,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteServerByUuid": {
+    "com.coolify.api#DeleteServer": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteServerByUuidRequest"
+        "target": "com.coolify.api#DeleteServerRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteServerByUuidResponse"
+        "target": "com.coolify.api#DeleteServerResponse"
       },
       "errors": [
         {
@@ -21364,7 +21365,7 @@
         "smithy.api#documentation": "Create service\n\nCreate a one-click / custom service"
       }
     },
-    "com.coolify.api#GetServiceByUuidRequest": {
+    "com.coolify.api#GetServiceRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -21380,10 +21381,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetServiceByUuid": {
+    "com.coolify.api#GetService": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetServiceByUuidRequest"
+        "target": "com.coolify.api#GetServiceRequest"
       },
       "output": {
         "target": "com.coolify.api#Service"
@@ -21556,7 +21557,7 @@
         "smithy.api#documentation": "Update\n\nUpdate service by UUID."
       }
     },
-    "com.coolify.api#DeleteServiceByUuidRequest": {
+    "com.coolify.api#DeleteServiceRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -21600,7 +21601,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteServiceByUuidResponse": {
+    "com.coolify.api#DeleteServiceResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -21611,13 +21612,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteServiceByUuid": {
+    "com.coolify.api#DeleteService": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteServiceByUuidRequest"
+        "target": "com.coolify.api#DeleteServiceRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteServiceByUuidResponse"
+        "target": "com.coolify.api#DeleteServiceResponse"
       },
       "errors": [
         {
@@ -23929,7 +23930,7 @@
         "smithy.api#documentation": "Update\n\nUpdate a tag name for the current team."
       }
     },
-    "com.coolify.api#DeleteTagByUuidRequest": {
+    "com.coolify.api#DeleteTagRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -23945,7 +23946,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#DeleteTagByUuidResponse": {
+    "com.coolify.api#DeleteTagResponse": {
       "type": "structure",
       "members": {
         "message": {
@@ -23956,13 +23957,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.coolify.api#DeleteTagByUuid": {
+    "com.coolify.api#DeleteTag": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#DeleteTagByUuidRequest"
+        "target": "com.coolify.api#DeleteTagRequest"
       },
       "output": {
-        "target": "com.coolify.api#DeleteTagByUuidResponse"
+        "target": "com.coolify.api#DeleteTagResponse"
       },
       "errors": [
         {
@@ -24155,7 +24156,7 @@
         "smithy.api#documentation": "List\n\nGet all teams."
       }
     },
-    "com.coolify.api#GetTeamByIdRequest": {
+    "com.coolify.api#GetTeamRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -24171,10 +24172,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.coolify.api#GetTeamById": {
+    "com.coolify.api#GetTeam": {
       "type": "operation",
       "input": {
-        "target": "com.coolify.api#GetTeamByIdRequest"
+        "target": "com.coolify.api#GetTeamRequest"
       },
       "output": {
         "target": "com.coolify.api#Team"
@@ -25231,13 +25232,13 @@
           "target": "com.coolify.api#CreateDockerimageApplication"
         },
         {
-          "target": "com.coolify.api#GetApplicationByUuid"
+          "target": "com.coolify.api#GetApplication"
         },
         {
           "target": "com.coolify.api#UpdateApplicationByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteApplicationByUuid"
+          "target": "com.coolify.api#DeleteApplication"
         },
         {
           "target": "com.coolify.api#GetApplicationLogsByUuid"
@@ -25321,13 +25322,13 @@
           "target": "com.coolify.api#CreateCloudInitScript"
         },
         {
-          "target": "com.coolify.api#GetCloudInitScriptByUuid"
+          "target": "com.coolify.api#GetCloudInitScript"
         },
         {
           "target": "com.coolify.api#UpdateCloudInitScriptByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteCloudInitScriptByUuid"
+          "target": "com.coolify.api#DeleteCloudInitScript"
         },
         {
           "target": "com.coolify.api#ListCloudTokens"
@@ -25336,13 +25337,13 @@
           "target": "com.coolify.api#CreateCloudToken"
         },
         {
-          "target": "com.coolify.api#GetCloudTokenByUuid"
+          "target": "com.coolify.api#GetCloudToken"
         },
         {
           "target": "com.coolify.api#UpdateCloudTokenByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteCloudTokenByUuid"
+          "target": "com.coolify.api#DeleteCloudToken"
         },
         {
           "target": "com.coolify.api#ValidateCloudTokenByUuid"
@@ -25357,13 +25358,13 @@
           "target": "com.coolify.api#CreateDatabaseBackup"
         },
         {
-          "target": "com.coolify.api#GetDatabaseByUuid"
+          "target": "com.coolify.api#GetDatabase"
         },
         {
           "target": "com.coolify.api#UpdateDatabaseByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteDatabaseByUuid"
+          "target": "com.coolify.api#DeleteDatabase"
         },
         {
           "target": "com.coolify.api#UpdateDatabaseBackup"
@@ -25462,7 +25463,7 @@
           "target": "com.coolify.api#ListDeployments"
         },
         {
-          "target": "com.coolify.api#GetDeploymentByUuid"
+          "target": "com.coolify.api#GetDeployment"
         },
         {
           "target": "com.coolify.api#CancelDeploymentByUuid"
@@ -25483,13 +25484,13 @@
           "target": "com.coolify.api#CreateServerDestination"
         },
         {
-          "target": "com.coolify.api#GetDestinationByUuid"
+          "target": "com.coolify.api#GetDestination"
         },
         {
           "target": "com.coolify.api#UpdateDestinationByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteDestinationByUuid"
+          "target": "com.coolify.api#DeleteDestination"
         },
         {
           "target": "com.coolify.api#GetDigitaloceanRegions"
@@ -25618,13 +25619,13 @@
           "target": "com.coolify.api#CreateProject"
         },
         {
-          "target": "com.coolify.api#GetProjectByUuid"
+          "target": "com.coolify.api#GetProject"
         },
         {
           "target": "com.coolify.api#UpdateProjectByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteProjectByUuid"
+          "target": "com.coolify.api#DeleteProject"
         },
         {
           "target": "com.coolify.api#GetEnvironmentByNameOrUuid"
@@ -25651,13 +25652,13 @@
           "target": "com.coolify.api#CreateS3Storage"
         },
         {
-          "target": "com.coolify.api#GetS3StorageByUuid"
+          "target": "com.coolify.api#GetS3Storage"
         },
         {
           "target": "com.coolify.api#UpdateS3StorageByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteS3StorageByUuid"
+          "target": "com.coolify.api#DeleteS3Storage"
         },
         {
           "target": "com.coolify.api#ValidateS3StorageByUuid"
@@ -25786,13 +25787,13 @@
           "target": "com.coolify.api#CreateServer"
         },
         {
-          "target": "com.coolify.api#GetServerByUuid"
+          "target": "com.coolify.api#GetServer"
         },
         {
           "target": "com.coolify.api#UpdateServerByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteServerByUuid"
+          "target": "com.coolify.api#DeleteServer"
         },
         {
           "target": "com.coolify.api#GetResourcesByServerUuid"
@@ -25855,13 +25856,13 @@
           "target": "com.coolify.api#CreateService"
         },
         {
-          "target": "com.coolify.api#GetServiceByUuid"
+          "target": "com.coolify.api#GetService"
         },
         {
           "target": "com.coolify.api#UpdateServiceByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteServiceByUuid"
+          "target": "com.coolify.api#DeleteService"
         },
         {
           "target": "com.coolify.api#GetServiceLogsByUuid"
@@ -25978,13 +25979,13 @@
           "target": "com.coolify.api#UpdateTagByUuid"
         },
         {
-          "target": "com.coolify.api#DeleteTagByUuid"
+          "target": "com.coolify.api#DeleteTag"
         },
         {
           "target": "com.coolify.api#ListTeams"
         },
         {
-          "target": "com.coolify.api#GetTeamById"
+          "target": "com.coolify.api#GetTeam"
         },
         {
           "target": "com.coolify.api#GetMembersByTeamId"

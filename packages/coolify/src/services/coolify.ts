@@ -4187,7 +4187,7 @@ export const CreateVultrServerResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateVultrServerResponse",
 }) as any as S.Schema<CreateVultrServerResponse>;
 
-export interface DeleteApplicationByUuidRequest {
+export interface DeleteApplicationRequest {
   /** UUID of the application. */
   uuid: string;
   /** Delete configurations. */
@@ -4199,7 +4199,7 @@ export interface DeleteApplicationByUuidRequest {
   /** Delete connected networks. */
   delete_connected_networks?: boolean;
 }
-export const DeleteApplicationByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
     delete_configurations: S.optional(S.Boolean.pipe(T.Query())),
@@ -4208,19 +4208,19 @@ export const DeleteApplicationByUuidRequest = /*@__PURE__*/ S.suspend(() =>
     delete_connected_networks: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(T.Http({ method: "DELETE", uri: "/applications/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteApplicationByUuidRequest",
-}) as any as S.Schema<DeleteApplicationByUuidRequest>;
+  identifier: "DeleteApplicationRequest",
+}) as any as S.Schema<DeleteApplicationRequest>;
 
-export interface DeleteApplicationByUuidResponse {
+export interface DeleteApplicationResponse {
   message?: string;
 }
-export const DeleteApplicationByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteApplicationByUuidResponse",
-}) as any as S.Schema<DeleteApplicationByUuidResponse>;
+  identifier: "DeleteApplicationResponse",
+}) as any as S.Schema<DeleteApplicationResponse>;
 
 export interface DeleteApplicationStorageBackupScheduleRequest {
   uuid: string;
@@ -4323,50 +4323,50 @@ export const DeleteBackupExecutionByUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteBackupExecutionByUuidResponse",
 }) as any as S.Schema<DeleteBackupExecutionByUuidResponse>;
 
-export interface DeleteCloudInitScriptByUuidRequest {
+export interface DeleteCloudInitScriptRequest {
   uuid: string;
 }
-export const DeleteCloudInitScriptByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCloudInitScriptRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "DELETE", uri: "/cloud-init-scripts/{uuid}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DeleteCloudInitScriptByUuidRequest",
-}) as any as S.Schema<DeleteCloudInitScriptByUuidRequest>;
+  identifier: "DeleteCloudInitScriptRequest",
+}) as any as S.Schema<DeleteCloudInitScriptRequest>;
 
-export interface DeleteCloudInitScriptByUuidResponse {}
-export const DeleteCloudInitScriptByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCloudInitScriptResponse {}
+export const DeleteCloudInitScriptResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteCloudInitScriptByUuidResponse",
-}) as any as S.Schema<DeleteCloudInitScriptByUuidResponse>;
+  identifier: "DeleteCloudInitScriptResponse",
+}) as any as S.Schema<DeleteCloudInitScriptResponse>;
 
-export interface DeleteCloudTokenByUuidRequest {
+export interface DeleteCloudTokenRequest {
   /** UUID of the cloud provider token. */
   uuid: string;
 }
-export const DeleteCloudTokenByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCloudTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/cloud-tokens/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteCloudTokenByUuidRequest",
-}) as any as S.Schema<DeleteCloudTokenByUuidRequest>;
+  identifier: "DeleteCloudTokenRequest",
+}) as any as S.Schema<DeleteCloudTokenRequest>;
 
-export interface DeleteCloudTokenByUuidResponse {
+export interface DeleteCloudTokenResponse {
   message?: string;
 }
-export const DeleteCloudTokenByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCloudTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteCloudTokenByUuidResponse",
-}) as any as S.Schema<DeleteCloudTokenByUuidResponse>;
+  identifier: "DeleteCloudTokenResponse",
+}) as any as S.Schema<DeleteCloudTokenResponse>;
 
-export interface DeleteDatabaseByUuidRequest {
+export interface DeleteDatabaseRequest {
   /** UUID of the database. */
   uuid: string;
   /** Delete configurations. */
@@ -4378,7 +4378,7 @@ export interface DeleteDatabaseByUuidRequest {
   /** Delete connected networks. */
   delete_connected_networks?: boolean;
 }
-export const DeleteDatabaseByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
     delete_configurations: S.optional(S.Boolean.pipe(T.Query())),
@@ -4387,19 +4387,19 @@ export const DeleteDatabaseByUuidRequest = /*@__PURE__*/ S.suspend(() =>
     delete_connected_networks: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(T.Http({ method: "DELETE", uri: "/databases/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteDatabaseByUuidRequest",
-}) as any as S.Schema<DeleteDatabaseByUuidRequest>;
+  identifier: "DeleteDatabaseRequest",
+}) as any as S.Schema<DeleteDatabaseRequest>;
 
-export interface DeleteDatabaseByUuidResponse {
+export interface DeleteDatabaseResponse {
   message?: string;
 }
-export const DeleteDatabaseByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteDatabaseByUuidResponse",
-}) as any as S.Schema<DeleteDatabaseByUuidResponse>;
+  identifier: "DeleteDatabaseResponse",
+}) as any as S.Schema<DeleteDatabaseResponse>;
 
 export interface DeleteDatabaseStorageBackupScheduleRequest {
   uuid: string;
@@ -4427,28 +4427,28 @@ export const DeleteDatabaseStorageBackupScheduleResponse =
     identifier: "DeleteDatabaseStorageBackupScheduleResponse",
   }) as any as S.Schema<DeleteDatabaseStorageBackupScheduleResponse>;
 
-export interface DeleteDestinationByUuidRequest {
+export interface DeleteDestinationRequest {
   /** Destination UUID */
   uuid: string;
 }
-export const DeleteDestinationByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDestinationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/destinations/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteDestinationByUuidRequest",
-}) as any as S.Schema<DeleteDestinationByUuidRequest>;
+  identifier: "DeleteDestinationRequest",
+}) as any as S.Schema<DeleteDestinationRequest>;
 
-export interface DeleteDestinationByUuidResponse {
+export interface DeleteDestinationResponse {
   message?: string;
 }
-export const DeleteDestinationByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDestinationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteDestinationByUuidResponse",
-}) as any as S.Schema<DeleteDestinationByUuidResponse>;
+  identifier: "DeleteDestinationResponse",
+}) as any as S.Schema<DeleteDestinationResponse>;
 
 export interface DeleteEnvByApplicationUuidRequest {
   /** UUID of the application. */
@@ -4726,28 +4726,28 @@ export const DeletePrivateKeyByUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePrivateKeyByUuidResponse",
 }) as any as S.Schema<DeletePrivateKeyByUuidResponse>;
 
-export interface DeleteProjectByUuidRequest {
+export interface DeleteProjectRequest {
   /** UUID of the application. */
   uuid: string;
 }
-export const DeleteProjectByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/projects/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteProjectByUuidRequest",
-}) as any as S.Schema<DeleteProjectByUuidRequest>;
+  identifier: "DeleteProjectRequest",
+}) as any as S.Schema<DeleteProjectRequest>;
 
-export interface DeleteProjectByUuidResponse {
+export interface DeleteProjectResponse {
   message?: string;
 }
-export const DeleteProjectByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteProjectByUuidResponse",
-}) as any as S.Schema<DeleteProjectByUuidResponse>;
+  identifier: "DeleteProjectResponse",
+}) as any as S.Schema<DeleteProjectResponse>;
 
 export interface DeleteProjectSharedEnvRequest {
   /** Project UUID */
@@ -4777,28 +4777,28 @@ export const DeleteProjectSharedEnvResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProjectSharedEnvResponse",
 }) as any as S.Schema<DeleteProjectSharedEnvResponse>;
 
-export interface DeleteS3StorageByUuidRequest {
+export interface DeleteS3StorageRequest {
   /** UUID of the S3 storage. */
   uuid: string;
 }
-export const DeleteS3StorageByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteS3StorageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/s3-storages/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteS3StorageByUuidRequest",
-}) as any as S.Schema<DeleteS3StorageByUuidRequest>;
+  identifier: "DeleteS3StorageRequest",
+}) as any as S.Schema<DeleteS3StorageRequest>;
 
-export interface DeleteS3StorageByUuidResponse {
+export interface DeleteS3StorageResponse {
   message?: string;
 }
-export const DeleteS3StorageByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteS3StorageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteS3StorageByUuidResponse",
-}) as any as S.Schema<DeleteS3StorageByUuidResponse>;
+  identifier: "DeleteS3StorageResponse",
+}) as any as S.Schema<DeleteS3StorageResponse>;
 
 export interface DeleteScheduledTaskByApplicationUuidRequest {
   /** UUID of the application. */
@@ -4868,28 +4868,28 @@ export const DeleteScheduledTaskByServiceUuidResponse = /*@__PURE__*/ S.suspend(
   identifier: "DeleteScheduledTaskByServiceUuidResponse",
 }) as any as S.Schema<DeleteScheduledTaskByServiceUuidResponse>;
 
-export interface DeleteServerByUuidRequest {
+export interface DeleteServerRequest {
   /** UUID of the server. */
   uuid: string;
 }
-export const DeleteServerByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "DELETE", uri: "/servers/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteServerByUuidRequest",
-}) as any as S.Schema<DeleteServerByUuidRequest>;
+  identifier: "DeleteServerRequest",
+}) as any as S.Schema<DeleteServerRequest>;
 
-export interface DeleteServerByUuidResponse {
+export interface DeleteServerResponse {
   message?: string;
 }
-export const DeleteServerByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteServerByUuidResponse",
-}) as any as S.Schema<DeleteServerByUuidResponse>;
+  identifier: "DeleteServerResponse",
+}) as any as S.Schema<DeleteServerResponse>;
 
 export interface DeleteServerSharedEnvRequest {
   /** Server UUID */
@@ -4919,7 +4919,7 @@ export const DeleteServerSharedEnvResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteServerSharedEnvResponse",
 }) as any as S.Schema<DeleteServerSharedEnvResponse>;
 
-export interface DeleteServiceByUuidRequest {
+export interface DeleteServiceRequest {
   /** Service UUID */
   uuid: string;
   /** Delete configurations. */
@@ -4931,7 +4931,7 @@ export interface DeleteServiceByUuidRequest {
   /** Delete connected networks. */
   delete_connected_networks?: boolean;
 }
-export const DeleteServiceByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
     delete_configurations: S.optional(S.Boolean.pipe(T.Query())),
@@ -4940,19 +4940,19 @@ export const DeleteServiceByUuidRequest = /*@__PURE__*/ S.suspend(() =>
     delete_connected_networks: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(T.Http({ method: "DELETE", uri: "/services/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "DeleteServiceByUuidRequest",
-}) as any as S.Schema<DeleteServiceByUuidRequest>;
+  identifier: "DeleteServiceRequest",
+}) as any as S.Schema<DeleteServiceRequest>;
 
-export interface DeleteServiceByUuidResponse {
+export interface DeleteServiceResponse {
   message?: string;
 }
-export const DeleteServiceByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteServiceByUuidResponse",
-}) as any as S.Schema<DeleteServiceByUuidResponse>;
+  identifier: "DeleteServiceResponse",
+}) as any as S.Schema<DeleteServiceResponse>;
 
 export interface DeleteServiceStorageBackupScheduleRequest {
   uuid: string;
@@ -5078,6 +5078,29 @@ export const DeleteStorageByServiceUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteStorageByServiceUuidResponse",
 }) as any as S.Schema<DeleteStorageByServiceUuidResponse>;
 
+export interface DeleteTagRequest {
+  /** Tag UUID */
+  uuid: string;
+}
+export const DeleteTagRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/tags/{uuid}", code: 200 })),
+).annotate({
+  identifier: "DeleteTagRequest",
+}) as any as S.Schema<DeleteTagRequest>;
+
+export interface DeleteTagResponse {
+  message?: string;
+}
+export const DeleteTagResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeleteTagResponse",
+}) as any as S.Schema<DeleteTagResponse>;
+
 export interface DeleteTagByApplicationUuidRequest {
   /** UUID of the application. */
   uuid: string;
@@ -5161,29 +5184,6 @@ export const DeleteTagByServiceUuidResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteTagByServiceUuidResponse",
 }) as any as S.Schema<DeleteTagByServiceUuidResponse>;
-
-export interface DeleteTagByUuidRequest {
-  /** Tag UUID */
-  uuid: string;
-}
-export const DeleteTagByUuidRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/tags/{uuid}", code: 200 })),
-).annotate({
-  identifier: "DeleteTagByUuidRequest",
-}) as any as S.Schema<DeleteTagByUuidRequest>;
-
-export interface DeleteTagByUuidResponse {
-  message?: string;
-}
-export const DeleteTagByUuidResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeleteTagByUuidResponse",
-}) as any as S.Schema<DeleteTagByUuidResponse>;
 
 export interface DeleteTeamSharedEnvRequest {
   /** Shared env id (integer). */
@@ -5493,17 +5493,17 @@ export const ExportServerTransferMailboxResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExportServerTransferMailboxResponse",
 }) as any as S.Schema<ExportServerTransferMailboxResponse>;
 
-export interface GetApplicationByUuidRequest {
+export interface GetApplicationRequest {
   /** UUID of the application. */
   uuid: string;
 }
-export const GetApplicationByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/applications/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetApplicationByUuidRequest",
-}) as any as S.Schema<GetApplicationByUuidRequest>;
+  identifier: "GetApplicationRequest",
+}) as any as S.Schema<GetApplicationRequest>;
 
 /** The subset of the application domains served with an X-Robots-Tag: noindex, nofollow response header. */
 export type ApplicationNoindexDomainsList = Array<string>;
@@ -5906,39 +5906,39 @@ export const GetApplicationLogsByUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetApplicationLogsByUuidResponse",
 }) as any as S.Schema<GetApplicationLogsByUuidResponse>;
 
-export interface GetCloudInitScriptByUuidRequest {
+export interface GetCloudInitScriptRequest {
   uuid: string;
 }
-export const GetCloudInitScriptByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCloudInitScriptRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/cloud-init-scripts/{uuid}", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetCloudInitScriptByUuidRequest",
-}) as any as S.Schema<GetCloudInitScriptByUuidRequest>;
+  identifier: "GetCloudInitScriptRequest",
+}) as any as S.Schema<GetCloudInitScriptRequest>;
 
-export interface GetCloudInitScriptByUuidResponse {}
-export const GetCloudInitScriptByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetCloudInitScriptResponse {}
+export const GetCloudInitScriptResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "GetCloudInitScriptByUuidResponse",
-}) as any as S.Schema<GetCloudInitScriptByUuidResponse>;
+  identifier: "GetCloudInitScriptResponse",
+}) as any as S.Schema<GetCloudInitScriptResponse>;
 
-export interface GetCloudTokenByUuidRequest {
+export interface GetCloudTokenRequest {
   /** Token UUID */
   uuid: string;
 }
-export const GetCloudTokenByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCloudTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/cloud-tokens/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetCloudTokenByUuidRequest",
-}) as any as S.Schema<GetCloudTokenByUuidRequest>;
+  identifier: "GetCloudTokenRequest",
+}) as any as S.Schema<GetCloudTokenRequest>;
 
-export interface GetCloudTokenByUuidResponse {
+export interface GetCloudTokenResponse {
   uuid?: string;
   name?: string;
   provider?: string;
@@ -5947,7 +5947,7 @@ export interface GetCloudTokenByUuidResponse {
   created_at?: string;
   updated_at?: string;
 }
-export const GetCloudTokenByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCloudTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.optional(S.String),
     name: S.optional(S.String),
@@ -5958,8 +5958,8 @@ export const GetCloudTokenByUuidResponse = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetCloudTokenByUuidResponse",
-}) as any as S.Schema<GetCloudTokenByUuidResponse>;
+  identifier: "GetCloudTokenResponse",
+}) as any as S.Schema<GetCloudTokenResponse>;
 
 export interface GetCurrentTeamDiscordNotificationsRequest {}
 export const GetCurrentTeamDiscordNotificationsRequest =
@@ -6059,6 +6059,25 @@ export const GetCurrentTeamWebhookNotificationsResponse =
     identifier: "GetCurrentTeamWebhookNotificationsResponse",
   }) as any as S.Schema<GetCurrentTeamWebhookNotificationsResponse>;
 
+export interface GetDatabaseRequest {
+  /** UUID of the database. */
+  uuid: string;
+}
+export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/databases/{uuid}", code: 200 })),
+).annotate({
+  identifier: "GetDatabaseRequest",
+}) as any as S.Schema<GetDatabaseRequest>;
+
+export type GetDatabaseResponse = string;
+export const GetDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetDatabaseResponse",
+}) as any as S.Schema<GetDatabaseResponse>;
+
 export interface GetDatabaseBackupsByUuidRequest {
   /** UUID of the database. */
   uuid: string;
@@ -6079,25 +6098,6 @@ export const GetDatabaseBackupsByUuidResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetDatabaseBackupsByUuidResponse",
 }) as any as S.Schema<GetDatabaseBackupsByUuidResponse>;
-
-export interface GetDatabaseByUuidRequest {
-  /** UUID of the database. */
-  uuid: string;
-}
-export const GetDatabaseByUuidRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/databases/{uuid}", code: 200 })),
-).annotate({
-  identifier: "GetDatabaseByUuidRequest",
-}) as any as S.Schema<GetDatabaseByUuidRequest>;
-
-export type GetDatabaseByUuidResponse = string;
-export const GetDatabaseByUuidResponse = /*@__PURE__*/ S.suspend(() =>
-  S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDatabaseByUuidResponse",
-}) as any as S.Schema<GetDatabaseByUuidResponse>;
 
 export interface GetDatabaseLogsByUuidRequest {
   /** UUID of the database. */
@@ -6128,17 +6128,17 @@ export const GetDatabaseLogsByUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDatabaseLogsByUuidResponse",
 }) as any as S.Schema<GetDatabaseLogsByUuidResponse>;
 
-export interface GetDeploymentByUuidRequest {
+export interface GetDeploymentRequest {
   /** Deployment UUID */
   uuid: string;
 }
-export const GetDeploymentByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/deployments/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetDeploymentByUuidRequest",
-}) as any as S.Schema<GetDeploymentByUuidRequest>;
+  identifier: "GetDeploymentRequest",
+}) as any as S.Schema<GetDeploymentRequest>;
 
 /** Project model */
 export interface ApplicationDeploymentQueue {
@@ -6204,17 +6204,17 @@ export const ApplicationDeploymentQueue = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApplicationDeploymentQueue",
 }) as any as S.Schema<ApplicationDeploymentQueue>;
 
-export interface GetDestinationByUuidRequest {
+export interface GetDestinationRequest {
   /** Destination UUID */
   uuid: string;
 }
-export const GetDestinationByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDestinationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/destinations/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetDestinationByUuidRequest",
-}) as any as S.Schema<GetDestinationByUuidRequest>;
+  identifier: "GetDestinationRequest",
+}) as any as S.Schema<GetDestinationRequest>;
 
 export interface GetDigitaloceanImagesRequest {
   cloud_provider_token_uuid?: string;
@@ -6843,17 +6843,17 @@ export const PrivateKey = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PrivateKey" }) as any as S.Schema<PrivateKey>;
 
-export interface GetProjectByUuidRequest {
+export interface GetProjectRequest {
   /** Project UUID */
   uuid: string;
 }
-export const GetProjectByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/projects/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetProjectByUuidRequest",
-}) as any as S.Schema<GetProjectByUuidRequest>;
+  identifier: "GetProjectRequest",
+}) as any as S.Schema<GetProjectRequest>;
 
 /** Project model */
 export interface Project {
@@ -6923,19 +6923,19 @@ export const GetResourcesByServerUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetResourcesByServerUuidResponse",
 }) as any as S.Schema<GetResourcesByServerUuidResponse>;
 
-export interface GetS3StorageByUuidRequest {
+export interface GetS3StorageRequest {
   /** S3 Storage UUID */
   uuid: string;
 }
-export const GetS3StorageByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetS3StorageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/s3-storages/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetS3StorageByUuidRequest",
-}) as any as S.Schema<GetS3StorageByUuidRequest>;
+  identifier: "GetS3StorageRequest",
+}) as any as S.Schema<GetS3StorageRequest>;
 
-export interface GetS3StorageByUuidResponse {
+export interface GetS3StorageResponse {
   uuid?: string;
   name?: string;
   description?: string | null;
@@ -6947,7 +6947,7 @@ export interface GetS3StorageByUuidResponse {
   created_at?: string;
   updated_at?: string;
 }
-export const GetS3StorageByUuidResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetS3StorageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.optional(S.String),
     name: S.optional(S.String),
@@ -6961,20 +6961,20 @@ export const GetS3StorageByUuidResponse = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetS3StorageByUuidResponse",
-}) as any as S.Schema<GetS3StorageByUuidResponse>;
+  identifier: "GetS3StorageResponse",
+}) as any as S.Schema<GetS3StorageResponse>;
 
-export interface GetServerByUuidRequest {
+export interface GetServerRequest {
   /** Server's UUID */
   uuid: string;
 }
-export const GetServerByUuidRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uuid: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/servers/{uuid}", code: 200 })),
 ).annotate({
-  identifier: "GetServerByUuidRequest",
-}) as any as S.Schema<GetServerByUuidRequest>;
+  identifier: "GetServerRequest",
+}) as any as S.Schema<GetServerRequest>;
 
 /** The proxy type. */
 export type ServerProxyType = "traefik" | "caddy" | "none";
@@ -7314,6 +7314,80 @@ export const GetServerSentinelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetServerSentinelResponse",
 }) as any as S.Schema<GetServerSentinelResponse>;
 
+export interface GetServiceRequest {
+  /** Service UUID */
+  uuid: string;
+}
+export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/services/{uuid}", code: 200 })),
+).annotate({
+  identifier: "GetServiceRequest",
+}) as any as S.Schema<GetServiceRequest>;
+
+/** Service model */
+export interface Service {
+  /** The unique identifier of the service. Only used for database identification. */
+  id?: number;
+  /** The unique identifier of the service. */
+  uuid?: string;
+  /** The name of the service. */
+  name?: string;
+  /** The unique identifier of the environment where the service is attached to. */
+  environment_id?: number;
+  /** The unique identifier of the server where the service is running. */
+  server_id?: number;
+  /** The description of the service. */
+  description?: string;
+  /** The raw docker-compose.yml file of the service. */
+  docker_compose_raw?: string;
+  /** The docker-compose.yml file that is parsed and modified by Coolify. */
+  docker_compose?: string;
+  /** Destination type. */
+  destination_type?: string;
+  /** The unique identifier of the destination where the service is running. */
+  destination_id?: number;
+  /** The flag to connect the service to the predefined Docker network. */
+  connect_to_docker_network?: boolean;
+  /** The flag to enable the container label escape. */
+  is_container_label_escape_enabled?: boolean;
+  /** The flag to enable the container label readonly. */
+  is_container_label_readonly_enabled?: boolean;
+  /** The hash of the service configuration. */
+  config_hash?: string;
+  /** The type of the service. */
+  service_type?: string;
+  /** The date and time when the service was created. */
+  created_at?: string;
+  /** The date and time when the service was last updated. */
+  updated_at?: string;
+  /** The date and time when the service was deleted. */
+  deleted_at?: string;
+}
+export const Service = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    uuid: S.optional(S.String),
+    name: S.optional(S.String),
+    environment_id: S.optional(S.Number),
+    server_id: S.optional(S.Number),
+    description: S.optional(S.String),
+    docker_compose_raw: S.optional(S.String),
+    docker_compose: S.optional(S.String),
+    destination_type: S.optional(S.String),
+    destination_id: S.optional(S.Number),
+    connect_to_docker_network: S.optional(S.Boolean),
+    is_container_label_escape_enabled: S.optional(S.Boolean),
+    is_container_label_readonly_enabled: S.optional(S.Boolean),
+    config_hash: S.optional(S.String),
+    service_type: S.optional(S.String),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.String),
+    deleted_at: S.optional(S.String),
+  }),
+).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
+
 export interface GetServiceApplicationByServiceAndAppUuidRequest {
   /** Service UUID. */
   uuid: string;
@@ -7378,80 +7452,6 @@ export const GetServiceApplicationLogsByServiceAndAppUuidResponse =
   ).annotate({
     identifier: "GetServiceApplicationLogsByServiceAndAppUuidResponse",
   }) as any as S.Schema<GetServiceApplicationLogsByServiceAndAppUuidResponse>;
-
-export interface GetServiceByUuidRequest {
-  /** Service UUID */
-  uuid: string;
-}
-export const GetServiceByUuidRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/services/{uuid}", code: 200 })),
-).annotate({
-  identifier: "GetServiceByUuidRequest",
-}) as any as S.Schema<GetServiceByUuidRequest>;
-
-/** Service model */
-export interface Service {
-  /** The unique identifier of the service. Only used for database identification. */
-  id?: number;
-  /** The unique identifier of the service. */
-  uuid?: string;
-  /** The name of the service. */
-  name?: string;
-  /** The unique identifier of the environment where the service is attached to. */
-  environment_id?: number;
-  /** The unique identifier of the server where the service is running. */
-  server_id?: number;
-  /** The description of the service. */
-  description?: string;
-  /** The raw docker-compose.yml file of the service. */
-  docker_compose_raw?: string;
-  /** The docker-compose.yml file that is parsed and modified by Coolify. */
-  docker_compose?: string;
-  /** Destination type. */
-  destination_type?: string;
-  /** The unique identifier of the destination where the service is running. */
-  destination_id?: number;
-  /** The flag to connect the service to the predefined Docker network. */
-  connect_to_docker_network?: boolean;
-  /** The flag to enable the container label escape. */
-  is_container_label_escape_enabled?: boolean;
-  /** The flag to enable the container label readonly. */
-  is_container_label_readonly_enabled?: boolean;
-  /** The hash of the service configuration. */
-  config_hash?: string;
-  /** The type of the service. */
-  service_type?: string;
-  /** The date and time when the service was created. */
-  created_at?: string;
-  /** The date and time when the service was last updated. */
-  updated_at?: string;
-  /** The date and time when the service was deleted. */
-  deleted_at?: string;
-}
-export const Service = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    uuid: S.optional(S.String),
-    name: S.optional(S.String),
-    environment_id: S.optional(S.Number),
-    server_id: S.optional(S.Number),
-    description: S.optional(S.String),
-    docker_compose_raw: S.optional(S.String),
-    docker_compose: S.optional(S.String),
-    destination_type: S.optional(S.String),
-    destination_id: S.optional(S.Number),
-    connect_to_docker_network: S.optional(S.Boolean),
-    is_container_label_escape_enabled: S.optional(S.Boolean),
-    is_container_label_readonly_enabled: S.optional(S.Boolean),
-    config_hash: S.optional(S.String),
-    service_type: S.optional(S.String),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-    deleted_at: S.optional(S.String),
-  }),
-).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
 
 export interface GetServiceDatabaseByServiceAndDatabaseUuidRequest {
   /** Service UUID. */
@@ -7547,17 +7547,15 @@ export const GetServiceLogsByUuidResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetServiceLogsByUuidResponse",
 }) as any as S.Schema<GetServiceLogsByUuidResponse>;
 
-export interface GetTeamByIdRequest {
+export interface GetTeamRequest {
   /** Team ID */
   id: number;
 }
-export const GetTeamByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTeamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/teams/{id}", code: 200 })),
-).annotate({
-  identifier: "GetTeamByIdRequest",
-}) as any as S.Schema<GetTeamByIdRequest>;
+).annotate({ identifier: "GetTeamRequest" }) as any as S.Schema<GetTeamRequest>;
 
 /** The members of the team. */
 export type TeamMembersList = Array<User>;
@@ -13425,19 +13423,16 @@ export const createVultrServer: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteApplicationByUuidError =
-  | BadRequest
-  | NotFound
-  | CoolifyOpError;
+export type DeleteApplicationError = BadRequest | NotFound | CoolifyOpError;
 /** Delete Delete application by UUID. */
-export const deleteApplicationByUuid: API.OperationMethod<
-  DeleteApplicationByUuidRequest,
-  DeleteApplicationByUuidResponse,
-  DeleteApplicationByUuidError,
+export const deleteApplication: API.OperationMethod<
+  DeleteApplicationRequest,
+  DeleteApplicationResponse,
+  DeleteApplicationError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteApplicationByUuidRequest,
-  output: DeleteApplicationByUuidResponse,
+  input: DeleteApplicationRequest,
+  output: DeleteApplicationResponse,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13492,52 +13487,46 @@ export const deleteBackupExecutionByUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteCloudInitScriptByUuidError =
-  | Forbidden
-  | NotFound
-  | CoolifyOpError;
+export type DeleteCloudInitScriptError = Forbidden | NotFound | CoolifyOpError;
 /** Delete Cloud-init Script Delete a cloud-init script by UUID. */
-export const deleteCloudInitScriptByUuid: API.OperationMethod<
-  DeleteCloudInitScriptByUuidRequest,
-  DeleteCloudInitScriptByUuidResponse,
-  DeleteCloudInitScriptByUuidError,
+export const deleteCloudInitScript: API.OperationMethod<
+  DeleteCloudInitScriptRequest,
+  DeleteCloudInitScriptResponse,
+  DeleteCloudInitScriptError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCloudInitScriptByUuidRequest,
-  output: DeleteCloudInitScriptByUuidResponse,
+  input: DeleteCloudInitScriptRequest,
+  output: DeleteCloudInitScriptResponse,
   errors: [Forbidden, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteCloudTokenByUuidError =
-  | BadRequest
-  | NotFound
-  | CoolifyOpError;
+export type DeleteCloudTokenError = BadRequest | NotFound | CoolifyOpError;
 /** Delete Cloud Provider Token Delete cloud provider token by UUID. Cannot delete if token is used by any servers. */
-export const deleteCloudTokenByUuid: API.OperationMethod<
-  DeleteCloudTokenByUuidRequest,
-  DeleteCloudTokenByUuidResponse,
-  DeleteCloudTokenByUuidError,
+export const deleteCloudToken: API.OperationMethod<
+  DeleteCloudTokenRequest,
+  DeleteCloudTokenResponse,
+  DeleteCloudTokenError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteCloudTokenByUuidRequest,
-  output: DeleteCloudTokenByUuidResponse,
+  input: DeleteCloudTokenRequest,
+  output: DeleteCloudTokenResponse,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteDatabaseByUuidError = BadRequest | NotFound | CoolifyOpError;
+export type DeleteDatabaseError = BadRequest | NotFound | CoolifyOpError;
 /** Delete Delete database by UUID. */
-export const deleteDatabaseByUuid: API.OperationMethod<
-  DeleteDatabaseByUuidRequest,
-  DeleteDatabaseByUuidResponse,
-  DeleteDatabaseByUuidError,
+export const deleteDatabase: API.OperationMethod<
+  DeleteDatabaseRequest,
+  DeleteDatabaseResponse,
+  DeleteDatabaseError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDatabaseByUuidRequest,
-  output: DeleteDatabaseByUuidResponse,
+  input: DeleteDatabaseRequest,
+  output: DeleteDatabaseResponse,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13562,16 +13551,16 @@ export const deleteDatabaseStorageBackupSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteDestinationByUuidError = NotFound | Conflict | CoolifyOpError;
+export type DeleteDestinationError = NotFound | Conflict | CoolifyOpError;
 /** Delete destination Delete an unused Docker network destination. */
-export const deleteDestinationByUuid: API.OperationMethod<
-  DeleteDestinationByUuidRequest,
-  DeleteDestinationByUuidResponse,
-  DeleteDestinationByUuidError,
+export const deleteDestination: API.OperationMethod<
+  DeleteDestinationRequest,
+  DeleteDestinationResponse,
+  DeleteDestinationError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteDestinationByUuidRequest,
-  output: DeleteDestinationByUuidResponse,
+  input: DeleteDestinationRequest,
+  output: DeleteDestinationResponse,
   errors: [NotFound, Conflict, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13733,20 +13722,20 @@ export const deletePrivateKeyByUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteProjectByUuidError =
+export type DeleteProjectError =
   | BadRequest
   | NotFound
   | UnprocessableEntity
   | CoolifyOpError;
 /** Delete Delete project by UUID. */
-export const deleteProjectByUuid: API.OperationMethod<
-  DeleteProjectByUuidRequest,
-  DeleteProjectByUuidResponse,
-  DeleteProjectByUuidError,
+export const deleteProject: API.OperationMethod<
+  DeleteProjectRequest,
+  DeleteProjectResponse,
+  DeleteProjectError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteProjectByUuidRequest,
-  output: DeleteProjectByUuidResponse,
+  input: DeleteProjectRequest,
+  output: DeleteProjectResponse,
   errors: [BadRequest, NotFound, UnprocessableEntity, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13767,16 +13756,16 @@ export const deleteProjectSharedEnv: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteS3StorageByUuidError = NotFound | CoolifyOpError;
+export type DeleteS3StorageError = NotFound | CoolifyOpError;
 /** Delete S3 Storage Delete S3 storage by UUID. */
-export const deleteS3StorageByUuid: API.OperationMethod<
-  DeleteS3StorageByUuidRequest,
-  DeleteS3StorageByUuidResponse,
-  DeleteS3StorageByUuidError,
+export const deleteS3Storage: API.OperationMethod<
+  DeleteS3StorageRequest,
+  DeleteS3StorageResponse,
+  DeleteS3StorageError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteS3StorageByUuidRequest,
-  output: DeleteS3StorageByUuidResponse,
+  input: DeleteS3StorageRequest,
+  output: DeleteS3StorageResponse,
   errors: [NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13814,20 +13803,20 @@ export const deleteScheduledTaskByServiceUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteServerByUuidError =
+export type DeleteServerError =
   | BadRequest
   | NotFound
   | UnprocessableEntity
   | CoolifyOpError;
 /** Delete Delete server by UUID. */
-export const deleteServerByUuid: API.OperationMethod<
-  DeleteServerByUuidRequest,
-  DeleteServerByUuidResponse,
-  DeleteServerByUuidError,
+export const deleteServer: API.OperationMethod<
+  DeleteServerRequest,
+  DeleteServerResponse,
+  DeleteServerError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServerByUuidRequest,
-  output: DeleteServerByUuidResponse,
+  input: DeleteServerRequest,
+  output: DeleteServerResponse,
   errors: [BadRequest, NotFound, UnprocessableEntity, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13848,16 +13837,16 @@ export const deleteServerSharedEnv: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteServiceByUuidError = BadRequest | NotFound | CoolifyOpError;
+export type DeleteServiceError = BadRequest | NotFound | CoolifyOpError;
 /** Delete Delete service by UUID. */
-export const deleteServiceByUuid: API.OperationMethod<
-  DeleteServiceByUuidRequest,
-  DeleteServiceByUuidResponse,
-  DeleteServiceByUuidError,
+export const deleteService: API.OperationMethod<
+  DeleteServiceRequest,
+  DeleteServiceResponse,
+  DeleteServiceError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteServiceByUuidRequest,
-  output: DeleteServiceByUuidResponse,
+  input: DeleteServiceRequest,
+  output: DeleteServiceResponse,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -13939,6 +13928,21 @@ export const deleteStorageByServiceUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteTagError = NotFound | CoolifyOpError;
+/** Delete Delete a tag for the current team. Detaches the tag from all resources via cascade. */
+export const deleteTag: API.OperationMethod<
+  DeleteTagRequest,
+  DeleteTagResponse,
+  DeleteTagError,
+  CoolifyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTagRequest,
+  output: DeleteTagResponse,
+  errors: [NotFound, UnknownCoolifyError],
+  protocol: CoolifyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteTagByApplicationUuidError =
   | BadRequest
   | NotFound
@@ -13989,21 +13993,6 @@ export const deleteTagByServiceUuid: API.OperationMethod<
   input: DeleteTagByServiceUuidRequest,
   output: DeleteTagByServiceUuidResponse,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
-  protocol: CoolifyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteTagByUuidError = NotFound | CoolifyOpError;
-/** Delete Delete a tag for the current team. Detaches the tag from all resources via cascade. */
-export const deleteTagByUuid: API.OperationMethod<
-  DeleteTagByUuidRequest,
-  DeleteTagByUuidResponse,
-  DeleteTagByUuidError,
-  CoolifyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteTagByUuidRequest,
-  output: DeleteTagByUuidResponse,
-  errors: [NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
 }));
@@ -14204,15 +14193,15 @@ export const exportServerTransferMailbox: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetApplicationByUuidError = BadRequest | NotFound | CoolifyOpError;
+export type GetApplicationError = BadRequest | NotFound | CoolifyOpError;
 /** Get Get application by UUID. */
-export const getApplicationByUuid: API.OperationMethod<
-  GetApplicationByUuidRequest,
+export const getApplication: API.OperationMethod<
+  GetApplicationRequest,
   Application,
-  GetApplicationByUuidError,
+  GetApplicationError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetApplicationByUuidRequest,
+  input: GetApplicationRequest,
   output: Application,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
@@ -14237,34 +14226,31 @@ export const getApplicationLogsByUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetCloudInitScriptByUuidError =
-  | Forbidden
-  | NotFound
-  | CoolifyOpError;
+export type GetCloudInitScriptError = Forbidden | NotFound | CoolifyOpError;
 /** Get Cloud-init Script Get a cloud-init script by UUID. */
-export const getCloudInitScriptByUuid: API.OperationMethod<
-  GetCloudInitScriptByUuidRequest,
-  GetCloudInitScriptByUuidResponse,
-  GetCloudInitScriptByUuidError,
+export const getCloudInitScript: API.OperationMethod<
+  GetCloudInitScriptRequest,
+  GetCloudInitScriptResponse,
+  GetCloudInitScriptError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCloudInitScriptByUuidRequest,
-  output: GetCloudInitScriptByUuidResponse,
+  input: GetCloudInitScriptRequest,
+  output: GetCloudInitScriptResponse,
   errors: [Forbidden, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetCloudTokenByUuidError = NotFound | CoolifyOpError;
+export type GetCloudTokenError = NotFound | CoolifyOpError;
 /** Get Cloud Provider Token Get cloud provider token by UUID. */
-export const getCloudTokenByUuid: API.OperationMethod<
-  GetCloudTokenByUuidRequest,
-  GetCloudTokenByUuidResponse,
-  GetCloudTokenByUuidError,
+export const getCloudToken: API.OperationMethod<
+  GetCloudTokenRequest,
+  GetCloudTokenResponse,
+  GetCloudTokenError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetCloudTokenByUuidRequest,
-  output: GetCloudTokenByUuidResponse,
+  input: GetCloudTokenRequest,
+  output: GetCloudTokenResponse,
   errors: [NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -14368,6 +14354,21 @@ export const getCurrentTeamWebhookNotifications: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetDatabaseError = BadRequest | NotFound | CoolifyOpError;
+/** Get Get database by UUID. */
+export const getDatabase: API.OperationMethod<
+  GetDatabaseRequest,
+  GetDatabaseResponse,
+  GetDatabaseError,
+  CoolifyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseRequest,
+  output: GetDatabaseResponse,
+  errors: [BadRequest, NotFound, UnknownCoolifyError],
+  protocol: CoolifyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDatabaseBackupsByUuidError =
   | BadRequest
   | NotFound
@@ -14381,21 +14382,6 @@ export const getDatabaseBackupsByUuid: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDatabaseBackupsByUuidRequest,
   output: GetDatabaseBackupsByUuidResponse,
-  errors: [BadRequest, NotFound, UnknownCoolifyError],
-  protocol: CoolifyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetDatabaseByUuidError = BadRequest | NotFound | CoolifyOpError;
-/** Get Get database by UUID. */
-export const getDatabaseByUuid: API.OperationMethod<
-  GetDatabaseByUuidRequest,
-  GetDatabaseByUuidResponse,
-  GetDatabaseByUuidError,
-  CoolifyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetDatabaseByUuidRequest,
-  output: GetDatabaseByUuidResponse,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -14416,30 +14402,30 @@ export const getDatabaseLogsByUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetDeploymentByUuidError = BadRequest | NotFound | CoolifyOpError;
+export type GetDeploymentError = BadRequest | NotFound | CoolifyOpError;
 /** Get Get deployment by UUID. */
-export const getDeploymentByUuid: API.OperationMethod<
-  GetDeploymentByUuidRequest,
+export const getDeployment: API.OperationMethod<
+  GetDeploymentRequest,
   ApplicationDeploymentQueue,
-  GetDeploymentByUuidError,
+  GetDeploymentError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDeploymentByUuidRequest,
+  input: GetDeploymentRequest,
   output: ApplicationDeploymentQueue,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetDestinationByUuidError = NotFound | CoolifyOpError;
+export type GetDestinationError = NotFound | CoolifyOpError;
 /** Get destination Get a Docker network destination by UUID. */
-export const getDestinationByUuid: API.OperationMethod<
-  GetDestinationByUuidRequest,
+export const getDestination: API.OperationMethod<
+  GetDestinationRequest,
   Destination,
-  GetDestinationByUuidError,
+  GetDestinationError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetDestinationByUuidRequest,
+  input: GetDestinationRequest,
   output: Destination,
   errors: [NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
@@ -14679,15 +14665,15 @@ export const getPrivateKeyByUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetProjectByUuidError = BadRequest | NotFound | CoolifyOpError;
+export type GetProjectError = BadRequest | NotFound | CoolifyOpError;
 /** Get Get project by UUID. */
-export const getProjectByUuid: API.OperationMethod<
-  GetProjectByUuidRequest,
+export const getProject: API.OperationMethod<
+  GetProjectRequest,
   Project,
-  GetProjectByUuidError,
+  GetProjectError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetProjectByUuidRequest,
+  input: GetProjectRequest,
   output: Project,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
@@ -14709,30 +14695,30 @@ export const getResourcesByServerUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetS3StorageByUuidError = NotFound | CoolifyOpError;
+export type GetS3StorageError = NotFound | CoolifyOpError;
 /** Get S3 Storage Get S3 storage by UUID. */
-export const getS3StorageByUuid: API.OperationMethod<
-  GetS3StorageByUuidRequest,
-  GetS3StorageByUuidResponse,
-  GetS3StorageByUuidError,
+export const getS3Storage: API.OperationMethod<
+  GetS3StorageRequest,
+  GetS3StorageResponse,
+  GetS3StorageError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetS3StorageByUuidRequest,
-  output: GetS3StorageByUuidResponse,
+  input: GetS3StorageRequest,
+  output: GetS3StorageResponse,
   errors: [NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetServerByUuidError = BadRequest | NotFound | CoolifyOpError;
+export type GetServerError = BadRequest | NotFound | CoolifyOpError;
 /** Get Get server by UUID. */
-export const getServerByUuid: API.OperationMethod<
-  GetServerByUuidRequest,
+export const getServer: API.OperationMethod<
+  GetServerRequest,
   Server,
-  GetServerByUuidError,
+  GetServerError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetServerByUuidRequest,
+  input: GetServerRequest,
   output: Server,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
@@ -14820,6 +14806,21 @@ export const getServerSentinel: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetServiceError = BadRequest | NotFound | CoolifyOpError;
+/** Get Get service by UUID. */
+export const getService: API.OperationMethod<
+  GetServiceRequest,
+  Service,
+  GetServiceError,
+  CoolifyOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceRequest,
+  output: Service,
+  errors: [BadRequest, NotFound, UnknownCoolifyError],
+  protocol: CoolifyProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetServiceApplicationByServiceAndAppUuidError =
   | NotFound
   | CoolifyOpError;
@@ -14850,21 +14851,6 @@ export const getServiceApplicationLogsByServiceAndAppUuid: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetServiceApplicationLogsByServiceAndAppUuidRequest,
   output: GetServiceApplicationLogsByServiceAndAppUuidResponse,
-  errors: [BadRequest, NotFound, UnknownCoolifyError],
-  protocol: CoolifyProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GetServiceByUuidError = BadRequest | NotFound | CoolifyOpError;
-/** Get Get service by UUID. */
-export const getServiceByUuid: API.OperationMethod<
-  GetServiceByUuidRequest,
-  Service,
-  GetServiceByUuidError,
-  CoolifyOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetServiceByUuidRequest,
-  output: Service,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
   retry: Retry.Retry,
@@ -14920,15 +14906,15 @@ export const getServiceLogsByUuid: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetTeamByIdError = BadRequest | NotFound | CoolifyOpError;
+export type GetTeamError = BadRequest | NotFound | CoolifyOpError;
 /** Get Get team by TeamId. */
-export const getTeamById: API.OperationMethod<
-  GetTeamByIdRequest,
+export const getTeam: API.OperationMethod<
+  GetTeamRequest,
   Team,
-  GetTeamByIdError,
+  GetTeamError,
   CoolifyOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetTeamByIdRequest,
+  input: GetTeamRequest,
   output: Team,
   errors: [BadRequest, NotFound, UnknownCoolifyError],
   protocol: CoolifyProtocol,
