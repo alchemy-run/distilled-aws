@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.docker.engine#ContainerListRequest": {
+    "com.docker.engine#ListContainerRequest": {
       "type": "structure",
       "members": {
         "all": {
@@ -803,18 +804,18 @@
         "smithy.api#documentation": "Summary of health status\n\nAdded in v1.52, before that version all container summary not include Health.\nAfter this attribute introduced, it includes containers with no health checks configured,\nor containers that are not running with none"
       }
     },
-    "com.docker.engine#ContainerListResponseBodyList": {
+    "com.docker.engine#ListContainerResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ContainerSummary"
       },
       "traits": {}
     },
-    "com.docker.engine#ContainerListResponse": {
+    "com.docker.engine#ListContainerResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#ContainerListResponseBodyList",
+          "target": "com.docker.engine#ListContainerResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -825,13 +826,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ContainerList": {
+    "com.docker.engine#ListContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerListRequest"
+        "target": "com.docker.engine#ListContainerRequest"
       },
       "output": {
-        "target": "com.docker.engine#ContainerListResponse"
+        "target": "com.docker.engine#ListContainerResponse"
       },
       "errors": [
         {
@@ -847,7 +848,7 @@
         "smithy.api#documentation": "List containers\n\nReturns a list of containers. For details on the format, see the\n[inspect endpoint](#operation/ContainerInspect).\n\nNote that it uses a different, smaller representation of a container\nthan inspecting a single container. For example, the list of linked\ncontainers is not propagated ."
       }
     },
-    "com.docker.engine#ContainerCreateRequestExposedPortsMap": {
+    "com.docker.engine#CreateContainerRequestExposedPortsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -859,7 +860,7 @@
         "smithy.api#documentation": "An object mapping ports to an empty object in the form:\n\n`{\"<port>/<tcp|udp|sctp>\": {}}`\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequestEnvList": {
+    "com.docker.engine#CreateContainerRequestEnvList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -868,7 +869,7 @@
         "smithy.api#documentation": "A list of environment variables to set inside the container in the\nform `[\"VAR=value\", ...]`. A variable without `=` is removed from the\nenvironment, rather than to have an empty value.\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequestCmdList": {
+    "com.docker.engine#CreateContainerRequestCmdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -930,7 +931,7 @@
         "smithy.api#documentation": "The test to perform. Possible values are:\n\n- `[]` inherit healthcheck from image or parent image\n- `[\"NONE\"]` disable healthcheck\n- `[\"CMD\", args...]` exec arguments directly\n- `[\"CMD-SHELL\", command]` run command with system's default shell\n\nA non-zero exit code indicates a failed healthcheck:\n- `0` healthy\n- `1` unhealthy\n- `2` reserved (treated as unhealthy)\n- other values: error running probe\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequestVolumesMap": {
+    "com.docker.engine#CreateContainerRequestVolumesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -942,7 +943,7 @@
         "smithy.api#documentation": "An object mapping mount point paths inside the container to empty\nobjects.\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequestEntrypointList": {
+    "com.docker.engine#CreateContainerRequestEntrypointList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -951,7 +952,7 @@
         "smithy.api#documentation": "The entry point for the container as a string or an array of strings.\n\nIf the array consists of exactly one empty string (`[\"\"]`) then the\nentry point is reset to system default (i.e., the entry point used by\ndocker when there is no `ENTRYPOINT` instruction in the `Dockerfile`).\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequestOnBuildList": {
+    "com.docker.engine#CreateContainerRequestOnBuildList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -960,7 +961,7 @@
         "smithy.api#documentation": "`ONBUILD` metadata that were defined in the image's `Dockerfile`.\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequestLabelsMap": {
+    "com.docker.engine#CreateContainerRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -972,7 +973,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ContainerCreateRequestShellList": {
+    "com.docker.engine#CreateContainerRequestShellList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2353,7 +2354,7 @@
         "smithy.api#documentation": "A mapping of network name to endpoint configuration for that network.\nThe endpoint configuration can be left empty to connect to that\nnetwork with no particular endpoint configuration.\n"
       }
     },
-    "com.docker.engine#ContainerCreateRequest": {
+    "com.docker.engine#CreateContainerRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2407,7 +2408,7 @@
           }
         },
         "ExposedPorts": {
-          "target": "com.docker.engine#ContainerCreateRequestExposedPortsMap",
+          "target": "com.docker.engine#CreateContainerRequestExposedPortsMap",
           "traits": {
             "smithy.api#documentation": "An object mapping ports to an empty object in the form:\n\n`{\"<port>/<tcp|udp|sctp>\": {}}`\n",
             "com.distilled.openapi#nullable": {}
@@ -2432,13 +2433,13 @@
           }
         },
         "Env": {
-          "target": "com.docker.engine#ContainerCreateRequestEnvList",
+          "target": "com.docker.engine#CreateContainerRequestEnvList",
           "traits": {
             "smithy.api#documentation": "A list of environment variables to set inside the container in the\nform `[\"VAR=value\", ...]`. A variable without `=` is removed from the\nenvironment, rather than to have an empty value.\n"
           }
         },
         "Cmd": {
-          "target": "com.docker.engine#ContainerCreateRequestCmdList",
+          "target": "com.docker.engine#CreateContainerRequestCmdList",
           "traits": {
             "smithy.api#documentation": "Command to run specified as a string or an array of strings.\n"
           }
@@ -2460,7 +2461,7 @@
           }
         },
         "Volumes": {
-          "target": "com.docker.engine#ContainerCreateRequestVolumesMap",
+          "target": "com.docker.engine#CreateContainerRequestVolumesMap",
           "traits": {
             "smithy.api#documentation": "An object mapping mount point paths inside the container to empty\nobjects.\n"
           }
@@ -2472,7 +2473,7 @@
           }
         },
         "Entrypoint": {
-          "target": "com.docker.engine#ContainerCreateRequestEntrypointList",
+          "target": "com.docker.engine#CreateContainerRequestEntrypointList",
           "traits": {
             "smithy.api#documentation": "The entry point for the container as a string or an array of strings.\n\nIf the array consists of exactly one empty string (`[\"\"]`) then the\nentry point is reset to system default (i.e., the entry point used by\ndocker when there is no `ENTRYPOINT` instruction in the `Dockerfile`).\n"
           }
@@ -2485,14 +2486,14 @@
           }
         },
         "OnBuild": {
-          "target": "com.docker.engine#ContainerCreateRequestOnBuildList",
+          "target": "com.docker.engine#CreateContainerRequestOnBuildList",
           "traits": {
             "smithy.api#documentation": "`ONBUILD` metadata that were defined in the image's `Dockerfile`.\n",
             "com.distilled.openapi#nullable": {}
           }
         },
         "Labels": {
-          "target": "com.docker.engine#ContainerCreateRequestLabelsMap",
+          "target": "com.docker.engine#CreateContainerRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -2512,7 +2513,7 @@
           }
         },
         "Shell": {
-          "target": "com.docker.engine#ContainerCreateRequestShellList",
+          "target": "com.docker.engine#CreateContainerRequestShellList",
           "traits": {
             "smithy.api#documentation": "Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell.\n",
             "com.distilled.openapi#nullable": {}
@@ -2560,10 +2561,10 @@
         "smithy.api#documentation": "Warnings encountered when creating the container"
       }
     },
-    "com.docker.engine#ContainerCreate": {
+    "com.docker.engine#CreateContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerCreateRequest"
+        "target": "com.docker.engine#CreateContainerRequest"
       },
       "output": {
         "target": "com.docker.engine#ContainerCreateResponse"
@@ -3702,7 +3703,7 @@
         "smithy.api#documentation": "Get changes on a container’s filesystem\n\nReturns which files in a container's filesystem have been added, deleted,\nor modified. The `Kind` of modification can be one of:\n\n- `0`: Modified (\"C\")\n- `1`: Added (\"A\")\n- `2`: Deleted (\"D\")"
       }
     },
-    "com.docker.engine#ContainerExportRequest": {
+    "com.docker.engine#ExportContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3718,10 +3719,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerExport": {
+    "com.docker.engine#ExportContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerExportRequest"
+        "target": "com.docker.engine#ExportContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4342,7 +4343,7 @@
         "smithy.api#documentation": "Get container stats based on resource usage\n\nThis endpoint returns a live stream of a container’s resource usage\nstatistics.\n\nThe `precpu_stats` is the CPU statistic of the *previous* read, and is\nused to calculate the CPU usage percentage. It is not an exact copy\nof the `cpu_stats` field.\n\nIf either `precpu_stats.online_cpus` or `cpu_stats.online_cpus` is\nnil then for compatibility with older daemons the length of the\ncorresponding `cpu_usage.percpu_usage` array should be used.\n\nOn a cgroup v2 host, the following fields are not set\n* `blkio_stats`: all fields other than `io_service_bytes_recursive`\n* `cpu_stats`: `cpu_usage.percpu_usage`\n* `memory_stats`: `max_usage` and `failcnt`\nAlso, `memory_stats.stats` fields are incompatible with cgroup v1.\n\nTo calculate the values shown by the `stats` command of the docker cli tool\nthe following formulas can be used:\n* used_memory = `memory_stats.usage - memory_stats.stats.cache` (cgroups v1)\n* used_memory = `memory_stats.usage - memory_stats.stats.inactive_file` (cgroups v2)\n* available_memory = `memory_stats.limit`\n* Memory usage % = `(used_memory / available_memory) * 100.0`\n* cpu_delta = `cpu_stats.cpu_usage.total_usage - precpu_stats.cpu_usage.total_usage`\n* system_cpu_delta = `cpu_stats.system_cpu_usage - precpu_stats.system_cpu_usage`\n* number_cpus = `length(cpu_stats.cpu_usage.percpu_usage)` or `cpu_stats.online_cpus`\n* CPU usage % = `(cpu_delta / system_cpu_delta) * number_cpus * 100.0`"
       }
     },
-    "com.docker.engine#ContainerResizeRequest": {
+    "com.docker.engine#ResizeContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4374,10 +4375,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerResize": {
+    "com.docker.engine#ResizeContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerResizeRequest"
+        "target": "com.docker.engine#ResizeContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4396,7 +4397,7 @@
         "smithy.api#documentation": "Resize a container TTY\n\nResize the TTY for a container."
       }
     },
-    "com.docker.engine#ContainerStartRequest": {
+    "com.docker.engine#StartContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4419,10 +4420,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerStart": {
+    "com.docker.engine#StartContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerStartRequest"
+        "target": "com.docker.engine#StartContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4444,7 +4445,7 @@
         "smithy.api#documentation": "Start a container"
       }
     },
-    "com.docker.engine#ContainerStopRequest": {
+    "com.docker.engine#StopContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4474,10 +4475,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerStop": {
+    "com.docker.engine#StopContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerStopRequest"
+        "target": "com.docker.engine#StopContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4496,7 +4497,7 @@
         "smithy.api#documentation": "Stop a container"
       }
     },
-    "com.docker.engine#ContainerRestartRequest": {
+    "com.docker.engine#RestartContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4526,10 +4527,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerRestart": {
+    "com.docker.engine#RestartContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerRestartRequest"
+        "target": "com.docker.engine#RestartContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4548,7 +4549,7 @@
         "smithy.api#documentation": "Restart a container"
       }
     },
-    "com.docker.engine#ContainerKillRequest": {
+    "com.docker.engine#KillContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4571,10 +4572,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerKill": {
+    "com.docker.engine#KillContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerKillRequest"
+        "target": "com.docker.engine#KillContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4596,7 +4597,7 @@
         "smithy.api#documentation": "Kill a container\n\nSend a POSIX signal to a container, defaulting to killing to the\ncontainer."
       }
     },
-    "com.docker.engine#ContainerUpdateRequestBlkioWeightDeviceItem": {
+    "com.docker.engine#UpdateContainerRequestBlkioWeightDeviceItem": {
       "type": "structure",
       "members": {
         "Path": {
@@ -4608,16 +4609,16 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ContainerUpdateRequestBlkioWeightDeviceList": {
+    "com.docker.engine#UpdateContainerRequestBlkioWeightDeviceList": {
       "type": "list",
       "member": {
-        "target": "com.docker.engine#ContainerUpdateRequestBlkioWeightDeviceItem"
+        "target": "com.docker.engine#UpdateContainerRequestBlkioWeightDeviceItem"
       },
       "traits": {
         "smithy.api#documentation": "Block IO weight (relative device weight) in the form:\n\n```\n[{\"Path\": \"device_path\", \"Weight\": weight}]\n```\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestBlkioDeviceReadBpsList": {
+    "com.docker.engine#UpdateContainerRequestBlkioDeviceReadBpsList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ThrottleDevice"
@@ -4626,7 +4627,7 @@
         "smithy.api#documentation": "Limit read rate (bytes per second) from a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestBlkioDeviceWriteBpsList": {
+    "com.docker.engine#UpdateContainerRequestBlkioDeviceWriteBpsList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ThrottleDevice"
@@ -4635,7 +4636,7 @@
         "smithy.api#documentation": "Limit write rate (bytes per second) to a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestBlkioDeviceReadIOpsList": {
+    "com.docker.engine#UpdateContainerRequestBlkioDeviceReadIOpsList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ThrottleDevice"
@@ -4644,7 +4645,7 @@
         "smithy.api#documentation": "Limit read rate (IO per second) from a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestBlkioDeviceWriteIOpsList": {
+    "com.docker.engine#UpdateContainerRequestBlkioDeviceWriteIOpsList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ThrottleDevice"
@@ -4653,7 +4654,7 @@
         "smithy.api#documentation": "Limit write rate (IO per second) to a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestDevicesList": {
+    "com.docker.engine#UpdateContainerRequestDevicesList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#DeviceMapping"
@@ -4662,7 +4663,7 @@
         "smithy.api#documentation": "A list of devices to add to the container."
       }
     },
-    "com.docker.engine#ContainerUpdateRequestDeviceCgroupRulesList": {
+    "com.docker.engine#UpdateContainerRequestDeviceCgroupRulesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4671,7 +4672,7 @@
         "smithy.api#documentation": "a list of cgroup rules to apply to the container"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestDeviceRequestsList": {
+    "com.docker.engine#UpdateContainerRequestDeviceRequestsList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#DeviceRequest"
@@ -4680,7 +4681,7 @@
         "smithy.api#documentation": "A list of requests for devices to be sent to device drivers.\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequestUlimitsItem": {
+    "com.docker.engine#UpdateContainerRequestUlimitsItem": {
       "type": "structure",
       "members": {
         "Name": {
@@ -4704,16 +4705,16 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ContainerUpdateRequestUlimitsList": {
+    "com.docker.engine#UpdateContainerRequestUlimitsList": {
       "type": "list",
       "member": {
-        "target": "com.docker.engine#ContainerUpdateRequestUlimitsItem"
+        "target": "com.docker.engine#UpdateContainerRequestUlimitsItem"
       },
       "traits": {
         "smithy.api#documentation": "A list of resource limits to set in the container. For example:\n\n```\n{\"Name\": \"nofile\", \"Soft\": 1024, \"Hard\": 2048}\n```\n"
       }
     },
-    "com.docker.engine#ContainerUpdateRequest": {
+    "com.docker.engine#UpdateContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4749,31 +4750,31 @@
           }
         },
         "BlkioWeightDevice": {
-          "target": "com.docker.engine#ContainerUpdateRequestBlkioWeightDeviceList",
+          "target": "com.docker.engine#UpdateContainerRequestBlkioWeightDeviceList",
           "traits": {
             "smithy.api#documentation": "Block IO weight (relative device weight) in the form:\n\n```\n[{\"Path\": \"device_path\", \"Weight\": weight}]\n```\n"
           }
         },
         "BlkioDeviceReadBps": {
-          "target": "com.docker.engine#ContainerUpdateRequestBlkioDeviceReadBpsList",
+          "target": "com.docker.engine#UpdateContainerRequestBlkioDeviceReadBpsList",
           "traits": {
             "smithy.api#documentation": "Limit read rate (bytes per second) from a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
           }
         },
         "BlkioDeviceWriteBps": {
-          "target": "com.docker.engine#ContainerUpdateRequestBlkioDeviceWriteBpsList",
+          "target": "com.docker.engine#UpdateContainerRequestBlkioDeviceWriteBpsList",
           "traits": {
             "smithy.api#documentation": "Limit write rate (bytes per second) to a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
           }
         },
         "BlkioDeviceReadIOps": {
-          "target": "com.docker.engine#ContainerUpdateRequestBlkioDeviceReadIOpsList",
+          "target": "com.docker.engine#UpdateContainerRequestBlkioDeviceReadIOpsList",
           "traits": {
             "smithy.api#documentation": "Limit read rate (IO per second) from a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
           }
         },
         "BlkioDeviceWriteIOps": {
-          "target": "com.docker.engine#ContainerUpdateRequestBlkioDeviceWriteIOpsList",
+          "target": "com.docker.engine#UpdateContainerRequestBlkioDeviceWriteIOpsList",
           "traits": {
             "smithy.api#documentation": "Limit write rate (IO per second) to a device, in the form:\n\n```\n[{\"Path\": \"device_path\", \"Rate\": rate}]\n```\n"
           }
@@ -4815,19 +4816,19 @@
           }
         },
         "Devices": {
-          "target": "com.docker.engine#ContainerUpdateRequestDevicesList",
+          "target": "com.docker.engine#UpdateContainerRequestDevicesList",
           "traits": {
             "smithy.api#documentation": "A list of devices to add to the container."
           }
         },
         "DeviceCgroupRules": {
-          "target": "com.docker.engine#ContainerUpdateRequestDeviceCgroupRulesList",
+          "target": "com.docker.engine#UpdateContainerRequestDeviceCgroupRulesList",
           "traits": {
             "smithy.api#documentation": "a list of cgroup rules to apply to the container"
           }
         },
         "DeviceRequests": {
-          "target": "com.docker.engine#ContainerUpdateRequestDeviceRequestsList",
+          "target": "com.docker.engine#UpdateContainerRequestDeviceRequestsList",
           "traits": {
             "smithy.api#documentation": "A list of requests for devices to be sent to device drivers.\n"
           }
@@ -4877,7 +4878,7 @@
           }
         },
         "Ulimits": {
-          "target": "com.docker.engine#ContainerUpdateRequestUlimitsList",
+          "target": "com.docker.engine#UpdateContainerRequestUlimitsList",
           "traits": {
             "smithy.api#documentation": "A list of resource limits to set in the container. For example:\n\n```\n{\"Name\": \"nofile\", \"Soft\": 1024, \"Hard\": 2048}\n```\n"
           }
@@ -4937,10 +4938,10 @@
         "smithy.api#documentation": "Warnings encountered when updating the container."
       }
     },
-    "com.docker.engine#ContainerUpdate": {
+    "com.docker.engine#UpdateContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerUpdateRequest"
+        "target": "com.docker.engine#UpdateContainerRequest"
       },
       "output": {
         "target": "com.docker.engine#ContainerUpdateResponse"
@@ -4959,7 +4960,7 @@
         "smithy.api#documentation": "Update a container\n\nChange various configuration options of a container without having to\nrecreate it."
       }
     },
-    "com.docker.engine#ContainerRenameRequest": {
+    "com.docker.engine#RenameContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -4983,10 +4984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerRename": {
+    "com.docker.engine#RenameContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerRenameRequest"
+        "target": "com.docker.engine#RenameContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5008,7 +5009,7 @@
         "smithy.api#documentation": "Rename a container"
       }
     },
-    "com.docker.engine#ContainerPauseRequest": {
+    "com.docker.engine#PauseContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5024,10 +5025,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerPause": {
+    "com.docker.engine#PauseContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerPauseRequest"
+        "target": "com.docker.engine#PauseContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5046,7 +5047,7 @@
         "smithy.api#documentation": "Pause a container\n\nUse the freezer cgroup to suspend all processes in a container.\n\nTraditionally, when suspending a process the `SIGSTOP` signal is used,\nwhich is observable by the process being suspended. With the freezer\ncgroup the process is unaware, and unable to capture, that it is being\nsuspended, and subsequently resumed."
       }
     },
-    "com.docker.engine#ContainerUnpauseRequest": {
+    "com.docker.engine#UnpauseContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5062,10 +5063,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerUnpause": {
+    "com.docker.engine#UnpauseContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerUnpauseRequest"
+        "target": "com.docker.engine#UnpauseContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5084,7 +5085,7 @@
         "smithy.api#documentation": "Unpause a container\n\nResume a container which has been paused."
       }
     },
-    "com.docker.engine#ContainerAttachRequest": {
+    "com.docker.engine#AttachContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5142,10 +5143,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerAttach": {
+    "com.docker.engine#AttachContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerAttachRequest"
+        "target": "com.docker.engine#AttachContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5250,7 +5251,7 @@
         "smithy.api#documentation": "Attach to a container via a websocket"
       }
     },
-    "com.docker.engine#ContainerWaitRequestCondition": {
+    "com.docker.engine#WaitContainerRequestCondition": {
       "type": "enum",
       "members": {
         "NOT_RUNNING": {
@@ -5274,7 +5275,7 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ContainerWaitRequest": {
+    "com.docker.engine#WaitContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5286,7 +5287,7 @@
           }
         },
         "condition": {
-          "target": "com.docker.engine#ContainerWaitRequestCondition",
+          "target": "com.docker.engine#WaitContainerRequestCondition",
           "traits": {
             "smithy.api#httpQuery": "condition",
             "smithy.api#documentation": "Wait until a container state reaches the given condition.\n\nDefaults to `not-running` if omitted or empty.\n"
@@ -5329,10 +5330,10 @@
         "smithy.api#documentation": "container waiting error, if any"
       }
     },
-    "com.docker.engine#ContainerWait": {
+    "com.docker.engine#WaitContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerWaitRequest"
+        "target": "com.docker.engine#WaitContainerRequest"
       },
       "output": {
         "target": "com.docker.engine#ContainerWaitResponse"
@@ -5354,7 +5355,7 @@
         "smithy.api#documentation": "Wait for a container\n\nBlock until a container stops, then returns the exit code."
       }
     },
-    "com.docker.engine#ContainerDeleteRequest": {
+    "com.docker.engine#DeleteContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5391,10 +5392,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerDelete": {
+    "com.docker.engine#DeleteContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerDeleteRequest"
+        "target": "com.docker.engine#DeleteContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5419,7 +5420,7 @@
         "smithy.api#documentation": "Remove a container"
       }
     },
-    "com.docker.engine#ContainerArchiveRequest": {
+    "com.docker.engine#ArchiveContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5443,10 +5444,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerArchive": {
+    "com.docker.engine#ArchiveContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerArchiveRequest"
+        "target": "com.docker.engine#ArchiveContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5602,7 +5603,7 @@
         "smithy.api#documentation": "Delete stopped containers"
       }
     },
-    "com.docker.engine#ImageListRequest": {
+    "com.docker.engine#ListImageRequest": {
       "type": "structure",
       "members": {
         "all": {
@@ -6289,18 +6290,18 @@
         "smithy.api#documentation": "Manifests is a list of manifests available in this image.\nIt provides a more detailed view of the platform-specific image manifests\nor other image-attached data like build attestations.\n\nWARNING: This is experimental and may change at any time without any backward\ncompatibility.\n"
       }
     },
-    "com.docker.engine#ImageListResponseBodyList": {
+    "com.docker.engine#ListImageResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ImageSummary"
       },
       "traits": {}
     },
-    "com.docker.engine#ImageListResponse": {
+    "com.docker.engine#ListImageResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#ImageListResponseBodyList",
+          "target": "com.docker.engine#ListImageResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6311,13 +6312,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ImageList": {
+    "com.docker.engine#ListImage": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ImageListRequest"
+        "target": "com.docker.engine#ListImageRequest"
       },
       "output": {
-        "target": "com.docker.engine#ImageListResponse"
+        "target": "com.docker.engine#ListImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6666,14 +6667,14 @@
         "smithy.api#documentation": "Delete builder cache"
       }
     },
-    "com.docker.engine#ImageCreateRequestChangesList": {
+    "com.docker.engine#CreateImageRequestChangesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.docker.engine#ImageCreateRequest": {
+    "com.docker.engine#CreateImageRequest": {
       "type": "structure",
       "members": {
         "fromImage": {
@@ -6712,7 +6713,7 @@
           }
         },
         "changes": {
-          "target": "com.docker.engine#ImageCreateRequestChangesList",
+          "target": "com.docker.engine#CreateImageRequestChangesList",
           "traits": {
             "smithy.api#httpQuery": "changes",
             "smithy.api#documentation": "Apply `Dockerfile` instructions to the image that is created,\nfor example: `changes=ENV DEBUG=true`.\nNote that `ENV DEBUG=true` should be URI component encoded.\n\nSupported `Dockerfile` instructions:\n`CMD`|`ENTRYPOINT`|`ENV`|`EXPOSE`|`ONBUILD`|`USER`|`VOLUME`|`WORKDIR`\n"
@@ -6743,10 +6744,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ImageCreate": {
+    "com.docker.engine#CreateImage": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ImageCreateRequest"
+        "target": "com.docker.engine#CreateImageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7535,14 +7536,14 @@
         "smithy.api#documentation": "Tag an image\n\nCreate a tag that refers to a source image.\n\nThis creates an additional reference (tag) to the source image. The tag\ncan include a different repository name and/or tag. If the repository\nor tag already exists, it will be overwritten."
       }
     },
-    "com.docker.engine#ImageDeleteRequestPlatformsList": {
+    "com.docker.engine#DeleteImageRequestPlatformsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.docker.engine#ImageDeleteRequest": {
+    "com.docker.engine#DeleteImageRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -7568,7 +7569,7 @@
           }
         },
         "platforms": {
-          "target": "com.docker.engine#ImageDeleteRequestPlatformsList",
+          "target": "com.docker.engine#DeleteImageRequestPlatformsList",
           "traits": {
             "smithy.api#httpQuery": "platforms",
             "smithy.api#documentation": "Select platform-specific content to delete.\nMultiple values are accepted.\nEach platform is a OCI platform encoded as a JSON string.\n"
@@ -7597,18 +7598,18 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ImageDeleteResponseBodyList": {
+    "com.docker.engine#DeleteImageResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#ImageDeleteResponseItem"
       },
       "traits": {}
     },
-    "com.docker.engine#ImageDeleteResponse": {
+    "com.docker.engine#DeleteImageResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#ImageDeleteResponseBodyList",
+          "target": "com.docker.engine#DeleteImageResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7619,13 +7620,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ImageDelete": {
+    "com.docker.engine#DeleteImage": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ImageDeleteRequest"
+        "target": "com.docker.engine#DeleteImageRequest"
       },
       "output": {
-        "target": "com.docker.engine#ImageDeleteResponse"
+        "target": "com.docker.engine#DeleteImageResponse"
       },
       "errors": [
         {
@@ -7644,7 +7645,7 @@
         "smithy.api#documentation": "Remove an image\n\nRemove an image, along with any untagged parent images that were\nreferenced by that image.\n\nImages can't be removed if they have descendant images, are being\nused by a running container or are being used by a build."
       }
     },
-    "com.docker.engine#ImageSearchRequest": {
+    "com.docker.engine#SearchImageRequest": {
       "type": "structure",
       "members": {
         "term": {
@@ -7674,7 +7675,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ImageSearchResponseBodyItem": {
+    "com.docker.engine#SearchImageResponseBodyItem": {
       "type": "structure",
       "members": {
         "description": {
@@ -7698,18 +7699,18 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ImageSearchResponseBodyList": {
+    "com.docker.engine#SearchImageResponseBodyList": {
       "type": "list",
       "member": {
-        "target": "com.docker.engine#ImageSearchResponseBodyItem"
+        "target": "com.docker.engine#SearchImageResponseBodyItem"
       },
       "traits": {}
     },
-    "com.docker.engine#ImageSearchResponse": {
+    "com.docker.engine#SearchImageResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#ImageSearchResponseBodyList",
+          "target": "com.docker.engine#SearchImageResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7720,13 +7721,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ImageSearch": {
+    "com.docker.engine#SearchImage": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ImageSearchRequest"
+        "target": "com.docker.engine#SearchImageRequest"
       },
       "output": {
-        "target": "com.docker.engine#ImageSearchResponse"
+        "target": "com.docker.engine#SearchImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9481,7 +9482,7 @@
         "smithy.api#documentation": "Get version\n\nReturns the version of Docker that is running and various information about the system that Docker is running on."
       }
     },
-    "com.docker.engine#SystemPingResponse": {
+    "com.docker.engine#PingSystemResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -9496,13 +9497,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#SystemPing": {
+    "com.docker.engine#PingSystem": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.docker.engine#SystemPingResponse"
+        "target": "com.docker.engine#PingSystemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9513,7 +9514,7 @@
         "smithy.api#documentation": "Ping\n\nThis is a dummy endpoint you can use to test if the server is accessible."
       }
     },
-    "com.docker.engine#ImageCommitRequestExposedPortsMap": {
+    "com.docker.engine#CommitImageRequestExposedPortsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9525,7 +9526,7 @@
         "smithy.api#documentation": "An object mapping ports to an empty object in the form:\n\n`{\"<port>/<tcp|udp|sctp>\": {}}`\n"
       }
     },
-    "com.docker.engine#ImageCommitRequestEnvList": {
+    "com.docker.engine#CommitImageRequestEnvList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9534,7 +9535,7 @@
         "smithy.api#documentation": "A list of environment variables to set inside the container in the\nform `[\"VAR=value\", ...]`. A variable without `=` is removed from the\nenvironment, rather than to have an empty value.\n"
       }
     },
-    "com.docker.engine#ImageCommitRequestCmdList": {
+    "com.docker.engine#CommitImageRequestCmdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9543,7 +9544,7 @@
         "smithy.api#documentation": "Command to run specified as a string or an array of strings.\n"
       }
     },
-    "com.docker.engine#ImageCommitRequestVolumesMap": {
+    "com.docker.engine#CommitImageRequestVolumesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9555,7 +9556,7 @@
         "smithy.api#documentation": "An object mapping mount point paths inside the container to empty\nobjects.\n"
       }
     },
-    "com.docker.engine#ImageCommitRequestEntrypointList": {
+    "com.docker.engine#CommitImageRequestEntrypointList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9564,7 +9565,7 @@
         "smithy.api#documentation": "The entry point for the container as a string or an array of strings.\n\nIf the array consists of exactly one empty string (`[\"\"]`) then the\nentry point is reset to system default (i.e., the entry point used by\ndocker when there is no `ENTRYPOINT` instruction in the `Dockerfile`).\n"
       }
     },
-    "com.docker.engine#ImageCommitRequestOnBuildList": {
+    "com.docker.engine#CommitImageRequestOnBuildList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9573,7 +9574,7 @@
         "smithy.api#documentation": "`ONBUILD` metadata that were defined in the image's `Dockerfile`.\n"
       }
     },
-    "com.docker.engine#ImageCommitRequestLabelsMap": {
+    "com.docker.engine#CommitImageRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9585,7 +9586,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ImageCommitRequestShellList": {
+    "com.docker.engine#CommitImageRequestShellList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9594,7 +9595,7 @@
         "smithy.api#documentation": "Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell.\n"
       }
     },
-    "com.docker.engine#ImageCommitRequest": {
+    "com.docker.engine#CommitImageRequest": {
       "type": "structure",
       "members": {
         "container": {
@@ -9683,7 +9684,7 @@
           }
         },
         "ExposedPorts": {
-          "target": "com.docker.engine#ImageCommitRequestExposedPortsMap",
+          "target": "com.docker.engine#CommitImageRequestExposedPortsMap",
           "traits": {
             "smithy.api#documentation": "An object mapping ports to an empty object in the form:\n\n`{\"<port>/<tcp|udp|sctp>\": {}}`\n",
             "com.distilled.openapi#nullable": {}
@@ -9708,13 +9709,13 @@
           }
         },
         "Env": {
-          "target": "com.docker.engine#ImageCommitRequestEnvList",
+          "target": "com.docker.engine#CommitImageRequestEnvList",
           "traits": {
             "smithy.api#documentation": "A list of environment variables to set inside the container in the\nform `[\"VAR=value\", ...]`. A variable without `=` is removed from the\nenvironment, rather than to have an empty value.\n"
           }
         },
         "Cmd": {
-          "target": "com.docker.engine#ImageCommitRequestCmdList",
+          "target": "com.docker.engine#CommitImageRequestCmdList",
           "traits": {
             "smithy.api#documentation": "Command to run specified as a string or an array of strings.\n"
           }
@@ -9736,7 +9737,7 @@
           }
         },
         "Volumes": {
-          "target": "com.docker.engine#ImageCommitRequestVolumesMap",
+          "target": "com.docker.engine#CommitImageRequestVolumesMap",
           "traits": {
             "smithy.api#documentation": "An object mapping mount point paths inside the container to empty\nobjects.\n"
           }
@@ -9748,7 +9749,7 @@
           }
         },
         "Entrypoint": {
-          "target": "com.docker.engine#ImageCommitRequestEntrypointList",
+          "target": "com.docker.engine#CommitImageRequestEntrypointList",
           "traits": {
             "smithy.api#documentation": "The entry point for the container as a string or an array of strings.\n\nIf the array consists of exactly one empty string (`[\"\"]`) then the\nentry point is reset to system default (i.e., the entry point used by\ndocker when there is no `ENTRYPOINT` instruction in the `Dockerfile`).\n"
           }
@@ -9761,14 +9762,14 @@
           }
         },
         "OnBuild": {
-          "target": "com.docker.engine#ImageCommitRequestOnBuildList",
+          "target": "com.docker.engine#CommitImageRequestOnBuildList",
           "traits": {
             "smithy.api#documentation": "`ONBUILD` metadata that were defined in the image's `Dockerfile`.\n",
             "com.distilled.openapi#nullable": {}
           }
         },
         "Labels": {
-          "target": "com.docker.engine#ImageCommitRequestLabelsMap",
+          "target": "com.docker.engine#CommitImageRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -9788,7 +9789,7 @@
           }
         },
         "Shell": {
-          "target": "com.docker.engine#ImageCommitRequestShellList",
+          "target": "com.docker.engine#CommitImageRequestShellList",
           "traits": {
             "smithy.api#documentation": "Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell.\n",
             "com.distilled.openapi#nullable": {}
@@ -9814,10 +9815,10 @@
         "smithy.api#documentation": "Response to an API call that returns just an Id"
       }
     },
-    "com.docker.engine#ImageCommit": {
+    "com.docker.engine#CommitImage": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ImageCommitRequest"
+        "target": "com.docker.engine#CommitImageRequest"
       },
       "output": {
         "target": "com.docker.engine#IDResponse"
@@ -10338,14 +10339,14 @@
         "smithy.api#documentation": "Get data usage information"
       }
     },
-    "com.docker.engine#ImageGetRequestPlatformList": {
+    "com.docker.engine#GetImageRequestPlatformList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.docker.engine#ImageGetRequest": {
+    "com.docker.engine#GetImageRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -10357,7 +10358,7 @@
           }
         },
         "platform": {
-          "target": "com.docker.engine#ImageGetRequestPlatformList",
+          "target": "com.docker.engine#GetImageRequestPlatformList",
           "traits": {
             "smithy.api#httpQuery": "platform",
             "smithy.api#documentation": "JSON encoded OCI platform describing a platform which will be used\nto select a platform-specific image to be saved if the image is\nmulti-platform.\nIf not provided, the full multi-platform image will be saved.\n\nExample: `{\"os\": \"linux\", \"architecture\": \"arm\", \"variant\": \"v5\"}`\n"
@@ -10368,7 +10369,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ImageGetResponse": {
+    "com.docker.engine#GetImageResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10383,13 +10384,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ImageGet": {
+    "com.docker.engine#GetImage": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ImageGetRequest"
+        "target": "com.docker.engine#GetImageRequest"
       },
       "output": {
-        "target": "com.docker.engine#ImageGetResponse"
+        "target": "com.docker.engine#GetImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10520,7 +10521,7 @@
         "smithy.api#documentation": "Import images\n\nLoad a set of images and tags into a repository.\n\nFor details on the format, see the [export image endpoint](#operation/ImageGet)."
       }
     },
-    "com.docker.engine#ContainerExecRequestConsoleSizeList": {
+    "com.docker.engine#ExecContainerRequestConsoleSizeList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -10529,7 +10530,7 @@
         "smithy.api#documentation": "Initial console size, as an `[height, width]` array."
       }
     },
-    "com.docker.engine#ContainerExecRequestEnvList": {
+    "com.docker.engine#ExecContainerRequestEnvList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10538,7 +10539,7 @@
         "smithy.api#documentation": "A list of environment variables in the form `[\"VAR=value\", ...]`.\n"
       }
     },
-    "com.docker.engine#ContainerExecRequestCmdList": {
+    "com.docker.engine#ExecContainerRequestCmdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10547,7 +10548,7 @@
         "smithy.api#documentation": "Command to run, as a string or array of strings."
       }
     },
-    "com.docker.engine#ContainerExecRequest": {
+    "com.docker.engine#ExecContainerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -10577,7 +10578,7 @@
           }
         },
         "ConsoleSize": {
-          "target": "com.docker.engine#ContainerExecRequestConsoleSizeList",
+          "target": "com.docker.engine#ExecContainerRequestConsoleSizeList",
           "traits": {
             "smithy.api#documentation": "Initial console size, as an `[height, width]` array.",
             "com.distilled.openapi#nullable": {}
@@ -10596,13 +10597,13 @@
           }
         },
         "Env": {
-          "target": "com.docker.engine#ContainerExecRequestEnvList",
+          "target": "com.docker.engine#ExecContainerRequestEnvList",
           "traits": {
             "smithy.api#documentation": "A list of environment variables in the form `[\"VAR=value\", ...]`.\n"
           }
         },
         "Cmd": {
-          "target": "com.docker.engine#ContainerExecRequestCmdList",
+          "target": "com.docker.engine#ExecContainerRequestCmdList",
           "traits": {
             "smithy.api#documentation": "Command to run, as a string or array of strings."
           }
@@ -10630,10 +10631,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ContainerExec": {
+    "com.docker.engine#ExecContainer": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ContainerExecRequest"
+        "target": "com.docker.engine#ExecContainerRequest"
       },
       "output": {
         "target": "com.docker.engine#IDResponse"
@@ -10891,7 +10892,7 @@
         "smithy.api#documentation": "Inspect an exec instance\n\nReturn low-level information about an exec instance."
       }
     },
-    "com.docker.engine#VolumeListRequest": {
+    "com.docker.engine#ListVolumeRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -11517,10 +11518,10 @@
         "smithy.api#documentation": "Warnings that occurred when fetching the list of volumes.\n"
       }
     },
-    "com.docker.engine#VolumeList": {
+    "com.docker.engine#ListVolume": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#VolumeListRequest"
+        "target": "com.docker.engine#ListVolumeRequest"
       },
       "output": {
         "target": "com.docker.engine#VolumeListResponse"
@@ -11534,7 +11535,7 @@
         "smithy.api#documentation": "List volumes"
       }
     },
-    "com.docker.engine#VolumeCreateRequestDriverOptsMap": {
+    "com.docker.engine#CreateVolumeRequestDriverOptsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11546,7 +11547,7 @@
         "smithy.api#documentation": "A mapping of driver options and values. These options are\npassed directly to the driver and are driver specific.\n"
       }
     },
-    "com.docker.engine#VolumeCreateRequestLabelsMap": {
+    "com.docker.engine#CreateVolumeRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11558,7 +11559,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#VolumeCreateRequest": {
+    "com.docker.engine#CreateVolumeRequest": {
       "type": "structure",
       "members": {
         "Name": {
@@ -11574,13 +11575,13 @@
           }
         },
         "DriverOpts": {
-          "target": "com.docker.engine#VolumeCreateRequestDriverOptsMap",
+          "target": "com.docker.engine#CreateVolumeRequestDriverOptsMap",
           "traits": {
             "smithy.api#documentation": "A mapping of driver options and values. These options are\npassed directly to the driver and are driver specific.\n"
           }
         },
         "Labels": {
-          "target": "com.docker.engine#VolumeCreateRequestLabelsMap",
+          "target": "com.docker.engine#CreateVolumeRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -11593,10 +11594,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#VolumeCreate": {
+    "com.docker.engine#CreateVolume": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#VolumeCreateRequest"
+        "target": "com.docker.engine#CreateVolumeRequest"
       },
       "output": {
         "target": "com.docker.engine#Volume"
@@ -11648,7 +11649,7 @@
         "smithy.api#documentation": "Inspect a volume"
       }
     },
-    "com.docker.engine#VolumeUpdateRequest": {
+    "com.docker.engine#UpdateVolumeRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -11675,10 +11676,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#VolumeUpdate": {
+    "com.docker.engine#UpdateVolume": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#VolumeUpdateRequest"
+        "target": "com.docker.engine#UpdateVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11700,7 +11701,7 @@
         "smithy.api#documentation": "\"Update a volume. Valid only for Swarm cluster volumes\""
       }
     },
-    "com.docker.engine#VolumeDeleteRequest": {
+    "com.docker.engine#DeleteVolumeRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -11723,10 +11724,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#VolumeDelete": {
+    "com.docker.engine#DeleteVolume": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#VolumeDeleteRequest"
+        "target": "com.docker.engine#DeleteVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11809,7 +11810,7 @@
         "smithy.api#documentation": "Delete unused volumes"
       }
     },
-    "com.docker.engine#NetworkListRequest": {
+    "com.docker.engine#ListNetworkRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -12063,18 +12064,18 @@
         "smithy.api#documentation": "List of peer nodes for an overlay network. This field is only present\nfor overlay networks, and omitted for other network types.\n"
       }
     },
-    "com.docker.engine#NetworkListResponseBodyList": {
+    "com.docker.engine#ListNetworkResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Network"
       },
       "traits": {}
     },
-    "com.docker.engine#NetworkListResponse": {
+    "com.docker.engine#ListNetworkResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#NetworkListResponseBodyList",
+          "target": "com.docker.engine#ListNetworkResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -12085,13 +12086,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#NetworkList": {
+    "com.docker.engine#ListNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NetworkListRequest"
+        "target": "com.docker.engine#ListNetworkRequest"
       },
       "output": {
-        "target": "com.docker.engine#NetworkListResponse"
+        "target": "com.docker.engine#ListNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12401,7 +12402,7 @@
         "smithy.api#documentation": "Inspect a network"
       }
     },
-    "com.docker.engine#NetworkDeleteRequest": {
+    "com.docker.engine#DeleteNetworkRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -12417,10 +12418,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#NetworkDelete": {
+    "com.docker.engine#DeleteNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NetworkDeleteRequest"
+        "target": "com.docker.engine#DeleteNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12442,7 +12443,7 @@
         "smithy.api#documentation": "Remove a network"
       }
     },
-    "com.docker.engine#NetworkCreateRequestOptionsMap": {
+    "com.docker.engine#CreateNetworkRequestOptionsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12454,7 +12455,7 @@
         "smithy.api#documentation": "Network specific options to be used by the drivers."
       }
     },
-    "com.docker.engine#NetworkCreateRequestLabelsMap": {
+    "com.docker.engine#CreateNetworkRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12466,7 +12467,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#NetworkCreateRequest": {
+    "com.docker.engine#CreateNetworkRequest": {
       "type": "structure",
       "members": {
         "Name": {
@@ -12537,13 +12538,13 @@
           }
         },
         "Options": {
-          "target": "com.docker.engine#NetworkCreateRequestOptionsMap",
+          "target": "com.docker.engine#CreateNetworkRequestOptionsMap",
           "traits": {
             "smithy.api#documentation": "Network specific options to be used by the drivers."
           }
         },
         "Labels": {
-          "target": "com.docker.engine#NetworkCreateRequestLabelsMap",
+          "target": "com.docker.engine#CreateNetworkRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -12575,10 +12576,10 @@
         "smithy.api#documentation": "OK response to NetworkCreate operation"
       }
     },
-    "com.docker.engine#NetworkCreate": {
+    "com.docker.engine#CreateNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NetworkCreateRequest"
+        "target": "com.docker.engine#CreateNetworkRequest"
       },
       "output": {
         "target": "com.docker.engine#NetworkCreateResponse"
@@ -12603,7 +12604,7 @@
         "smithy.api#documentation": "Create a network"
       }
     },
-    "com.docker.engine#NetworkConnectRequest": {
+    "com.docker.engine#ConnectNetworkRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -12632,10 +12633,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#NetworkConnect": {
+    "com.docker.engine#ConnectNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NetworkConnectRequest"
+        "target": "com.docker.engine#ConnectNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12660,7 +12661,7 @@
         "smithy.api#documentation": "Connect a container to a network\n\nThe network must be either a local-scoped network or a swarm-scoped network with the `attachable` option set. A network cannot be re-attached to a running container"
       }
     },
-    "com.docker.engine#NetworkDisconnectRequest": {
+    "com.docker.engine#DisconnectNetworkRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -12689,10 +12690,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#NetworkDisconnect": {
+    "com.docker.engine#DisconnectNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NetworkDisconnectRequest"
+        "target": "com.docker.engine#DisconnectNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12769,7 +12770,7 @@
         "smithy.api#documentation": "Delete unused networks"
       }
     },
-    "com.docker.engine#PluginListRequest": {
+    "com.docker.engine#ListPluginRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -13316,18 +13317,18 @@
         "smithy.api#documentation": "The config of a plugin."
       }
     },
-    "com.docker.engine#PluginListResponseBodyList": {
+    "com.docker.engine#ListPluginResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Plugin"
       },
       "traits": {}
     },
-    "com.docker.engine#PluginListResponse": {
+    "com.docker.engine#ListPluginResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#PluginListResponseBodyList",
+          "target": "com.docker.engine#ListPluginResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -13338,13 +13339,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#PluginList": {
+    "com.docker.engine#ListPlugin": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#PluginListRequest"
+        "target": "com.docker.engine#ListPluginRequest"
       },
       "output": {
-        "target": "com.docker.engine#PluginListResponse"
+        "target": "com.docker.engine#ListPluginResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13532,7 +13533,7 @@
         "smithy.api#documentation": "Inspect a plugin"
       }
     },
-    "com.docker.engine#PluginDeleteRequest": {
+    "com.docker.engine#DeletePluginRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -13555,10 +13556,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#PluginDelete": {
+    "com.docker.engine#DeletePlugin": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#PluginDeleteRequest"
+        "target": "com.docker.engine#DeletePluginRequest"
       },
       "output": {
         "target": "com.docker.engine#Plugin"
@@ -13577,7 +13578,7 @@
         "smithy.api#documentation": "Remove a plugin"
       }
     },
-    "com.docker.engine#PluginEnableRequest": {
+    "com.docker.engine#EnablePluginRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -13600,10 +13601,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#PluginEnable": {
+    "com.docker.engine#EnablePlugin": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#PluginEnableRequest"
+        "target": "com.docker.engine#EnablePluginRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13622,7 +13623,7 @@
         "smithy.api#documentation": "Enable a plugin"
       }
     },
-    "com.docker.engine#PluginDisableRequest": {
+    "com.docker.engine#DisablePluginRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -13645,10 +13646,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#PluginDisable": {
+    "com.docker.engine#DisablePlugin": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#PluginDisableRequest"
+        "target": "com.docker.engine#DisablePluginRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13733,7 +13734,7 @@
         "smithy.api#documentation": "Upgrade a plugin"
       }
     },
-    "com.docker.engine#PluginCreateRequest": {
+    "com.docker.engine#CreatePluginRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -13755,10 +13756,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#PluginCreate": {
+    "com.docker.engine#CreatePlugin": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#PluginCreateRequest"
+        "target": "com.docker.engine#CreatePluginRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13810,14 +13811,14 @@
         "smithy.api#documentation": "Push a plugin\n\nPush a plugin to the registry."
       }
     },
-    "com.docker.engine#PluginSetRequestBodyList": {
+    "com.docker.engine#SetPluginRequestBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.docker.engine#PluginSetRequest": {
+    "com.docker.engine#SetPluginRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -13829,7 +13830,7 @@
           }
         },
         "body": {
-          "target": "com.docker.engine#PluginSetRequestBodyList",
+          "target": "com.docker.engine#SetPluginRequestBodyList",
           "traits": {
             "smithy.api#httpPayload": {}
           }
@@ -13839,10 +13840,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#PluginSet": {
+    "com.docker.engine#SetPlugin": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#PluginSetRequest"
+        "target": "com.docker.engine#SetPluginRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13861,7 +13862,7 @@
         "smithy.api#documentation": "Configure a plugin"
       }
     },
-    "com.docker.engine#NodeListRequest": {
+    "com.docker.engine#ListNodeRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -14207,18 +14208,18 @@
         "smithy.api#documentation": "Reachability represents the reachability of a node."
       }
     },
-    "com.docker.engine#NodeListResponseBodyList": {
+    "com.docker.engine#ListNodeResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Node"
       },
       "traits": {}
     },
-    "com.docker.engine#NodeListResponse": {
+    "com.docker.engine#ListNodeResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#NodeListResponseBodyList",
+          "target": "com.docker.engine#ListNodeResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -14229,13 +14230,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#NodeList": {
+    "com.docker.engine#ListNode": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NodeListRequest"
+        "target": "com.docker.engine#ListNodeRequest"
       },
       "output": {
-        "target": "com.docker.engine#NodeListResponse"
+        "target": "com.docker.engine#ListNodeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14284,7 +14285,7 @@
         "smithy.api#documentation": "Inspect a node"
       }
     },
-    "com.docker.engine#NodeDeleteRequest": {
+    "com.docker.engine#DeleteNodeRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -14307,10 +14308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#NodeDelete": {
+    "com.docker.engine#DeleteNode": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NodeDeleteRequest"
+        "target": "com.docker.engine#DeleteNodeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14329,7 +14330,7 @@
         "smithy.api#documentation": "Delete a node"
       }
     },
-    "com.docker.engine#NodeUpdateRequestLabelsMap": {
+    "com.docker.engine#UpdateNodeRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14341,7 +14342,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#NodeUpdateRequestRole": {
+    "com.docker.engine#UpdateNodeRequestRole": {
       "type": "enum",
       "members": {
         "WORKER": {
@@ -14361,7 +14362,7 @@
         "smithy.api#documentation": "Role of the node."
       }
     },
-    "com.docker.engine#NodeUpdateRequestAvailability": {
+    "com.docker.engine#UpdateNodeRequestAvailability": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -14387,7 +14388,7 @@
         "smithy.api#documentation": "Availability of the node."
       }
     },
-    "com.docker.engine#NodeUpdateRequest": {
+    "com.docker.engine#UpdateNodeRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -14413,19 +14414,19 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#NodeUpdateRequestLabelsMap",
+          "target": "com.docker.engine#UpdateNodeRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
         },
         "Role": {
-          "target": "com.docker.engine#NodeUpdateRequestRole",
+          "target": "com.docker.engine#UpdateNodeRequestRole",
           "traits": {
             "smithy.api#documentation": "Role of the node."
           }
         },
         "Availability": {
-          "target": "com.docker.engine#NodeUpdateRequestAvailability",
+          "target": "com.docker.engine#UpdateNodeRequestAvailability",
           "traits": {
             "smithy.api#documentation": "Availability of the node."
           }
@@ -14435,10 +14436,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#NodeUpdate": {
+    "com.docker.engine#UpdateNode": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#NodeUpdateRequest"
+        "target": "com.docker.engine#UpdateNodeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14672,7 +14673,7 @@
         "smithy.api#documentation": "Initialize a new swarm"
       }
     },
-    "com.docker.engine#SwarmJoinRequestRemoteAddrsList": {
+    "com.docker.engine#JoinSwarmRequestRemoteAddrsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -14681,7 +14682,7 @@
         "smithy.api#documentation": "Addresses of manager nodes already participating in the swarm.\n"
       }
     },
-    "com.docker.engine#SwarmJoinRequest": {
+    "com.docker.engine#JoinSwarmRequest": {
       "type": "structure",
       "members": {
         "ListenAddr": {
@@ -14704,7 +14705,7 @@
           }
         },
         "RemoteAddrs": {
-          "target": "com.docker.engine#SwarmJoinRequestRemoteAddrsList",
+          "target": "com.docker.engine#JoinSwarmRequestRemoteAddrsList",
           "traits": {
             "smithy.api#documentation": "Addresses of manager nodes already participating in the swarm.\n",
             "smithy.api#required": {}
@@ -14722,10 +14723,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SwarmJoin": {
+    "com.docker.engine#JoinSwarm": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SwarmJoinRequest"
+        "target": "com.docker.engine#JoinSwarmRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14744,7 +14745,7 @@
         "smithy.api#documentation": "Join an existing swarm"
       }
     },
-    "com.docker.engine#SwarmLeaveRequest": {
+    "com.docker.engine#LeaveSwarmRequest": {
       "type": "structure",
       "members": {
         "force": {
@@ -14759,10 +14760,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SwarmLeave": {
+    "com.docker.engine#LeaveSwarm": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SwarmLeaveRequest"
+        "target": "com.docker.engine#LeaveSwarmRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14776,7 +14777,7 @@
         "smithy.api#documentation": "Leave a swarm"
       }
     },
-    "com.docker.engine#SwarmUpdateRequestLabelsMap": {
+    "com.docker.engine#UpdateSwarmRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14788,7 +14789,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#SwarmUpdateRequestOrchestration": {
+    "com.docker.engine#UpdateSwarmRequestOrchestration": {
       "type": "structure",
       "members": {
         "TaskHistoryRetentionLimit": {
@@ -14802,7 +14803,7 @@
         "smithy.api#documentation": "Orchestration configuration."
       }
     },
-    "com.docker.engine#SwarmUpdateRequestRaft": {
+    "com.docker.engine#UpdateSwarmRequestRaft": {
       "type": "structure",
       "members": {
         "SnapshotInterval": {
@@ -14840,7 +14841,7 @@
         "smithy.api#documentation": "Raft configuration."
       }
     },
-    "com.docker.engine#SwarmUpdateRequestDispatcher": {
+    "com.docker.engine#UpdateSwarmRequestDispatcher": {
       "type": "structure",
       "members": {
         "HeartbeatPeriod": {
@@ -14854,7 +14855,7 @@
         "smithy.api#documentation": "Dispatcher configuration."
       }
     },
-    "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsItemProtocol": {
+    "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsItemProtocol": {
       "type": "enum",
       "members": {
         "CFSSL": {
@@ -14868,7 +14869,7 @@
         "smithy.api#documentation": "Protocol for communication with the external CA (currently\nonly `cfssl` is supported).\n"
       }
     },
-    "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap": {
+    "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14880,11 +14881,11 @@
         "smithy.api#documentation": "An object with key/value pairs that are interpreted as\nprotocol-specific options for the external CA driver.\n"
       }
     },
-    "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsItem": {
+    "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsItem": {
       "type": "structure",
       "members": {
         "Protocol": {
-          "target": "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsItemProtocol",
+          "target": "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsItemProtocol",
           "traits": {
             "smithy.api#documentation": "Protocol for communication with the external CA (currently\nonly `cfssl` is supported).\n"
           }
@@ -14896,7 +14897,7 @@
           }
         },
         "Options": {
-          "target": "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap",
+          "target": "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap",
           "traits": {
             "smithy.api#documentation": "An object with key/value pairs that are interpreted as\nprotocol-specific options for the external CA driver.\n"
           }
@@ -14910,16 +14911,16 @@
       },
       "traits": {}
     },
-    "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsList": {
+    "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsList": {
       "type": "list",
       "member": {
-        "target": "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsItem"
+        "target": "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsItem"
       },
       "traits": {
         "smithy.api#documentation": "Configuration for forwarding signing requests to an external\ncertificate authority.\n"
       }
     },
-    "com.docker.engine#SwarmUpdateRequestCAConfig": {
+    "com.docker.engine#UpdateSwarmRequestCAConfig": {
       "type": "structure",
       "members": {
         "NodeCertExpiry": {
@@ -14929,7 +14930,7 @@
           }
         },
         "ExternalCAs": {
-          "target": "com.docker.engine#SwarmUpdateRequestCAConfigExternalCAsList",
+          "target": "com.docker.engine#UpdateSwarmRequestCAConfigExternalCAsList",
           "traits": {
             "smithy.api#documentation": "Configuration for forwarding signing requests to an external\ncertificate authority.\n"
           }
@@ -14957,7 +14958,7 @@
         "smithy.api#documentation": "CA configuration."
       }
     },
-    "com.docker.engine#SwarmUpdateRequestEncryptionConfig": {
+    "com.docker.engine#UpdateSwarmRequestEncryptionConfig": {
       "type": "structure",
       "members": {
         "AutoLockManagers": {
@@ -14971,7 +14972,7 @@
         "smithy.api#documentation": "Parameters related to encryption-at-rest."
       }
     },
-    "com.docker.engine#SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap": {
+    "com.docker.engine#UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14983,7 +14984,7 @@
         "smithy.api#documentation": "Driver-specific options for the selected log driver, specified\nas key/value pairs.\n"
       }
     },
-    "com.docker.engine#SwarmUpdateRequestTaskDefaultsLogDriver": {
+    "com.docker.engine#UpdateSwarmRequestTaskDefaultsLogDriver": {
       "type": "structure",
       "members": {
         "Name": {
@@ -14993,7 +14994,7 @@
           }
         },
         "Options": {
-          "target": "com.docker.engine#SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap",
+          "target": "com.docker.engine#UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap",
           "traits": {
             "smithy.api#documentation": "Driver-specific options for the selected log driver, specified\nas key/value pairs.\n"
           }
@@ -15003,11 +15004,11 @@
         "smithy.api#documentation": "The log driver to use for tasks created in the orchestrator if\nunspecified by a service.\n\nUpdating this value only affects new tasks. Existing tasks continue\nto use their previously configured log driver until recreated.\n"
       }
     },
-    "com.docker.engine#SwarmUpdateRequestTaskDefaults": {
+    "com.docker.engine#UpdateSwarmRequestTaskDefaults": {
       "type": "structure",
       "members": {
         "LogDriver": {
-          "target": "com.docker.engine#SwarmUpdateRequestTaskDefaultsLogDriver",
+          "target": "com.docker.engine#UpdateSwarmRequestTaskDefaultsLogDriver",
           "traits": {
             "smithy.api#documentation": "The log driver to use for tasks created in the orchestrator if\nunspecified by a service.\n\nUpdating this value only affects new tasks. Existing tasks continue\nto use their previously configured log driver until recreated.\n"
           }
@@ -15017,7 +15018,7 @@
         "smithy.api#documentation": "Defaults for creating tasks in this cluster."
       }
     },
-    "com.docker.engine#SwarmUpdateRequest": {
+    "com.docker.engine#UpdateSwarmRequest": {
       "type": "structure",
       "members": {
         "version": {
@@ -15056,46 +15057,46 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#SwarmUpdateRequestLabelsMap",
+          "target": "com.docker.engine#UpdateSwarmRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
         },
         "Orchestration": {
-          "target": "com.docker.engine#SwarmUpdateRequestOrchestration",
+          "target": "com.docker.engine#UpdateSwarmRequestOrchestration",
           "traits": {
             "smithy.api#documentation": "Orchestration configuration.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "Raft": {
-          "target": "com.docker.engine#SwarmUpdateRequestRaft",
+          "target": "com.docker.engine#UpdateSwarmRequestRaft",
           "traits": {
             "smithy.api#documentation": "Raft configuration."
           }
         },
         "Dispatcher": {
-          "target": "com.docker.engine#SwarmUpdateRequestDispatcher",
+          "target": "com.docker.engine#UpdateSwarmRequestDispatcher",
           "traits": {
             "smithy.api#documentation": "Dispatcher configuration.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "CAConfig": {
-          "target": "com.docker.engine#SwarmUpdateRequestCAConfig",
+          "target": "com.docker.engine#UpdateSwarmRequestCAConfig",
           "traits": {
             "smithy.api#documentation": "CA configuration.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "EncryptionConfig": {
-          "target": "com.docker.engine#SwarmUpdateRequestEncryptionConfig",
+          "target": "com.docker.engine#UpdateSwarmRequestEncryptionConfig",
           "traits": {
             "smithy.api#documentation": "Parameters related to encryption-at-rest."
           }
         },
         "TaskDefaults": {
-          "target": "com.docker.engine#SwarmUpdateRequestTaskDefaults",
+          "target": "com.docker.engine#UpdateSwarmRequestTaskDefaults",
           "traits": {
             "smithy.api#documentation": "Defaults for creating tasks in this cluster."
           }
@@ -15105,10 +15106,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SwarmUpdate": {
+    "com.docker.engine#UpdateSwarm": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SwarmUpdateRequest"
+        "target": "com.docker.engine#UpdateSwarmRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15158,7 +15159,7 @@
         "smithy.api#documentation": "Get the unlock key"
       }
     },
-    "com.docker.engine#SwarmUnlockRequest": {
+    "com.docker.engine#UnlockSwarmRequest": {
       "type": "structure",
       "members": {
         "UnlockKey": {
@@ -15172,10 +15173,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SwarmUnlock": {
+    "com.docker.engine#UnlockSwarm": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SwarmUnlockRequest"
+        "target": "com.docker.engine#UnlockSwarmRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15189,7 +15190,7 @@
         "smithy.api#documentation": "Unlock a locked manager"
       }
     },
-    "com.docker.engine#ServiceListRequest": {
+    "com.docker.engine#ListServiceRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -16888,18 +16889,18 @@
         "smithy.api#documentation": "The status of the service when it is in one of ReplicatedJob or\nGlobalJob modes. Absent on Replicated and Global mode services. The\nJobIteration is an ObjectVersion, but unlike the Service's version,\ndoes not need to be sent with an update request.\n"
       }
     },
-    "com.docker.engine#ServiceListResponseBodyList": {
+    "com.docker.engine#ListServiceResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Service"
       },
       "traits": {}
     },
-    "com.docker.engine#ServiceListResponse": {
+    "com.docker.engine#ListServiceResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#ServiceListResponseBodyList",
+          "target": "com.docker.engine#ListServiceResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -16910,13 +16911,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ServiceList": {
+    "com.docker.engine#ListService": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ServiceListRequest"
+        "target": "com.docker.engine#ListServiceRequest"
       },
       "output": {
-        "target": "com.docker.engine#ServiceListResponse"
+        "target": "com.docker.engine#ListServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16927,7 +16928,7 @@
         "smithy.api#documentation": "List services"
       }
     },
-    "com.docker.engine#ServiceCreateRequestLabelsMap": {
+    "com.docker.engine#CreateServiceRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16939,7 +16940,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ServiceCreateRequestModeReplicated": {
+    "com.docker.engine#CreateServiceRequestModeReplicated": {
       "type": "structure",
       "members": {
         "Replicas": {
@@ -16948,7 +16949,7 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ServiceCreateRequestModeReplicatedJob": {
+    "com.docker.engine#CreateServiceRequestModeReplicatedJob": {
       "type": "structure",
       "members": {
         "MaxConcurrent": {
@@ -16968,17 +16969,17 @@
         "smithy.api#documentation": "The mode used for services with a finite number of tasks that run\nto a completed state.\n"
       }
     },
-    "com.docker.engine#ServiceCreateRequestMode": {
+    "com.docker.engine#CreateServiceRequestMode": {
       "type": "structure",
       "members": {
         "Replicated": {
-          "target": "com.docker.engine#ServiceCreateRequestModeReplicated"
+          "target": "com.docker.engine#CreateServiceRequestModeReplicated"
         },
         "Global": {
           "target": "smithy.api#Document"
         },
         "ReplicatedJob": {
-          "target": "com.docker.engine#ServiceCreateRequestModeReplicatedJob",
+          "target": "com.docker.engine#CreateServiceRequestModeReplicatedJob",
           "traits": {
             "smithy.api#documentation": "The mode used for services with a finite number of tasks that run\nto a completed state.\n"
           }
@@ -16994,7 +16995,7 @@
         "smithy.api#documentation": "Scheduling mode for the service."
       }
     },
-    "com.docker.engine#ServiceCreateRequestUpdateConfigFailureAction": {
+    "com.docker.engine#CreateServiceRequestUpdateConfigFailureAction": {
       "type": "enum",
       "members": {
         "CONTINUE": {
@@ -17020,7 +17021,7 @@
         "smithy.api#documentation": "Action to take if an updated task fails to run, or stops running\nduring the update.\n"
       }
     },
-    "com.docker.engine#ServiceCreateRequestUpdateConfigOrder": {
+    "com.docker.engine#CreateServiceRequestUpdateConfigOrder": {
       "type": "enum",
       "members": {
         "STOP_FIRST": {
@@ -17040,7 +17041,7 @@
         "smithy.api#documentation": "The order of operations when rolling out an updated task. Either\nthe old task is shut down before the new task is started, or the\nnew task is started before the old task is shut down.\n"
       }
     },
-    "com.docker.engine#ServiceCreateRequestUpdateConfig": {
+    "com.docker.engine#CreateServiceRequestUpdateConfig": {
       "type": "structure",
       "members": {
         "Parallelism": {
@@ -17056,7 +17057,7 @@
           }
         },
         "FailureAction": {
-          "target": "com.docker.engine#ServiceCreateRequestUpdateConfigFailureAction",
+          "target": "com.docker.engine#CreateServiceRequestUpdateConfigFailureAction",
           "traits": {
             "smithy.api#documentation": "Action to take if an updated task fails to run, or stops running\nduring the update.\n"
           }
@@ -17074,7 +17075,7 @@
           }
         },
         "Order": {
-          "target": "com.docker.engine#ServiceCreateRequestUpdateConfigOrder",
+          "target": "com.docker.engine#CreateServiceRequestUpdateConfigOrder",
           "traits": {
             "smithy.api#documentation": "The order of operations when rolling out an updated task. Either\nthe old task is shut down before the new task is started, or the\nnew task is started before the old task is shut down.\n"
           }
@@ -17084,7 +17085,7 @@
         "smithy.api#documentation": "Specification for the update strategy of the service."
       }
     },
-    "com.docker.engine#ServiceCreateRequestRollbackConfigFailureAction": {
+    "com.docker.engine#CreateServiceRequestRollbackConfigFailureAction": {
       "type": "enum",
       "members": {
         "CONTINUE": {
@@ -17104,7 +17105,7 @@
         "smithy.api#documentation": "Action to take if an rolled back task fails to run, or stops\nrunning during the rollback.\n"
       }
     },
-    "com.docker.engine#ServiceCreateRequestRollbackConfigOrder": {
+    "com.docker.engine#CreateServiceRequestRollbackConfigOrder": {
       "type": "enum",
       "members": {
         "STOP_FIRST": {
@@ -17124,7 +17125,7 @@
         "smithy.api#documentation": "The order of operations when rolling back a task. Either the old\ntask is shut down before the new task is started, or the new task\nis started before the old task is shut down.\n"
       }
     },
-    "com.docker.engine#ServiceCreateRequestRollbackConfig": {
+    "com.docker.engine#CreateServiceRequestRollbackConfig": {
       "type": "structure",
       "members": {
         "Parallelism": {
@@ -17140,7 +17141,7 @@
           }
         },
         "FailureAction": {
-          "target": "com.docker.engine#ServiceCreateRequestRollbackConfigFailureAction",
+          "target": "com.docker.engine#CreateServiceRequestRollbackConfigFailureAction",
           "traits": {
             "smithy.api#documentation": "Action to take if an rolled back task fails to run, or stops\nrunning during the rollback.\n"
           }
@@ -17158,7 +17159,7 @@
           }
         },
         "Order": {
-          "target": "com.docker.engine#ServiceCreateRequestRollbackConfigOrder",
+          "target": "com.docker.engine#CreateServiceRequestRollbackConfigOrder",
           "traits": {
             "smithy.api#documentation": "The order of operations when rolling back a task. Either the old\ntask is shut down before the new task is started, or the new task\nis started before the old task is shut down.\n"
           }
@@ -17168,7 +17169,7 @@
         "smithy.api#documentation": "Specification for the rollback strategy of the service."
       }
     },
-    "com.docker.engine#ServiceCreateRequestNetworksList": {
+    "com.docker.engine#CreateServiceRequestNetworksList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#NetworkAttachmentConfig"
@@ -17177,7 +17178,7 @@
         "smithy.api#documentation": "Specifies which networks the service should attach to.\n\nDeprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead.\n"
       }
     },
-    "com.docker.engine#ServiceCreateRequest": {
+    "com.docker.engine#CreateServiceRequest": {
       "type": "structure",
       "members": {
         "xRegistryAuth": {
@@ -17194,7 +17195,7 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#ServiceCreateRequestLabelsMap",
+          "target": "com.docker.engine#CreateServiceRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -17203,25 +17204,25 @@
           "target": "com.docker.engine#TaskSpec"
         },
         "Mode": {
-          "target": "com.docker.engine#ServiceCreateRequestMode",
+          "target": "com.docker.engine#CreateServiceRequestMode",
           "traits": {
             "smithy.api#documentation": "Scheduling mode for the service."
           }
         },
         "UpdateConfig": {
-          "target": "com.docker.engine#ServiceCreateRequestUpdateConfig",
+          "target": "com.docker.engine#CreateServiceRequestUpdateConfig",
           "traits": {
             "smithy.api#documentation": "Specification for the update strategy of the service."
           }
         },
         "RollbackConfig": {
-          "target": "com.docker.engine#ServiceCreateRequestRollbackConfig",
+          "target": "com.docker.engine#CreateServiceRequestRollbackConfig",
           "traits": {
             "smithy.api#documentation": "Specification for the rollback strategy of the service."
           }
         },
         "Networks": {
-          "target": "com.docker.engine#ServiceCreateRequestNetworksList",
+          "target": "com.docker.engine#CreateServiceRequestNetworksList",
           "traits": {
             "smithy.api#documentation": "Specifies which networks the service should attach to.\n\nDeprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead.\n"
           }
@@ -17264,10 +17265,10 @@
         "smithy.api#documentation": "Optional warning message.\n\nFIXME(thaJeztah): this should have \"omitempty\" in the generated type.\n"
       }
     },
-    "com.docker.engine#ServiceCreate": {
+    "com.docker.engine#CreateService": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ServiceCreateRequest"
+        "target": "com.docker.engine#CreateServiceRequest"
       },
       "output": {
         "target": "com.docker.engine#ServiceCreateResponse"
@@ -17337,7 +17338,7 @@
         "smithy.api#documentation": "Inspect a service"
       }
     },
-    "com.docker.engine#ServiceDeleteRequest": {
+    "com.docker.engine#DeleteServiceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -17353,10 +17354,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ServiceDelete": {
+    "com.docker.engine#DeleteService": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ServiceDeleteRequest"
+        "target": "com.docker.engine#DeleteServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17375,7 +17376,7 @@
         "smithy.api#documentation": "Delete a service"
       }
     },
-    "com.docker.engine#ServiceUpdateRequestRegistryAuthFrom": {
+    "com.docker.engine#UpdateServiceRequestRegistryAuthFrom": {
       "type": "enum",
       "members": {
         "SPEC": {
@@ -17393,7 +17394,7 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ServiceUpdateRequestLabelsMap": {
+    "com.docker.engine#UpdateServiceRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17405,7 +17406,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ServiceUpdateRequestModeReplicated": {
+    "com.docker.engine#UpdateServiceRequestModeReplicated": {
       "type": "structure",
       "members": {
         "Replicas": {
@@ -17414,7 +17415,7 @@
       },
       "traits": {}
     },
-    "com.docker.engine#ServiceUpdateRequestModeReplicatedJob": {
+    "com.docker.engine#UpdateServiceRequestModeReplicatedJob": {
       "type": "structure",
       "members": {
         "MaxConcurrent": {
@@ -17434,17 +17435,17 @@
         "smithy.api#documentation": "The mode used for services with a finite number of tasks that run\nto a completed state.\n"
       }
     },
-    "com.docker.engine#ServiceUpdateRequestMode": {
+    "com.docker.engine#UpdateServiceRequestMode": {
       "type": "structure",
       "members": {
         "Replicated": {
-          "target": "com.docker.engine#ServiceUpdateRequestModeReplicated"
+          "target": "com.docker.engine#UpdateServiceRequestModeReplicated"
         },
         "Global": {
           "target": "smithy.api#Document"
         },
         "ReplicatedJob": {
-          "target": "com.docker.engine#ServiceUpdateRequestModeReplicatedJob",
+          "target": "com.docker.engine#UpdateServiceRequestModeReplicatedJob",
           "traits": {
             "smithy.api#documentation": "The mode used for services with a finite number of tasks that run\nto a completed state.\n"
           }
@@ -17460,7 +17461,7 @@
         "smithy.api#documentation": "Scheduling mode for the service."
       }
     },
-    "com.docker.engine#ServiceUpdateRequestUpdateConfigFailureAction": {
+    "com.docker.engine#UpdateServiceRequestUpdateConfigFailureAction": {
       "type": "enum",
       "members": {
         "CONTINUE": {
@@ -17486,7 +17487,7 @@
         "smithy.api#documentation": "Action to take if an updated task fails to run, or stops running\nduring the update.\n"
       }
     },
-    "com.docker.engine#ServiceUpdateRequestUpdateConfigOrder": {
+    "com.docker.engine#UpdateServiceRequestUpdateConfigOrder": {
       "type": "enum",
       "members": {
         "STOP_FIRST": {
@@ -17506,7 +17507,7 @@
         "smithy.api#documentation": "The order of operations when rolling out an updated task. Either\nthe old task is shut down before the new task is started, or the\nnew task is started before the old task is shut down.\n"
       }
     },
-    "com.docker.engine#ServiceUpdateRequestUpdateConfig": {
+    "com.docker.engine#UpdateServiceRequestUpdateConfig": {
       "type": "structure",
       "members": {
         "Parallelism": {
@@ -17522,7 +17523,7 @@
           }
         },
         "FailureAction": {
-          "target": "com.docker.engine#ServiceUpdateRequestUpdateConfigFailureAction",
+          "target": "com.docker.engine#UpdateServiceRequestUpdateConfigFailureAction",
           "traits": {
             "smithy.api#documentation": "Action to take if an updated task fails to run, or stops running\nduring the update.\n"
           }
@@ -17540,7 +17541,7 @@
           }
         },
         "Order": {
-          "target": "com.docker.engine#ServiceUpdateRequestUpdateConfigOrder",
+          "target": "com.docker.engine#UpdateServiceRequestUpdateConfigOrder",
           "traits": {
             "smithy.api#documentation": "The order of operations when rolling out an updated task. Either\nthe old task is shut down before the new task is started, or the\nnew task is started before the old task is shut down.\n"
           }
@@ -17550,7 +17551,7 @@
         "smithy.api#documentation": "Specification for the update strategy of the service."
       }
     },
-    "com.docker.engine#ServiceUpdateRequestRollbackConfigFailureAction": {
+    "com.docker.engine#UpdateServiceRequestRollbackConfigFailureAction": {
       "type": "enum",
       "members": {
         "CONTINUE": {
@@ -17570,7 +17571,7 @@
         "smithy.api#documentation": "Action to take if an rolled back task fails to run, or stops\nrunning during the rollback.\n"
       }
     },
-    "com.docker.engine#ServiceUpdateRequestRollbackConfigOrder": {
+    "com.docker.engine#UpdateServiceRequestRollbackConfigOrder": {
       "type": "enum",
       "members": {
         "STOP_FIRST": {
@@ -17590,7 +17591,7 @@
         "smithy.api#documentation": "The order of operations when rolling back a task. Either the old\ntask is shut down before the new task is started, or the new task\nis started before the old task is shut down.\n"
       }
     },
-    "com.docker.engine#ServiceUpdateRequestRollbackConfig": {
+    "com.docker.engine#UpdateServiceRequestRollbackConfig": {
       "type": "structure",
       "members": {
         "Parallelism": {
@@ -17606,7 +17607,7 @@
           }
         },
         "FailureAction": {
-          "target": "com.docker.engine#ServiceUpdateRequestRollbackConfigFailureAction",
+          "target": "com.docker.engine#UpdateServiceRequestRollbackConfigFailureAction",
           "traits": {
             "smithy.api#documentation": "Action to take if an rolled back task fails to run, or stops\nrunning during the rollback.\n"
           }
@@ -17624,7 +17625,7 @@
           }
         },
         "Order": {
-          "target": "com.docker.engine#ServiceUpdateRequestRollbackConfigOrder",
+          "target": "com.docker.engine#UpdateServiceRequestRollbackConfigOrder",
           "traits": {
             "smithy.api#documentation": "The order of operations when rolling back a task. Either the old\ntask is shut down before the new task is started, or the new task\nis started before the old task is shut down.\n"
           }
@@ -17634,7 +17635,7 @@
         "smithy.api#documentation": "Specification for the rollback strategy of the service."
       }
     },
-    "com.docker.engine#ServiceUpdateRequestNetworksList": {
+    "com.docker.engine#UpdateServiceRequestNetworksList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#NetworkAttachmentConfig"
@@ -17643,7 +17644,7 @@
         "smithy.api#documentation": "Specifies which networks the service should attach to.\n\nDeprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead.\n"
       }
     },
-    "com.docker.engine#ServiceUpdateRequest": {
+    "com.docker.engine#UpdateServiceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -17663,7 +17664,7 @@
           }
         },
         "registryAuthFrom": {
-          "target": "com.docker.engine#ServiceUpdateRequestRegistryAuthFrom",
+          "target": "com.docker.engine#UpdateServiceRequestRegistryAuthFrom",
           "traits": {
             "smithy.api#httpQuery": "registryAuthFrom",
             "smithy.api#documentation": "If the `X-Registry-Auth` header is not specified, this parameter\nindicates where to find registry authorization credentials.\n"
@@ -17690,7 +17691,7 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#ServiceUpdateRequestLabelsMap",
+          "target": "com.docker.engine#UpdateServiceRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -17699,25 +17700,25 @@
           "target": "com.docker.engine#TaskSpec"
         },
         "Mode": {
-          "target": "com.docker.engine#ServiceUpdateRequestMode",
+          "target": "com.docker.engine#UpdateServiceRequestMode",
           "traits": {
             "smithy.api#documentation": "Scheduling mode for the service."
           }
         },
         "UpdateConfig": {
-          "target": "com.docker.engine#ServiceUpdateRequestUpdateConfig",
+          "target": "com.docker.engine#UpdateServiceRequestUpdateConfig",
           "traits": {
             "smithy.api#documentation": "Specification for the update strategy of the service."
           }
         },
         "RollbackConfig": {
-          "target": "com.docker.engine#ServiceUpdateRequestRollbackConfig",
+          "target": "com.docker.engine#UpdateServiceRequestRollbackConfig",
           "traits": {
             "smithy.api#documentation": "Specification for the rollback strategy of the service."
           }
         },
         "Networks": {
-          "target": "com.docker.engine#ServiceUpdateRequestNetworksList",
+          "target": "com.docker.engine#UpdateServiceRequestNetworksList",
           "traits": {
             "smithy.api#documentation": "Specifies which networks the service should attach to.\n\nDeprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead.\n"
           }
@@ -17751,10 +17752,10 @@
         "smithy.api#documentation": "Optional warning messages"
       }
     },
-    "com.docker.engine#ServiceUpdate": {
+    "com.docker.engine#UpdateService": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ServiceUpdateRequest"
+        "target": "com.docker.engine#UpdateServiceRequest"
       },
       "output": {
         "target": "com.docker.engine#ServiceUpdateResponse"
@@ -17878,7 +17879,7 @@
         "smithy.api#documentation": "Get service logs\n\nGet `stdout` and `stderr` logs from a service. See also\n[`/containers/{id}/logs`](#operation/ContainerLogs).\n\n**Note**: This endpoint works only for services with the `local`,\n`json-file` or `journald` logging drivers."
       }
     },
-    "com.docker.engine#TaskListRequest": {
+    "com.docker.engine#ListTaskRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -18169,18 +18170,18 @@
         "smithy.api#documentation": "The networks that this task is attached to, and the addresses the\ntask was assigned on each of them.\n"
       }
     },
-    "com.docker.engine#TaskListResponseBodyList": {
+    "com.docker.engine#ListTaskResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Task"
       },
       "traits": {}
     },
-    "com.docker.engine#TaskListResponse": {
+    "com.docker.engine#ListTaskResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#TaskListResponseBodyList",
+          "target": "com.docker.engine#ListTaskResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -18191,13 +18192,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#TaskList": {
+    "com.docker.engine#ListTask": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#TaskListRequest"
+        "target": "com.docker.engine#ListTaskRequest"
       },
       "output": {
-        "target": "com.docker.engine#TaskListResponse"
+        "target": "com.docker.engine#ListTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18348,7 +18349,7 @@
         "smithy.api#documentation": "Get task logs\n\nGet `stdout` and `stderr` logs from a task.\nSee also [`/containers/{id}/logs`](#operation/ContainerLogs).\n\n**Note**: This endpoint works only for services with the `local`,\n`json-file` or `journald` logging drivers."
       }
     },
-    "com.docker.engine#SecretListRequest": {
+    "com.docker.engine#ListSecretRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -18465,18 +18466,18 @@
         "smithy.api#documentation": "Key/value map of driver-specific options."
       }
     },
-    "com.docker.engine#SecretListResponseBodyList": {
+    "com.docker.engine#ListSecretResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Secret"
       },
       "traits": {}
     },
-    "com.docker.engine#SecretListResponse": {
+    "com.docker.engine#ListSecretResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#SecretListResponseBodyList",
+          "target": "com.docker.engine#ListSecretResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -18487,13 +18488,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#SecretList": {
+    "com.docker.engine#ListSecret": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SecretListRequest"
+        "target": "com.docker.engine#ListSecretRequest"
       },
       "output": {
-        "target": "com.docker.engine#SecretListResponse"
+        "target": "com.docker.engine#ListSecretResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18504,7 +18505,7 @@
         "smithy.api#documentation": "List secrets"
       }
     },
-    "com.docker.engine#SecretCreateRequestLabelsMap": {
+    "com.docker.engine#CreateSecretRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18516,7 +18517,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#SecretCreateRequest": {
+    "com.docker.engine#CreateSecretRequest": {
       "type": "structure",
       "members": {
         "Name": {
@@ -18526,7 +18527,7 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#SecretCreateRequestLabelsMap",
+          "target": "com.docker.engine#CreateSecretRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -18554,10 +18555,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SecretCreate": {
+    "com.docker.engine#CreateSecret": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SecretCreateRequest"
+        "target": "com.docker.engine#CreateSecretRequest"
       },
       "output": {
         "target": "com.docker.engine#IDResponse"
@@ -18614,7 +18615,7 @@
         "smithy.api#documentation": "Inspect a secret"
       }
     },
-    "com.docker.engine#SecretDeleteRequest": {
+    "com.docker.engine#DeleteSecretRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -18630,10 +18631,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SecretDelete": {
+    "com.docker.engine#DeleteSecret": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SecretDeleteRequest"
+        "target": "com.docker.engine#DeleteSecretRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18652,7 +18653,7 @@
         "smithy.api#documentation": "Delete a secret"
       }
     },
-    "com.docker.engine#SecretUpdateRequestLabelsMap": {
+    "com.docker.engine#UpdateSecretRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18664,7 +18665,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#SecretUpdateRequest": {
+    "com.docker.engine#UpdateSecretRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -18690,7 +18691,7 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#SecretUpdateRequestLabelsMap",
+          "target": "com.docker.engine#UpdateSecretRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -18718,10 +18719,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#SecretUpdate": {
+    "com.docker.engine#UpdateSecret": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#SecretUpdateRequest"
+        "target": "com.docker.engine#UpdateSecretRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18743,7 +18744,7 @@
         "smithy.api#documentation": "Update a Secret"
       }
     },
-    "com.docker.engine#ConfigListRequest": {
+    "com.docker.engine#ListConfigRequest": {
       "type": "structure",
       "members": {
         "filters": {
@@ -18821,18 +18822,18 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ConfigListResponseBodyList": {
+    "com.docker.engine#ListConfigResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.docker.engine#Config"
       },
       "traits": {}
     },
-    "com.docker.engine#ConfigListResponse": {
+    "com.docker.engine#ListConfigResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.docker.engine#ConfigListResponseBodyList",
+          "target": "com.docker.engine#ListConfigResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -18843,13 +18844,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.docker.engine#ConfigList": {
+    "com.docker.engine#ListConfig": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ConfigListRequest"
+        "target": "com.docker.engine#ListConfigRequest"
       },
       "output": {
-        "target": "com.docker.engine#ConfigListResponse"
+        "target": "com.docker.engine#ListConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18860,7 +18861,7 @@
         "smithy.api#documentation": "List configs"
       }
     },
-    "com.docker.engine#ConfigCreateRequestLabelsMap": {
+    "com.docker.engine#CreateConfigRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18872,7 +18873,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ConfigCreateRequest": {
+    "com.docker.engine#CreateConfigRequest": {
       "type": "structure",
       "members": {
         "Name": {
@@ -18882,7 +18883,7 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#ConfigCreateRequestLabelsMap",
+          "target": "com.docker.engine#CreateConfigRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -18904,10 +18905,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ConfigCreate": {
+    "com.docker.engine#CreateConfig": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ConfigCreateRequest"
+        "target": "com.docker.engine#CreateConfigRequest"
       },
       "output": {
         "target": "com.docker.engine#IDResponse"
@@ -18964,7 +18965,7 @@
         "smithy.api#documentation": "Inspect a config"
       }
     },
-    "com.docker.engine#ConfigDeleteRequest": {
+    "com.docker.engine#DeleteConfigRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -18980,10 +18981,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ConfigDelete": {
+    "com.docker.engine#DeleteConfig": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ConfigDeleteRequest"
+        "target": "com.docker.engine#DeleteConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -19002,7 +19003,7 @@
         "smithy.api#documentation": "Delete a config"
       }
     },
-    "com.docker.engine#ConfigUpdateRequestLabelsMap": {
+    "com.docker.engine#UpdateConfigRequestLabelsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19014,7 +19015,7 @@
         "smithy.api#documentation": "User-defined key/value metadata."
       }
     },
-    "com.docker.engine#ConfigUpdateRequest": {
+    "com.docker.engine#UpdateConfigRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -19040,7 +19041,7 @@
           }
         },
         "Labels": {
-          "target": "com.docker.engine#ConfigUpdateRequestLabelsMap",
+          "target": "com.docker.engine#UpdateConfigRequestLabelsMap",
           "traits": {
             "smithy.api#documentation": "User-defined key/value metadata."
           }
@@ -19062,10 +19063,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.docker.engine#ConfigUpdate": {
+    "com.docker.engine#UpdateConfig": {
       "type": "operation",
       "input": {
-        "target": "com.docker.engine#ConfigUpdateRequest"
+        "target": "com.docker.engine#UpdateConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -19229,10 +19230,10 @@
       "version": "1.56",
       "operations": [
         {
-          "target": "com.docker.engine#ContainerList"
+          "target": "com.docker.engine#ListContainer"
         },
         {
-          "target": "com.docker.engine#ContainerCreate"
+          "target": "com.docker.engine#CreateContainer"
         },
         {
           "target": "com.docker.engine#ContainerInspect"
@@ -19247,52 +19248,52 @@
           "target": "com.docker.engine#ContainerChanges"
         },
         {
-          "target": "com.docker.engine#ContainerExport"
+          "target": "com.docker.engine#ExportContainer"
         },
         {
           "target": "com.docker.engine#ContainerStats"
         },
         {
-          "target": "com.docker.engine#ContainerResize"
+          "target": "com.docker.engine#ResizeContainer"
         },
         {
-          "target": "com.docker.engine#ContainerStart"
+          "target": "com.docker.engine#StartContainer"
         },
         {
-          "target": "com.docker.engine#ContainerStop"
+          "target": "com.docker.engine#StopContainer"
         },
         {
-          "target": "com.docker.engine#ContainerRestart"
+          "target": "com.docker.engine#RestartContainer"
         },
         {
-          "target": "com.docker.engine#ContainerKill"
+          "target": "com.docker.engine#KillContainer"
         },
         {
-          "target": "com.docker.engine#ContainerUpdate"
+          "target": "com.docker.engine#UpdateContainer"
         },
         {
-          "target": "com.docker.engine#ContainerRename"
+          "target": "com.docker.engine#RenameContainer"
         },
         {
-          "target": "com.docker.engine#ContainerPause"
+          "target": "com.docker.engine#PauseContainer"
         },
         {
-          "target": "com.docker.engine#ContainerUnpause"
+          "target": "com.docker.engine#UnpauseContainer"
         },
         {
-          "target": "com.docker.engine#ContainerAttach"
+          "target": "com.docker.engine#AttachContainer"
         },
         {
           "target": "com.docker.engine#ContainerAttachWebsocket"
         },
         {
-          "target": "com.docker.engine#ContainerWait"
+          "target": "com.docker.engine#WaitContainer"
         },
         {
-          "target": "com.docker.engine#ContainerDelete"
+          "target": "com.docker.engine#DeleteContainer"
         },
         {
-          "target": "com.docker.engine#ContainerArchive"
+          "target": "com.docker.engine#ArchiveContainer"
         },
         {
           "target": "com.docker.engine#PutContainerArchive"
@@ -19301,7 +19302,7 @@
           "target": "com.docker.engine#ContainerPrune"
         },
         {
-          "target": "com.docker.engine#ImageList"
+          "target": "com.docker.engine#ListImage"
         },
         {
           "target": "com.docker.engine#ImageBuild"
@@ -19310,7 +19311,7 @@
           "target": "com.docker.engine#BuildPrune"
         },
         {
-          "target": "com.docker.engine#ImageCreate"
+          "target": "com.docker.engine#CreateImage"
         },
         {
           "target": "com.docker.engine#ImageInspect2"
@@ -19328,10 +19329,10 @@
           "target": "com.docker.engine#ImageTag"
         },
         {
-          "target": "com.docker.engine#ImageDelete"
+          "target": "com.docker.engine#DeleteImage"
         },
         {
-          "target": "com.docker.engine#ImageSearch"
+          "target": "com.docker.engine#SearchImage"
         },
         {
           "target": "com.docker.engine#ImagePrune"
@@ -19346,10 +19347,10 @@
           "target": "com.docker.engine#SystemVersion2"
         },
         {
-          "target": "com.docker.engine#SystemPing"
+          "target": "com.docker.engine#PingSystem"
         },
         {
-          "target": "com.docker.engine#ImageCommit"
+          "target": "com.docker.engine#CommitImage"
         },
         {
           "target": "com.docker.engine#SystemEvents"
@@ -19358,7 +19359,7 @@
           "target": "com.docker.engine#SystemDataUsage"
         },
         {
-          "target": "com.docker.engine#ImageGet"
+          "target": "com.docker.engine#GetImage"
         },
         {
           "target": "com.docker.engine#ImageGetAll"
@@ -19367,7 +19368,7 @@
           "target": "com.docker.engine#ImageLoad"
         },
         {
-          "target": "com.docker.engine#ContainerExec"
+          "target": "com.docker.engine#ExecContainer"
         },
         {
           "target": "com.docker.engine#ExecStart"
@@ -19379,46 +19380,46 @@
           "target": "com.docker.engine#ExecInspect"
         },
         {
-          "target": "com.docker.engine#VolumeList"
+          "target": "com.docker.engine#ListVolume"
         },
         {
-          "target": "com.docker.engine#VolumeCreate"
+          "target": "com.docker.engine#CreateVolume"
         },
         {
           "target": "com.docker.engine#VolumeInspect"
         },
         {
-          "target": "com.docker.engine#VolumeUpdate"
+          "target": "com.docker.engine#UpdateVolume"
         },
         {
-          "target": "com.docker.engine#VolumeDelete"
+          "target": "com.docker.engine#DeleteVolume"
         },
         {
           "target": "com.docker.engine#VolumePrune"
         },
         {
-          "target": "com.docker.engine#NetworkList"
+          "target": "com.docker.engine#ListNetwork"
         },
         {
           "target": "com.docker.engine#NetworkInspect"
         },
         {
-          "target": "com.docker.engine#NetworkDelete"
+          "target": "com.docker.engine#DeleteNetwork"
         },
         {
-          "target": "com.docker.engine#NetworkCreate"
+          "target": "com.docker.engine#CreateNetwork"
         },
         {
-          "target": "com.docker.engine#NetworkConnect"
+          "target": "com.docker.engine#ConnectNetwork"
         },
         {
-          "target": "com.docker.engine#NetworkDisconnect"
+          "target": "com.docker.engine#DisconnectNetwork"
         },
         {
           "target": "com.docker.engine#NetworkPrune"
         },
         {
-          "target": "com.docker.engine#PluginList"
+          "target": "com.docker.engine#ListPlugin"
         },
         {
           "target": "com.docker.engine#GetPluginPrivileges"
@@ -19430,37 +19431,37 @@
           "target": "com.docker.engine#PluginInspect"
         },
         {
-          "target": "com.docker.engine#PluginDelete"
+          "target": "com.docker.engine#DeletePlugin"
         },
         {
-          "target": "com.docker.engine#PluginEnable"
+          "target": "com.docker.engine#EnablePlugin"
         },
         {
-          "target": "com.docker.engine#PluginDisable"
+          "target": "com.docker.engine#DisablePlugin"
         },
         {
           "target": "com.docker.engine#PluginUpgrade"
         },
         {
-          "target": "com.docker.engine#PluginCreate"
+          "target": "com.docker.engine#CreatePlugin"
         },
         {
           "target": "com.docker.engine#PluginPush"
         },
         {
-          "target": "com.docker.engine#PluginSet"
+          "target": "com.docker.engine#SetPlugin"
         },
         {
-          "target": "com.docker.engine#NodeList"
+          "target": "com.docker.engine#ListNode"
         },
         {
           "target": "com.docker.engine#NodeInspect"
         },
         {
-          "target": "com.docker.engine#NodeDelete"
+          "target": "com.docker.engine#DeleteNode"
         },
         {
-          "target": "com.docker.engine#NodeUpdate"
+          "target": "com.docker.engine#UpdateNode"
         },
         {
           "target": "com.docker.engine#SwarmInspect"
@@ -19469,40 +19470,40 @@
           "target": "com.docker.engine#SwarmInit"
         },
         {
-          "target": "com.docker.engine#SwarmJoin"
+          "target": "com.docker.engine#JoinSwarm"
         },
         {
-          "target": "com.docker.engine#SwarmLeave"
+          "target": "com.docker.engine#LeaveSwarm"
         },
         {
-          "target": "com.docker.engine#SwarmUpdate"
+          "target": "com.docker.engine#UpdateSwarm"
         },
         {
           "target": "com.docker.engine#SwarmUnlockkey"
         },
         {
-          "target": "com.docker.engine#SwarmUnlock"
+          "target": "com.docker.engine#UnlockSwarm"
         },
         {
-          "target": "com.docker.engine#ServiceList"
+          "target": "com.docker.engine#ListService"
         },
         {
-          "target": "com.docker.engine#ServiceCreate"
+          "target": "com.docker.engine#CreateService"
         },
         {
           "target": "com.docker.engine#ServiceInspect"
         },
         {
-          "target": "com.docker.engine#ServiceDelete"
+          "target": "com.docker.engine#DeleteService"
         },
         {
-          "target": "com.docker.engine#ServiceUpdate"
+          "target": "com.docker.engine#UpdateService"
         },
         {
           "target": "com.docker.engine#ServiceLogs"
         },
         {
-          "target": "com.docker.engine#TaskList"
+          "target": "com.docker.engine#ListTask"
         },
         {
           "target": "com.docker.engine#TaskInspect"
@@ -19511,34 +19512,34 @@
           "target": "com.docker.engine#TaskLogs"
         },
         {
-          "target": "com.docker.engine#SecretList"
+          "target": "com.docker.engine#ListSecret"
         },
         {
-          "target": "com.docker.engine#SecretCreate"
+          "target": "com.docker.engine#CreateSecret"
         },
         {
           "target": "com.docker.engine#SecretInspect"
         },
         {
-          "target": "com.docker.engine#SecretDelete"
+          "target": "com.docker.engine#DeleteSecret"
         },
         {
-          "target": "com.docker.engine#SecretUpdate"
+          "target": "com.docker.engine#UpdateSecret"
         },
         {
-          "target": "com.docker.engine#ConfigList"
+          "target": "com.docker.engine#ListConfig"
         },
         {
-          "target": "com.docker.engine#ConfigCreate"
+          "target": "com.docker.engine#CreateConfig"
         },
         {
           "target": "com.docker.engine#ConfigInspect"
         },
         {
-          "target": "com.docker.engine#ConfigDelete"
+          "target": "com.docker.engine#DeleteConfig"
         },
         {
-          "target": "com.docker.engine#ConfigUpdate"
+          "target": "com.docker.engine#UpdateConfig"
         },
         {
           "target": "com.docker.engine#DistributionInspect2"

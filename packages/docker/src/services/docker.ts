@@ -50,6 +50,69 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export interface ArchiveContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Resource in the container’s filesystem to archive. */
+  path: string;
+}
+export const ArchiveContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    path: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/containers/{id}/archive", code: 200 }),
+  ),
+).annotate({
+  identifier: "ArchiveContainerRequest",
+}) as any as S.Schema<ArchiveContainerRequest>;
+
+export interface ArchiveContainerResponse {}
+export const ArchiveContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ArchiveContainerResponse",
+}) as any as S.Schema<ArchiveContainerResponse>;
+
+export interface AttachContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Override the key sequence for detaching a container.Format is a single character `[a-Z]` or `ctrl-<value>` where `<value>` is one of: `a-z`, `@`, `^`, `[`, `,` or `_`. */
+  detachKeys?: string;
+  /** Replay previous logs from the container. This is useful for attaching to a container that has started and you want to output everything since the container started. If `stream` is also enabled, once all the previous output has been returned, it will seamlessly transition into streaming current output. */
+  logs?: boolean;
+  /** Stream attached streams from the time the request was made onwards. */
+  stream?: boolean;
+  /** Attach to `stdin` */
+  stdin?: boolean;
+  /** Attach to `stdout` */
+  stdout?: boolean;
+  /** Attach to `stderr` */
+  stderr?: boolean;
+}
+export const AttachContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    detachKeys: S.optional(S.String.pipe(T.Query())),
+    logs: S.optional(S.Boolean.pipe(T.Query())),
+    stream: S.optional(S.Boolean.pipe(T.Query())),
+    stdin: S.optional(S.Boolean.pipe(T.Query())),
+    stdout: S.optional(S.Boolean.pipe(T.Query())),
+    stderr: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/containers/{id}/attach", code: 200 }),
+  ),
+).annotate({
+  identifier: "AttachContainerRequest",
+}) as any as S.Schema<AttachContainerRequest>;
+
+export interface AttachContainerResponse {}
+export const AttachContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AttachContainerResponse",
+}) as any as S.Schema<AttachContainerResponse>;
+
 export interface BuildPruneRequest {
   /** Amount of disk space in bytes to keep for cache */
   reserved_space?: number;
@@ -93,56 +156,193 @@ export const BuildPruneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BuildPruneResponse",
 }) as any as S.Schema<BuildPruneResponse>;
 
-/** User-defined key/value metadata. */
-export type ConfigCreateRequestLabelsMap = {
-  [key: string]: string | undefined;
+/** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
+export type CommitImageRequestExposedPortsMap = {
+  [key: string]: unknown | undefined;
 };
-export const ConfigCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
+export const CommitImageRequestExposedPortsMap = /*@__PURE__*/ S.Record(
   S.String,
-  S.String,
-) as any as S.Schema<ConfigCreateRequestLabelsMap>;
+  S.Unknown,
+) as any as S.Schema<CommitImageRequestExposedPortsMap>;
 
-/** Key/value map of driver-specific options. */
-export type DriverOptionsMap = { [key: string]: string | undefined };
-export const DriverOptionsMap = /*@__PURE__*/ S.Record(
+/** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
+export type CommitImageRequestEnvList = Array<string>;
+export const CommitImageRequestEnvList = /*@__PURE__*/ S.Array(
   S.String,
-  S.String,
-) as any as S.Schema<DriverOptionsMap>;
+) as any as S.Schema<CommitImageRequestEnvList>;
 
-/** Driver represents a driver (network, logging, secrets). */
-export interface Driver {
-  /** Name of the driver. */
-  Name: string;
-  /** Key/value map of driver-specific options. */
-  Options?: DriverOptionsMap;
+/** Command to run specified as a string or an array of strings. */
+export type CommitImageRequestCmdList = Array<string>;
+export const CommitImageRequestCmdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CommitImageRequestCmdList>;
+
+/** The test to perform. Possible values are: - `[]` inherit healthcheck from image or parent image - `["NONE"]` disable healthcheck - `["CMD", args...]` exec arguments directly - `["CMD-SHELL", command]` run command with system's default shell A non-zero exit code indicates a failed healthcheck: - `0` healthy - `1` unhealthy - `2` reserved (treated as unhealthy) - other values: error running probe */
+export type HealthConfigTestList = Array<string>;
+export const HealthConfigTestList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<HealthConfigTestList>;
+
+/** A test to perform to check that the container is healthy. Healthcheck commands should be side-effect free. */
+export interface HealthConfig {
+  /** The test to perform. Possible values are: - `[]` inherit healthcheck from image or parent image - `["NONE"]` disable healthcheck - `["CMD", args...]` exec arguments directly - `["CMD-SHELL", command]` run command with system's default shell A non-zero exit code indicates a failed healthcheck: - `0` healthy - `1` unhealthy - `2` reserved (treated as unhealthy) - other values: error running probe */
+  Test?: HealthConfigTestList;
+  /** The time to wait between checks in nanoseconds. It should be 0 or at least 1000000 (1 ms). 0 means inherit. */
+  Interval?: number;
+  /** The time to wait before considering the check to have hung. It should be 0 or at least 1000000 (1 ms). 0 means inherit. If the health check command does not complete within this timeout, the check is considered failed and the health check process is forcibly terminated without a graceful shutdown. */
+  Timeout?: number;
+  /** The number of consecutive failures needed to consider a container as unhealthy. 0 means inherit. */
+  Retries?: number;
+  /** Start period for the container to initialize before starting health-retries countdown in nanoseconds. It should be 0 or at least 1000000 (1 ms). 0 means inherit. */
+  StartPeriod?: number;
+  /** The time to wait between checks in nanoseconds during the start period. It should be 0 or at least 1000000 (1 ms). 0 means inherit. */
+  StartInterval?: number;
 }
-export const Driver = /*@__PURE__*/ S.suspend(() =>
+export const HealthConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Name: S.String,
-    Options: S.optional(DriverOptionsMap),
+    Test: S.optional(HealthConfigTestList),
+    Interval: S.optional(S.Number),
+    Timeout: S.optional(S.Number),
+    Retries: S.optional(S.Number),
+    StartPeriod: S.optional(S.Number),
+    StartInterval: S.optional(S.Number),
   }),
-).annotate({ identifier: "Driver" }) as any as S.Schema<Driver>;
+).annotate({ identifier: "HealthConfig" }) as any as S.Schema<HealthConfig>;
 
-export interface ConfigCreateRequest {
-  /** User-defined name of the config. */
-  Name?: string;
+/** An object mapping mount point paths inside the container to empty objects. */
+export type CommitImageRequestVolumesMap = {
+  [key: string]: unknown | undefined;
+};
+export const CommitImageRequestVolumesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CommitImageRequestVolumesMap>;
+
+/** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
+export type CommitImageRequestEntrypointList = Array<string>;
+export const CommitImageRequestEntrypointList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CommitImageRequestEntrypointList>;
+
+/** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
+export type CommitImageRequestOnBuildList = Array<string>;
+export const CommitImageRequestOnBuildList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CommitImageRequestOnBuildList>;
+
+/** User-defined key/value metadata. */
+export type CommitImageRequestLabelsMap = { [key: string]: string | undefined };
+export const CommitImageRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CommitImageRequestLabelsMap>;
+
+/** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
+export type CommitImageRequestShellList = Array<string>;
+export const CommitImageRequestShellList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CommitImageRequestShellList>;
+
+export interface CommitImageRequest {
+  /** The ID or name of the container to commit */
+  container?: string;
+  /** Repository name for the created image */
+  repo?: string;
+  /** Tag name for the create image */
+  tag?: string;
+  /** Commit message */
+  comment?: string;
+  /** Author of the image (e.g., `John Hannibal Smith <hannibal@a-team.com>`) */
+  author?: string;
+  /** Whether to pause the container before committing */
+  pause?: boolean;
+  /** `Dockerfile` instructions to apply while committing */
+  changes?: string;
+  /** The hostname to use for the container, as a valid RFC 1123 hostname. */
+  Hostname?: string;
+  /** The domain name to use for the container. */
+  Domainname?: string;
+  /** Commands run as this user inside the container. If omitted, commands run as the user specified in the image the container was started from. Can be either user-name or UID, and optional group-name or GID, separated by a colon (`<user-name|UID>[<:group-name|GID>]`). */
+  User?: string;
+  /** Whether to attach to `stdin`. */
+  AttachStdin?: boolean;
+  /** Whether to attach to `stdout`. */
+  AttachStdout?: boolean;
+  /** Whether to attach to `stderr`. */
+  AttachStderr?: boolean;
+  /** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
+  ExposedPorts?: CommitImageRequestExposedPortsMap | null;
+  /** Attach standard streams to a TTY, including `stdin` if it is not closed. */
+  Tty?: boolean;
+  /** Open `stdin` */
+  OpenStdin?: boolean;
+  /** Close `stdin` after one attached client disconnects */
+  StdinOnce?: boolean;
+  /** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
+  Env?: CommitImageRequestEnvList;
+  /** Command to run specified as a string or an array of strings. */
+  Cmd?: CommitImageRequestCmdList;
+  Healthcheck?: HealthConfig;
+  /** Command is already escaped (Windows only) */
+  ArgsEscaped?: boolean | null;
+  /** The name (or reference) of the image to use when creating the container, or which was used when the container was created. */
+  Image?: string;
+  /** An object mapping mount point paths inside the container to empty objects. */
+  Volumes?: CommitImageRequestVolumesMap;
+  /** The working directory for commands to run in. */
+  WorkingDir?: string;
+  /** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
+  Entrypoint?: CommitImageRequestEntrypointList;
+  /** Disable networking for the container. */
+  NetworkDisabled?: boolean | null;
+  /** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
+  OnBuild?: CommitImageRequestOnBuildList | null;
   /** User-defined key/value metadata. */
-  Labels?: ConfigCreateRequestLabelsMap;
-  /** Data is the data to store as a config, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. The maximum allowed size is 1000KB, as defined in [MaxConfigSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0-20250103191802-8c1959736554/manager/controlapi#MaxConfigSize). */
-  Data?: string;
-  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
-  Templating?: Driver;
+  Labels?: CommitImageRequestLabelsMap;
+  /** Signal to stop a container as a string or unsigned integer. */
+  StopSignal?: string | null;
+  /** Timeout to stop a container in seconds. If omitted, the daemon-wide default (`default-stop-timeout`) is used. */
+  StopTimeout?: number | null;
+  /** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
+  Shell?: CommitImageRequestShellList | null;
 }
-export const ConfigCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CommitImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Name: S.optional(S.String),
-    Labels: S.optional(ConfigCreateRequestLabelsMap),
-    Data: S.optional(S.String),
-    Templating: S.optional(Driver),
-  }).pipe(T.Http({ method: "POST", uri: "/configs/create", code: 200 })),
+    container: S.optional(S.String.pipe(T.Query())),
+    repo: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+    comment: S.optional(S.String.pipe(T.Query())),
+    author: S.optional(S.String.pipe(T.Query())),
+    pause: S.optional(S.Boolean.pipe(T.Query())),
+    changes: S.optional(S.String.pipe(T.Query())),
+    Hostname: S.optional(S.String),
+    Domainname: S.optional(S.String),
+    User: S.optional(S.String),
+    AttachStdin: S.optional(S.Boolean),
+    AttachStdout: S.optional(S.Boolean),
+    AttachStderr: S.optional(S.Boolean),
+    ExposedPorts: S.optional(S.NullOr(CommitImageRequestExposedPortsMap)),
+    Tty: S.optional(S.Boolean),
+    OpenStdin: S.optional(S.Boolean),
+    StdinOnce: S.optional(S.Boolean),
+    Env: S.optional(CommitImageRequestEnvList),
+    Cmd: S.optional(CommitImageRequestCmdList),
+    Healthcheck: S.optional(HealthConfig),
+    ArgsEscaped: S.optional(S.NullOr(S.Boolean)),
+    Image: S.optional(S.String),
+    Volumes: S.optional(CommitImageRequestVolumesMap),
+    WorkingDir: S.optional(S.String),
+    Entrypoint: S.optional(CommitImageRequestEntrypointList),
+    NetworkDisabled: S.optional(S.NullOr(S.Boolean)),
+    OnBuild: S.optional(S.NullOr(CommitImageRequestOnBuildList)),
+    Labels: S.optional(CommitImageRequestLabelsMap),
+    StopSignal: S.optional(S.NullOr(S.String)),
+    StopTimeout: S.optional(S.NullOr(S.Number)),
+    Shell: S.optional(S.NullOr(CommitImageRequestShellList)),
+  }).pipe(T.Http({ method: "POST", uri: "/commit", code: 200 })),
 ).annotate({
-  identifier: "ConfigCreateRequest",
-}) as any as S.Schema<ConfigCreateRequest>;
+  identifier: "CommitImageRequest",
+}) as any as S.Schema<CommitImageRequest>;
 
 /** Response to an API call that returns just an Id */
 export interface IDResponse {
@@ -154,25 +354,6 @@ export const IDResponse = /*@__PURE__*/ S.suspend(() =>
     Id: S.String,
   }),
 ).annotate({ identifier: "IDResponse" }) as any as S.Schema<IDResponse>;
-
-export interface ConfigDeleteRequest {
-  /** ID of the config */
-  id: string;
-}
-export const ConfigDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/configs/{id}", code: 200 })),
-).annotate({
-  identifier: "ConfigDeleteRequest",
-}) as any as S.Schema<ConfigDeleteRequest>;
-
-export interface ConfigDeleteResponse {}
-export const ConfigDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ConfigDeleteResponse",
-}) as any as S.Schema<ConfigDeleteResponse>;
 
 export interface ConfigInspectRequest {
   /** ID of the config */
@@ -202,6 +383,27 @@ export const ConfigSpecLabelsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<ConfigSpecLabelsMap>;
+
+/** Key/value map of driver-specific options. */
+export type DriverOptionsMap = { [key: string]: string | undefined };
+export const DriverOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DriverOptionsMap>;
+
+/** Driver represents a driver (network, logging, secrets). */
+export interface Driver {
+  /** Name of the driver. */
+  Name: string;
+  /** Key/value map of driver-specific options. */
+  Options?: DriverOptionsMap;
+}
+export const Driver = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Options: S.optional(DriverOptionsMap),
+  }),
+).annotate({ identifier: "Driver" }) as any as S.Schema<Driver>;
 
 export interface ConfigSpec {
   /** User-defined name of the config. */
@@ -239,135 +441,127 @@ export const Config = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Config" }) as any as S.Schema<Config>;
 
-export interface ConfigListRequest {
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the configs list. Available filters: - `id=<config id>` - `label=<key> or label=<key>=value` - `name=<config name>` - `names=<config name>` */
-  filters?: string;
+export type EndpointIPAMConfigLinkLocalIPsList = Array<string>;
+export const EndpointIPAMConfigLinkLocalIPsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EndpointIPAMConfigLinkLocalIPsList>;
+
+/** EndpointIPAMConfig represents an endpoint's IPAM configuration. */
+export interface EndpointIPAMConfig {
+  IPv4Address?: string;
+  IPv6Address?: string;
+  LinkLocalIPs?: EndpointIPAMConfigLinkLocalIPsList;
 }
-export const ConfigListRequest = /*@__PURE__*/ S.suspend(() =>
+export const EndpointIPAMConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/configs", code: 200 })),
+    IPv4Address: S.optional(S.String),
+    IPv6Address: S.optional(S.String),
+    LinkLocalIPs: S.optional(EndpointIPAMConfigLinkLocalIPsList),
+  }),
 ).annotate({
-  identifier: "ConfigListRequest",
-}) as any as S.Schema<ConfigListRequest>;
+  identifier: "EndpointIPAMConfig",
+}) as any as S.Schema<EndpointIPAMConfig>;
 
-export type ConfigListResponseBodyList = Array<Config>;
-export const ConfigListResponseBodyList = /*@__PURE__*/ S.Array(
-  Config,
-) as any as S.Schema<ConfigListResponseBodyList>;
+export type EndpointSettingsLinksList = Array<string>;
+export const EndpointSettingsLinksList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EndpointSettingsLinksList>;
 
-export type ConfigListResponse = ConfigListResponseBodyList;
-export const ConfigListResponse = /*@__PURE__*/ S.suspend(() =>
-  ConfigListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ConfigListResponse",
-}) as any as S.Schema<ConfigListResponse>;
+export type EndpointSettingsAliasesList = Array<string>;
+export const EndpointSettingsAliasesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EndpointSettingsAliasesList>;
 
-/** User-defined key/value metadata. */
-export type ConfigUpdateRequestLabelsMap = {
+/** DriverOpts is a mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
+export type EndpointSettingsDriverOptsMap = {
   [key: string]: string | undefined;
 };
-export const ConfigUpdateRequestLabelsMap = /*@__PURE__*/ S.Record(
+export const EndpointSettingsDriverOptsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConfigUpdateRequestLabelsMap>;
+) as any as S.Schema<EndpointSettingsDriverOptsMap>;
 
-export interface ConfigUpdateRequest {
-  /** The ID or name of the config */
-  id: string;
-  /** The version number of the config object being updated. This is required to avoid conflicting writes. */
-  version: number;
-  /** User-defined name of the config. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: ConfigUpdateRequestLabelsMap;
-  /** Data is the data to store as a config, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. The maximum allowed size is 1000KB, as defined in [MaxConfigSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0-20250103191802-8c1959736554/manager/controlapi#MaxConfigSize). */
-  Data?: string;
-  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
-  Templating?: Driver;
+/** List of all DNS names an endpoint has on a specific network. This list is based on the container name, network aliases, container short ID, and hostname. These DNS names are non-fully qualified but can contain several dots. You can get fully qualified DNS names by appending `.<network-name>`. For instance, if container name is `my.ctr` and the network is named `testnet`, `DNSNames` will contain `my.ctr` and the FQDN will be `my.ctr.testnet`. */
+export type EndpointSettingsDNSNamesList = Array<string>;
+export const EndpointSettingsDNSNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EndpointSettingsDNSNamesList>;
+
+/** Configuration for a network endpoint. */
+export interface EndpointSettings {
+  IPAMConfig?: EndpointIPAMConfig | null;
+  Links?: EndpointSettingsLinksList;
+  /** MAC address for the endpoint on this network. The network driver might ignore this parameter. */
+  MacAddress?: string;
+  Aliases?: EndpointSettingsAliasesList;
+  /** DriverOpts is a mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
+  DriverOpts?: EndpointSettingsDriverOptsMap | null;
+  /** This property determines which endpoint will provide the default gateway for a container. The endpoint with the highest priority will be used. If multiple endpoints have the same priority, endpoints are lexicographically sorted based on their network name, and the one that sorts first is picked. */
+  GwPriority?: number;
+  /** Unique ID of the network. */
+  NetworkID?: string;
+  /** Unique ID for the service endpoint in a Sandbox. */
+  EndpointID?: string;
+  /** Gateway address for this network. */
+  Gateway?: string;
+  /** IPv4 address. */
+  IPAddress?: string;
+  /** Mask length of the IPv4 address. */
+  IPPrefixLen?: number;
+  /** IPv6 gateway address. */
+  IPv6Gateway?: string;
+  /** Global IPv6 address. */
+  GlobalIPv6Address?: string;
+  /** Mask length of the global IPv6 address. */
+  GlobalIPv6PrefixLen?: number;
+  /** List of all DNS names an endpoint has on a specific network. This list is based on the container name, network aliases, container short ID, and hostname. These DNS names are non-fully qualified but can contain several dots. You can get fully qualified DNS names by appending `.<network-name>`. For instance, if container name is `my.ctr` and the network is named `testnet`, `DNSNames` will contain `my.ctr` and the FQDN will be `my.ctr.testnet`. */
+  DNSNames?: EndpointSettingsDNSNamesList;
 }
-export const ConfigUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const EndpointSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    IPAMConfig: S.optional(S.NullOr(EndpointIPAMConfig)),
+    Links: S.optional(EndpointSettingsLinksList),
+    MacAddress: S.optional(S.String),
+    Aliases: S.optional(EndpointSettingsAliasesList),
+    DriverOpts: S.optional(S.NullOr(EndpointSettingsDriverOptsMap)),
+    GwPriority: S.optional(S.Number),
+    NetworkID: S.optional(S.String),
+    EndpointID: S.optional(S.String),
+    Gateway: S.optional(S.String),
+    IPAddress: S.optional(S.String),
+    IPPrefixLen: S.optional(S.Number),
+    IPv6Gateway: S.optional(S.String),
+    GlobalIPv6Address: S.optional(S.String),
+    GlobalIPv6PrefixLen: S.optional(S.Number),
+    DNSNames: S.optional(EndpointSettingsDNSNamesList),
+  }),
+).annotate({
+  identifier: "EndpointSettings",
+}) as any as S.Schema<EndpointSettings>;
+
+export interface ConnectNetworkRequest {
+  /** Network ID or name */
+  id: string;
+  /** The ID or name of the container to connect to the network. */
+  Container: string;
+  EndpointConfig?: EndpointSettings | null;
+}
+export const ConnectNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Query()),
-    Name: S.optional(S.String),
-    Labels: S.optional(ConfigUpdateRequestLabelsMap),
-    Data: S.optional(S.String),
-    Templating: S.optional(Driver),
-  }).pipe(T.Http({ method: "POST", uri: "/configs/{id}/update", code: 200 })),
+    Container: S.String,
+    EndpointConfig: S.optional(S.NullOr(EndpointSettings)),
+  }).pipe(T.Http({ method: "POST", uri: "/networks/{id}/connect", code: 200 })),
 ).annotate({
-  identifier: "ConfigUpdateRequest",
-}) as any as S.Schema<ConfigUpdateRequest>;
+  identifier: "ConnectNetworkRequest",
+}) as any as S.Schema<ConnectNetworkRequest>;
 
-export interface ConfigUpdateResponse {}
-export const ConfigUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ConnectNetworkResponse {}
+export const ConnectNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ConfigUpdateResponse",
-}) as any as S.Schema<ConfigUpdateResponse>;
-
-export interface ContainerArchiveRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Resource in the container’s filesystem to archive. */
-  path: string;
-}
-export const ContainerArchiveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    path: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/containers/{id}/archive", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerArchiveRequest",
-}) as any as S.Schema<ContainerArchiveRequest>;
-
-export interface ContainerArchiveResponse {}
-export const ContainerArchiveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerArchiveResponse",
-}) as any as S.Schema<ContainerArchiveResponse>;
-
-export interface ContainerAttachRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Override the key sequence for detaching a container.Format is a single character `[a-Z]` or `ctrl-<value>` where `<value>` is one of: `a-z`, `@`, `^`, `[`, `,` or `_`. */
-  detachKeys?: string;
-  /** Replay previous logs from the container. This is useful for attaching to a container that has started and you want to output everything since the container started. If `stream` is also enabled, once all the previous output has been returned, it will seamlessly transition into streaming current output. */
-  logs?: boolean;
-  /** Stream attached streams from the time the request was made onwards. */
-  stream?: boolean;
-  /** Attach to `stdin` */
-  stdin?: boolean;
-  /** Attach to `stdout` */
-  stdout?: boolean;
-  /** Attach to `stderr` */
-  stderr?: boolean;
-}
-export const ContainerAttachRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    detachKeys: S.optional(S.String.pipe(T.Query())),
-    logs: S.optional(S.Boolean.pipe(T.Query())),
-    stream: S.optional(S.Boolean.pipe(T.Query())),
-    stdin: S.optional(S.Boolean.pipe(T.Query())),
-    stdout: S.optional(S.Boolean.pipe(T.Query())),
-    stderr: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/containers/{id}/attach", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerAttachRequest",
-}) as any as S.Schema<ContainerAttachRequest>;
-
-export interface ContainerAttachResponse {}
-export const ContainerAttachResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerAttachResponse",
-}) as any as S.Schema<ContainerAttachResponse>;
+  identifier: "ConnectNetworkResponse",
+}) as any as S.Schema<ConnectNetworkResponse>;
 
 export interface ContainerAttachWebsocketRequest {
   /** ID or name of the container */
@@ -453,94 +647,208 @@ export const ContainerChangesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerChangesResponse",
 }) as any as S.Schema<ContainerChangesResponse>;
 
-/** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
-export type ContainerCreateRequestExposedPortsMap = {
-  [key: string]: unknown | undefined;
-};
-export const ContainerCreateRequestExposedPortsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ContainerCreateRequestExposedPortsMap>;
-
-/** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
-export type ContainerCreateRequestEnvList = Array<string>;
-export const ContainerCreateRequestEnvList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerCreateRequestEnvList>;
-
-/** Command to run specified as a string or an array of strings. */
-export type ContainerCreateRequestCmdList = Array<string>;
-export const ContainerCreateRequestCmdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerCreateRequestCmdList>;
-
-/** The test to perform. Possible values are: - `[]` inherit healthcheck from image or parent image - `["NONE"]` disable healthcheck - `["CMD", args...]` exec arguments directly - `["CMD-SHELL", command]` run command with system's default shell A non-zero exit code indicates a failed healthcheck: - `0` healthy - `1` unhealthy - `2` reserved (treated as unhealthy) - other values: error running probe */
-export type HealthConfigTestList = Array<string>;
-export const HealthConfigTestList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<HealthConfigTestList>;
-
-/** A test to perform to check that the container is healthy. Healthcheck commands should be side-effect free. */
-export interface HealthConfig {
-  /** The test to perform. Possible values are: - `[]` inherit healthcheck from image or parent image - `["NONE"]` disable healthcheck - `["CMD", args...]` exec arguments directly - `["CMD-SHELL", command]` run command with system's default shell A non-zero exit code indicates a failed healthcheck: - `0` healthy - `1` unhealthy - `2` reserved (treated as unhealthy) - other values: error running probe */
-  Test?: HealthConfigTestList;
-  /** The time to wait between checks in nanoseconds. It should be 0 or at least 1000000 (1 ms). 0 means inherit. */
-  Interval?: number;
-  /** The time to wait before considering the check to have hung. It should be 0 or at least 1000000 (1 ms). 0 means inherit. If the health check command does not complete within this timeout, the check is considered failed and the health check process is forcibly terminated without a graceful shutdown. */
-  Timeout?: number;
-  /** The number of consecutive failures needed to consider a container as unhealthy. 0 means inherit. */
-  Retries?: number;
-  /** Start period for the container to initialize before starting health-retries countdown in nanoseconds. It should be 0 or at least 1000000 (1 ms). 0 means inherit. */
-  StartPeriod?: number;
-  /** The time to wait between checks in nanoseconds during the start period. It should be 0 or at least 1000000 (1 ms). 0 means inherit. */
-  StartInterval?: number;
+export interface ContainerInspectRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Return the size of container as fields `SizeRw` and `SizeRootFs` */
+  size?: boolean;
 }
-export const HealthConfig = /*@__PURE__*/ S.suspend(() =>
+export const ContainerInspectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Test: S.optional(HealthConfigTestList),
-    Interval: S.optional(S.Number),
-    Timeout: S.optional(S.Number),
-    Retries: S.optional(S.Number),
-    StartPeriod: S.optional(S.Number),
-    StartInterval: S.optional(S.Number),
+    id: S.String.pipe(T.Label()),
+    size: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/containers/{id}/json", code: 200 })),
+).annotate({
+  identifier: "ContainerInspectRequest",
+}) as any as S.Schema<ContainerInspectRequest>;
+
+/** The arguments to the command being run */
+export type ContainerInspectResponseArgsList = Array<string>;
+export const ContainerInspectResponseArgsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ContainerInspectResponseArgsList>;
+
+/** String representation of the container state. Can be one of "created", "running", "paused", "restarting", "removing", "exited", or "dead". */
+export type ContainerStateStatus =
+  | "created"
+  | "running"
+  | "paused"
+  | "restarting"
+  | "removing"
+  | "exited"
+  | "dead";
+export const ContainerStateStatus = /*@__PURE__*/ S.String;
+
+/** Status is one of `none`, `starting`, `healthy` or `unhealthy` - "none" Indicates there is no healthcheck - "starting" Starting indicates that the container is not yet ready - "healthy" Healthy indicates that the container is running correctly - "unhealthy" Unhealthy indicates that the container has a problem */
+export type HealthStatus = "none" | "starting" | "healthy" | "unhealthy";
+export const HealthStatus = /*@__PURE__*/ S.String;
+
+/** HealthcheckResult stores information about a single run of a healthcheck probe */
+export interface HealthcheckResult {
+  /** Date and time at which this check started in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
+  Start?: string;
+  /** Date and time at which this check ended in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
+  End?: string;
+  /** ExitCode meanings: - `0` healthy - `1` unhealthy - `2` reserved (considered unhealthy) - other values: error running probe */
+  ExitCode?: number;
+  /** Output from last check */
+  Output?: string;
+}
+export const HealthcheckResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Start: S.optional(S.String),
+    End: S.optional(S.String),
+    ExitCode: S.optional(S.Number),
+    Output: S.optional(S.String),
   }),
-).annotate({ identifier: "HealthConfig" }) as any as S.Schema<HealthConfig>;
+).annotate({
+  identifier: "HealthcheckResult",
+}) as any as S.Schema<HealthcheckResult>;
 
-/** An object mapping mount point paths inside the container to empty objects. */
-export type ContainerCreateRequestVolumesMap = {
-  [key: string]: unknown | undefined;
-};
-export const ContainerCreateRequestVolumesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ContainerCreateRequestVolumesMap>;
+/** Log contains the last few results (oldest first) */
+export type HealthLogList = Array<HealthcheckResult>;
+export const HealthLogList = /*@__PURE__*/ S.Array(
+  HealthcheckResult,
+) as any as S.Schema<HealthLogList>;
 
-/** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
-export type ContainerCreateRequestEntrypointList = Array<string>;
-export const ContainerCreateRequestEntrypointList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerCreateRequestEntrypointList>;
+/** Health stores information about the container's healthcheck results. */
+export interface Health {
+  /** Status is one of `none`, `starting`, `healthy` or `unhealthy` - "none" Indicates there is no healthcheck - "starting" Starting indicates that the container is not yet ready - "healthy" Healthy indicates that the container is running correctly - "unhealthy" Unhealthy indicates that the container has a problem */
+  Status?: HealthStatus;
+  /** FailingStreak is the number of consecutive failures */
+  FailingStreak?: number;
+  /** Log contains the last few results (oldest first) */
+  Log?: HealthLogList;
+}
+export const Health = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Status: S.optional(HealthStatus),
+    FailingStreak: S.optional(S.Number),
+    Log: S.optional(HealthLogList),
+  }),
+).annotate({ identifier: "Health" }) as any as S.Schema<Health>;
 
-/** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
-export type ContainerCreateRequestOnBuildList = Array<string>;
-export const ContainerCreateRequestOnBuildList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerCreateRequestOnBuildList>;
+/** ContainerState stores container's running state. It's part of ContainerJSONBase and will be returned by the "inspect" command. */
+export interface ContainerState {
+  /** String representation of the container state. Can be one of "created", "running", "paused", "restarting", "removing", "exited", or "dead". */
+  Status?: ContainerStateStatus;
+  /** Whether this container is running. Note that a running container can be _paused_. The `Running` and `Paused` booleans are not mutually exclusive: When pausing a container (on Linux), the freezer cgroup is used to suspend all processes in the container. Freezing the process requires the process to be running. As a result, paused containers are both `Running` _and_ `Paused`. Use the `Status` field instead to determine if a container's state is "running". */
+  Running?: boolean;
+  /** Whether this container is paused. */
+  Paused?: boolean;
+  /** Whether this container is restarting. */
+  Restarting?: boolean;
+  /** Whether a process within this container has been killed because it ran out of memory since the container was last started. */
+  OOMKilled?: boolean;
+  Dead?: boolean;
+  /** The process ID of this container */
+  Pid?: number;
+  /** The last exit code of this container */
+  ExitCode?: number;
+  Error?: string;
+  /** The time when this container was last started. */
+  StartedAt?: string;
+  /** The time when this container last exited. */
+  FinishedAt?: string;
+  Health?: Health | null;
+}
+export const ContainerState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Status: S.optional(ContainerStateStatus),
+    Running: S.optional(S.Boolean),
+    Paused: S.optional(S.Boolean),
+    Restarting: S.optional(S.Boolean),
+    OOMKilled: S.optional(S.Boolean),
+    Dead: S.optional(S.Boolean),
+    Pid: S.optional(S.Number),
+    ExitCode: S.optional(S.Number),
+    Error: S.optional(S.String),
+    StartedAt: S.optional(S.String),
+    FinishedAt: S.optional(S.String),
+    Health: S.optional(S.NullOr(Health)),
+  }),
+).annotate({ identifier: "ContainerState" }) as any as S.Schema<ContainerState>;
 
-/** User-defined key/value metadata. */
-export type ContainerCreateRequestLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const ContainerCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
+/** List of URLs from which this object MAY be downloaded. */
+export type OCIDescriptorUrlsList = Array<string>;
+export const OCIDescriptorUrlsList = /*@__PURE__*/ S.Array(
   S.String,
-  S.String,
-) as any as S.Schema<ContainerCreateRequestLabelsMap>;
+) as any as S.Schema<OCIDescriptorUrlsList>;
 
-/** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
-export type ContainerCreateRequestShellList = Array<string>;
-export const ContainerCreateRequestShellList = /*@__PURE__*/ S.Array(
+/** Arbitrary metadata relating to the targeted content. */
+export type OCIDescriptorAnnotationsMap = { [key: string]: string | undefined };
+export const OCIDescriptorAnnotationsMap = /*@__PURE__*/ S.Record(
   S.String,
-) as any as S.Schema<ContainerCreateRequestShellList>;
+  S.String,
+) as any as S.Schema<OCIDescriptorAnnotationsMap>;
+
+/** Optional field specifying an array of strings, each listing a required OS feature (for example on Windows `win32k`). */
+export type OCIPlatformOsFeaturesList = Array<string>;
+export const OCIPlatformOsFeaturesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<OCIPlatformOsFeaturesList>;
+
+/** Describes the platform which the image in the manifest runs on, as defined in the [OCI Image Index Specification](https://github.com/opencontainers/image-spec/blob/v1.0.1/image-index.md). */
+export interface OCIPlatform {
+  /** The CPU architecture, for example `amd64` or `ppc64`. */
+  architecture?: string;
+  /** The operating system, for example `linux` or `windows`. */
+  os?: string;
+  /** Optional field specifying the operating system version, for example on Windows `10.0.19041.1165`. */
+  os_version?: string;
+  /** Optional field specifying an array of strings, each listing a required OS feature (for example on Windows `win32k`). */
+  os_features?: OCIPlatformOsFeaturesList;
+  /** Optional field specifying a variant of the CPU, for example `v7` to specify ARMv7 when architecture is `arm`. */
+  variant?: string;
+}
+export const OCIPlatform = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    architecture: S.optional(S.String),
+    os: S.optional(S.String),
+    os_version: S.optional(S.String.pipe(T.Body("os.version"))),
+    os_features: S.optional(
+      OCIPlatformOsFeaturesList.pipe(T.Body("os.features")),
+    ),
+    variant: S.optional(S.String),
+  }),
+).annotate({ identifier: "OCIPlatform" }) as any as S.Schema<OCIPlatform>;
+
+/** A descriptor struct containing digest, media type, and size, as defined in the [OCI Content Descriptors Specification](https://github.com/opencontainers/image-spec/blob/v1.0.1/descriptor.md). */
+export interface OCIDescriptor {
+  /** The media type of the object this schema refers to. */
+  mediaType?: string;
+  /** The digest of the targeted content. */
+  digest?: string;
+  /** The size in bytes of the blob. */
+  size?: number;
+  /** List of URLs from which this object MAY be downloaded. */
+  urls?: OCIDescriptorUrlsList | null;
+  /** Arbitrary metadata relating to the targeted content. */
+  annotations?: OCIDescriptorAnnotationsMap | null;
+  /** Data is an embedding of the targeted content. This is encoded as a base64 string when marshalled to JSON (automatically, by encoding/json). If present, Data can be used directly to avoid fetching the targeted content. */
+  data?: string | null;
+  platform?: OCIPlatform | null;
+  /** ArtifactType is the IANA media type of this artifact. */
+  artifactType?: string | null;
+}
+export const OCIDescriptor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mediaType: S.optional(S.String),
+    digest: S.optional(S.String),
+    size: S.optional(S.Number),
+    urls: S.optional(S.NullOr(OCIDescriptorUrlsList)),
+    annotations: S.optional(S.NullOr(OCIDescriptorAnnotationsMap)),
+    data: S.optional(S.NullOr(S.String)),
+    platform: S.optional(S.NullOr(OCIPlatform)),
+    artifactType: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "OCIDescriptor" }) as any as S.Schema<OCIDescriptor>;
+
+/** IDs of exec instances that are running in the container. */
+export type ContainerInspectResponseExecIDsList = Array<string>;
+export const ContainerInspectResponseExecIDsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ContainerInspectResponseExecIDsList>;
 
 export interface HostConfigBlkioWeightDeviceItem {
   Path?: string;
@@ -1304,551 +1612,6 @@ export const HostConfig = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "HostConfig" }) as any as S.Schema<HostConfig>;
 
-export type EndpointIPAMConfigLinkLocalIPsList = Array<string>;
-export const EndpointIPAMConfigLinkLocalIPsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EndpointIPAMConfigLinkLocalIPsList>;
-
-/** EndpointIPAMConfig represents an endpoint's IPAM configuration. */
-export interface EndpointIPAMConfig {
-  IPv4Address?: string;
-  IPv6Address?: string;
-  LinkLocalIPs?: EndpointIPAMConfigLinkLocalIPsList;
-}
-export const EndpointIPAMConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    IPv4Address: S.optional(S.String),
-    IPv6Address: S.optional(S.String),
-    LinkLocalIPs: S.optional(EndpointIPAMConfigLinkLocalIPsList),
-  }),
-).annotate({
-  identifier: "EndpointIPAMConfig",
-}) as any as S.Schema<EndpointIPAMConfig>;
-
-export type EndpointSettingsLinksList = Array<string>;
-export const EndpointSettingsLinksList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EndpointSettingsLinksList>;
-
-export type EndpointSettingsAliasesList = Array<string>;
-export const EndpointSettingsAliasesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EndpointSettingsAliasesList>;
-
-/** DriverOpts is a mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
-export type EndpointSettingsDriverOptsMap = {
-  [key: string]: string | undefined;
-};
-export const EndpointSettingsDriverOptsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EndpointSettingsDriverOptsMap>;
-
-/** List of all DNS names an endpoint has on a specific network. This list is based on the container name, network aliases, container short ID, and hostname. These DNS names are non-fully qualified but can contain several dots. You can get fully qualified DNS names by appending `.<network-name>`. For instance, if container name is `my.ctr` and the network is named `testnet`, `DNSNames` will contain `my.ctr` and the FQDN will be `my.ctr.testnet`. */
-export type EndpointSettingsDNSNamesList = Array<string>;
-export const EndpointSettingsDNSNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EndpointSettingsDNSNamesList>;
-
-/** Configuration for a network endpoint. */
-export interface EndpointSettings {
-  IPAMConfig?: EndpointIPAMConfig | null;
-  Links?: EndpointSettingsLinksList;
-  /** MAC address for the endpoint on this network. The network driver might ignore this parameter. */
-  MacAddress?: string;
-  Aliases?: EndpointSettingsAliasesList;
-  /** DriverOpts is a mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
-  DriverOpts?: EndpointSettingsDriverOptsMap | null;
-  /** This property determines which endpoint will provide the default gateway for a container. The endpoint with the highest priority will be used. If multiple endpoints have the same priority, endpoints are lexicographically sorted based on their network name, and the one that sorts first is picked. */
-  GwPriority?: number;
-  /** Unique ID of the network. */
-  NetworkID?: string;
-  /** Unique ID for the service endpoint in a Sandbox. */
-  EndpointID?: string;
-  /** Gateway address for this network. */
-  Gateway?: string;
-  /** IPv4 address. */
-  IPAddress?: string;
-  /** Mask length of the IPv4 address. */
-  IPPrefixLen?: number;
-  /** IPv6 gateway address. */
-  IPv6Gateway?: string;
-  /** Global IPv6 address. */
-  GlobalIPv6Address?: string;
-  /** Mask length of the global IPv6 address. */
-  GlobalIPv6PrefixLen?: number;
-  /** List of all DNS names an endpoint has on a specific network. This list is based on the container name, network aliases, container short ID, and hostname. These DNS names are non-fully qualified but can contain several dots. You can get fully qualified DNS names by appending `.<network-name>`. For instance, if container name is `my.ctr` and the network is named `testnet`, `DNSNames` will contain `my.ctr` and the FQDN will be `my.ctr.testnet`. */
-  DNSNames?: EndpointSettingsDNSNamesList;
-}
-export const EndpointSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    IPAMConfig: S.optional(S.NullOr(EndpointIPAMConfig)),
-    Links: S.optional(EndpointSettingsLinksList),
-    MacAddress: S.optional(S.String),
-    Aliases: S.optional(EndpointSettingsAliasesList),
-    DriverOpts: S.optional(S.NullOr(EndpointSettingsDriverOptsMap)),
-    GwPriority: S.optional(S.Number),
-    NetworkID: S.optional(S.String),
-    EndpointID: S.optional(S.String),
-    Gateway: S.optional(S.String),
-    IPAddress: S.optional(S.String),
-    IPPrefixLen: S.optional(S.Number),
-    IPv6Gateway: S.optional(S.String),
-    GlobalIPv6Address: S.optional(S.String),
-    GlobalIPv6PrefixLen: S.optional(S.Number),
-    DNSNames: S.optional(EndpointSettingsDNSNamesList),
-  }),
-).annotate({
-  identifier: "EndpointSettings",
-}) as any as S.Schema<EndpointSettings>;
-
-/** A mapping of network name to endpoint configuration for that network. The endpoint configuration can be left empty to connect to that network with no particular endpoint configuration. */
-export type NetworkingConfigEndpointsConfigMap = {
-  [key: string]: EndpointSettings | undefined;
-};
-export const NetworkingConfigEndpointsConfigMap = /*@__PURE__*/ S.Record(
-  S.String,
-  EndpointSettings,
-) as any as S.Schema<NetworkingConfigEndpointsConfigMap>;
-
-/** NetworkingConfig represents the container's networking configuration for each of its interfaces. It is used for the networking configs specified in the `docker create` and `docker network connect` commands. */
-export interface NetworkingConfig {
-  /** A mapping of network name to endpoint configuration for that network. The endpoint configuration can be left empty to connect to that network with no particular endpoint configuration. */
-  EndpointsConfig?: NetworkingConfigEndpointsConfigMap;
-}
-export const NetworkingConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    EndpointsConfig: S.optional(NetworkingConfigEndpointsConfigMap),
-  }),
-).annotate({
-  identifier: "NetworkingConfig",
-}) as any as S.Schema<NetworkingConfig>;
-
-export interface ContainerCreateRequest {
-  /** Assign the specified name to the container. Must match `/?[a-zA-Z0-9][a-zA-Z0-9_.-]+`. */
-  name?: string;
-  /** Platform in the format `os[/arch[/variant]]` used for image lookup. When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a `404` status. If the option is not set, the host's native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the `Warnings` field in the response, for example; WARNING: The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64) and no specific platform was requested */
-  platform?: string;
-  /** The hostname to use for the container, as a valid RFC 1123 hostname. */
-  Hostname?: string;
-  /** The domain name to use for the container. */
-  Domainname?: string;
-  /** Commands run as this user inside the container. If omitted, commands run as the user specified in the image the container was started from. Can be either user-name or UID, and optional group-name or GID, separated by a colon (`<user-name|UID>[<:group-name|GID>]`). */
-  User?: string;
-  /** Whether to attach to `stdin`. */
-  AttachStdin?: boolean;
-  /** Whether to attach to `stdout`. */
-  AttachStdout?: boolean;
-  /** Whether to attach to `stderr`. */
-  AttachStderr?: boolean;
-  /** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
-  ExposedPorts?: ContainerCreateRequestExposedPortsMap | null;
-  /** Attach standard streams to a TTY, including `stdin` if it is not closed. */
-  Tty?: boolean;
-  /** Open `stdin` */
-  OpenStdin?: boolean;
-  /** Close `stdin` after one attached client disconnects */
-  StdinOnce?: boolean;
-  /** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
-  Env?: ContainerCreateRequestEnvList;
-  /** Command to run specified as a string or an array of strings. */
-  Cmd?: ContainerCreateRequestCmdList;
-  Healthcheck?: HealthConfig;
-  /** Command is already escaped (Windows only) */
-  ArgsEscaped?: boolean | null;
-  /** The name (or reference) of the image to use when creating the container, or which was used when the container was created. */
-  Image?: string;
-  /** An object mapping mount point paths inside the container to empty objects. */
-  Volumes?: ContainerCreateRequestVolumesMap;
-  /** The working directory for commands to run in. */
-  WorkingDir?: string;
-  /** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
-  Entrypoint?: ContainerCreateRequestEntrypointList;
-  /** Disable networking for the container. */
-  NetworkDisabled?: boolean | null;
-  /** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
-  OnBuild?: ContainerCreateRequestOnBuildList | null;
-  /** User-defined key/value metadata. */
-  Labels?: ContainerCreateRequestLabelsMap;
-  /** Signal to stop a container as a string or unsigned integer. */
-  StopSignal?: string | null;
-  /** Timeout to stop a container in seconds. If omitted, the daemon-wide default (`default-stop-timeout`) is used. */
-  StopTimeout?: number | null;
-  /** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
-  Shell?: ContainerCreateRequestShellList | null;
-  HostConfig?: HostConfig;
-  NetworkingConfig?: NetworkingConfig;
-}
-export const ContainerCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String.pipe(T.Query())),
-    platform: S.optional(S.String.pipe(T.Query())),
-    Hostname: S.optional(S.String),
-    Domainname: S.optional(S.String),
-    User: S.optional(S.String),
-    AttachStdin: S.optional(S.Boolean),
-    AttachStdout: S.optional(S.Boolean),
-    AttachStderr: S.optional(S.Boolean),
-    ExposedPorts: S.optional(S.NullOr(ContainerCreateRequestExposedPortsMap)),
-    Tty: S.optional(S.Boolean),
-    OpenStdin: S.optional(S.Boolean),
-    StdinOnce: S.optional(S.Boolean),
-    Env: S.optional(ContainerCreateRequestEnvList),
-    Cmd: S.optional(ContainerCreateRequestCmdList),
-    Healthcheck: S.optional(HealthConfig),
-    ArgsEscaped: S.optional(S.NullOr(S.Boolean)),
-    Image: S.optional(S.String),
-    Volumes: S.optional(ContainerCreateRequestVolumesMap),
-    WorkingDir: S.optional(S.String),
-    Entrypoint: S.optional(ContainerCreateRequestEntrypointList),
-    NetworkDisabled: S.optional(S.NullOr(S.Boolean)),
-    OnBuild: S.optional(S.NullOr(ContainerCreateRequestOnBuildList)),
-    Labels: S.optional(ContainerCreateRequestLabelsMap),
-    StopSignal: S.optional(S.NullOr(S.String)),
-    StopTimeout: S.optional(S.NullOr(S.Number)),
-    Shell: S.optional(S.NullOr(ContainerCreateRequestShellList)),
-    HostConfig: S.optional(HostConfig),
-    NetworkingConfig: S.optional(NetworkingConfig),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/create", code: 200 })),
-).annotate({
-  identifier: "ContainerCreateRequest",
-}) as any as S.Schema<ContainerCreateRequest>;
-
-/** Warnings encountered when creating the container */
-export type ContainerCreateResponseWarningsList = Array<string>;
-export const ContainerCreateResponseWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerCreateResponseWarningsList>;
-
-/** OK response to ContainerCreate operation */
-export interface ContainerCreateResponse {
-  /** The ID of the created container */
-  Id: string;
-  /** Warnings encountered when creating the container */
-  Warnings: ContainerCreateResponseWarningsList;
-}
-export const ContainerCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Id: S.String,
-    Warnings: ContainerCreateResponseWarningsList,
-  }),
-).annotate({
-  identifier: "ContainerCreateResponse",
-}) as any as S.Schema<ContainerCreateResponse>;
-
-export interface ContainerDeleteRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Remove anonymous volumes associated with the container. */
-  v?: boolean;
-  /** If the container is running, kill it before removing it. */
-  force?: boolean;
-  /** Remove the specified link associated with the container. */
-  link?: boolean;
-}
-export const ContainerDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    v: S.optional(S.Boolean.pipe(T.Query())),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-    link: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/containers/{id}", code: 200 })),
-).annotate({
-  identifier: "ContainerDeleteRequest",
-}) as any as S.Schema<ContainerDeleteRequest>;
-
-export interface ContainerDeleteResponse {}
-export const ContainerDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerDeleteResponse",
-}) as any as S.Schema<ContainerDeleteResponse>;
-
-/** Initial console size, as an `[height, width]` array. */
-export type ContainerExecRequestConsoleSizeList = Array<number>;
-export const ContainerExecRequestConsoleSizeList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<ContainerExecRequestConsoleSizeList>;
-
-/** A list of environment variables in the form `["VAR=value", ...]`. */
-export type ContainerExecRequestEnvList = Array<string>;
-export const ContainerExecRequestEnvList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerExecRequestEnvList>;
-
-/** Command to run, as a string or array of strings. */
-export type ContainerExecRequestCmdList = Array<string>;
-export const ContainerExecRequestCmdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerExecRequestCmdList>;
-
-export interface ContainerExecRequest {
-  /** ID or name of container */
-  id: string;
-  /** Attach to `stdin` of the exec command. */
-  AttachStdin?: boolean;
-  /** Attach to `stdout` of the exec command. */
-  AttachStdout?: boolean;
-  /** Attach to `stderr` of the exec command. */
-  AttachStderr?: boolean;
-  /** Initial console size, as an `[height, width]` array. */
-  ConsoleSize?: ContainerExecRequestConsoleSizeList | null;
-  /** Override the key sequence for detaching a container. Format is a single character `[a-Z]` or `ctrl-<value>` where `<value>` is one of: `a-z`, `@`, `^`, `[`, `,` or `_`. */
-  DetachKeys?: string;
-  /** Allocate a pseudo-TTY. */
-  Tty?: boolean;
-  /** A list of environment variables in the form `["VAR=value", ...]`. */
-  Env?: ContainerExecRequestEnvList;
-  /** Command to run, as a string or array of strings. */
-  Cmd?: ContainerExecRequestCmdList;
-  /** Runs the exec process with extended privileges. */
-  Privileged?: boolean;
-  /** The user, and optionally, group to run the exec process inside the container. Format is one of: `user`, `user:group`, `uid`, or `uid:gid`. */
-  User?: string;
-  /** The working directory for the exec process inside the container. */
-  WorkingDir?: string;
-}
-export const ContainerExecRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    AttachStdin: S.optional(S.Boolean),
-    AttachStdout: S.optional(S.Boolean),
-    AttachStderr: S.optional(S.Boolean),
-    ConsoleSize: S.optional(S.NullOr(ContainerExecRequestConsoleSizeList)),
-    DetachKeys: S.optional(S.String),
-    Tty: S.optional(S.Boolean),
-    Env: S.optional(ContainerExecRequestEnvList),
-    Cmd: S.optional(ContainerExecRequestCmdList),
-    Privileged: S.optional(S.Boolean),
-    User: S.optional(S.String),
-    WorkingDir: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/exec", code: 200 })),
-).annotate({
-  identifier: "ContainerExecRequest",
-}) as any as S.Schema<ContainerExecRequest>;
-
-export interface ContainerExportRequest {
-  /** ID or name of the container */
-  id: string;
-}
-export const ContainerExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/containers/{id}/export", code: 200 })),
-).annotate({
-  identifier: "ContainerExportRequest",
-}) as any as S.Schema<ContainerExportRequest>;
-
-export interface ContainerExportResponse {}
-export const ContainerExportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerExportResponse",
-}) as any as S.Schema<ContainerExportResponse>;
-
-export interface ContainerInspectRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Return the size of container as fields `SizeRw` and `SizeRootFs` */
-  size?: boolean;
-}
-export const ContainerInspectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    size: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/containers/{id}/json", code: 200 })),
-).annotate({
-  identifier: "ContainerInspectRequest",
-}) as any as S.Schema<ContainerInspectRequest>;
-
-/** The arguments to the command being run */
-export type ContainerInspectResponseArgsList = Array<string>;
-export const ContainerInspectResponseArgsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerInspectResponseArgsList>;
-
-/** String representation of the container state. Can be one of "created", "running", "paused", "restarting", "removing", "exited", or "dead". */
-export type ContainerStateStatus =
-  | "created"
-  | "running"
-  | "paused"
-  | "restarting"
-  | "removing"
-  | "exited"
-  | "dead";
-export const ContainerStateStatus = /*@__PURE__*/ S.String;
-
-/** Status is one of `none`, `starting`, `healthy` or `unhealthy` - "none" Indicates there is no healthcheck - "starting" Starting indicates that the container is not yet ready - "healthy" Healthy indicates that the container is running correctly - "unhealthy" Unhealthy indicates that the container has a problem */
-export type HealthStatus = "none" | "starting" | "healthy" | "unhealthy";
-export const HealthStatus = /*@__PURE__*/ S.String;
-
-/** HealthcheckResult stores information about a single run of a healthcheck probe */
-export interface HealthcheckResult {
-  /** Date and time at which this check started in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
-  Start?: string;
-  /** Date and time at which this check ended in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
-  End?: string;
-  /** ExitCode meanings: - `0` healthy - `1` unhealthy - `2` reserved (considered unhealthy) - other values: error running probe */
-  ExitCode?: number;
-  /** Output from last check */
-  Output?: string;
-}
-export const HealthcheckResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Start: S.optional(S.String),
-    End: S.optional(S.String),
-    ExitCode: S.optional(S.Number),
-    Output: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HealthcheckResult",
-}) as any as S.Schema<HealthcheckResult>;
-
-/** Log contains the last few results (oldest first) */
-export type HealthLogList = Array<HealthcheckResult>;
-export const HealthLogList = /*@__PURE__*/ S.Array(
-  HealthcheckResult,
-) as any as S.Schema<HealthLogList>;
-
-/** Health stores information about the container's healthcheck results. */
-export interface Health {
-  /** Status is one of `none`, `starting`, `healthy` or `unhealthy` - "none" Indicates there is no healthcheck - "starting" Starting indicates that the container is not yet ready - "healthy" Healthy indicates that the container is running correctly - "unhealthy" Unhealthy indicates that the container has a problem */
-  Status?: HealthStatus;
-  /** FailingStreak is the number of consecutive failures */
-  FailingStreak?: number;
-  /** Log contains the last few results (oldest first) */
-  Log?: HealthLogList;
-}
-export const Health = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Status: S.optional(HealthStatus),
-    FailingStreak: S.optional(S.Number),
-    Log: S.optional(HealthLogList),
-  }),
-).annotate({ identifier: "Health" }) as any as S.Schema<Health>;
-
-/** ContainerState stores container's running state. It's part of ContainerJSONBase and will be returned by the "inspect" command. */
-export interface ContainerState {
-  /** String representation of the container state. Can be one of "created", "running", "paused", "restarting", "removing", "exited", or "dead". */
-  Status?: ContainerStateStatus;
-  /** Whether this container is running. Note that a running container can be _paused_. The `Running` and `Paused` booleans are not mutually exclusive: When pausing a container (on Linux), the freezer cgroup is used to suspend all processes in the container. Freezing the process requires the process to be running. As a result, paused containers are both `Running` _and_ `Paused`. Use the `Status` field instead to determine if a container's state is "running". */
-  Running?: boolean;
-  /** Whether this container is paused. */
-  Paused?: boolean;
-  /** Whether this container is restarting. */
-  Restarting?: boolean;
-  /** Whether a process within this container has been killed because it ran out of memory since the container was last started. */
-  OOMKilled?: boolean;
-  Dead?: boolean;
-  /** The process ID of this container */
-  Pid?: number;
-  /** The last exit code of this container */
-  ExitCode?: number;
-  Error?: string;
-  /** The time when this container was last started. */
-  StartedAt?: string;
-  /** The time when this container last exited. */
-  FinishedAt?: string;
-  Health?: Health | null;
-}
-export const ContainerState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Status: S.optional(ContainerStateStatus),
-    Running: S.optional(S.Boolean),
-    Paused: S.optional(S.Boolean),
-    Restarting: S.optional(S.Boolean),
-    OOMKilled: S.optional(S.Boolean),
-    Dead: S.optional(S.Boolean),
-    Pid: S.optional(S.Number),
-    ExitCode: S.optional(S.Number),
-    Error: S.optional(S.String),
-    StartedAt: S.optional(S.String),
-    FinishedAt: S.optional(S.String),
-    Health: S.optional(S.NullOr(Health)),
-  }),
-).annotate({ identifier: "ContainerState" }) as any as S.Schema<ContainerState>;
-
-/** List of URLs from which this object MAY be downloaded. */
-export type OCIDescriptorUrlsList = Array<string>;
-export const OCIDescriptorUrlsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<OCIDescriptorUrlsList>;
-
-/** Arbitrary metadata relating to the targeted content. */
-export type OCIDescriptorAnnotationsMap = { [key: string]: string | undefined };
-export const OCIDescriptorAnnotationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OCIDescriptorAnnotationsMap>;
-
-/** Optional field specifying an array of strings, each listing a required OS feature (for example on Windows `win32k`). */
-export type OCIPlatformOsFeaturesList = Array<string>;
-export const OCIPlatformOsFeaturesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<OCIPlatformOsFeaturesList>;
-
-/** Describes the platform which the image in the manifest runs on, as defined in the [OCI Image Index Specification](https://github.com/opencontainers/image-spec/blob/v1.0.1/image-index.md). */
-export interface OCIPlatform {
-  /** The CPU architecture, for example `amd64` or `ppc64`. */
-  architecture?: string;
-  /** The operating system, for example `linux` or `windows`. */
-  os?: string;
-  /** Optional field specifying the operating system version, for example on Windows `10.0.19041.1165`. */
-  os_version?: string;
-  /** Optional field specifying an array of strings, each listing a required OS feature (for example on Windows `win32k`). */
-  os_features?: OCIPlatformOsFeaturesList;
-  /** Optional field specifying a variant of the CPU, for example `v7` to specify ARMv7 when architecture is `arm`. */
-  variant?: string;
-}
-export const OCIPlatform = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    architecture: S.optional(S.String),
-    os: S.optional(S.String),
-    os_version: S.optional(S.String.pipe(T.Body("os.version"))),
-    os_features: S.optional(
-      OCIPlatformOsFeaturesList.pipe(T.Body("os.features")),
-    ),
-    variant: S.optional(S.String),
-  }),
-).annotate({ identifier: "OCIPlatform" }) as any as S.Schema<OCIPlatform>;
-
-/** A descriptor struct containing digest, media type, and size, as defined in the [OCI Content Descriptors Specification](https://github.com/opencontainers/image-spec/blob/v1.0.1/descriptor.md). */
-export interface OCIDescriptor {
-  /** The media type of the object this schema refers to. */
-  mediaType?: string;
-  /** The digest of the targeted content. */
-  digest?: string;
-  /** The size in bytes of the blob. */
-  size?: number;
-  /** List of URLs from which this object MAY be downloaded. */
-  urls?: OCIDescriptorUrlsList | null;
-  /** Arbitrary metadata relating to the targeted content. */
-  annotations?: OCIDescriptorAnnotationsMap | null;
-  /** Data is an embedding of the targeted content. This is encoded as a base64 string when marshalled to JSON (automatically, by encoding/json). If present, Data can be used directly to avoid fetching the targeted content. */
-  data?: string | null;
-  platform?: OCIPlatform | null;
-  /** ArtifactType is the IANA media type of this artifact. */
-  artifactType?: string | null;
-}
-export const OCIDescriptor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mediaType: S.optional(S.String),
-    digest: S.optional(S.String),
-    size: S.optional(S.Number),
-    urls: S.optional(S.NullOr(OCIDescriptorUrlsList)),
-    annotations: S.optional(S.NullOr(OCIDescriptorAnnotationsMap)),
-    data: S.optional(S.NullOr(S.String)),
-    platform: S.optional(S.NullOr(OCIPlatform)),
-    artifactType: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "OCIDescriptor" }) as any as S.Schema<OCIDescriptor>;
-
-/** IDs of exec instances that are running in the container. */
-export type ContainerInspectResponseExecIDsList = Array<string>;
-export const ContainerInspectResponseExecIDsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerInspectResponseExecIDsList>;
-
 /** Low-level storage metadata, provided as key/value pairs. This information is driver-specific, and depends on the storage-driver in use, and should be used for informational purposes only. */
 export type DriverDataDataMap = { [key: string]: string | undefined };
 export const DriverDataDataMap = /*@__PURE__*/ S.Record(
@@ -2191,251 +1954,6 @@ export const ContainerInspectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerInspectResponse",
 }) as any as S.Schema<ContainerInspectResponse>;
 
-export interface ContainerKillRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Signal to send to the container as an integer or string (e.g. `SIGINT`). */
-  signal?: string;
-}
-export const ContainerKillRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    signal: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/kill", code: 200 })),
-).annotate({
-  identifier: "ContainerKillRequest",
-}) as any as S.Schema<ContainerKillRequest>;
-
-export interface ContainerKillResponse {}
-export const ContainerKillResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerKillResponse",
-}) as any as S.Schema<ContainerKillResponse>;
-
-export interface ContainerListRequest {
-  /** Return all containers. By default, only running containers are shown. */
-  all?: boolean;
-  /** Return this number of most recently created containers, including non-running ones. */
-  limit?: number;
-  /** Return the size of container as fields `SizeRw` and `SizeRootFs`. */
-  size?: boolean;
-  /** Filters to process on the container list, encoded as JSON (a `map[string][]string`). For example, `{"status": ["paused"]}` will only return paused containers. Available filters: - `ancestor`=(`<image-name>[:<tag>]`, `<image id>`, or `<image@digest>`) - `before`=(`<container id>` or `<container name>`) - `expose`=(`<port>[/<proto>]`|`<startport-endport>/[<proto>]`) - `exited=<int>` containers with exit code of `<int>` - `health`=(`starting`|`healthy`|`unhealthy`|`none`) - `id=<ID>` a container's ID - `isolation=`(`default`|`process`|`hyperv`) (Windows daemon only) - `is-task=`(`true`|`false`) - `label=key` or `label="key=value"` of a container label - `name=<name>` a container's name - `network`=(`<network id>` or `<network name>`) - `publish`=(`<port>[/<proto>]`|`<startport-endport>/[<proto>]`) - `since`=(`<container id>` or `<container name>`) - `status=`(`created`|`restarting`|`running`|`removing`|`paused`|`exited`|`dead`) - `volume`=(`<volume name>` or `<mount point destination>`) */
-  filters?: string;
-}
-export const ContainerListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    all: S.optional(S.Boolean.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Boolean.pipe(T.Query())),
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/containers/json", code: 200 })),
-).annotate({
-  identifier: "ContainerListRequest",
-}) as any as S.Schema<ContainerListRequest>;
-
-/** The names associated with this container. Most containers have a single name, but when using legacy "links", the container can have multiple names. For historic reasons, names are prefixed with a forward-slash (`/`). */
-export type ContainerSummaryNamesList = Array<string>;
-export const ContainerSummaryNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerSummaryNamesList>;
-
-export type PortSummaryType = "tcp" | "udp" | "sctp";
-export const PortSummaryType = /*@__PURE__*/ S.String;
-
-/** Describes a port-mapping between the container and the host. */
-export interface PortSummary {
-  /** Host IP address that the container's port is mapped to */
-  IP?: string;
-  /** Port on the container */
-  PrivatePort: number;
-  /** Port exposed on the host */
-  PublicPort?: number;
-  Type: PortSummaryType;
-}
-export const PortSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    IP: S.optional(S.String),
-    PrivatePort: S.Number,
-    PublicPort: S.optional(S.Number),
-    Type: PortSummaryType,
-  }),
-).annotate({ identifier: "PortSummary" }) as any as S.Schema<PortSummary>;
-
-/** Port-mappings for the container. */
-export type ContainerSummaryPortsList = Array<PortSummary>;
-export const ContainerSummaryPortsList = /*@__PURE__*/ S.Array(
-  PortSummary,
-) as any as S.Schema<ContainerSummaryPortsList>;
-
-/** User-defined key/value metadata. */
-export type ContainerSummaryLabelsMap = { [key: string]: string | undefined };
-export const ContainerSummaryLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ContainerSummaryLabelsMap>;
-
-/** The state of this container. */
-export type ContainerSummaryState =
-  | "created"
-  | "running"
-  | "paused"
-  | "restarting"
-  | "exited"
-  | "removing"
-  | "dead";
-export const ContainerSummaryState = /*@__PURE__*/ S.String;
-
-/** Arbitrary key-value metadata attached to the container. */
-export type ContainerSummaryHostConfigAnnotationsMap = {
-  [key: string]: string | undefined;
-};
-export const ContainerSummaryHostConfigAnnotationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ContainerSummaryHostConfigAnnotationsMap>;
-
-/** Summary of host-specific runtime information of the container. This is a reduced set of information in the container's "HostConfig" as available in the container "inspect" response. */
-export interface ContainerSummaryHostConfig {
-  /** Networking mode (`host`, `none`, `container:<id>`) or name of the primary network the container is using. This field is primarily for backward compatibility. The container can be connected to multiple networks for which information can be found in the `NetworkSettings.Networks` field, which enumerates settings per network. */
-  NetworkMode?: string;
-  /** Arbitrary key-value metadata attached to the container. */
-  Annotations?: ContainerSummaryHostConfigAnnotationsMap | null;
-}
-export const ContainerSummaryHostConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    NetworkMode: S.optional(S.String),
-    Annotations: S.optional(S.NullOr(ContainerSummaryHostConfigAnnotationsMap)),
-  }),
-).annotate({
-  identifier: "ContainerSummaryHostConfig",
-}) as any as S.Schema<ContainerSummaryHostConfig>;
-
-/** Summary of network-settings for each network the container is attached to. */
-export type ContainerSummaryNetworkSettingsNetworksMap = {
-  [key: string]: EndpointSettings | undefined;
-};
-export const ContainerSummaryNetworkSettingsNetworksMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    EndpointSettings,
-  ) as any as S.Schema<ContainerSummaryNetworkSettingsNetworksMap>;
-
-/** Summary of the container's network settings */
-export interface ContainerSummaryNetworkSettings {
-  /** Summary of network-settings for each network the container is attached to. */
-  Networks?: ContainerSummaryNetworkSettingsNetworksMap;
-}
-export const ContainerSummaryNetworkSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Networks: S.optional(ContainerSummaryNetworkSettingsNetworksMap),
-  }),
-).annotate({
-  identifier: "ContainerSummaryNetworkSettings",
-}) as any as S.Schema<ContainerSummaryNetworkSettings>;
-
-/** List of mounts used by the container. */
-export type ContainerSummaryMountsList = Array<MountPoint>;
-export const ContainerSummaryMountsList = /*@__PURE__*/ S.Array(
-  MountPoint,
-) as any as S.Schema<ContainerSummaryMountsList>;
-
-/** the health status of the container */
-export type ContainerSummaryHealthStatus =
-  | "none"
-  | "starting"
-  | "healthy"
-  | "unhealthy";
-export const ContainerSummaryHealthStatus = /*@__PURE__*/ S.String;
-
-/** Summary of health status Added in v1.52, before that version all container summary not include Health. After this attribute introduced, it includes containers with no health checks configured, or containers that are not running with none */
-export interface ContainerSummaryHealth {
-  /** the health status of the container */
-  Status?: ContainerSummaryHealthStatus;
-  /** FailingStreak is the number of consecutive failures */
-  FailingStreak?: number;
-}
-export const ContainerSummaryHealth = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Status: S.optional(ContainerSummaryHealthStatus),
-    FailingStreak: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ContainerSummaryHealth",
-}) as any as S.Schema<ContainerSummaryHealth>;
-
-export interface ContainerSummary {
-  /** The ID of this container as a 128-bit (64-character) hexadecimal string (32 bytes). */
-  Id?: string;
-  /** The names associated with this container. Most containers have a single name, but when using legacy "links", the container can have multiple names. For historic reasons, names are prefixed with a forward-slash (`/`). */
-  Names?: ContainerSummaryNamesList;
-  /** The name or ID of the image used to create the container. This field shows the image reference as was specified when creating the container, which can be in its canonical form (e.g., `docker.io/library/ubuntu:latest` or `docker.io/library/ubuntu@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782`), short form (e.g., `ubuntu:latest`)), or the ID(-prefix) of the image (e.g., `72297848456d`). The content of this field can be updated at runtime if the image used to create the container is untagged, in which case the field is updated to contain the the image ID (digest) it was resolved to in its canonical, non-truncated form (e.g., `sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782`). */
-  Image?: string;
-  /** The ID (digest) of the image that this container was created from. */
-  ImageID?: string;
-  /** OCI descriptor of the platform-specific manifest of the image the container was created from. Note: Only available if the daemon provides a multi-platform image store. This field is not populated in the `GET /system/df` endpoint. */
-  ImageManifestDescriptor?: OCIDescriptor | null;
-  /** Command to run when starting the container */
-  Command?: string;
-  /** Date and time at which the container was created as a Unix timestamp (number of seconds since EPOCH). */
-  Created?: number;
-  /** Port-mappings for the container. */
-  Ports?: ContainerSummaryPortsList;
-  /** The size of files that have been created or changed by this container. This field is omitted by default, and only set when size is requested in the API request. */
-  SizeRw?: number | null;
-  /** The total size of all files in the read-only layers from the image that the container uses. These layers can be shared between containers. This field is omitted by default, and only set when size is requested in the API request. */
-  SizeRootFs?: number | null;
-  /** User-defined key/value metadata. */
-  Labels?: ContainerSummaryLabelsMap;
-  /** The state of this container. */
-  State?: ContainerSummaryState;
-  /** Additional human-readable status of this container (e.g. `Exit 0`) */
-  Status?: string;
-  /** Summary of host-specific runtime information of the container. This is a reduced set of information in the container's "HostConfig" as available in the container "inspect" response. */
-  HostConfig?: ContainerSummaryHostConfig;
-  /** Summary of the container's network settings */
-  NetworkSettings?: ContainerSummaryNetworkSettings;
-  /** List of mounts used by the container. */
-  Mounts?: ContainerSummaryMountsList;
-  /** Summary of health status Added in v1.52, before that version all container summary not include Health. After this attribute introduced, it includes containers with no health checks configured, or containers that are not running with none */
-  Health?: ContainerSummaryHealth;
-}
-export const ContainerSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Id: S.optional(S.String),
-    Names: S.optional(ContainerSummaryNamesList),
-    Image: S.optional(S.String),
-    ImageID: S.optional(S.String),
-    ImageManifestDescriptor: S.optional(S.NullOr(OCIDescriptor)),
-    Command: S.optional(S.String),
-    Created: S.optional(S.Number),
-    Ports: S.optional(ContainerSummaryPortsList),
-    SizeRw: S.optional(S.NullOr(S.Number)),
-    SizeRootFs: S.optional(S.NullOr(S.Number)),
-    Labels: S.optional(ContainerSummaryLabelsMap),
-    State: S.optional(ContainerSummaryState),
-    Status: S.optional(S.String),
-    HostConfig: S.optional(ContainerSummaryHostConfig),
-    NetworkSettings: S.optional(ContainerSummaryNetworkSettings),
-    Mounts: S.optional(ContainerSummaryMountsList),
-    Health: S.optional(ContainerSummaryHealth),
-  }),
-).annotate({
-  identifier: "ContainerSummary",
-}) as any as S.Schema<ContainerSummary>;
-
-export type ContainerListResponseBodyList = Array<ContainerSummary>;
-export const ContainerListResponseBodyList = /*@__PURE__*/ S.Array(
-  ContainerSummary,
-) as any as S.Schema<ContainerListResponseBodyList>;
-
-export type ContainerListResponse = ContainerListResponseBodyList;
-export const ContainerListResponse = /*@__PURE__*/ S.suspend(() =>
-  ContainerListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ContainerListResponse",
-}) as any as S.Schema<ContainerListResponse>;
-
 export interface ContainerLogsRequest {
   /** ID or name of the container */
   id: string;
@@ -2476,25 +1994,6 @@ export const ContainerLogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerLogsResponse",
 }) as any as S.Schema<ContainerLogsResponse>;
 
-export interface ContainerPauseRequest {
-  /** ID or name of the container */
-  id: string;
-}
-export const ContainerPauseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/pause", code: 200 })),
-).annotate({
-  identifier: "ContainerPauseRequest",
-}) as any as S.Schema<ContainerPauseRequest>;
-
-export interface ContainerPauseResponse {}
-export const ContainerPauseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerPauseResponse",
-}) as any as S.Schema<ContainerPauseResponse>;
-
 export interface ContainerPruneRequest {
   /** Filters to process on the prune list, encoded as JSON (a `map[string][]string`). Available filters: - `until=<timestamp>` Prune containers created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time. - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune containers with (or without, in case `label!=...` is used) the specified labels. */
   filters?: string;
@@ -2528,106 +2027,6 @@ export const ContainerPruneResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ContainerPruneResponse",
 }) as any as S.Schema<ContainerPruneResponse>;
-
-export interface ContainerRenameRequest {
-  /** ID or name of the container */
-  id: string;
-  /** New name for the container */
-  name: string;
-}
-export const ContainerRenameRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/containers/{id}/rename", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerRenameRequest",
-}) as any as S.Schema<ContainerRenameRequest>;
-
-export interface ContainerRenameResponse {}
-export const ContainerRenameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerRenameResponse",
-}) as any as S.Schema<ContainerRenameResponse>;
-
-export interface ContainerResizeRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Height of the TTY session in characters */
-  h: number;
-  /** Width of the TTY session in characters */
-  w: number;
-}
-export const ContainerResizeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    h: S.Number.pipe(T.Query()),
-    w: S.Number.pipe(T.Query()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/containers/{id}/resize", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerResizeRequest",
-}) as any as S.Schema<ContainerResizeRequest>;
-
-export interface ContainerResizeResponse {}
-export const ContainerResizeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerResizeResponse",
-}) as any as S.Schema<ContainerResizeResponse>;
-
-export interface ContainerRestartRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Signal to send to the container as an integer or string (e.g. `SIGINT`). */
-  signal?: string;
-  /** Number of seconds to wait before killing the container */
-  t?: number;
-}
-export const ContainerRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    signal: S.optional(S.String.pipe(T.Query())),
-    t: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/containers/{id}/restart", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerRestartRequest",
-}) as any as S.Schema<ContainerRestartRequest>;
-
-export interface ContainerRestartResponse {}
-export const ContainerRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerRestartResponse",
-}) as any as S.Schema<ContainerRestartResponse>;
-
-export interface ContainerStartRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Override the key sequence for detaching a container. Format is a single character `[a-Z]` or `ctrl-<value>` where `<value>` is one of: `a-z`, `@`, `^`, `[`, `,` or `_`. */
-  detachKeys?: string;
-}
-export const ContainerStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    detachKeys: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/start", code: 200 })),
-).annotate({
-  identifier: "ContainerStartRequest",
-}) as any as S.Schema<ContainerStartRequest>;
-
-export interface ContainerStartResponse {}
-export const ContainerStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerStartResponse",
-}) as any as S.Schema<ContainerStartResponse>;
 
 export interface ContainerStatsRequest {
   /** ID or name of the container */
@@ -3007,31 +2406,6 @@ export const ContainerStatsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerStatsResponse",
 }) as any as S.Schema<ContainerStatsResponse>;
 
-export interface ContainerStopRequest {
-  /** ID or name of the container */
-  id: string;
-  /** Signal to send to the container as an integer or string (e.g. `SIGINT`). */
-  signal?: string;
-  /** Number of seconds to wait before killing the container */
-  t?: number;
-}
-export const ContainerStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    signal: S.optional(S.String.pipe(T.Query())),
-    t: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/stop", code: 200 })),
-).annotate({
-  identifier: "ContainerStopRequest",
-}) as any as S.Schema<ContainerStopRequest>;
-
-export interface ContainerStopResponse {}
-export const ContainerStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContainerStopResponse",
-}) as any as S.Schema<ContainerStopResponse>;
-
 export interface ContainerTopRequest {
   /** ID or name of the container */
   id: string;
@@ -3081,281 +2455,2456 @@ export const ContainerTopResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerTopResponse",
 }) as any as S.Schema<ContainerTopResponse>;
 
-export interface ContainerUnpauseRequest {
-  /** ID or name of the container */
-  id: string;
-}
-export const ContainerUnpauseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/containers/{id}/unpause", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerUnpauseRequest",
-}) as any as S.Schema<ContainerUnpauseRequest>;
+/** User-defined key/value metadata. */
+export type CreateConfigRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateConfigRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateConfigRequestLabelsMap>;
 
-export interface ContainerUnpauseResponse {}
-export const ContainerUnpauseResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreateConfigRequest {
+  /** User-defined name of the config. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: CreateConfigRequestLabelsMap;
+  /** Data is the data to store as a config, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. The maximum allowed size is 1000KB, as defined in [MaxConfigSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0-20250103191802-8c1959736554/manager/controlapi#MaxConfigSize). */
+  Data?: string;
+  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
+  Templating?: Driver;
+}
+export const CreateConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Labels: S.optional(CreateConfigRequestLabelsMap),
+    Data: S.optional(S.String),
+    Templating: S.optional(Driver),
+  }).pipe(T.Http({ method: "POST", uri: "/configs/create", code: 200 })),
+).annotate({
+  identifier: "CreateConfigRequest",
+}) as any as S.Schema<CreateConfigRequest>;
+
+/** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
+export type CreateContainerRequestExposedPortsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateContainerRequestExposedPortsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateContainerRequestExposedPortsMap>;
+
+/** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
+export type CreateContainerRequestEnvList = Array<string>;
+export const CreateContainerRequestEnvList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateContainerRequestEnvList>;
+
+/** Command to run specified as a string or an array of strings. */
+export type CreateContainerRequestCmdList = Array<string>;
+export const CreateContainerRequestCmdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateContainerRequestCmdList>;
+
+/** An object mapping mount point paths inside the container to empty objects. */
+export type CreateContainerRequestVolumesMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateContainerRequestVolumesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateContainerRequestVolumesMap>;
+
+/** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
+export type CreateContainerRequestEntrypointList = Array<string>;
+export const CreateContainerRequestEntrypointList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateContainerRequestEntrypointList>;
+
+/** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
+export type CreateContainerRequestOnBuildList = Array<string>;
+export const CreateContainerRequestOnBuildList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateContainerRequestOnBuildList>;
+
+/** User-defined key/value metadata. */
+export type CreateContainerRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateContainerRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateContainerRequestLabelsMap>;
+
+/** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
+export type CreateContainerRequestShellList = Array<string>;
+export const CreateContainerRequestShellList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateContainerRequestShellList>;
+
+/** A mapping of network name to endpoint configuration for that network. The endpoint configuration can be left empty to connect to that network with no particular endpoint configuration. */
+export type NetworkingConfigEndpointsConfigMap = {
+  [key: string]: EndpointSettings | undefined;
+};
+export const NetworkingConfigEndpointsConfigMap = /*@__PURE__*/ S.Record(
+  S.String,
+  EndpointSettings,
+) as any as S.Schema<NetworkingConfigEndpointsConfigMap>;
+
+/** NetworkingConfig represents the container's networking configuration for each of its interfaces. It is used for the networking configs specified in the `docker create` and `docker network connect` commands. */
+export interface NetworkingConfig {
+  /** A mapping of network name to endpoint configuration for that network. The endpoint configuration can be left empty to connect to that network with no particular endpoint configuration. */
+  EndpointsConfig?: NetworkingConfigEndpointsConfigMap;
+}
+export const NetworkingConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    EndpointsConfig: S.optional(NetworkingConfigEndpointsConfigMap),
+  }),
+).annotate({
+  identifier: "NetworkingConfig",
+}) as any as S.Schema<NetworkingConfig>;
+
+export interface CreateContainerRequest {
+  /** Assign the specified name to the container. Must match `/?[a-zA-Z0-9][a-zA-Z0-9_.-]+`. */
+  name?: string;
+  /** Platform in the format `os[/arch[/variant]]` used for image lookup. When specified, the daemon checks if the requested image is present in the local image cache with the given OS and Architecture, and otherwise returns a `404` status. If the option is not set, the host's native OS and Architecture are used to look up the image in the image cache. However, if no platform is passed and the given image does exist in the local image cache, but its OS or architecture does not match, the container is created with the available image, and a warning is added to the `Warnings` field in the response, for example; WARNING: The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64) and no specific platform was requested */
+  platform?: string;
+  /** The hostname to use for the container, as a valid RFC 1123 hostname. */
+  Hostname?: string;
+  /** The domain name to use for the container. */
+  Domainname?: string;
+  /** Commands run as this user inside the container. If omitted, commands run as the user specified in the image the container was started from. Can be either user-name or UID, and optional group-name or GID, separated by a colon (`<user-name|UID>[<:group-name|GID>]`). */
+  User?: string;
+  /** Whether to attach to `stdin`. */
+  AttachStdin?: boolean;
+  /** Whether to attach to `stdout`. */
+  AttachStdout?: boolean;
+  /** Whether to attach to `stderr`. */
+  AttachStderr?: boolean;
+  /** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
+  ExposedPorts?: CreateContainerRequestExposedPortsMap | null;
+  /** Attach standard streams to a TTY, including `stdin` if it is not closed. */
+  Tty?: boolean;
+  /** Open `stdin` */
+  OpenStdin?: boolean;
+  /** Close `stdin` after one attached client disconnects */
+  StdinOnce?: boolean;
+  /** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
+  Env?: CreateContainerRequestEnvList;
+  /** Command to run specified as a string or an array of strings. */
+  Cmd?: CreateContainerRequestCmdList;
+  Healthcheck?: HealthConfig;
+  /** Command is already escaped (Windows only) */
+  ArgsEscaped?: boolean | null;
+  /** The name (or reference) of the image to use when creating the container, or which was used when the container was created. */
+  Image?: string;
+  /** An object mapping mount point paths inside the container to empty objects. */
+  Volumes?: CreateContainerRequestVolumesMap;
+  /** The working directory for commands to run in. */
+  WorkingDir?: string;
+  /** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
+  Entrypoint?: CreateContainerRequestEntrypointList;
+  /** Disable networking for the container. */
+  NetworkDisabled?: boolean | null;
+  /** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
+  OnBuild?: CreateContainerRequestOnBuildList | null;
+  /** User-defined key/value metadata. */
+  Labels?: CreateContainerRequestLabelsMap;
+  /** Signal to stop a container as a string or unsigned integer. */
+  StopSignal?: string | null;
+  /** Timeout to stop a container in seconds. If omitted, the daemon-wide default (`default-stop-timeout`) is used. */
+  StopTimeout?: number | null;
+  /** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
+  Shell?: CreateContainerRequestShellList | null;
+  HostConfig?: HostConfig;
+  NetworkingConfig?: NetworkingConfig;
+}
+export const CreateContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String.pipe(T.Query())),
+    platform: S.optional(S.String.pipe(T.Query())),
+    Hostname: S.optional(S.String),
+    Domainname: S.optional(S.String),
+    User: S.optional(S.String),
+    AttachStdin: S.optional(S.Boolean),
+    AttachStdout: S.optional(S.Boolean),
+    AttachStderr: S.optional(S.Boolean),
+    ExposedPorts: S.optional(S.NullOr(CreateContainerRequestExposedPortsMap)),
+    Tty: S.optional(S.Boolean),
+    OpenStdin: S.optional(S.Boolean),
+    StdinOnce: S.optional(S.Boolean),
+    Env: S.optional(CreateContainerRequestEnvList),
+    Cmd: S.optional(CreateContainerRequestCmdList),
+    Healthcheck: S.optional(HealthConfig),
+    ArgsEscaped: S.optional(S.NullOr(S.Boolean)),
+    Image: S.optional(S.String),
+    Volumes: S.optional(CreateContainerRequestVolumesMap),
+    WorkingDir: S.optional(S.String),
+    Entrypoint: S.optional(CreateContainerRequestEntrypointList),
+    NetworkDisabled: S.optional(S.NullOr(S.Boolean)),
+    OnBuild: S.optional(S.NullOr(CreateContainerRequestOnBuildList)),
+    Labels: S.optional(CreateContainerRequestLabelsMap),
+    StopSignal: S.optional(S.NullOr(S.String)),
+    StopTimeout: S.optional(S.NullOr(S.Number)),
+    Shell: S.optional(S.NullOr(CreateContainerRequestShellList)),
+    HostConfig: S.optional(HostConfig),
+    NetworkingConfig: S.optional(NetworkingConfig),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/create", code: 200 })),
+).annotate({
+  identifier: "CreateContainerRequest",
+}) as any as S.Schema<CreateContainerRequest>;
+
+/** Warnings encountered when creating the container */
+export type ContainerCreateResponseWarningsList = Array<string>;
+export const ContainerCreateResponseWarningsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ContainerCreateResponseWarningsList>;
+
+/** OK response to ContainerCreate operation */
+export interface ContainerCreateResponse {
+  /** The ID of the created container */
+  Id: string;
+  /** Warnings encountered when creating the container */
+  Warnings: ContainerCreateResponseWarningsList;
+}
+export const ContainerCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Id: S.String,
+    Warnings: ContainerCreateResponseWarningsList,
+  }),
+).annotate({
+  identifier: "ContainerCreateResponse",
+}) as any as S.Schema<ContainerCreateResponse>;
+
+export type CreateImageRequestChangesList = Array<string>;
+export const CreateImageRequestChangesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateImageRequestChangesList>;
+
+export interface CreateImageRequest {
+  /** Name of the image to pull. If the name includes a tag or digest, specific behavior applies: - If only `fromImage` includes a tag, that tag is used. - If both `fromImage` and `tag` are provided, `tag` takes precedence. - If `fromImage` includes a digest, the image is pulled by digest, and `tag` is ignored. - If neither a tag nor digest is specified, all tags are pulled. */
+  fromImage?: string;
+  /** Source to import. The value may be a URL from which the image can be retrieved or `-` to read the image from the request body. This parameter may only be used when importing an image. */
+  fromSrc?: string;
+  /** Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. */
+  repo?: string;
+  /** Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. */
+  tag?: string;
+  /** Set commit message for imported image. */
+  message?: string;
+  /** Apply `Dockerfile` instructions to the image that is created, for example: `changes=ENV DEBUG=true`. Note that `ENV DEBUG=true` should be URI component encoded. Supported `Dockerfile` instructions: `CMD`|`ENTRYPOINT`|`ENV`|`EXPOSE`|`ONBUILD`|`USER`|`VOLUME`|`WORKDIR` */
+  changes?: CreateImageRequestChangesList;
+  /** Platform in the format os[/arch[/variant]]. When used in combination with the `fromImage` option, the daemon checks if the given image is present in the local image cache with the given OS and Architecture, and otherwise attempts to pull the image. If the option is not set, the host's native OS and Architecture are used. If the given image does not exist in the local image cache, the daemon attempts to pull the image with the host's native OS and Architecture. If the given image does exists in the local image cache, but its OS or architecture does not match, a warning is produced. When used with the `fromSrc` option to import an image from an archive, this option sets the platform information for the imported image. If the option is not set, the host's native OS and Architecture are used for the imported image. */
+  platform?: string;
+  /** A base64url-encoded auth configuration. Refer to the [authentication section](#section/Authentication) for details. */
+  xRegistryAuth?: string;
+  body?: string;
+}
+export const CreateImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromImage: S.optional(S.String.pipe(T.Query())),
+    fromSrc: S.optional(S.String.pipe(T.Query())),
+    repo: S.optional(S.String.pipe(T.Query())),
+    tag: S.optional(S.String.pipe(T.Query())),
+    message: S.optional(S.String.pipe(T.Query())),
+    changes: S.optional(CreateImageRequestChangesList.pipe(T.Query())),
+    platform: S.optional(S.String.pipe(T.Query())),
+    xRegistryAuth: S.optional(S.String.pipe(T.Header("X-Registry-Auth"))),
+    body: S.optional(S.String.pipe(T.HttpBody())),
+  }).pipe(T.Http({ method: "POST", uri: "/images/create", code: 200 })),
+).annotate({
+  identifier: "CreateImageRequest",
+}) as any as S.Schema<CreateImageRequest>;
+
+export interface CreateImageResponse {}
+export const CreateImageResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ContainerUnpauseResponse",
-}) as any as S.Schema<ContainerUnpauseResponse>;
+  identifier: "CreateImageResponse",
+}) as any as S.Schema<CreateImageResponse>;
 
-export type ContainerUpdateRequestBlkioWeightDeviceItem =
-  HostConfigBlkioWeightDeviceItem;
-export const ContainerUpdateRequestBlkioWeightDeviceItem =
-  HostConfigBlkioWeightDeviceItem;
+/** The config-only network source to provide the configuration for this network. */
+export interface ConfigReference {
+  /** The name of the config-only network that provides the network's configuration. The specified network must be an existing config-only network. Only network names are allowed, not network IDs. */
+  Network?: string;
+}
+export const ConfigReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Network: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConfigReference",
+}) as any as S.Schema<ConfigReference>;
 
-/** Block IO weight (relative device weight) in the form: ``` [{"Path": "device_path", "Weight": weight}] ``` */
-export type ContainerUpdateRequestBlkioWeightDeviceList =
-  Array<HostConfigBlkioWeightDeviceItem>;
-export const ContainerUpdateRequestBlkioWeightDeviceList =
-  /*@__PURE__*/ S.Array(
-    HostConfigBlkioWeightDeviceItem,
-  ) as any as S.Schema<ContainerUpdateRequestBlkioWeightDeviceList>;
+export type IPAMConfigAuxiliaryAddressesMap = {
+  [key: string]: string | undefined;
+};
+export const IPAMConfigAuxiliaryAddressesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<IPAMConfigAuxiliaryAddressesMap>;
 
-/** Limit read rate (bytes per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-export type ContainerUpdateRequestBlkioDeviceReadBpsList =
-  Array<ThrottleDevice>;
-export const ContainerUpdateRequestBlkioDeviceReadBpsList =
-  /*@__PURE__*/ S.Array(
-    ThrottleDevice,
-  ) as any as S.Schema<ContainerUpdateRequestBlkioDeviceReadBpsList>;
+export interface IPAMConfig {
+  Subnet?: string;
+  IPRange?: string;
+  Gateway?: string;
+  AuxiliaryAddresses?: IPAMConfigAuxiliaryAddressesMap;
+}
+export const IPAMConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Subnet: S.optional(S.String),
+    IPRange: S.optional(S.String),
+    Gateway: S.optional(S.String),
+    AuxiliaryAddresses: S.optional(IPAMConfigAuxiliaryAddressesMap),
+  }),
+).annotate({ identifier: "IPAMConfig" }) as any as S.Schema<IPAMConfig>;
 
-/** Limit write rate (bytes per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-export type ContainerUpdateRequestBlkioDeviceWriteBpsList =
-  Array<ThrottleDevice>;
-export const ContainerUpdateRequestBlkioDeviceWriteBpsList =
-  /*@__PURE__*/ S.Array(
-    ThrottleDevice,
-  ) as any as S.Schema<ContainerUpdateRequestBlkioDeviceWriteBpsList>;
+/** List of IPAM configuration options, specified as a map: ``` {"Subnet": <CIDR>, "IPRange": <CIDR>, "Gateway": <IP address>, "AuxAddress": <device_name:IP address>} ``` */
+export type IPAMConfigList = Array<IPAMConfig>;
+export const IPAMConfigList = /*@__PURE__*/ S.Array(
+  IPAMConfig,
+) as any as S.Schema<IPAMConfigList>;
 
-/** Limit read rate (IO per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-export type ContainerUpdateRequestBlkioDeviceReadIOpsList =
-  Array<ThrottleDevice>;
-export const ContainerUpdateRequestBlkioDeviceReadIOpsList =
-  /*@__PURE__*/ S.Array(
-    ThrottleDevice,
-  ) as any as S.Schema<ContainerUpdateRequestBlkioDeviceReadIOpsList>;
+/** Driver-specific options, specified as a map. */
+export type IPAMOptionsMap = { [key: string]: string | undefined };
+export const IPAMOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<IPAMOptionsMap>;
 
-/** Limit write rate (IO per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-export type ContainerUpdateRequestBlkioDeviceWriteIOpsList =
-  Array<ThrottleDevice>;
-export const ContainerUpdateRequestBlkioDeviceWriteIOpsList =
-  /*@__PURE__*/ S.Array(
-    ThrottleDevice,
-  ) as any as S.Schema<ContainerUpdateRequestBlkioDeviceWriteIOpsList>;
+export interface IPAM {
+  /** Name of the IPAM driver to use. */
+  Driver?: string;
+  /** List of IPAM configuration options, specified as a map: ``` {"Subnet": <CIDR>, "IPRange": <CIDR>, "Gateway": <IP address>, "AuxAddress": <device_name:IP address>} ``` */
+  Config?: IPAMConfigList;
+  /** Driver-specific options, specified as a map. */
+  Options?: IPAMOptionsMap;
+}
+export const IPAM = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Driver: S.optional(S.String),
+    Config: S.optional(IPAMConfigList),
+    Options: S.optional(IPAMOptionsMap),
+  }),
+).annotate({ identifier: "IPAM" }) as any as S.Schema<IPAM>;
 
-/** A list of devices to add to the container. */
-export type ContainerUpdateRequestDevicesList = Array<DeviceMapping>;
-export const ContainerUpdateRequestDevicesList = /*@__PURE__*/ S.Array(
-  DeviceMapping,
-) as any as S.Schema<ContainerUpdateRequestDevicesList>;
+/** Network specific options to be used by the drivers. */
+export type CreateNetworkRequestOptionsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateNetworkRequestOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateNetworkRequestOptionsMap>;
 
-/** a list of cgroup rules to apply to the container */
-export type ContainerUpdateRequestDeviceCgroupRulesList = Array<string>;
-export const ContainerUpdateRequestDeviceCgroupRulesList =
+/** User-defined key/value metadata. */
+export type CreateNetworkRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateNetworkRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateNetworkRequestLabelsMap>;
+
+export interface CreateNetworkRequest {
+  /** The network's name. */
+  Name: string;
+  /** Name of the network driver plugin to use. */
+  Driver?: string;
+  /** The level at which the network exists (e.g. `swarm` for cluster-wide or `local` for machine level). */
+  Scope?: string;
+  /** Restrict external access to the network. */
+  Internal?: boolean;
+  /** Globally scoped network is manually attachable by regular containers from workers in swarm mode. */
+  Attachable?: boolean;
+  /** Ingress network is the network which provides the routing-mesh in swarm mode. */
+  Ingress?: boolean;
+  /** Creates a config-only network. Config-only networks are placeholder networks for network configurations to be used by other networks. Config-only networks cannot be used directly to run containers or services. */
+  ConfigOnly?: boolean;
+  /** Specifies the source which will provide the configuration for this network. The specified network must be an existing config-only network; see ConfigOnly. */
+  ConfigFrom?: ConfigReference;
+  /** Optional custom IP scheme for the network. */
+  IPAM?: IPAM;
+  /** Enable IPv4 on the network. */
+  EnableIPv4?: boolean;
+  /** Enable IPv6 on the network. */
+  EnableIPv6?: boolean;
+  /** Network specific options to be used by the drivers. */
+  Options?: CreateNetworkRequestOptionsMap;
+  /** User-defined key/value metadata. */
+  Labels?: CreateNetworkRequestLabelsMap;
+}
+export const CreateNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Driver: S.optional(S.String),
+    Scope: S.optional(S.String),
+    Internal: S.optional(S.Boolean),
+    Attachable: S.optional(S.Boolean),
+    Ingress: S.optional(S.Boolean),
+    ConfigOnly: S.optional(S.Boolean),
+    ConfigFrom: S.optional(ConfigReference),
+    IPAM: S.optional(IPAM),
+    EnableIPv4: S.optional(S.Boolean),
+    EnableIPv6: S.optional(S.Boolean),
+    Options: S.optional(CreateNetworkRequestOptionsMap),
+    Labels: S.optional(CreateNetworkRequestLabelsMap),
+  }).pipe(T.Http({ method: "POST", uri: "/networks/create", code: 200 })),
+).annotate({
+  identifier: "CreateNetworkRequest",
+}) as any as S.Schema<CreateNetworkRequest>;
+
+/** OK response to NetworkCreate operation */
+export interface NetworkCreateResponse {
+  /** The ID of the created network. */
+  Id: string;
+  /** Warnings encountered when creating the container */
+  Warning: string;
+}
+export const NetworkCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Id: S.String,
+    Warning: S.String,
+  }),
+).annotate({
+  identifier: "NetworkCreateResponse",
+}) as any as S.Schema<NetworkCreateResponse>;
+
+export interface CreatePluginRequest {
+  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
+  name: string;
+  body?: string;
+}
+export const CreatePluginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Query()),
+    body: S.optional(S.String.pipe(T.HttpBody())),
+  }).pipe(T.Http({ method: "POST", uri: "/plugins/create", code: 200 })),
+).annotate({
+  identifier: "CreatePluginRequest",
+}) as any as S.Schema<CreatePluginRequest>;
+
+export interface CreatePluginResponse {}
+export const CreatePluginResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreatePluginResponse",
+}) as any as S.Schema<CreatePluginResponse>;
+
+/** User-defined key/value metadata. */
+export type CreateSecretRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateSecretRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateSecretRequestLabelsMap>;
+
+export interface CreateSecretRequest {
+  /** User-defined name of the secret. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: CreateSecretRequestLabelsMap;
+  /** Data is the data to store as a secret, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. It must be empty if the Driver field is set, in which case the data is loaded from an external secret store. The maximum allowed size is 500KB, as defined in [MaxSecretSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0/api/validation#MaxSecretSize). This field is only used to _create_ a secret, and is not returned by other endpoints. */
+  Data?: string;
+  /** Name of the secrets driver used to fetch the secret's value from an external secret store. */
+  Driver?: Driver;
+  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
+  Templating?: Driver;
+}
+export const CreateSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Labels: S.optional(CreateSecretRequestLabelsMap),
+    Data: S.optional(S.String),
+    Driver: S.optional(Driver),
+    Templating: S.optional(Driver),
+  }).pipe(T.Http({ method: "POST", uri: "/secrets/create", code: 200 })),
+).annotate({
+  identifier: "CreateSecretRequest",
+}) as any as S.Schema<CreateSecretRequest>;
+
+/** User-defined key/value metadata. */
+export type CreateServiceRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateServiceRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateServiceRequestLabelsMap>;
+
+export type PluginPrivilegeValueList = Array<string>;
+export const PluginPrivilegeValueList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginPrivilegeValueList>;
+
+/** Describes a permission the user has to accept upon installing the plugin. */
+export interface PluginPrivilege {
+  Name?: string;
+  Description?: string;
+  Value?: PluginPrivilegeValueList;
+}
+export const PluginPrivilege = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Description: S.optional(S.String),
+    Value: S.optional(PluginPrivilegeValueList),
+  }),
+).annotate({
+  identifier: "PluginPrivilege",
+}) as any as S.Schema<PluginPrivilege>;
+
+export type TaskSpecPluginSpecPluginPrivilegeList = Array<PluginPrivilege>;
+export const TaskSpecPluginSpecPluginPrivilegeList = /*@__PURE__*/ S.Array(
+  PluginPrivilege,
+) as any as S.Schema<TaskSpecPluginSpecPluginPrivilegeList>;
+
+/** Plugin spec for the service. *(Experimental release only.)* <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
+export interface TaskSpecPluginSpec {
+  /** The name or 'alias' to use for the plugin. */
+  Name?: string;
+  /** The plugin image reference to use. */
+  Remote?: string;
+  /** Disable the plugin once scheduled. */
+  Disabled?: boolean;
+  PluginPrivilege?: TaskSpecPluginSpecPluginPrivilegeList;
+}
+export const TaskSpecPluginSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Remote: S.optional(S.String),
+    Disabled: S.optional(S.Boolean),
+    PluginPrivilege: S.optional(TaskSpecPluginSpecPluginPrivilegeList),
+  }),
+).annotate({
+  identifier: "TaskSpecPluginSpec",
+}) as any as S.Schema<TaskSpecPluginSpec>;
+
+/** User-defined key/value data. */
+export type TaskSpecContainerSpecLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const TaskSpecContainerSpecLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecLabelsMap>;
+
+/** The command to be run in the image. */
+export type TaskSpecContainerSpecCommandList = Array<string>;
+export const TaskSpecContainerSpecCommandList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecCommandList>;
+
+/** Arguments to the command. */
+export type TaskSpecContainerSpecArgsList = Array<string>;
+export const TaskSpecContainerSpecArgsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecArgsList>;
+
+/** A list of environment variables in the form `VAR=value`. */
+export type TaskSpecContainerSpecEnvList = Array<string>;
+export const TaskSpecContainerSpecEnvList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecEnvList>;
+
+/** A list of additional groups that the container process will run as. */
+export type TaskSpecContainerSpecGroupsList = Array<string>;
+export const TaskSpecContainerSpecGroupsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecGroupsList>;
+
+/** CredentialSpec for managed service account (Windows only) */
+export interface TaskSpecContainerSpecPrivilegesCredentialSpec {
+  /** Load credential spec from a Swarm Config with the given ID. The specified config must also be present in the Configs field with the Runtime property set. <p><br /></p> > **Note**: `CredentialSpec.File`, `CredentialSpec.Registry`, > and `CredentialSpec.Config` are mutually exclusive. */
+  Config?: string;
+  /** Load credential spec from this file. The file is read by the daemon, and must be present in the `CredentialSpecs` subdirectory in the docker data directory, which defaults to `C:\ProgramData\Docker\` on Windows. For example, specifying `spec.json` loads `C:\ProgramData\Docker\CredentialSpecs\spec.json`. <p><br /></p> > **Note**: `CredentialSpec.File`, `CredentialSpec.Registry`, > and `CredentialSpec.Config` are mutually exclusive. */
+  File?: string;
+  /** Load credential spec from this value in the Windows registry. The specified registry value must be located in: `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers\CredentialSpecs` <p><br /></p> > **Note**: `CredentialSpec.File`, `CredentialSpec.Registry`, > and `CredentialSpec.Config` are mutually exclusive. */
+  Registry?: string;
+}
+export const TaskSpecContainerSpecPrivilegesCredentialSpec =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      Config: S.optional(S.String),
+      File: S.optional(S.String),
+      Registry: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "TaskSpecContainerSpecPrivilegesCredentialSpec",
+  }) as any as S.Schema<TaskSpecContainerSpecPrivilegesCredentialSpec>;
+
+/** SELinux labels of the container */
+export interface TaskSpecContainerSpecPrivilegesSELinuxContext {
+  /** Disable SELinux */
+  Disable?: boolean;
+  /** SELinux user label */
+  User?: string;
+  /** SELinux role label */
+  Role?: string;
+  /** SELinux type label */
+  Type?: string;
+  /** SELinux level label */
+  Level?: string;
+}
+export const TaskSpecContainerSpecPrivilegesSELinuxContext =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      Disable: S.optional(S.Boolean),
+      User: S.optional(S.String),
+      Role: S.optional(S.String),
+      Type: S.optional(S.String),
+      Level: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "TaskSpecContainerSpecPrivilegesSELinuxContext",
+  }) as any as S.Schema<TaskSpecContainerSpecPrivilegesSELinuxContext>;
+
+export type TaskSpecContainerSpecPrivilegesSeccompMode =
+  | "default"
+  | "unconfined"
+  | "custom";
+export const TaskSpecContainerSpecPrivilegesSeccompMode =
+  /*@__PURE__*/ S.String;
+
+/** Options for configuring seccomp on the container */
+export interface TaskSpecContainerSpecPrivilegesSeccomp {
+  Mode?: TaskSpecContainerSpecPrivilegesSeccompMode | (string & {});
+  /** The custom seccomp profile as a json object */
+  Profile?: string;
+}
+export const TaskSpecContainerSpecPrivilegesSeccomp = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Mode: S.optional(TaskSpecContainerSpecPrivilegesSeccompMode),
+      Profile: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "TaskSpecContainerSpecPrivilegesSeccomp",
+}) as any as S.Schema<TaskSpecContainerSpecPrivilegesSeccomp>;
+
+export type TaskSpecContainerSpecPrivilegesAppArmorMode =
+  | "default"
+  | "disabled";
+export const TaskSpecContainerSpecPrivilegesAppArmorMode =
+  /*@__PURE__*/ S.String;
+
+/** Options for configuring AppArmor on the container */
+export interface TaskSpecContainerSpecPrivilegesAppArmor {
+  Mode?: TaskSpecContainerSpecPrivilegesAppArmorMode | (string & {});
+}
+export const TaskSpecContainerSpecPrivilegesAppArmor = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Mode: S.optional(TaskSpecContainerSpecPrivilegesAppArmorMode),
+    }),
+).annotate({
+  identifier: "TaskSpecContainerSpecPrivilegesAppArmor",
+}) as any as S.Schema<TaskSpecContainerSpecPrivilegesAppArmor>;
+
+/** Security options for the container */
+export interface TaskSpecContainerSpecPrivileges {
+  /** CredentialSpec for managed service account (Windows only) */
+  CredentialSpec?: TaskSpecContainerSpecPrivilegesCredentialSpec;
+  /** SELinux labels of the container */
+  SELinuxContext?: TaskSpecContainerSpecPrivilegesSELinuxContext;
+  /** Options for configuring seccomp on the container */
+  Seccomp?: TaskSpecContainerSpecPrivilegesSeccomp;
+  /** Options for configuring AppArmor on the container */
+  AppArmor?: TaskSpecContainerSpecPrivilegesAppArmor;
+  /** Configuration of the no_new_privs bit in the container */
+  NoNewPrivileges?: boolean;
+}
+export const TaskSpecContainerSpecPrivileges = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    CredentialSpec: S.optional(TaskSpecContainerSpecPrivilegesCredentialSpec),
+    SELinuxContext: S.optional(TaskSpecContainerSpecPrivilegesSELinuxContext),
+    Seccomp: S.optional(TaskSpecContainerSpecPrivilegesSeccomp),
+    AppArmor: S.optional(TaskSpecContainerSpecPrivilegesAppArmor),
+    NoNewPrivileges: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "TaskSpecContainerSpecPrivileges",
+}) as any as S.Schema<TaskSpecContainerSpecPrivileges>;
+
+/** Specification for mounts to be added to containers created as part of the service. */
+export type TaskSpecContainerSpecMountsList = Array<Mount>;
+export const TaskSpecContainerSpecMountsList = /*@__PURE__*/ S.Array(
+  Mount,
+) as any as S.Schema<TaskSpecContainerSpecMountsList>;
+
+/** A list of hostname/IP mappings to add to the container's `hosts` file. The format of extra hosts is specified in the [hosts(5)](http://man7.org/linux/man-pages/man5/hosts.5.html) man page: IP_address canonical_hostname [aliases...] */
+export type TaskSpecContainerSpecHostsList = Array<string>;
+export const TaskSpecContainerSpecHostsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecHostsList>;
+
+/** The IP addresses of the name servers. */
+export type TaskSpecContainerSpecDNSConfigNameserversList = Array<string>;
+export const TaskSpecContainerSpecDNSConfigNameserversList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ContainerUpdateRequestDeviceCgroupRulesList>;
+  ) as any as S.Schema<TaskSpecContainerSpecDNSConfigNameserversList>;
 
-/** A list of requests for devices to be sent to device drivers. */
-export type ContainerUpdateRequestDeviceRequestsList = Array<DeviceRequest>;
-export const ContainerUpdateRequestDeviceRequestsList = /*@__PURE__*/ S.Array(
-  DeviceRequest,
-) as any as S.Schema<ContainerUpdateRequestDeviceRequestsList>;
+/** A search list for host-name lookup. */
+export type TaskSpecContainerSpecDNSConfigSearchList = Array<string>;
+export const TaskSpecContainerSpecDNSConfigSearchList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecDNSConfigSearchList>;
 
-export type ContainerUpdateRequestUlimitsItem = HostConfigUlimitsItem;
-export const ContainerUpdateRequestUlimitsItem = HostConfigUlimitsItem;
+/** A list of internal resolver variables to be modified (e.g., `debug`, `ndots:3`, etc.). */
+export type TaskSpecContainerSpecDNSConfigOptionsList = Array<string>;
+export const TaskSpecContainerSpecDNSConfigOptionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecDNSConfigOptionsList>;
 
-/** A list of resource limits to set in the container. For example: ``` {"Name": "nofile", "Soft": 1024, "Hard": 2048} ``` */
-export type ContainerUpdateRequestUlimitsList = Array<HostConfigUlimitsItem>;
-export const ContainerUpdateRequestUlimitsList = /*@__PURE__*/ S.Array(
+/** Specification for DNS related configurations in resolver configuration file (`resolv.conf`). */
+export interface TaskSpecContainerSpecDNSConfig {
+  /** The IP addresses of the name servers. */
+  Nameservers?: TaskSpecContainerSpecDNSConfigNameserversList;
+  /** A search list for host-name lookup. */
+  Search?: TaskSpecContainerSpecDNSConfigSearchList;
+  /** A list of internal resolver variables to be modified (e.g., `debug`, `ndots:3`, etc.). */
+  Options?: TaskSpecContainerSpecDNSConfigOptionsList;
+}
+export const TaskSpecContainerSpecDNSConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Nameservers: S.optional(TaskSpecContainerSpecDNSConfigNameserversList),
+    Search: S.optional(TaskSpecContainerSpecDNSConfigSearchList),
+    Options: S.optional(TaskSpecContainerSpecDNSConfigOptionsList),
+  }),
+).annotate({
+  identifier: "TaskSpecContainerSpecDNSConfig",
+}) as any as S.Schema<TaskSpecContainerSpecDNSConfig>;
+
+/** File represents a specific target that is backed by a file. */
+export interface TaskSpecContainerSpecSecretsItemFile {
+  /** Name represents the final filename in the filesystem. */
+  Name?: string;
+  /** UID represents the file UID. */
+  UID?: string;
+  /** GID represents the file GID. */
+  GID?: string;
+  /** Mode represents the FileMode of the file. */
+  Mode?: number;
+}
+export const TaskSpecContainerSpecSecretsItemFile = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Name: S.optional(S.String),
+      UID: S.optional(S.String),
+      GID: S.optional(S.String),
+      Mode: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "TaskSpecContainerSpecSecretsItemFile",
+}) as any as S.Schema<TaskSpecContainerSpecSecretsItemFile>;
+
+export interface TaskSpecContainerSpecSecretsItem {
+  /** File represents a specific target that is backed by a file. */
+  File?: TaskSpecContainerSpecSecretsItemFile;
+  /** SecretID represents the ID of the specific secret that we're referencing. */
+  SecretID?: string;
+  /** SecretName is the name of the secret that this references, but this is just provided for lookup/display purposes. The secret in the reference will be identified by its ID. */
+  SecretName?: string;
+}
+export const TaskSpecContainerSpecSecretsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    File: S.optional(TaskSpecContainerSpecSecretsItemFile),
+    SecretID: S.optional(S.String),
+    SecretName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskSpecContainerSpecSecretsItem",
+}) as any as S.Schema<TaskSpecContainerSpecSecretsItem>;
+
+/** Secrets contains references to zero or more secrets that will be exposed to the service. */
+export type TaskSpecContainerSpecSecretsList =
+  Array<TaskSpecContainerSpecSecretsItem>;
+export const TaskSpecContainerSpecSecretsList = /*@__PURE__*/ S.Array(
+  TaskSpecContainerSpecSecretsItem,
+) as any as S.Schema<TaskSpecContainerSpecSecretsList>;
+
+/** File represents a specific target that is backed by a file. <p><br /><p> > **Note**: `Configs.File` and `Configs.Runtime` are mutually exclusive */
+export type TaskSpecContainerSpecConfigsItemFile =
+  TaskSpecContainerSpecSecretsItemFile;
+export const TaskSpecContainerSpecConfigsItemFile =
+  TaskSpecContainerSpecSecretsItemFile;
+
+export interface TaskSpecContainerSpecConfigsItem {
+  /** File represents a specific target that is backed by a file. <p><br /><p> > **Note**: `Configs.File` and `Configs.Runtime` are mutually exclusive */
+  File?: TaskSpecContainerSpecSecretsItemFile;
+  /** Runtime represents a target that is not mounted into the container but is used by the task <p><br /><p> > **Note**: `Configs.File` and `Configs.Runtime` are mutually > exclusive */
+  Runtime?: unknown;
+  /** ConfigID represents the ID of the specific config that we're referencing. */
+  ConfigID?: string;
+  /** ConfigName is the name of the config that this references, but this is just provided for lookup/display purposes. The config in the reference will be identified by its ID. */
+  ConfigName?: string;
+}
+export const TaskSpecContainerSpecConfigsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    File: S.optional(TaskSpecContainerSpecSecretsItemFile),
+    Runtime: S.optional(S.Unknown),
+    ConfigID: S.optional(S.String),
+    ConfigName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskSpecContainerSpecConfigsItem",
+}) as any as S.Schema<TaskSpecContainerSpecConfigsItem>;
+
+/** Configs contains references to zero or more configs that will be exposed to the service. */
+export type TaskSpecContainerSpecConfigsList =
+  Array<TaskSpecContainerSpecConfigsItem>;
+export const TaskSpecContainerSpecConfigsList = /*@__PURE__*/ S.Array(
+  TaskSpecContainerSpecConfigsItem,
+) as any as S.Schema<TaskSpecContainerSpecConfigsList>;
+
+/** Isolation technology of the containers running the service. (Windows only) */
+export type TaskSpecContainerSpecIsolation =
+  | "default"
+  | "process"
+  | "hyperv"
+  | "";
+export const TaskSpecContainerSpecIsolation = /*@__PURE__*/ S.String;
+
+/** Set kernel namedspaced parameters (sysctls) in the container. The Sysctls option on services accepts the same sysctls as the are supported on containers. Note that while the same sysctls are supported, no guarantees or checks are made about their suitability for a clustered environment, and it's up to the user to determine whether a given sysctl will work properly in a Service. */
+export type TaskSpecContainerSpecSysctlsMap = {
+  [key: string]: string | undefined;
+};
+export const TaskSpecContainerSpecSysctlsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecSysctlsMap>;
+
+/** A list of kernel capabilities to add to the default set for the container. */
+export type TaskSpecContainerSpecCapabilityAddList = Array<string>;
+export const TaskSpecContainerSpecCapabilityAddList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecCapabilityAddList>;
+
+/** A list of kernel capabilities to drop from the default set for the container. */
+export type TaskSpecContainerSpecCapabilityDropList = Array<string>;
+export const TaskSpecContainerSpecCapabilityDropList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecContainerSpecCapabilityDropList>;
+
+export type TaskSpecContainerSpecUlimitsItem = HostConfigUlimitsItem;
+export const TaskSpecContainerSpecUlimitsItem = HostConfigUlimitsItem;
+
+/** A list of resource limits to set in the container. For example: `{"Name": "nofile", "Soft": 1024, "Hard": 2048}`" */
+export type TaskSpecContainerSpecUlimitsList = Array<HostConfigUlimitsItem>;
+export const TaskSpecContainerSpecUlimitsList = /*@__PURE__*/ S.Array(
   HostConfigUlimitsItem,
-) as any as S.Schema<ContainerUpdateRequestUlimitsList>;
+) as any as S.Schema<TaskSpecContainerSpecUlimitsList>;
 
-export interface ContainerUpdateRequest {
-  /** ID or name of the container */
-  id: string;
-  /** An integer value representing this container's relative CPU weight versus other containers. */
-  CpuShares?: number;
-  /** Memory limit in bytes. */
-  Memory?: number;
-  /** Path to `cgroups` under which the container's `cgroup` is created. If the path is not absolute, the path is considered to be relative to the `cgroups` path of the init process. Cgroups are created if they do not already exist. */
-  CgroupParent?: string;
-  /** Block IO weight (relative weight). */
-  BlkioWeight?: number;
-  /** Block IO weight (relative device weight) in the form: ``` [{"Path": "device_path", "Weight": weight}] ``` */
-  BlkioWeightDevice?: ContainerUpdateRequestBlkioWeightDeviceList;
-  /** Limit read rate (bytes per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-  BlkioDeviceReadBps?: ContainerUpdateRequestBlkioDeviceReadBpsList;
-  /** Limit write rate (bytes per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-  BlkioDeviceWriteBps?: ContainerUpdateRequestBlkioDeviceWriteBpsList;
-  /** Limit read rate (IO per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-  BlkioDeviceReadIOps?: ContainerUpdateRequestBlkioDeviceReadIOpsList;
-  /** Limit write rate (IO per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
-  BlkioDeviceWriteIOps?: ContainerUpdateRequestBlkioDeviceWriteIOpsList;
-  /** The length of a CPU period in microseconds. */
-  CpuPeriod?: number;
-  /** Microseconds of CPU time that the container can get in a CPU period. */
-  CpuQuota?: number;
-  /** The length of a CPU real-time period in microseconds. Set to 0 to allocate no time allocated to real-time tasks. */
-  CpuRealtimePeriod?: number;
-  /** The length of a CPU real-time runtime in microseconds. Set to 0 to allocate no time allocated to real-time tasks. */
-  CpuRealtimeRuntime?: number;
-  /** CPUs in which to allow execution (e.g., `0-3`, `0,1`). */
-  CpusetCpus?: string;
-  /** Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems. */
-  CpusetMems?: string;
-  /** A list of devices to add to the container. */
-  Devices?: ContainerUpdateRequestDevicesList;
-  /** a list of cgroup rules to apply to the container */
-  DeviceCgroupRules?: ContainerUpdateRequestDeviceCgroupRulesList;
-  /** A list of requests for devices to be sent to device drivers. */
-  DeviceRequests?: ContainerUpdateRequestDeviceRequestsList;
-  /** Memory soft limit in bytes. */
-  MemoryReservation?: number;
-  /** Total memory limit (memory + swap). Set as `-1` to enable unlimited swap. */
-  MemorySwap?: number;
-  /** Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100. */
-  MemorySwappiness?: number;
-  /** CPU quota in units of 10<sup>-9</sup> CPUs. */
-  NanoCpus?: number;
-  /** Disable OOM Killer for the container. */
-  OomKillDisable?: boolean;
+/** Container spec for the service. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
+export interface TaskSpecContainerSpec {
+  /** The image name to use for the container */
+  Image?: string;
+  /** User-defined key/value data. */
+  Labels?: TaskSpecContainerSpecLabelsMap;
+  /** The command to be run in the image. */
+  Command?: TaskSpecContainerSpecCommandList;
+  /** Arguments to the command. */
+  Args?: TaskSpecContainerSpecArgsList;
+  /** The hostname to use for the container, as a valid [RFC 1123](https://tools.ietf.org/html/rfc1123) hostname. */
+  Hostname?: string;
+  /** A list of environment variables in the form `VAR=value`. */
+  Env?: TaskSpecContainerSpecEnvList;
+  /** The working directory for commands to run in. */
+  Dir?: string;
+  /** The user inside the container. */
+  User?: string;
+  /** A list of additional groups that the container process will run as. */
+  Groups?: TaskSpecContainerSpecGroupsList;
+  /** Security options for the container */
+  Privileges?: TaskSpecContainerSpecPrivileges;
+  /** Whether a pseudo-TTY should be allocated. */
+  TTY?: boolean;
+  /** Open `stdin` */
+  OpenStdin?: boolean;
+  /** Mount the container's root filesystem as read only. */
+  ReadOnly?: boolean;
+  /** Specification for mounts to be added to containers created as part of the service. */
+  Mounts?: TaskSpecContainerSpecMountsList;
+  /** Signal to stop the container. */
+  StopSignal?: string;
+  /** Amount of time to wait for the container to terminate before forcefully killing it. */
+  StopGracePeriod?: number;
+  HealthCheck?: HealthConfig;
+  /** A list of hostname/IP mappings to add to the container's `hosts` file. The format of extra hosts is specified in the [hosts(5)](http://man7.org/linux/man-pages/man5/hosts.5.html) man page: IP_address canonical_hostname [aliases...] */
+  Hosts?: TaskSpecContainerSpecHostsList;
+  /** Specification for DNS related configurations in resolver configuration file (`resolv.conf`). */
+  DNSConfig?: TaskSpecContainerSpecDNSConfig;
+  /** Secrets contains references to zero or more secrets that will be exposed to the service. */
+  Secrets?: TaskSpecContainerSpecSecretsList;
+  /** An integer value containing the score given to the container in order to tune OOM killer preferences. */
+  OomScoreAdj?: number;
+  /** Configs contains references to zero or more configs that will be exposed to the service. */
+  Configs?: TaskSpecContainerSpecConfigsList;
+  /** Isolation technology of the containers running the service. (Windows only) */
+  Isolation?: TaskSpecContainerSpecIsolation | (string & {});
   /** Run an init inside the container that forwards signals and reaps processes. This field is omitted if empty, and the default (as configured on the daemon) is used. */
   Init?: boolean | null;
-  /** Tune a container's PIDs limit. Set `0` or `-1` for unlimited, or `null` to not change. */
-  PidsLimit?: number | null;
-  /** A list of resource limits to set in the container. For example: ``` {"Name": "nofile", "Soft": 1024, "Hard": 2048} ``` */
-  Ulimits?: ContainerUpdateRequestUlimitsList;
-  /** The number of usable CPUs (Windows only). On Windows Server containers, the processor resource controls are mutually exclusive. The order of precedence is `CPUCount` first, then `CPUShares`, and `CPUPercent` last. */
-  CpuCount?: number;
-  /** The usable percentage of the available CPUs (Windows only). On Windows Server containers, the processor resource controls are mutually exclusive. The order of precedence is `CPUCount` first, then `CPUShares`, and `CPUPercent` last. */
-  CpuPercent?: number;
-  /** Maximum IOps for the container system drive (Windows only) */
-  IOMaximumIOps?: number;
-  /** Maximum IO in bytes per second for the container system drive (Windows only). */
-  IOMaximumBandwidth?: number;
-  RestartPolicy?: RestartPolicy;
+  /** Set kernel namedspaced parameters (sysctls) in the container. The Sysctls option on services accepts the same sysctls as the are supported on containers. Note that while the same sysctls are supported, no guarantees or checks are made about their suitability for a clustered environment, and it's up to the user to determine whether a given sysctl will work properly in a Service. */
+  Sysctls?: TaskSpecContainerSpecSysctlsMap;
+  /** A list of kernel capabilities to add to the default set for the container. */
+  CapabilityAdd?: TaskSpecContainerSpecCapabilityAddList;
+  /** A list of kernel capabilities to drop from the default set for the container. */
+  CapabilityDrop?: TaskSpecContainerSpecCapabilityDropList;
+  /** A list of resource limits to set in the container. For example: `{"Name": "nofile", "Soft": 1024, "Hard": 2048}`" */
+  Ulimits?: TaskSpecContainerSpecUlimitsList;
 }
-export const ContainerUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const TaskSpecContainerSpec = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String.pipe(T.Label()),
-    CpuShares: S.optional(S.Number),
-    Memory: S.optional(S.Number),
-    CgroupParent: S.optional(S.String),
-    BlkioWeight: S.optional(S.Number),
-    BlkioWeightDevice: S.optional(ContainerUpdateRequestBlkioWeightDeviceList),
-    BlkioDeviceReadBps: S.optional(
-      ContainerUpdateRequestBlkioDeviceReadBpsList,
-    ),
-    BlkioDeviceWriteBps: S.optional(
-      ContainerUpdateRequestBlkioDeviceWriteBpsList,
-    ),
-    BlkioDeviceReadIOps: S.optional(
-      ContainerUpdateRequestBlkioDeviceReadIOpsList,
-    ),
-    BlkioDeviceWriteIOps: S.optional(
-      ContainerUpdateRequestBlkioDeviceWriteIOpsList,
-    ),
-    CpuPeriod: S.optional(S.Number),
-    CpuQuota: S.optional(S.Number),
-    CpuRealtimePeriod: S.optional(S.Number),
-    CpuRealtimeRuntime: S.optional(S.Number),
-    CpusetCpus: S.optional(S.String),
-    CpusetMems: S.optional(S.String),
-    Devices: S.optional(ContainerUpdateRequestDevicesList),
-    DeviceCgroupRules: S.optional(ContainerUpdateRequestDeviceCgroupRulesList),
-    DeviceRequests: S.optional(ContainerUpdateRequestDeviceRequestsList),
-    MemoryReservation: S.optional(S.Number),
-    MemorySwap: S.optional(S.Number),
-    MemorySwappiness: S.optional(S.Number),
-    NanoCpus: S.optional(S.Number),
-    OomKillDisable: S.optional(S.Boolean),
+    Image: S.optional(S.String),
+    Labels: S.optional(TaskSpecContainerSpecLabelsMap),
+    Command: S.optional(TaskSpecContainerSpecCommandList),
+    Args: S.optional(TaskSpecContainerSpecArgsList),
+    Hostname: S.optional(S.String),
+    Env: S.optional(TaskSpecContainerSpecEnvList),
+    Dir: S.optional(S.String),
+    User: S.optional(S.String),
+    Groups: S.optional(TaskSpecContainerSpecGroupsList),
+    Privileges: S.optional(TaskSpecContainerSpecPrivileges),
+    TTY: S.optional(S.Boolean),
+    OpenStdin: S.optional(S.Boolean),
+    ReadOnly: S.optional(S.Boolean),
+    Mounts: S.optional(TaskSpecContainerSpecMountsList),
+    StopSignal: S.optional(S.String),
+    StopGracePeriod: S.optional(S.Number),
+    HealthCheck: S.optional(HealthConfig),
+    Hosts: S.optional(TaskSpecContainerSpecHostsList),
+    DNSConfig: S.optional(TaskSpecContainerSpecDNSConfig),
+    Secrets: S.optional(TaskSpecContainerSpecSecretsList),
+    OomScoreAdj: S.optional(S.Number),
+    Configs: S.optional(TaskSpecContainerSpecConfigsList),
+    Isolation: S.optional(TaskSpecContainerSpecIsolation),
     Init: S.optional(S.NullOr(S.Boolean)),
-    PidsLimit: S.optional(S.NullOr(S.Number)),
-    Ulimits: S.optional(ContainerUpdateRequestUlimitsList),
-    CpuCount: S.optional(S.Number),
-    CpuPercent: S.optional(S.Number),
-    IOMaximumIOps: S.optional(S.Number),
-    IOMaximumBandwidth: S.optional(S.Number),
-    RestartPolicy: S.optional(RestartPolicy),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/containers/{id}/update", code: 200 }),
-  ),
-).annotate({
-  identifier: "ContainerUpdateRequest",
-}) as any as S.Schema<ContainerUpdateRequest>;
-
-/** Warnings encountered when updating the container. */
-export type ContainerUpdateResponseWarningsList = Array<string>;
-export const ContainerUpdateResponseWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerUpdateResponseWarningsList>;
-
-/** Response for a successful container-update. */
-export interface ContainerUpdateResponse {
-  /** Warnings encountered when updating the container. */
-  Warnings?: ContainerUpdateResponseWarningsList;
-}
-export const ContainerUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Warnings: S.optional(ContainerUpdateResponseWarningsList),
+    Sysctls: S.optional(TaskSpecContainerSpecSysctlsMap),
+    CapabilityAdd: S.optional(TaskSpecContainerSpecCapabilityAddList),
+    CapabilityDrop: S.optional(TaskSpecContainerSpecCapabilityDropList),
+    Ulimits: S.optional(TaskSpecContainerSpecUlimitsList),
   }),
 ).annotate({
-  identifier: "ContainerUpdateResponse",
-}) as any as S.Schema<ContainerUpdateResponse>;
+  identifier: "TaskSpecContainerSpec",
+}) as any as S.Schema<TaskSpecContainerSpec>;
 
-export type ContainerWaitRequestCondition =
-  | "not-running"
-  | "next-exit"
-  | "removed";
-export const ContainerWaitRequestCondition = /*@__PURE__*/ S.String;
+/** Read-only spec type for non-swarm containers attached to swarm overlay networks. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
+export interface TaskSpecNetworkAttachmentSpec {
+  /** ID of the container represented by this task */
+  ContainerID?: string;
+}
+export const TaskSpecNetworkAttachmentSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ContainerID: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskSpecNetworkAttachmentSpec",
+}) as any as S.Schema<TaskSpecNetworkAttachmentSpec>;
 
-export interface ContainerWaitRequest {
+/** An object describing a limit on resources which can be requested by a task. */
+export interface Limit {
+  NanoCPUs?: number;
+  MemoryBytes?: number;
+  /** Limits the maximum number of PIDs in the container. Set `0` for unlimited. */
+  Pids?: number;
+}
+export const Limit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    NanoCPUs: S.optional(S.Number),
+    MemoryBytes: S.optional(S.Number),
+    Pids: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Limit" }) as any as S.Schema<Limit>;
+
+export interface GenericResourcesItemNamedResourceSpec {
+  Kind?: string;
+  Value?: string;
+}
+export const GenericResourcesItemNamedResourceSpec = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Kind: S.optional(S.String),
+      Value: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GenericResourcesItemNamedResourceSpec",
+}) as any as S.Schema<GenericResourcesItemNamedResourceSpec>;
+
+export interface GenericResourcesItemDiscreteResourceSpec {
+  Kind?: string;
+  Value?: number;
+}
+export const GenericResourcesItemDiscreteResourceSpec = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Kind: S.optional(S.String),
+      Value: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "GenericResourcesItemDiscreteResourceSpec",
+}) as any as S.Schema<GenericResourcesItemDiscreteResourceSpec>;
+
+export interface GenericResourcesItem {
+  NamedResourceSpec?: GenericResourcesItemNamedResourceSpec;
+  DiscreteResourceSpec?: GenericResourcesItemDiscreteResourceSpec;
+}
+export const GenericResourcesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    NamedResourceSpec: S.optional(GenericResourcesItemNamedResourceSpec),
+    DiscreteResourceSpec: S.optional(GenericResourcesItemDiscreteResourceSpec),
+  }),
+).annotate({
+  identifier: "GenericResourcesItem",
+}) as any as S.Schema<GenericResourcesItem>;
+
+/** User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`). */
+export type GenericResources = Array<GenericResourcesItem>;
+export const GenericResources = /*@__PURE__*/ S.Array(
+  GenericResourcesItem,
+) as any as S.Schema<GenericResources>;
+
+/** An object describing the resources which can be advertised by a node and requested by a task. */
+export interface ResourceObject {
+  NanoCPUs?: number;
+  MemoryBytes?: number;
+  GenericResources?: GenericResources;
+}
+export const ResourceObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    NanoCPUs: S.optional(S.Number),
+    MemoryBytes: S.optional(S.Number),
+    GenericResources: S.optional(GenericResources),
+  }),
+).annotate({ identifier: "ResourceObject" }) as any as S.Schema<ResourceObject>;
+
+/** Resource requirements which apply to each individual container created as part of the service. */
+export interface TaskSpecResources {
+  /** Define resources limits. */
+  Limits?: Limit;
+  /** Define resources reservation. */
+  Reservations?: ResourceObject;
+  /** Amount of swap in bytes - can only be used together with a memory limit. If not specified, the default behaviour is to grant a swap space twice as big as the memory limit. Set to -1 to enable unlimited swap. */
+  SwapBytes?: number | null;
+  /** Tune the service's containers' memory swappiness (0 to 100). If not specified, defaults to the containers' OS' default, generally 60, or whatever value was predefined in the image. Set to -1 to unset a previously set value. */
+  MemorySwappiness?: number | null;
+}
+export const TaskSpecResources = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Limits: S.optional(Limit),
+    Reservations: S.optional(ResourceObject),
+    SwapBytes: S.optional(S.NullOr(S.Number)),
+    MemorySwappiness: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "TaskSpecResources",
+}) as any as S.Schema<TaskSpecResources>;
+
+/** Condition for restart. */
+export type TaskSpecRestartPolicyCondition = "none" | "on-failure" | "any";
+export const TaskSpecRestartPolicyCondition = /*@__PURE__*/ S.String;
+
+/** Specification for the restart policy which applies to containers created as part of this service. */
+export interface TaskSpecRestartPolicy {
+  /** Condition for restart. */
+  Condition?: TaskSpecRestartPolicyCondition | (string & {});
+  /** Delay between restart attempts. */
+  Delay?: number;
+  /** Maximum attempts to restart a given container before giving up (default value is 0, which is ignored). */
+  MaxAttempts?: number;
+  /** Windows is the time window used to evaluate the restart policy (default value is 0, which is unbounded). */
+  Window?: number;
+}
+export const TaskSpecRestartPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Condition: S.optional(TaskSpecRestartPolicyCondition),
+    Delay: S.optional(S.Number),
+    MaxAttempts: S.optional(S.Number),
+    Window: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TaskSpecRestartPolicy",
+}) as any as S.Schema<TaskSpecRestartPolicy>;
+
+/** An array of constraint expressions to limit the set of nodes where a task can be scheduled. Constraint expressions can either use a _match_ (`==`) or _exclude_ (`!=`) rule. Multiple constraints find nodes that satisfy every expression (AND match). Constraints can match node or Docker Engine labels as follows: node attribute | matches | example ---------------------|--------------------------------|----------------------------------------------- `node.id` | Node ID | `node.id==2ivku8v2gvtg4` `node.hostname` | Node hostname | `node.hostname!=node-2` `node.role` | Node role (`manager`/`worker`) | `node.role==manager` `node.platform.os` | Node operating system | `node.platform.os==windows` `node.platform.arch` | Node architecture | `node.platform.arch==x86_64` `node.labels` | User-defined node labels | `node.labels.security==high` `engine.labels` | Docker Engine's labels | `engine.labels.operatingsystem==ubuntu-24.04` `engine.labels` apply to Docker Engine labels like operating system, drivers, etc. Swarm administrators add `node.labels` for operational purposes by using the [`node update endpoint`](#operation/NodeUpdate). */
+export type TaskSpecPlacementConstraintsList = Array<string>;
+export const TaskSpecPlacementConstraintsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TaskSpecPlacementConstraintsList>;
+
+export interface TaskSpecPlacementPreferencesItemSpread {
+  /** label descriptor, such as `engine.labels.az`. */
+  SpreadDescriptor?: string;
+}
+export const TaskSpecPlacementPreferencesItemSpread = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      SpreadDescriptor: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "TaskSpecPlacementPreferencesItemSpread",
+}) as any as S.Schema<TaskSpecPlacementPreferencesItemSpread>;
+
+export interface TaskSpecPlacementPreferencesItem {
+  Spread?: TaskSpecPlacementPreferencesItemSpread;
+}
+export const TaskSpecPlacementPreferencesItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Spread: S.optional(TaskSpecPlacementPreferencesItemSpread),
+  }),
+).annotate({
+  identifier: "TaskSpecPlacementPreferencesItem",
+}) as any as S.Schema<TaskSpecPlacementPreferencesItem>;
+
+/** Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence. */
+export type TaskSpecPlacementPreferencesList =
+  Array<TaskSpecPlacementPreferencesItem>;
+export const TaskSpecPlacementPreferencesList = /*@__PURE__*/ S.Array(
+  TaskSpecPlacementPreferencesItem,
+) as any as S.Schema<TaskSpecPlacementPreferencesList>;
+
+/** Platform represents the platform (Arch/OS). */
+export interface Platform {
+  /** Architecture represents the hardware architecture (for example, `x86_64`). */
+  Architecture?: string;
+  /** OS represents the Operating System (for example, `linux` or `windows`). */
+  OS?: string;
+}
+export const Platform = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Architecture: S.optional(S.String),
+    OS: S.optional(S.String),
+  }),
+).annotate({ identifier: "Platform" }) as any as S.Schema<Platform>;
+
+/** Platforms stores all the platforms that the service's image can run on. This field is used in the platform filter for scheduling. If empty, then the platform filter is off, meaning there are no scheduling restrictions. */
+export type TaskSpecPlacementPlatformsList = Array<Platform>;
+export const TaskSpecPlacementPlatformsList = /*@__PURE__*/ S.Array(
+  Platform,
+) as any as S.Schema<TaskSpecPlacementPlatformsList>;
+
+export interface TaskSpecPlacement {
+  /** An array of constraint expressions to limit the set of nodes where a task can be scheduled. Constraint expressions can either use a _match_ (`==`) or _exclude_ (`!=`) rule. Multiple constraints find nodes that satisfy every expression (AND match). Constraints can match node or Docker Engine labels as follows: node attribute | matches | example ---------------------|--------------------------------|----------------------------------------------- `node.id` | Node ID | `node.id==2ivku8v2gvtg4` `node.hostname` | Node hostname | `node.hostname!=node-2` `node.role` | Node role (`manager`/`worker`) | `node.role==manager` `node.platform.os` | Node operating system | `node.platform.os==windows` `node.platform.arch` | Node architecture | `node.platform.arch==x86_64` `node.labels` | User-defined node labels | `node.labels.security==high` `engine.labels` | Docker Engine's labels | `engine.labels.operatingsystem==ubuntu-24.04` `engine.labels` apply to Docker Engine labels like operating system, drivers, etc. Swarm administrators add `node.labels` for operational purposes by using the [`node update endpoint`](#operation/NodeUpdate). */
+  Constraints?: TaskSpecPlacementConstraintsList;
+  /** Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence. */
+  Preferences?: TaskSpecPlacementPreferencesList;
+  /** Maximum number of replicas for per node (default value is 0, which is unlimited) */
+  MaxReplicas?: number;
+  /** Platforms stores all the platforms that the service's image can run on. This field is used in the platform filter for scheduling. If empty, then the platform filter is off, meaning there are no scheduling restrictions. */
+  Platforms?: TaskSpecPlacementPlatformsList;
+}
+export const TaskSpecPlacement = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Constraints: S.optional(TaskSpecPlacementConstraintsList),
+    Preferences: S.optional(TaskSpecPlacementPreferencesList),
+    MaxReplicas: S.optional(S.Number),
+    Platforms: S.optional(TaskSpecPlacementPlatformsList),
+  }),
+).annotate({
+  identifier: "TaskSpecPlacement",
+}) as any as S.Schema<TaskSpecPlacement>;
+
+/** Discoverable alternate names for the service on this network. */
+export type NetworkAttachmentConfigAliasesList = Array<string>;
+export const NetworkAttachmentConfigAliasesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NetworkAttachmentConfigAliasesList>;
+
+/** Driver attachment options for the network target. */
+export type NetworkAttachmentConfigDriverOptsMap = {
+  [key: string]: string | undefined;
+};
+export const NetworkAttachmentConfigDriverOptsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkAttachmentConfigDriverOptsMap>;
+
+/** Specifies how a service should be attached to a particular network. */
+export interface NetworkAttachmentConfig {
+  /** The target network for attachment. Must be a network name or ID. */
+  Target?: string;
+  /** Discoverable alternate names for the service on this network. */
+  Aliases?: NetworkAttachmentConfigAliasesList;
+  /** Driver attachment options for the network target. */
+  DriverOpts?: NetworkAttachmentConfigDriverOptsMap;
+}
+export const NetworkAttachmentConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Target: S.optional(S.String),
+    Aliases: S.optional(NetworkAttachmentConfigAliasesList),
+    DriverOpts: S.optional(NetworkAttachmentConfigDriverOptsMap),
+  }),
+).annotate({
+  identifier: "NetworkAttachmentConfig",
+}) as any as S.Schema<NetworkAttachmentConfig>;
+
+/** Specifies which networks the service should attach to. */
+export type TaskSpecNetworksList = Array<NetworkAttachmentConfig>;
+export const TaskSpecNetworksList = /*@__PURE__*/ S.Array(
+  NetworkAttachmentConfig,
+) as any as S.Schema<TaskSpecNetworksList>;
+
+export type TaskSpecLogDriverOptionsMap = { [key: string]: string | undefined };
+export const TaskSpecLogDriverOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TaskSpecLogDriverOptionsMap>;
+
+/** Specifies the log driver to use for tasks created from this spec. If not present, the default one for the swarm will be used, finally falling back to the engine default if not specified. */
+export interface TaskSpecLogDriver {
+  Name?: string;
+  Options?: TaskSpecLogDriverOptionsMap;
+}
+export const TaskSpecLogDriver = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Options: S.optional(TaskSpecLogDriverOptionsMap),
+  }),
+).annotate({
+  identifier: "TaskSpecLogDriver",
+}) as any as S.Schema<TaskSpecLogDriver>;
+
+/** User modifiable task configuration. */
+export interface TaskSpec {
+  /** Plugin spec for the service. *(Experimental release only.)* <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
+  PluginSpec?: TaskSpecPluginSpec;
+  /** Container spec for the service. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
+  ContainerSpec?: TaskSpecContainerSpec;
+  /** Read-only spec type for non-swarm containers attached to swarm overlay networks. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
+  NetworkAttachmentSpec?: TaskSpecNetworkAttachmentSpec;
+  /** Resource requirements which apply to each individual container created as part of the service. */
+  Resources?: TaskSpecResources;
+  /** Specification for the restart policy which applies to containers created as part of this service. */
+  RestartPolicy?: TaskSpecRestartPolicy;
+  Placement?: TaskSpecPlacement;
+  /** A counter that triggers an update even if no relevant parameters have been changed. */
+  ForceUpdate?: number;
+  /** Runtime is the type of runtime specified for the task executor. */
+  Runtime?: string;
+  /** Specifies which networks the service should attach to. */
+  Networks?: TaskSpecNetworksList;
+  /** Specifies the log driver to use for tasks created from this spec. If not present, the default one for the swarm will be used, finally falling back to the engine default if not specified. */
+  LogDriver?: TaskSpecLogDriver;
+}
+export const TaskSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    PluginSpec: S.optional(TaskSpecPluginSpec),
+    ContainerSpec: S.optional(TaskSpecContainerSpec),
+    NetworkAttachmentSpec: S.optional(TaskSpecNetworkAttachmentSpec),
+    Resources: S.optional(TaskSpecResources),
+    RestartPolicy: S.optional(TaskSpecRestartPolicy),
+    Placement: S.optional(TaskSpecPlacement),
+    ForceUpdate: S.optional(S.Number),
+    Runtime: S.optional(S.String),
+    Networks: S.optional(TaskSpecNetworksList),
+    LogDriver: S.optional(TaskSpecLogDriver),
+  }),
+).annotate({ identifier: "TaskSpec" }) as any as S.Schema<TaskSpec>;
+
+export interface CreateServiceRequestModeReplicated {
+  Replicas?: number;
+}
+export const CreateServiceRequestModeReplicated = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Replicas: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CreateServiceRequestModeReplicated",
+}) as any as S.Schema<CreateServiceRequestModeReplicated>;
+
+/** The mode used for services with a finite number of tasks that run to a completed state. */
+export interface CreateServiceRequestModeReplicatedJob {
+  /** The maximum number of replicas to run simultaneously. */
+  MaxConcurrent?: number;
+  /** The total number of replicas desired to reach the Completed state. If unset, will default to the value of `MaxConcurrent` */
+  TotalCompletions?: number;
+}
+export const CreateServiceRequestModeReplicatedJob = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      MaxConcurrent: S.optional(S.Number),
+      TotalCompletions: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "CreateServiceRequestModeReplicatedJob",
+}) as any as S.Schema<CreateServiceRequestModeReplicatedJob>;
+
+/** Scheduling mode for the service. */
+export interface CreateServiceRequestMode {
+  Replicated?: CreateServiceRequestModeReplicated;
+  Global?: unknown;
+  /** The mode used for services with a finite number of tasks that run to a completed state. */
+  ReplicatedJob?: CreateServiceRequestModeReplicatedJob;
+  /** The mode used for services which run a task to the completed state on each valid node. */
+  GlobalJob?: unknown;
+}
+export const CreateServiceRequestMode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Replicated: S.optional(CreateServiceRequestModeReplicated),
+    Global: S.optional(S.Unknown),
+    ReplicatedJob: S.optional(CreateServiceRequestModeReplicatedJob),
+    GlobalJob: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "CreateServiceRequestMode",
+}) as any as S.Schema<CreateServiceRequestMode>;
+
+/** Action to take if an updated task fails to run, or stops running during the update. */
+export type CreateServiceRequestUpdateConfigFailureAction =
+  | "continue"
+  | "pause"
+  | "rollback";
+export const CreateServiceRequestUpdateConfigFailureAction =
+  /*@__PURE__*/ S.String;
+
+/** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+export type CreateServiceRequestUpdateConfigOrder =
+  | "stop-first"
+  | "start-first";
+export const CreateServiceRequestUpdateConfigOrder = /*@__PURE__*/ S.String;
+
+/** Specification for the update strategy of the service. */
+export interface CreateServiceRequestUpdateConfig {
+  /** Maximum number of tasks to be updated in one iteration (0 means unlimited parallelism). */
+  Parallelism?: number;
+  /** Amount of time between updates, in nanoseconds. */
+  Delay?: number;
+  /** Action to take if an updated task fails to run, or stops running during the update. */
+  FailureAction?: CreateServiceRequestUpdateConfigFailureAction | (string & {});
+  /** Amount of time to monitor each updated task for failures, in nanoseconds. */
+  Monitor?: number;
+  /** The fraction of tasks that may fail during an update before the failure action is invoked, specified as a floating point number between 0 and 1. */
+  MaxFailureRatio?: number;
+  /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+  Order?: CreateServiceRequestUpdateConfigOrder | (string & {});
+}
+export const CreateServiceRequestUpdateConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Parallelism: S.optional(S.Number),
+    Delay: S.optional(S.Number),
+    FailureAction: S.optional(CreateServiceRequestUpdateConfigFailureAction),
+    Monitor: S.optional(S.Number),
+    MaxFailureRatio: S.optional(S.Number),
+    Order: S.optional(CreateServiceRequestUpdateConfigOrder),
+  }),
+).annotate({
+  identifier: "CreateServiceRequestUpdateConfig",
+}) as any as S.Schema<CreateServiceRequestUpdateConfig>;
+
+/** Action to take if an rolled back task fails to run, or stops running during the rollback. */
+export type CreateServiceRequestRollbackConfigFailureAction =
+  | "continue"
+  | "pause";
+export const CreateServiceRequestRollbackConfigFailureAction =
+  /*@__PURE__*/ S.String;
+
+/** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+export type CreateServiceRequestRollbackConfigOrder =
+  | "stop-first"
+  | "start-first";
+export const CreateServiceRequestRollbackConfigOrder = /*@__PURE__*/ S.String;
+
+/** Specification for the rollback strategy of the service. */
+export interface CreateServiceRequestRollbackConfig {
+  /** Maximum number of tasks to be rolled back in one iteration (0 means unlimited parallelism). */
+  Parallelism?: number;
+  /** Amount of time between rollback iterations, in nanoseconds. */
+  Delay?: number;
+  /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
+  FailureAction?:
+    | CreateServiceRequestRollbackConfigFailureAction
+    | (string & {});
+  /** Amount of time to monitor each rolled back task for failures, in nanoseconds. */
+  Monitor?: number;
+  /** The fraction of tasks that may fail during a rollback before the failure action is invoked, specified as a floating point number between 0 and 1. */
+  MaxFailureRatio?: number;
+  /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+  Order?: CreateServiceRequestRollbackConfigOrder | (string & {});
+}
+export const CreateServiceRequestRollbackConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Parallelism: S.optional(S.Number),
+    Delay: S.optional(S.Number),
+    FailureAction: S.optional(CreateServiceRequestRollbackConfigFailureAction),
+    Monitor: S.optional(S.Number),
+    MaxFailureRatio: S.optional(S.Number),
+    Order: S.optional(CreateServiceRequestRollbackConfigOrder),
+  }),
+).annotate({
+  identifier: "CreateServiceRequestRollbackConfig",
+}) as any as S.Schema<CreateServiceRequestRollbackConfig>;
+
+/** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
+export type CreateServiceRequestNetworksList = Array<NetworkAttachmentConfig>;
+export const CreateServiceRequestNetworksList = /*@__PURE__*/ S.Array(
+  NetworkAttachmentConfig,
+) as any as S.Schema<CreateServiceRequestNetworksList>;
+
+/** The mode of resolution to use for internal load balancing between tasks. */
+export type EndpointSpecMode = "vip" | "dnsrr";
+export const EndpointSpecMode = /*@__PURE__*/ S.String;
+
+export type EndpointPortConfigProtocol = "tcp" | "udp" | "sctp";
+export const EndpointPortConfigProtocol = /*@__PURE__*/ S.String;
+
+/** The mode in which port is published. <p><br /></p> - "ingress" makes the target port accessible on every node, regardless of whether there is a task for the service running on that node or not. - "host" bypasses the routing mesh and publish the port directly on the swarm node where that service is running. */
+export type EndpointPortConfigPublishMode = "ingress" | "host";
+export const EndpointPortConfigPublishMode = /*@__PURE__*/ S.String;
+
+export interface EndpointPortConfig {
+  Name?: string;
+  Protocol?: EndpointPortConfigProtocol | (string & {});
+  /** The port inside the container. */
+  TargetPort?: number;
+  /** The port on the swarm hosts. */
+  PublishedPort?: number;
+  /** The mode in which port is published. <p><br /></p> - "ingress" makes the target port accessible on every node, regardless of whether there is a task for the service running on that node or not. - "host" bypasses the routing mesh and publish the port directly on the swarm node where that service is running. */
+  PublishMode?: EndpointPortConfigPublishMode | (string & {});
+}
+export const EndpointPortConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Protocol: S.optional(EndpointPortConfigProtocol),
+    TargetPort: S.optional(S.Number),
+    PublishedPort: S.optional(S.Number),
+    PublishMode: S.optional(EndpointPortConfigPublishMode),
+  }),
+).annotate({
+  identifier: "EndpointPortConfig",
+}) as any as S.Schema<EndpointPortConfig>;
+
+/** List of exposed ports that this service is accessible on from the outside. Ports can only be provided if `vip` resolution mode is used. */
+export type EndpointSpecPortsList = Array<EndpointPortConfig>;
+export const EndpointSpecPortsList = /*@__PURE__*/ S.Array(
+  EndpointPortConfig,
+) as any as S.Schema<EndpointSpecPortsList>;
+
+/** Properties that can be configured to access and load balance a service. */
+export interface EndpointSpec {
+  /** The mode of resolution to use for internal load balancing between tasks. */
+  Mode?: EndpointSpecMode | (string & {});
+  /** List of exposed ports that this service is accessible on from the outside. Ports can only be provided if `vip` resolution mode is used. */
+  Ports?: EndpointSpecPortsList;
+}
+export const EndpointSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Mode: S.optional(EndpointSpecMode),
+    Ports: S.optional(EndpointSpecPortsList),
+  }),
+).annotate({ identifier: "EndpointSpec" }) as any as S.Schema<EndpointSpec>;
+
+export interface CreateServiceRequest {
+  /** A base64url-encoded auth configuration for pulling from private registries. Refer to the [authentication section](#section/Authentication) for details. */
+  xRegistryAuth?: string;
+  /** Name of the service. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: CreateServiceRequestLabelsMap;
+  TaskTemplate?: TaskSpec;
+  /** Scheduling mode for the service. */
+  Mode?: CreateServiceRequestMode;
+  /** Specification for the update strategy of the service. */
+  UpdateConfig?: CreateServiceRequestUpdateConfig;
+  /** Specification for the rollback strategy of the service. */
+  RollbackConfig?: CreateServiceRequestRollbackConfig;
+  /** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
+  Networks?: CreateServiceRequestNetworksList;
+  EndpointSpec?: EndpointSpec;
+}
+export const CreateServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    xRegistryAuth: S.optional(S.String.pipe(T.Header("X-Registry-Auth"))),
+    Name: S.optional(S.String),
+    Labels: S.optional(CreateServiceRequestLabelsMap),
+    TaskTemplate: S.optional(TaskSpec),
+    Mode: S.optional(CreateServiceRequestMode),
+    UpdateConfig: S.optional(CreateServiceRequestUpdateConfig),
+    RollbackConfig: S.optional(CreateServiceRequestRollbackConfig),
+    Networks: S.optional(CreateServiceRequestNetworksList),
+    EndpointSpec: S.optional(EndpointSpec),
+  }).pipe(T.Http({ method: "POST", uri: "/services/create", code: 200 })),
+).annotate({
+  identifier: "CreateServiceRequest",
+}) as any as S.Schema<CreateServiceRequest>;
+
+/** Optional warning message. FIXME(thaJeztah): this should have "omitempty" in the generated type. */
+export type ServiceCreateResponseWarningsList = Array<string>;
+export const ServiceCreateResponseWarningsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ServiceCreateResponseWarningsList>;
+
+/** contains the information returned to a client on the creation of a new service. */
+export interface ServiceCreateResponse {
+  /** The ID of the created service. */
+  ID?: string;
+  /** Optional warning message. FIXME(thaJeztah): this should have "omitempty" in the generated type. */
+  Warnings?: ServiceCreateResponseWarningsList | null;
+}
+export const ServiceCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ID: S.optional(S.String),
+    Warnings: S.optional(S.NullOr(ServiceCreateResponseWarningsList)),
+  }),
+).annotate({
+  identifier: "ServiceCreateResponse",
+}) as any as S.Schema<ServiceCreateResponse>;
+
+/** A mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
+export type CreateVolumeRequestDriverOptsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateVolumeRequestDriverOptsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateVolumeRequestDriverOptsMap>;
+
+/** User-defined key/value metadata. */
+export type CreateVolumeRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateVolumeRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateVolumeRequestLabelsMap>;
+
+/** The set of nodes this volume can be used on at one time. - `single` The volume may only be scheduled to one node at a time. - `multi` the volume may be scheduled to any supported number of nodes at a time. */
+export type ClusterVolumeSpecAccessModeScope = "single" | "multi";
+export const ClusterVolumeSpecAccessModeScope = /*@__PURE__*/ S.String;
+
+/** The number and way that different tasks can use this volume at one time. - `none` The volume may only be used by one task at a time. - `readonly` The volume may be used by any number of tasks, but they all must mount the volume as readonly - `onewriter` The volume may be used by any number of tasks, but only one may mount it as read/write. - `all` The volume may have any number of readers and writers. */
+export type ClusterVolumeSpecAccessModeSharing =
+  | "none"
+  | "readonly"
+  | "onewriter"
+  | "all";
+export const ClusterVolumeSpecAccessModeSharing = /*@__PURE__*/ S.String;
+
+/** One cluster volume secret entry. Defines a key-value pair that is passed to the plugin. */
+export interface ClusterVolumeSpecAccessModeSecretsItem {
+  /** Key is the name of the key of the key-value pair passed to the plugin. */
+  Key?: string;
+  /** Secret is the swarm Secret object from which to read data. This can be a Secret name or ID. The Secret data is retrieved by swarm and used as the value of the key-value pair passed to the plugin. */
+  Secret?: string | Redacted.Redacted<string>;
+}
+export const ClusterVolumeSpecAccessModeSecretsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Key: S.optional(S.String),
+      Secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    }),
+).annotate({
+  identifier: "ClusterVolumeSpecAccessModeSecretsItem",
+}) as any as S.Schema<ClusterVolumeSpecAccessModeSecretsItem>;
+
+/** Swarm Secrets that are passed to the CSI storage plugin when operating on this volume. */
+export type ClusterVolumeSpecAccessModeSecretsList =
+  Array<ClusterVolumeSpecAccessModeSecretsItem>;
+export const ClusterVolumeSpecAccessModeSecretsList = /*@__PURE__*/ S.Array(
+  ClusterVolumeSpecAccessModeSecretsItem,
+) as any as S.Schema<ClusterVolumeSpecAccessModeSecretsList>;
+
+export type TopologySegmentsMap = { [key: string]: string | undefined };
+export const TopologySegmentsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TopologySegmentsMap>;
+
+/** A map of topological domains to topological segments. For in depth details, see documentation for the Topology object in the CSI specification. */
+export interface Topology {
+  Segments?: TopologySegmentsMap;
+}
+export const Topology = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Segments: S.optional(TopologySegmentsMap),
+  }),
+).annotate({ identifier: "Topology" }) as any as S.Schema<Topology>;
+
+/** A list of required topologies, at least one of which the volume must be accessible from. */
+export type ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList =
+  Array<Topology>;
+export const ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList =
+  /*@__PURE__*/ S.Array(
+    Topology,
+  ) as any as S.Schema<ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList>;
+
+/** A list of topologies that the volume should attempt to be provisioned in. */
+export type ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList =
+  Array<Topology>;
+export const ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList =
+  /*@__PURE__*/ S.Array(
+    Topology,
+  ) as any as S.Schema<ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList>;
+
+/** Requirements for the accessible topology of the volume. These fields are optional. For an in-depth description of what these fields mean, see the CSI specification. */
+export interface ClusterVolumeSpecAccessModeAccessibilityRequirements {
+  /** A list of required topologies, at least one of which the volume must be accessible from. */
+  Requisite?: ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList;
+  /** A list of topologies that the volume should attempt to be provisioned in. */
+  Preferred?: ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList;
+}
+export const ClusterVolumeSpecAccessModeAccessibilityRequirements =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      Requisite: S.optional(
+        ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList,
+      ),
+      Preferred: S.optional(
+        ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ClusterVolumeSpecAccessModeAccessibilityRequirements",
+  }) as any as S.Schema<ClusterVolumeSpecAccessModeAccessibilityRequirements>;
+
+/** The desired capacity that the volume should be created with. If empty, the plugin will decide the capacity. */
+export interface ClusterVolumeSpecAccessModeCapacityRange {
+  /** The volume must be at least this big. The value of 0 indicates an unspecified minimum */
+  RequiredBytes?: number;
+  /** The volume must not be bigger than this. The value of 0 indicates an unspecified maximum. */
+  LimitBytes?: number;
+}
+export const ClusterVolumeSpecAccessModeCapacityRange = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      RequiredBytes: S.optional(S.Number),
+      LimitBytes: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "ClusterVolumeSpecAccessModeCapacityRange",
+}) as any as S.Schema<ClusterVolumeSpecAccessModeCapacityRange>;
+
+/** The availability of the volume for use in tasks. - `active` The volume is fully available for scheduling on the cluster - `pause` No new workloads should use the volume, but existing workloads are not stopped. - `drain` All workloads using this volume should be stopped and rescheduled, and no new ones should be started. */
+export type ClusterVolumeSpecAccessModeAvailability =
+  | "active"
+  | "pause"
+  | "drain";
+export const ClusterVolumeSpecAccessModeAvailability = /*@__PURE__*/ S.String;
+
+/** Defines how the volume is used by tasks. */
+export interface ClusterVolumeSpecAccessMode {
+  /** The set of nodes this volume can be used on at one time. - `single` The volume may only be scheduled to one node at a time. - `multi` the volume may be scheduled to any supported number of nodes at a time. */
+  Scope?: ClusterVolumeSpecAccessModeScope | (string & {});
+  /** The number and way that different tasks can use this volume at one time. - `none` The volume may only be used by one task at a time. - `readonly` The volume may be used by any number of tasks, but they all must mount the volume as readonly - `onewriter` The volume may be used by any number of tasks, but only one may mount it as read/write. - `all` The volume may have any number of readers and writers. */
+  Sharing?: ClusterVolumeSpecAccessModeSharing | (string & {});
+  /** Options for using this volume as a Mount-type volume. Either MountVolume or BlockVolume, but not both, must be present. properties: FsType: type: "string" description: | Specifies the filesystem type for the mount volume. Optional. MountFlags: type: "array" description: | Flags to pass when mounting the volume. Optional. items: type: "string" BlockVolume: type: "object" description: | Options for using this volume as a Block-type volume. Intentionally empty. */
+  MountVolume?: unknown;
+  /** Swarm Secrets that are passed to the CSI storage plugin when operating on this volume. */
+  Secrets?: ClusterVolumeSpecAccessModeSecretsList;
+  /** Requirements for the accessible topology of the volume. These fields are optional. For an in-depth description of what these fields mean, see the CSI specification. */
+  AccessibilityRequirements?: ClusterVolumeSpecAccessModeAccessibilityRequirements;
+  /** The desired capacity that the volume should be created with. If empty, the plugin will decide the capacity. */
+  CapacityRange?: ClusterVolumeSpecAccessModeCapacityRange;
+  /** The availability of the volume for use in tasks. - `active` The volume is fully available for scheduling on the cluster - `pause` No new workloads should use the volume, but existing workloads are not stopped. - `drain` All workloads using this volume should be stopped and rescheduled, and no new ones should be started. */
+  Availability?: ClusterVolumeSpecAccessModeAvailability | (string & {});
+}
+export const ClusterVolumeSpecAccessMode = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Scope: S.optional(ClusterVolumeSpecAccessModeScope),
+    Sharing: S.optional(ClusterVolumeSpecAccessModeSharing),
+    MountVolume: S.optional(S.Unknown),
+    Secrets: S.optional(ClusterVolumeSpecAccessModeSecretsList),
+    AccessibilityRequirements: S.optional(
+      ClusterVolumeSpecAccessModeAccessibilityRequirements,
+    ),
+    CapacityRange: S.optional(ClusterVolumeSpecAccessModeCapacityRange),
+    Availability: S.optional(ClusterVolumeSpecAccessModeAvailability),
+  }),
+).annotate({
+  identifier: "ClusterVolumeSpecAccessMode",
+}) as any as S.Schema<ClusterVolumeSpecAccessMode>;
+
+/** Cluster-specific options used to create the volume. */
+export interface ClusterVolumeSpec {
+  /** Group defines the volume group of this volume. Volumes belonging to the same group can be referred to by group name when creating Services. Referring to a volume by group instructs Swarm to treat volumes in that group interchangeably for the purpose of scheduling. Volumes with an empty string for a group technically all belong to the same, emptystring group. */
+  Group?: string;
+  /** Defines how the volume is used by tasks. */
+  AccessMode?: ClusterVolumeSpecAccessMode;
+}
+export const ClusterVolumeSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Group: S.optional(S.String),
+    AccessMode: S.optional(ClusterVolumeSpecAccessMode),
+  }),
+).annotate({
+  identifier: "ClusterVolumeSpec",
+}) as any as S.Schema<ClusterVolumeSpec>;
+
+export interface CreateVolumeRequest {
+  /** The new volume's name. If not specified, Docker generates a name. */
+  Name?: string;
+  /** Name of the volume driver to use. */
+  Driver?: string;
+  /** A mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
+  DriverOpts?: CreateVolumeRequestDriverOptsMap;
+  /** User-defined key/value metadata. */
+  Labels?: CreateVolumeRequestLabelsMap;
+  ClusterVolumeSpec?: ClusterVolumeSpec;
+}
+export const CreateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Driver: S.optional(S.String),
+    DriverOpts: S.optional(CreateVolumeRequestDriverOptsMap),
+    Labels: S.optional(CreateVolumeRequestLabelsMap),
+    ClusterVolumeSpec: S.optional(ClusterVolumeSpec),
+  }).pipe(T.Http({ method: "POST", uri: "/volumes/create", code: 200 })),
+).annotate({
+  identifier: "CreateVolumeRequest",
+}) as any as S.Schema<CreateVolumeRequest>;
+
+/** Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: `{"key":"value","key2":"value2"}`. The `Status` field is optional, and is omitted if the volume driver does not support this feature. */
+export type VolumeStatusMap = { [key: string]: unknown | undefined };
+export const VolumeStatusMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<VolumeStatusMap>;
+
+/** User-defined key/value metadata. */
+export type VolumeLabelsMap = { [key: string]: string | undefined };
+export const VolumeLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VolumeLabelsMap>;
+
+/** The level at which the volume exists. Either `global` for cluster-wide, or `local` for machine level. */
+export type VolumeScope = "local" | "global";
+export const VolumeScope = /*@__PURE__*/ S.String;
+
+/** A map of strings to strings returned from the storage plugin when the volume is created. */
+export type ClusterVolumeInfoVolumeContextMap = {
+  [key: string]: string | undefined;
+};
+export const ClusterVolumeInfoVolumeContextMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterVolumeInfoVolumeContextMap>;
+
+/** The topology this volume is actually accessible from. */
+export type ClusterVolumeInfoAccessibleTopologyList = Array<Topology>;
+export const ClusterVolumeInfoAccessibleTopologyList = /*@__PURE__*/ S.Array(
+  Topology,
+) as any as S.Schema<ClusterVolumeInfoAccessibleTopologyList>;
+
+/** Information about the global status of the volume. */
+export interface ClusterVolumeInfo {
+  /** The capacity of the volume in bytes. A value of 0 indicates that the capacity is unknown. */
+  CapacityBytes?: number;
+  /** A map of strings to strings returned from the storage plugin when the volume is created. */
+  VolumeContext?: ClusterVolumeInfoVolumeContextMap;
+  /** The ID of the volume as returned by the CSI storage plugin. This is distinct from the volume's ID as provided by Docker. This ID is never used by the user when communicating with Docker to refer to this volume. If the ID is blank, then the Volume has not been successfully created in the plugin yet. */
+  VolumeID?: string;
+  /** The topology this volume is actually accessible from. */
+  AccessibleTopology?: ClusterVolumeInfoAccessibleTopologyList;
+}
+export const ClusterVolumeInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    CapacityBytes: S.optional(S.Number),
+    VolumeContext: S.optional(ClusterVolumeInfoVolumeContextMap),
+    VolumeID: S.optional(S.String),
+    AccessibleTopology: S.optional(ClusterVolumeInfoAccessibleTopologyList),
+  }),
+).annotate({
+  identifier: "ClusterVolumeInfo",
+}) as any as S.Schema<ClusterVolumeInfo>;
+
+/** The published state of the volume. * `pending-publish` The volume should be published to this node, but the call to the controller plugin to do so has not yet been successfully completed. * `published` The volume is published successfully to the node. * `pending-node-unpublish` The volume should be unpublished from the node, and the manager is awaiting confirmation from the worker that it has done so. * `pending-controller-unpublish` The volume is successfully unpublished from the node, but has not yet been successfully unpublished on the controller. */
+export type ClusterVolumePublishStatusItemState =
+  | "pending-publish"
+  | "published"
+  | "pending-node-unpublish"
+  | "pending-controller-unpublish";
+export const ClusterVolumePublishStatusItemState = /*@__PURE__*/ S.String;
+
+/** A map of strings to strings returned by the CSI controller plugin when a volume is published. */
+export type ClusterVolumePublishStatusItemPublishContextMap = {
+  [key: string]: string | undefined;
+};
+export const ClusterVolumePublishStatusItemPublishContextMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ClusterVolumePublishStatusItemPublishContextMap>;
+
+export interface ClusterVolumePublishStatusItem {
+  /** The ID of the Swarm node the volume is published on. */
+  NodeID?: string;
+  /** The published state of the volume. * `pending-publish` The volume should be published to this node, but the call to the controller plugin to do so has not yet been successfully completed. * `published` The volume is published successfully to the node. * `pending-node-unpublish` The volume should be unpublished from the node, and the manager is awaiting confirmation from the worker that it has done so. * `pending-controller-unpublish` The volume is successfully unpublished from the node, but has not yet been successfully unpublished on the controller. */
+  State?: ClusterVolumePublishStatusItemState;
+  /** A map of strings to strings returned by the CSI controller plugin when a volume is published. */
+  PublishContext?: ClusterVolumePublishStatusItemPublishContextMap;
+}
+export const ClusterVolumePublishStatusItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    NodeID: S.optional(S.String),
+    State: S.optional(ClusterVolumePublishStatusItemState),
+    PublishContext: S.optional(ClusterVolumePublishStatusItemPublishContextMap),
+  }),
+).annotate({
+  identifier: "ClusterVolumePublishStatusItem",
+}) as any as S.Schema<ClusterVolumePublishStatusItem>;
+
+/** The status of the volume as it pertains to its publishing and use on specific nodes */
+export type ClusterVolumePublishStatusList =
+  Array<ClusterVolumePublishStatusItem>;
+export const ClusterVolumePublishStatusList = /*@__PURE__*/ S.Array(
+  ClusterVolumePublishStatusItem,
+) as any as S.Schema<ClusterVolumePublishStatusList>;
+
+/** Options and information specific to, and only present on, Swarm CSI cluster volumes. */
+export interface ClusterVolume {
+  /** The Swarm ID of this volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes. This ID can be used to refer to the Volume instead of the name. */
+  ID?: string;
+  Version?: ObjectVersion;
+  CreatedAt?: string;
+  UpdatedAt?: string;
+  Spec?: ClusterVolumeSpec;
+  /** Information about the global status of the volume. */
+  Info?: ClusterVolumeInfo;
+  /** The status of the volume as it pertains to its publishing and use on specific nodes */
+  PublishStatus?: ClusterVolumePublishStatusList;
+}
+export const ClusterVolume = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ID: S.optional(S.String),
+    Version: S.optional(ObjectVersion),
+    CreatedAt: S.optional(S.String),
+    UpdatedAt: S.optional(S.String),
+    Spec: S.optional(ClusterVolumeSpec),
+    Info: S.optional(ClusterVolumeInfo),
+    PublishStatus: S.optional(ClusterVolumePublishStatusList),
+  }),
+).annotate({ identifier: "ClusterVolume" }) as any as S.Schema<ClusterVolume>;
+
+/** The driver specific options used when creating the volume. */
+export type VolumeOptionsMap = { [key: string]: string | undefined };
+export const VolumeOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VolumeOptionsMap>;
+
+/** Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints. */
+export interface VolumeUsageData {
+  /** Amount of disk space used by the volume (in bytes). This information is only available for volumes created with the `"local"` volume driver. For volumes created with other volume drivers, this field is set to `-1` ("not available") */
+  Size: number;
+  /** The number of containers referencing this volume. This field is set to `-1` if the reference-count is not available. */
+  RefCount: number;
+}
+export const VolumeUsageData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Size: S.Number,
+    RefCount: S.Number,
+  }),
+).annotate({
+  identifier: "VolumeUsageData",
+}) as any as S.Schema<VolumeUsageData>;
+
+export interface Volume {
+  /** Name of the volume. */
+  Name: string;
+  /** Name of the volume driver used by the volume. */
+  Driver: string;
+  /** Mount path of the volume on the host. */
+  Mountpoint: string;
+  /** Date/Time the volume was created. */
+  CreatedAt?: string;
+  /** Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: `{"key":"value","key2":"value2"}`. The `Status` field is optional, and is omitted if the volume driver does not support this feature. */
+  Status?: VolumeStatusMap;
+  /** User-defined key/value metadata. */
+  Labels: VolumeLabelsMap;
+  /** The level at which the volume exists. Either `global` for cluster-wide, or `local` for machine level. */
+  Scope: VolumeScope;
+  ClusterVolume?: ClusterVolume;
+  /** The driver specific options used when creating the volume. */
+  Options: VolumeOptionsMap;
+  /** Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints. */
+  UsageData?: VolumeUsageData | null;
+}
+export const Volume = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Driver: S.String,
+    Mountpoint: S.String,
+    CreatedAt: S.optional(S.String),
+    Status: S.optional(VolumeStatusMap),
+    Labels: VolumeLabelsMap,
+    Scope: VolumeScope,
+    ClusterVolume: S.optional(ClusterVolume),
+    Options: VolumeOptionsMap,
+    UsageData: S.optional(S.NullOr(VolumeUsageData)),
+  }),
+).annotate({ identifier: "Volume" }) as any as S.Schema<Volume>;
+
+export interface DeleteConfigRequest {
+  /** ID of the config */
+  id: string;
+}
+export const DeleteConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/configs/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteConfigRequest",
+}) as any as S.Schema<DeleteConfigRequest>;
+
+export interface DeleteConfigResponse {}
+export const DeleteConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteConfigResponse",
+}) as any as S.Schema<DeleteConfigResponse>;
+
+export interface DeleteContainerRequest {
   /** ID or name of the container */
   id: string;
-  /** Wait until a container state reaches the given condition. Defaults to `not-running` if omitted or empty. */
-  condition?: ContainerWaitRequestCondition | (string & {});
+  /** Remove anonymous volumes associated with the container. */
+  v?: boolean;
+  /** If the container is running, kill it before removing it. */
+  force?: boolean;
+  /** Remove the specified link associated with the container. */
+  link?: boolean;
 }
-export const ContainerWaitRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-    condition: S.optional(ContainerWaitRequestCondition.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/wait", code: 200 })),
+    v: S.optional(S.Boolean.pipe(T.Query())),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+    link: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/containers/{id}", code: 200 })),
 ).annotate({
-  identifier: "ContainerWaitRequest",
-}) as any as S.Schema<ContainerWaitRequest>;
+  identifier: "DeleteContainerRequest",
+}) as any as S.Schema<DeleteContainerRequest>;
 
-/** container waiting error, if any */
-export interface ContainerWaitExitError {
-  /** Details of an error */
-  Message?: string;
+export interface DeleteContainerResponse {}
+export const DeleteContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteContainerResponse",
+}) as any as S.Schema<DeleteContainerResponse>;
+
+export type DeleteImageRequestPlatformsList = Array<string>;
+export const DeleteImageRequestPlatformsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeleteImageRequestPlatformsList>;
+
+export interface DeleteImageRequest {
+  /** Image name or ID */
+  name: string;
+  /** Remove the image even if it is being used by stopped containers or has other tags */
+  force?: boolean;
+  /** Do not delete untagged parent images */
+  noprune?: boolean;
+  /** Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. */
+  platforms?: DeleteImageRequestPlatformsList;
 }
-export const ContainerWaitExitError = /*@__PURE__*/ S.suspend(() =>
+export const DeleteImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Message: S.optional(S.String),
+    name: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+    noprune: S.optional(S.Boolean.pipe(T.Query())),
+    platforms: S.optional(DeleteImageRequestPlatformsList.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/images/{name}", code: 200 })),
+).annotate({
+  identifier: "DeleteImageRequest",
+}) as any as S.Schema<DeleteImageRequest>;
+
+export interface ImageDeleteResponseItem {
+  /** The image ID of an image that was untagged */
+  Untagged?: string;
+  /** The image ID of an image that was deleted */
+  Deleted?: string;
+}
+export const ImageDeleteResponseItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Untagged: S.optional(S.String),
+    Deleted: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ContainerWaitExitError",
-}) as any as S.Schema<ContainerWaitExitError>;
+  identifier: "ImageDeleteResponseItem",
+}) as any as S.Schema<ImageDeleteResponseItem>;
 
-/** OK response to ContainerWait operation */
-export interface ContainerWaitResponse {
-  /** Exit code of the container */
-  StatusCode: number;
-  Error?: ContainerWaitExitError;
+export type DeleteImageResponseBodyList = Array<ImageDeleteResponseItem>;
+export const DeleteImageResponseBodyList = /*@__PURE__*/ S.Array(
+  ImageDeleteResponseItem,
+) as any as S.Schema<DeleteImageResponseBodyList>;
+
+export type DeleteImageResponse = DeleteImageResponseBodyList;
+export const DeleteImageResponse = /*@__PURE__*/ S.suspend(() =>
+  DeleteImageResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteImageResponse",
+}) as any as S.Schema<DeleteImageResponse>;
+
+export interface DeleteNetworkRequest {
+  /** Network ID or name */
+  id: string;
 }
-export const ContainerWaitResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    StatusCode: S.Number,
-    Error: S.optional(ContainerWaitExitError),
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/networks/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteNetworkRequest",
+}) as any as S.Schema<DeleteNetworkRequest>;
+
+export interface DeleteNetworkResponse {}
+export const DeleteNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNetworkResponse",
+}) as any as S.Schema<DeleteNetworkResponse>;
+
+export interface DeleteNodeRequest {
+  /** The ID or name of the node */
+  id: string;
+  /** Force remove a node from the swarm */
+  force?: boolean;
+}
+export const DeleteNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/nodes/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteNodeRequest",
+}) as any as S.Schema<DeleteNodeRequest>;
+
+export interface DeleteNodeResponse {}
+export const DeleteNodeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNodeResponse",
+}) as any as S.Schema<DeleteNodeResponse>;
+
+export interface DeletePluginRequest {
+  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
+  name: string;
+  /** Disable the plugin before removing. This may result in issues if the plugin is in use by a container. */
+  force?: boolean;
+}
+export const DeletePluginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/plugins/{name}", code: 200 })),
+).annotate({
+  identifier: "DeletePluginRequest",
+}) as any as S.Schema<DeletePluginRequest>;
+
+export type PluginMountSettableList = Array<string>;
+export const PluginMountSettableList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginMountSettableList>;
+
+export type PluginMountOptionsList = Array<string>;
+export const PluginMountOptionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginMountOptionsList>;
+
+export interface PluginMount {
+  Name: string;
+  Description: string;
+  Settable: PluginMountSettableList;
+  Source: string;
+  Destination: string;
+  Type: string;
+  Options: PluginMountOptionsList;
+}
+export const PluginMount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Description: S.String,
+    Settable: PluginMountSettableList,
+    Source: S.String,
+    Destination: S.String,
+    Type: S.String,
+    Options: PluginMountOptionsList,
+  }),
+).annotate({ identifier: "PluginMount" }) as any as S.Schema<PluginMount>;
+
+export type PluginSettingsMountsList = Array<PluginMount>;
+export const PluginSettingsMountsList = /*@__PURE__*/ S.Array(
+  PluginMount,
+) as any as S.Schema<PluginSettingsMountsList>;
+
+export type PluginSettingsEnvList = Array<string>;
+export const PluginSettingsEnvList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginSettingsEnvList>;
+
+export type PluginSettingsArgsList = Array<string>;
+export const PluginSettingsArgsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginSettingsArgsList>;
+
+export type PluginDeviceSettableList = Array<string>;
+export const PluginDeviceSettableList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginDeviceSettableList>;
+
+export interface PluginDevice {
+  Name: string;
+  Description: string;
+  Settable: PluginDeviceSettableList;
+  Path: string;
+}
+export const PluginDevice = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Description: S.String,
+    Settable: PluginDeviceSettableList,
+    Path: S.String,
+  }),
+).annotate({ identifier: "PluginDevice" }) as any as S.Schema<PluginDevice>;
+
+export type PluginSettingsDevicesList = Array<PluginDevice>;
+export const PluginSettingsDevicesList = /*@__PURE__*/ S.Array(
+  PluginDevice,
+) as any as S.Schema<PluginSettingsDevicesList>;
+
+/** user-configurable settings for the plugin. */
+export interface PluginSettings {
+  Mounts: PluginSettingsMountsList;
+  Env: PluginSettingsEnvList;
+  Args: PluginSettingsArgsList;
+  Devices: PluginSettingsDevicesList;
+}
+export const PluginSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Mounts: PluginSettingsMountsList,
+    Env: PluginSettingsEnvList,
+    Args: PluginSettingsArgsList,
+    Devices: PluginSettingsDevicesList,
+  }),
+).annotate({ identifier: "PluginSettings" }) as any as S.Schema<PluginSettings>;
+
+export type PluginConfigInterfaceTypesList = Array<string>;
+export const PluginConfigInterfaceTypesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginConfigInterfaceTypesList>;
+
+/** Protocol to use for clients connecting to the plugin. */
+export type PluginConfigInterfaceProtocolScheme = "" | "moby.plugins.http/v1";
+export const PluginConfigInterfaceProtocolScheme = /*@__PURE__*/ S.String;
+
+/** The interface between Docker and the plugin */
+export interface PluginConfigInterface {
+  Types: PluginConfigInterfaceTypesList;
+  Socket: string;
+  /** Protocol to use for clients connecting to the plugin. */
+  ProtocolScheme?: PluginConfigInterfaceProtocolScheme;
+}
+export const PluginConfigInterface = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Types: PluginConfigInterfaceTypesList,
+    Socket: S.String,
+    ProtocolScheme: S.optional(PluginConfigInterfaceProtocolScheme),
   }),
 ).annotate({
-  identifier: "ContainerWaitResponse",
-}) as any as S.Schema<ContainerWaitResponse>;
+  identifier: "PluginConfigInterface",
+}) as any as S.Schema<PluginConfigInterface>;
+
+export type PluginConfigEntrypointList = Array<string>;
+export const PluginConfigEntrypointList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginConfigEntrypointList>;
+
+export interface PluginConfigUser {
+  UID?: number;
+  GID?: number;
+}
+export const PluginConfigUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    UID: S.optional(S.Number),
+    GID: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "PluginConfigUser",
+}) as any as S.Schema<PluginConfigUser>;
+
+export interface PluginConfigNetwork {
+  Type: string;
+}
+export const PluginConfigNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Type: S.String,
+  }),
+).annotate({
+  identifier: "PluginConfigNetwork",
+}) as any as S.Schema<PluginConfigNetwork>;
+
+export type PluginConfigLinuxCapabilitiesList = Array<string>;
+export const PluginConfigLinuxCapabilitiesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginConfigLinuxCapabilitiesList>;
+
+export type PluginConfigLinuxDevicesList = Array<PluginDevice>;
+export const PluginConfigLinuxDevicesList = /*@__PURE__*/ S.Array(
+  PluginDevice,
+) as any as S.Schema<PluginConfigLinuxDevicesList>;
+
+export interface PluginConfigLinux {
+  Capabilities: PluginConfigLinuxCapabilitiesList;
+  AllowAllDevices: boolean;
+  Devices: PluginConfigLinuxDevicesList;
+}
+export const PluginConfigLinux = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Capabilities: PluginConfigLinuxCapabilitiesList,
+    AllowAllDevices: S.Boolean,
+    Devices: PluginConfigLinuxDevicesList,
+  }),
+).annotate({
+  identifier: "PluginConfigLinux",
+}) as any as S.Schema<PluginConfigLinux>;
+
+export type PluginConfigMountsList = Array<PluginMount>;
+export const PluginConfigMountsList = /*@__PURE__*/ S.Array(
+  PluginMount,
+) as any as S.Schema<PluginConfigMountsList>;
+
+export type PluginEnvSettableList = Array<string>;
+export const PluginEnvSettableList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginEnvSettableList>;
+
+export interface PluginEnv {
+  Name: string;
+  Description: string;
+  Settable: PluginEnvSettableList;
+  Value: string;
+}
+export const PluginEnv = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Description: S.String,
+    Settable: PluginEnvSettableList,
+    Value: S.String,
+  }),
+).annotate({ identifier: "PluginEnv" }) as any as S.Schema<PluginEnv>;
+
+export type PluginConfigEnvList = Array<PluginEnv>;
+export const PluginConfigEnvList = /*@__PURE__*/ S.Array(
+  PluginEnv,
+) as any as S.Schema<PluginConfigEnvList>;
+
+export type PluginConfigArgsSettableList = Array<string>;
+export const PluginConfigArgsSettableList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginConfigArgsSettableList>;
+
+export type PluginConfigArgsValueList = Array<string>;
+export const PluginConfigArgsValueList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginConfigArgsValueList>;
+
+export interface PluginConfigArgs {
+  Name: string;
+  Description: string;
+  Settable: PluginConfigArgsSettableList;
+  Value: PluginConfigArgsValueList;
+}
+export const PluginConfigArgs = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.String,
+    Description: S.String,
+    Settable: PluginConfigArgsSettableList,
+    Value: PluginConfigArgsValueList,
+  }),
+).annotate({
+  identifier: "PluginConfigArgs",
+}) as any as S.Schema<PluginConfigArgs>;
+
+export type PluginConfigRootfsDiffIdsList = Array<string>;
+export const PluginConfigRootfsDiffIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PluginConfigRootfsDiffIdsList>;
+
+export interface PluginConfigRootfs {
+  type?: string;
+  diff_ids?: PluginConfigRootfsDiffIdsList;
+}
+export const PluginConfigRootfs = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    diff_ids: S.optional(PluginConfigRootfsDiffIdsList),
+  }),
+).annotate({
+  identifier: "PluginConfigRootfs",
+}) as any as S.Schema<PluginConfigRootfs>;
+
+/** The config of a plugin. */
+export interface PluginConfig {
+  Description: string;
+  Documentation: string;
+  /** The interface between Docker and the plugin */
+  Interface: PluginConfigInterface;
+  Entrypoint: PluginConfigEntrypointList;
+  WorkDir: string;
+  User?: PluginConfigUser;
+  Network: PluginConfigNetwork;
+  Linux: PluginConfigLinux;
+  PropagatedMount: string;
+  IpcHost: boolean;
+  PidHost: boolean;
+  Mounts: PluginConfigMountsList;
+  Env: PluginConfigEnvList;
+  Args: PluginConfigArgs;
+  rootfs?: PluginConfigRootfs;
+}
+export const PluginConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Description: S.String,
+    Documentation: S.String,
+    Interface: PluginConfigInterface,
+    Entrypoint: PluginConfigEntrypointList,
+    WorkDir: S.String,
+    User: S.optional(PluginConfigUser),
+    Network: PluginConfigNetwork,
+    Linux: PluginConfigLinux,
+    PropagatedMount: S.String,
+    IpcHost: S.Boolean,
+    PidHost: S.Boolean,
+    Mounts: PluginConfigMountsList,
+    Env: PluginConfigEnvList,
+    Args: PluginConfigArgs,
+    rootfs: S.optional(PluginConfigRootfs),
+  }),
+).annotate({ identifier: "PluginConfig" }) as any as S.Schema<PluginConfig>;
+
+/** A plugin for the Engine API */
+export interface Plugin {
+  Id?: string;
+  Name: string;
+  /** True if the plugin is running. False if the plugin is not running, only installed. */
+  Enabled: boolean;
+  /** user-configurable settings for the plugin. */
+  Settings: PluginSettings;
+  /** plugin remote reference used to push/pull the plugin */
+  PluginReference?: string;
+  /** The config of a plugin. */
+  Config: PluginConfig;
+}
+export const Plugin = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Id: S.optional(S.String),
+    Name: S.String,
+    Enabled: S.Boolean,
+    Settings: PluginSettings,
+    PluginReference: S.optional(S.String),
+    Config: PluginConfig,
+  }),
+).annotate({ identifier: "Plugin" }) as any as S.Schema<Plugin>;
+
+export interface DeleteSecretRequest {
+  /** ID of the secret */
+  id: string;
+}
+export const DeleteSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/secrets/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteSecretRequest",
+}) as any as S.Schema<DeleteSecretRequest>;
+
+export interface DeleteSecretResponse {}
+export const DeleteSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSecretResponse",
+}) as any as S.Schema<DeleteSecretResponse>;
+
+export interface DeleteServiceRequest {
+  /** ID or name of service. */
+  id: string;
+}
+export const DeleteServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/services/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteServiceRequest",
+}) as any as S.Schema<DeleteServiceRequest>;
+
+export interface DeleteServiceResponse {}
+export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteServiceResponse",
+}) as any as S.Schema<DeleteServiceResponse>;
+
+export interface DeleteVolumeRequest {
+  /** Volume name or ID */
+  name: string;
+  /** Force the removal of the volume */
+  force?: boolean;
+}
+export const DeleteVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "DELETE", uri: "/volumes/{name}", code: 200 })),
+).annotate({
+  identifier: "DeleteVolumeRequest",
+}) as any as S.Schema<DeleteVolumeRequest>;
+
+export interface DeleteVolumeResponse {}
+export const DeleteVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVolumeResponse",
+}) as any as S.Schema<DeleteVolumeResponse>;
+
+export interface DisablePluginRequest {
+  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
+  name: string;
+  /** Force disable a plugin even if still in use. */
+  force?: boolean;
+}
+export const DisablePluginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/plugins/{name}/disable", code: 200 }),
+  ),
+).annotate({
+  identifier: "DisablePluginRequest",
+}) as any as S.Schema<DisablePluginRequest>;
+
+export interface DisablePluginResponse {}
+export const DisablePluginResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DisablePluginResponse",
+}) as any as S.Schema<DisablePluginResponse>;
+
+export interface DisconnectNetworkRequest {
+  /** Network ID or name */
+  id: string;
+  /** The ID or name of the container to disconnect from the network. */
+  Container: string;
+  /** Force the container to disconnect from the network. */
+  Force?: boolean;
+}
+export const DisconnectNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    Container: S.String,
+    Force: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/networks/{id}/disconnect", code: 200 }),
+  ),
+).annotate({
+  identifier: "DisconnectNetworkRequest",
+}) as any as S.Schema<DisconnectNetworkRequest>;
+
+export interface DisconnectNetworkResponse {}
+export const DisconnectNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DisconnectNetworkResponse",
+}) as any as S.Schema<DisconnectNetworkResponse>;
 
 export interface DistributionInspectRequest {
   /** Image name or id */
@@ -3391,6 +4940,91 @@ export const DistributionInspect = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DistributionInspect",
 }) as any as S.Schema<DistributionInspect>;
+
+export interface EnablePluginRequest {
+  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
+  name: string;
+  /** Set the HTTP client timeout (in seconds) */
+  timeout?: number;
+}
+export const EnablePluginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    timeout: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/plugins/{name}/enable", code: 200 })),
+).annotate({
+  identifier: "EnablePluginRequest",
+}) as any as S.Schema<EnablePluginRequest>;
+
+export interface EnablePluginResponse {}
+export const EnablePluginResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "EnablePluginResponse",
+}) as any as S.Schema<EnablePluginResponse>;
+
+/** Initial console size, as an `[height, width]` array. */
+export type ExecContainerRequestConsoleSizeList = Array<number>;
+export const ExecContainerRequestConsoleSizeList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ExecContainerRequestConsoleSizeList>;
+
+/** A list of environment variables in the form `["VAR=value", ...]`. */
+export type ExecContainerRequestEnvList = Array<string>;
+export const ExecContainerRequestEnvList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExecContainerRequestEnvList>;
+
+/** Command to run, as a string or array of strings. */
+export type ExecContainerRequestCmdList = Array<string>;
+export const ExecContainerRequestCmdList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExecContainerRequestCmdList>;
+
+export interface ExecContainerRequest {
+  /** ID or name of container */
+  id: string;
+  /** Attach to `stdin` of the exec command. */
+  AttachStdin?: boolean;
+  /** Attach to `stdout` of the exec command. */
+  AttachStdout?: boolean;
+  /** Attach to `stderr` of the exec command. */
+  AttachStderr?: boolean;
+  /** Initial console size, as an `[height, width]` array. */
+  ConsoleSize?: ExecContainerRequestConsoleSizeList | null;
+  /** Override the key sequence for detaching a container. Format is a single character `[a-Z]` or `ctrl-<value>` where `<value>` is one of: `a-z`, `@`, `^`, `[`, `,` or `_`. */
+  DetachKeys?: string;
+  /** Allocate a pseudo-TTY. */
+  Tty?: boolean;
+  /** A list of environment variables in the form `["VAR=value", ...]`. */
+  Env?: ExecContainerRequestEnvList;
+  /** Command to run, as a string or array of strings. */
+  Cmd?: ExecContainerRequestCmdList;
+  /** Runs the exec process with extended privileges. */
+  Privileged?: boolean;
+  /** The user, and optionally, group to run the exec process inside the container. Format is one of: `user`, `user:group`, `uid`, or `uid:gid`. */
+  User?: string;
+  /** The working directory for the exec process inside the container. */
+  WorkingDir?: string;
+}
+export const ExecContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    AttachStdin: S.optional(S.Boolean),
+    AttachStdout: S.optional(S.Boolean),
+    AttachStderr: S.optional(S.Boolean),
+    ConsoleSize: S.optional(S.NullOr(ExecContainerRequestConsoleSizeList)),
+    DetachKeys: S.optional(S.String),
+    Tty: S.optional(S.Boolean),
+    Env: S.optional(ExecContainerRequestEnvList),
+    Cmd: S.optional(ExecContainerRequestCmdList),
+    Privileged: S.optional(S.Boolean),
+    User: S.optional(S.String),
+    WorkingDir: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/exec", code: 200 })),
+).annotate({
+  identifier: "ExecContainerRequest",
+}) as any as S.Schema<ExecContainerRequest>;
 
 export interface ExecInspectRequest {
   /** Exec instance ID */
@@ -3517,6 +5151,52 @@ export const ExecStartResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExecStartResponse",
 }) as any as S.Schema<ExecStartResponse>;
 
+export interface ExportContainerRequest {
+  /** ID or name of the container */
+  id: string;
+}
+export const ExportContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/containers/{id}/export", code: 200 })),
+).annotate({
+  identifier: "ExportContainerRequest",
+}) as any as S.Schema<ExportContainerRequest>;
+
+export interface ExportContainerResponse {}
+export const ExportContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ExportContainerResponse",
+}) as any as S.Schema<ExportContainerResponse>;
+
+export type GetImageRequestPlatformList = Array<string>;
+export const GetImageRequestPlatformList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetImageRequestPlatformList>;
+
+export interface GetImageRequest {
+  /** Image name or ID */
+  name: string;
+  /** JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved. Example: `{"os": "linux", "architecture": "arm", "variant": "v5"}` */
+  platform?: GetImageRequestPlatformList;
+}
+export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    platform: S.optional(GetImageRequestPlatformList.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/images/{name}/get", code: 200 })),
+).annotate({
+  identifier: "GetImageRequest",
+}) as any as S.Schema<GetImageRequest>;
+
+export type GetImageResponse = string;
+export const GetImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetImageResponse",
+}) as any as S.Schema<GetImageResponse>;
+
 export interface GetPluginPrivilegesRequest {
   /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
   remote: string;
@@ -3528,27 +5208,6 @@ export const GetPluginPrivilegesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetPluginPrivilegesRequest",
 }) as any as S.Schema<GetPluginPrivilegesRequest>;
-
-export type PluginPrivilegeValueList = Array<string>;
-export const PluginPrivilegeValueList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginPrivilegeValueList>;
-
-/** Describes a permission the user has to accept upon installing the plugin. */
-export interface PluginPrivilege {
-  Name?: string;
-  Description?: string;
-  Value?: PluginPrivilegeValueList;
-}
-export const PluginPrivilege = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Description: S.optional(S.String),
-    Value: S.optional(PluginPrivilegeValueList),
-  }),
-).annotate({
-  identifier: "PluginPrivilege",
-}) as any as S.Schema<PluginPrivilege>;
 
 export type GetPluginPrivilegesResponseBodyList = Array<PluginPrivilege>;
 export const GetPluginPrivilegesResponseBodyList = /*@__PURE__*/ S.Array(
@@ -3730,289 +5389,6 @@ export const ImageBuildResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ImageBuildResponse",
 }) as any as S.Schema<ImageBuildResponse>;
-
-/** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
-export type ImageCommitRequestExposedPortsMap = {
-  [key: string]: unknown | undefined;
-};
-export const ImageCommitRequestExposedPortsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ImageCommitRequestExposedPortsMap>;
-
-/** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
-export type ImageCommitRequestEnvList = Array<string>;
-export const ImageCommitRequestEnvList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageCommitRequestEnvList>;
-
-/** Command to run specified as a string or an array of strings. */
-export type ImageCommitRequestCmdList = Array<string>;
-export const ImageCommitRequestCmdList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageCommitRequestCmdList>;
-
-/** An object mapping mount point paths inside the container to empty objects. */
-export type ImageCommitRequestVolumesMap = {
-  [key: string]: unknown | undefined;
-};
-export const ImageCommitRequestVolumesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ImageCommitRequestVolumesMap>;
-
-/** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
-export type ImageCommitRequestEntrypointList = Array<string>;
-export const ImageCommitRequestEntrypointList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageCommitRequestEntrypointList>;
-
-/** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
-export type ImageCommitRequestOnBuildList = Array<string>;
-export const ImageCommitRequestOnBuildList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageCommitRequestOnBuildList>;
-
-/** User-defined key/value metadata. */
-export type ImageCommitRequestLabelsMap = { [key: string]: string | undefined };
-export const ImageCommitRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ImageCommitRequestLabelsMap>;
-
-/** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
-export type ImageCommitRequestShellList = Array<string>;
-export const ImageCommitRequestShellList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageCommitRequestShellList>;
-
-export interface ImageCommitRequest {
-  /** The ID or name of the container to commit */
-  container?: string;
-  /** Repository name for the created image */
-  repo?: string;
-  /** Tag name for the create image */
-  tag?: string;
-  /** Commit message */
-  comment?: string;
-  /** Author of the image (e.g., `John Hannibal Smith <hannibal@a-team.com>`) */
-  author?: string;
-  /** Whether to pause the container before committing */
-  pause?: boolean;
-  /** `Dockerfile` instructions to apply while committing */
-  changes?: string;
-  /** The hostname to use for the container, as a valid RFC 1123 hostname. */
-  Hostname?: string;
-  /** The domain name to use for the container. */
-  Domainname?: string;
-  /** Commands run as this user inside the container. If omitted, commands run as the user specified in the image the container was started from. Can be either user-name or UID, and optional group-name or GID, separated by a colon (`<user-name|UID>[<:group-name|GID>]`). */
-  User?: string;
-  /** Whether to attach to `stdin`. */
-  AttachStdin?: boolean;
-  /** Whether to attach to `stdout`. */
-  AttachStdout?: boolean;
-  /** Whether to attach to `stderr`. */
-  AttachStderr?: boolean;
-  /** An object mapping ports to an empty object in the form: `{"<port>/<tcp|udp|sctp>": {}}` */
-  ExposedPorts?: ImageCommitRequestExposedPortsMap | null;
-  /** Attach standard streams to a TTY, including `stdin` if it is not closed. */
-  Tty?: boolean;
-  /** Open `stdin` */
-  OpenStdin?: boolean;
-  /** Close `stdin` after one attached client disconnects */
-  StdinOnce?: boolean;
-  /** A list of environment variables to set inside the container in the form `["VAR=value", ...]`. A variable without `=` is removed from the environment, rather than to have an empty value. */
-  Env?: ImageCommitRequestEnvList;
-  /** Command to run specified as a string or an array of strings. */
-  Cmd?: ImageCommitRequestCmdList;
-  Healthcheck?: HealthConfig;
-  /** Command is already escaped (Windows only) */
-  ArgsEscaped?: boolean | null;
-  /** The name (or reference) of the image to use when creating the container, or which was used when the container was created. */
-  Image?: string;
-  /** An object mapping mount point paths inside the container to empty objects. */
-  Volumes?: ImageCommitRequestVolumesMap;
-  /** The working directory for commands to run in. */
-  WorkingDir?: string;
-  /** The entry point for the container as a string or an array of strings. If the array consists of exactly one empty string (`[""]`) then the entry point is reset to system default (i.e., the entry point used by docker when there is no `ENTRYPOINT` instruction in the `Dockerfile`). */
-  Entrypoint?: ImageCommitRequestEntrypointList;
-  /** Disable networking for the container. */
-  NetworkDisabled?: boolean | null;
-  /** `ONBUILD` metadata that were defined in the image's `Dockerfile`. */
-  OnBuild?: ImageCommitRequestOnBuildList | null;
-  /** User-defined key/value metadata. */
-  Labels?: ImageCommitRequestLabelsMap;
-  /** Signal to stop a container as a string or unsigned integer. */
-  StopSignal?: string | null;
-  /** Timeout to stop a container in seconds. If omitted, the daemon-wide default (`default-stop-timeout`) is used. */
-  StopTimeout?: number | null;
-  /** Shell for when `RUN`, `CMD`, and `ENTRYPOINT` uses a shell. */
-  Shell?: ImageCommitRequestShellList | null;
-}
-export const ImageCommitRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    container: S.optional(S.String.pipe(T.Query())),
-    repo: S.optional(S.String.pipe(T.Query())),
-    tag: S.optional(S.String.pipe(T.Query())),
-    comment: S.optional(S.String.pipe(T.Query())),
-    author: S.optional(S.String.pipe(T.Query())),
-    pause: S.optional(S.Boolean.pipe(T.Query())),
-    changes: S.optional(S.String.pipe(T.Query())),
-    Hostname: S.optional(S.String),
-    Domainname: S.optional(S.String),
-    User: S.optional(S.String),
-    AttachStdin: S.optional(S.Boolean),
-    AttachStdout: S.optional(S.Boolean),
-    AttachStderr: S.optional(S.Boolean),
-    ExposedPorts: S.optional(S.NullOr(ImageCommitRequestExposedPortsMap)),
-    Tty: S.optional(S.Boolean),
-    OpenStdin: S.optional(S.Boolean),
-    StdinOnce: S.optional(S.Boolean),
-    Env: S.optional(ImageCommitRequestEnvList),
-    Cmd: S.optional(ImageCommitRequestCmdList),
-    Healthcheck: S.optional(HealthConfig),
-    ArgsEscaped: S.optional(S.NullOr(S.Boolean)),
-    Image: S.optional(S.String),
-    Volumes: S.optional(ImageCommitRequestVolumesMap),
-    WorkingDir: S.optional(S.String),
-    Entrypoint: S.optional(ImageCommitRequestEntrypointList),
-    NetworkDisabled: S.optional(S.NullOr(S.Boolean)),
-    OnBuild: S.optional(S.NullOr(ImageCommitRequestOnBuildList)),
-    Labels: S.optional(ImageCommitRequestLabelsMap),
-    StopSignal: S.optional(S.NullOr(S.String)),
-    StopTimeout: S.optional(S.NullOr(S.Number)),
-    Shell: S.optional(S.NullOr(ImageCommitRequestShellList)),
-  }).pipe(T.Http({ method: "POST", uri: "/commit", code: 200 })),
-).annotate({
-  identifier: "ImageCommitRequest",
-}) as any as S.Schema<ImageCommitRequest>;
-
-export type ImageCreateRequestChangesList = Array<string>;
-export const ImageCreateRequestChangesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageCreateRequestChangesList>;
-
-export interface ImageCreateRequest {
-  /** Name of the image to pull. If the name includes a tag or digest, specific behavior applies: - If only `fromImage` includes a tag, that tag is used. - If both `fromImage` and `tag` are provided, `tag` takes precedence. - If `fromImage` includes a digest, the image is pulled by digest, and `tag` is ignored. - If neither a tag nor digest is specified, all tags are pulled. */
-  fromImage?: string;
-  /** Source to import. The value may be a URL from which the image can be retrieved or `-` to read the image from the request body. This parameter may only be used when importing an image. */
-  fromSrc?: string;
-  /** Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. */
-  repo?: string;
-  /** Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. */
-  tag?: string;
-  /** Set commit message for imported image. */
-  message?: string;
-  /** Apply `Dockerfile` instructions to the image that is created, for example: `changes=ENV DEBUG=true`. Note that `ENV DEBUG=true` should be URI component encoded. Supported `Dockerfile` instructions: `CMD`|`ENTRYPOINT`|`ENV`|`EXPOSE`|`ONBUILD`|`USER`|`VOLUME`|`WORKDIR` */
-  changes?: ImageCreateRequestChangesList;
-  /** Platform in the format os[/arch[/variant]]. When used in combination with the `fromImage` option, the daemon checks if the given image is present in the local image cache with the given OS and Architecture, and otherwise attempts to pull the image. If the option is not set, the host's native OS and Architecture are used. If the given image does not exist in the local image cache, the daemon attempts to pull the image with the host's native OS and Architecture. If the given image does exists in the local image cache, but its OS or architecture does not match, a warning is produced. When used with the `fromSrc` option to import an image from an archive, this option sets the platform information for the imported image. If the option is not set, the host's native OS and Architecture are used for the imported image. */
-  platform?: string;
-  /** A base64url-encoded auth configuration. Refer to the [authentication section](#section/Authentication) for details. */
-  xRegistryAuth?: string;
-  body?: string;
-}
-export const ImageCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fromImage: S.optional(S.String.pipe(T.Query())),
-    fromSrc: S.optional(S.String.pipe(T.Query())),
-    repo: S.optional(S.String.pipe(T.Query())),
-    tag: S.optional(S.String.pipe(T.Query())),
-    message: S.optional(S.String.pipe(T.Query())),
-    changes: S.optional(ImageCreateRequestChangesList.pipe(T.Query())),
-    platform: S.optional(S.String.pipe(T.Query())),
-    xRegistryAuth: S.optional(S.String.pipe(T.Header("X-Registry-Auth"))),
-    body: S.optional(S.String.pipe(T.HttpBody())),
-  }).pipe(T.Http({ method: "POST", uri: "/images/create", code: 200 })),
-).annotate({
-  identifier: "ImageCreateRequest",
-}) as any as S.Schema<ImageCreateRequest>;
-
-export interface ImageCreateResponse {}
-export const ImageCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ImageCreateResponse",
-}) as any as S.Schema<ImageCreateResponse>;
-
-export type ImageDeleteRequestPlatformsList = Array<string>;
-export const ImageDeleteRequestPlatformsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageDeleteRequestPlatformsList>;
-
-export interface ImageDeleteRequest {
-  /** Image name or ID */
-  name: string;
-  /** Remove the image even if it is being used by stopped containers or has other tags */
-  force?: boolean;
-  /** Do not delete untagged parent images */
-  noprune?: boolean;
-  /** Select platform-specific content to delete. Multiple values are accepted. Each platform is a OCI platform encoded as a JSON string. */
-  platforms?: ImageDeleteRequestPlatformsList;
-}
-export const ImageDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-    noprune: S.optional(S.Boolean.pipe(T.Query())),
-    platforms: S.optional(ImageDeleteRequestPlatformsList.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/images/{name}", code: 200 })),
-).annotate({
-  identifier: "ImageDeleteRequest",
-}) as any as S.Schema<ImageDeleteRequest>;
-
-export interface ImageDeleteResponseItem {
-  /** The image ID of an image that was untagged */
-  Untagged?: string;
-  /** The image ID of an image that was deleted */
-  Deleted?: string;
-}
-export const ImageDeleteResponseItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Untagged: S.optional(S.String),
-    Deleted: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImageDeleteResponseItem",
-}) as any as S.Schema<ImageDeleteResponseItem>;
-
-export type ImageDeleteResponseBodyList = Array<ImageDeleteResponseItem>;
-export const ImageDeleteResponseBodyList = /*@__PURE__*/ S.Array(
-  ImageDeleteResponseItem,
-) as any as S.Schema<ImageDeleteResponseBodyList>;
-
-export type ImageDeleteResponse = ImageDeleteResponseBodyList;
-export const ImageDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  ImageDeleteResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ImageDeleteResponse",
-}) as any as S.Schema<ImageDeleteResponse>;
-
-export type ImageGetRequestPlatformList = Array<string>;
-export const ImageGetRequestPlatformList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageGetRequestPlatformList>;
-
-export interface ImageGetRequest {
-  /** Image name or ID */
-  name: string;
-  /** JSON encoded OCI platform describing a platform which will be used to select a platform-specific image to be saved if the image is multi-platform. If not provided, the full multi-platform image will be saved. Example: `{"os": "linux", "architecture": "arm", "variant": "v5"}` */
-  platform?: ImageGetRequestPlatformList;
-}
-export const ImageGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    platform: S.optional(ImageGetRequestPlatformList.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/images/{name}/get", code: 200 })),
-).annotate({
-  identifier: "ImageGetRequest",
-}) as any as S.Schema<ImageGetRequest>;
-
-export type ImageGetResponse = string;
-export const ImageGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ImageGetResponse",
-}) as any as S.Schema<ImageGetResponse>;
 
 export type ImageGetAllRequestNamesList = Array<string>;
 export const ImageGetAllRequestNamesList = /*@__PURE__*/ S.Array(
@@ -4619,110 +5995,6 @@ export const ImageInspect = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ImageInspect" }) as any as S.Schema<ImageInspect>;
 
-export interface ImageListRequest {
-  /** Show all images. Only images from a final layer (no children) are shown by default. */
-  all?: boolean;
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the images list. Available filters: - `before`=(`<image-name>[:<tag>]`, `<image id>` or `<image@digest>`) - `dangling=true` - `label=key` or `label="key=value"` of an image label - `reference`=(`<image-name>[:<tag>]`) - `since`=(`<image-name>[:<tag>]`, `<image id>` or `<image@digest>`) - `until=<timestamp>` */
-  filters?: string;
-  /** Compute and show shared size as a `SharedSize` field on each image. */
-  shared_size?: boolean;
-  /** Show digest information as a `RepoDigests` field on each image. */
-  digests?: boolean;
-  /** Include `Manifests` in the image summary. */
-  manifests?: boolean;
-  /** Include `Identity` in each manifest summary. Requires `manifests=1`. */
-  identity?: boolean;
-}
-export const ImageListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    all: S.optional(S.Boolean.pipe(T.Query())),
-    filters: S.optional(S.String.pipe(T.Query())),
-    shared_size: S.optional(S.Boolean.pipe(T.Query("shared-size"))),
-    digests: S.optional(S.Boolean.pipe(T.Query())),
-    manifests: S.optional(S.Boolean.pipe(T.Query())),
-    identity: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/images/json", code: 200 })),
-).annotate({
-  identifier: "ImageListRequest",
-}) as any as S.Schema<ImageListRequest>;
-
-/** List of image names/tags in the local image cache that reference this image. Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is "untagged", in which case it can still be referenced by its ID. */
-export type ImageSummaryRepoTagsList = Array<string>;
-export const ImageSummaryRepoTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageSummaryRepoTagsList>;
-
-/** List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image. These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated. */
-export type ImageSummaryRepoDigestsList = Array<string>;
-export const ImageSummaryRepoDigestsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ImageSummaryRepoDigestsList>;
-
-/** User-defined key/value metadata. */
-export type ImageSummaryLabelsMap = { [key: string]: string | undefined };
-export const ImageSummaryLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ImageSummaryLabelsMap>;
-
-/** Manifests is a list of manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations. WARNING: This is experimental and may change at any time without any backward compatibility. */
-export type ImageSummaryManifestsList = Array<ImageManifestSummary>;
-export const ImageSummaryManifestsList = /*@__PURE__*/ S.Array(
-  ImageManifestSummary,
-) as any as S.Schema<ImageSummaryManifestsList>;
-
-export interface ImageSummary {
-  /** ID is the content-addressable ID of an image. This identifier is a content-addressable digest calculated from the image's configuration (which includes the digests of layers used by the image). Note that this digest differs from the `RepoDigests` below, which holds digests of image manifests that reference the image. */
-  Id: string;
-  /** ID of the parent image. Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry. */
-  ParentId: string;
-  /** List of image names/tags in the local image cache that reference this image. Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is "untagged", in which case it can still be referenced by its ID. */
-  RepoTags: ImageSummaryRepoTagsList;
-  /** List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image. These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated. */
-  RepoDigests: ImageSummaryRepoDigestsList;
-  /** Date and time at which the image was created as a Unix timestamp (number of seconds since EPOCH). */
-  Created: number;
-  /** Total size of the image including all layers it is composed of. */
-  Size: number;
-  /** Total size of image layers that are shared between this image and other images. This size is not calculated by default. `-1` indicates that the value has not been set / calculated. */
-  SharedSize: number;
-  /** User-defined key/value metadata. */
-  Labels: ImageSummaryLabelsMap;
-  /** Number of containers using this image. Includes both stopped and running containers. `-1` indicates that the value has not been set / calculated. */
-  Containers: number;
-  /** Manifests is a list of manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations. WARNING: This is experimental and may change at any time without any backward compatibility. */
-  Manifests?: ImageSummaryManifestsList;
-  /** Descriptor is an OCI descriptor of the image target. In case of a multi-platform image, this descriptor points to the OCI index or a manifest list. This field is only present if the daemon provides a multi-platform image store. WARNING: This is experimental and may change at any time without any backward compatibility. */
-  Descriptor?: OCIDescriptor | null;
-}
-export const ImageSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Id: S.String,
-    ParentId: S.String,
-    RepoTags: ImageSummaryRepoTagsList,
-    RepoDigests: ImageSummaryRepoDigestsList,
-    Created: S.Number,
-    Size: S.Number,
-    SharedSize: S.Number,
-    Labels: ImageSummaryLabelsMap,
-    Containers: S.Number,
-    Manifests: S.optional(ImageSummaryManifestsList),
-    Descriptor: S.optional(S.NullOr(OCIDescriptor)),
-  }),
-).annotate({ identifier: "ImageSummary" }) as any as S.Schema<ImageSummary>;
-
-export type ImageListResponseBodyList = Array<ImageSummary>;
-export const ImageListResponseBodyList = /*@__PURE__*/ S.Array(
-  ImageSummary,
-) as any as S.Schema<ImageListResponseBodyList>;
-
-export type ImageListResponse = ImageListResponseBodyList;
-export const ImageListResponse = /*@__PURE__*/ S.suspend(() =>
-  ImageListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ImageListResponse",
-}) as any as S.Schema<ImageListResponse>;
-
 export type ImageLoadRequestPlatformList = Array<string>;
 export const ImageLoadRequestPlatformList = /*@__PURE__*/ S.Array(
   S.String,
@@ -4814,56 +6086,6 @@ export const ImagePushResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImagePushResponse",
 }) as any as S.Schema<ImagePushResponse>;
 
-export interface ImageSearchRequest {
-  /** Term to search */
-  term: string;
-  /** Maximum number of results to return */
-  limit?: number;
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the images list. Available filters: - `is-official=(true|false)` - `stars=<number>` Matches images that has at least 'number' stars. */
-  filters?: string;
-}
-export const ImageSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    term: S.String.pipe(T.Query()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/images/search", code: 200 })),
-).annotate({
-  identifier: "ImageSearchRequest",
-}) as any as S.Schema<ImageSearchRequest>;
-
-export interface ImageSearchResponseBodyItem {
-  description?: string;
-  is_official?: boolean;
-  /** Whether this repository has automated builds enabled. <p><br /></p> > **Deprecated**: This field is deprecated and will always be "false". */
-  is_automated?: boolean;
-  name?: string;
-  star_count?: number;
-}
-export const ImageSearchResponseBodyItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    is_official: S.optional(S.Boolean),
-    is_automated: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    star_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ImageSearchResponseBodyItem",
-}) as any as S.Schema<ImageSearchResponseBodyItem>;
-
-export type ImageSearchResponseBodyList = Array<ImageSearchResponseBodyItem>;
-export const ImageSearchResponseBodyList = /*@__PURE__*/ S.Array(
-  ImageSearchResponseBodyItem,
-) as any as S.Schema<ImageSearchResponseBodyList>;
-
-export type ImageSearchResponse = ImageSearchResponseBodyList;
-export const ImageSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  ImageSearchResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ImageSearchResponse",
-}) as any as S.Schema<ImageSearchResponse>;
-
 export interface ImageTagRequest {
   /** Image name or ID to tag. */
   name: string;
@@ -4889,222 +6111,1330 @@ export const ImageTagResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTagResponse",
 }) as any as S.Schema<ImageTagResponse>;
 
-export interface NetworkConnectRequest {
-  /** Network ID or name */
-  id: string;
-  /** The ID or name of the container to connect to the network. */
-  Container: string;
-  EndpointConfig?: EndpointSettings | null;
-}
-export const NetworkConnectRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    Container: S.String,
-    EndpointConfig: S.optional(S.NullOr(EndpointSettings)),
-  }).pipe(T.Http({ method: "POST", uri: "/networks/{id}/connect", code: 200 })),
-).annotate({
-  identifier: "NetworkConnectRequest",
-}) as any as S.Schema<NetworkConnectRequest>;
+/** Addresses of manager nodes already participating in the swarm. */
+export type JoinSwarmRequestRemoteAddrsList = Array<string>;
+export const JoinSwarmRequestRemoteAddrsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<JoinSwarmRequestRemoteAddrsList>;
 
-export interface NetworkConnectResponse {}
-export const NetworkConnectResponse = /*@__PURE__*/ S.suspend(() =>
+export interface JoinSwarmRequest {
+  /** Listen address used for inter-manager communication if the node gets promoted to manager, as well as determining the networking interface used for the VXLAN Tunnel Endpoint (VTEP). This is required for joining a swarm. If the port number is omitted, the default swarm listening port is used. */
+  ListenAddr: string;
+  /** Externally reachable address advertised to other nodes. This can either be an address/port combination in the form `192.168.1.1:4567`, or an interface followed by a port number, like `eth0:4567`. If the port number is omitted, the port number from the listen address is used. If `AdvertiseAddr` is not specified, it will be automatically detected when possible. */
+  AdvertiseAddr?: string;
+  /** Address or interface to use for data path traffic (format: `<ip|interface>`), for example, `192.168.1.1`, or an interface, like `eth0`. If `DataPathAddr` is unspecified, the same address as `AdvertiseAddr` is used. The `DataPathAddr` specifies the address that global scope network drivers will publish towards other nodes in order to reach the containers running on this node. Using this parameter it is possible to separate the container data traffic from the management traffic of the cluster. */
+  DataPathAddr?: string;
+  /** Addresses of manager nodes already participating in the swarm. */
+  RemoteAddrs: JoinSwarmRequestRemoteAddrsList;
+  /** Secret token for joining this swarm. */
+  JoinToken: string;
+}
+export const JoinSwarmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ListenAddr: S.String,
+    AdvertiseAddr: S.optional(S.String),
+    DataPathAddr: S.optional(S.String),
+    RemoteAddrs: JoinSwarmRequestRemoteAddrsList,
+    JoinToken: S.String,
+  }).pipe(T.Http({ method: "POST", uri: "/swarm/join", code: 200 })),
+).annotate({
+  identifier: "JoinSwarmRequest",
+}) as any as S.Schema<JoinSwarmRequest>;
+
+export interface JoinSwarmResponse {}
+export const JoinSwarmResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "NetworkConnectResponse",
-}) as any as S.Schema<NetworkConnectResponse>;
+  identifier: "JoinSwarmResponse",
+}) as any as S.Schema<JoinSwarmResponse>;
 
-/** The config-only network source to provide the configuration for this network. */
-export interface ConfigReference {
-  /** The name of the config-only network that provides the network's configuration. The specified network must be an existing config-only network. Only network names are allowed, not network IDs. */
-  Network?: string;
+export interface KillContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Signal to send to the container as an integer or string (e.g. `SIGINT`). */
+  signal?: string;
 }
-export const ConfigReference = /*@__PURE__*/ S.suspend(() =>
+export const KillContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Network: S.optional(S.String),
-  }),
+    id: S.String.pipe(T.Label()),
+    signal: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/kill", code: 200 })),
 ).annotate({
-  identifier: "ConfigReference",
-}) as any as S.Schema<ConfigReference>;
+  identifier: "KillContainerRequest",
+}) as any as S.Schema<KillContainerRequest>;
 
-export type IPAMConfigAuxiliaryAddressesMap = {
-  [key: string]: string | undefined;
-};
-export const IPAMConfigAuxiliaryAddressesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IPAMConfigAuxiliaryAddressesMap>;
+export interface KillContainerResponse {}
+export const KillContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "KillContainerResponse",
+}) as any as S.Schema<KillContainerResponse>;
 
-export interface IPAMConfig {
-  Subnet?: string;
-  IPRange?: string;
-  Gateway?: string;
-  AuxiliaryAddresses?: IPAMConfigAuxiliaryAddressesMap;
+export interface LeaveSwarmRequest {
+  /** Force leave swarm, even if this is the last manager or that it will break the cluster. */
+  force?: boolean;
 }
-export const IPAMConfig = /*@__PURE__*/ S.suspend(() =>
+export const LeaveSwarmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Subnet: S.optional(S.String),
-    IPRange: S.optional(S.String),
-    Gateway: S.optional(S.String),
-    AuxiliaryAddresses: S.optional(IPAMConfigAuxiliaryAddressesMap),
-  }),
-).annotate({ identifier: "IPAMConfig" }) as any as S.Schema<IPAMConfig>;
+    force: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/swarm/leave", code: 200 })),
+).annotate({
+  identifier: "LeaveSwarmRequest",
+}) as any as S.Schema<LeaveSwarmRequest>;
 
-/** List of IPAM configuration options, specified as a map: ``` {"Subnet": <CIDR>, "IPRange": <CIDR>, "Gateway": <IP address>, "AuxAddress": <device_name:IP address>} ``` */
-export type IPAMConfigList = Array<IPAMConfig>;
-export const IPAMConfigList = /*@__PURE__*/ S.Array(
-  IPAMConfig,
-) as any as S.Schema<IPAMConfigList>;
+export interface LeaveSwarmResponse {}
+export const LeaveSwarmResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "LeaveSwarmResponse",
+}) as any as S.Schema<LeaveSwarmResponse>;
 
-/** Driver-specific options, specified as a map. */
-export type IPAMOptionsMap = { [key: string]: string | undefined };
-export const IPAMOptionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IPAMOptionsMap>;
-
-export interface IPAM {
-  /** Name of the IPAM driver to use. */
-  Driver?: string;
-  /** List of IPAM configuration options, specified as a map: ``` {"Subnet": <CIDR>, "IPRange": <CIDR>, "Gateway": <IP address>, "AuxAddress": <device_name:IP address>} ``` */
-  Config?: IPAMConfigList;
-  /** Driver-specific options, specified as a map. */
-  Options?: IPAMOptionsMap;
+export interface ListConfigRequest {
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the configs list. Available filters: - `id=<config id>` - `label=<key> or label=<key>=value` - `name=<config name>` - `names=<config name>` */
+  filters?: string;
 }
-export const IPAM = /*@__PURE__*/ S.suspend(() =>
+export const ListConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Driver: S.optional(S.String),
-    Config: S.optional(IPAMConfigList),
-    Options: S.optional(IPAMOptionsMap),
-  }),
-).annotate({ identifier: "IPAM" }) as any as S.Schema<IPAM>;
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/configs", code: 200 })),
+).annotate({
+  identifier: "ListConfigRequest",
+}) as any as S.Schema<ListConfigRequest>;
 
-/** Network specific options to be used by the drivers. */
-export type NetworkCreateRequestOptionsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkCreateRequestOptionsMap = /*@__PURE__*/ S.Record(
+export type ListConfigResponseBodyList = Array<Config>;
+export const ListConfigResponseBodyList = /*@__PURE__*/ S.Array(
+  Config,
+) as any as S.Schema<ListConfigResponseBodyList>;
+
+export type ListConfigResponse = ListConfigResponseBodyList;
+export const ListConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  ListConfigResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListConfigResponse",
+}) as any as S.Schema<ListConfigResponse>;
+
+export interface ListContainerRequest {
+  /** Return all containers. By default, only running containers are shown. */
+  all?: boolean;
+  /** Return this number of most recently created containers, including non-running ones. */
+  limit?: number;
+  /** Return the size of container as fields `SizeRw` and `SizeRootFs`. */
+  size?: boolean;
+  /** Filters to process on the container list, encoded as JSON (a `map[string][]string`). For example, `{"status": ["paused"]}` will only return paused containers. Available filters: - `ancestor`=(`<image-name>[:<tag>]`, `<image id>`, or `<image@digest>`) - `before`=(`<container id>` or `<container name>`) - `expose`=(`<port>[/<proto>]`|`<startport-endport>/[<proto>]`) - `exited=<int>` containers with exit code of `<int>` - `health`=(`starting`|`healthy`|`unhealthy`|`none`) - `id=<ID>` a container's ID - `isolation=`(`default`|`process`|`hyperv`) (Windows daemon only) - `is-task=`(`true`|`false`) - `label=key` or `label="key=value"` of a container label - `name=<name>` a container's name - `network`=(`<network id>` or `<network name>`) - `publish`=(`<port>[/<proto>]`|`<startport-endport>/[<proto>]`) - `since`=(`<container id>` or `<container name>`) - `status=`(`created`|`restarting`|`running`|`removing`|`paused`|`exited`|`dead`) - `volume`=(`<volume name>` or `<mount point destination>`) */
+  filters?: string;
+}
+export const ListContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    all: S.optional(S.Boolean.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Boolean.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/containers/json", code: 200 })),
+).annotate({
+  identifier: "ListContainerRequest",
+}) as any as S.Schema<ListContainerRequest>;
+
+/** The names associated with this container. Most containers have a single name, but when using legacy "links", the container can have multiple names. For historic reasons, names are prefixed with a forward-slash (`/`). */
+export type ContainerSummaryNamesList = Array<string>;
+export const ContainerSummaryNamesList = /*@__PURE__*/ S.Array(
   S.String,
-  S.String,
-) as any as S.Schema<NetworkCreateRequestOptionsMap>;
+) as any as S.Schema<ContainerSummaryNamesList>;
+
+export type PortSummaryType = "tcp" | "udp" | "sctp";
+export const PortSummaryType = /*@__PURE__*/ S.String;
+
+/** Describes a port-mapping between the container and the host. */
+export interface PortSummary {
+  /** Host IP address that the container's port is mapped to */
+  IP?: string;
+  /** Port on the container */
+  PrivatePort: number;
+  /** Port exposed on the host */
+  PublicPort?: number;
+  Type: PortSummaryType;
+}
+export const PortSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    IP: S.optional(S.String),
+    PrivatePort: S.Number,
+    PublicPort: S.optional(S.Number),
+    Type: PortSummaryType,
+  }),
+).annotate({ identifier: "PortSummary" }) as any as S.Schema<PortSummary>;
+
+/** Port-mappings for the container. */
+export type ContainerSummaryPortsList = Array<PortSummary>;
+export const ContainerSummaryPortsList = /*@__PURE__*/ S.Array(
+  PortSummary,
+) as any as S.Schema<ContainerSummaryPortsList>;
 
 /** User-defined key/value metadata. */
-export type NetworkCreateRequestLabelsMap = {
+export type ContainerSummaryLabelsMap = { [key: string]: string | undefined };
+export const ContainerSummaryLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ContainerSummaryLabelsMap>;
+
+/** The state of this container. */
+export type ContainerSummaryState =
+  | "created"
+  | "running"
+  | "paused"
+  | "restarting"
+  | "exited"
+  | "removing"
+  | "dead";
+export const ContainerSummaryState = /*@__PURE__*/ S.String;
+
+/** Arbitrary key-value metadata attached to the container. */
+export type ContainerSummaryHostConfigAnnotationsMap = {
   [key: string]: string | undefined;
 };
-export const NetworkCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
+export const ContainerSummaryHostConfigAnnotationsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NetworkCreateRequestLabelsMap>;
+) as any as S.Schema<ContainerSummaryHostConfigAnnotationsMap>;
 
-export interface NetworkCreateRequest {
-  /** The network's name. */
-  Name: string;
-  /** Name of the network driver plugin to use. */
-  Driver?: string;
-  /** The level at which the network exists (e.g. `swarm` for cluster-wide or `local` for machine level). */
-  Scope?: string;
-  /** Restrict external access to the network. */
-  Internal?: boolean;
-  /** Globally scoped network is manually attachable by regular containers from workers in swarm mode. */
-  Attachable?: boolean;
-  /** Ingress network is the network which provides the routing-mesh in swarm mode. */
-  Ingress?: boolean;
-  /** Creates a config-only network. Config-only networks are placeholder networks for network configurations to be used by other networks. Config-only networks cannot be used directly to run containers or services. */
-  ConfigOnly?: boolean;
-  /** Specifies the source which will provide the configuration for this network. The specified network must be an existing config-only network; see ConfigOnly. */
-  ConfigFrom?: ConfigReference;
-  /** Optional custom IP scheme for the network. */
-  IPAM?: IPAM;
-  /** Enable IPv4 on the network. */
-  EnableIPv4?: boolean;
-  /** Enable IPv6 on the network. */
-  EnableIPv6?: boolean;
-  /** Network specific options to be used by the drivers. */
-  Options?: NetworkCreateRequestOptionsMap;
-  /** User-defined key/value metadata. */
-  Labels?: NetworkCreateRequestLabelsMap;
+/** Summary of host-specific runtime information of the container. This is a reduced set of information in the container's "HostConfig" as available in the container "inspect" response. */
+export interface ContainerSummaryHostConfig {
+  /** Networking mode (`host`, `none`, `container:<id>`) or name of the primary network the container is using. This field is primarily for backward compatibility. The container can be connected to multiple networks for which information can be found in the `NetworkSettings.Networks` field, which enumerates settings per network. */
+  NetworkMode?: string;
+  /** Arbitrary key-value metadata attached to the container. */
+  Annotations?: ContainerSummaryHostConfigAnnotationsMap | null;
 }
-export const NetworkCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ContainerSummaryHostConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Name: S.String,
-    Driver: S.optional(S.String),
+    NetworkMode: S.optional(S.String),
+    Annotations: S.optional(S.NullOr(ContainerSummaryHostConfigAnnotationsMap)),
+  }),
+).annotate({
+  identifier: "ContainerSummaryHostConfig",
+}) as any as S.Schema<ContainerSummaryHostConfig>;
+
+/** Summary of network-settings for each network the container is attached to. */
+export type ContainerSummaryNetworkSettingsNetworksMap = {
+  [key: string]: EndpointSettings | undefined;
+};
+export const ContainerSummaryNetworkSettingsNetworksMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    EndpointSettings,
+  ) as any as S.Schema<ContainerSummaryNetworkSettingsNetworksMap>;
+
+/** Summary of the container's network settings */
+export interface ContainerSummaryNetworkSettings {
+  /** Summary of network-settings for each network the container is attached to. */
+  Networks?: ContainerSummaryNetworkSettingsNetworksMap;
+}
+export const ContainerSummaryNetworkSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Networks: S.optional(ContainerSummaryNetworkSettingsNetworksMap),
+  }),
+).annotate({
+  identifier: "ContainerSummaryNetworkSettings",
+}) as any as S.Schema<ContainerSummaryNetworkSettings>;
+
+/** List of mounts used by the container. */
+export type ContainerSummaryMountsList = Array<MountPoint>;
+export const ContainerSummaryMountsList = /*@__PURE__*/ S.Array(
+  MountPoint,
+) as any as S.Schema<ContainerSummaryMountsList>;
+
+/** the health status of the container */
+export type ContainerSummaryHealthStatus =
+  | "none"
+  | "starting"
+  | "healthy"
+  | "unhealthy";
+export const ContainerSummaryHealthStatus = /*@__PURE__*/ S.String;
+
+/** Summary of health status Added in v1.52, before that version all container summary not include Health. After this attribute introduced, it includes containers with no health checks configured, or containers that are not running with none */
+export interface ContainerSummaryHealth {
+  /** the health status of the container */
+  Status?: ContainerSummaryHealthStatus;
+  /** FailingStreak is the number of consecutive failures */
+  FailingStreak?: number;
+}
+export const ContainerSummaryHealth = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Status: S.optional(ContainerSummaryHealthStatus),
+    FailingStreak: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ContainerSummaryHealth",
+}) as any as S.Schema<ContainerSummaryHealth>;
+
+export interface ContainerSummary {
+  /** The ID of this container as a 128-bit (64-character) hexadecimal string (32 bytes). */
+  Id?: string;
+  /** The names associated with this container. Most containers have a single name, but when using legacy "links", the container can have multiple names. For historic reasons, names are prefixed with a forward-slash (`/`). */
+  Names?: ContainerSummaryNamesList;
+  /** The name or ID of the image used to create the container. This field shows the image reference as was specified when creating the container, which can be in its canonical form (e.g., `docker.io/library/ubuntu:latest` or `docker.io/library/ubuntu@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782`), short form (e.g., `ubuntu:latest`)), or the ID(-prefix) of the image (e.g., `72297848456d`). The content of this field can be updated at runtime if the image used to create the container is untagged, in which case the field is updated to contain the the image ID (digest) it was resolved to in its canonical, non-truncated form (e.g., `sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe09856619a782`). */
+  Image?: string;
+  /** The ID (digest) of the image that this container was created from. */
+  ImageID?: string;
+  /** OCI descriptor of the platform-specific manifest of the image the container was created from. Note: Only available if the daemon provides a multi-platform image store. This field is not populated in the `GET /system/df` endpoint. */
+  ImageManifestDescriptor?: OCIDescriptor | null;
+  /** Command to run when starting the container */
+  Command?: string;
+  /** Date and time at which the container was created as a Unix timestamp (number of seconds since EPOCH). */
+  Created?: number;
+  /** Port-mappings for the container. */
+  Ports?: ContainerSummaryPortsList;
+  /** The size of files that have been created or changed by this container. This field is omitted by default, and only set when size is requested in the API request. */
+  SizeRw?: number | null;
+  /** The total size of all files in the read-only layers from the image that the container uses. These layers can be shared between containers. This field is omitted by default, and only set when size is requested in the API request. */
+  SizeRootFs?: number | null;
+  /** User-defined key/value metadata. */
+  Labels?: ContainerSummaryLabelsMap;
+  /** The state of this container. */
+  State?: ContainerSummaryState;
+  /** Additional human-readable status of this container (e.g. `Exit 0`) */
+  Status?: string;
+  /** Summary of host-specific runtime information of the container. This is a reduced set of information in the container's "HostConfig" as available in the container "inspect" response. */
+  HostConfig?: ContainerSummaryHostConfig;
+  /** Summary of the container's network settings */
+  NetworkSettings?: ContainerSummaryNetworkSettings;
+  /** List of mounts used by the container. */
+  Mounts?: ContainerSummaryMountsList;
+  /** Summary of health status Added in v1.52, before that version all container summary not include Health. After this attribute introduced, it includes containers with no health checks configured, or containers that are not running with none */
+  Health?: ContainerSummaryHealth;
+}
+export const ContainerSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Id: S.optional(S.String),
+    Names: S.optional(ContainerSummaryNamesList),
+    Image: S.optional(S.String),
+    ImageID: S.optional(S.String),
+    ImageManifestDescriptor: S.optional(S.NullOr(OCIDescriptor)),
+    Command: S.optional(S.String),
+    Created: S.optional(S.Number),
+    Ports: S.optional(ContainerSummaryPortsList),
+    SizeRw: S.optional(S.NullOr(S.Number)),
+    SizeRootFs: S.optional(S.NullOr(S.Number)),
+    Labels: S.optional(ContainerSummaryLabelsMap),
+    State: S.optional(ContainerSummaryState),
+    Status: S.optional(S.String),
+    HostConfig: S.optional(ContainerSummaryHostConfig),
+    NetworkSettings: S.optional(ContainerSummaryNetworkSettings),
+    Mounts: S.optional(ContainerSummaryMountsList),
+    Health: S.optional(ContainerSummaryHealth),
+  }),
+).annotate({
+  identifier: "ContainerSummary",
+}) as any as S.Schema<ContainerSummary>;
+
+export type ListContainerResponseBodyList = Array<ContainerSummary>;
+export const ListContainerResponseBodyList = /*@__PURE__*/ S.Array(
+  ContainerSummary,
+) as any as S.Schema<ListContainerResponseBodyList>;
+
+export type ListContainerResponse = ListContainerResponseBodyList;
+export const ListContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  ListContainerResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListContainerResponse",
+}) as any as S.Schema<ListContainerResponse>;
+
+export interface ListImageRequest {
+  /** Show all images. Only images from a final layer (no children) are shown by default. */
+  all?: boolean;
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the images list. Available filters: - `before`=(`<image-name>[:<tag>]`, `<image id>` or `<image@digest>`) - `dangling=true` - `label=key` or `label="key=value"` of an image label - `reference`=(`<image-name>[:<tag>]`) - `since`=(`<image-name>[:<tag>]`, `<image id>` or `<image@digest>`) - `until=<timestamp>` */
+  filters?: string;
+  /** Compute and show shared size as a `SharedSize` field on each image. */
+  shared_size?: boolean;
+  /** Show digest information as a `RepoDigests` field on each image. */
+  digests?: boolean;
+  /** Include `Manifests` in the image summary. */
+  manifests?: boolean;
+  /** Include `Identity` in each manifest summary. Requires `manifests=1`. */
+  identity?: boolean;
+}
+export const ListImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    all: S.optional(S.Boolean.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
+    shared_size: S.optional(S.Boolean.pipe(T.Query("shared-size"))),
+    digests: S.optional(S.Boolean.pipe(T.Query())),
+    manifests: S.optional(S.Boolean.pipe(T.Query())),
+    identity: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/images/json", code: 200 })),
+).annotate({
+  identifier: "ListImageRequest",
+}) as any as S.Schema<ListImageRequest>;
+
+/** List of image names/tags in the local image cache that reference this image. Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is "untagged", in which case it can still be referenced by its ID. */
+export type ImageSummaryRepoTagsList = Array<string>;
+export const ImageSummaryRepoTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ImageSummaryRepoTagsList>;
+
+/** List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image. These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated. */
+export type ImageSummaryRepoDigestsList = Array<string>;
+export const ImageSummaryRepoDigestsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ImageSummaryRepoDigestsList>;
+
+/** User-defined key/value metadata. */
+export type ImageSummaryLabelsMap = { [key: string]: string | undefined };
+export const ImageSummaryLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ImageSummaryLabelsMap>;
+
+/** Manifests is a list of manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations. WARNING: This is experimental and may change at any time without any backward compatibility. */
+export type ImageSummaryManifestsList = Array<ImageManifestSummary>;
+export const ImageSummaryManifestsList = /*@__PURE__*/ S.Array(
+  ImageManifestSummary,
+) as any as S.Schema<ImageSummaryManifestsList>;
+
+export interface ImageSummary {
+  /** ID is the content-addressable ID of an image. This identifier is a content-addressable digest calculated from the image's configuration (which includes the digests of layers used by the image). Note that this digest differs from the `RepoDigests` below, which holds digests of image manifests that reference the image. */
+  Id: string;
+  /** ID of the parent image. Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry. */
+  ParentId: string;
+  /** List of image names/tags in the local image cache that reference this image. Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is "untagged", in which case it can still be referenced by its ID. */
+  RepoTags: ImageSummaryRepoTagsList;
+  /** List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image. These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated. */
+  RepoDigests: ImageSummaryRepoDigestsList;
+  /** Date and time at which the image was created as a Unix timestamp (number of seconds since EPOCH). */
+  Created: number;
+  /** Total size of the image including all layers it is composed of. */
+  Size: number;
+  /** Total size of image layers that are shared between this image and other images. This size is not calculated by default. `-1` indicates that the value has not been set / calculated. */
+  SharedSize: number;
+  /** User-defined key/value metadata. */
+  Labels: ImageSummaryLabelsMap;
+  /** Number of containers using this image. Includes both stopped and running containers. `-1` indicates that the value has not been set / calculated. */
+  Containers: number;
+  /** Manifests is a list of manifests available in this image. It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations. WARNING: This is experimental and may change at any time without any backward compatibility. */
+  Manifests?: ImageSummaryManifestsList;
+  /** Descriptor is an OCI descriptor of the image target. In case of a multi-platform image, this descriptor points to the OCI index or a manifest list. This field is only present if the daemon provides a multi-platform image store. WARNING: This is experimental and may change at any time without any backward compatibility. */
+  Descriptor?: OCIDescriptor | null;
+}
+export const ImageSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Id: S.String,
+    ParentId: S.String,
+    RepoTags: ImageSummaryRepoTagsList,
+    RepoDigests: ImageSummaryRepoDigestsList,
+    Created: S.Number,
+    Size: S.Number,
+    SharedSize: S.Number,
+    Labels: ImageSummaryLabelsMap,
+    Containers: S.Number,
+    Manifests: S.optional(ImageSummaryManifestsList),
+    Descriptor: S.optional(S.NullOr(OCIDescriptor)),
+  }),
+).annotate({ identifier: "ImageSummary" }) as any as S.Schema<ImageSummary>;
+
+export type ListImageResponseBodyList = Array<ImageSummary>;
+export const ListImageResponseBodyList = /*@__PURE__*/ S.Array(
+  ImageSummary,
+) as any as S.Schema<ListImageResponseBodyList>;
+
+export type ListImageResponse = ListImageResponseBodyList;
+export const ListImageResponse = /*@__PURE__*/ S.suspend(() =>
+  ListImageResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListImageResponse",
+}) as any as S.Schema<ListImageResponse>;
+
+export interface ListNetworkRequest {
+  /** JSON encoded value of the filters (a `map[string][]string`) to process on the networks list. Available filters: - `dangling=<boolean>` When set to `true` (or `1`), returns all networks that are not in use by a container. When set to `false` (or `0`), only networks that are in use by one or more containers are returned. - `driver=<driver-name>` Matches a network's driver. - `id=<network-id>` Matches all or part of a network ID. - `label=<key>` or `label=<key>=<value>` of a network label. - `name=<network-name>` Matches all or part of a network name. - `scope=["swarm"|"global"|"local"]` Filters networks by scope (`swarm`, `global`, or `local`). - `type=["custom"|"builtin"]` Filters networks by type. The `custom` keyword returns all user-defined networks. */
+  filters?: string;
+}
+export const ListNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/networks", code: 200 })),
+).annotate({
+  identifier: "ListNetworkRequest",
+}) as any as S.Schema<ListNetworkRequest>;
+
+/** Network-specific options uses when creating the network. */
+export type NetworkOptionsMap = { [key: string]: string | undefined };
+export const NetworkOptionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkOptionsMap>;
+
+/** Metadata specific to the network being created. */
+export type NetworkLabelsMap = { [key: string]: string | undefined };
+export const NetworkLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NetworkLabelsMap>;
+
+/** represents one peer of an overlay network. */
+export interface PeerInfo {
+  /** ID of the peer-node in the Swarm cluster. */
+  Name?: string;
+  /** IP-address of the peer-node in the Swarm cluster. */
+  IP?: string;
+}
+export const PeerInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    IP: S.optional(S.String),
+  }),
+).annotate({ identifier: "PeerInfo" }) as any as S.Schema<PeerInfo>;
+
+/** List of peer nodes for an overlay network. This field is only present for overlay networks, and omitted for other network types. */
+export type NetworkPeersList = Array<PeerInfo>;
+export const NetworkPeersList = /*@__PURE__*/ S.Array(
+  PeerInfo,
+) as any as S.Schema<NetworkPeersList>;
+
+export interface Network {
+  /** Name of the network. */
+  Name?: string;
+  /** ID that uniquely identifies a network on a single machine. */
+  Id?: string;
+  /** Date and time at which the network was created in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
+  Created?: string;
+  /** The level at which the network exists (e.g. `swarm` for cluster-wide or `local` for machine level) */
+  Scope?: string;
+  /** The name of the driver used to create the network (e.g. `bridge`, `overlay`). */
+  Driver?: string;
+  /** Whether the network was created with IPv4 enabled. */
+  EnableIPv4?: boolean;
+  /** Whether the network was created with IPv6 enabled. */
+  EnableIPv6?: boolean;
+  /** The network's IP Address Management. */
+  IPAM?: IPAM;
+  /** Whether the network is created to only allow internal networking connectivity. */
+  Internal?: boolean;
+  /** Whether a global / swarm scope network is manually attachable by regular containers from workers in swarm mode. */
+  Attachable?: boolean;
+  /** Whether the network is providing the routing-mesh for the swarm cluster. */
+  Ingress?: boolean;
+  ConfigFrom?: ConfigReference;
+  /** Whether the network is a config-only network. Config-only networks are placeholder networks for network configurations to be used by other networks. Config-only networks cannot be used directly to run containers or services. */
+  ConfigOnly?: boolean;
+  /** Network-specific options uses when creating the network. */
+  Options?: NetworkOptionsMap;
+  /** Metadata specific to the network being created. */
+  Labels?: NetworkLabelsMap;
+  /** List of peer nodes for an overlay network. This field is only present for overlay networks, and omitted for other network types. */
+  Peers?: NetworkPeersList;
+}
+export const Network = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Id: S.optional(S.String),
+    Created: S.optional(S.String),
     Scope: S.optional(S.String),
+    Driver: S.optional(S.String),
+    EnableIPv4: S.optional(S.Boolean),
+    EnableIPv6: S.optional(S.Boolean),
+    IPAM: S.optional(IPAM),
     Internal: S.optional(S.Boolean),
     Attachable: S.optional(S.Boolean),
     Ingress: S.optional(S.Boolean),
-    ConfigOnly: S.optional(S.Boolean),
     ConfigFrom: S.optional(ConfigReference),
-    IPAM: S.optional(IPAM),
-    EnableIPv4: S.optional(S.Boolean),
-    EnableIPv6: S.optional(S.Boolean),
-    Options: S.optional(NetworkCreateRequestOptionsMap),
-    Labels: S.optional(NetworkCreateRequestLabelsMap),
-  }).pipe(T.Http({ method: "POST", uri: "/networks/create", code: 200 })),
-).annotate({
-  identifier: "NetworkCreateRequest",
-}) as any as S.Schema<NetworkCreateRequest>;
+    ConfigOnly: S.optional(S.Boolean),
+    Options: S.optional(NetworkOptionsMap),
+    Labels: S.optional(NetworkLabelsMap),
+    Peers: S.optional(NetworkPeersList),
+  }),
+).annotate({ identifier: "Network" }) as any as S.Schema<Network>;
 
-/** OK response to NetworkCreate operation */
-export interface NetworkCreateResponse {
-  /** The ID of the created network. */
-  Id: string;
-  /** Warnings encountered when creating the container */
-  Warning: string;
+export type ListNetworkResponseBodyList = Array<Network>;
+export const ListNetworkResponseBodyList = /*@__PURE__*/ S.Array(
+  Network,
+) as any as S.Schema<ListNetworkResponseBodyList>;
+
+export type ListNetworkResponse = ListNetworkResponseBodyList;
+export const ListNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  ListNetworkResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListNetworkResponse",
+}) as any as S.Schema<ListNetworkResponse>;
+
+export interface ListNodeRequest {
+  /** Filters to process on the nodes list, encoded as JSON (a `map[string][]string`). Available filters: - `id=<node id>` - `label=<engine label>` - `membership=`(`accepted`|`pending`)` - `name=<node name>` - `node.label=<node label>` - `role=`(`manager`|`worker`)` */
+  filters?: string;
 }
-export const NetworkCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListNodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Id: S.String,
-    Warning: S.String,
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/nodes", code: 200 })),
+).annotate({
+  identifier: "ListNodeRequest",
+}) as any as S.Schema<ListNodeRequest>;
+
+/** User-defined key/value metadata. */
+export type NodeSpecLabelsMap = { [key: string]: string | undefined };
+export const NodeSpecLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NodeSpecLabelsMap>;
+
+/** Role of the node. */
+export type NodeSpecRole = "worker" | "manager";
+export const NodeSpecRole = /*@__PURE__*/ S.String;
+
+/** Availability of the node. */
+export type NodeSpecAvailability = "active" | "pause" | "drain";
+export const NodeSpecAvailability = /*@__PURE__*/ S.String;
+
+export interface NodeSpec {
+  /** Name for the node. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: NodeSpecLabelsMap;
+  /** Role of the node. */
+  Role?: NodeSpecRole;
+  /** Availability of the node. */
+  Availability?: NodeSpecAvailability;
+}
+export const NodeSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Labels: S.optional(NodeSpecLabelsMap),
+    Role: S.optional(NodeSpecRole),
+    Availability: S.optional(NodeSpecAvailability),
+  }),
+).annotate({ identifier: "NodeSpec" }) as any as S.Schema<NodeSpec>;
+
+export type EngineDescriptionLabelsMap = { [key: string]: string | undefined };
+export const EngineDescriptionLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EngineDescriptionLabelsMap>;
+
+export interface EngineDescriptionPluginsItem {
+  Type?: string;
+  Name?: string;
+}
+export const EngineDescriptionPluginsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Type: S.optional(S.String),
+    Name: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "NetworkCreateResponse",
-}) as any as S.Schema<NetworkCreateResponse>;
+  identifier: "EngineDescriptionPluginsItem",
+}) as any as S.Schema<EngineDescriptionPluginsItem>;
 
-export interface NetworkDeleteRequest {
-  /** Network ID or name */
-  id: string;
+export type EngineDescriptionPluginsList = Array<EngineDescriptionPluginsItem>;
+export const EngineDescriptionPluginsList = /*@__PURE__*/ S.Array(
+  EngineDescriptionPluginsItem,
+) as any as S.Schema<EngineDescriptionPluginsList>;
+
+/** EngineDescription provides information about an engine. */
+export interface EngineDescription {
+  EngineVersion?: string;
+  Labels?: EngineDescriptionLabelsMap;
+  Plugins?: EngineDescriptionPluginsList;
 }
-export const NetworkDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const EngineDescription = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/networks/{id}", code: 200 })),
+    EngineVersion: S.optional(S.String),
+    Labels: S.optional(EngineDescriptionLabelsMap),
+    Plugins: S.optional(EngineDescriptionPluginsList),
+  }),
 ).annotate({
-  identifier: "NetworkDeleteRequest",
-}) as any as S.Schema<NetworkDeleteRequest>;
+  identifier: "EngineDescription",
+}) as any as S.Schema<EngineDescription>;
 
-export interface NetworkDeleteResponse {}
-export const NetworkDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NetworkDeleteResponse",
-}) as any as S.Schema<NetworkDeleteResponse>;
-
-export interface NetworkDisconnectRequest {
-  /** Network ID or name */
-  id: string;
-  /** The ID or name of the container to disconnect from the network. */
-  Container: string;
-  /** Force the container to disconnect from the network. */
-  Force?: boolean;
+/** Information about the issuer of leaf TLS certificates and the trusted root CA certificate. */
+export interface TLSInfo {
+  /** The root CA certificate(s) that are used to validate leaf TLS certificates. */
+  TrustRoot?: string;
+  /** The base64-url-safe-encoded raw subject bytes of the issuer. */
+  CertIssuerSubject?: string;
+  /** The base64-url-safe-encoded raw public key bytes of the issuer. */
+  CertIssuerPublicKey?: string;
 }
-export const NetworkDisconnectRequest = /*@__PURE__*/ S.suspend(() =>
+export const TLSInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String.pipe(T.Label()),
-    Container: S.String,
-    Force: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/networks/{id}/disconnect", code: 200 }),
-  ),
-).annotate({
-  identifier: "NetworkDisconnectRequest",
-}) as any as S.Schema<NetworkDisconnectRequest>;
+    TrustRoot: S.optional(S.String),
+    CertIssuerSubject: S.optional(S.String),
+    CertIssuerPublicKey: S.optional(S.String),
+  }),
+).annotate({ identifier: "TLSInfo" }) as any as S.Schema<TLSInfo>;
 
-export interface NetworkDisconnectResponse {}
-export const NetworkDisconnectResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** NodeDescription encapsulates the properties of the Node as reported by the agent. */
+export interface NodeDescription {
+  Hostname?: string;
+  Platform?: Platform;
+  Resources?: ResourceObject;
+  Engine?: EngineDescription;
+  TLSInfo?: TLSInfo;
+}
+export const NodeDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Hostname: S.optional(S.String),
+    Platform: S.optional(Platform),
+    Resources: S.optional(ResourceObject),
+    Engine: S.optional(EngineDescription),
+    TLSInfo: S.optional(TLSInfo),
+  }),
 ).annotate({
-  identifier: "NetworkDisconnectResponse",
-}) as any as S.Schema<NetworkDisconnectResponse>;
+  identifier: "NodeDescription",
+}) as any as S.Schema<NodeDescription>;
+
+/** NodeState represents the state of a node. */
+export type NodeState = "unknown" | "down" | "ready" | "disconnected";
+export const NodeState = /*@__PURE__*/ S.String;
+
+/** NodeStatus represents the status of a node. It provides the current status of the node, as seen by the manager. */
+export interface NodeStatus {
+  State?: NodeState;
+  Message?: string;
+  /** IP address of the node. */
+  Addr?: string;
+}
+export const NodeStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    State: S.optional(NodeState),
+    Message: S.optional(S.String),
+    Addr: S.optional(S.String),
+  }),
+).annotate({ identifier: "NodeStatus" }) as any as S.Schema<NodeStatus>;
+
+/** Reachability represents the reachability of a node. */
+export type Reachability = "unknown" | "unreachable" | "reachable";
+export const Reachability = /*@__PURE__*/ S.String;
+
+/** ManagerStatus represents the status of a manager. It provides the current status of a node's manager component, if the node is a manager. */
+export interface ManagerStatus {
+  Leader?: boolean;
+  Reachability?: Reachability;
+  /** The IP address and port at which the manager is reachable. */
+  Addr?: string;
+}
+export const ManagerStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Leader: S.optional(S.Boolean),
+    Reachability: S.optional(Reachability),
+    Addr: S.optional(S.String),
+  }),
+).annotate({ identifier: "ManagerStatus" }) as any as S.Schema<ManagerStatus>;
+
+export interface Node {
+  ID?: string;
+  Version?: ObjectVersion;
+  /** Date and time at which the node was added to the swarm in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
+  CreatedAt?: string;
+  /** Date and time at which the node was last updated in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
+  UpdatedAt?: string;
+  Spec?: NodeSpec;
+  Description?: NodeDescription;
+  Status?: NodeStatus;
+  ManagerStatus?: ManagerStatus | null;
+}
+export const Node = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ID: S.optional(S.String),
+    Version: S.optional(ObjectVersion),
+    CreatedAt: S.optional(S.String),
+    UpdatedAt: S.optional(S.String),
+    Spec: S.optional(NodeSpec),
+    Description: S.optional(NodeDescription),
+    Status: S.optional(NodeStatus),
+    ManagerStatus: S.optional(S.NullOr(ManagerStatus)),
+  }),
+).annotate({ identifier: "Node" }) as any as S.Schema<Node>;
+
+export type ListNodeResponseBodyList = Array<Node>;
+export const ListNodeResponseBodyList = /*@__PURE__*/ S.Array(
+  Node,
+) as any as S.Schema<ListNodeResponseBodyList>;
+
+export type ListNodeResponse = ListNodeResponseBodyList;
+export const ListNodeResponse = /*@__PURE__*/ S.suspend(() =>
+  ListNodeResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListNodeResponse",
+}) as any as S.Schema<ListNodeResponse>;
+
+export interface ListPluginRequest {
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the plugin list. Available filters: - `capability=<capability name>` - `enable=<true>|<false>` */
+  filters?: string;
+}
+export const ListPluginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/plugins", code: 200 })),
+).annotate({
+  identifier: "ListPluginRequest",
+}) as any as S.Schema<ListPluginRequest>;
+
+export type ListPluginResponseBodyList = Array<Plugin>;
+export const ListPluginResponseBodyList = /*@__PURE__*/ S.Array(
+  Plugin,
+) as any as S.Schema<ListPluginResponseBodyList>;
+
+export type ListPluginResponse = ListPluginResponseBodyList;
+export const ListPluginResponse = /*@__PURE__*/ S.suspend(() =>
+  ListPluginResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListPluginResponse",
+}) as any as S.Schema<ListPluginResponse>;
+
+export interface ListSecretRequest {
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the secrets list. Available filters: - `id=<secret id>` - `label=<key> or label=<key>=value` - `name=<secret name>` - `names=<secret name>` */
+  filters?: string;
+}
+export const ListSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/secrets", code: 200 })),
+).annotate({
+  identifier: "ListSecretRequest",
+}) as any as S.Schema<ListSecretRequest>;
+
+/** User-defined key/value metadata. */
+export type SecretSpecLabelsMap = { [key: string]: string | undefined };
+export const SecretSpecLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SecretSpecLabelsMap>;
+
+export interface SecretSpec {
+  /** User-defined name of the secret. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: SecretSpecLabelsMap;
+  /** Data is the data to store as a secret, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. It must be empty if the Driver field is set, in which case the data is loaded from an external secret store. The maximum allowed size is 500KB, as defined in [MaxSecretSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0/api/validation#MaxSecretSize). This field is only used to _create_ a secret, and is not returned by other endpoints. */
+  Data?: string;
+  /** Name of the secrets driver used to fetch the secret's value from an external secret store. */
+  Driver?: Driver;
+  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
+  Templating?: Driver;
+}
+export const SecretSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Labels: S.optional(SecretSpecLabelsMap),
+    Data: S.optional(S.String),
+    Driver: S.optional(Driver),
+    Templating: S.optional(Driver),
+  }),
+).annotate({ identifier: "SecretSpec" }) as any as S.Schema<SecretSpec>;
+
+export interface Secret {
+  ID?: string;
+  Version?: ObjectVersion;
+  CreatedAt?: string;
+  UpdatedAt?: string;
+  Spec?: SecretSpec;
+}
+export const Secret = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ID: S.optional(S.String),
+    Version: S.optional(ObjectVersion),
+    CreatedAt: S.optional(S.String),
+    UpdatedAt: S.optional(S.String),
+    Spec: S.optional(SecretSpec),
+  }),
+).annotate({ identifier: "Secret" }) as any as S.Schema<Secret>;
+
+export type ListSecretResponseBodyList = Array<Secret>;
+export const ListSecretResponseBodyList = /*@__PURE__*/ S.Array(
+  Secret,
+) as any as S.Schema<ListSecretResponseBodyList>;
+
+export type ListSecretResponse = ListSecretResponseBodyList;
+export const ListSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  ListSecretResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListSecretResponse",
+}) as any as S.Schema<ListSecretResponse>;
+
+export interface ListServiceRequest {
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the services list. Available filters: - `id=<service id>` - `label=<service label>` - `mode=["replicated"|"global"]` - `name=<service name>` */
+  filters?: string;
+  /** Include service status, with count of running and desired tasks. */
+  status?: boolean;
+}
+export const ListServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/services", code: 200 })),
+).annotate({
+  identifier: "ListServiceRequest",
+}) as any as S.Schema<ListServiceRequest>;
+
+/** User-defined key/value metadata. */
+export type ServiceSpecLabelsMap = { [key: string]: string | undefined };
+export const ServiceSpecLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ServiceSpecLabelsMap>;
+
+export type ServiceSpecModeReplicated = CreateServiceRequestModeReplicated;
+export const ServiceSpecModeReplicated = CreateServiceRequestModeReplicated;
+
+/** The mode used for services with a finite number of tasks that run to a completed state. */
+export type ServiceSpecModeReplicatedJob =
+  CreateServiceRequestModeReplicatedJob;
+export const ServiceSpecModeReplicatedJob =
+  CreateServiceRequestModeReplicatedJob;
+
+/** Scheduling mode for the service. */
+export type ServiceSpecMode = CreateServiceRequestMode;
+export const ServiceSpecMode = CreateServiceRequestMode;
+
+/** Action to take if an updated task fails to run, or stops running during the update. */
+export type ServiceSpecUpdateConfigFailureAction =
+  | "continue"
+  | "pause"
+  | "rollback";
+export const ServiceSpecUpdateConfigFailureAction = /*@__PURE__*/ S.String;
+
+/** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+export type ServiceSpecUpdateConfigOrder = "stop-first" | "start-first";
+export const ServiceSpecUpdateConfigOrder = /*@__PURE__*/ S.String;
+
+/** Specification for the update strategy of the service. */
+export interface ServiceSpecUpdateConfig {
+  /** Maximum number of tasks to be updated in one iteration (0 means unlimited parallelism). */
+  Parallelism?: number;
+  /** Amount of time between updates, in nanoseconds. */
+  Delay?: number;
+  /** Action to take if an updated task fails to run, or stops running during the update. */
+  FailureAction?: ServiceSpecUpdateConfigFailureAction;
+  /** Amount of time to monitor each updated task for failures, in nanoseconds. */
+  Monitor?: number;
+  /** The fraction of tasks that may fail during an update before the failure action is invoked, specified as a floating point number between 0 and 1. */
+  MaxFailureRatio?: number;
+  /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+  Order?: ServiceSpecUpdateConfigOrder;
+}
+export const ServiceSpecUpdateConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Parallelism: S.optional(S.Number),
+    Delay: S.optional(S.Number),
+    FailureAction: S.optional(ServiceSpecUpdateConfigFailureAction),
+    Monitor: S.optional(S.Number),
+    MaxFailureRatio: S.optional(S.Number),
+    Order: S.optional(ServiceSpecUpdateConfigOrder),
+  }),
+).annotate({
+  identifier: "ServiceSpecUpdateConfig",
+}) as any as S.Schema<ServiceSpecUpdateConfig>;
+
+/** Action to take if an rolled back task fails to run, or stops running during the rollback. */
+export type ServiceSpecRollbackConfigFailureAction = "continue" | "pause";
+export const ServiceSpecRollbackConfigFailureAction = /*@__PURE__*/ S.String;
+
+/** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+export type ServiceSpecRollbackConfigOrder = "stop-first" | "start-first";
+export const ServiceSpecRollbackConfigOrder = /*@__PURE__*/ S.String;
+
+/** Specification for the rollback strategy of the service. */
+export interface ServiceSpecRollbackConfig {
+  /** Maximum number of tasks to be rolled back in one iteration (0 means unlimited parallelism). */
+  Parallelism?: number;
+  /** Amount of time between rollback iterations, in nanoseconds. */
+  Delay?: number;
+  /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
+  FailureAction?: ServiceSpecRollbackConfigFailureAction;
+  /** Amount of time to monitor each rolled back task for failures, in nanoseconds. */
+  Monitor?: number;
+  /** The fraction of tasks that may fail during a rollback before the failure action is invoked, specified as a floating point number between 0 and 1. */
+  MaxFailureRatio?: number;
+  /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+  Order?: ServiceSpecRollbackConfigOrder;
+}
+export const ServiceSpecRollbackConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Parallelism: S.optional(S.Number),
+    Delay: S.optional(S.Number),
+    FailureAction: S.optional(ServiceSpecRollbackConfigFailureAction),
+    Monitor: S.optional(S.Number),
+    MaxFailureRatio: S.optional(S.Number),
+    Order: S.optional(ServiceSpecRollbackConfigOrder),
+  }),
+).annotate({
+  identifier: "ServiceSpecRollbackConfig",
+}) as any as S.Schema<ServiceSpecRollbackConfig>;
+
+/** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
+export type ServiceSpecNetworksList = Array<NetworkAttachmentConfig>;
+export const ServiceSpecNetworksList = /*@__PURE__*/ S.Array(
+  NetworkAttachmentConfig,
+) as any as S.Schema<ServiceSpecNetworksList>;
+
+/** User modifiable configuration for a service. */
+export interface ServiceSpec {
+  /** Name of the service. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: ServiceSpecLabelsMap;
+  TaskTemplate?: TaskSpec;
+  /** Scheduling mode for the service. */
+  Mode?: CreateServiceRequestMode;
+  /** Specification for the update strategy of the service. */
+  UpdateConfig?: ServiceSpecUpdateConfig;
+  /** Specification for the rollback strategy of the service. */
+  RollbackConfig?: ServiceSpecRollbackConfig;
+  /** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
+  Networks?: ServiceSpecNetworksList;
+  EndpointSpec?: EndpointSpec;
+}
+export const ServiceSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Name: S.optional(S.String),
+    Labels: S.optional(ServiceSpecLabelsMap),
+    TaskTemplate: S.optional(TaskSpec),
+    Mode: S.optional(CreateServiceRequestMode),
+    UpdateConfig: S.optional(ServiceSpecUpdateConfig),
+    RollbackConfig: S.optional(ServiceSpecRollbackConfig),
+    Networks: S.optional(ServiceSpecNetworksList),
+    EndpointSpec: S.optional(EndpointSpec),
+  }),
+).annotate({ identifier: "ServiceSpec" }) as any as S.Schema<ServiceSpec>;
+
+export type ServiceEndpointPortsList = Array<EndpointPortConfig>;
+export const ServiceEndpointPortsList = /*@__PURE__*/ S.Array(
+  EndpointPortConfig,
+) as any as S.Schema<ServiceEndpointPortsList>;
+
+export interface ServiceEndpointVirtualIPsItem {
+  NetworkID?: string;
+  Addr?: string;
+}
+export const ServiceEndpointVirtualIPsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    NetworkID: S.optional(S.String),
+    Addr: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceEndpointVirtualIPsItem",
+}) as any as S.Schema<ServiceEndpointVirtualIPsItem>;
+
+export type ServiceEndpointVirtualIPsList =
+  Array<ServiceEndpointVirtualIPsItem>;
+export const ServiceEndpointVirtualIPsList = /*@__PURE__*/ S.Array(
+  ServiceEndpointVirtualIPsItem,
+) as any as S.Schema<ServiceEndpointVirtualIPsList>;
+
+export interface ServiceEndpoint {
+  Spec?: EndpointSpec;
+  Ports?: ServiceEndpointPortsList;
+  VirtualIPs?: ServiceEndpointVirtualIPsList;
+}
+export const ServiceEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Spec: S.optional(EndpointSpec),
+    Ports: S.optional(ServiceEndpointPortsList),
+    VirtualIPs: S.optional(ServiceEndpointVirtualIPsList),
+  }),
+).annotate({
+  identifier: "ServiceEndpoint",
+}) as any as S.Schema<ServiceEndpoint>;
+
+export type ServiceUpdateStatusState = "updating" | "paused" | "completed";
+export const ServiceUpdateStatusState = /*@__PURE__*/ S.String;
+
+/** The status of a service update. */
+export interface ServiceUpdateStatus {
+  State?: ServiceUpdateStatusState;
+  StartedAt?: string;
+  CompletedAt?: string;
+  Message?: string;
+}
+export const ServiceUpdateStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    State: S.optional(ServiceUpdateStatusState),
+    StartedAt: S.optional(S.String),
+    CompletedAt: S.optional(S.String),
+    Message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceUpdateStatus",
+}) as any as S.Schema<ServiceUpdateStatus>;
+
+/** The status of the service's tasks. Provided only when requested as part of a ServiceList operation. */
+export interface ServiceServiceStatus {
+  /** The number of tasks for the service currently in the Running state. */
+  RunningTasks?: number;
+  /** The number of tasks for the service desired to be running. For replicated services, this is the replica count from the service spec. For global services, this is computed by taking count of all tasks for the service with a Desired State other than Shutdown. */
+  DesiredTasks?: number;
+  /** The number of tasks for a job that are in the Completed state. This field must be cross-referenced with the service type, as the value of 0 may mean the service is not in a job mode, or it may mean the job-mode service has no tasks yet Completed. */
+  CompletedTasks?: number;
+}
+export const ServiceServiceStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    RunningTasks: S.optional(S.Number),
+    DesiredTasks: S.optional(S.Number),
+    CompletedTasks: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ServiceServiceStatus",
+}) as any as S.Schema<ServiceServiceStatus>;
+
+/** The status of the service when it is in one of ReplicatedJob or GlobalJob modes. Absent on Replicated and Global mode services. The JobIteration is an ObjectVersion, but unlike the Service's version, does not need to be sent with an update request. */
+export interface ServiceJobStatus {
+  /** JobIteration is a value increased each time a Job is executed, successfully or otherwise. "Executed", in this case, means the job as a whole has been started, not that an individual Task has been launched. A job is "Executed" when its ServiceSpec is updated. JobIteration can be used to disambiguate Tasks belonging to different executions of a job. Though JobIteration will increase with each subsequent execution, it may not necessarily increase by 1, and so JobIteration should not be used to */
+  JobIteration?: ObjectVersion;
+  /** The last time, as observed by the server, that this job was started. */
+  LastExecution?: string;
+}
+export const ServiceJobStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    JobIteration: S.optional(ObjectVersion),
+    LastExecution: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceJobStatus",
+}) as any as S.Schema<ServiceJobStatus>;
+
+export interface Service {
+  ID?: string;
+  Version?: ObjectVersion;
+  CreatedAt?: string;
+  UpdatedAt?: string;
+  Spec?: ServiceSpec;
+  Endpoint?: ServiceEndpoint;
+  /** The status of a service update. */
+  UpdateStatus?: ServiceUpdateStatus;
+  /** The status of the service's tasks. Provided only when requested as part of a ServiceList operation. */
+  ServiceStatus?: ServiceServiceStatus;
+  /** The status of the service when it is in one of ReplicatedJob or GlobalJob modes. Absent on Replicated and Global mode services. The JobIteration is an ObjectVersion, but unlike the Service's version, does not need to be sent with an update request. */
+  JobStatus?: ServiceJobStatus;
+}
+export const Service = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ID: S.optional(S.String),
+    Version: S.optional(ObjectVersion),
+    CreatedAt: S.optional(S.String),
+    UpdatedAt: S.optional(S.String),
+    Spec: S.optional(ServiceSpec),
+    Endpoint: S.optional(ServiceEndpoint),
+    UpdateStatus: S.optional(ServiceUpdateStatus),
+    ServiceStatus: S.optional(ServiceServiceStatus),
+    JobStatus: S.optional(ServiceJobStatus),
+  }),
+).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
+
+export type ListServiceResponseBodyList = Array<Service>;
+export const ListServiceResponseBodyList = /*@__PURE__*/ S.Array(
+  Service,
+) as any as S.Schema<ListServiceResponseBodyList>;
+
+export type ListServiceResponse = ListServiceResponseBodyList;
+export const ListServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  ListServiceResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListServiceResponse",
+}) as any as S.Schema<ListServiceResponse>;
+
+export interface ListTaskRequest {
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the tasks list. Available filters: - `desired-state=(running | shutdown | accepted)` - `id=<task id>` - `label=key` or `label="key=value"` - `name=<task name>` - `node=<node id or name>` - `service=<service name>` */
+  filters?: string;
+}
+export const ListTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/tasks", code: 200 })),
+).annotate({
+  identifier: "ListTaskRequest",
+}) as any as S.Schema<ListTaskRequest>;
+
+/** User-defined key/value metadata. */
+export type TaskLabelsMap = { [key: string]: string | undefined };
+export const TaskLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TaskLabelsMap>;
+
+export type TaskState =
+  | "new"
+  | "allocated"
+  | "pending"
+  | "assigned"
+  | "accepted"
+  | "preparing"
+  | "ready"
+  | "starting"
+  | "running"
+  | "complete"
+  | "shutdown"
+  | "failed"
+  | "rejected"
+  | "remove"
+  | "orphaned";
+export const TaskState = /*@__PURE__*/ S.String;
+
+/** represents the status of a container. */
+export interface ContainerStatus {
+  ContainerID?: string;
+  PID?: number;
+  ExitCode?: number;
+}
+export const ContainerStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ContainerID: S.optional(S.String),
+    PID: S.optional(S.Number),
+    ExitCode: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ContainerStatus",
+}) as any as S.Schema<ContainerStatus>;
+
+export type PortStatusPortsList = Array<EndpointPortConfig>;
+export const PortStatusPortsList = /*@__PURE__*/ S.Array(
+  EndpointPortConfig,
+) as any as S.Schema<PortStatusPortsList>;
+
+/** represents the port status of a task's host ports whose service has published host ports */
+export interface PortStatus {
+  Ports?: PortStatusPortsList;
+}
+export const PortStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Ports: S.optional(PortStatusPortsList),
+  }),
+).annotate({ identifier: "PortStatus" }) as any as S.Schema<PortStatus>;
+
+/** represents the status of a task. */
+export interface TaskStatus {
+  Timestamp?: string;
+  State?: TaskState;
+  Message?: string;
+  Err?: string;
+  ContainerStatus?: ContainerStatus;
+  PortStatus?: PortStatus;
+}
+export const TaskStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Timestamp: S.optional(S.String),
+    State: S.optional(TaskState),
+    Message: S.optional(S.String),
+    Err: S.optional(S.String),
+    ContainerStatus: S.optional(ContainerStatus),
+    PortStatus: S.optional(PortStatus),
+  }),
+).annotate({ identifier: "TaskStatus" }) as any as S.Schema<TaskStatus>;
+
+/** The IP addresses (in CIDR notation) assigned to the task on this network. To maintain backward compatibility this field accepts CIDR notation, but only the IP address is used. */
+export type NetworkAttachmentAddressesList = Array<string>;
+export const NetworkAttachmentAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<NetworkAttachmentAddressesList>;
+
+/** Specifies how a task is attached to a network, and the addresses the task was assigned on that network. */
+export interface NetworkAttachment {
+  Network?: Network;
+  /** The IP addresses (in CIDR notation) assigned to the task on this network. To maintain backward compatibility this field accepts CIDR notation, but only the IP address is used. */
+  Addresses?: NetworkAttachmentAddressesList;
+}
+export const NetworkAttachment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Network: S.optional(Network),
+    Addresses: S.optional(NetworkAttachmentAddressesList),
+  }),
+).annotate({
+  identifier: "NetworkAttachment",
+}) as any as S.Schema<NetworkAttachment>;
+
+/** The networks that this task is attached to, and the addresses the task was assigned on each of them. */
+export type TaskNetworksAttachmentsList = Array<NetworkAttachment>;
+export const TaskNetworksAttachmentsList = /*@__PURE__*/ S.Array(
+  NetworkAttachment,
+) as any as S.Schema<TaskNetworksAttachmentsList>;
+
+export interface Task {
+  /** The ID of the task. */
+  ID?: string;
+  Version?: ObjectVersion;
+  CreatedAt?: string;
+  UpdatedAt?: string;
+  /** Name of the task. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: TaskLabelsMap;
+  Spec?: TaskSpec;
+  /** The ID of the service this task is part of. */
+  ServiceID?: string;
+  Slot?: number;
+  /** The ID of the node that this task is on. */
+  NodeID?: string;
+  AssignedGenericResources?: GenericResources;
+  Status?: TaskStatus;
+  DesiredState?: TaskState;
+  /** If the Service this Task belongs to is a job-mode service, contains the JobIteration of the Service this Task was created for. Absent if the Task was created for a Replicated or Global Service. */
+  JobIteration?: ObjectVersion;
+  /** The networks that this task is attached to, and the addresses the task was assigned on each of them. */
+  NetworksAttachments?: TaskNetworksAttachmentsList;
+}
+export const Task = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ID: S.optional(S.String),
+    Version: S.optional(ObjectVersion),
+    CreatedAt: S.optional(S.String),
+    UpdatedAt: S.optional(S.String),
+    Name: S.optional(S.String),
+    Labels: S.optional(TaskLabelsMap),
+    Spec: S.optional(TaskSpec),
+    ServiceID: S.optional(S.String),
+    Slot: S.optional(S.Number),
+    NodeID: S.optional(S.String),
+    AssignedGenericResources: S.optional(GenericResources),
+    Status: S.optional(TaskStatus),
+    DesiredState: S.optional(TaskState),
+    JobIteration: S.optional(ObjectVersion),
+    NetworksAttachments: S.optional(TaskNetworksAttachmentsList),
+  }),
+).annotate({ identifier: "Task" }) as any as S.Schema<Task>;
+
+export type ListTaskResponseBodyList = Array<Task>;
+export const ListTaskResponseBodyList = /*@__PURE__*/ S.Array(
+  Task,
+) as any as S.Schema<ListTaskResponseBodyList>;
+
+export type ListTaskResponse = ListTaskResponseBodyList;
+export const ListTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  ListTaskResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListTaskResponse",
+}) as any as S.Schema<ListTaskResponse>;
+
+export interface ListVolumeRequest {
+  /** JSON encoded value of the filters (a `map[string][]string`) to process on the volumes list. Available filters: - `dangling=<boolean>` When set to `true` (or `1`), returns all volumes that are not in use by a container. When set to `false` (or `0`), only volumes that are in use by one or more containers are returned. - `driver=<volume-driver-name>` Matches volumes based on their driver. - `label=<key>` or `label=<key>:<value>` Matches volumes based on the presence of a `label` alone or a `label` and a value. - `name=<volume-name>` Matches all or part of a volume name. */
+  filters?: string;
+}
+export const ListVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/volumes", code: 200 })),
+).annotate({
+  identifier: "ListVolumeRequest",
+}) as any as S.Schema<ListVolumeRequest>;
+
+/** List of volumes */
+export type VolumeListResponseVolumesList = Array<Volume>;
+export const VolumeListResponseVolumesList = /*@__PURE__*/ S.Array(
+  Volume,
+) as any as S.Schema<VolumeListResponseVolumesList>;
+
+/** Warnings that occurred when fetching the list of volumes. */
+export type VolumeListResponseWarningsList = Array<string>;
+export const VolumeListResponseWarningsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<VolumeListResponseWarningsList>;
+
+/** Volume list response */
+export interface VolumeListResponse {
+  /** List of volumes */
+  Volumes?: VolumeListResponseVolumesList;
+  /** Warnings that occurred when fetching the list of volumes. */
+  Warnings?: VolumeListResponseWarningsList;
+}
+export const VolumeListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Volumes: S.optional(VolumeListResponseVolumesList),
+    Warnings: S.optional(VolumeListResponseWarningsList),
+  }),
+).annotate({
+  identifier: "VolumeListResponse",
+}) as any as S.Schema<VolumeListResponse>;
 
 export interface NetworkInspectRequest {
   /** Network ID or name */
@@ -5141,20 +7471,6 @@ export const NetworkInspectResponseLabelsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<NetworkInspectResponseLabelsMap>;
-
-/** represents one peer of an overlay network. */
-export interface PeerInfo {
-  /** ID of the peer-node in the Swarm cluster. */
-  Name?: string;
-  /** IP-address of the peer-node in the Swarm cluster. */
-  IP?: string;
-}
-export const PeerInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    IP: S.optional(S.String),
-  }),
-).annotate({ identifier: "PeerInfo" }) as any as S.Schema<PeerInfo>;
 
 /** List of peer nodes for an overlay network. This field is only present for overlay networks, and omitted for other network types. */
 export type NetworkInspectResponsePeersList = Array<PeerInfo>;
@@ -5303,104 +7619,6 @@ export const NetworkInspectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkInspectResponse",
 }) as any as S.Schema<NetworkInspectResponse>;
 
-export interface NetworkListRequest {
-  /** JSON encoded value of the filters (a `map[string][]string`) to process on the networks list. Available filters: - `dangling=<boolean>` When set to `true` (or `1`), returns all networks that are not in use by a container. When set to `false` (or `0`), only networks that are in use by one or more containers are returned. - `driver=<driver-name>` Matches a network's driver. - `id=<network-id>` Matches all or part of a network ID. - `label=<key>` or `label=<key>=<value>` of a network label. - `name=<network-name>` Matches all or part of a network name. - `scope=["swarm"|"global"|"local"]` Filters networks by scope (`swarm`, `global`, or `local`). - `type=["custom"|"builtin"]` Filters networks by type. The `custom` keyword returns all user-defined networks. */
-  filters?: string;
-}
-export const NetworkListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/networks", code: 200 })),
-).annotate({
-  identifier: "NetworkListRequest",
-}) as any as S.Schema<NetworkListRequest>;
-
-/** Network-specific options uses when creating the network. */
-export type NetworkOptionsMap = { [key: string]: string | undefined };
-export const NetworkOptionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkOptionsMap>;
-
-/** Metadata specific to the network being created. */
-export type NetworkLabelsMap = { [key: string]: string | undefined };
-export const NetworkLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkLabelsMap>;
-
-/** List of peer nodes for an overlay network. This field is only present for overlay networks, and omitted for other network types. */
-export type NetworkPeersList = Array<PeerInfo>;
-export const NetworkPeersList = /*@__PURE__*/ S.Array(
-  PeerInfo,
-) as any as S.Schema<NetworkPeersList>;
-
-export interface Network {
-  /** Name of the network. */
-  Name?: string;
-  /** ID that uniquely identifies a network on a single machine. */
-  Id?: string;
-  /** Date and time at which the network was created in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
-  Created?: string;
-  /** The level at which the network exists (e.g. `swarm` for cluster-wide or `local` for machine level) */
-  Scope?: string;
-  /** The name of the driver used to create the network (e.g. `bridge`, `overlay`). */
-  Driver?: string;
-  /** Whether the network was created with IPv4 enabled. */
-  EnableIPv4?: boolean;
-  /** Whether the network was created with IPv6 enabled. */
-  EnableIPv6?: boolean;
-  /** The network's IP Address Management. */
-  IPAM?: IPAM;
-  /** Whether the network is created to only allow internal networking connectivity. */
-  Internal?: boolean;
-  /** Whether a global / swarm scope network is manually attachable by regular containers from workers in swarm mode. */
-  Attachable?: boolean;
-  /** Whether the network is providing the routing-mesh for the swarm cluster. */
-  Ingress?: boolean;
-  ConfigFrom?: ConfigReference;
-  /** Whether the network is a config-only network. Config-only networks are placeholder networks for network configurations to be used by other networks. Config-only networks cannot be used directly to run containers or services. */
-  ConfigOnly?: boolean;
-  /** Network-specific options uses when creating the network. */
-  Options?: NetworkOptionsMap;
-  /** Metadata specific to the network being created. */
-  Labels?: NetworkLabelsMap;
-  /** List of peer nodes for an overlay network. This field is only present for overlay networks, and omitted for other network types. */
-  Peers?: NetworkPeersList;
-}
-export const Network = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Id: S.optional(S.String),
-    Created: S.optional(S.String),
-    Scope: S.optional(S.String),
-    Driver: S.optional(S.String),
-    EnableIPv4: S.optional(S.Boolean),
-    EnableIPv6: S.optional(S.Boolean),
-    IPAM: S.optional(IPAM),
-    Internal: S.optional(S.Boolean),
-    Attachable: S.optional(S.Boolean),
-    Ingress: S.optional(S.Boolean),
-    ConfigFrom: S.optional(ConfigReference),
-    ConfigOnly: S.optional(S.Boolean),
-    Options: S.optional(NetworkOptionsMap),
-    Labels: S.optional(NetworkLabelsMap),
-    Peers: S.optional(NetworkPeersList),
-  }),
-).annotate({ identifier: "Network" }) as any as S.Schema<Network>;
-
-export type NetworkListResponseBodyList = Array<Network>;
-export const NetworkListResponseBodyList = /*@__PURE__*/ S.Array(
-  Network,
-) as any as S.Schema<NetworkListResponseBodyList>;
-
-export type NetworkListResponse = NetworkListResponseBodyList;
-export const NetworkListResponse = /*@__PURE__*/ S.suspend(() =>
-  NetworkListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "NetworkListResponse",
-}) as any as S.Schema<NetworkListResponse>;
-
 export interface NetworkPruneRequest {
   /** Filters to process on the prune list, encoded as JSON (a `map[string][]string`). Available filters: - `until=<timestamp>` Prune networks created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time. - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune networks with (or without, in case `label!=...` is used) the specified labels. */
   filters?: string;
@@ -5431,28 +7649,6 @@ export const NetworkPruneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkPruneResponse",
 }) as any as S.Schema<NetworkPruneResponse>;
 
-export interface NodeDeleteRequest {
-  /** The ID or name of the node */
-  id: string;
-  /** Force remove a node from the swarm */
-  force?: boolean;
-}
-export const NodeDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/nodes/{id}", code: 200 })),
-).annotate({
-  identifier: "NodeDeleteRequest",
-}) as any as S.Schema<NodeDeleteRequest>;
-
-export interface NodeDeleteResponse {}
-export const NodeDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NodeDeleteResponse",
-}) as any as S.Schema<NodeDeleteResponse>;
-
 export interface NodeInspectRequest {
   /** The ID or name of the node */
   id: string;
@@ -5465,714 +7661,38 @@ export const NodeInspectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "NodeInspectRequest",
 }) as any as S.Schema<NodeInspectRequest>;
 
-/** User-defined key/value metadata. */
-export type NodeSpecLabelsMap = { [key: string]: string | undefined };
-export const NodeSpecLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NodeSpecLabelsMap>;
-
-/** Role of the node. */
-export type NodeSpecRole = "worker" | "manager";
-export const NodeSpecRole = /*@__PURE__*/ S.String;
-
-/** Availability of the node. */
-export type NodeSpecAvailability = "active" | "pause" | "drain";
-export const NodeSpecAvailability = /*@__PURE__*/ S.String;
-
-export interface NodeSpec {
-  /** Name for the node. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: NodeSpecLabelsMap;
-  /** Role of the node. */
-  Role?: NodeSpecRole;
-  /** Availability of the node. */
-  Availability?: NodeSpecAvailability;
-}
-export const NodeSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Labels: S.optional(NodeSpecLabelsMap),
-    Role: S.optional(NodeSpecRole),
-    Availability: S.optional(NodeSpecAvailability),
-  }),
-).annotate({ identifier: "NodeSpec" }) as any as S.Schema<NodeSpec>;
-
-/** Platform represents the platform (Arch/OS). */
-export interface Platform {
-  /** Architecture represents the hardware architecture (for example, `x86_64`). */
-  Architecture?: string;
-  /** OS represents the Operating System (for example, `linux` or `windows`). */
-  OS?: string;
-}
-export const Platform = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Architecture: S.optional(S.String),
-    OS: S.optional(S.String),
-  }),
-).annotate({ identifier: "Platform" }) as any as S.Schema<Platform>;
-
-export interface GenericResourcesItemNamedResourceSpec {
-  Kind?: string;
-  Value?: string;
-}
-export const GenericResourcesItemNamedResourceSpec = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Kind: S.optional(S.String),
-      Value: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GenericResourcesItemNamedResourceSpec",
-}) as any as S.Schema<GenericResourcesItemNamedResourceSpec>;
-
-export interface GenericResourcesItemDiscreteResourceSpec {
-  Kind?: string;
-  Value?: number;
-}
-export const GenericResourcesItemDiscreteResourceSpec = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Kind: S.optional(S.String),
-      Value: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "GenericResourcesItemDiscreteResourceSpec",
-}) as any as S.Schema<GenericResourcesItemDiscreteResourceSpec>;
-
-export interface GenericResourcesItem {
-  NamedResourceSpec?: GenericResourcesItemNamedResourceSpec;
-  DiscreteResourceSpec?: GenericResourcesItemDiscreteResourceSpec;
-}
-export const GenericResourcesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    NamedResourceSpec: S.optional(GenericResourcesItemNamedResourceSpec),
-    DiscreteResourceSpec: S.optional(GenericResourcesItemDiscreteResourceSpec),
-  }),
-).annotate({
-  identifier: "GenericResourcesItem",
-}) as any as S.Schema<GenericResourcesItem>;
-
-/** User-defined resources can be either Integer resources (e.g, `SSD=3`) or String resources (e.g, `GPU=UUID1`). */
-export type GenericResources = Array<GenericResourcesItem>;
-export const GenericResources = /*@__PURE__*/ S.Array(
-  GenericResourcesItem,
-) as any as S.Schema<GenericResources>;
-
-/** An object describing the resources which can be advertised by a node and requested by a task. */
-export interface ResourceObject {
-  NanoCPUs?: number;
-  MemoryBytes?: number;
-  GenericResources?: GenericResources;
-}
-export const ResourceObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    NanoCPUs: S.optional(S.Number),
-    MemoryBytes: S.optional(S.Number),
-    GenericResources: S.optional(GenericResources),
-  }),
-).annotate({ identifier: "ResourceObject" }) as any as S.Schema<ResourceObject>;
-
-export type EngineDescriptionLabelsMap = { [key: string]: string | undefined };
-export const EngineDescriptionLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EngineDescriptionLabelsMap>;
-
-export interface EngineDescriptionPluginsItem {
-  Type?: string;
-  Name?: string;
-}
-export const EngineDescriptionPluginsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Type: S.optional(S.String),
-    Name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EngineDescriptionPluginsItem",
-}) as any as S.Schema<EngineDescriptionPluginsItem>;
-
-export type EngineDescriptionPluginsList = Array<EngineDescriptionPluginsItem>;
-export const EngineDescriptionPluginsList = /*@__PURE__*/ S.Array(
-  EngineDescriptionPluginsItem,
-) as any as S.Schema<EngineDescriptionPluginsList>;
-
-/** EngineDescription provides information about an engine. */
-export interface EngineDescription {
-  EngineVersion?: string;
-  Labels?: EngineDescriptionLabelsMap;
-  Plugins?: EngineDescriptionPluginsList;
-}
-export const EngineDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    EngineVersion: S.optional(S.String),
-    Labels: S.optional(EngineDescriptionLabelsMap),
-    Plugins: S.optional(EngineDescriptionPluginsList),
-  }),
-).annotate({
-  identifier: "EngineDescription",
-}) as any as S.Schema<EngineDescription>;
-
-/** Information about the issuer of leaf TLS certificates and the trusted root CA certificate. */
-export interface TLSInfo {
-  /** The root CA certificate(s) that are used to validate leaf TLS certificates. */
-  TrustRoot?: string;
-  /** The base64-url-safe-encoded raw subject bytes of the issuer. */
-  CertIssuerSubject?: string;
-  /** The base64-url-safe-encoded raw public key bytes of the issuer. */
-  CertIssuerPublicKey?: string;
-}
-export const TLSInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    TrustRoot: S.optional(S.String),
-    CertIssuerSubject: S.optional(S.String),
-    CertIssuerPublicKey: S.optional(S.String),
-  }),
-).annotate({ identifier: "TLSInfo" }) as any as S.Schema<TLSInfo>;
-
-/** NodeDescription encapsulates the properties of the Node as reported by the agent. */
-export interface NodeDescription {
-  Hostname?: string;
-  Platform?: Platform;
-  Resources?: ResourceObject;
-  Engine?: EngineDescription;
-  TLSInfo?: TLSInfo;
-}
-export const NodeDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Hostname: S.optional(S.String),
-    Platform: S.optional(Platform),
-    Resources: S.optional(ResourceObject),
-    Engine: S.optional(EngineDescription),
-    TLSInfo: S.optional(TLSInfo),
-  }),
-).annotate({
-  identifier: "NodeDescription",
-}) as any as S.Schema<NodeDescription>;
-
-/** NodeState represents the state of a node. */
-export type NodeState = "unknown" | "down" | "ready" | "disconnected";
-export const NodeState = /*@__PURE__*/ S.String;
-
-/** NodeStatus represents the status of a node. It provides the current status of the node, as seen by the manager. */
-export interface NodeStatus {
-  State?: NodeState;
-  Message?: string;
-  /** IP address of the node. */
-  Addr?: string;
-}
-export const NodeStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    State: S.optional(NodeState),
-    Message: S.optional(S.String),
-    Addr: S.optional(S.String),
-  }),
-).annotate({ identifier: "NodeStatus" }) as any as S.Schema<NodeStatus>;
-
-/** Reachability represents the reachability of a node. */
-export type Reachability = "unknown" | "unreachable" | "reachable";
-export const Reachability = /*@__PURE__*/ S.String;
-
-/** ManagerStatus represents the status of a manager. It provides the current status of a node's manager component, if the node is a manager. */
-export interface ManagerStatus {
-  Leader?: boolean;
-  Reachability?: Reachability;
-  /** The IP address and port at which the manager is reachable. */
-  Addr?: string;
-}
-export const ManagerStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Leader: S.optional(S.Boolean),
-    Reachability: S.optional(Reachability),
-    Addr: S.optional(S.String),
-  }),
-).annotate({ identifier: "ManagerStatus" }) as any as S.Schema<ManagerStatus>;
-
-export interface Node {
-  ID?: string;
-  Version?: ObjectVersion;
-  /** Date and time at which the node was added to the swarm in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
-  CreatedAt?: string;
-  /** Date and time at which the node was last updated in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format with nano-seconds. */
-  UpdatedAt?: string;
-  Spec?: NodeSpec;
-  Description?: NodeDescription;
-  Status?: NodeStatus;
-  ManagerStatus?: ManagerStatus | null;
-}
-export const Node = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ID: S.optional(S.String),
-    Version: S.optional(ObjectVersion),
-    CreatedAt: S.optional(S.String),
-    UpdatedAt: S.optional(S.String),
-    Spec: S.optional(NodeSpec),
-    Description: S.optional(NodeDescription),
-    Status: S.optional(NodeStatus),
-    ManagerStatus: S.optional(S.NullOr(ManagerStatus)),
-  }),
-).annotate({ identifier: "Node" }) as any as S.Schema<Node>;
-
-export interface NodeListRequest {
-  /** Filters to process on the nodes list, encoded as JSON (a `map[string][]string`). Available filters: - `id=<node id>` - `label=<engine label>` - `membership=`(`accepted`|`pending`)` - `name=<node name>` - `node.label=<node label>` - `role=`(`manager`|`worker`)` */
-  filters?: string;
-}
-export const NodeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/nodes", code: 200 })),
-).annotate({
-  identifier: "NodeListRequest",
-}) as any as S.Schema<NodeListRequest>;
-
-export type NodeListResponseBodyList = Array<Node>;
-export const NodeListResponseBodyList = /*@__PURE__*/ S.Array(
-  Node,
-) as any as S.Schema<NodeListResponseBodyList>;
-
-export type NodeListResponse = NodeListResponseBodyList;
-export const NodeListResponse = /*@__PURE__*/ S.suspend(() =>
-  NodeListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "NodeListResponse",
-}) as any as S.Schema<NodeListResponse>;
-
-/** User-defined key/value metadata. */
-export type NodeUpdateRequestLabelsMap = { [key: string]: string | undefined };
-export const NodeUpdateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NodeUpdateRequestLabelsMap>;
-
-/** Role of the node. */
-export type NodeUpdateRequestRole = "worker" | "manager";
-export const NodeUpdateRequestRole = /*@__PURE__*/ S.String;
-
-/** Availability of the node. */
-export type NodeUpdateRequestAvailability = "active" | "pause" | "drain";
-export const NodeUpdateRequestAvailability = /*@__PURE__*/ S.String;
-
-export interface NodeUpdateRequest {
-  /** The ID of the node */
+export interface PauseContainerRequest {
+  /** ID or name of the container */
   id: string;
-  /** The version number of the node object being updated. This is required to avoid conflicting writes. */
-  version: number;
-  /** Name for the node. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: NodeUpdateRequestLabelsMap;
-  /** Role of the node. */
-  Role?: NodeUpdateRequestRole | (string & {});
-  /** Availability of the node. */
-  Availability?: NodeUpdateRequestAvailability | (string & {});
 }
-export const NodeUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const PauseContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Query()),
-    Name: S.optional(S.String),
-    Labels: S.optional(NodeUpdateRequestLabelsMap),
-    Role: S.optional(NodeUpdateRequestRole),
-    Availability: S.optional(NodeUpdateRequestAvailability),
-  }).pipe(T.Http({ method: "POST", uri: "/nodes/{id}/update", code: 200 })),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/pause", code: 200 })),
 ).annotate({
-  identifier: "NodeUpdateRequest",
-}) as any as S.Schema<NodeUpdateRequest>;
+  identifier: "PauseContainerRequest",
+}) as any as S.Schema<PauseContainerRequest>;
 
-export interface NodeUpdateResponse {}
-export const NodeUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PauseContainerResponse {}
+export const PauseContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "NodeUpdateResponse",
-}) as any as S.Schema<NodeUpdateResponse>;
+  identifier: "PauseContainerResponse",
+}) as any as S.Schema<PauseContainerResponse>;
 
-export interface PluginCreateRequest {
-  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
-  name: string;
-  body?: string;
-}
-export const PluginCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Query()),
-    body: S.optional(S.String.pipe(T.HttpBody())),
-  }).pipe(T.Http({ method: "POST", uri: "/plugins/create", code: 200 })),
+export interface PingSystemRequest {}
+export const PingSystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/_ping", code: 200 })),
 ).annotate({
-  identifier: "PluginCreateRequest",
-}) as any as S.Schema<PluginCreateRequest>;
+  identifier: "PingSystemRequest",
+}) as any as S.Schema<PingSystemRequest>;
 
-export interface PluginCreateResponse {}
-export const PluginCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export type PingSystemResponse = string;
+export const PingSystemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.String.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "PluginCreateResponse",
-}) as any as S.Schema<PluginCreateResponse>;
-
-export interface PluginDeleteRequest {
-  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
-  name: string;
-  /** Disable the plugin before removing. This may result in issues if the plugin is in use by a container. */
-  force?: boolean;
-}
-export const PluginDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/plugins/{name}", code: 200 })),
-).annotate({
-  identifier: "PluginDeleteRequest",
-}) as any as S.Schema<PluginDeleteRequest>;
-
-export type PluginMountSettableList = Array<string>;
-export const PluginMountSettableList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginMountSettableList>;
-
-export type PluginMountOptionsList = Array<string>;
-export const PluginMountOptionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginMountOptionsList>;
-
-export interface PluginMount {
-  Name: string;
-  Description: string;
-  Settable: PluginMountSettableList;
-  Source: string;
-  Destination: string;
-  Type: string;
-  Options: PluginMountOptionsList;
-}
-export const PluginMount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.String,
-    Description: S.String,
-    Settable: PluginMountSettableList,
-    Source: S.String,
-    Destination: S.String,
-    Type: S.String,
-    Options: PluginMountOptionsList,
-  }),
-).annotate({ identifier: "PluginMount" }) as any as S.Schema<PluginMount>;
-
-export type PluginSettingsMountsList = Array<PluginMount>;
-export const PluginSettingsMountsList = /*@__PURE__*/ S.Array(
-  PluginMount,
-) as any as S.Schema<PluginSettingsMountsList>;
-
-export type PluginSettingsEnvList = Array<string>;
-export const PluginSettingsEnvList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginSettingsEnvList>;
-
-export type PluginSettingsArgsList = Array<string>;
-export const PluginSettingsArgsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginSettingsArgsList>;
-
-export type PluginDeviceSettableList = Array<string>;
-export const PluginDeviceSettableList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginDeviceSettableList>;
-
-export interface PluginDevice {
-  Name: string;
-  Description: string;
-  Settable: PluginDeviceSettableList;
-  Path: string;
-}
-export const PluginDevice = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.String,
-    Description: S.String,
-    Settable: PluginDeviceSettableList,
-    Path: S.String,
-  }),
-).annotate({ identifier: "PluginDevice" }) as any as S.Schema<PluginDevice>;
-
-export type PluginSettingsDevicesList = Array<PluginDevice>;
-export const PluginSettingsDevicesList = /*@__PURE__*/ S.Array(
-  PluginDevice,
-) as any as S.Schema<PluginSettingsDevicesList>;
-
-/** user-configurable settings for the plugin. */
-export interface PluginSettings {
-  Mounts: PluginSettingsMountsList;
-  Env: PluginSettingsEnvList;
-  Args: PluginSettingsArgsList;
-  Devices: PluginSettingsDevicesList;
-}
-export const PluginSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Mounts: PluginSettingsMountsList,
-    Env: PluginSettingsEnvList,
-    Args: PluginSettingsArgsList,
-    Devices: PluginSettingsDevicesList,
-  }),
-).annotate({ identifier: "PluginSettings" }) as any as S.Schema<PluginSettings>;
-
-export type PluginConfigInterfaceTypesList = Array<string>;
-export const PluginConfigInterfaceTypesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginConfigInterfaceTypesList>;
-
-/** Protocol to use for clients connecting to the plugin. */
-export type PluginConfigInterfaceProtocolScheme = "" | "moby.plugins.http/v1";
-export const PluginConfigInterfaceProtocolScheme = /*@__PURE__*/ S.String;
-
-/** The interface between Docker and the plugin */
-export interface PluginConfigInterface {
-  Types: PluginConfigInterfaceTypesList;
-  Socket: string;
-  /** Protocol to use for clients connecting to the plugin. */
-  ProtocolScheme?: PluginConfigInterfaceProtocolScheme;
-}
-export const PluginConfigInterface = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Types: PluginConfigInterfaceTypesList,
-    Socket: S.String,
-    ProtocolScheme: S.optional(PluginConfigInterfaceProtocolScheme),
-  }),
-).annotate({
-  identifier: "PluginConfigInterface",
-}) as any as S.Schema<PluginConfigInterface>;
-
-export type PluginConfigEntrypointList = Array<string>;
-export const PluginConfigEntrypointList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginConfigEntrypointList>;
-
-export interface PluginConfigUser {
-  UID?: number;
-  GID?: number;
-}
-export const PluginConfigUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    UID: S.optional(S.Number),
-    GID: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "PluginConfigUser",
-}) as any as S.Schema<PluginConfigUser>;
-
-export interface PluginConfigNetwork {
-  Type: string;
-}
-export const PluginConfigNetwork = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Type: S.String,
-  }),
-).annotate({
-  identifier: "PluginConfigNetwork",
-}) as any as S.Schema<PluginConfigNetwork>;
-
-export type PluginConfigLinuxCapabilitiesList = Array<string>;
-export const PluginConfigLinuxCapabilitiesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginConfigLinuxCapabilitiesList>;
-
-export type PluginConfigLinuxDevicesList = Array<PluginDevice>;
-export const PluginConfigLinuxDevicesList = /*@__PURE__*/ S.Array(
-  PluginDevice,
-) as any as S.Schema<PluginConfigLinuxDevicesList>;
-
-export interface PluginConfigLinux {
-  Capabilities: PluginConfigLinuxCapabilitiesList;
-  AllowAllDevices: boolean;
-  Devices: PluginConfigLinuxDevicesList;
-}
-export const PluginConfigLinux = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Capabilities: PluginConfigLinuxCapabilitiesList,
-    AllowAllDevices: S.Boolean,
-    Devices: PluginConfigLinuxDevicesList,
-  }),
-).annotate({
-  identifier: "PluginConfigLinux",
-}) as any as S.Schema<PluginConfigLinux>;
-
-export type PluginConfigMountsList = Array<PluginMount>;
-export const PluginConfigMountsList = /*@__PURE__*/ S.Array(
-  PluginMount,
-) as any as S.Schema<PluginConfigMountsList>;
-
-export type PluginEnvSettableList = Array<string>;
-export const PluginEnvSettableList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginEnvSettableList>;
-
-export interface PluginEnv {
-  Name: string;
-  Description: string;
-  Settable: PluginEnvSettableList;
-  Value: string;
-}
-export const PluginEnv = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.String,
-    Description: S.String,
-    Settable: PluginEnvSettableList,
-    Value: S.String,
-  }),
-).annotate({ identifier: "PluginEnv" }) as any as S.Schema<PluginEnv>;
-
-export type PluginConfigEnvList = Array<PluginEnv>;
-export const PluginConfigEnvList = /*@__PURE__*/ S.Array(
-  PluginEnv,
-) as any as S.Schema<PluginConfigEnvList>;
-
-export type PluginConfigArgsSettableList = Array<string>;
-export const PluginConfigArgsSettableList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginConfigArgsSettableList>;
-
-export type PluginConfigArgsValueList = Array<string>;
-export const PluginConfigArgsValueList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginConfigArgsValueList>;
-
-export interface PluginConfigArgs {
-  Name: string;
-  Description: string;
-  Settable: PluginConfigArgsSettableList;
-  Value: PluginConfigArgsValueList;
-}
-export const PluginConfigArgs = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.String,
-    Description: S.String,
-    Settable: PluginConfigArgsSettableList,
-    Value: PluginConfigArgsValueList,
-  }),
-).annotate({
-  identifier: "PluginConfigArgs",
-}) as any as S.Schema<PluginConfigArgs>;
-
-export type PluginConfigRootfsDiffIdsList = Array<string>;
-export const PluginConfigRootfsDiffIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginConfigRootfsDiffIdsList>;
-
-export interface PluginConfigRootfs {
-  type?: string;
-  diff_ids?: PluginConfigRootfsDiffIdsList;
-}
-export const PluginConfigRootfs = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    diff_ids: S.optional(PluginConfigRootfsDiffIdsList),
-  }),
-).annotate({
-  identifier: "PluginConfigRootfs",
-}) as any as S.Schema<PluginConfigRootfs>;
-
-/** The config of a plugin. */
-export interface PluginConfig {
-  Description: string;
-  Documentation: string;
-  /** The interface between Docker and the plugin */
-  Interface: PluginConfigInterface;
-  Entrypoint: PluginConfigEntrypointList;
-  WorkDir: string;
-  User?: PluginConfigUser;
-  Network: PluginConfigNetwork;
-  Linux: PluginConfigLinux;
-  PropagatedMount: string;
-  IpcHost: boolean;
-  PidHost: boolean;
-  Mounts: PluginConfigMountsList;
-  Env: PluginConfigEnvList;
-  Args: PluginConfigArgs;
-  rootfs?: PluginConfigRootfs;
-}
-export const PluginConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Description: S.String,
-    Documentation: S.String,
-    Interface: PluginConfigInterface,
-    Entrypoint: PluginConfigEntrypointList,
-    WorkDir: S.String,
-    User: S.optional(PluginConfigUser),
-    Network: PluginConfigNetwork,
-    Linux: PluginConfigLinux,
-    PropagatedMount: S.String,
-    IpcHost: S.Boolean,
-    PidHost: S.Boolean,
-    Mounts: PluginConfigMountsList,
-    Env: PluginConfigEnvList,
-    Args: PluginConfigArgs,
-    rootfs: S.optional(PluginConfigRootfs),
-  }),
-).annotate({ identifier: "PluginConfig" }) as any as S.Schema<PluginConfig>;
-
-/** A plugin for the Engine API */
-export interface Plugin {
-  Id?: string;
-  Name: string;
-  /** True if the plugin is running. False if the plugin is not running, only installed. */
-  Enabled: boolean;
-  /** user-configurable settings for the plugin. */
-  Settings: PluginSettings;
-  /** plugin remote reference used to push/pull the plugin */
-  PluginReference?: string;
-  /** The config of a plugin. */
-  Config: PluginConfig;
-}
-export const Plugin = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Id: S.optional(S.String),
-    Name: S.String,
-    Enabled: S.Boolean,
-    Settings: PluginSettings,
-    PluginReference: S.optional(S.String),
-    Config: PluginConfig,
-  }),
-).annotate({ identifier: "Plugin" }) as any as S.Schema<Plugin>;
-
-export interface PluginDisableRequest {
-  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
-  name: string;
-  /** Force disable a plugin even if still in use. */
-  force?: boolean;
-}
-export const PluginDisableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/plugins/{name}/disable", code: 200 }),
-  ),
-).annotate({
-  identifier: "PluginDisableRequest",
-}) as any as S.Schema<PluginDisableRequest>;
-
-export interface PluginDisableResponse {}
-export const PluginDisableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PluginDisableResponse",
-}) as any as S.Schema<PluginDisableResponse>;
-
-export interface PluginEnableRequest {
-  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
-  name: string;
-  /** Set the HTTP client timeout (in seconds) */
-  timeout?: number;
-}
-export const PluginEnableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    timeout: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/plugins/{name}/enable", code: 200 })),
-).annotate({
-  identifier: "PluginEnableRequest",
-}) as any as S.Schema<PluginEnableRequest>;
-
-export interface PluginEnableResponse {}
-export const PluginEnableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PluginEnableResponse",
-}) as any as S.Schema<PluginEnableResponse>;
+  identifier: "PingSystemResponse",
+}) as any as S.Schema<PingSystemResponse>;
 
 export interface PluginInspectRequest {
   /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
@@ -6185,30 +7705,6 @@ export const PluginInspectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PluginInspectRequest",
 }) as any as S.Schema<PluginInspectRequest>;
-
-export interface PluginListRequest {
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the plugin list. Available filters: - `capability=<capability name>` - `enable=<true>|<false>` */
-  filters?: string;
-}
-export const PluginListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/plugins", code: 200 })),
-).annotate({
-  identifier: "PluginListRequest",
-}) as any as S.Schema<PluginListRequest>;
-
-export type PluginListResponseBodyList = Array<Plugin>;
-export const PluginListResponseBodyList = /*@__PURE__*/ S.Array(
-  Plugin,
-) as any as S.Schema<PluginListResponseBodyList>;
-
-export type PluginListResponse = PluginListResponseBodyList;
-export const PluginListResponse = /*@__PURE__*/ S.suspend(() =>
-  PluginListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "PluginListResponse",
-}) as any as S.Schema<PluginListResponse>;
 
 export type PluginPullRequestBodyList = Array<PluginPrivilege>;
 export const PluginPullRequestBodyList = /*@__PURE__*/ S.Array(
@@ -6260,32 +7756,6 @@ export const PluginPushResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PluginPushResponse",
 }) as any as S.Schema<PluginPushResponse>;
-
-export type PluginSetRequestBodyList = Array<string>;
-export const PluginSetRequestBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PluginSetRequestBodyList>;
-
-export interface PluginSetRequest {
-  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
-  name: string;
-  body?: PluginSetRequestBodyList;
-}
-export const PluginSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    body: S.optional(PluginSetRequestBodyList.pipe(T.HttpBody())),
-  }).pipe(T.Http({ method: "POST", uri: "/plugins/{name}/set", code: 200 })),
-).annotate({
-  identifier: "PluginSetRequest",
-}) as any as S.Schema<PluginSetRequest>;
-
-export interface PluginSetResponse {}
-export const PluginSetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PluginSetResponse",
-}) as any as S.Schema<PluginSetResponse>;
 
 export type PluginUpgradeRequestBodyList = Array<PluginPrivilege>;
 export const PluginUpgradeRequestBodyList = /*@__PURE__*/ S.Array(
@@ -6353,57 +7823,133 @@ export const PutContainerArchiveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutContainerArchiveResponse",
 }) as any as S.Schema<PutContainerArchiveResponse>;
 
-/** User-defined key/value metadata. */
-export type SecretCreateRequestLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const SecretCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SecretCreateRequestLabelsMap>;
-
-export interface SecretCreateRequest {
-  /** User-defined name of the secret. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: SecretCreateRequestLabelsMap;
-  /** Data is the data to store as a secret, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. It must be empty if the Driver field is set, in which case the data is loaded from an external secret store. The maximum allowed size is 500KB, as defined in [MaxSecretSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0/api/validation#MaxSecretSize). This field is only used to _create_ a secret, and is not returned by other endpoints. */
-  Data?: string;
-  /** Name of the secrets driver used to fetch the secret's value from an external secret store. */
-  Driver?: Driver;
-  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
-  Templating?: Driver;
-}
-export const SecretCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Labels: S.optional(SecretCreateRequestLabelsMap),
-    Data: S.optional(S.String),
-    Driver: S.optional(Driver),
-    Templating: S.optional(Driver),
-  }).pipe(T.Http({ method: "POST", uri: "/secrets/create", code: 200 })),
-).annotate({
-  identifier: "SecretCreateRequest",
-}) as any as S.Schema<SecretCreateRequest>;
-
-export interface SecretDeleteRequest {
-  /** ID of the secret */
+export interface RenameContainerRequest {
+  /** ID or name of the container */
   id: string;
+  /** New name for the container */
+  name: string;
 }
-export const SecretDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const RenameContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/secrets/{id}", code: 200 })),
+    name: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/containers/{id}/rename", code: 200 }),
+  ),
 ).annotate({
-  identifier: "SecretDeleteRequest",
-}) as any as S.Schema<SecretDeleteRequest>;
+  identifier: "RenameContainerRequest",
+}) as any as S.Schema<RenameContainerRequest>;
 
-export interface SecretDeleteResponse {}
-export const SecretDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RenameContainerResponse {}
+export const RenameContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SecretDeleteResponse",
-}) as any as S.Schema<SecretDeleteResponse>;
+  identifier: "RenameContainerResponse",
+}) as any as S.Schema<RenameContainerResponse>;
+
+export interface ResizeContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Height of the TTY session in characters */
+  h: number;
+  /** Width of the TTY session in characters */
+  w: number;
+}
+export const ResizeContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    h: S.Number.pipe(T.Query()),
+    w: S.Number.pipe(T.Query()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/containers/{id}/resize", code: 200 }),
+  ),
+).annotate({
+  identifier: "ResizeContainerRequest",
+}) as any as S.Schema<ResizeContainerRequest>;
+
+export interface ResizeContainerResponse {}
+export const ResizeContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResizeContainerResponse",
+}) as any as S.Schema<ResizeContainerResponse>;
+
+export interface RestartContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Signal to send to the container as an integer or string (e.g. `SIGINT`). */
+  signal?: string;
+  /** Number of seconds to wait before killing the container */
+  t?: number;
+}
+export const RestartContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    signal: S.optional(S.String.pipe(T.Query())),
+    t: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/containers/{id}/restart", code: 200 }),
+  ),
+).annotate({
+  identifier: "RestartContainerRequest",
+}) as any as S.Schema<RestartContainerRequest>;
+
+export interface RestartContainerResponse {}
+export const RestartContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RestartContainerResponse",
+}) as any as S.Schema<RestartContainerResponse>;
+
+export interface SearchImageRequest {
+  /** Term to search */
+  term: string;
+  /** Maximum number of results to return */
+  limit?: number;
+  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the images list. Available filters: - `is-official=(true|false)` - `stars=<number>` Matches images that has at least 'number' stars. */
+  filters?: string;
+}
+export const SearchImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    term: S.String.pipe(T.Query()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/images/search", code: 200 })),
+).annotate({
+  identifier: "SearchImageRequest",
+}) as any as S.Schema<SearchImageRequest>;
+
+export interface SearchImageResponseBodyItem {
+  description?: string;
+  is_official?: boolean;
+  /** Whether this repository has automated builds enabled. <p><br /></p> > **Deprecated**: This field is deprecated and will always be "false". */
+  is_automated?: boolean;
+  name?: string;
+  star_count?: number;
+}
+export const SearchImageResponseBodyItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    is_official: S.optional(S.Boolean),
+    is_automated: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    star_count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SearchImageResponseBodyItem",
+}) as any as S.Schema<SearchImageResponseBodyItem>;
+
+export type SearchImageResponseBodyList = Array<SearchImageResponseBodyItem>;
+export const SearchImageResponseBodyList = /*@__PURE__*/ S.Array(
+  SearchImageResponseBodyItem,
+) as any as S.Schema<SearchImageResponseBodyList>;
+
+export type SearchImageResponse = SearchImageResponseBodyList;
+export const SearchImageResponse = /*@__PURE__*/ S.suspend(() =>
+  SearchImageResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "SearchImageResponse",
+}) as any as S.Schema<SearchImageResponse>;
 
 export interface SecretInspectRequest {
   /** ID of the secret */
@@ -6416,1070 +7962,6 @@ export const SecretInspectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SecretInspectRequest",
 }) as any as S.Schema<SecretInspectRequest>;
-
-/** User-defined key/value metadata. */
-export type SecretSpecLabelsMap = { [key: string]: string | undefined };
-export const SecretSpecLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SecretSpecLabelsMap>;
-
-export interface SecretSpec {
-  /** User-defined name of the secret. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: SecretSpecLabelsMap;
-  /** Data is the data to store as a secret, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. It must be empty if the Driver field is set, in which case the data is loaded from an external secret store. The maximum allowed size is 500KB, as defined in [MaxSecretSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0/api/validation#MaxSecretSize). This field is only used to _create_ a secret, and is not returned by other endpoints. */
-  Data?: string;
-  /** Name of the secrets driver used to fetch the secret's value from an external secret store. */
-  Driver?: Driver;
-  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
-  Templating?: Driver;
-}
-export const SecretSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Labels: S.optional(SecretSpecLabelsMap),
-    Data: S.optional(S.String),
-    Driver: S.optional(Driver),
-    Templating: S.optional(Driver),
-  }),
-).annotate({ identifier: "SecretSpec" }) as any as S.Schema<SecretSpec>;
-
-export interface Secret {
-  ID?: string;
-  Version?: ObjectVersion;
-  CreatedAt?: string;
-  UpdatedAt?: string;
-  Spec?: SecretSpec;
-}
-export const Secret = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ID: S.optional(S.String),
-    Version: S.optional(ObjectVersion),
-    CreatedAt: S.optional(S.String),
-    UpdatedAt: S.optional(S.String),
-    Spec: S.optional(SecretSpec),
-  }),
-).annotate({ identifier: "Secret" }) as any as S.Schema<Secret>;
-
-export interface SecretListRequest {
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the secrets list. Available filters: - `id=<secret id>` - `label=<key> or label=<key>=value` - `name=<secret name>` - `names=<secret name>` */
-  filters?: string;
-}
-export const SecretListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/secrets", code: 200 })),
-).annotate({
-  identifier: "SecretListRequest",
-}) as any as S.Schema<SecretListRequest>;
-
-export type SecretListResponseBodyList = Array<Secret>;
-export const SecretListResponseBodyList = /*@__PURE__*/ S.Array(
-  Secret,
-) as any as S.Schema<SecretListResponseBodyList>;
-
-export type SecretListResponse = SecretListResponseBodyList;
-export const SecretListResponse = /*@__PURE__*/ S.suspend(() =>
-  SecretListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SecretListResponse",
-}) as any as S.Schema<SecretListResponse>;
-
-/** User-defined key/value metadata. */
-export type SecretUpdateRequestLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const SecretUpdateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SecretUpdateRequestLabelsMap>;
-
-export interface SecretUpdateRequest {
-  /** The ID or name of the secret */
-  id: string;
-  /** The version number of the secret object being updated. This is required to avoid conflicting writes. */
-  version: number;
-  /** User-defined name of the secret. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: SecretUpdateRequestLabelsMap;
-  /** Data is the data to store as a secret, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. It must be empty if the Driver field is set, in which case the data is loaded from an external secret store. The maximum allowed size is 500KB, as defined in [MaxSecretSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0/api/validation#MaxSecretSize). This field is only used to _create_ a secret, and is not returned by other endpoints. */
-  Data?: string;
-  /** Name of the secrets driver used to fetch the secret's value from an external secret store. */
-  Driver?: Driver;
-  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
-  Templating?: Driver;
-}
-export const SecretUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Query()),
-    Name: S.optional(S.String),
-    Labels: S.optional(SecretUpdateRequestLabelsMap),
-    Data: S.optional(S.String),
-    Driver: S.optional(Driver),
-    Templating: S.optional(Driver),
-  }).pipe(T.Http({ method: "POST", uri: "/secrets/{id}/update", code: 200 })),
-).annotate({
-  identifier: "SecretUpdateRequest",
-}) as any as S.Schema<SecretUpdateRequest>;
-
-export interface SecretUpdateResponse {}
-export const SecretUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SecretUpdateResponse",
-}) as any as S.Schema<SecretUpdateResponse>;
-
-/** User-defined key/value metadata. */
-export type ServiceCreateRequestLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const ServiceCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServiceCreateRequestLabelsMap>;
-
-export type TaskSpecPluginSpecPluginPrivilegeList = Array<PluginPrivilege>;
-export const TaskSpecPluginSpecPluginPrivilegeList = /*@__PURE__*/ S.Array(
-  PluginPrivilege,
-) as any as S.Schema<TaskSpecPluginSpecPluginPrivilegeList>;
-
-/** Plugin spec for the service. *(Experimental release only.)* <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
-export interface TaskSpecPluginSpec {
-  /** The name or 'alias' to use for the plugin. */
-  Name?: string;
-  /** The plugin image reference to use. */
-  Remote?: string;
-  /** Disable the plugin once scheduled. */
-  Disabled?: boolean;
-  PluginPrivilege?: TaskSpecPluginSpecPluginPrivilegeList;
-}
-export const TaskSpecPluginSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Remote: S.optional(S.String),
-    Disabled: S.optional(S.Boolean),
-    PluginPrivilege: S.optional(TaskSpecPluginSpecPluginPrivilegeList),
-  }),
-).annotate({
-  identifier: "TaskSpecPluginSpec",
-}) as any as S.Schema<TaskSpecPluginSpec>;
-
-/** User-defined key/value data. */
-export type TaskSpecContainerSpecLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const TaskSpecContainerSpecLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecLabelsMap>;
-
-/** The command to be run in the image. */
-export type TaskSpecContainerSpecCommandList = Array<string>;
-export const TaskSpecContainerSpecCommandList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecCommandList>;
-
-/** Arguments to the command. */
-export type TaskSpecContainerSpecArgsList = Array<string>;
-export const TaskSpecContainerSpecArgsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecArgsList>;
-
-/** A list of environment variables in the form `VAR=value`. */
-export type TaskSpecContainerSpecEnvList = Array<string>;
-export const TaskSpecContainerSpecEnvList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecEnvList>;
-
-/** A list of additional groups that the container process will run as. */
-export type TaskSpecContainerSpecGroupsList = Array<string>;
-export const TaskSpecContainerSpecGroupsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecGroupsList>;
-
-/** CredentialSpec for managed service account (Windows only) */
-export interface TaskSpecContainerSpecPrivilegesCredentialSpec {
-  /** Load credential spec from a Swarm Config with the given ID. The specified config must also be present in the Configs field with the Runtime property set. <p><br /></p> > **Note**: `CredentialSpec.File`, `CredentialSpec.Registry`, > and `CredentialSpec.Config` are mutually exclusive. */
-  Config?: string;
-  /** Load credential spec from this file. The file is read by the daemon, and must be present in the `CredentialSpecs` subdirectory in the docker data directory, which defaults to `C:\ProgramData\Docker\` on Windows. For example, specifying `spec.json` loads `C:\ProgramData\Docker\CredentialSpecs\spec.json`. <p><br /></p> > **Note**: `CredentialSpec.File`, `CredentialSpec.Registry`, > and `CredentialSpec.Config` are mutually exclusive. */
-  File?: string;
-  /** Load credential spec from this value in the Windows registry. The specified registry value must be located in: `HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers\CredentialSpecs` <p><br /></p> > **Note**: `CredentialSpec.File`, `CredentialSpec.Registry`, > and `CredentialSpec.Config` are mutually exclusive. */
-  Registry?: string;
-}
-export const TaskSpecContainerSpecPrivilegesCredentialSpec =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      Config: S.optional(S.String),
-      File: S.optional(S.String),
-      Registry: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "TaskSpecContainerSpecPrivilegesCredentialSpec",
-  }) as any as S.Schema<TaskSpecContainerSpecPrivilegesCredentialSpec>;
-
-/** SELinux labels of the container */
-export interface TaskSpecContainerSpecPrivilegesSELinuxContext {
-  /** Disable SELinux */
-  Disable?: boolean;
-  /** SELinux user label */
-  User?: string;
-  /** SELinux role label */
-  Role?: string;
-  /** SELinux type label */
-  Type?: string;
-  /** SELinux level label */
-  Level?: string;
-}
-export const TaskSpecContainerSpecPrivilegesSELinuxContext =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      Disable: S.optional(S.Boolean),
-      User: S.optional(S.String),
-      Role: S.optional(S.String),
-      Type: S.optional(S.String),
-      Level: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "TaskSpecContainerSpecPrivilegesSELinuxContext",
-  }) as any as S.Schema<TaskSpecContainerSpecPrivilegesSELinuxContext>;
-
-export type TaskSpecContainerSpecPrivilegesSeccompMode =
-  | "default"
-  | "unconfined"
-  | "custom";
-export const TaskSpecContainerSpecPrivilegesSeccompMode =
-  /*@__PURE__*/ S.String;
-
-/** Options for configuring seccomp on the container */
-export interface TaskSpecContainerSpecPrivilegesSeccomp {
-  Mode?: TaskSpecContainerSpecPrivilegesSeccompMode | (string & {});
-  /** The custom seccomp profile as a json object */
-  Profile?: string;
-}
-export const TaskSpecContainerSpecPrivilegesSeccomp = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Mode: S.optional(TaskSpecContainerSpecPrivilegesSeccompMode),
-      Profile: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "TaskSpecContainerSpecPrivilegesSeccomp",
-}) as any as S.Schema<TaskSpecContainerSpecPrivilegesSeccomp>;
-
-export type TaskSpecContainerSpecPrivilegesAppArmorMode =
-  | "default"
-  | "disabled";
-export const TaskSpecContainerSpecPrivilegesAppArmorMode =
-  /*@__PURE__*/ S.String;
-
-/** Options for configuring AppArmor on the container */
-export interface TaskSpecContainerSpecPrivilegesAppArmor {
-  Mode?: TaskSpecContainerSpecPrivilegesAppArmorMode | (string & {});
-}
-export const TaskSpecContainerSpecPrivilegesAppArmor = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Mode: S.optional(TaskSpecContainerSpecPrivilegesAppArmorMode),
-    }),
-).annotate({
-  identifier: "TaskSpecContainerSpecPrivilegesAppArmor",
-}) as any as S.Schema<TaskSpecContainerSpecPrivilegesAppArmor>;
-
-/** Security options for the container */
-export interface TaskSpecContainerSpecPrivileges {
-  /** CredentialSpec for managed service account (Windows only) */
-  CredentialSpec?: TaskSpecContainerSpecPrivilegesCredentialSpec;
-  /** SELinux labels of the container */
-  SELinuxContext?: TaskSpecContainerSpecPrivilegesSELinuxContext;
-  /** Options for configuring seccomp on the container */
-  Seccomp?: TaskSpecContainerSpecPrivilegesSeccomp;
-  /** Options for configuring AppArmor on the container */
-  AppArmor?: TaskSpecContainerSpecPrivilegesAppArmor;
-  /** Configuration of the no_new_privs bit in the container */
-  NoNewPrivileges?: boolean;
-}
-export const TaskSpecContainerSpecPrivileges = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    CredentialSpec: S.optional(TaskSpecContainerSpecPrivilegesCredentialSpec),
-    SELinuxContext: S.optional(TaskSpecContainerSpecPrivilegesSELinuxContext),
-    Seccomp: S.optional(TaskSpecContainerSpecPrivilegesSeccomp),
-    AppArmor: S.optional(TaskSpecContainerSpecPrivilegesAppArmor),
-    NoNewPrivileges: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "TaskSpecContainerSpecPrivileges",
-}) as any as S.Schema<TaskSpecContainerSpecPrivileges>;
-
-/** Specification for mounts to be added to containers created as part of the service. */
-export type TaskSpecContainerSpecMountsList = Array<Mount>;
-export const TaskSpecContainerSpecMountsList = /*@__PURE__*/ S.Array(
-  Mount,
-) as any as S.Schema<TaskSpecContainerSpecMountsList>;
-
-/** A list of hostname/IP mappings to add to the container's `hosts` file. The format of extra hosts is specified in the [hosts(5)](http://man7.org/linux/man-pages/man5/hosts.5.html) man page: IP_address canonical_hostname [aliases...] */
-export type TaskSpecContainerSpecHostsList = Array<string>;
-export const TaskSpecContainerSpecHostsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecHostsList>;
-
-/** The IP addresses of the name servers. */
-export type TaskSpecContainerSpecDNSConfigNameserversList = Array<string>;
-export const TaskSpecContainerSpecDNSConfigNameserversList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TaskSpecContainerSpecDNSConfigNameserversList>;
-
-/** A search list for host-name lookup. */
-export type TaskSpecContainerSpecDNSConfigSearchList = Array<string>;
-export const TaskSpecContainerSpecDNSConfigSearchList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecDNSConfigSearchList>;
-
-/** A list of internal resolver variables to be modified (e.g., `debug`, `ndots:3`, etc.). */
-export type TaskSpecContainerSpecDNSConfigOptionsList = Array<string>;
-export const TaskSpecContainerSpecDNSConfigOptionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecDNSConfigOptionsList>;
-
-/** Specification for DNS related configurations in resolver configuration file (`resolv.conf`). */
-export interface TaskSpecContainerSpecDNSConfig {
-  /** The IP addresses of the name servers. */
-  Nameservers?: TaskSpecContainerSpecDNSConfigNameserversList;
-  /** A search list for host-name lookup. */
-  Search?: TaskSpecContainerSpecDNSConfigSearchList;
-  /** A list of internal resolver variables to be modified (e.g., `debug`, `ndots:3`, etc.). */
-  Options?: TaskSpecContainerSpecDNSConfigOptionsList;
-}
-export const TaskSpecContainerSpecDNSConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Nameservers: S.optional(TaskSpecContainerSpecDNSConfigNameserversList),
-    Search: S.optional(TaskSpecContainerSpecDNSConfigSearchList),
-    Options: S.optional(TaskSpecContainerSpecDNSConfigOptionsList),
-  }),
-).annotate({
-  identifier: "TaskSpecContainerSpecDNSConfig",
-}) as any as S.Schema<TaskSpecContainerSpecDNSConfig>;
-
-/** File represents a specific target that is backed by a file. */
-export interface TaskSpecContainerSpecSecretsItemFile {
-  /** Name represents the final filename in the filesystem. */
-  Name?: string;
-  /** UID represents the file UID. */
-  UID?: string;
-  /** GID represents the file GID. */
-  GID?: string;
-  /** Mode represents the FileMode of the file. */
-  Mode?: number;
-}
-export const TaskSpecContainerSpecSecretsItemFile = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Name: S.optional(S.String),
-      UID: S.optional(S.String),
-      GID: S.optional(S.String),
-      Mode: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "TaskSpecContainerSpecSecretsItemFile",
-}) as any as S.Schema<TaskSpecContainerSpecSecretsItemFile>;
-
-export interface TaskSpecContainerSpecSecretsItem {
-  /** File represents a specific target that is backed by a file. */
-  File?: TaskSpecContainerSpecSecretsItemFile;
-  /** SecretID represents the ID of the specific secret that we're referencing. */
-  SecretID?: string;
-  /** SecretName is the name of the secret that this references, but this is just provided for lookup/display purposes. The secret in the reference will be identified by its ID. */
-  SecretName?: string;
-}
-export const TaskSpecContainerSpecSecretsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    File: S.optional(TaskSpecContainerSpecSecretsItemFile),
-    SecretID: S.optional(S.String),
-    SecretName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskSpecContainerSpecSecretsItem",
-}) as any as S.Schema<TaskSpecContainerSpecSecretsItem>;
-
-/** Secrets contains references to zero or more secrets that will be exposed to the service. */
-export type TaskSpecContainerSpecSecretsList =
-  Array<TaskSpecContainerSpecSecretsItem>;
-export const TaskSpecContainerSpecSecretsList = /*@__PURE__*/ S.Array(
-  TaskSpecContainerSpecSecretsItem,
-) as any as S.Schema<TaskSpecContainerSpecSecretsList>;
-
-/** File represents a specific target that is backed by a file. <p><br /><p> > **Note**: `Configs.File` and `Configs.Runtime` are mutually exclusive */
-export type TaskSpecContainerSpecConfigsItemFile =
-  TaskSpecContainerSpecSecretsItemFile;
-export const TaskSpecContainerSpecConfigsItemFile =
-  TaskSpecContainerSpecSecretsItemFile;
-
-export interface TaskSpecContainerSpecConfigsItem {
-  /** File represents a specific target that is backed by a file. <p><br /><p> > **Note**: `Configs.File` and `Configs.Runtime` are mutually exclusive */
-  File?: TaskSpecContainerSpecSecretsItemFile;
-  /** Runtime represents a target that is not mounted into the container but is used by the task <p><br /><p> > **Note**: `Configs.File` and `Configs.Runtime` are mutually > exclusive */
-  Runtime?: unknown;
-  /** ConfigID represents the ID of the specific config that we're referencing. */
-  ConfigID?: string;
-  /** ConfigName is the name of the config that this references, but this is just provided for lookup/display purposes. The config in the reference will be identified by its ID. */
-  ConfigName?: string;
-}
-export const TaskSpecContainerSpecConfigsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    File: S.optional(TaskSpecContainerSpecSecretsItemFile),
-    Runtime: S.optional(S.Unknown),
-    ConfigID: S.optional(S.String),
-    ConfigName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskSpecContainerSpecConfigsItem",
-}) as any as S.Schema<TaskSpecContainerSpecConfigsItem>;
-
-/** Configs contains references to zero or more configs that will be exposed to the service. */
-export type TaskSpecContainerSpecConfigsList =
-  Array<TaskSpecContainerSpecConfigsItem>;
-export const TaskSpecContainerSpecConfigsList = /*@__PURE__*/ S.Array(
-  TaskSpecContainerSpecConfigsItem,
-) as any as S.Schema<TaskSpecContainerSpecConfigsList>;
-
-/** Isolation technology of the containers running the service. (Windows only) */
-export type TaskSpecContainerSpecIsolation =
-  | "default"
-  | "process"
-  | "hyperv"
-  | "";
-export const TaskSpecContainerSpecIsolation = /*@__PURE__*/ S.String;
-
-/** Set kernel namedspaced parameters (sysctls) in the container. The Sysctls option on services accepts the same sysctls as the are supported on containers. Note that while the same sysctls are supported, no guarantees or checks are made about their suitability for a clustered environment, and it's up to the user to determine whether a given sysctl will work properly in a Service. */
-export type TaskSpecContainerSpecSysctlsMap = {
-  [key: string]: string | undefined;
-};
-export const TaskSpecContainerSpecSysctlsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecSysctlsMap>;
-
-/** A list of kernel capabilities to add to the default set for the container. */
-export type TaskSpecContainerSpecCapabilityAddList = Array<string>;
-export const TaskSpecContainerSpecCapabilityAddList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecCapabilityAddList>;
-
-/** A list of kernel capabilities to drop from the default set for the container. */
-export type TaskSpecContainerSpecCapabilityDropList = Array<string>;
-export const TaskSpecContainerSpecCapabilityDropList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecContainerSpecCapabilityDropList>;
-
-export type TaskSpecContainerSpecUlimitsItem = HostConfigUlimitsItem;
-export const TaskSpecContainerSpecUlimitsItem = HostConfigUlimitsItem;
-
-/** A list of resource limits to set in the container. For example: `{"Name": "nofile", "Soft": 1024, "Hard": 2048}`" */
-export type TaskSpecContainerSpecUlimitsList = Array<HostConfigUlimitsItem>;
-export const TaskSpecContainerSpecUlimitsList = /*@__PURE__*/ S.Array(
-  HostConfigUlimitsItem,
-) as any as S.Schema<TaskSpecContainerSpecUlimitsList>;
-
-/** Container spec for the service. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
-export interface TaskSpecContainerSpec {
-  /** The image name to use for the container */
-  Image?: string;
-  /** User-defined key/value data. */
-  Labels?: TaskSpecContainerSpecLabelsMap;
-  /** The command to be run in the image. */
-  Command?: TaskSpecContainerSpecCommandList;
-  /** Arguments to the command. */
-  Args?: TaskSpecContainerSpecArgsList;
-  /** The hostname to use for the container, as a valid [RFC 1123](https://tools.ietf.org/html/rfc1123) hostname. */
-  Hostname?: string;
-  /** A list of environment variables in the form `VAR=value`. */
-  Env?: TaskSpecContainerSpecEnvList;
-  /** The working directory for commands to run in. */
-  Dir?: string;
-  /** The user inside the container. */
-  User?: string;
-  /** A list of additional groups that the container process will run as. */
-  Groups?: TaskSpecContainerSpecGroupsList;
-  /** Security options for the container */
-  Privileges?: TaskSpecContainerSpecPrivileges;
-  /** Whether a pseudo-TTY should be allocated. */
-  TTY?: boolean;
-  /** Open `stdin` */
-  OpenStdin?: boolean;
-  /** Mount the container's root filesystem as read only. */
-  ReadOnly?: boolean;
-  /** Specification for mounts to be added to containers created as part of the service. */
-  Mounts?: TaskSpecContainerSpecMountsList;
-  /** Signal to stop the container. */
-  StopSignal?: string;
-  /** Amount of time to wait for the container to terminate before forcefully killing it. */
-  StopGracePeriod?: number;
-  HealthCheck?: HealthConfig;
-  /** A list of hostname/IP mappings to add to the container's `hosts` file. The format of extra hosts is specified in the [hosts(5)](http://man7.org/linux/man-pages/man5/hosts.5.html) man page: IP_address canonical_hostname [aliases...] */
-  Hosts?: TaskSpecContainerSpecHostsList;
-  /** Specification for DNS related configurations in resolver configuration file (`resolv.conf`). */
-  DNSConfig?: TaskSpecContainerSpecDNSConfig;
-  /** Secrets contains references to zero or more secrets that will be exposed to the service. */
-  Secrets?: TaskSpecContainerSpecSecretsList;
-  /** An integer value containing the score given to the container in order to tune OOM killer preferences. */
-  OomScoreAdj?: number;
-  /** Configs contains references to zero or more configs that will be exposed to the service. */
-  Configs?: TaskSpecContainerSpecConfigsList;
-  /** Isolation technology of the containers running the service. (Windows only) */
-  Isolation?: TaskSpecContainerSpecIsolation | (string & {});
-  /** Run an init inside the container that forwards signals and reaps processes. This field is omitted if empty, and the default (as configured on the daemon) is used. */
-  Init?: boolean | null;
-  /** Set kernel namedspaced parameters (sysctls) in the container. The Sysctls option on services accepts the same sysctls as the are supported on containers. Note that while the same sysctls are supported, no guarantees or checks are made about their suitability for a clustered environment, and it's up to the user to determine whether a given sysctl will work properly in a Service. */
-  Sysctls?: TaskSpecContainerSpecSysctlsMap;
-  /** A list of kernel capabilities to add to the default set for the container. */
-  CapabilityAdd?: TaskSpecContainerSpecCapabilityAddList;
-  /** A list of kernel capabilities to drop from the default set for the container. */
-  CapabilityDrop?: TaskSpecContainerSpecCapabilityDropList;
-  /** A list of resource limits to set in the container. For example: `{"Name": "nofile", "Soft": 1024, "Hard": 2048}`" */
-  Ulimits?: TaskSpecContainerSpecUlimitsList;
-}
-export const TaskSpecContainerSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Image: S.optional(S.String),
-    Labels: S.optional(TaskSpecContainerSpecLabelsMap),
-    Command: S.optional(TaskSpecContainerSpecCommandList),
-    Args: S.optional(TaskSpecContainerSpecArgsList),
-    Hostname: S.optional(S.String),
-    Env: S.optional(TaskSpecContainerSpecEnvList),
-    Dir: S.optional(S.String),
-    User: S.optional(S.String),
-    Groups: S.optional(TaskSpecContainerSpecGroupsList),
-    Privileges: S.optional(TaskSpecContainerSpecPrivileges),
-    TTY: S.optional(S.Boolean),
-    OpenStdin: S.optional(S.Boolean),
-    ReadOnly: S.optional(S.Boolean),
-    Mounts: S.optional(TaskSpecContainerSpecMountsList),
-    StopSignal: S.optional(S.String),
-    StopGracePeriod: S.optional(S.Number),
-    HealthCheck: S.optional(HealthConfig),
-    Hosts: S.optional(TaskSpecContainerSpecHostsList),
-    DNSConfig: S.optional(TaskSpecContainerSpecDNSConfig),
-    Secrets: S.optional(TaskSpecContainerSpecSecretsList),
-    OomScoreAdj: S.optional(S.Number),
-    Configs: S.optional(TaskSpecContainerSpecConfigsList),
-    Isolation: S.optional(TaskSpecContainerSpecIsolation),
-    Init: S.optional(S.NullOr(S.Boolean)),
-    Sysctls: S.optional(TaskSpecContainerSpecSysctlsMap),
-    CapabilityAdd: S.optional(TaskSpecContainerSpecCapabilityAddList),
-    CapabilityDrop: S.optional(TaskSpecContainerSpecCapabilityDropList),
-    Ulimits: S.optional(TaskSpecContainerSpecUlimitsList),
-  }),
-).annotate({
-  identifier: "TaskSpecContainerSpec",
-}) as any as S.Schema<TaskSpecContainerSpec>;
-
-/** Read-only spec type for non-swarm containers attached to swarm overlay networks. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
-export interface TaskSpecNetworkAttachmentSpec {
-  /** ID of the container represented by this task */
-  ContainerID?: string;
-}
-export const TaskSpecNetworkAttachmentSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ContainerID: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskSpecNetworkAttachmentSpec",
-}) as any as S.Schema<TaskSpecNetworkAttachmentSpec>;
-
-/** An object describing a limit on resources which can be requested by a task. */
-export interface Limit {
-  NanoCPUs?: number;
-  MemoryBytes?: number;
-  /** Limits the maximum number of PIDs in the container. Set `0` for unlimited. */
-  Pids?: number;
-}
-export const Limit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    NanoCPUs: S.optional(S.Number),
-    MemoryBytes: S.optional(S.Number),
-    Pids: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Limit" }) as any as S.Schema<Limit>;
-
-/** Resource requirements which apply to each individual container created as part of the service. */
-export interface TaskSpecResources {
-  /** Define resources limits. */
-  Limits?: Limit;
-  /** Define resources reservation. */
-  Reservations?: ResourceObject;
-  /** Amount of swap in bytes - can only be used together with a memory limit. If not specified, the default behaviour is to grant a swap space twice as big as the memory limit. Set to -1 to enable unlimited swap. */
-  SwapBytes?: number | null;
-  /** Tune the service's containers' memory swappiness (0 to 100). If not specified, defaults to the containers' OS' default, generally 60, or whatever value was predefined in the image. Set to -1 to unset a previously set value. */
-  MemorySwappiness?: number | null;
-}
-export const TaskSpecResources = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Limits: S.optional(Limit),
-    Reservations: S.optional(ResourceObject),
-    SwapBytes: S.optional(S.NullOr(S.Number)),
-    MemorySwappiness: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "TaskSpecResources",
-}) as any as S.Schema<TaskSpecResources>;
-
-/** Condition for restart. */
-export type TaskSpecRestartPolicyCondition = "none" | "on-failure" | "any";
-export const TaskSpecRestartPolicyCondition = /*@__PURE__*/ S.String;
-
-/** Specification for the restart policy which applies to containers created as part of this service. */
-export interface TaskSpecRestartPolicy {
-  /** Condition for restart. */
-  Condition?: TaskSpecRestartPolicyCondition | (string & {});
-  /** Delay between restart attempts. */
-  Delay?: number;
-  /** Maximum attempts to restart a given container before giving up (default value is 0, which is ignored). */
-  MaxAttempts?: number;
-  /** Windows is the time window used to evaluate the restart policy (default value is 0, which is unbounded). */
-  Window?: number;
-}
-export const TaskSpecRestartPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Condition: S.optional(TaskSpecRestartPolicyCondition),
-    Delay: S.optional(S.Number),
-    MaxAttempts: S.optional(S.Number),
-    Window: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TaskSpecRestartPolicy",
-}) as any as S.Schema<TaskSpecRestartPolicy>;
-
-/** An array of constraint expressions to limit the set of nodes where a task can be scheduled. Constraint expressions can either use a _match_ (`==`) or _exclude_ (`!=`) rule. Multiple constraints find nodes that satisfy every expression (AND match). Constraints can match node or Docker Engine labels as follows: node attribute | matches | example ---------------------|--------------------------------|----------------------------------------------- `node.id` | Node ID | `node.id==2ivku8v2gvtg4` `node.hostname` | Node hostname | `node.hostname!=node-2` `node.role` | Node role (`manager`/`worker`) | `node.role==manager` `node.platform.os` | Node operating system | `node.platform.os==windows` `node.platform.arch` | Node architecture | `node.platform.arch==x86_64` `node.labels` | User-defined node labels | `node.labels.security==high` `engine.labels` | Docker Engine's labels | `engine.labels.operatingsystem==ubuntu-24.04` `engine.labels` apply to Docker Engine labels like operating system, drivers, etc. Swarm administrators add `node.labels` for operational purposes by using the [`node update endpoint`](#operation/NodeUpdate). */
-export type TaskSpecPlacementConstraintsList = Array<string>;
-export const TaskSpecPlacementConstraintsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TaskSpecPlacementConstraintsList>;
-
-export interface TaskSpecPlacementPreferencesItemSpread {
-  /** label descriptor, such as `engine.labels.az`. */
-  SpreadDescriptor?: string;
-}
-export const TaskSpecPlacementPreferencesItemSpread = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      SpreadDescriptor: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "TaskSpecPlacementPreferencesItemSpread",
-}) as any as S.Schema<TaskSpecPlacementPreferencesItemSpread>;
-
-export interface TaskSpecPlacementPreferencesItem {
-  Spread?: TaskSpecPlacementPreferencesItemSpread;
-}
-export const TaskSpecPlacementPreferencesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Spread: S.optional(TaskSpecPlacementPreferencesItemSpread),
-  }),
-).annotate({
-  identifier: "TaskSpecPlacementPreferencesItem",
-}) as any as S.Schema<TaskSpecPlacementPreferencesItem>;
-
-/** Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence. */
-export type TaskSpecPlacementPreferencesList =
-  Array<TaskSpecPlacementPreferencesItem>;
-export const TaskSpecPlacementPreferencesList = /*@__PURE__*/ S.Array(
-  TaskSpecPlacementPreferencesItem,
-) as any as S.Schema<TaskSpecPlacementPreferencesList>;
-
-/** Platforms stores all the platforms that the service's image can run on. This field is used in the platform filter for scheduling. If empty, then the platform filter is off, meaning there are no scheduling restrictions. */
-export type TaskSpecPlacementPlatformsList = Array<Platform>;
-export const TaskSpecPlacementPlatformsList = /*@__PURE__*/ S.Array(
-  Platform,
-) as any as S.Schema<TaskSpecPlacementPlatformsList>;
-
-export interface TaskSpecPlacement {
-  /** An array of constraint expressions to limit the set of nodes where a task can be scheduled. Constraint expressions can either use a _match_ (`==`) or _exclude_ (`!=`) rule. Multiple constraints find nodes that satisfy every expression (AND match). Constraints can match node or Docker Engine labels as follows: node attribute | matches | example ---------------------|--------------------------------|----------------------------------------------- `node.id` | Node ID | `node.id==2ivku8v2gvtg4` `node.hostname` | Node hostname | `node.hostname!=node-2` `node.role` | Node role (`manager`/`worker`) | `node.role==manager` `node.platform.os` | Node operating system | `node.platform.os==windows` `node.platform.arch` | Node architecture | `node.platform.arch==x86_64` `node.labels` | User-defined node labels | `node.labels.security==high` `engine.labels` | Docker Engine's labels | `engine.labels.operatingsystem==ubuntu-24.04` `engine.labels` apply to Docker Engine labels like operating system, drivers, etc. Swarm administrators add `node.labels` for operational purposes by using the [`node update endpoint`](#operation/NodeUpdate). */
-  Constraints?: TaskSpecPlacementConstraintsList;
-  /** Preferences provide a way to make the scheduler aware of factors such as topology. They are provided in order from highest to lowest precedence. */
-  Preferences?: TaskSpecPlacementPreferencesList;
-  /** Maximum number of replicas for per node (default value is 0, which is unlimited) */
-  MaxReplicas?: number;
-  /** Platforms stores all the platforms that the service's image can run on. This field is used in the platform filter for scheduling. If empty, then the platform filter is off, meaning there are no scheduling restrictions. */
-  Platforms?: TaskSpecPlacementPlatformsList;
-}
-export const TaskSpecPlacement = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Constraints: S.optional(TaskSpecPlacementConstraintsList),
-    Preferences: S.optional(TaskSpecPlacementPreferencesList),
-    MaxReplicas: S.optional(S.Number),
-    Platforms: S.optional(TaskSpecPlacementPlatformsList),
-  }),
-).annotate({
-  identifier: "TaskSpecPlacement",
-}) as any as S.Schema<TaskSpecPlacement>;
-
-/** Discoverable alternate names for the service on this network. */
-export type NetworkAttachmentConfigAliasesList = Array<string>;
-export const NetworkAttachmentConfigAliasesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NetworkAttachmentConfigAliasesList>;
-
-/** Driver attachment options for the network target. */
-export type NetworkAttachmentConfigDriverOptsMap = {
-  [key: string]: string | undefined;
-};
-export const NetworkAttachmentConfigDriverOptsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NetworkAttachmentConfigDriverOptsMap>;
-
-/** Specifies how a service should be attached to a particular network. */
-export interface NetworkAttachmentConfig {
-  /** The target network for attachment. Must be a network name or ID. */
-  Target?: string;
-  /** Discoverable alternate names for the service on this network. */
-  Aliases?: NetworkAttachmentConfigAliasesList;
-  /** Driver attachment options for the network target. */
-  DriverOpts?: NetworkAttachmentConfigDriverOptsMap;
-}
-export const NetworkAttachmentConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Target: S.optional(S.String),
-    Aliases: S.optional(NetworkAttachmentConfigAliasesList),
-    DriverOpts: S.optional(NetworkAttachmentConfigDriverOptsMap),
-  }),
-).annotate({
-  identifier: "NetworkAttachmentConfig",
-}) as any as S.Schema<NetworkAttachmentConfig>;
-
-/** Specifies which networks the service should attach to. */
-export type TaskSpecNetworksList = Array<NetworkAttachmentConfig>;
-export const TaskSpecNetworksList = /*@__PURE__*/ S.Array(
-  NetworkAttachmentConfig,
-) as any as S.Schema<TaskSpecNetworksList>;
-
-export type TaskSpecLogDriverOptionsMap = { [key: string]: string | undefined };
-export const TaskSpecLogDriverOptionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TaskSpecLogDriverOptionsMap>;
-
-/** Specifies the log driver to use for tasks created from this spec. If not present, the default one for the swarm will be used, finally falling back to the engine default if not specified. */
-export interface TaskSpecLogDriver {
-  Name?: string;
-  Options?: TaskSpecLogDriverOptionsMap;
-}
-export const TaskSpecLogDriver = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Options: S.optional(TaskSpecLogDriverOptionsMap),
-  }),
-).annotate({
-  identifier: "TaskSpecLogDriver",
-}) as any as S.Schema<TaskSpecLogDriver>;
-
-/** User modifiable task configuration. */
-export interface TaskSpec {
-  /** Plugin spec for the service. *(Experimental release only.)* <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
-  PluginSpec?: TaskSpecPluginSpec;
-  /** Container spec for the service. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
-  ContainerSpec?: TaskSpecContainerSpec;
-  /** Read-only spec type for non-swarm containers attached to swarm overlay networks. <p><br /></p> > **Note**: ContainerSpec, NetworkAttachmentSpec, and PluginSpec are > mutually exclusive. PluginSpec is only used when the Runtime field > is set to `plugin`. NetworkAttachmentSpec is used when the Runtime > field is set to `attachment`. */
-  NetworkAttachmentSpec?: TaskSpecNetworkAttachmentSpec;
-  /** Resource requirements which apply to each individual container created as part of the service. */
-  Resources?: TaskSpecResources;
-  /** Specification for the restart policy which applies to containers created as part of this service. */
-  RestartPolicy?: TaskSpecRestartPolicy;
-  Placement?: TaskSpecPlacement;
-  /** A counter that triggers an update even if no relevant parameters have been changed. */
-  ForceUpdate?: number;
-  /** Runtime is the type of runtime specified for the task executor. */
-  Runtime?: string;
-  /** Specifies which networks the service should attach to. */
-  Networks?: TaskSpecNetworksList;
-  /** Specifies the log driver to use for tasks created from this spec. If not present, the default one for the swarm will be used, finally falling back to the engine default if not specified. */
-  LogDriver?: TaskSpecLogDriver;
-}
-export const TaskSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    PluginSpec: S.optional(TaskSpecPluginSpec),
-    ContainerSpec: S.optional(TaskSpecContainerSpec),
-    NetworkAttachmentSpec: S.optional(TaskSpecNetworkAttachmentSpec),
-    Resources: S.optional(TaskSpecResources),
-    RestartPolicy: S.optional(TaskSpecRestartPolicy),
-    Placement: S.optional(TaskSpecPlacement),
-    ForceUpdate: S.optional(S.Number),
-    Runtime: S.optional(S.String),
-    Networks: S.optional(TaskSpecNetworksList),
-    LogDriver: S.optional(TaskSpecLogDriver),
-  }),
-).annotate({ identifier: "TaskSpec" }) as any as S.Schema<TaskSpec>;
-
-export interface ServiceCreateRequestModeReplicated {
-  Replicas?: number;
-}
-export const ServiceCreateRequestModeReplicated = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Replicas: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ServiceCreateRequestModeReplicated",
-}) as any as S.Schema<ServiceCreateRequestModeReplicated>;
-
-/** The mode used for services with a finite number of tasks that run to a completed state. */
-export interface ServiceCreateRequestModeReplicatedJob {
-  /** The maximum number of replicas to run simultaneously. */
-  MaxConcurrent?: number;
-  /** The total number of replicas desired to reach the Completed state. If unset, will default to the value of `MaxConcurrent` */
-  TotalCompletions?: number;
-}
-export const ServiceCreateRequestModeReplicatedJob = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      MaxConcurrent: S.optional(S.Number),
-      TotalCompletions: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "ServiceCreateRequestModeReplicatedJob",
-}) as any as S.Schema<ServiceCreateRequestModeReplicatedJob>;
-
-/** Scheduling mode for the service. */
-export interface ServiceCreateRequestMode {
-  Replicated?: ServiceCreateRequestModeReplicated;
-  Global?: unknown;
-  /** The mode used for services with a finite number of tasks that run to a completed state. */
-  ReplicatedJob?: ServiceCreateRequestModeReplicatedJob;
-  /** The mode used for services which run a task to the completed state on each valid node. */
-  GlobalJob?: unknown;
-}
-export const ServiceCreateRequestMode = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Replicated: S.optional(ServiceCreateRequestModeReplicated),
-    Global: S.optional(S.Unknown),
-    ReplicatedJob: S.optional(ServiceCreateRequestModeReplicatedJob),
-    GlobalJob: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ServiceCreateRequestMode",
-}) as any as S.Schema<ServiceCreateRequestMode>;
-
-/** Action to take if an updated task fails to run, or stops running during the update. */
-export type ServiceCreateRequestUpdateConfigFailureAction =
-  | "continue"
-  | "pause"
-  | "rollback";
-export const ServiceCreateRequestUpdateConfigFailureAction =
-  /*@__PURE__*/ S.String;
-
-/** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-export type ServiceCreateRequestUpdateConfigOrder =
-  | "stop-first"
-  | "start-first";
-export const ServiceCreateRequestUpdateConfigOrder = /*@__PURE__*/ S.String;
-
-/** Specification for the update strategy of the service. */
-export interface ServiceCreateRequestUpdateConfig {
-  /** Maximum number of tasks to be updated in one iteration (0 means unlimited parallelism). */
-  Parallelism?: number;
-  /** Amount of time between updates, in nanoseconds. */
-  Delay?: number;
-  /** Action to take if an updated task fails to run, or stops running during the update. */
-  FailureAction?: ServiceCreateRequestUpdateConfigFailureAction | (string & {});
-  /** Amount of time to monitor each updated task for failures, in nanoseconds. */
-  Monitor?: number;
-  /** The fraction of tasks that may fail during an update before the failure action is invoked, specified as a floating point number between 0 and 1. */
-  MaxFailureRatio?: number;
-  /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-  Order?: ServiceCreateRequestUpdateConfigOrder | (string & {});
-}
-export const ServiceCreateRequestUpdateConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Parallelism: S.optional(S.Number),
-    Delay: S.optional(S.Number),
-    FailureAction: S.optional(ServiceCreateRequestUpdateConfigFailureAction),
-    Monitor: S.optional(S.Number),
-    MaxFailureRatio: S.optional(S.Number),
-    Order: S.optional(ServiceCreateRequestUpdateConfigOrder),
-  }),
-).annotate({
-  identifier: "ServiceCreateRequestUpdateConfig",
-}) as any as S.Schema<ServiceCreateRequestUpdateConfig>;
-
-/** Action to take if an rolled back task fails to run, or stops running during the rollback. */
-export type ServiceCreateRequestRollbackConfigFailureAction =
-  | "continue"
-  | "pause";
-export const ServiceCreateRequestRollbackConfigFailureAction =
-  /*@__PURE__*/ S.String;
-
-/** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-export type ServiceCreateRequestRollbackConfigOrder =
-  | "stop-first"
-  | "start-first";
-export const ServiceCreateRequestRollbackConfigOrder = /*@__PURE__*/ S.String;
-
-/** Specification for the rollback strategy of the service. */
-export interface ServiceCreateRequestRollbackConfig {
-  /** Maximum number of tasks to be rolled back in one iteration (0 means unlimited parallelism). */
-  Parallelism?: number;
-  /** Amount of time between rollback iterations, in nanoseconds. */
-  Delay?: number;
-  /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
-  FailureAction?:
-    | ServiceCreateRequestRollbackConfigFailureAction
-    | (string & {});
-  /** Amount of time to monitor each rolled back task for failures, in nanoseconds. */
-  Monitor?: number;
-  /** The fraction of tasks that may fail during a rollback before the failure action is invoked, specified as a floating point number between 0 and 1. */
-  MaxFailureRatio?: number;
-  /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-  Order?: ServiceCreateRequestRollbackConfigOrder | (string & {});
-}
-export const ServiceCreateRequestRollbackConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Parallelism: S.optional(S.Number),
-    Delay: S.optional(S.Number),
-    FailureAction: S.optional(ServiceCreateRequestRollbackConfigFailureAction),
-    Monitor: S.optional(S.Number),
-    MaxFailureRatio: S.optional(S.Number),
-    Order: S.optional(ServiceCreateRequestRollbackConfigOrder),
-  }),
-).annotate({
-  identifier: "ServiceCreateRequestRollbackConfig",
-}) as any as S.Schema<ServiceCreateRequestRollbackConfig>;
-
-/** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
-export type ServiceCreateRequestNetworksList = Array<NetworkAttachmentConfig>;
-export const ServiceCreateRequestNetworksList = /*@__PURE__*/ S.Array(
-  NetworkAttachmentConfig,
-) as any as S.Schema<ServiceCreateRequestNetworksList>;
-
-/** The mode of resolution to use for internal load balancing between tasks. */
-export type EndpointSpecMode = "vip" | "dnsrr";
-export const EndpointSpecMode = /*@__PURE__*/ S.String;
-
-export type EndpointPortConfigProtocol = "tcp" | "udp" | "sctp";
-export const EndpointPortConfigProtocol = /*@__PURE__*/ S.String;
-
-/** The mode in which port is published. <p><br /></p> - "ingress" makes the target port accessible on every node, regardless of whether there is a task for the service running on that node or not. - "host" bypasses the routing mesh and publish the port directly on the swarm node where that service is running. */
-export type EndpointPortConfigPublishMode = "ingress" | "host";
-export const EndpointPortConfigPublishMode = /*@__PURE__*/ S.String;
-
-export interface EndpointPortConfig {
-  Name?: string;
-  Protocol?: EndpointPortConfigProtocol | (string & {});
-  /** The port inside the container. */
-  TargetPort?: number;
-  /** The port on the swarm hosts. */
-  PublishedPort?: number;
-  /** The mode in which port is published. <p><br /></p> - "ingress" makes the target port accessible on every node, regardless of whether there is a task for the service running on that node or not. - "host" bypasses the routing mesh and publish the port directly on the swarm node where that service is running. */
-  PublishMode?: EndpointPortConfigPublishMode | (string & {});
-}
-export const EndpointPortConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Protocol: S.optional(EndpointPortConfigProtocol),
-    TargetPort: S.optional(S.Number),
-    PublishedPort: S.optional(S.Number),
-    PublishMode: S.optional(EndpointPortConfigPublishMode),
-  }),
-).annotate({
-  identifier: "EndpointPortConfig",
-}) as any as S.Schema<EndpointPortConfig>;
-
-/** List of exposed ports that this service is accessible on from the outside. Ports can only be provided if `vip` resolution mode is used. */
-export type EndpointSpecPortsList = Array<EndpointPortConfig>;
-export const EndpointSpecPortsList = /*@__PURE__*/ S.Array(
-  EndpointPortConfig,
-) as any as S.Schema<EndpointSpecPortsList>;
-
-/** Properties that can be configured to access and load balance a service. */
-export interface EndpointSpec {
-  /** The mode of resolution to use for internal load balancing between tasks. */
-  Mode?: EndpointSpecMode | (string & {});
-  /** List of exposed ports that this service is accessible on from the outside. Ports can only be provided if `vip` resolution mode is used. */
-  Ports?: EndpointSpecPortsList;
-}
-export const EndpointSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Mode: S.optional(EndpointSpecMode),
-    Ports: S.optional(EndpointSpecPortsList),
-  }),
-).annotate({ identifier: "EndpointSpec" }) as any as S.Schema<EndpointSpec>;
-
-export interface ServiceCreateRequest {
-  /** A base64url-encoded auth configuration for pulling from private registries. Refer to the [authentication section](#section/Authentication) for details. */
-  xRegistryAuth?: string;
-  /** Name of the service. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: ServiceCreateRequestLabelsMap;
-  TaskTemplate?: TaskSpec;
-  /** Scheduling mode for the service. */
-  Mode?: ServiceCreateRequestMode;
-  /** Specification for the update strategy of the service. */
-  UpdateConfig?: ServiceCreateRequestUpdateConfig;
-  /** Specification for the rollback strategy of the service. */
-  RollbackConfig?: ServiceCreateRequestRollbackConfig;
-  /** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
-  Networks?: ServiceCreateRequestNetworksList;
-  EndpointSpec?: EndpointSpec;
-}
-export const ServiceCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    xRegistryAuth: S.optional(S.String.pipe(T.Header("X-Registry-Auth"))),
-    Name: S.optional(S.String),
-    Labels: S.optional(ServiceCreateRequestLabelsMap),
-    TaskTemplate: S.optional(TaskSpec),
-    Mode: S.optional(ServiceCreateRequestMode),
-    UpdateConfig: S.optional(ServiceCreateRequestUpdateConfig),
-    RollbackConfig: S.optional(ServiceCreateRequestRollbackConfig),
-    Networks: S.optional(ServiceCreateRequestNetworksList),
-    EndpointSpec: S.optional(EndpointSpec),
-  }).pipe(T.Http({ method: "POST", uri: "/services/create", code: 200 })),
-).annotate({
-  identifier: "ServiceCreateRequest",
-}) as any as S.Schema<ServiceCreateRequest>;
-
-/** Optional warning message. FIXME(thaJeztah): this should have "omitempty" in the generated type. */
-export type ServiceCreateResponseWarningsList = Array<string>;
-export const ServiceCreateResponseWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ServiceCreateResponseWarningsList>;
-
-/** contains the information returned to a client on the creation of a new service. */
-export interface ServiceCreateResponse {
-  /** The ID of the created service. */
-  ID?: string;
-  /** Optional warning message. FIXME(thaJeztah): this should have "omitempty" in the generated type. */
-  Warnings?: ServiceCreateResponseWarningsList | null;
-}
-export const ServiceCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ID: S.optional(S.String),
-    Warnings: S.optional(S.NullOr(ServiceCreateResponseWarningsList)),
-  }),
-).annotate({
-  identifier: "ServiceCreateResponse",
-}) as any as S.Schema<ServiceCreateResponse>;
-
-export interface ServiceDeleteRequest {
-  /** ID or name of service. */
-  id: string;
-}
-export const ServiceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/services/{id}", code: 200 })),
-).annotate({
-  identifier: "ServiceDeleteRequest",
-}) as any as S.Schema<ServiceDeleteRequest>;
-
-export interface ServiceDeleteResponse {}
-export const ServiceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServiceDeleteResponse",
-}) as any as S.Schema<ServiceDeleteResponse>;
 
 export interface ServiceInspectRequest {
   /** ID or name of service. */
@@ -7495,287 +7977,6 @@ export const ServiceInspectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ServiceInspectRequest",
 }) as any as S.Schema<ServiceInspectRequest>;
-
-/** User-defined key/value metadata. */
-export type ServiceSpecLabelsMap = { [key: string]: string | undefined };
-export const ServiceSpecLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServiceSpecLabelsMap>;
-
-export type ServiceSpecModeReplicated = ServiceCreateRequestModeReplicated;
-export const ServiceSpecModeReplicated = ServiceCreateRequestModeReplicated;
-
-/** The mode used for services with a finite number of tasks that run to a completed state. */
-export type ServiceSpecModeReplicatedJob =
-  ServiceCreateRequestModeReplicatedJob;
-export const ServiceSpecModeReplicatedJob =
-  ServiceCreateRequestModeReplicatedJob;
-
-/** Scheduling mode for the service. */
-export type ServiceSpecMode = ServiceCreateRequestMode;
-export const ServiceSpecMode = ServiceCreateRequestMode;
-
-/** Action to take if an updated task fails to run, or stops running during the update. */
-export type ServiceSpecUpdateConfigFailureAction =
-  | "continue"
-  | "pause"
-  | "rollback";
-export const ServiceSpecUpdateConfigFailureAction = /*@__PURE__*/ S.String;
-
-/** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-export type ServiceSpecUpdateConfigOrder = "stop-first" | "start-first";
-export const ServiceSpecUpdateConfigOrder = /*@__PURE__*/ S.String;
-
-/** Specification for the update strategy of the service. */
-export interface ServiceSpecUpdateConfig {
-  /** Maximum number of tasks to be updated in one iteration (0 means unlimited parallelism). */
-  Parallelism?: number;
-  /** Amount of time between updates, in nanoseconds. */
-  Delay?: number;
-  /** Action to take if an updated task fails to run, or stops running during the update. */
-  FailureAction?: ServiceSpecUpdateConfigFailureAction;
-  /** Amount of time to monitor each updated task for failures, in nanoseconds. */
-  Monitor?: number;
-  /** The fraction of tasks that may fail during an update before the failure action is invoked, specified as a floating point number between 0 and 1. */
-  MaxFailureRatio?: number;
-  /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-  Order?: ServiceSpecUpdateConfigOrder;
-}
-export const ServiceSpecUpdateConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Parallelism: S.optional(S.Number),
-    Delay: S.optional(S.Number),
-    FailureAction: S.optional(ServiceSpecUpdateConfigFailureAction),
-    Monitor: S.optional(S.Number),
-    MaxFailureRatio: S.optional(S.Number),
-    Order: S.optional(ServiceSpecUpdateConfigOrder),
-  }),
-).annotate({
-  identifier: "ServiceSpecUpdateConfig",
-}) as any as S.Schema<ServiceSpecUpdateConfig>;
-
-/** Action to take if an rolled back task fails to run, or stops running during the rollback. */
-export type ServiceSpecRollbackConfigFailureAction = "continue" | "pause";
-export const ServiceSpecRollbackConfigFailureAction = /*@__PURE__*/ S.String;
-
-/** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-export type ServiceSpecRollbackConfigOrder = "stop-first" | "start-first";
-export const ServiceSpecRollbackConfigOrder = /*@__PURE__*/ S.String;
-
-/** Specification for the rollback strategy of the service. */
-export interface ServiceSpecRollbackConfig {
-  /** Maximum number of tasks to be rolled back in one iteration (0 means unlimited parallelism). */
-  Parallelism?: number;
-  /** Amount of time between rollback iterations, in nanoseconds. */
-  Delay?: number;
-  /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
-  FailureAction?: ServiceSpecRollbackConfigFailureAction;
-  /** Amount of time to monitor each rolled back task for failures, in nanoseconds. */
-  Monitor?: number;
-  /** The fraction of tasks that may fail during a rollback before the failure action is invoked, specified as a floating point number between 0 and 1. */
-  MaxFailureRatio?: number;
-  /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-  Order?: ServiceSpecRollbackConfigOrder;
-}
-export const ServiceSpecRollbackConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Parallelism: S.optional(S.Number),
-    Delay: S.optional(S.Number),
-    FailureAction: S.optional(ServiceSpecRollbackConfigFailureAction),
-    Monitor: S.optional(S.Number),
-    MaxFailureRatio: S.optional(S.Number),
-    Order: S.optional(ServiceSpecRollbackConfigOrder),
-  }),
-).annotate({
-  identifier: "ServiceSpecRollbackConfig",
-}) as any as S.Schema<ServiceSpecRollbackConfig>;
-
-/** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
-export type ServiceSpecNetworksList = Array<NetworkAttachmentConfig>;
-export const ServiceSpecNetworksList = /*@__PURE__*/ S.Array(
-  NetworkAttachmentConfig,
-) as any as S.Schema<ServiceSpecNetworksList>;
-
-/** User modifiable configuration for a service. */
-export interface ServiceSpec {
-  /** Name of the service. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: ServiceSpecLabelsMap;
-  TaskTemplate?: TaskSpec;
-  /** Scheduling mode for the service. */
-  Mode?: ServiceCreateRequestMode;
-  /** Specification for the update strategy of the service. */
-  UpdateConfig?: ServiceSpecUpdateConfig;
-  /** Specification for the rollback strategy of the service. */
-  RollbackConfig?: ServiceSpecRollbackConfig;
-  /** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
-  Networks?: ServiceSpecNetworksList;
-  EndpointSpec?: EndpointSpec;
-}
-export const ServiceSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Name: S.optional(S.String),
-    Labels: S.optional(ServiceSpecLabelsMap),
-    TaskTemplate: S.optional(TaskSpec),
-    Mode: S.optional(ServiceCreateRequestMode),
-    UpdateConfig: S.optional(ServiceSpecUpdateConfig),
-    RollbackConfig: S.optional(ServiceSpecRollbackConfig),
-    Networks: S.optional(ServiceSpecNetworksList),
-    EndpointSpec: S.optional(EndpointSpec),
-  }),
-).annotate({ identifier: "ServiceSpec" }) as any as S.Schema<ServiceSpec>;
-
-export type ServiceEndpointPortsList = Array<EndpointPortConfig>;
-export const ServiceEndpointPortsList = /*@__PURE__*/ S.Array(
-  EndpointPortConfig,
-) as any as S.Schema<ServiceEndpointPortsList>;
-
-export interface ServiceEndpointVirtualIPsItem {
-  NetworkID?: string;
-  Addr?: string;
-}
-export const ServiceEndpointVirtualIPsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    NetworkID: S.optional(S.String),
-    Addr: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceEndpointVirtualIPsItem",
-}) as any as S.Schema<ServiceEndpointVirtualIPsItem>;
-
-export type ServiceEndpointVirtualIPsList =
-  Array<ServiceEndpointVirtualIPsItem>;
-export const ServiceEndpointVirtualIPsList = /*@__PURE__*/ S.Array(
-  ServiceEndpointVirtualIPsItem,
-) as any as S.Schema<ServiceEndpointVirtualIPsList>;
-
-export interface ServiceEndpoint {
-  Spec?: EndpointSpec;
-  Ports?: ServiceEndpointPortsList;
-  VirtualIPs?: ServiceEndpointVirtualIPsList;
-}
-export const ServiceEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Spec: S.optional(EndpointSpec),
-    Ports: S.optional(ServiceEndpointPortsList),
-    VirtualIPs: S.optional(ServiceEndpointVirtualIPsList),
-  }),
-).annotate({
-  identifier: "ServiceEndpoint",
-}) as any as S.Schema<ServiceEndpoint>;
-
-export type ServiceUpdateStatusState = "updating" | "paused" | "completed";
-export const ServiceUpdateStatusState = /*@__PURE__*/ S.String;
-
-/** The status of a service update. */
-export interface ServiceUpdateStatus {
-  State?: ServiceUpdateStatusState;
-  StartedAt?: string;
-  CompletedAt?: string;
-  Message?: string;
-}
-export const ServiceUpdateStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    State: S.optional(ServiceUpdateStatusState),
-    StartedAt: S.optional(S.String),
-    CompletedAt: S.optional(S.String),
-    Message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceUpdateStatus",
-}) as any as S.Schema<ServiceUpdateStatus>;
-
-/** The status of the service's tasks. Provided only when requested as part of a ServiceList operation. */
-export interface ServiceServiceStatus {
-  /** The number of tasks for the service currently in the Running state. */
-  RunningTasks?: number;
-  /** The number of tasks for the service desired to be running. For replicated services, this is the replica count from the service spec. For global services, this is computed by taking count of all tasks for the service with a Desired State other than Shutdown. */
-  DesiredTasks?: number;
-  /** The number of tasks for a job that are in the Completed state. This field must be cross-referenced with the service type, as the value of 0 may mean the service is not in a job mode, or it may mean the job-mode service has no tasks yet Completed. */
-  CompletedTasks?: number;
-}
-export const ServiceServiceStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    RunningTasks: S.optional(S.Number),
-    DesiredTasks: S.optional(S.Number),
-    CompletedTasks: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ServiceServiceStatus",
-}) as any as S.Schema<ServiceServiceStatus>;
-
-/** The status of the service when it is in one of ReplicatedJob or GlobalJob modes. Absent on Replicated and Global mode services. The JobIteration is an ObjectVersion, but unlike the Service's version, does not need to be sent with an update request. */
-export interface ServiceJobStatus {
-  /** JobIteration is a value increased each time a Job is executed, successfully or otherwise. "Executed", in this case, means the job as a whole has been started, not that an individual Task has been launched. A job is "Executed" when its ServiceSpec is updated. JobIteration can be used to disambiguate Tasks belonging to different executions of a job. Though JobIteration will increase with each subsequent execution, it may not necessarily increase by 1, and so JobIteration should not be used to */
-  JobIteration?: ObjectVersion;
-  /** The last time, as observed by the server, that this job was started. */
-  LastExecution?: string;
-}
-export const ServiceJobStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    JobIteration: S.optional(ObjectVersion),
-    LastExecution: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceJobStatus",
-}) as any as S.Schema<ServiceJobStatus>;
-
-export interface Service {
-  ID?: string;
-  Version?: ObjectVersion;
-  CreatedAt?: string;
-  UpdatedAt?: string;
-  Spec?: ServiceSpec;
-  Endpoint?: ServiceEndpoint;
-  /** The status of a service update. */
-  UpdateStatus?: ServiceUpdateStatus;
-  /** The status of the service's tasks. Provided only when requested as part of a ServiceList operation. */
-  ServiceStatus?: ServiceServiceStatus;
-  /** The status of the service when it is in one of ReplicatedJob or GlobalJob modes. Absent on Replicated and Global mode services. The JobIteration is an ObjectVersion, but unlike the Service's version, does not need to be sent with an update request. */
-  JobStatus?: ServiceJobStatus;
-}
-export const Service = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ID: S.optional(S.String),
-    Version: S.optional(ObjectVersion),
-    CreatedAt: S.optional(S.String),
-    UpdatedAt: S.optional(S.String),
-    Spec: S.optional(ServiceSpec),
-    Endpoint: S.optional(ServiceEndpoint),
-    UpdateStatus: S.optional(ServiceUpdateStatus),
-    ServiceStatus: S.optional(ServiceServiceStatus),
-    JobStatus: S.optional(ServiceJobStatus),
-  }),
-).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
-
-export interface ServiceListRequest {
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the services list. Available filters: - `id=<service id>` - `label=<service label>` - `mode=["replicated"|"global"]` - `name=<service name>` */
-  filters?: string;
-  /** Include service status, with count of running and desired tasks. */
-  status?: boolean;
-}
-export const ServiceListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/services", code: 200 })),
-).annotate({
-  identifier: "ServiceListRequest",
-}) as any as S.Schema<ServiceListRequest>;
-
-export type ServiceListResponseBodyList = Array<Service>;
-export const ServiceListResponseBodyList = /*@__PURE__*/ S.Array(
-  Service,
-) as any as S.Schema<ServiceListResponseBodyList>;
-
-export type ServiceListResponse = ServiceListResponseBodyList;
-export const ServiceListResponse = /*@__PURE__*/ S.suspend(() =>
-  ServiceListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ServiceListResponse",
-}) as any as S.Schema<ServiceListResponse>;
 
 export interface ServiceLogsRequest {
   /** ID or name of the service */
@@ -7817,190 +8018,6 @@ export const ServiceLogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceLogsResponse",
 }) as any as S.Schema<ServiceLogsResponse>;
 
-export type ServiceUpdateRequestRegistryAuthFrom = "spec" | "previous-spec";
-export const ServiceUpdateRequestRegistryAuthFrom = /*@__PURE__*/ S.String;
-
-/** User-defined key/value metadata. */
-export type ServiceUpdateRequestLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const ServiceUpdateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ServiceUpdateRequestLabelsMap>;
-
-export type ServiceUpdateRequestModeReplicated =
-  ServiceCreateRequestModeReplicated;
-export const ServiceUpdateRequestModeReplicated =
-  ServiceCreateRequestModeReplicated;
-
-/** The mode used for services with a finite number of tasks that run to a completed state. */
-export type ServiceUpdateRequestModeReplicatedJob =
-  ServiceCreateRequestModeReplicatedJob;
-export const ServiceUpdateRequestModeReplicatedJob =
-  ServiceCreateRequestModeReplicatedJob;
-
-/** Scheduling mode for the service. */
-export type ServiceUpdateRequestMode = ServiceCreateRequestMode;
-export const ServiceUpdateRequestMode = ServiceCreateRequestMode;
-
-/** Action to take if an updated task fails to run, or stops running during the update. */
-export type ServiceUpdateRequestUpdateConfigFailureAction =
-  | "continue"
-  | "pause"
-  | "rollback";
-export const ServiceUpdateRequestUpdateConfigFailureAction =
-  /*@__PURE__*/ S.String;
-
-/** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-export type ServiceUpdateRequestUpdateConfigOrder =
-  | "stop-first"
-  | "start-first";
-export const ServiceUpdateRequestUpdateConfigOrder = /*@__PURE__*/ S.String;
-
-/** Specification for the update strategy of the service. */
-export interface ServiceUpdateRequestUpdateConfig {
-  /** Maximum number of tasks to be updated in one iteration (0 means unlimited parallelism). */
-  Parallelism?: number;
-  /** Amount of time between updates, in nanoseconds. */
-  Delay?: number;
-  /** Action to take if an updated task fails to run, or stops running during the update. */
-  FailureAction?: ServiceUpdateRequestUpdateConfigFailureAction | (string & {});
-  /** Amount of time to monitor each updated task for failures, in nanoseconds. */
-  Monitor?: number;
-  /** The fraction of tasks that may fail during an update before the failure action is invoked, specified as a floating point number between 0 and 1. */
-  MaxFailureRatio?: number;
-  /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-  Order?: ServiceUpdateRequestUpdateConfigOrder | (string & {});
-}
-export const ServiceUpdateRequestUpdateConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Parallelism: S.optional(S.Number),
-    Delay: S.optional(S.Number),
-    FailureAction: S.optional(ServiceUpdateRequestUpdateConfigFailureAction),
-    Monitor: S.optional(S.Number),
-    MaxFailureRatio: S.optional(S.Number),
-    Order: S.optional(ServiceUpdateRequestUpdateConfigOrder),
-  }),
-).annotate({
-  identifier: "ServiceUpdateRequestUpdateConfig",
-}) as any as S.Schema<ServiceUpdateRequestUpdateConfig>;
-
-/** Action to take if an rolled back task fails to run, or stops running during the rollback. */
-export type ServiceUpdateRequestRollbackConfigFailureAction =
-  | "continue"
-  | "pause";
-export const ServiceUpdateRequestRollbackConfigFailureAction =
-  /*@__PURE__*/ S.String;
-
-/** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-export type ServiceUpdateRequestRollbackConfigOrder =
-  | "stop-first"
-  | "start-first";
-export const ServiceUpdateRequestRollbackConfigOrder = /*@__PURE__*/ S.String;
-
-/** Specification for the rollback strategy of the service. */
-export interface ServiceUpdateRequestRollbackConfig {
-  /** Maximum number of tasks to be rolled back in one iteration (0 means unlimited parallelism). */
-  Parallelism?: number;
-  /** Amount of time between rollback iterations, in nanoseconds. */
-  Delay?: number;
-  /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
-  FailureAction?:
-    | ServiceUpdateRequestRollbackConfigFailureAction
-    | (string & {});
-  /** Amount of time to monitor each rolled back task for failures, in nanoseconds. */
-  Monitor?: number;
-  /** The fraction of tasks that may fail during a rollback before the failure action is invoked, specified as a floating point number between 0 and 1. */
-  MaxFailureRatio?: number;
-  /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
-  Order?: ServiceUpdateRequestRollbackConfigOrder | (string & {});
-}
-export const ServiceUpdateRequestRollbackConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Parallelism: S.optional(S.Number),
-    Delay: S.optional(S.Number),
-    FailureAction: S.optional(ServiceUpdateRequestRollbackConfigFailureAction),
-    Monitor: S.optional(S.Number),
-    MaxFailureRatio: S.optional(S.Number),
-    Order: S.optional(ServiceUpdateRequestRollbackConfigOrder),
-  }),
-).annotate({
-  identifier: "ServiceUpdateRequestRollbackConfig",
-}) as any as S.Schema<ServiceUpdateRequestRollbackConfig>;
-
-/** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
-export type ServiceUpdateRequestNetworksList = Array<NetworkAttachmentConfig>;
-export const ServiceUpdateRequestNetworksList = /*@__PURE__*/ S.Array(
-  NetworkAttachmentConfig,
-) as any as S.Schema<ServiceUpdateRequestNetworksList>;
-
-export interface ServiceUpdateRequest {
-  /** ID or name of service. */
-  id: string;
-  /** The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling `GET /services/{id}` */
-  version: number;
-  /** If the `X-Registry-Auth` header is not specified, this parameter indicates where to find registry authorization credentials. */
-  registryAuthFrom?: ServiceUpdateRequestRegistryAuthFrom | (string & {});
-  /** Set to this parameter to `previous` to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. */
-  rollback?: string;
-  /** A base64url-encoded auth configuration for pulling from private registries. Refer to the [authentication section](#section/Authentication) for details. */
-  xRegistryAuth?: string;
-  /** Name of the service. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: ServiceUpdateRequestLabelsMap;
-  TaskTemplate?: TaskSpec;
-  /** Scheduling mode for the service. */
-  Mode?: ServiceCreateRequestMode;
-  /** Specification for the update strategy of the service. */
-  UpdateConfig?: ServiceUpdateRequestUpdateConfig;
-  /** Specification for the rollback strategy of the service. */
-  RollbackConfig?: ServiceUpdateRequestRollbackConfig;
-  /** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
-  Networks?: ServiceUpdateRequestNetworksList;
-  EndpointSpec?: EndpointSpec;
-}
-export const ServiceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Query()),
-    registryAuthFrom: S.optional(
-      ServiceUpdateRequestRegistryAuthFrom.pipe(T.Query()),
-    ),
-    rollback: S.optional(S.String.pipe(T.Query())),
-    xRegistryAuth: S.optional(S.String.pipe(T.Header("X-Registry-Auth"))),
-    Name: S.optional(S.String),
-    Labels: S.optional(ServiceUpdateRequestLabelsMap),
-    TaskTemplate: S.optional(TaskSpec),
-    Mode: S.optional(ServiceCreateRequestMode),
-    UpdateConfig: S.optional(ServiceUpdateRequestUpdateConfig),
-    RollbackConfig: S.optional(ServiceUpdateRequestRollbackConfig),
-    Networks: S.optional(ServiceUpdateRequestNetworksList),
-    EndpointSpec: S.optional(EndpointSpec),
-  }).pipe(T.Http({ method: "POST", uri: "/services/{id}/update", code: 200 })),
-).annotate({
-  identifier: "ServiceUpdateRequest",
-}) as any as S.Schema<ServiceUpdateRequest>;
-
-/** Optional warning messages */
-export type ServiceUpdateResponseWarningsList = Array<string>;
-export const ServiceUpdateResponseWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ServiceUpdateResponseWarningsList>;
-
-export interface ServiceUpdateResponse {
-  /** Optional warning messages */
-  Warnings?: ServiceUpdateResponseWarningsList;
-}
-export const ServiceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Warnings: S.optional(ServiceUpdateResponseWarningsList),
-  }),
-).annotate({
-  identifier: "ServiceUpdateResponse",
-}) as any as S.Schema<ServiceUpdateResponse>;
-
 export interface SessionRequest {}
 export const SessionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "POST", uri: "/session", code: 200 })),
@@ -8012,6 +8029,79 @@ export const SessionResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SessionResponse",
 }) as any as S.Schema<SessionResponse>;
+
+export type SetPluginRequestBodyList = Array<string>;
+export const SetPluginRequestBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SetPluginRequestBodyList>;
+
+export interface SetPluginRequest {
+  /** The name of the plugin. The `:latest` tag is optional, and is the default if omitted. */
+  name: string;
+  body?: SetPluginRequestBodyList;
+}
+export const SetPluginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    body: S.optional(SetPluginRequestBodyList.pipe(T.HttpBody())),
+  }).pipe(T.Http({ method: "POST", uri: "/plugins/{name}/set", code: 200 })),
+).annotate({
+  identifier: "SetPluginRequest",
+}) as any as S.Schema<SetPluginRequest>;
+
+export interface SetPluginResponse {}
+export const SetPluginResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SetPluginResponse",
+}) as any as S.Schema<SetPluginResponse>;
+
+export interface StartContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Override the key sequence for detaching a container. Format is a single character `[a-Z]` or `ctrl-<value>` where `<value>` is one of: `a-z`, `@`, `^`, `[`, `,` or `_`. */
+  detachKeys?: string;
+}
+export const StartContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    detachKeys: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/start", code: 200 })),
+).annotate({
+  identifier: "StartContainerRequest",
+}) as any as S.Schema<StartContainerRequest>;
+
+export interface StartContainerResponse {}
+export const StartContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartContainerResponse",
+}) as any as S.Schema<StartContainerResponse>;
+
+export interface StopContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Signal to send to the container as an integer or string (e.g. `SIGINT`). */
+  signal?: string;
+  /** Number of seconds to wait before killing the container */
+  t?: number;
+}
+export const StopContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    signal: S.optional(S.String.pipe(T.Query())),
+    t: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/stop", code: 200 })),
+).annotate({
+  identifier: "StopContainerRequest",
+}) as any as S.Schema<StopContainerRequest>;
+
+export interface StopContainerResponse {}
+export const StopContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopContainerResponse",
+}) as any as S.Schema<StopContainerResponse>;
 
 /** Default Address Pool specifies default subnet pools for global scope networks. */
 export type SwarmInitRequestDefaultAddrPoolList = Array<string>;
@@ -8329,81 +8419,6 @@ export const SwarmInspectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SwarmInspectResponse",
 }) as any as S.Schema<SwarmInspectResponse>;
 
-/** Addresses of manager nodes already participating in the swarm. */
-export type SwarmJoinRequestRemoteAddrsList = Array<string>;
-export const SwarmJoinRequestRemoteAddrsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SwarmJoinRequestRemoteAddrsList>;
-
-export interface SwarmJoinRequest {
-  /** Listen address used for inter-manager communication if the node gets promoted to manager, as well as determining the networking interface used for the VXLAN Tunnel Endpoint (VTEP). This is required for joining a swarm. If the port number is omitted, the default swarm listening port is used. */
-  ListenAddr: string;
-  /** Externally reachable address advertised to other nodes. This can either be an address/port combination in the form `192.168.1.1:4567`, or an interface followed by a port number, like `eth0:4567`. If the port number is omitted, the port number from the listen address is used. If `AdvertiseAddr` is not specified, it will be automatically detected when possible. */
-  AdvertiseAddr?: string;
-  /** Address or interface to use for data path traffic (format: `<ip|interface>`), for example, `192.168.1.1`, or an interface, like `eth0`. If `DataPathAddr` is unspecified, the same address as `AdvertiseAddr` is used. The `DataPathAddr` specifies the address that global scope network drivers will publish towards other nodes in order to reach the containers running on this node. Using this parameter it is possible to separate the container data traffic from the management traffic of the cluster. */
-  DataPathAddr?: string;
-  /** Addresses of manager nodes already participating in the swarm. */
-  RemoteAddrs: SwarmJoinRequestRemoteAddrsList;
-  /** Secret token for joining this swarm. */
-  JoinToken: string;
-}
-export const SwarmJoinRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ListenAddr: S.String,
-    AdvertiseAddr: S.optional(S.String),
-    DataPathAddr: S.optional(S.String),
-    RemoteAddrs: SwarmJoinRequestRemoteAddrsList,
-    JoinToken: S.String,
-  }).pipe(T.Http({ method: "POST", uri: "/swarm/join", code: 200 })),
-).annotate({
-  identifier: "SwarmJoinRequest",
-}) as any as S.Schema<SwarmJoinRequest>;
-
-export interface SwarmJoinResponse {}
-export const SwarmJoinResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SwarmJoinResponse",
-}) as any as S.Schema<SwarmJoinResponse>;
-
-export interface SwarmLeaveRequest {
-  /** Force leave swarm, even if this is the last manager or that it will break the cluster. */
-  force?: boolean;
-}
-export const SwarmLeaveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    force: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/swarm/leave", code: 200 })),
-).annotate({
-  identifier: "SwarmLeaveRequest",
-}) as any as S.Schema<SwarmLeaveRequest>;
-
-export interface SwarmLeaveResponse {}
-export const SwarmLeaveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SwarmLeaveResponse",
-}) as any as S.Schema<SwarmLeaveResponse>;
-
-export interface SwarmUnlockRequest {
-  /** The swarm's unlock key. */
-  UnlockKey?: string;
-}
-export const SwarmUnlockRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    UnlockKey: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/swarm/unlock", code: 200 })),
-).annotate({
-  identifier: "SwarmUnlockRequest",
-}) as any as S.Schema<SwarmUnlockRequest>;
-
-export interface SwarmUnlockResponse {}
-export const SwarmUnlockResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SwarmUnlockResponse",
-}) as any as S.Schema<SwarmUnlockResponse>;
-
 export interface SwarmUnlockkeyRequest {}
 export const SwarmUnlockkeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -8424,190 +8439,6 @@ export const SwarmUnlockkeyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SwarmUnlockkeyResponse",
 }) as any as S.Schema<SwarmUnlockkeyResponse>;
-
-/** User-defined key/value metadata. */
-export type SwarmUpdateRequestLabelsMap = { [key: string]: string | undefined };
-export const SwarmUpdateRequestLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SwarmUpdateRequestLabelsMap>;
-
-/** Orchestration configuration. */
-export type SwarmUpdateRequestOrchestration = SwarmSpecOrchestration;
-export const SwarmUpdateRequestOrchestration = SwarmSpecOrchestration;
-
-/** Raft configuration. */
-export type SwarmUpdateRequestRaft = SwarmSpecRaft;
-export const SwarmUpdateRequestRaft = SwarmSpecRaft;
-
-/** Dispatcher configuration. */
-export type SwarmUpdateRequestDispatcher = SwarmSpecDispatcher;
-export const SwarmUpdateRequestDispatcher = SwarmSpecDispatcher;
-
-/** Protocol for communication with the external CA (currently only `cfssl` is supported). */
-export type SwarmUpdateRequestCAConfigExternalCAsItemProtocol = "cfssl";
-export const SwarmUpdateRequestCAConfigExternalCAsItemProtocol =
-  /*@__PURE__*/ S.String;
-
-/** An object with key/value pairs that are interpreted as protocol-specific options for the external CA driver. */
-export type SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap = {
-  [key: string]: string | undefined;
-};
-export const SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap>;
-
-export interface SwarmUpdateRequestCAConfigExternalCAsItem {
-  /** Protocol for communication with the external CA (currently only `cfssl` is supported). */
-  Protocol?: SwarmUpdateRequestCAConfigExternalCAsItemProtocol | (string & {});
-  /** URL where certificate signing requests should be sent. */
-  URL?: string;
-  /** An object with key/value pairs that are interpreted as protocol-specific options for the external CA driver. */
-  Options?: SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap;
-  /** The root CA certificate (in PEM format) this external CA uses to issue TLS certificates (assumed to be to the current swarm root CA certificate if not provided). */
-  CACert?: string;
-}
-export const SwarmUpdateRequestCAConfigExternalCAsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      Protocol: S.optional(SwarmUpdateRequestCAConfigExternalCAsItemProtocol),
-      URL: S.optional(S.String),
-      Options: S.optional(SwarmUpdateRequestCAConfigExternalCAsItemOptionsMap),
-      CACert: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SwarmUpdateRequestCAConfigExternalCAsItem",
-  }) as any as S.Schema<SwarmUpdateRequestCAConfigExternalCAsItem>;
-
-/** Configuration for forwarding signing requests to an external certificate authority. */
-export type SwarmUpdateRequestCAConfigExternalCAsList =
-  Array<SwarmUpdateRequestCAConfigExternalCAsItem>;
-export const SwarmUpdateRequestCAConfigExternalCAsList = /*@__PURE__*/ S.Array(
-  SwarmUpdateRequestCAConfigExternalCAsItem,
-) as any as S.Schema<SwarmUpdateRequestCAConfigExternalCAsList>;
-
-/** CA configuration. */
-export interface SwarmUpdateRequestCAConfig {
-  /** The duration node certificates are issued for. */
-  NodeCertExpiry?: number;
-  /** Configuration for forwarding signing requests to an external certificate authority. */
-  ExternalCAs?: SwarmUpdateRequestCAConfigExternalCAsList;
-  /** The desired signing CA certificate for all swarm node TLS leaf certificates, in PEM format. */
-  SigningCACert?: string;
-  /** The desired signing CA key for all swarm node TLS leaf certificates, in PEM format. */
-  SigningCAKey?: string;
-  /** An integer whose purpose is to force swarm to generate a new signing CA certificate and key, if none have been specified in `SigningCACert` and `SigningCAKey` */
-  ForceRotate?: number;
-}
-export const SwarmUpdateRequestCAConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    NodeCertExpiry: S.optional(S.Number),
-    ExternalCAs: S.optional(SwarmUpdateRequestCAConfigExternalCAsList),
-    SigningCACert: S.optional(S.String),
-    SigningCAKey: S.optional(S.String),
-    ForceRotate: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SwarmUpdateRequestCAConfig",
-}) as any as S.Schema<SwarmUpdateRequestCAConfig>;
-
-/** Parameters related to encryption-at-rest. */
-export type SwarmUpdateRequestEncryptionConfig = SwarmSpecEncryptionConfig;
-export const SwarmUpdateRequestEncryptionConfig = SwarmSpecEncryptionConfig;
-
-/** Driver-specific options for the selected log driver, specified as key/value pairs. */
-export type SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap = {
-  [key: string]: string | undefined;
-};
-export const SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap>;
-
-/** The log driver to use for tasks created in the orchestrator if unspecified by a service. Updating this value only affects new tasks. Existing tasks continue to use their previously configured log driver until recreated. */
-export interface SwarmUpdateRequestTaskDefaultsLogDriver {
-  /** The log driver to use as a default for new tasks. */
-  Name?: string;
-  /** Driver-specific options for the selected log driver, specified as key/value pairs. */
-  Options?: SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap;
-}
-export const SwarmUpdateRequestTaskDefaultsLogDriver = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Name: S.optional(S.String),
-      Options: S.optional(SwarmUpdateRequestTaskDefaultsLogDriverOptionsMap),
-    }),
-).annotate({
-  identifier: "SwarmUpdateRequestTaskDefaultsLogDriver",
-}) as any as S.Schema<SwarmUpdateRequestTaskDefaultsLogDriver>;
-
-/** Defaults for creating tasks in this cluster. */
-export interface SwarmUpdateRequestTaskDefaults {
-  /** The log driver to use for tasks created in the orchestrator if unspecified by a service. Updating this value only affects new tasks. Existing tasks continue to use their previously configured log driver until recreated. */
-  LogDriver?: SwarmUpdateRequestTaskDefaultsLogDriver;
-}
-export const SwarmUpdateRequestTaskDefaults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    LogDriver: S.optional(SwarmUpdateRequestTaskDefaultsLogDriver),
-  }),
-).annotate({
-  identifier: "SwarmUpdateRequestTaskDefaults",
-}) as any as S.Schema<SwarmUpdateRequestTaskDefaults>;
-
-export interface SwarmUpdateRequest {
-  /** The version number of the swarm object being updated. This is required to avoid conflicting writes. */
-  version: number;
-  /** Rotate the worker join token. */
-  rotateWorkerToken?: boolean;
-  /** Rotate the manager join token. */
-  rotateManagerToken?: boolean;
-  /** Rotate the manager unlock key. */
-  rotateManagerUnlockKey?: boolean;
-  /** Name of the swarm. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: SwarmUpdateRequestLabelsMap;
-  /** Orchestration configuration. */
-  Orchestration?: SwarmSpecOrchestration | null;
-  /** Raft configuration. */
-  Raft?: SwarmSpecRaft;
-  /** Dispatcher configuration. */
-  Dispatcher?: SwarmSpecDispatcher | null;
-  /** CA configuration. */
-  CAConfig?: SwarmUpdateRequestCAConfig | null;
-  /** Parameters related to encryption-at-rest. */
-  EncryptionConfig?: SwarmSpecEncryptionConfig;
-  /** Defaults for creating tasks in this cluster. */
-  TaskDefaults?: SwarmUpdateRequestTaskDefaults;
-}
-export const SwarmUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.Number.pipe(T.Query()),
-    rotateWorkerToken: S.optional(S.Boolean.pipe(T.Query())),
-    rotateManagerToken: S.optional(S.Boolean.pipe(T.Query())),
-    rotateManagerUnlockKey: S.optional(S.Boolean.pipe(T.Query())),
-    Name: S.optional(S.String),
-    Labels: S.optional(SwarmUpdateRequestLabelsMap),
-    Orchestration: S.optional(S.NullOr(SwarmSpecOrchestration)),
-    Raft: S.optional(SwarmSpecRaft),
-    Dispatcher: S.optional(S.NullOr(SwarmSpecDispatcher)),
-    CAConfig: S.optional(S.NullOr(SwarmUpdateRequestCAConfig)),
-    EncryptionConfig: S.optional(SwarmSpecEncryptionConfig),
-    TaskDefaults: S.optional(SwarmUpdateRequestTaskDefaults),
-  }).pipe(T.Http({ method: "POST", uri: "/swarm/update", code: 200 })),
-).annotate({
-  identifier: "SwarmUpdateRequest",
-}) as any as S.Schema<SwarmUpdateRequest>;
-
-export interface SwarmUpdateResponse {}
-export const SwarmUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SwarmUpdateResponse",
-}) as any as S.Schema<SwarmUpdateResponse>;
 
 export interface SystemAuthRequest {
   username?: string;
@@ -9508,20 +9339,6 @@ export const SystemInfo = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemInfo" }) as any as S.Schema<SystemInfo>;
 
-export interface SystemPingRequest {}
-export const SystemPingRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/_ping", code: 200 })),
-).annotate({
-  identifier: "SystemPingRequest",
-}) as any as S.Schema<SystemPingRequest>;
-
-export type SystemPingResponse = string;
-export const SystemPingResponse = /*@__PURE__*/ S.suspend(() =>
-  S.String.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "SystemPingResponse",
-}) as any as S.Schema<SystemPingResponse>;
-
 export interface SystemVersion2Request {}
 export const SystemVersion2Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/version", code: 200 })),
@@ -9619,177 +9436,6 @@ export const TaskInspectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskInspectRequest",
 }) as any as S.Schema<TaskInspectRequest>;
 
-/** User-defined key/value metadata. */
-export type TaskLabelsMap = { [key: string]: string | undefined };
-export const TaskLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TaskLabelsMap>;
-
-export type TaskState =
-  | "new"
-  | "allocated"
-  | "pending"
-  | "assigned"
-  | "accepted"
-  | "preparing"
-  | "ready"
-  | "starting"
-  | "running"
-  | "complete"
-  | "shutdown"
-  | "failed"
-  | "rejected"
-  | "remove"
-  | "orphaned";
-export const TaskState = /*@__PURE__*/ S.String;
-
-/** represents the status of a container. */
-export interface ContainerStatus {
-  ContainerID?: string;
-  PID?: number;
-  ExitCode?: number;
-}
-export const ContainerStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ContainerID: S.optional(S.String),
-    PID: S.optional(S.Number),
-    ExitCode: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ContainerStatus",
-}) as any as S.Schema<ContainerStatus>;
-
-export type PortStatusPortsList = Array<EndpointPortConfig>;
-export const PortStatusPortsList = /*@__PURE__*/ S.Array(
-  EndpointPortConfig,
-) as any as S.Schema<PortStatusPortsList>;
-
-/** represents the port status of a task's host ports whose service has published host ports */
-export interface PortStatus {
-  Ports?: PortStatusPortsList;
-}
-export const PortStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Ports: S.optional(PortStatusPortsList),
-  }),
-).annotate({ identifier: "PortStatus" }) as any as S.Schema<PortStatus>;
-
-/** represents the status of a task. */
-export interface TaskStatus {
-  Timestamp?: string;
-  State?: TaskState;
-  Message?: string;
-  Err?: string;
-  ContainerStatus?: ContainerStatus;
-  PortStatus?: PortStatus;
-}
-export const TaskStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Timestamp: S.optional(S.String),
-    State: S.optional(TaskState),
-    Message: S.optional(S.String),
-    Err: S.optional(S.String),
-    ContainerStatus: S.optional(ContainerStatus),
-    PortStatus: S.optional(PortStatus),
-  }),
-).annotate({ identifier: "TaskStatus" }) as any as S.Schema<TaskStatus>;
-
-/** The IP addresses (in CIDR notation) assigned to the task on this network. To maintain backward compatibility this field accepts CIDR notation, but only the IP address is used. */
-export type NetworkAttachmentAddressesList = Array<string>;
-export const NetworkAttachmentAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NetworkAttachmentAddressesList>;
-
-/** Specifies how a task is attached to a network, and the addresses the task was assigned on that network. */
-export interface NetworkAttachment {
-  Network?: Network;
-  /** The IP addresses (in CIDR notation) assigned to the task on this network. To maintain backward compatibility this field accepts CIDR notation, but only the IP address is used. */
-  Addresses?: NetworkAttachmentAddressesList;
-}
-export const NetworkAttachment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Network: S.optional(Network),
-    Addresses: S.optional(NetworkAttachmentAddressesList),
-  }),
-).annotate({
-  identifier: "NetworkAttachment",
-}) as any as S.Schema<NetworkAttachment>;
-
-/** The networks that this task is attached to, and the addresses the task was assigned on each of them. */
-export type TaskNetworksAttachmentsList = Array<NetworkAttachment>;
-export const TaskNetworksAttachmentsList = /*@__PURE__*/ S.Array(
-  NetworkAttachment,
-) as any as S.Schema<TaskNetworksAttachmentsList>;
-
-export interface Task {
-  /** The ID of the task. */
-  ID?: string;
-  Version?: ObjectVersion;
-  CreatedAt?: string;
-  UpdatedAt?: string;
-  /** Name of the task. */
-  Name?: string;
-  /** User-defined key/value metadata. */
-  Labels?: TaskLabelsMap;
-  Spec?: TaskSpec;
-  /** The ID of the service this task is part of. */
-  ServiceID?: string;
-  Slot?: number;
-  /** The ID of the node that this task is on. */
-  NodeID?: string;
-  AssignedGenericResources?: GenericResources;
-  Status?: TaskStatus;
-  DesiredState?: TaskState;
-  /** If the Service this Task belongs to is a job-mode service, contains the JobIteration of the Service this Task was created for. Absent if the Task was created for a Replicated or Global Service. */
-  JobIteration?: ObjectVersion;
-  /** The networks that this task is attached to, and the addresses the task was assigned on each of them. */
-  NetworksAttachments?: TaskNetworksAttachmentsList;
-}
-export const Task = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ID: S.optional(S.String),
-    Version: S.optional(ObjectVersion),
-    CreatedAt: S.optional(S.String),
-    UpdatedAt: S.optional(S.String),
-    Name: S.optional(S.String),
-    Labels: S.optional(TaskLabelsMap),
-    Spec: S.optional(TaskSpec),
-    ServiceID: S.optional(S.String),
-    Slot: S.optional(S.Number),
-    NodeID: S.optional(S.String),
-    AssignedGenericResources: S.optional(GenericResources),
-    Status: S.optional(TaskStatus),
-    DesiredState: S.optional(TaskState),
-    JobIteration: S.optional(ObjectVersion),
-    NetworksAttachments: S.optional(TaskNetworksAttachmentsList),
-  }),
-).annotate({ identifier: "Task" }) as any as S.Schema<Task>;
-
-export interface TaskListRequest {
-  /** A JSON encoded value of the filters (a `map[string][]string`) to process on the tasks list. Available filters: - `desired-state=(running | shutdown | accepted)` - `id=<task id>` - `label=key` or `label="key=value"` - `name=<task name>` - `node=<node id or name>` - `service=<service name>` */
-  filters?: string;
-}
-export const TaskListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/tasks", code: 200 })),
-).annotate({
-  identifier: "TaskListRequest",
-}) as any as S.Schema<TaskListRequest>;
-
-export type TaskListResponseBodyList = Array<Task>;
-export const TaskListResponseBodyList = /*@__PURE__*/ S.Array(
-  Task,
-) as any as S.Schema<TaskListResponseBodyList>;
-
-export type TaskListResponse = TaskListResponseBodyList;
-export const TaskListResponse = /*@__PURE__*/ S.suspend(() =>
-  TaskListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "TaskListResponse",
-}) as any as S.Schema<TaskListResponse>;
-
 export interface TaskLogsRequest {
   /** ID of the task */
   id: string;
@@ -9830,412 +9476,781 @@ export const TaskLogsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskLogsResponse",
 }) as any as S.Schema<TaskLogsResponse>;
 
-/** A mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
-export type VolumeCreateRequestDriverOptsMap = {
-  [key: string]: string | undefined;
-};
-export const VolumeCreateRequestDriverOptsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumeCreateRequestDriverOptsMap>;
+export interface UnlockSwarmRequest {
+  /** The swarm's unlock key. */
+  UnlockKey?: string;
+}
+export const UnlockSwarmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    UnlockKey: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/swarm/unlock", code: 200 })),
+).annotate({
+  identifier: "UnlockSwarmRequest",
+}) as any as S.Schema<UnlockSwarmRequest>;
+
+export interface UnlockSwarmResponse {}
+export const UnlockSwarmResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UnlockSwarmResponse",
+}) as any as S.Schema<UnlockSwarmResponse>;
+
+export interface UnpauseContainerRequest {
+  /** ID or name of the container */
+  id: string;
+}
+export const UnpauseContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/containers/{id}/unpause", code: 200 }),
+  ),
+).annotate({
+  identifier: "UnpauseContainerRequest",
+}) as any as S.Schema<UnpauseContainerRequest>;
+
+export interface UnpauseContainerResponse {}
+export const UnpauseContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UnpauseContainerResponse",
+}) as any as S.Schema<UnpauseContainerResponse>;
 
 /** User-defined key/value metadata. */
-export type VolumeCreateRequestLabelsMap = {
+export type UpdateConfigRequestLabelsMap = {
   [key: string]: string | undefined;
 };
-export const VolumeCreateRequestLabelsMap = /*@__PURE__*/ S.Record(
+export const UpdateConfigRequestLabelsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VolumeCreateRequestLabelsMap>;
+) as any as S.Schema<UpdateConfigRequestLabelsMap>;
 
-/** The set of nodes this volume can be used on at one time. - `single` The volume may only be scheduled to one node at a time. - `multi` the volume may be scheduled to any supported number of nodes at a time. */
-export type ClusterVolumeSpecAccessModeScope = "single" | "multi";
-export const ClusterVolumeSpecAccessModeScope = /*@__PURE__*/ S.String;
-
-/** The number and way that different tasks can use this volume at one time. - `none` The volume may only be used by one task at a time. - `readonly` The volume may be used by any number of tasks, but they all must mount the volume as readonly - `onewriter` The volume may be used by any number of tasks, but only one may mount it as read/write. - `all` The volume may have any number of readers and writers. */
-export type ClusterVolumeSpecAccessModeSharing =
-  | "none"
-  | "readonly"
-  | "onewriter"
-  | "all";
-export const ClusterVolumeSpecAccessModeSharing = /*@__PURE__*/ S.String;
-
-/** One cluster volume secret entry. Defines a key-value pair that is passed to the plugin. */
-export interface ClusterVolumeSpecAccessModeSecretsItem {
-  /** Key is the name of the key of the key-value pair passed to the plugin. */
-  Key?: string;
-  /** Secret is the swarm Secret object from which to read data. This can be a Secret name or ID. The Secret data is retrieved by swarm and used as the value of the key-value pair passed to the plugin. */
-  Secret?: string | Redacted.Redacted<string>;
-}
-export const ClusterVolumeSpecAccessModeSecretsItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      Key: S.optional(S.String),
-      Secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    }),
-).annotate({
-  identifier: "ClusterVolumeSpecAccessModeSecretsItem",
-}) as any as S.Schema<ClusterVolumeSpecAccessModeSecretsItem>;
-
-/** Swarm Secrets that are passed to the CSI storage plugin when operating on this volume. */
-export type ClusterVolumeSpecAccessModeSecretsList =
-  Array<ClusterVolumeSpecAccessModeSecretsItem>;
-export const ClusterVolumeSpecAccessModeSecretsList = /*@__PURE__*/ S.Array(
-  ClusterVolumeSpecAccessModeSecretsItem,
-) as any as S.Schema<ClusterVolumeSpecAccessModeSecretsList>;
-
-export type TopologySegmentsMap = { [key: string]: string | undefined };
-export const TopologySegmentsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TopologySegmentsMap>;
-
-/** A map of topological domains to topological segments. For in depth details, see documentation for the Topology object in the CSI specification. */
-export interface Topology {
-  Segments?: TopologySegmentsMap;
-}
-export const Topology = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Segments: S.optional(TopologySegmentsMap),
-  }),
-).annotate({ identifier: "Topology" }) as any as S.Schema<Topology>;
-
-/** A list of required topologies, at least one of which the volume must be accessible from. */
-export type ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList =
-  Array<Topology>;
-export const ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList =
-  /*@__PURE__*/ S.Array(
-    Topology,
-  ) as any as S.Schema<ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList>;
-
-/** A list of topologies that the volume should attempt to be provisioned in. */
-export type ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList =
-  Array<Topology>;
-export const ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList =
-  /*@__PURE__*/ S.Array(
-    Topology,
-  ) as any as S.Schema<ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList>;
-
-/** Requirements for the accessible topology of the volume. These fields are optional. For an in-depth description of what these fields mean, see the CSI specification. */
-export interface ClusterVolumeSpecAccessModeAccessibilityRequirements {
-  /** A list of required topologies, at least one of which the volume must be accessible from. */
-  Requisite?: ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList;
-  /** A list of topologies that the volume should attempt to be provisioned in. */
-  Preferred?: ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList;
-}
-export const ClusterVolumeSpecAccessModeAccessibilityRequirements =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      Requisite: S.optional(
-        ClusterVolumeSpecAccessModeAccessibilityRequirementsRequisiteList,
-      ),
-      Preferred: S.optional(
-        ClusterVolumeSpecAccessModeAccessibilityRequirementsPreferredList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ClusterVolumeSpecAccessModeAccessibilityRequirements",
-  }) as any as S.Schema<ClusterVolumeSpecAccessModeAccessibilityRequirements>;
-
-/** The desired capacity that the volume should be created with. If empty, the plugin will decide the capacity. */
-export interface ClusterVolumeSpecAccessModeCapacityRange {
-  /** The volume must be at least this big. The value of 0 indicates an unspecified minimum */
-  RequiredBytes?: number;
-  /** The volume must not be bigger than this. The value of 0 indicates an unspecified maximum. */
-  LimitBytes?: number;
-}
-export const ClusterVolumeSpecAccessModeCapacityRange = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      RequiredBytes: S.optional(S.Number),
-      LimitBytes: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "ClusterVolumeSpecAccessModeCapacityRange",
-}) as any as S.Schema<ClusterVolumeSpecAccessModeCapacityRange>;
-
-/** The availability of the volume for use in tasks. - `active` The volume is fully available for scheduling on the cluster - `pause` No new workloads should use the volume, but existing workloads are not stopped. - `drain` All workloads using this volume should be stopped and rescheduled, and no new ones should be started. */
-export type ClusterVolumeSpecAccessModeAvailability =
-  | "active"
-  | "pause"
-  | "drain";
-export const ClusterVolumeSpecAccessModeAvailability = /*@__PURE__*/ S.String;
-
-/** Defines how the volume is used by tasks. */
-export interface ClusterVolumeSpecAccessMode {
-  /** The set of nodes this volume can be used on at one time. - `single` The volume may only be scheduled to one node at a time. - `multi` the volume may be scheduled to any supported number of nodes at a time. */
-  Scope?: ClusterVolumeSpecAccessModeScope | (string & {});
-  /** The number and way that different tasks can use this volume at one time. - `none` The volume may only be used by one task at a time. - `readonly` The volume may be used by any number of tasks, but they all must mount the volume as readonly - `onewriter` The volume may be used by any number of tasks, but only one may mount it as read/write. - `all` The volume may have any number of readers and writers. */
-  Sharing?: ClusterVolumeSpecAccessModeSharing | (string & {});
-  /** Options for using this volume as a Mount-type volume. Either MountVolume or BlockVolume, but not both, must be present. properties: FsType: type: "string" description: | Specifies the filesystem type for the mount volume. Optional. MountFlags: type: "array" description: | Flags to pass when mounting the volume. Optional. items: type: "string" BlockVolume: type: "object" description: | Options for using this volume as a Block-type volume. Intentionally empty. */
-  MountVolume?: unknown;
-  /** Swarm Secrets that are passed to the CSI storage plugin when operating on this volume. */
-  Secrets?: ClusterVolumeSpecAccessModeSecretsList;
-  /** Requirements for the accessible topology of the volume. These fields are optional. For an in-depth description of what these fields mean, see the CSI specification. */
-  AccessibilityRequirements?: ClusterVolumeSpecAccessModeAccessibilityRequirements;
-  /** The desired capacity that the volume should be created with. If empty, the plugin will decide the capacity. */
-  CapacityRange?: ClusterVolumeSpecAccessModeCapacityRange;
-  /** The availability of the volume for use in tasks. - `active` The volume is fully available for scheduling on the cluster - `pause` No new workloads should use the volume, but existing workloads are not stopped. - `drain` All workloads using this volume should be stopped and rescheduled, and no new ones should be started. */
-  Availability?: ClusterVolumeSpecAccessModeAvailability | (string & {});
-}
-export const ClusterVolumeSpecAccessMode = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Scope: S.optional(ClusterVolumeSpecAccessModeScope),
-    Sharing: S.optional(ClusterVolumeSpecAccessModeSharing),
-    MountVolume: S.optional(S.Unknown),
-    Secrets: S.optional(ClusterVolumeSpecAccessModeSecretsList),
-    AccessibilityRequirements: S.optional(
-      ClusterVolumeSpecAccessModeAccessibilityRequirements,
-    ),
-    CapacityRange: S.optional(ClusterVolumeSpecAccessModeCapacityRange),
-    Availability: S.optional(ClusterVolumeSpecAccessModeAvailability),
-  }),
-).annotate({
-  identifier: "ClusterVolumeSpecAccessMode",
-}) as any as S.Schema<ClusterVolumeSpecAccessMode>;
-
-/** Cluster-specific options used to create the volume. */
-export interface ClusterVolumeSpec {
-  /** Group defines the volume group of this volume. Volumes belonging to the same group can be referred to by group name when creating Services. Referring to a volume by group instructs Swarm to treat volumes in that group interchangeably for the purpose of scheduling. Volumes with an empty string for a group technically all belong to the same, emptystring group. */
-  Group?: string;
-  /** Defines how the volume is used by tasks. */
-  AccessMode?: ClusterVolumeSpecAccessMode;
-}
-export const ClusterVolumeSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Group: S.optional(S.String),
-    AccessMode: S.optional(ClusterVolumeSpecAccessMode),
-  }),
-).annotate({
-  identifier: "ClusterVolumeSpec",
-}) as any as S.Schema<ClusterVolumeSpec>;
-
-export interface VolumeCreateRequest {
-  /** The new volume's name. If not specified, Docker generates a name. */
+export interface UpdateConfigRequest {
+  /** The ID or name of the config */
+  id: string;
+  /** The version number of the config object being updated. This is required to avoid conflicting writes. */
+  version: number;
+  /** User-defined name of the config. */
   Name?: string;
-  /** Name of the volume driver to use. */
-  Driver?: string;
-  /** A mapping of driver options and values. These options are passed directly to the driver and are driver specific. */
-  DriverOpts?: VolumeCreateRequestDriverOptsMap;
   /** User-defined key/value metadata. */
-  Labels?: VolumeCreateRequestLabelsMap;
-  ClusterVolumeSpec?: ClusterVolumeSpec;
+  Labels?: UpdateConfigRequestLabelsMap;
+  /** Data is the data to store as a config, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. The maximum allowed size is 1000KB, as defined in [MaxConfigSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0-20250103191802-8c1959736554/manager/controlapi#MaxConfigSize). */
+  Data?: string;
+  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
+  Templating?: Driver;
 }
-export const VolumeCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Query()),
     Name: S.optional(S.String),
-    Driver: S.optional(S.String),
-    DriverOpts: S.optional(VolumeCreateRequestDriverOptsMap),
-    Labels: S.optional(VolumeCreateRequestLabelsMap),
-    ClusterVolumeSpec: S.optional(ClusterVolumeSpec),
-  }).pipe(T.Http({ method: "POST", uri: "/volumes/create", code: 200 })),
+    Labels: S.optional(UpdateConfigRequestLabelsMap),
+    Data: S.optional(S.String),
+    Templating: S.optional(Driver),
+  }).pipe(T.Http({ method: "POST", uri: "/configs/{id}/update", code: 200 })),
 ).annotate({
-  identifier: "VolumeCreateRequest",
-}) as any as S.Schema<VolumeCreateRequest>;
+  identifier: "UpdateConfigRequest",
+}) as any as S.Schema<UpdateConfigRequest>;
 
-/** Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: `{"key":"value","key2":"value2"}`. The `Status` field is optional, and is omitted if the volume driver does not support this feature. */
-export type VolumeStatusMap = { [key: string]: unknown | undefined };
-export const VolumeStatusMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<VolumeStatusMap>;
+export interface UpdateConfigResponse {}
+export const UpdateConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateConfigResponse",
+}) as any as S.Schema<UpdateConfigResponse>;
 
-/** User-defined key/value metadata. */
-export type VolumeLabelsMap = { [key: string]: string | undefined };
-export const VolumeLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumeLabelsMap>;
+export type UpdateContainerRequestBlkioWeightDeviceItem =
+  HostConfigBlkioWeightDeviceItem;
+export const UpdateContainerRequestBlkioWeightDeviceItem =
+  HostConfigBlkioWeightDeviceItem;
 
-/** The level at which the volume exists. Either `global` for cluster-wide, or `local` for machine level. */
-export type VolumeScope = "local" | "global";
-export const VolumeScope = /*@__PURE__*/ S.String;
+/** Block IO weight (relative device weight) in the form: ``` [{"Path": "device_path", "Weight": weight}] ``` */
+export type UpdateContainerRequestBlkioWeightDeviceList =
+  Array<HostConfigBlkioWeightDeviceItem>;
+export const UpdateContainerRequestBlkioWeightDeviceList =
+  /*@__PURE__*/ S.Array(
+    HostConfigBlkioWeightDeviceItem,
+  ) as any as S.Schema<UpdateContainerRequestBlkioWeightDeviceList>;
 
-/** A map of strings to strings returned from the storage plugin when the volume is created. */
-export type ClusterVolumeInfoVolumeContextMap = {
-  [key: string]: string | undefined;
-};
-export const ClusterVolumeInfoVolumeContextMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterVolumeInfoVolumeContextMap>;
+/** Limit read rate (bytes per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+export type UpdateContainerRequestBlkioDeviceReadBpsList =
+  Array<ThrottleDevice>;
+export const UpdateContainerRequestBlkioDeviceReadBpsList =
+  /*@__PURE__*/ S.Array(
+    ThrottleDevice,
+  ) as any as S.Schema<UpdateContainerRequestBlkioDeviceReadBpsList>;
 
-/** The topology this volume is actually accessible from. */
-export type ClusterVolumeInfoAccessibleTopologyList = Array<Topology>;
-export const ClusterVolumeInfoAccessibleTopologyList = /*@__PURE__*/ S.Array(
-  Topology,
-) as any as S.Schema<ClusterVolumeInfoAccessibleTopologyList>;
+/** Limit write rate (bytes per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+export type UpdateContainerRequestBlkioDeviceWriteBpsList =
+  Array<ThrottleDevice>;
+export const UpdateContainerRequestBlkioDeviceWriteBpsList =
+  /*@__PURE__*/ S.Array(
+    ThrottleDevice,
+  ) as any as S.Schema<UpdateContainerRequestBlkioDeviceWriteBpsList>;
 
-/** Information about the global status of the volume. */
-export interface ClusterVolumeInfo {
-  /** The capacity of the volume in bytes. A value of 0 indicates that the capacity is unknown. */
-  CapacityBytes?: number;
-  /** A map of strings to strings returned from the storage plugin when the volume is created. */
-  VolumeContext?: ClusterVolumeInfoVolumeContextMap;
-  /** The ID of the volume as returned by the CSI storage plugin. This is distinct from the volume's ID as provided by Docker. This ID is never used by the user when communicating with Docker to refer to this volume. If the ID is blank, then the Volume has not been successfully created in the plugin yet. */
-  VolumeID?: string;
-  /** The topology this volume is actually accessible from. */
-  AccessibleTopology?: ClusterVolumeInfoAccessibleTopologyList;
+/** Limit read rate (IO per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+export type UpdateContainerRequestBlkioDeviceReadIOpsList =
+  Array<ThrottleDevice>;
+export const UpdateContainerRequestBlkioDeviceReadIOpsList =
+  /*@__PURE__*/ S.Array(
+    ThrottleDevice,
+  ) as any as S.Schema<UpdateContainerRequestBlkioDeviceReadIOpsList>;
+
+/** Limit write rate (IO per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+export type UpdateContainerRequestBlkioDeviceWriteIOpsList =
+  Array<ThrottleDevice>;
+export const UpdateContainerRequestBlkioDeviceWriteIOpsList =
+  /*@__PURE__*/ S.Array(
+    ThrottleDevice,
+  ) as any as S.Schema<UpdateContainerRequestBlkioDeviceWriteIOpsList>;
+
+/** A list of devices to add to the container. */
+export type UpdateContainerRequestDevicesList = Array<DeviceMapping>;
+export const UpdateContainerRequestDevicesList = /*@__PURE__*/ S.Array(
+  DeviceMapping,
+) as any as S.Schema<UpdateContainerRequestDevicesList>;
+
+/** a list of cgroup rules to apply to the container */
+export type UpdateContainerRequestDeviceCgroupRulesList = Array<string>;
+export const UpdateContainerRequestDeviceCgroupRulesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateContainerRequestDeviceCgroupRulesList>;
+
+/** A list of requests for devices to be sent to device drivers. */
+export type UpdateContainerRequestDeviceRequestsList = Array<DeviceRequest>;
+export const UpdateContainerRequestDeviceRequestsList = /*@__PURE__*/ S.Array(
+  DeviceRequest,
+) as any as S.Schema<UpdateContainerRequestDeviceRequestsList>;
+
+export type UpdateContainerRequestUlimitsItem = HostConfigUlimitsItem;
+export const UpdateContainerRequestUlimitsItem = HostConfigUlimitsItem;
+
+/** A list of resource limits to set in the container. For example: ``` {"Name": "nofile", "Soft": 1024, "Hard": 2048} ``` */
+export type UpdateContainerRequestUlimitsList = Array<HostConfigUlimitsItem>;
+export const UpdateContainerRequestUlimitsList = /*@__PURE__*/ S.Array(
+  HostConfigUlimitsItem,
+) as any as S.Schema<UpdateContainerRequestUlimitsList>;
+
+export interface UpdateContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** An integer value representing this container's relative CPU weight versus other containers. */
+  CpuShares?: number;
+  /** Memory limit in bytes. */
+  Memory?: number;
+  /** Path to `cgroups` under which the container's `cgroup` is created. If the path is not absolute, the path is considered to be relative to the `cgroups` path of the init process. Cgroups are created if they do not already exist. */
+  CgroupParent?: string;
+  /** Block IO weight (relative weight). */
+  BlkioWeight?: number;
+  /** Block IO weight (relative device weight) in the form: ``` [{"Path": "device_path", "Weight": weight}] ``` */
+  BlkioWeightDevice?: UpdateContainerRequestBlkioWeightDeviceList;
+  /** Limit read rate (bytes per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+  BlkioDeviceReadBps?: UpdateContainerRequestBlkioDeviceReadBpsList;
+  /** Limit write rate (bytes per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+  BlkioDeviceWriteBps?: UpdateContainerRequestBlkioDeviceWriteBpsList;
+  /** Limit read rate (IO per second) from a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+  BlkioDeviceReadIOps?: UpdateContainerRequestBlkioDeviceReadIOpsList;
+  /** Limit write rate (IO per second) to a device, in the form: ``` [{"Path": "device_path", "Rate": rate}] ``` */
+  BlkioDeviceWriteIOps?: UpdateContainerRequestBlkioDeviceWriteIOpsList;
+  /** The length of a CPU period in microseconds. */
+  CpuPeriod?: number;
+  /** Microseconds of CPU time that the container can get in a CPU period. */
+  CpuQuota?: number;
+  /** The length of a CPU real-time period in microseconds. Set to 0 to allocate no time allocated to real-time tasks. */
+  CpuRealtimePeriod?: number;
+  /** The length of a CPU real-time runtime in microseconds. Set to 0 to allocate no time allocated to real-time tasks. */
+  CpuRealtimeRuntime?: number;
+  /** CPUs in which to allow execution (e.g., `0-3`, `0,1`). */
+  CpusetCpus?: string;
+  /** Memory nodes (MEMs) in which to allow execution (0-3, 0,1). Only effective on NUMA systems. */
+  CpusetMems?: string;
+  /** A list of devices to add to the container. */
+  Devices?: UpdateContainerRequestDevicesList;
+  /** a list of cgroup rules to apply to the container */
+  DeviceCgroupRules?: UpdateContainerRequestDeviceCgroupRulesList;
+  /** A list of requests for devices to be sent to device drivers. */
+  DeviceRequests?: UpdateContainerRequestDeviceRequestsList;
+  /** Memory soft limit in bytes. */
+  MemoryReservation?: number;
+  /** Total memory limit (memory + swap). Set as `-1` to enable unlimited swap. */
+  MemorySwap?: number;
+  /** Tune a container's memory swappiness behavior. Accepts an integer between 0 and 100. */
+  MemorySwappiness?: number;
+  /** CPU quota in units of 10<sup>-9</sup> CPUs. */
+  NanoCpus?: number;
+  /** Disable OOM Killer for the container. */
+  OomKillDisable?: boolean;
+  /** Run an init inside the container that forwards signals and reaps processes. This field is omitted if empty, and the default (as configured on the daemon) is used. */
+  Init?: boolean | null;
+  /** Tune a container's PIDs limit. Set `0` or `-1` for unlimited, or `null` to not change. */
+  PidsLimit?: number | null;
+  /** A list of resource limits to set in the container. For example: ``` {"Name": "nofile", "Soft": 1024, "Hard": 2048} ``` */
+  Ulimits?: UpdateContainerRequestUlimitsList;
+  /** The number of usable CPUs (Windows only). On Windows Server containers, the processor resource controls are mutually exclusive. The order of precedence is `CPUCount` first, then `CPUShares`, and `CPUPercent` last. */
+  CpuCount?: number;
+  /** The usable percentage of the available CPUs (Windows only). On Windows Server containers, the processor resource controls are mutually exclusive. The order of precedence is `CPUCount` first, then `CPUShares`, and `CPUPercent` last. */
+  CpuPercent?: number;
+  /** Maximum IOps for the container system drive (Windows only) */
+  IOMaximumIOps?: number;
+  /** Maximum IO in bytes per second for the container system drive (Windows only). */
+  IOMaximumBandwidth?: number;
+  RestartPolicy?: RestartPolicy;
 }
-export const ClusterVolumeInfo = /*@__PURE__*/ S.suspend(() =>
+export const UpdateContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    CapacityBytes: S.optional(S.Number),
-    VolumeContext: S.optional(ClusterVolumeInfoVolumeContextMap),
-    VolumeID: S.optional(S.String),
-    AccessibleTopology: S.optional(ClusterVolumeInfoAccessibleTopologyList),
+    id: S.String.pipe(T.Label()),
+    CpuShares: S.optional(S.Number),
+    Memory: S.optional(S.Number),
+    CgroupParent: S.optional(S.String),
+    BlkioWeight: S.optional(S.Number),
+    BlkioWeightDevice: S.optional(UpdateContainerRequestBlkioWeightDeviceList),
+    BlkioDeviceReadBps: S.optional(
+      UpdateContainerRequestBlkioDeviceReadBpsList,
+    ),
+    BlkioDeviceWriteBps: S.optional(
+      UpdateContainerRequestBlkioDeviceWriteBpsList,
+    ),
+    BlkioDeviceReadIOps: S.optional(
+      UpdateContainerRequestBlkioDeviceReadIOpsList,
+    ),
+    BlkioDeviceWriteIOps: S.optional(
+      UpdateContainerRequestBlkioDeviceWriteIOpsList,
+    ),
+    CpuPeriod: S.optional(S.Number),
+    CpuQuota: S.optional(S.Number),
+    CpuRealtimePeriod: S.optional(S.Number),
+    CpuRealtimeRuntime: S.optional(S.Number),
+    CpusetCpus: S.optional(S.String),
+    CpusetMems: S.optional(S.String),
+    Devices: S.optional(UpdateContainerRequestDevicesList),
+    DeviceCgroupRules: S.optional(UpdateContainerRequestDeviceCgroupRulesList),
+    DeviceRequests: S.optional(UpdateContainerRequestDeviceRequestsList),
+    MemoryReservation: S.optional(S.Number),
+    MemorySwap: S.optional(S.Number),
+    MemorySwappiness: S.optional(S.Number),
+    NanoCpus: S.optional(S.Number),
+    OomKillDisable: S.optional(S.Boolean),
+    Init: S.optional(S.NullOr(S.Boolean)),
+    PidsLimit: S.optional(S.NullOr(S.Number)),
+    Ulimits: S.optional(UpdateContainerRequestUlimitsList),
+    CpuCount: S.optional(S.Number),
+    CpuPercent: S.optional(S.Number),
+    IOMaximumIOps: S.optional(S.Number),
+    IOMaximumBandwidth: S.optional(S.Number),
+    RestartPolicy: S.optional(RestartPolicy),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/containers/{id}/update", code: 200 }),
+  ),
+).annotate({
+  identifier: "UpdateContainerRequest",
+}) as any as S.Schema<UpdateContainerRequest>;
+
+/** Warnings encountered when updating the container. */
+export type ContainerUpdateResponseWarningsList = Array<string>;
+export const ContainerUpdateResponseWarningsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ContainerUpdateResponseWarningsList>;
+
+/** Response for a successful container-update. */
+export interface ContainerUpdateResponse {
+  /** Warnings encountered when updating the container. */
+  Warnings?: ContainerUpdateResponseWarningsList;
+}
+export const ContainerUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Warnings: S.optional(ContainerUpdateResponseWarningsList),
   }),
 ).annotate({
-  identifier: "ClusterVolumeInfo",
-}) as any as S.Schema<ClusterVolumeInfo>;
+  identifier: "ContainerUpdateResponse",
+}) as any as S.Schema<ContainerUpdateResponse>;
 
-/** The published state of the volume. * `pending-publish` The volume should be published to this node, but the call to the controller plugin to do so has not yet been successfully completed. * `published` The volume is published successfully to the node. * `pending-node-unpublish` The volume should be unpublished from the node, and the manager is awaiting confirmation from the worker that it has done so. * `pending-controller-unpublish` The volume is successfully unpublished from the node, but has not yet been successfully unpublished on the controller. */
-export type ClusterVolumePublishStatusItemState =
-  | "pending-publish"
-  | "published"
-  | "pending-node-unpublish"
-  | "pending-controller-unpublish";
-export const ClusterVolumePublishStatusItemState = /*@__PURE__*/ S.String;
+/** User-defined key/value metadata. */
+export type UpdateNodeRequestLabelsMap = { [key: string]: string | undefined };
+export const UpdateNodeRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNodeRequestLabelsMap>;
 
-/** A map of strings to strings returned by the CSI controller plugin when a volume is published. */
-export type ClusterVolumePublishStatusItemPublishContextMap = {
+/** Role of the node. */
+export type UpdateNodeRequestRole = "worker" | "manager";
+export const UpdateNodeRequestRole = /*@__PURE__*/ S.String;
+
+/** Availability of the node. */
+export type UpdateNodeRequestAvailability = "active" | "pause" | "drain";
+export const UpdateNodeRequestAvailability = /*@__PURE__*/ S.String;
+
+export interface UpdateNodeRequest {
+  /** The ID of the node */
+  id: string;
+  /** The version number of the node object being updated. This is required to avoid conflicting writes. */
+  version: number;
+  /** Name for the node. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: UpdateNodeRequestLabelsMap;
+  /** Role of the node. */
+  Role?: UpdateNodeRequestRole | (string & {});
+  /** Availability of the node. */
+  Availability?: UpdateNodeRequestAvailability | (string & {});
+}
+export const UpdateNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Query()),
+    Name: S.optional(S.String),
+    Labels: S.optional(UpdateNodeRequestLabelsMap),
+    Role: S.optional(UpdateNodeRequestRole),
+    Availability: S.optional(UpdateNodeRequestAvailability),
+  }).pipe(T.Http({ method: "POST", uri: "/nodes/{id}/update", code: 200 })),
+).annotate({
+  identifier: "UpdateNodeRequest",
+}) as any as S.Schema<UpdateNodeRequest>;
+
+export interface UpdateNodeResponse {}
+export const UpdateNodeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateNodeResponse",
+}) as any as S.Schema<UpdateNodeResponse>;
+
+/** User-defined key/value metadata. */
+export type UpdateSecretRequestLabelsMap = {
   [key: string]: string | undefined;
 };
-export const ClusterVolumePublishStatusItemPublishContextMap =
+export const UpdateSecretRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSecretRequestLabelsMap>;
+
+export interface UpdateSecretRequest {
+  /** The ID or name of the secret */
+  id: string;
+  /** The version number of the secret object being updated. This is required to avoid conflicting writes. */
+  version: number;
+  /** User-defined name of the secret. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: UpdateSecretRequestLabelsMap;
+  /** Data is the data to store as a secret, formatted as a standard base64-encoded ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-4)) string. It must be empty if the Driver field is set, in which case the data is loaded from an external secret store. The maximum allowed size is 500KB, as defined in [MaxSecretSize](https://pkg.go.dev/github.com/moby/swarmkit/v2@v2.0.0/api/validation#MaxSecretSize). This field is only used to _create_ a secret, and is not returned by other endpoints. */
+  Data?: string;
+  /** Name of the secrets driver used to fetch the secret's value from an external secret store. */
+  Driver?: Driver;
+  /** Templating driver, if applicable Templating controls whether and how to evaluate the config payload as a template. If no driver is set, no templating is used. */
+  Templating?: Driver;
+}
+export const UpdateSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Query()),
+    Name: S.optional(S.String),
+    Labels: S.optional(UpdateSecretRequestLabelsMap),
+    Data: S.optional(S.String),
+    Driver: S.optional(Driver),
+    Templating: S.optional(Driver),
+  }).pipe(T.Http({ method: "POST", uri: "/secrets/{id}/update", code: 200 })),
+).annotate({
+  identifier: "UpdateSecretRequest",
+}) as any as S.Schema<UpdateSecretRequest>;
+
+export interface UpdateSecretResponse {}
+export const UpdateSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateSecretResponse",
+}) as any as S.Schema<UpdateSecretResponse>;
+
+export type UpdateServiceRequestRegistryAuthFrom = "spec" | "previous-spec";
+export const UpdateServiceRequestRegistryAuthFrom = /*@__PURE__*/ S.String;
+
+/** User-defined key/value metadata. */
+export type UpdateServiceRequestLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateServiceRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateServiceRequestLabelsMap>;
+
+export type UpdateServiceRequestModeReplicated =
+  CreateServiceRequestModeReplicated;
+export const UpdateServiceRequestModeReplicated =
+  CreateServiceRequestModeReplicated;
+
+/** The mode used for services with a finite number of tasks that run to a completed state. */
+export type UpdateServiceRequestModeReplicatedJob =
+  CreateServiceRequestModeReplicatedJob;
+export const UpdateServiceRequestModeReplicatedJob =
+  CreateServiceRequestModeReplicatedJob;
+
+/** Scheduling mode for the service. */
+export type UpdateServiceRequestMode = CreateServiceRequestMode;
+export const UpdateServiceRequestMode = CreateServiceRequestMode;
+
+/** Action to take if an updated task fails to run, or stops running during the update. */
+export type UpdateServiceRequestUpdateConfigFailureAction =
+  | "continue"
+  | "pause"
+  | "rollback";
+export const UpdateServiceRequestUpdateConfigFailureAction =
+  /*@__PURE__*/ S.String;
+
+/** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+export type UpdateServiceRequestUpdateConfigOrder =
+  | "stop-first"
+  | "start-first";
+export const UpdateServiceRequestUpdateConfigOrder = /*@__PURE__*/ S.String;
+
+/** Specification for the update strategy of the service. */
+export interface UpdateServiceRequestUpdateConfig {
+  /** Maximum number of tasks to be updated in one iteration (0 means unlimited parallelism). */
+  Parallelism?: number;
+  /** Amount of time between updates, in nanoseconds. */
+  Delay?: number;
+  /** Action to take if an updated task fails to run, or stops running during the update. */
+  FailureAction?: UpdateServiceRequestUpdateConfigFailureAction | (string & {});
+  /** Amount of time to monitor each updated task for failures, in nanoseconds. */
+  Monitor?: number;
+  /** The fraction of tasks that may fail during an update before the failure action is invoked, specified as a floating point number between 0 and 1. */
+  MaxFailureRatio?: number;
+  /** The order of operations when rolling out an updated task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+  Order?: UpdateServiceRequestUpdateConfigOrder | (string & {});
+}
+export const UpdateServiceRequestUpdateConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Parallelism: S.optional(S.Number),
+    Delay: S.optional(S.Number),
+    FailureAction: S.optional(UpdateServiceRequestUpdateConfigFailureAction),
+    Monitor: S.optional(S.Number),
+    MaxFailureRatio: S.optional(S.Number),
+    Order: S.optional(UpdateServiceRequestUpdateConfigOrder),
+  }),
+).annotate({
+  identifier: "UpdateServiceRequestUpdateConfig",
+}) as any as S.Schema<UpdateServiceRequestUpdateConfig>;
+
+/** Action to take if an rolled back task fails to run, or stops running during the rollback. */
+export type UpdateServiceRequestRollbackConfigFailureAction =
+  | "continue"
+  | "pause";
+export const UpdateServiceRequestRollbackConfigFailureAction =
+  /*@__PURE__*/ S.String;
+
+/** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+export type UpdateServiceRequestRollbackConfigOrder =
+  | "stop-first"
+  | "start-first";
+export const UpdateServiceRequestRollbackConfigOrder = /*@__PURE__*/ S.String;
+
+/** Specification for the rollback strategy of the service. */
+export interface UpdateServiceRequestRollbackConfig {
+  /** Maximum number of tasks to be rolled back in one iteration (0 means unlimited parallelism). */
+  Parallelism?: number;
+  /** Amount of time between rollback iterations, in nanoseconds. */
+  Delay?: number;
+  /** Action to take if an rolled back task fails to run, or stops running during the rollback. */
+  FailureAction?:
+    | UpdateServiceRequestRollbackConfigFailureAction
+    | (string & {});
+  /** Amount of time to monitor each rolled back task for failures, in nanoseconds. */
+  Monitor?: number;
+  /** The fraction of tasks that may fail during a rollback before the failure action is invoked, specified as a floating point number between 0 and 1. */
+  MaxFailureRatio?: number;
+  /** The order of operations when rolling back a task. Either the old task is shut down before the new task is started, or the new task is started before the old task is shut down. */
+  Order?: UpdateServiceRequestRollbackConfigOrder | (string & {});
+}
+export const UpdateServiceRequestRollbackConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Parallelism: S.optional(S.Number),
+    Delay: S.optional(S.Number),
+    FailureAction: S.optional(UpdateServiceRequestRollbackConfigFailureAction),
+    Monitor: S.optional(S.Number),
+    MaxFailureRatio: S.optional(S.Number),
+    Order: S.optional(UpdateServiceRequestRollbackConfigOrder),
+  }),
+).annotate({
+  identifier: "UpdateServiceRequestRollbackConfig",
+}) as any as S.Schema<UpdateServiceRequestRollbackConfig>;
+
+/** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
+export type UpdateServiceRequestNetworksList = Array<NetworkAttachmentConfig>;
+export const UpdateServiceRequestNetworksList = /*@__PURE__*/ S.Array(
+  NetworkAttachmentConfig,
+) as any as S.Schema<UpdateServiceRequestNetworksList>;
+
+export interface UpdateServiceRequest {
+  /** ID or name of service. */
+  id: string;
+  /** The version number of the service object being updated. This is required to avoid conflicting writes. This version number should be the value as currently set on the service *before* the update. You can find the current version by calling `GET /services/{id}` */
+  version: number;
+  /** If the `X-Registry-Auth` header is not specified, this parameter indicates where to find registry authorization credentials. */
+  registryAuthFrom?: UpdateServiceRequestRegistryAuthFrom | (string & {});
+  /** Set to this parameter to `previous` to cause a server-side rollback to the previous service spec. The supplied spec will be ignored in this case. */
+  rollback?: string;
+  /** A base64url-encoded auth configuration for pulling from private registries. Refer to the [authentication section](#section/Authentication) for details. */
+  xRegistryAuth?: string;
+  /** Name of the service. */
+  Name?: string;
+  /** User-defined key/value metadata. */
+  Labels?: UpdateServiceRequestLabelsMap;
+  TaskTemplate?: TaskSpec;
+  /** Scheduling mode for the service. */
+  Mode?: CreateServiceRequestMode;
+  /** Specification for the update strategy of the service. */
+  UpdateConfig?: UpdateServiceRequestUpdateConfig;
+  /** Specification for the rollback strategy of the service. */
+  RollbackConfig?: UpdateServiceRequestRollbackConfig;
+  /** Specifies which networks the service should attach to. Deprecated: This field is deprecated since v1.44. The Networks field in TaskSpec should be used instead. */
+  Networks?: UpdateServiceRequestNetworksList;
+  EndpointSpec?: EndpointSpec;
+}
+export const UpdateServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Query()),
+    registryAuthFrom: S.optional(
+      UpdateServiceRequestRegistryAuthFrom.pipe(T.Query()),
+    ),
+    rollback: S.optional(S.String.pipe(T.Query())),
+    xRegistryAuth: S.optional(S.String.pipe(T.Header("X-Registry-Auth"))),
+    Name: S.optional(S.String),
+    Labels: S.optional(UpdateServiceRequestLabelsMap),
+    TaskTemplate: S.optional(TaskSpec),
+    Mode: S.optional(CreateServiceRequestMode),
+    UpdateConfig: S.optional(UpdateServiceRequestUpdateConfig),
+    RollbackConfig: S.optional(UpdateServiceRequestRollbackConfig),
+    Networks: S.optional(UpdateServiceRequestNetworksList),
+    EndpointSpec: S.optional(EndpointSpec),
+  }).pipe(T.Http({ method: "POST", uri: "/services/{id}/update", code: 200 })),
+).annotate({
+  identifier: "UpdateServiceRequest",
+}) as any as S.Schema<UpdateServiceRequest>;
+
+/** Optional warning messages */
+export type ServiceUpdateResponseWarningsList = Array<string>;
+export const ServiceUpdateResponseWarningsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ServiceUpdateResponseWarningsList>;
+
+export interface ServiceUpdateResponse {
+  /** Optional warning messages */
+  Warnings?: ServiceUpdateResponseWarningsList;
+}
+export const ServiceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Warnings: S.optional(ServiceUpdateResponseWarningsList),
+  }),
+).annotate({
+  identifier: "ServiceUpdateResponse",
+}) as any as S.Schema<ServiceUpdateResponse>;
+
+/** User-defined key/value metadata. */
+export type UpdateSwarmRequestLabelsMap = { [key: string]: string | undefined };
+export const UpdateSwarmRequestLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSwarmRequestLabelsMap>;
+
+/** Orchestration configuration. */
+export type UpdateSwarmRequestOrchestration = SwarmSpecOrchestration;
+export const UpdateSwarmRequestOrchestration = SwarmSpecOrchestration;
+
+/** Raft configuration. */
+export type UpdateSwarmRequestRaft = SwarmSpecRaft;
+export const UpdateSwarmRequestRaft = SwarmSpecRaft;
+
+/** Dispatcher configuration. */
+export type UpdateSwarmRequestDispatcher = SwarmSpecDispatcher;
+export const UpdateSwarmRequestDispatcher = SwarmSpecDispatcher;
+
+/** Protocol for communication with the external CA (currently only `cfssl` is supported). */
+export type UpdateSwarmRequestCAConfigExternalCAsItemProtocol = "cfssl";
+export const UpdateSwarmRequestCAConfigExternalCAsItemProtocol =
+  /*@__PURE__*/ S.String;
+
+/** An object with key/value pairs that are interpreted as protocol-specific options for the external CA driver. */
+export type UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ClusterVolumePublishStatusItemPublishContextMap>;
+  ) as any as S.Schema<UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap>;
 
-export interface ClusterVolumePublishStatusItem {
-  /** The ID of the Swarm node the volume is published on. */
-  NodeID?: string;
-  /** The published state of the volume. * `pending-publish` The volume should be published to this node, but the call to the controller plugin to do so has not yet been successfully completed. * `published` The volume is published successfully to the node. * `pending-node-unpublish` The volume should be unpublished from the node, and the manager is awaiting confirmation from the worker that it has done so. * `pending-controller-unpublish` The volume is successfully unpublished from the node, but has not yet been successfully unpublished on the controller. */
-  State?: ClusterVolumePublishStatusItemState;
-  /** A map of strings to strings returned by the CSI controller plugin when a volume is published. */
-  PublishContext?: ClusterVolumePublishStatusItemPublishContextMap;
+export interface UpdateSwarmRequestCAConfigExternalCAsItem {
+  /** Protocol for communication with the external CA (currently only `cfssl` is supported). */
+  Protocol?: UpdateSwarmRequestCAConfigExternalCAsItemProtocol | (string & {});
+  /** URL where certificate signing requests should be sent. */
+  URL?: string;
+  /** An object with key/value pairs that are interpreted as protocol-specific options for the external CA driver. */
+  Options?: UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap;
+  /** The root CA certificate (in PEM format) this external CA uses to issue TLS certificates (assumed to be to the current swarm root CA certificate if not provided). */
+  CACert?: string;
 }
-export const ClusterVolumePublishStatusItem = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSwarmRequestCAConfigExternalCAsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      Protocol: S.optional(UpdateSwarmRequestCAConfigExternalCAsItemProtocol),
+      URL: S.optional(S.String),
+      Options: S.optional(UpdateSwarmRequestCAConfigExternalCAsItemOptionsMap),
+      CACert: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "UpdateSwarmRequestCAConfigExternalCAsItem",
+  }) as any as S.Schema<UpdateSwarmRequestCAConfigExternalCAsItem>;
+
+/** Configuration for forwarding signing requests to an external certificate authority. */
+export type UpdateSwarmRequestCAConfigExternalCAsList =
+  Array<UpdateSwarmRequestCAConfigExternalCAsItem>;
+export const UpdateSwarmRequestCAConfigExternalCAsList = /*@__PURE__*/ S.Array(
+  UpdateSwarmRequestCAConfigExternalCAsItem,
+) as any as S.Schema<UpdateSwarmRequestCAConfigExternalCAsList>;
+
+/** CA configuration. */
+export interface UpdateSwarmRequestCAConfig {
+  /** The duration node certificates are issued for. */
+  NodeCertExpiry?: number;
+  /** Configuration for forwarding signing requests to an external certificate authority. */
+  ExternalCAs?: UpdateSwarmRequestCAConfigExternalCAsList;
+  /** The desired signing CA certificate for all swarm node TLS leaf certificates, in PEM format. */
+  SigningCACert?: string;
+  /** The desired signing CA key for all swarm node TLS leaf certificates, in PEM format. */
+  SigningCAKey?: string;
+  /** An integer whose purpose is to force swarm to generate a new signing CA certificate and key, if none have been specified in `SigningCACert` and `SigningCAKey` */
+  ForceRotate?: number;
+}
+export const UpdateSwarmRequestCAConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    NodeID: S.optional(S.String),
-    State: S.optional(ClusterVolumePublishStatusItemState),
-    PublishContext: S.optional(ClusterVolumePublishStatusItemPublishContextMap),
+    NodeCertExpiry: S.optional(S.Number),
+    ExternalCAs: S.optional(UpdateSwarmRequestCAConfigExternalCAsList),
+    SigningCACert: S.optional(S.String),
+    SigningCAKey: S.optional(S.String),
+    ForceRotate: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "ClusterVolumePublishStatusItem",
-}) as any as S.Schema<ClusterVolumePublishStatusItem>;
+  identifier: "UpdateSwarmRequestCAConfig",
+}) as any as S.Schema<UpdateSwarmRequestCAConfig>;
 
-/** The status of the volume as it pertains to its publishing and use on specific nodes */
-export type ClusterVolumePublishStatusList =
-  Array<ClusterVolumePublishStatusItem>;
-export const ClusterVolumePublishStatusList = /*@__PURE__*/ S.Array(
-  ClusterVolumePublishStatusItem,
-) as any as S.Schema<ClusterVolumePublishStatusList>;
+/** Parameters related to encryption-at-rest. */
+export type UpdateSwarmRequestEncryptionConfig = SwarmSpecEncryptionConfig;
+export const UpdateSwarmRequestEncryptionConfig = SwarmSpecEncryptionConfig;
 
-/** Options and information specific to, and only present on, Swarm CSI cluster volumes. */
-export interface ClusterVolume {
-  /** The Swarm ID of this volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes. This ID can be used to refer to the Volume instead of the name. */
-  ID?: string;
-  Version?: ObjectVersion;
-  CreatedAt?: string;
-  UpdatedAt?: string;
-  Spec?: ClusterVolumeSpec;
-  /** Information about the global status of the volume. */
-  Info?: ClusterVolumeInfo;
-  /** The status of the volume as it pertains to its publishing and use on specific nodes */
-  PublishStatus?: ClusterVolumePublishStatusList;
+/** Driver-specific options for the selected log driver, specified as key/value pairs. */
+export type UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap>;
+
+/** The log driver to use for tasks created in the orchestrator if unspecified by a service. Updating this value only affects new tasks. Existing tasks continue to use their previously configured log driver until recreated. */
+export interface UpdateSwarmRequestTaskDefaultsLogDriver {
+  /** The log driver to use as a default for new tasks. */
+  Name?: string;
+  /** Driver-specific options for the selected log driver, specified as key/value pairs. */
+  Options?: UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap;
 }
-export const ClusterVolume = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ID: S.optional(S.String),
-    Version: S.optional(ObjectVersion),
-    CreatedAt: S.optional(S.String),
-    UpdatedAt: S.optional(S.String),
-    Spec: S.optional(ClusterVolumeSpec),
-    Info: S.optional(ClusterVolumeInfo),
-    PublishStatus: S.optional(ClusterVolumePublishStatusList),
-  }),
-).annotate({ identifier: "ClusterVolume" }) as any as S.Schema<ClusterVolume>;
+export const UpdateSwarmRequestTaskDefaultsLogDriver = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      Name: S.optional(S.String),
+      Options: S.optional(UpdateSwarmRequestTaskDefaultsLogDriverOptionsMap),
+    }),
+).annotate({
+  identifier: "UpdateSwarmRequestTaskDefaultsLogDriver",
+}) as any as S.Schema<UpdateSwarmRequestTaskDefaultsLogDriver>;
 
-/** The driver specific options used when creating the volume. */
-export type VolumeOptionsMap = { [key: string]: string | undefined };
-export const VolumeOptionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VolumeOptionsMap>;
-
-/** Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints. */
-export interface VolumeUsageData {
-  /** Amount of disk space used by the volume (in bytes). This information is only available for volumes created with the `"local"` volume driver. For volumes created with other volume drivers, this field is set to `-1` ("not available") */
-  Size: number;
-  /** The number of containers referencing this volume. This field is set to `-1` if the reference-count is not available. */
-  RefCount: number;
+/** Defaults for creating tasks in this cluster. */
+export interface UpdateSwarmRequestTaskDefaults {
+  /** The log driver to use for tasks created in the orchestrator if unspecified by a service. Updating this value only affects new tasks. Existing tasks continue to use their previously configured log driver until recreated. */
+  LogDriver?: UpdateSwarmRequestTaskDefaultsLogDriver;
 }
-export const VolumeUsageData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSwarmRequestTaskDefaults = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Size: S.Number,
-    RefCount: S.Number,
+    LogDriver: S.optional(UpdateSwarmRequestTaskDefaultsLogDriver),
   }),
 ).annotate({
-  identifier: "VolumeUsageData",
-}) as any as S.Schema<VolumeUsageData>;
+  identifier: "UpdateSwarmRequestTaskDefaults",
+}) as any as S.Schema<UpdateSwarmRequestTaskDefaults>;
 
-export interface Volume {
-  /** Name of the volume. */
-  Name: string;
-  /** Name of the volume driver used by the volume. */
-  Driver: string;
-  /** Mount path of the volume on the host. */
-  Mountpoint: string;
-  /** Date/Time the volume was created. */
-  CreatedAt?: string;
-  /** Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: `{"key":"value","key2":"value2"}`. The `Status` field is optional, and is omitted if the volume driver does not support this feature. */
-  Status?: VolumeStatusMap;
+export interface UpdateSwarmRequest {
+  /** The version number of the swarm object being updated. This is required to avoid conflicting writes. */
+  version: number;
+  /** Rotate the worker join token. */
+  rotateWorkerToken?: boolean;
+  /** Rotate the manager join token. */
+  rotateManagerToken?: boolean;
+  /** Rotate the manager unlock key. */
+  rotateManagerUnlockKey?: boolean;
+  /** Name of the swarm. */
+  Name?: string;
   /** User-defined key/value metadata. */
-  Labels: VolumeLabelsMap;
-  /** The level at which the volume exists. Either `global` for cluster-wide, or `local` for machine level. */
-  Scope: VolumeScope;
-  ClusterVolume?: ClusterVolume;
-  /** The driver specific options used when creating the volume. */
-  Options: VolumeOptionsMap;
-  /** Usage details about the volume. This information is used by the `GET /system/df` endpoint, and omitted in other endpoints. */
-  UsageData?: VolumeUsageData | null;
+  Labels?: UpdateSwarmRequestLabelsMap;
+  /** Orchestration configuration. */
+  Orchestration?: SwarmSpecOrchestration | null;
+  /** Raft configuration. */
+  Raft?: SwarmSpecRaft;
+  /** Dispatcher configuration. */
+  Dispatcher?: SwarmSpecDispatcher | null;
+  /** CA configuration. */
+  CAConfig?: UpdateSwarmRequestCAConfig | null;
+  /** Parameters related to encryption-at-rest. */
+  EncryptionConfig?: SwarmSpecEncryptionConfig;
+  /** Defaults for creating tasks in this cluster. */
+  TaskDefaults?: UpdateSwarmRequestTaskDefaults;
 }
-export const Volume = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSwarmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    Name: S.String,
-    Driver: S.String,
-    Mountpoint: S.String,
-    CreatedAt: S.optional(S.String),
-    Status: S.optional(VolumeStatusMap),
-    Labels: VolumeLabelsMap,
-    Scope: VolumeScope,
-    ClusterVolume: S.optional(ClusterVolume),
-    Options: VolumeOptionsMap,
-    UsageData: S.optional(S.NullOr(VolumeUsageData)),
-  }),
-).annotate({ identifier: "Volume" }) as any as S.Schema<Volume>;
-
-export interface VolumeDeleteRequest {
-  /** Volume name or ID */
-  name: string;
-  /** Force the removal of the volume */
-  force?: boolean;
-}
-export const VolumeDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "DELETE", uri: "/volumes/{name}", code: 200 })),
+    version: S.Number.pipe(T.Query()),
+    rotateWorkerToken: S.optional(S.Boolean.pipe(T.Query())),
+    rotateManagerToken: S.optional(S.Boolean.pipe(T.Query())),
+    rotateManagerUnlockKey: S.optional(S.Boolean.pipe(T.Query())),
+    Name: S.optional(S.String),
+    Labels: S.optional(UpdateSwarmRequestLabelsMap),
+    Orchestration: S.optional(S.NullOr(SwarmSpecOrchestration)),
+    Raft: S.optional(SwarmSpecRaft),
+    Dispatcher: S.optional(S.NullOr(SwarmSpecDispatcher)),
+    CAConfig: S.optional(S.NullOr(UpdateSwarmRequestCAConfig)),
+    EncryptionConfig: S.optional(SwarmSpecEncryptionConfig),
+    TaskDefaults: S.optional(UpdateSwarmRequestTaskDefaults),
+  }).pipe(T.Http({ method: "POST", uri: "/swarm/update", code: 200 })),
 ).annotate({
-  identifier: "VolumeDeleteRequest",
-}) as any as S.Schema<VolumeDeleteRequest>;
+  identifier: "UpdateSwarmRequest",
+}) as any as S.Schema<UpdateSwarmRequest>;
 
-export interface VolumeDeleteResponse {}
-export const VolumeDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UpdateSwarmResponse {}
+export const UpdateSwarmResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "VolumeDeleteResponse",
-}) as any as S.Schema<VolumeDeleteResponse>;
+  identifier: "UpdateSwarmResponse",
+}) as any as S.Schema<UpdateSwarmResponse>;
+
+export interface UpdateVolumeRequest {
+  /** The name or ID of the volume */
+  name: string;
+  /** The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume's `ClusterVolume` field. */
+  version: number;
+  Spec?: ClusterVolumeSpec;
+}
+export const UpdateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String.pipe(T.Label()),
+    version: S.Number.pipe(T.Query()),
+    Spec: S.optional(ClusterVolumeSpec),
+  }).pipe(T.Http({ method: "PUT", uri: "/volumes/{name}", code: 200 })),
+).annotate({
+  identifier: "UpdateVolumeRequest",
+}) as any as S.Schema<UpdateVolumeRequest>;
+
+export interface UpdateVolumeResponse {}
+export const UpdateVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateVolumeResponse",
+}) as any as S.Schema<UpdateVolumeResponse>;
 
 export interface VolumeInspectRequest {
   /** Volume name or ID */
@@ -10248,46 +10263,6 @@ export const VolumeInspectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VolumeInspectRequest",
 }) as any as S.Schema<VolumeInspectRequest>;
-
-export interface VolumeListRequest {
-  /** JSON encoded value of the filters (a `map[string][]string`) to process on the volumes list. Available filters: - `dangling=<boolean>` When set to `true` (or `1`), returns all volumes that are not in use by a container. When set to `false` (or `0`), only volumes that are in use by one or more containers are returned. - `driver=<volume-driver-name>` Matches volumes based on their driver. - `label=<key>` or `label=<key>:<value>` Matches volumes based on the presence of a `label` alone or a `label` and a value. - `name=<volume-name>` Matches all or part of a volume name. */
-  filters?: string;
-}
-export const VolumeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filters: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/volumes", code: 200 })),
-).annotate({
-  identifier: "VolumeListRequest",
-}) as any as S.Schema<VolumeListRequest>;
-
-/** List of volumes */
-export type VolumeListResponseVolumesList = Array<Volume>;
-export const VolumeListResponseVolumesList = /*@__PURE__*/ S.Array(
-  Volume,
-) as any as S.Schema<VolumeListResponseVolumesList>;
-
-/** Warnings that occurred when fetching the list of volumes. */
-export type VolumeListResponseWarningsList = Array<string>;
-export const VolumeListResponseWarningsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<VolumeListResponseWarningsList>;
-
-/** Volume list response */
-export interface VolumeListResponse {
-  /** List of volumes */
-  Volumes?: VolumeListResponseVolumesList;
-  /** Warnings that occurred when fetching the list of volumes. */
-  Warnings?: VolumeListResponseWarningsList;
-}
-export const VolumeListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    Volumes: S.optional(VolumeListResponseVolumesList),
-    Warnings: S.optional(VolumeListResponseWarningsList),
-  }),
-).annotate({
-  identifier: "VolumeListResponse",
-}) as any as S.Schema<VolumeListResponse>;
 
 export interface VolumePruneRequest {
   /** Filters to process on the prune list, encoded as JSON (a `map[string][]string`). Available filters: - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune volumes with (or without, in case `label!=...` is used) the specified labels. - `all` (`all=true`) - Consider all (local) volumes for pruning and not just anonymous volumes. */
@@ -10322,29 +10297,84 @@ export const VolumePruneResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumePruneResponse",
 }) as any as S.Schema<VolumePruneResponse>;
 
-export interface VolumeUpdateRequest {
-  /** The name or ID of the volume */
-  name: string;
-  /** The version number of the volume being updated. This is required to avoid conflicting writes. Found in the volume's `ClusterVolume` field. */
-  version: number;
-  Spec?: ClusterVolumeSpec;
-}
-export const VolumeUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String.pipe(T.Label()),
-    version: S.Number.pipe(T.Query()),
-    Spec: S.optional(ClusterVolumeSpec),
-  }).pipe(T.Http({ method: "PUT", uri: "/volumes/{name}", code: 200 })),
-).annotate({
-  identifier: "VolumeUpdateRequest",
-}) as any as S.Schema<VolumeUpdateRequest>;
+export type WaitContainerRequestCondition =
+  | "not-running"
+  | "next-exit"
+  | "removed";
+export const WaitContainerRequestCondition = /*@__PURE__*/ S.String;
 
-export interface VolumeUpdateResponse {}
-export const VolumeUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface WaitContainerRequest {
+  /** ID or name of the container */
+  id: string;
+  /** Wait until a container state reaches the given condition. Defaults to `not-running` if omitted or empty. */
+  condition?: WaitContainerRequestCondition | (string & {});
+}
+export const WaitContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    condition: S.optional(WaitContainerRequestCondition.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/containers/{id}/wait", code: 200 })),
 ).annotate({
-  identifier: "VolumeUpdateResponse",
-}) as any as S.Schema<VolumeUpdateResponse>;
+  identifier: "WaitContainerRequest",
+}) as any as S.Schema<WaitContainerRequest>;
+
+/** container waiting error, if any */
+export interface ContainerWaitExitError {
+  /** Details of an error */
+  Message?: string;
+}
+export const ContainerWaitExitError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    Message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerWaitExitError",
+}) as any as S.Schema<ContainerWaitExitError>;
+
+/** OK response to ContainerWait operation */
+export interface ContainerWaitResponse {
+  /** Exit code of the container */
+  StatusCode: number;
+  Error?: ContainerWaitExitError;
+}
+export const ContainerWaitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    StatusCode: S.Number,
+    Error: S.optional(ContainerWaitExitError),
+  }),
+).annotate({
+  identifier: "ContainerWaitResponse",
+}) as any as S.Schema<ContainerWaitResponse>;
+
+export type ArchiveContainerError = BadRequest | NotFound | DockerOpError;
+/** Get an archive of a filesystem resource in a container Get a tar archive of a resource in the filesystem of container id. */
+export const archiveContainer: API.OperationMethod<
+  ArchiveContainerRequest,
+  ArchiveContainerResponse,
+  ArchiveContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ArchiveContainerRequest,
+  output: ArchiveContainerResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AttachContainerError = BadRequest | NotFound | DockerOpError;
+/** Attach to a container Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached. Either the `stream` or `logs` parameter must be `true` for this endpoint to do anything. See the [documentation for the `docker attach` command](https://docs.docker.com/engine/reference/commandline/attach/) for more details. ### Hijacking This endpoint hijacks the HTTP connection to transport `stdin`, `stdout`, and `stderr` on the same socket. This is the response from the daemon for an attach request: ``` HTTP/1.1 200 OK Content-Type: application/vnd.docker.raw-stream [STREAM] ``` After the headers and two new lines, the TCP connection can now be used for raw, bidirectional communication between the client and server. To hint potential proxies about connection hijacking, the Docker client can also optionally send connection upgrade headers. For example, the client sends this request to upgrade the connection: ``` POST /containers/16253994b7c4/attach?stream=1&stdout=1 HTTP/1.1 Upgrade: tcp Connection: Upgrade ``` The Docker daemon will respond with a `101 UPGRADED` response, and will similarly follow with the raw stream: ``` HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade Upgrade: tcp [STREAM] ``` ### Stream format When the TTY setting is disabled in [`POST /containers/create`](#operation/ContainerCreate), the HTTP Content-Type header is set to application/vnd.docker.multiplexed-stream and the stream over the hijacked connected is multiplexed to separate out `stdout` and `stderr`. The stream consists of a series of frames, each containing a header and a payload. The header contains the information which the stream writes (`stdout` or `stderr`). It also contains the size of the associated frame encoded in the last four bytes (`uint32`). It is encoded on the first eight bytes like this: ```go header := [8]byte{STREAM_TYPE, 0, 0, 0, SIZE1, SIZE2, SIZE3, SIZE4} ``` `STREAM_TYPE` can be: - 0: `stdin` (is written on `stdout`) - 1: `stdout` - 2: `stderr` `SIZE1, SIZE2, SIZE3, SIZE4` are the four bytes of the `uint32` size encoded as big endian. Following the header is the payload, which is the specified number of bytes of `STREAM_TYPE`. The simplest way to implement this protocol is the following: 1. Read 8 bytes. 2. Choose `stdout` or `stderr` depending on the first byte. 3. Extract the frame size from the last four bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1. ### Stream format when using a TTY When the TTY setting is enabled in [`POST /containers/create`](#operation/ContainerCreate), the stream is not multiplexed. The data exchanged over the hijacked connection is simply the raw data from the process PTY and client's `stdin`. */
+export const attachContainer: API.OperationMethod<
+  AttachContainerRequest,
+  AttachContainerResponse,
+  AttachContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AttachContainerRequest,
+  output: AttachContainerResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
 
 export type BuildPruneError = DockerOpError;
 /** Delete builder cache */
@@ -10361,31 +10391,16 @@ export const buildPrune: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigCreateError = Conflict | DockerOpError;
-/** Create a config */
-export const configCreate: API.OperationMethod<
-  ConfigCreateRequest,
+export type CommitImageError = NotFound | DockerOpError;
+/** Create a new image from a container */
+export const commitImage: API.OperationMethod<
+  CommitImageRequest,
   IDResponse,
-  ConfigCreateError,
+  CommitImageError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigCreateRequest,
+  input: CommitImageRequest,
   output: IDResponse,
-  errors: [Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigDeleteError = NotFound | DockerOpError;
-/** Delete a config */
-export const configDelete: API.OperationMethod<
-  ConfigDeleteRequest,
-  ConfigDeleteResponse,
-  ConfigDeleteError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigDeleteRequest,
-  output: ConfigDeleteResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
@@ -10406,62 +10421,21 @@ export const configInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConfigListError = DockerOpError;
-/** List configs */
-export const configList: API.OperationMethod<
-  ConfigListRequest,
-  ConfigListResponse,
-  ConfigListError,
+export type ConnectNetworkError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | DockerOpError;
+/** Connect a container to a network The network must be either a local-scoped network or a swarm-scoped network with the `attachable` option set. A network cannot be re-attached to a running container */
+export const connectNetwork: API.OperationMethod<
+  ConnectNetworkRequest,
+  ConnectNetworkResponse,
+  ConnectNetworkError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigListRequest,
-  output: ConfigListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigUpdateError = BadRequest | NotFound | DockerOpError;
-/** Update a Config */
-export const configUpdate: API.OperationMethod<
-  ConfigUpdateRequest,
-  ConfigUpdateResponse,
-  ConfigUpdateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigUpdateRequest,
-  output: ConfigUpdateResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerArchiveError = BadRequest | NotFound | DockerOpError;
-/** Get an archive of a filesystem resource in a container Get a tar archive of a resource in the filesystem of container id. */
-export const containerArchive: API.OperationMethod<
-  ContainerArchiveRequest,
-  ContainerArchiveResponse,
-  ContainerArchiveError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerArchiveRequest,
-  output: ContainerArchiveResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerAttachError = BadRequest | NotFound | DockerOpError;
-/** Attach to a container Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached. Either the `stream` or `logs` parameter must be `true` for this endpoint to do anything. See the [documentation for the `docker attach` command](https://docs.docker.com/engine/reference/commandline/attach/) for more details. ### Hijacking This endpoint hijacks the HTTP connection to transport `stdin`, `stdout`, and `stderr` on the same socket. This is the response from the daemon for an attach request: ``` HTTP/1.1 200 OK Content-Type: application/vnd.docker.raw-stream [STREAM] ``` After the headers and two new lines, the TCP connection can now be used for raw, bidirectional communication between the client and server. To hint potential proxies about connection hijacking, the Docker client can also optionally send connection upgrade headers. For example, the client sends this request to upgrade the connection: ``` POST /containers/16253994b7c4/attach?stream=1&stdout=1 HTTP/1.1 Upgrade: tcp Connection: Upgrade ``` The Docker daemon will respond with a `101 UPGRADED` response, and will similarly follow with the raw stream: ``` HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade Upgrade: tcp [STREAM] ``` ### Stream format When the TTY setting is disabled in [`POST /containers/create`](#operation/ContainerCreate), the HTTP Content-Type header is set to application/vnd.docker.multiplexed-stream and the stream over the hijacked connected is multiplexed to separate out `stdout` and `stderr`. The stream consists of a series of frames, each containing a header and a payload. The header contains the information which the stream writes (`stdout` or `stderr`). It also contains the size of the associated frame encoded in the last four bytes (`uint32`). It is encoded on the first eight bytes like this: ```go header := [8]byte{STREAM_TYPE, 0, 0, 0, SIZE1, SIZE2, SIZE3, SIZE4} ``` `STREAM_TYPE` can be: - 0: `stdin` (is written on `stdout`) - 1: `stdout` - 2: `stderr` `SIZE1, SIZE2, SIZE3, SIZE4` are the four bytes of the `uint32` size encoded as big endian. Following the header is the payload, which is the specified number of bytes of `STREAM_TYPE`. The simplest way to implement this protocol is the following: 1. Read 8 bytes. 2. Choose `stdout` or `stderr` depending on the first byte. 3. Extract the frame size from the last four bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1. ### Stream format when using a TTY When the TTY setting is enabled in [`POST /containers/create`](#operation/ContainerCreate), the stream is not multiplexed. The data exchanged over the hijacked connection is simply the raw data from the process PTY and client's `stdin`. */
-export const containerAttach: API.OperationMethod<
-  ContainerAttachRequest,
-  ContainerAttachResponse,
-  ContainerAttachError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerAttachRequest,
-  output: ContainerAttachResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
+  input: ConnectNetworkRequest,
+  output: ConnectNetworkResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -10499,74 +10473,6 @@ export const containerChanges: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainerCreateError =
-  | BadRequest
-  | NotFound
-  | Conflict
-  | DockerOpError;
-/** Create a container */
-export const containerCreate: API.OperationMethod<
-  ContainerCreateRequest,
-  ContainerCreateResponse,
-  ContainerCreateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerCreateRequest,
-  output: ContainerCreateResponse,
-  errors: [BadRequest, NotFound, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerDeleteError =
-  | BadRequest
-  | NotFound
-  | Conflict
-  | DockerOpError;
-/** Remove a container */
-export const containerDelete: API.OperationMethod<
-  ContainerDeleteRequest,
-  ContainerDeleteResponse,
-  ContainerDeleteError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerDeleteRequest,
-  output: ContainerDeleteResponse,
-  errors: [BadRequest, NotFound, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerExecError = NotFound | Conflict | DockerOpError;
-/** Create an exec instance Run a command inside a running container. */
-export const containerExec: API.OperationMethod<
-  ContainerExecRequest,
-  IDResponse,
-  ContainerExecError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerExecRequest,
-  output: IDResponse,
-  errors: [NotFound, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerExportError = NotFound | DockerOpError;
-/** Export a container Export the contents of a container as a tarball. */
-export const containerExport: API.OperationMethod<
-  ContainerExportRequest,
-  ContainerExportResponse,
-  ContainerExportError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerExportRequest,
-  output: ContainerExportResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ContainerInspectError = NotFound | DockerOpError;
 /** Inspect a container Return low-level information about a container. */
 export const containerInspect: API.OperationMethod<
@@ -10582,36 +10488,6 @@ export const containerInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainerKillError = NotFound | Conflict | DockerOpError;
-/** Kill a container Send a POSIX signal to a container, defaulting to killing to the container. */
-export const containerKill: API.OperationMethod<
-  ContainerKillRequest,
-  ContainerKillResponse,
-  ContainerKillError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerKillRequest,
-  output: ContainerKillResponse,
-  errors: [NotFound, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerListError = BadRequest | DockerOpError;
-/** List containers Returns a list of containers. For details on the format, see the [inspect endpoint](#operation/ContainerInspect). Note that it uses a different, smaller representation of a container than inspecting a single container. For example, the list of linked containers is not propagated . */
-export const containerList: API.OperationMethod<
-  ContainerListRequest,
-  ContainerListResponse,
-  ContainerListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerListRequest,
-  output: ContainerListResponse,
-  errors: [BadRequest, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ContainerLogsError = NotFound | DockerOpError;
 /** Get container logs Get `stdout` and `stderr` logs from a container. Note: This endpoint works only for containers with the `json-file` or `journald` logging driver. */
 export const containerLogs: API.OperationMethod<
@@ -10622,21 +10498,6 @@ export const containerLogs: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerLogsRequest,
   output: ContainerLogsResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerPauseError = NotFound | DockerOpError;
-/** Pause a container Use the freezer cgroup to suspend all processes in a container. Traditionally, when suspending a process the `SIGSTOP` signal is used, which is observable by the process being suspended. With the freezer cgroup the process is unaware, and unable to capture, that it is being suspended, and subsequently resumed. */
-export const containerPause: API.OperationMethod<
-  ContainerPauseRequest,
-  ContainerPauseResponse,
-  ContainerPauseError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerPauseRequest,
-  output: ContainerPauseResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
@@ -10657,66 +10518,6 @@ export const containerPrune: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainerRenameError = NotFound | Conflict | DockerOpError;
-/** Rename a container */
-export const containerRename: API.OperationMethod<
-  ContainerRenameRequest,
-  ContainerRenameResponse,
-  ContainerRenameError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerRenameRequest,
-  output: ContainerRenameResponse,
-  errors: [NotFound, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerResizeError = NotFound | DockerOpError;
-/** Resize a container TTY Resize the TTY for a container. */
-export const containerResize: API.OperationMethod<
-  ContainerResizeRequest,
-  ContainerResizeResponse,
-  ContainerResizeError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerResizeRequest,
-  output: ContainerResizeResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerRestartError = NotFound | DockerOpError;
-/** Restart a container */
-export const containerRestart: API.OperationMethod<
-  ContainerRestartRequest,
-  ContainerRestartResponse,
-  ContainerRestartError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerRestartRequest,
-  output: ContainerRestartResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerStartError = BadRequest | NotFound | DockerOpError;
-/** Start a container */
-export const containerStart: API.OperationMethod<
-  ContainerStartRequest,
-  ContainerStartResponse,
-  ContainerStartError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerStartRequest,
-  output: ContainerStartResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ContainerStatsError = NotFound | DockerOpError;
 /** Get container stats based on resource usage This endpoint returns a live stream of a container’s resource usage statistics. The `precpu_stats` is the CPU statistic of the *previous* read, and is used to calculate the CPU usage percentage. It is not an exact copy of the `cpu_stats` field. If either `precpu_stats.online_cpus` or `cpu_stats.online_cpus` is nil then for compatibility with older daemons the length of the corresponding `cpu_usage.percpu_usage` array should be used. On a cgroup v2 host, the following fields are not set * `blkio_stats`: all fields other than `io_service_bytes_recursive` * `cpu_stats`: `cpu_usage.percpu_usage` * `memory_stats`: `max_usage` and `failcnt` Also, `memory_stats.stats` fields are incompatible with cgroup v1. To calculate the values shown by the `stats` command of the docker cli tool the following formulas can be used: * used_memory = `memory_stats.usage - memory_stats.stats.cache` (cgroups v1) * used_memory = `memory_stats.usage - memory_stats.stats.inactive_file` (cgroups v2) * available_memory = `memory_stats.limit` * Memory usage % = `(used_memory / available_memory) * 100.0` * cpu_delta = `cpu_stats.cpu_usage.total_usage - precpu_stats.cpu_usage.total_usage` * system_cpu_delta = `cpu_stats.system_cpu_usage - precpu_stats.system_cpu_usage` * number_cpus = `length(cpu_stats.cpu_usage.percpu_usage)` or `cpu_stats.online_cpus` * CPU usage % = `(cpu_delta / system_cpu_delta) * number_cpus * 100.0` */
 export const containerStats: API.OperationMethod<
@@ -10727,21 +10528,6 @@ export const containerStats: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerStatsRequest,
   output: ContainerStatsResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerStopError = NotFound | DockerOpError;
-/** Stop a container */
-export const containerStop: API.OperationMethod<
-  ContainerStopRequest,
-  ContainerStopResponse,
-  ContainerStopError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerStopRequest,
-  output: ContainerStopResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
@@ -10762,47 +10548,303 @@ export const containerTop: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainerUnpauseError = NotFound | DockerOpError;
-/** Unpause a container Resume a container which has been paused. */
-export const containerUnpause: API.OperationMethod<
-  ContainerUnpauseRequest,
-  ContainerUnpauseResponse,
-  ContainerUnpauseError,
+export type CreateConfigError = Conflict | DockerOpError;
+/** Create a config */
+export const createConfig: API.OperationMethod<
+  CreateConfigRequest,
+  IDResponse,
+  CreateConfigError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainerUnpauseRequest,
-  output: ContainerUnpauseResponse,
+  input: CreateConfigRequest,
+  output: IDResponse,
+  errors: [Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateContainerError =
+  | BadRequest
+  | NotFound
+  | Conflict
+  | DockerOpError;
+/** Create a container */
+export const createContainer: API.OperationMethod<
+  CreateContainerRequest,
+  ContainerCreateResponse,
+  CreateContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateContainerRequest,
+  output: ContainerCreateResponse,
+  errors: [BadRequest, NotFound, Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateImageError = NotFound | DockerOpError;
+/** Create an image Pull or import an image. */
+export const createImage: API.OperationMethod<
+  CreateImageRequest,
+  CreateImageResponse,
+  CreateImageError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateImageRequest,
+  output: CreateImageResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContainerUpdateError = NotFound | DockerOpError;
-/** Update a container Change various configuration options of a container without having to recreate it. */
-export const containerUpdate: API.OperationMethod<
-  ContainerUpdateRequest,
-  ContainerUpdateResponse,
-  ContainerUpdateError,
+export type CreateNetworkError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | DockerOpError;
+/** Create a network */
+export const createNetwork: API.OperationMethod<
+  CreateNetworkRequest,
+  NetworkCreateResponse,
+  CreateNetworkError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainerUpdateRequest,
-  output: ContainerUpdateResponse,
+  input: CreateNetworkRequest,
+  output: NetworkCreateResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePluginError = DockerOpError;
+/** Create a plugin */
+export const createPlugin: API.OperationMethod<
+  CreatePluginRequest,
+  CreatePluginResponse,
+  CreatePluginError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePluginRequest,
+  output: CreatePluginResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSecretError = Conflict | DockerOpError;
+/** Create a secret */
+export const createSecret: API.OperationMethod<
+  CreateSecretRequest,
+  IDResponse,
+  CreateSecretError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSecretRequest,
+  output: IDResponse,
+  errors: [Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateServiceError =
+  | BadRequest
+  | Forbidden
+  | Conflict
+  | DockerOpError;
+/** Create a service */
+export const createService: API.OperationMethod<
+  CreateServiceRequest,
+  ServiceCreateResponse,
+  CreateServiceError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateServiceRequest,
+  output: ServiceCreateResponse,
+  errors: [BadRequest, Forbidden, Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVolumeError = DockerOpError;
+/** Create a volume */
+export const createVolume: API.OperationMethod<
+  CreateVolumeRequest,
+  Volume,
+  CreateVolumeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVolumeRequest,
+  output: Volume,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteConfigError = NotFound | DockerOpError;
+/** Delete a config */
+export const deleteConfig: API.OperationMethod<
+  DeleteConfigRequest,
+  DeleteConfigResponse,
+  DeleteConfigError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteConfigRequest,
+  output: DeleteConfigResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContainerWaitError = BadRequest | NotFound | DockerOpError;
-/** Wait for a container Block until a container stops, then returns the exit code. */
-export const containerWait: API.OperationMethod<
-  ContainerWaitRequest,
-  ContainerWaitResponse,
-  ContainerWaitError,
+export type DeleteContainerError =
+  | BadRequest
+  | NotFound
+  | Conflict
+  | DockerOpError;
+/** Remove a container */
+export const deleteContainer: API.OperationMethod<
+  DeleteContainerRequest,
+  DeleteContainerResponse,
+  DeleteContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainerWaitRequest,
-  output: ContainerWaitResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
+  input: DeleteContainerRequest,
+  output: DeleteContainerResponse,
+  errors: [BadRequest, NotFound, Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteImageError = NotFound | Conflict | DockerOpError;
+/** Remove an image Remove an image, along with any untagged parent images that were referenced by that image. Images can't be removed if they have descendant images, are being used by a running container or are being used by a build. */
+export const deleteImage: API.OperationMethod<
+  DeleteImageRequest,
+  DeleteImageResponse,
+  DeleteImageError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteImageRequest,
+  output: DeleteImageResponse,
+  errors: [NotFound, Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNetworkError = Forbidden | NotFound | DockerOpError;
+/** Remove a network */
+export const deleteNetwork: API.OperationMethod<
+  DeleteNetworkRequest,
+  DeleteNetworkResponse,
+  DeleteNetworkError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNetworkRequest,
+  output: DeleteNetworkResponse,
+  errors: [Forbidden, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteNodeError = NotFound | DockerOpError;
+/** Delete a node */
+export const deleteNode: API.OperationMethod<
+  DeleteNodeRequest,
+  DeleteNodeResponse,
+  DeleteNodeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNodeRequest,
+  output: DeleteNodeResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePluginError = NotFound | DockerOpError;
+/** Remove a plugin */
+export const deletePlugin: API.OperationMethod<
+  DeletePluginRequest,
+  Plugin,
+  DeletePluginError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePluginRequest,
+  output: Plugin,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSecretError = NotFound | DockerOpError;
+/** Delete a secret */
+export const deleteSecret: API.OperationMethod<
+  DeleteSecretRequest,
+  DeleteSecretResponse,
+  DeleteSecretError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSecretRequest,
+  output: DeleteSecretResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteServiceError = NotFound | DockerOpError;
+/** Delete a service */
+export const deleteService: API.OperationMethod<
+  DeleteServiceRequest,
+  DeleteServiceResponse,
+  DeleteServiceError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServiceRequest,
+  output: DeleteServiceResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVolumeError = NotFound | Conflict | DockerOpError;
+/** Remove a volume Instruct the driver to remove the volume. */
+export const deleteVolume: API.OperationMethod<
+  DeleteVolumeRequest,
+  DeleteVolumeResponse,
+  DeleteVolumeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVolumeRequest,
+  output: DeleteVolumeResponse,
+  errors: [NotFound, Conflict, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisablePluginError = NotFound | DockerOpError;
+/** Disable a plugin */
+export const disablePlugin: API.OperationMethod<
+  DisablePluginRequest,
+  DisablePluginResponse,
+  DisablePluginError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisablePluginRequest,
+  output: DisablePluginResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisconnectNetworkError = Forbidden | NotFound | DockerOpError;
+/** Disconnect a container from a network */
+export const disconnectNetwork: API.OperationMethod<
+  DisconnectNetworkRequest,
+  DisconnectNetworkResponse,
+  DisconnectNetworkError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisconnectNetworkRequest,
+  output: DisconnectNetworkResponse,
+  errors: [Forbidden, NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -10818,6 +10860,36 @@ export const distributionInspect2: API.OperationMethod<
   input: DistributionInspectRequest,
   output: DistributionInspect,
   errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnablePluginError = NotFound | DockerOpError;
+/** Enable a plugin */
+export const enablePlugin: API.OperationMethod<
+  EnablePluginRequest,
+  EnablePluginResponse,
+  EnablePluginError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnablePluginRequest,
+  output: EnablePluginResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecContainerError = NotFound | Conflict | DockerOpError;
+/** Create an exec instance Run a command inside a running container. */
+export const execContainer: API.OperationMethod<
+  ExecContainerRequest,
+  IDResponse,
+  ExecContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecContainerRequest,
+  output: IDResponse,
+  errors: [NotFound, Conflict, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -10867,6 +10939,36 @@ export const execStart: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ExportContainerError = NotFound | DockerOpError;
+/** Export a container Export the contents of a container as a tarball. */
+export const exportContainer: API.OperationMethod<
+  ExportContainerRequest,
+  ExportContainerResponse,
+  ExportContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportContainerRequest,
+  output: ExportContainerResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetImageError = DockerOpError;
+/** Export an image Get a tarball containing all images and metadata for a repository. If `name` is a specific name and tag (e.g. `ubuntu:latest`), then only that image (and its parents) are returned. If `name` is an image ID, similarly only that image (and its parents) are returned, but with the exclusion of the `repositories` file in the tarball, as there were no image names referenced. ### Image tarball format An image tarball contains [Content as defined in the OCI Image Layout Specification](https://github.com/opencontainers/image-spec/blob/v1.1.1/image-layout.md#content). Additionally, includes the manifest.json file associated with a backwards compatible docker save format. If the tarball defines a repository, the tarball should also include a `repositories` file at the root that contains a list of repository and tag names mapped to layer IDs. ```json { "hello-world": { "latest": "565a9d68a73f6706862bfe8409a7f659776d4d60a8d096eb4a3cbce6999cc2a1" } } ``` */
+export const getImage: API.OperationMethod<
+  GetImageRequest,
+  GetImageResponse,
+  GetImageError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetImageRequest,
+  output: GetImageResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetPluginPrivilegesError = DockerOpError;
 /** Get plugin privileges */
 export const getPluginPrivileges: API.OperationMethod<
@@ -10908,66 +11010,6 @@ export const imageBuild: API.OperationMethod<
   input: ImageBuildRequest,
   output: ImageBuildResponse,
   errors: [BadRequest, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ImageCommitError = NotFound | DockerOpError;
-/** Create a new image from a container */
-export const imageCommit: API.OperationMethod<
-  ImageCommitRequest,
-  IDResponse,
-  ImageCommitError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImageCommitRequest,
-  output: IDResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ImageCreateError = NotFound | DockerOpError;
-/** Create an image Pull or import an image. */
-export const imageCreate: API.OperationMethod<
-  ImageCreateRequest,
-  ImageCreateResponse,
-  ImageCreateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImageCreateRequest,
-  output: ImageCreateResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ImageDeleteError = NotFound | Conflict | DockerOpError;
-/** Remove an image Remove an image, along with any untagged parent images that were referenced by that image. Images can't be removed if they have descendant images, are being used by a running container or are being used by a build. */
-export const imageDelete: API.OperationMethod<
-  ImageDeleteRequest,
-  ImageDeleteResponse,
-  ImageDeleteError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImageDeleteRequest,
-  output: ImageDeleteResponse,
-  errors: [NotFound, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ImageGetError = DockerOpError;
-/** Export an image Get a tarball containing all images and metadata for a repository. If `name` is a specific name and tag (e.g. `ubuntu:latest`), then only that image (and its parents) are returned. If `name` is an image ID, similarly only that image (and its parents) are returned, but with the exclusion of the `repositories` file in the tarball, as there were no image names referenced. ### Image tarball format An image tarball contains [Content as defined in the OCI Image Layout Specification](https://github.com/opencontainers/image-spec/blob/v1.1.1/image-layout.md#content). Additionally, includes the manifest.json file associated with a backwards compatible docker save format. If the tarball defines a repository, the tarball should also include a `repositories` file at the root that contains a list of repository and tag names mapped to layer IDs. ```json { "hello-world": { "latest": "565a9d68a73f6706862bfe8409a7f659776d4d60a8d096eb4a3cbce6999cc2a1" } } ``` */
-export const imageGet: API.OperationMethod<
-  ImageGetRequest,
-  ImageGetResponse,
-  ImageGetError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImageGetRequest,
-  output: ImageGetResponse,
-  errors: [UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11017,21 +11059,6 @@ export const imageInspect2: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImageListError = DockerOpError;
-/** List Images Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image. */
-export const imageList: API.OperationMethod<
-  ImageListRequest,
-  ImageListResponse,
-  ImageListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImageListRequest,
-  output: ImageListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ImageLoadError = DockerOpError;
 /** Import images Load a set of images and tags into a repository. For details on the format, see the [export image endpoint](#operation/ImageGet). */
 export const imageLoad: API.OperationMethod<
@@ -11077,21 +11104,6 @@ export const imagePush: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImageSearchError = DockerOpError;
-/** Search images Search for an image on Docker Hub. */
-export const imageSearch: API.OperationMethod<
-  ImageSearchRequest,
-  ImageSearchResponse,
-  ImageSearchError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImageSearchRequest,
-  output: ImageSearchResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ImageTagError = BadRequest | NotFound | Conflict | DockerOpError;
 /** Tag an image Create a tag that refers to a source image. This creates an additional reference (tag) to the source image. The tag can include a different repository name and/or tag. If the repository or tag already exists, it will be overwritten. */
 export const imageTag: API.OperationMethod<
@@ -11107,70 +11119,197 @@ export const imageTag: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkConnectError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | DockerOpError;
-/** Connect a container to a network The network must be either a local-scoped network or a swarm-scoped network with the `attachable` option set. A network cannot be re-attached to a running container */
-export const networkConnect: API.OperationMethod<
-  NetworkConnectRequest,
-  NetworkConnectResponse,
-  NetworkConnectError,
+export type JoinSwarmError = BadRequest | DockerOpError;
+/** Join an existing swarm */
+export const joinSwarm: API.OperationMethod<
+  JoinSwarmRequest,
+  JoinSwarmResponse,
+  JoinSwarmError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkConnectRequest,
-  output: NetworkConnectResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownDockerError],
+  input: JoinSwarmRequest,
+  output: JoinSwarmResponse,
+  errors: [BadRequest, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | DockerOpError;
-/** Create a network */
-export const networkCreate: API.OperationMethod<
-  NetworkCreateRequest,
-  NetworkCreateResponse,
-  NetworkCreateError,
+export type KillContainerError = NotFound | Conflict | DockerOpError;
+/** Kill a container Send a POSIX signal to a container, defaulting to killing to the container. */
+export const killContainer: API.OperationMethod<
+  KillContainerRequest,
+  KillContainerResponse,
+  KillContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkCreateRequest,
-  output: NetworkCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownDockerError],
+  input: KillContainerRequest,
+  output: KillContainerResponse,
+  errors: [NotFound, Conflict, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkDeleteError = Forbidden | NotFound | DockerOpError;
-/** Remove a network */
-export const networkDelete: API.OperationMethod<
-  NetworkDeleteRequest,
-  NetworkDeleteResponse,
-  NetworkDeleteError,
+export type LeaveSwarmError = DockerOpError;
+/** Leave a swarm */
+export const leaveSwarm: API.OperationMethod<
+  LeaveSwarmRequest,
+  LeaveSwarmResponse,
+  LeaveSwarmError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkDeleteRequest,
-  output: NetworkDeleteResponse,
-  errors: [Forbidden, NotFound, UnknownDockerError],
+  input: LeaveSwarmRequest,
+  output: LeaveSwarmResponse,
+  errors: [UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkDisconnectError = Forbidden | NotFound | DockerOpError;
-/** Disconnect a container from a network */
-export const networkDisconnect: API.OperationMethod<
-  NetworkDisconnectRequest,
-  NetworkDisconnectResponse,
-  NetworkDisconnectError,
+export type ListConfigError = DockerOpError;
+/** List configs */
+export const listConfig: API.OperationMethod<
+  ListConfigRequest,
+  ListConfigResponse,
+  ListConfigError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkDisconnectRequest,
-  output: NetworkDisconnectResponse,
-  errors: [Forbidden, NotFound, UnknownDockerError],
+  input: ListConfigRequest,
+  output: ListConfigResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContainerError = BadRequest | DockerOpError;
+/** List containers Returns a list of containers. For details on the format, see the [inspect endpoint](#operation/ContainerInspect). Note that it uses a different, smaller representation of a container than inspecting a single container. For example, the list of linked containers is not propagated . */
+export const listContainer: API.OperationMethod<
+  ListContainerRequest,
+  ListContainerResponse,
+  ListContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContainerRequest,
+  output: ListContainerResponse,
+  errors: [BadRequest, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListImageError = DockerOpError;
+/** List Images Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image. */
+export const listImage: API.OperationMethod<
+  ListImageRequest,
+  ListImageResponse,
+  ListImageError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListImageRequest,
+  output: ListImageResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkError = DockerOpError;
+/** List networks Returns a list of networks. For details on the format, see the [network inspect endpoint](#operation/NetworkInspect). Note that it uses a different, smaller representation of a network than inspecting a single network. For example, the list of containers attached to the network is not propagated in API versions 1.28 and up. */
+export const listNetwork: API.OperationMethod<
+  ListNetworkRequest,
+  ListNetworkResponse,
+  ListNetworkError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetworkRequest,
+  output: ListNetworkResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNodeError = DockerOpError;
+/** List nodes */
+export const listNode: API.OperationMethod<
+  ListNodeRequest,
+  ListNodeResponse,
+  ListNodeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNodeRequest,
+  output: ListNodeResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPluginError = DockerOpError;
+/** List plugins Returns information about installed plugins. */
+export const listPlugin: API.OperationMethod<
+  ListPluginRequest,
+  ListPluginResponse,
+  ListPluginError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPluginRequest,
+  output: ListPluginResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSecretError = DockerOpError;
+/** List secrets */
+export const listSecret: API.OperationMethod<
+  ListSecretRequest,
+  ListSecretResponse,
+  ListSecretError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSecretRequest,
+  output: ListSecretResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServiceError = DockerOpError;
+/** List services */
+export const listService: API.OperationMethod<
+  ListServiceRequest,
+  ListServiceResponse,
+  ListServiceError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServiceRequest,
+  output: ListServiceResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTaskError = DockerOpError;
+/** List tasks */
+export const listTask: API.OperationMethod<
+  ListTaskRequest,
+  ListTaskResponse,
+  ListTaskError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTaskRequest,
+  output: ListTaskResponse,
+  errors: [UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVolumeError = DockerOpError;
+/** List volumes */
+export const listVolume: API.OperationMethod<
+  ListVolumeRequest,
+  VolumeListResponse,
+  ListVolumeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVolumeRequest,
+  output: VolumeListResponse,
+  errors: [UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11190,21 +11329,6 @@ export const networkInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NetworkListError = DockerOpError;
-/** List networks Returns a list of networks. For details on the format, see the [network inspect endpoint](#operation/NetworkInspect). Note that it uses a different, smaller representation of a network than inspecting a single network. For example, the list of containers attached to the network is not propagated in API versions 1.28 and up. */
-export const networkList: API.OperationMethod<
-  NetworkListRequest,
-  NetworkListResponse,
-  NetworkListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkListRequest,
-  output: NetworkListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NetworkPruneError = DockerOpError;
 /** Delete unused networks */
 export const networkPrune: API.OperationMethod<
@@ -11216,21 +11340,6 @@ export const networkPrune: API.OperationMethod<
   input: NetworkPruneRequest,
   output: NetworkPruneResponse,
   errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NodeDeleteError = NotFound | DockerOpError;
-/** Delete a node */
-export const nodeDelete: API.OperationMethod<
-  NodeDeleteRequest,
-  NodeDeleteResponse,
-  NodeDeleteError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodeDeleteRequest,
-  output: NodeDeleteResponse,
-  errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11250,92 +11359,32 @@ export const nodeInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NodeListError = DockerOpError;
-/** List nodes */
-export const nodeList: API.OperationMethod<
-  NodeListRequest,
-  NodeListResponse,
-  NodeListError,
+export type PauseContainerError = NotFound | DockerOpError;
+/** Pause a container Use the freezer cgroup to suspend all processes in a container. Traditionally, when suspending a process the `SIGSTOP` signal is used, which is observable by the process being suspended. With the freezer cgroup the process is unaware, and unable to capture, that it is being suspended, and subsequently resumed. */
+export const pauseContainer: API.OperationMethod<
+  PauseContainerRequest,
+  PauseContainerResponse,
+  PauseContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NodeListRequest,
-  output: NodeListResponse,
+  input: PauseContainerRequest,
+  output: PauseContainerResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PingSystemError = DockerOpError;
+/** Ping This is a dummy endpoint you can use to test if the server is accessible. */
+export const pingSystem: API.OperationMethod<
+  PingSystemRequest,
+  PingSystemResponse,
+  PingSystemError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PingSystemRequest,
+  output: PingSystemResponse,
   errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NodeUpdateError = BadRequest | NotFound | DockerOpError;
-/** Update a node */
-export const nodeUpdate: API.OperationMethod<
-  NodeUpdateRequest,
-  NodeUpdateResponse,
-  NodeUpdateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodeUpdateRequest,
-  output: NodeUpdateResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PluginCreateError = DockerOpError;
-/** Create a plugin */
-export const pluginCreate: API.OperationMethod<
-  PluginCreateRequest,
-  PluginCreateResponse,
-  PluginCreateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PluginCreateRequest,
-  output: PluginCreateResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PluginDeleteError = NotFound | DockerOpError;
-/** Remove a plugin */
-export const pluginDelete: API.OperationMethod<
-  PluginDeleteRequest,
-  Plugin,
-  PluginDeleteError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PluginDeleteRequest,
-  output: Plugin,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PluginDisableError = NotFound | DockerOpError;
-/** Disable a plugin */
-export const pluginDisable: API.OperationMethod<
-  PluginDisableRequest,
-  PluginDisableResponse,
-  PluginDisableError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PluginDisableRequest,
-  output: PluginDisableResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PluginEnableError = NotFound | DockerOpError;
-/** Enable a plugin */
-export const pluginEnable: API.OperationMethod<
-  PluginEnableRequest,
-  PluginEnableResponse,
-  PluginEnableError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PluginEnableRequest,
-  output: PluginEnableResponse,
-  errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11351,21 +11400,6 @@ export const pluginInspect: API.OperationMethod<
   input: PluginInspectRequest,
   output: Plugin,
   errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PluginListError = DockerOpError;
-/** List plugins Returns information about installed plugins. */
-export const pluginList: API.OperationMethod<
-  PluginListRequest,
-  PluginListResponse,
-  PluginListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PluginListRequest,
-  output: PluginListResponse,
-  errors: [UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11395,21 +11429,6 @@ export const pluginPush: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PluginPushRequest,
   output: PluginPushResponse,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PluginSetError = NotFound | DockerOpError;
-/** Configure a plugin */
-export const pluginSet: API.OperationMethod<
-  PluginSetRequest,
-  PluginSetResponse,
-  PluginSetError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PluginSetRequest,
-  output: PluginSetResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
@@ -11449,32 +11468,62 @@ export const putContainerArchive: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SecretCreateError = Conflict | DockerOpError;
-/** Create a secret */
-export const secretCreate: API.OperationMethod<
-  SecretCreateRequest,
-  IDResponse,
-  SecretCreateError,
+export type RenameContainerError = NotFound | Conflict | DockerOpError;
+/** Rename a container */
+export const renameContainer: API.OperationMethod<
+  RenameContainerRequest,
+  RenameContainerResponse,
+  RenameContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretCreateRequest,
-  output: IDResponse,
-  errors: [Conflict, UnknownDockerError],
+  input: RenameContainerRequest,
+  output: RenameContainerResponse,
+  errors: [NotFound, Conflict, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type SecretDeleteError = NotFound | DockerOpError;
-/** Delete a secret */
-export const secretDelete: API.OperationMethod<
-  SecretDeleteRequest,
-  SecretDeleteResponse,
-  SecretDeleteError,
+export type ResizeContainerError = NotFound | DockerOpError;
+/** Resize a container TTY Resize the TTY for a container. */
+export const resizeContainer: API.OperationMethod<
+  ResizeContainerRequest,
+  ResizeContainerResponse,
+  ResizeContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretDeleteRequest,
-  output: SecretDeleteResponse,
+  input: ResizeContainerRequest,
+  output: ResizeContainerResponse,
   errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartContainerError = NotFound | DockerOpError;
+/** Restart a container */
+export const restartContainer: API.OperationMethod<
+  RestartContainerRequest,
+  RestartContainerResponse,
+  RestartContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartContainerRequest,
+  output: RestartContainerResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchImageError = DockerOpError;
+/** Search images Search for an image on Docker Hub. */
+export const searchImage: API.OperationMethod<
+  SearchImageRequest,
+  SearchImageResponse,
+  SearchImageError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchImageRequest,
+  output: SearchImageResponse,
+  errors: [UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11489,70 +11538,6 @@ export const secretInspect: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SecretInspectRequest,
   output: Secret,
-  errors: [NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretListError = DockerOpError;
-/** List secrets */
-export const secretList: API.OperationMethod<
-  SecretListRequest,
-  SecretListResponse,
-  SecretListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretListRequest,
-  output: SecretListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretUpdateError = BadRequest | NotFound | DockerOpError;
-/** Update a Secret */
-export const secretUpdate: API.OperationMethod<
-  SecretUpdateRequest,
-  SecretUpdateResponse,
-  SecretUpdateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretUpdateRequest,
-  output: SecretUpdateResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceCreateError =
-  | BadRequest
-  | Forbidden
-  | Conflict
-  | DockerOpError;
-/** Create a service */
-export const serviceCreate: API.OperationMethod<
-  ServiceCreateRequest,
-  ServiceCreateResponse,
-  ServiceCreateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceCreateRequest,
-  output: ServiceCreateResponse,
-  errors: [BadRequest, Forbidden, Conflict, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServiceDeleteError = NotFound | DockerOpError;
-/** Delete a service */
-export const serviceDelete: API.OperationMethod<
-  ServiceDeleteRequest,
-  ServiceDeleteResponse,
-  ServiceDeleteError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceDeleteRequest,
-  output: ServiceDeleteResponse,
   errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
@@ -11573,21 +11558,6 @@ export const serviceInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ServiceListError = DockerOpError;
-/** List services */
-export const serviceList: API.OperationMethod<
-  ServiceListRequest,
-  ServiceListResponse,
-  ServiceListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceListRequest,
-  output: ServiceListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ServiceLogsError = NotFound | DockerOpError;
 /** Get service logs Get `stdout` and `stderr` logs from a service. See also [`/containers/{id}/logs`](#operation/ContainerLogs). **Note**: This endpoint works only for services with the `local`, `json-file` or `journald` logging drivers. */
 export const serviceLogs: API.OperationMethod<
@@ -11603,21 +11573,6 @@ export const serviceLogs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ServiceUpdateError = BadRequest | NotFound | DockerOpError;
-/** Update a service */
-export const serviceUpdate: API.OperationMethod<
-  ServiceUpdateRequest,
-  ServiceUpdateResponse,
-  ServiceUpdateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServiceUpdateRequest,
-  output: ServiceUpdateResponse,
-  errors: [BadRequest, NotFound, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SessionError = BadRequest | DockerOpError;
 /** Initialize interactive session Start a new interactive session with a server. Session allows server to call back to the client for advanced capabilities. > **Deprecated**: This endpoint is deprecated and will be removed in a future version. > Server should support gRPC directly on the listening socket. ### Hijacking This endpoint hijacks the HTTP connection to HTTP2 transport that allows the client to expose gPRC services on that connection. For example, the client sends this request to upgrade the connection: ``` POST /session HTTP/1.1 Upgrade: h2c Connection: Upgrade ``` The Docker daemon responds with a `101 UPGRADED` response follow with the raw stream: ``` HTTP/1.1 101 UPGRADED Connection: Upgrade Upgrade: h2c ``` */
 export const session: API.OperationMethod<
@@ -11629,6 +11584,51 @@ export const session: API.OperationMethod<
   input: SessionRequest,
   output: SessionResponse,
   errors: [BadRequest, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SetPluginError = NotFound | DockerOpError;
+/** Configure a plugin */
+export const setPlugin: API.OperationMethod<
+  SetPluginRequest,
+  SetPluginResponse,
+  SetPluginError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SetPluginRequest,
+  output: SetPluginResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartContainerError = BadRequest | NotFound | DockerOpError;
+/** Start a container */
+export const startContainer: API.OperationMethod<
+  StartContainerRequest,
+  StartContainerResponse,
+  StartContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartContainerRequest,
+  output: StartContainerResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopContainerError = NotFound | DockerOpError;
+/** Stop a container */
+export const stopContainer: API.OperationMethod<
+  StopContainerRequest,
+  StopContainerResponse,
+  StopContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopContainerRequest,
+  output: StopContainerResponse,
+  errors: [NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11663,51 +11663,6 @@ export const swarmInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SwarmJoinError = BadRequest | DockerOpError;
-/** Join an existing swarm */
-export const swarmJoin: API.OperationMethod<
-  SwarmJoinRequest,
-  SwarmJoinResponse,
-  SwarmJoinError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SwarmJoinRequest,
-  output: SwarmJoinResponse,
-  errors: [BadRequest, UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SwarmLeaveError = DockerOpError;
-/** Leave a swarm */
-export const swarmLeave: API.OperationMethod<
-  SwarmLeaveRequest,
-  SwarmLeaveResponse,
-  SwarmLeaveError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SwarmLeaveRequest,
-  output: SwarmLeaveResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SwarmUnlockError = DockerOpError;
-/** Unlock a locked manager */
-export const swarmUnlock: API.OperationMethod<
-  SwarmUnlockRequest,
-  SwarmUnlockResponse,
-  SwarmUnlockError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SwarmUnlockRequest,
-  output: SwarmUnlockResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SwarmUnlockkeyError = DockerOpError;
 /** Get the unlock key */
 export const swarmUnlockkey: API.OperationMethod<
@@ -11719,21 +11674,6 @@ export const swarmUnlockkey: API.OperationMethod<
   input: SwarmUnlockkeyRequest,
   output: SwarmUnlockkeyResponse,
   errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SwarmUpdateError = BadRequest | DockerOpError;
-/** Update a swarm */
-export const swarmUpdate: API.OperationMethod<
-  SwarmUpdateRequest,
-  SwarmUpdateResponse,
-  SwarmUpdateError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SwarmUpdateRequest,
-  output: SwarmUpdateResponse,
-  errors: [BadRequest, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11798,21 +11738,6 @@ export const systemInfo2: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SystemPingError = DockerOpError;
-/** Ping This is a dummy endpoint you can use to test if the server is accessible. */
-export const systemPing: API.OperationMethod<
-  SystemPingRequest,
-  SystemPingResponse,
-  SystemPingError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SystemPingRequest,
-  output: SystemPingResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SystemVersion2Error = DockerOpError;
 /** Get version Returns the version of Docker that is running and various information about the system that Docker is running on. */
 export const systemVersion2: API.OperationMethod<
@@ -11843,21 +11768,6 @@ export const taskInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TaskListError = DockerOpError;
-/** List tasks */
-export const taskList: API.OperationMethod<
-  TaskListRequest,
-  TaskListResponse,
-  TaskListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TaskListRequest,
-  output: TaskListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TaskLogsError = NotFound | DockerOpError;
 /** Get task logs Get `stdout` and `stderr` logs from a task. See also [`/containers/{id}/logs`](#operation/ContainerLogs). **Note**: This endpoint works only for services with the `local`, `json-file` or `journald` logging drivers. */
 export const taskLogs: API.OperationMethod<
@@ -11873,32 +11783,137 @@ export const taskLogs: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VolumeCreateError = DockerOpError;
-/** Create a volume */
-export const volumeCreate: API.OperationMethod<
-  VolumeCreateRequest,
-  Volume,
-  VolumeCreateError,
+export type UnlockSwarmError = DockerOpError;
+/** Unlock a locked manager */
+export const unlockSwarm: API.OperationMethod<
+  UnlockSwarmRequest,
+  UnlockSwarmResponse,
+  UnlockSwarmError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumeCreateRequest,
-  output: Volume,
+  input: UnlockSwarmRequest,
+  output: UnlockSwarmResponse,
   errors: [UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
 
-export type VolumeDeleteError = NotFound | Conflict | DockerOpError;
-/** Remove a volume Instruct the driver to remove the volume. */
-export const volumeDelete: API.OperationMethod<
-  VolumeDeleteRequest,
-  VolumeDeleteResponse,
-  VolumeDeleteError,
+export type UnpauseContainerError = NotFound | DockerOpError;
+/** Unpause a container Resume a container which has been paused. */
+export const unpauseContainer: API.OperationMethod<
+  UnpauseContainerRequest,
+  UnpauseContainerResponse,
+  UnpauseContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumeDeleteRequest,
-  output: VolumeDeleteResponse,
-  errors: [NotFound, Conflict, UnknownDockerError],
+  input: UnpauseContainerRequest,
+  output: UnpauseContainerResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateConfigError = BadRequest | NotFound | DockerOpError;
+/** Update a Config */
+export const updateConfig: API.OperationMethod<
+  UpdateConfigRequest,
+  UpdateConfigResponse,
+  UpdateConfigError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateConfigRequest,
+  output: UpdateConfigResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateContainerError = NotFound | DockerOpError;
+/** Update a container Change various configuration options of a container without having to recreate it. */
+export const updateContainer: API.OperationMethod<
+  UpdateContainerRequest,
+  ContainerUpdateResponse,
+  UpdateContainerError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateContainerRequest,
+  output: ContainerUpdateResponse,
+  errors: [NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateNodeError = BadRequest | NotFound | DockerOpError;
+/** Update a node */
+export const updateNode: API.OperationMethod<
+  UpdateNodeRequest,
+  UpdateNodeResponse,
+  UpdateNodeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNodeRequest,
+  output: UpdateNodeResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSecretError = BadRequest | NotFound | DockerOpError;
+/** Update a Secret */
+export const updateSecret: API.OperationMethod<
+  UpdateSecretRequest,
+  UpdateSecretResponse,
+  UpdateSecretError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSecretRequest,
+  output: UpdateSecretResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateServiceError = BadRequest | NotFound | DockerOpError;
+/** Update a service */
+export const updateService: API.OperationMethod<
+  UpdateServiceRequest,
+  ServiceUpdateResponse,
+  UpdateServiceError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateServiceRequest,
+  output: ServiceUpdateResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSwarmError = BadRequest | DockerOpError;
+/** Update a swarm */
+export const updateSwarm: API.OperationMethod<
+  UpdateSwarmRequest,
+  UpdateSwarmResponse,
+  UpdateSwarmError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSwarmRequest,
+  output: UpdateSwarmResponse,
+  errors: [BadRequest, UnknownDockerError],
+  protocol: DockerProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVolumeError = BadRequest | NotFound | DockerOpError;
+/** "Update a volume. Valid only for Swarm cluster volumes" */
+export const updateVolume: API.OperationMethod<
+  UpdateVolumeRequest,
+  UpdateVolumeResponse,
+  UpdateVolumeError,
+  DockerOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVolumeRequest,
+  output: UpdateVolumeResponse,
+  errors: [BadRequest, NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
 }));
@@ -11918,21 +11933,6 @@ export const volumeInspect: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VolumeListError = DockerOpError;
-/** List volumes */
-export const volumeList: API.OperationMethod<
-  VolumeListRequest,
-  VolumeListResponse,
-  VolumeListError,
-  DockerOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeListRequest,
-  output: VolumeListResponse,
-  errors: [UnknownDockerError],
-  protocol: DockerProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VolumePruneError = DockerOpError;
 /** Delete unused volumes */
 export const volumePrune: API.OperationMethod<
@@ -11948,16 +11948,16 @@ export const volumePrune: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VolumeUpdateError = BadRequest | NotFound | DockerOpError;
-/** "Update a volume. Valid only for Swarm cluster volumes" */
-export const volumeUpdate: API.OperationMethod<
-  VolumeUpdateRequest,
-  VolumeUpdateResponse,
-  VolumeUpdateError,
+export type WaitContainerError = BadRequest | NotFound | DockerOpError;
+/** Wait for a container Block until a container stops, then returns the exit code. */
+export const waitContainer: API.OperationMethod<
+  WaitContainerRequest,
+  ContainerWaitResponse,
+  WaitContainerError,
   DockerOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumeUpdateRequest,
-  output: VolumeUpdateResponse,
+  input: WaitContainerRequest,
+  output: ContainerWaitResponse,
   errors: [BadRequest, NotFound, UnknownDockerError],
   protocol: DockerProtocol,
   retry: Retry.Retry,
