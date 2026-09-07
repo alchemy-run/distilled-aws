@@ -1,0 +1,4078 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentTokenRequest": {
+      "type": "structure",
+      "members": {
+        "customer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "customer_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique identifier representing a specific customer in merchant's/partner's system or records."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "A non-negative, non-zero integer indicating the maximum number of results to return at one time."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "A non-negative, non-zero integer representing the page of the results."
+          }
+        },
+        "total_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "total_required",
+            "smithy.api#documentation": "A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CustomerVaultPaymentTokensResponse": {
+      "type": "structure",
+      "members": {
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of items."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of pages."
+          }
+        },
+        "customer": {
+          "target": "com.paypal.vault_payment_tokens_v3#CustomerVaultPaymentTokensResponseCustomer",
+          "traits": {
+            "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+          }
+        },
+        "payment_tokens": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenResponseList"
+        },
+        "links": {
+          "target": "com.paypal.vault_payment_tokens_v3#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of payment tokens saved for a given customer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CustomerVaultPaymentTokensResponseCustomer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for a customer in merchant's or partner's system of records."
+          }
+        },
+        "merchant_customer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaymentTokenResponseList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenResponse"
+      },
+      "traits": {}
+    },
+    "com.paypal.vault_payment_tokens_v3#PaymentTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the vault token."
+          }
+        },
+        "customer": {
+          "target": "com.paypal.vault_payment_tokens_v3#Customer",
+          "traits": {
+            "smithy.api#documentation": "Customer in merchant's or partner's system of records."
+          }
+        },
+        "payment_source": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaymentSource"
+        },
+        "links": {
+          "target": "com.paypal.vault_payment_tokens_v3#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Full representation of a saved payment token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#Customer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for a customer in merchant's or partner's system of records."
+          }
+        },
+        "merchant_customer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaymentSource": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardResponse"
+        },
+        "paypal": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponse"
+        },
+        "venmo": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponse"
+        },
+        "apple_pay": {
+          "target": "com.paypal.vault_payment_tokens_v3#ApplePayPaymentTokenResponse"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The vaulted payment method details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "last_digits": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last digits of the payment card."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardResponseBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "Address request details."
+          }
+        },
+        "verification_status": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationStatus",
+          "traits": {
+            "smithy.api#documentation": "Card Verification status."
+          }
+        },
+        "verification": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationDetails"
+        },
+        "network_transaction_reference": {
+          "target": "com.paypal.vault_payment_tokens_v3#NetworkTransactionReferenceEntity"
+        },
+        "authentication_result": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardResponseAuthenticationResult",
+          "traits": {
+            "smithy.api#documentation": "Results of Authentication such as 3D Secure."
+          }
+        },
+        "bin_details": {
+          "target": "com.paypal.vault_payment_tokens_v3#BinDetails",
+          "traits": {
+            "smithy.api#documentation": "Bank Identification Number (BIN) details used to fund a payment."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardType",
+          "traits": {
+            "smithy.api#documentation": "The payment card type."
+          }
+        },
+        "network_token": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Full representation of a Card Payment Token including network token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardBrand": {
+      "type": "enum",
+      "members": {
+        "VISA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VISA"
+          }
+        },
+        "MASTERCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MASTERCARD"
+          }
+        },
+        "DISCOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOVER"
+          }
+        },
+        "AMEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMEX"
+          }
+        },
+        "SOLO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOLO"
+          }
+        },
+        "JCB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JCB"
+          }
+        },
+        "STAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STAR"
+          }
+        },
+        "DELTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELTA"
+          }
+        },
+        "SWITCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWITCH"
+          }
+        },
+        "MAESTRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAESTRO"
+          }
+        },
+        "CB_NATIONALE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CB_NATIONALE"
+          }
+        },
+        "CONFIGOGA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIGOGA"
+          }
+        },
+        "CONFIDIS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDIS"
+          }
+        },
+        "ELECTRON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRON"
+          }
+        },
+        "CETELEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CETELEM"
+          }
+        },
+        "CHINA_UNION_PAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHINA_UNION_PAY"
+          }
+        },
+        "DINERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DINERS"
+          }
+        },
+        "ELO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELO"
+          }
+        },
+        "HIPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPER"
+          }
+        },
+        "HIPERCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIPERCARD"
+          }
+        },
+        "RUPAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUPAY"
+          }
+        },
+        "GE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GE"
+          }
+        },
+        "SYNCHRONY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYNCHRONY"
+          }
+        },
+        "EFTPOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EFTPOS"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The card network or brand. Applies to credit, debit, gift, and payment cards."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardResponseBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Address request details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardVerificationStatus": {
+      "type": "enum",
+      "members": {
+        "VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VERIFIED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Verification status of Card."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardVerificationDetails": {
+      "type": "structure",
+      "members": {
+        "network_transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. This field is DEPRECATED. Please find the network transaction id data in the 'id' field under the 'network_transaction_reference' object instead of the 'verification' object."
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. This field is DEPRECATED. Please find the date data in the 'date' field under the 'network_transaction_reference' object instead of the 'verification' object."
+          }
+        },
+        "network": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. This field is DEPRECATED. Please find the network data in the 'network' field under the 'network_transaction_reference' object instead of the 'verification' object."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. This field is DEPRECATED. Please find the time data in the 'time' field under the 'network_transaction_reference' object instead of the 'verification' object."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount used for card verification."
+          }
+        },
+        "processor_response": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationDetailsProcessorResponse",
+          "traits": {
+            "smithy.api#documentation": "The processor response information for payment requests, such as direct credit card transactions."
+          }
+        },
+        "three_d_secure": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. This field is DEPRECATED. Please find the 3D secure authentication data in the 'three_d_secure' object under the 'authentication_result' object instead of the 'verification' object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Card Verification details including the authorization details and 3D SECURE details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#Money": {
+      "type": "structure",
+      "members": {
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency and amount for a financial transaction, such as a balance or payment due."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardVerificationDetailsProcessorResponseAvsCode": {
+      "type": "enum",
+      "members": {
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "B"
+          }
+        },
+        "C": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "C"
+          }
+        },
+        "D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "D"
+          }
+        },
+        "E": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E"
+          }
+        },
+        "F": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "F"
+          }
+        },
+        "G": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "G"
+          }
+        },
+        "I": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "I"
+          }
+        },
+        "M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "M"
+          }
+        },
+        "N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N"
+          }
+        },
+        "P": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P"
+          }
+        },
+        "R": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "R"
+          }
+        },
+        "S": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S"
+          }
+        },
+        "U": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "U"
+          }
+        },
+        "W": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "W"
+          }
+        },
+        "X": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "X"
+          }
+        },
+        "Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Y"
+          }
+        },
+        "Z": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Z"
+          }
+        },
+        "NULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Null"
+          }
+        },
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "0"
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1"
+          }
+        },
+        "_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2"
+          }
+        },
+        "_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "3"
+          }
+        },
+        "_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The address verification code for Visa, Discover, Mastercard, or American Express transactions."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardVerificationDetailsProcessorResponseCvvCode": {
+      "type": "enum",
+      "members": {
+        "E": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "E"
+          }
+        },
+        "I": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "I"
+          }
+        },
+        "M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "M"
+          }
+        },
+        "N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N"
+          }
+        },
+        "P": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "P"
+          }
+        },
+        "S": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S"
+          }
+        },
+        "U": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "U"
+          }
+        },
+        "X": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "X"
+          }
+        },
+        "ALL_OTHERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "All others"
+          }
+        },
+        "_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "0"
+          }
+        },
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1"
+          }
+        },
+        "_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2"
+          }
+        },
+        "_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "3"
+          }
+        },
+        "_4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "4"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The card verification value code for for Visa, Discover, Mastercard, or American Express."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardVerificationDetailsProcessorResponse": {
+      "type": "structure",
+      "members": {
+        "avs_code": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationDetailsProcessorResponseAvsCode",
+          "traits": {
+            "smithy.api#documentation": "The address verification code for Visa, Discover, Mastercard, or American Express transactions."
+          }
+        },
+        "cvv_code": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationDetailsProcessorResponseCvvCode",
+          "traits": {
+            "smithy.api#documentation": "The card verification value code for for Visa, Discover, Mastercard, or American Express."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The processor response information for payment requests, such as direct credit card transactions."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#NetworkTransactionReferenceEntity": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Transaction reference id returned by the scheme. For Visa and Amex, this is the \"Tran id\" field in response. For MasterCard, this is the \"BankNet reference id\" field in response. For Discover, this is the \"NRID\" field in response. The pattern we expect for this field from Visa/Amex/CB/Discover is numeric, Mastercard/BNPP is alphanumeric and Paysecure is alphanumeric with special character -.",
+            "smithy.api#required": {}
+          }
+        },
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as \"BankNet reference date."
+          }
+        },
+        "network": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "Name of the card network through which the transaction was routed."
+          }
+        },
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the instrument was verified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Previous network transaction reference including id and network."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ThreeDSecureAuthenticationResponse2": {
+      "type": "structure",
+      "members": {
+        "authentication_status": {
+          "target": "com.paypal.vault_payment_tokens_v3#ParesStatus",
+          "traits": {
+            "smithy.api#documentation": "The outcome of the issuer's authentication."
+          }
+        },
+        "enrollment_status": {
+          "target": "com.paypal.vault_payment_tokens_v3#Enrolled",
+          "traits": {
+            "smithy.api#documentation": "Status of authentication eligibility."
+          }
+        },
+        "authentication_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The externally received 3ds authentication id, to be returned in card detokenization response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of 3D Secure Authentication."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ParesStatus": {
+      "type": "enum",
+      "members": {
+        "Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Y"
+          }
+        },
+        "N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N"
+          }
+        },
+        "U": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "U"
+          }
+        },
+        "A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "A"
+          }
+        },
+        "C": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "C"
+          }
+        },
+        "R": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "R"
+          }
+        },
+        "D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "D"
+          }
+        },
+        "I": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "I"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transactions status result identifier. The outcome of the issuer's authentication."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#Enrolled": {
+      "type": "enum",
+      "members": {
+        "Y": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Y"
+          }
+        },
+        "N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "N"
+          }
+        },
+        "U": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "U"
+          }
+        },
+        "B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "B"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of Authentication eligibility."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardResponseAuthenticationResult": {
+      "type": "structure",
+      "members": {
+        "three_d_secure": {
+          "target": "com.paypal.vault_payment_tokens_v3#ThreeDSecureAuthenticationResponse2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of Authentication such as 3D Secure."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#BinDetails": {
+      "type": "structure",
+      "members": {
+        "bin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Bank Identification Number (BIN) signifies the number that is being used to identify the granular level details (except the PII information) of the card."
+          }
+        },
+        "issuing_bank": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The issuer of the card instrument."
+          }
+        },
+        "bin_country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [two-character ISO-3166-1 country code](/docs/integration/direct/rest/country-codes/) of the bank."
+          }
+        },
+        "products": {
+          "target": "com.paypal.vault_payment_tokens_v3#ProductsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Bank Identification Number (BIN) details used to fund a payment."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ProductsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of card product assigned to the BIN by the issuer. These values are defined by the issuer and may change over time. Some examples include: PREPAID_GIFT, CONSUMER, CORPORATE."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardType": {
+      "type": "enum",
+      "members": {
+        "CREDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREDIT"
+          }
+        },
+        "DEBIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEBIT"
+          }
+        },
+        "PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREPAID"
+          }
+        },
+        "STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORE"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of card. i.e Credit, Debit and so on."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponse": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description displayed to the consumer on the approval flow for a digital wallet, as well as on the merchant view of the payment token management experience. exp: PayPal.com."
+          }
+        },
+        "usage_pattern": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseUsagePattern",
+          "traits": {
+            "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+          }
+        },
+        "shipping": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShipping",
+          "traits": {
+            "smithy.api#documentation": "The shipping details."
+          }
+        },
+        "permit_multiple_payment_tokens": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source."
+          }
+        },
+        "usage_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseUsageType",
+          "traits": {
+            "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+          }
+        },
+        "customer_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseCustomerType",
+          "traits": {
+            "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+          }
+        },
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the payer."
+          }
+        },
+        "payer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-assigned ID for the payer."
+          }
+        },
+        "name": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone": {
+          "target": "com.paypal.vault_payment_tokens_v3#PhoneWithType",
+          "traits": {
+            "smithy.api#documentation": "The phone number of the customer. Available only when you enable the **Contact Telephone Number** option in the <a href=\"https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-website-payments\">**Profile & Settings**</a> for the merchant's PayPal account. The `phone.phone_number` supports only `national_number`."
+          }
+        },
+        "address": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account identifier for a PayPal account."
+          }
+        },
+        "phone_number": {
+          "target": "com.paypal.vault_payment_tokens_v3#Phone",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseUsagePattern": {
+      "type": "enum",
+      "members": {
+        "IMMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMMEDIATE"
+          }
+        },
+        "DEFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFERRED"
+          }
+        },
+        "RECURRING_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_PREPAID"
+          }
+        },
+        "RECURRING_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_POSTPAID"
+          }
+        },
+        "THRESHOLD_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_PREPAID"
+          }
+        },
+        "THRESHOLD_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_POSTPAID"
+          }
+        },
+        "INSTALLMENT_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_POSTPAID"
+          }
+        },
+        "INSTALLMENT_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_PREPAID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingName": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingPhoneNumber": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingType": {
+      "type": "enum",
+      "members": {
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "PICKUP_IN_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_PERSON"
+          }
+        },
+        "PICKUP_IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_STORE"
+          }
+        },
+        "PICKUP_FROM_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FROM_PERSON"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShipping": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone_number": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingPhoneNumber",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingType",
+          "traits": {
+            "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+          }
+        },
+        "address": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseUsageType": {
+      "type": "enum",
+      "members": {
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseCustomerType": {
+      "type": "enum",
+      "members": {
+        "CONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseName": {
+      "type": "structure",
+      "members": {
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PhoneWithType": {
+      "type": "structure",
+      "members": {
+        "phone_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PhoneType"
+        },
+        "phone_number": {
+          "target": "com.paypal.vault_payment_tokens_v3#PhoneWithTypePhoneNumber",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone information."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PhoneType": {
+      "type": "enum",
+      "members": {
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAX"
+          }
+        },
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone type."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PhoneWithTypePhoneNumber": {
+      "type": "structure",
+      "members": {
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletResponseAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#Phone": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "extension_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extension number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponse": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description displayed to the consumer on the approval flow for a digital wallet, as well as on the merchant view of the payment token management experience. exp: PayPal.com."
+          }
+        },
+        "usage_pattern": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseUsagePattern",
+          "traits": {
+            "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+          }
+        },
+        "shipping": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseShipping",
+          "traits": {
+            "smithy.api#documentation": "The shipping details."
+          }
+        },
+        "permit_multiple_payment_tokens": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source."
+          }
+        },
+        "usage_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseUsageType",
+          "traits": {
+            "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+          }
+        },
+        "customer_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseCustomerType",
+          "traits": {
+            "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+          }
+        },
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the payer."
+          }
+        },
+        "payer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-assigned ID for the payer."
+          }
+        },
+        "name": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone": {
+          "target": "com.paypal.vault_payment_tokens_v3#PhoneWithType",
+          "traits": {
+            "smithy.api#documentation": "The phone number of the customer. Available only when you enable the **Contact Telephone Number** option in the <a href=\"https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-website-payments\">**Profile & Settings**</a> for the merchant's PayPal account. The `phone.phone_number` supports only `national_number`."
+          }
+        },
+        "address": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "user_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Venmo username, as chosen by the user."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseUsagePattern": {
+      "type": "enum",
+      "members": {
+        "IMMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMMEDIATE"
+          }
+        },
+        "DEFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFERRED"
+          }
+        },
+        "RECURRING_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_PREPAID"
+          }
+        },
+        "RECURRING_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_POSTPAID"
+          }
+        },
+        "THRESHOLD_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_PREPAID"
+          }
+        },
+        "THRESHOLD_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_POSTPAID"
+          }
+        },
+        "INSTALLMENT_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_POSTPAID"
+          }
+        },
+        "INSTALLMENT_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_PREPAID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingName": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingPhoneNumber": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingType": {
+      "type": "enum",
+      "members": {
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "PICKUP_IN_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_PERSON"
+          }
+        },
+        "PICKUP_IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_STORE"
+          }
+        },
+        "PICKUP_FROM_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FROM_PERSON"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseShipping": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone_number": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingPhoneNumber",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingType",
+          "traits": {
+            "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+          }
+        },
+        "address": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponseShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseUsageType": {
+      "type": "enum",
+      "members": {
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseCustomerType": {
+      "type": "enum",
+      "members": {
+        "CONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseName": {
+      "type": "structure",
+      "members": {
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoResponseAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ApplePayPaymentTokenResponse": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.vault_payment_tokens_v3#ApplePayPaymentTokenResponseCard",
+          "traits": {
+            "smithy.api#documentation": "The payment card to be used to fund a payment. Can be a credit or debit card."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource representing a response for Apple Pay."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ApplePayPaymentTokenResponseCardBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ApplePayPaymentTokenResponseCard": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "last_digits": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last digits of the payment card."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardType",
+          "traits": {
+            "smithy.api#documentation": "The payment card type."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.vault_payment_tokens_v3#ApplePayPaymentTokenResponseCardBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment card to be used to fund a payment. Can be a credit or debit card."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.vault_payment_tokens_v3#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of related [HATEOAS links](/api/rest/responses/#hateoas)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.vault_payment_tokens_v3#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentTokenRequest"
+      },
+      "output": {
+        "target": "com.paypal.vault_payment_tokens_v3#CustomerVaultPaymentTokensResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#BadRequest"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v3/vault/payment-tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all payment tokens\n\nReturns all payment tokens for a customer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequestCustomer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for a customer in merchant's or partner's system of records."
+          }
+        },
+        "merchant_customer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#DefinitionsPaymentSource": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.vault_payment_tokens_v3#DefinitionsPaymentSourceCard",
+          "traits": {
+            "smithy.api#documentation": "A Resource representing a request to vault a Card."
+          }
+        },
+        "token": {
+          "target": "com.paypal.vault_payment_tokens_v3#TokenIdRequest"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment method to vault with the instrument details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#DefinitionsPaymentSourceCardBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#DefinitionsPaymentSourceCard": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary account number (PAN) for the payment card."
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "security_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This parameter cannot be present in the request when `payment_initiator=MERCHANT`."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.vault_payment_tokens_v3#DefinitionsPaymentSourceCardBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "network_transaction_reference": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Resource representing a request to vault a Card."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#TokenIdRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#TokenIdRequestType",
+          "traits": {
+            "smithy.api#documentation": "The tokenization method that generated the ID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Tokenized Payment Source representing a Request to Vault a Token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#TokenIdRequestType": {
+      "type": "enum",
+      "members": {
+        "SETUP_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SETUP_TOKEN"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tokenization method that generated the ID."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequest": {
+      "type": "structure",
+      "members": {
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 3 hours."
+          }
+        },
+        "customer": {
+          "target": "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequestCustomer",
+          "traits": {
+            "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+          }
+        },
+        "payment_source": {
+          "target": "com.paypal.vault_payment_tokens_v3#DefinitionsPaymentSource",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreatePaymentToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequest"
+      },
+      "output": {
+        "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#BadRequest"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#Forbidden"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#NotFound"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v3/vault/payment-tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create payment token for a given payment source\n\nCreates a Payment Token from the given payment source and adds it to the Vault of the associated customer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#GetPaymentTokenRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the setup token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#GetPaymentToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.vault_payment_tokens_v3#GetPaymentTokenRequest"
+      },
+      "output": {
+        "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#Forbidden"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#NotFound"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v3/vault/payment-tokens/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a payment token\n\nReturns a readable representation of vaulted payment source associated with the payment token id."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#DeletePaymentTokenRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the setup token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#DeletePaymentToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.vault_payment_tokens_v3#DeletePaymentTokenRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#BadRequest"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v3/vault/payment-tokens/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete payment token\n\nDelete the payment token associated with the payment token id."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestCustomer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for a customer in merchant's or partner's system of records."
+          }
+        },
+        "merchant_customer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CardVerificationMethod": {
+      "type": "enum",
+      "members": {
+        "SCA_WHEN_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCA_WHEN_REQUIRED"
+          }
+        },
+        "SCA_ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCA_ALWAYS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The verification method of the card."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VaultInstruction": {
+      "type": "enum",
+      "members": {
+        "ON_CREATE_PAYMENT_TOKENS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON_CREATE_PAYMENT_TOKENS"
+          }
+        },
+        "ON_PAYER_APPROVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ON_PAYER_APPROVAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Vault Instruction on action to be performed after a successful payer approval."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardExperienceContext": {
+      "type": "structure",
+      "members": {
+        "brand_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP 47-formatted locale of pages that the PayPal vaulting experience shows. PayPal supports a five-character code. For example, `DA-DK`, `HE-IL`, `ID-ID`, `JA-JP`, `NO-NO`, `PT-BR`, `RU-RU`, `SV-SE`, `TH-TH`, `ZH-CN`, `ZH-HK`, or `ZH-TW`."
+          }
+        },
+        "return_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after customer approves leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS."
+          }
+        },
+        "cancel_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after customer cancels or leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS."
+          }
+        },
+        "vault_instruction": {
+          "target": "com.paypal.vault_payment_tokens_v3#VaultInstruction",
+          "traits": {
+            "smithy.api#documentation": "Vault Instruction on action to be performed after a successful payer approval."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCard": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary account number (PAN) for the payment card."
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "security_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three- or four-digit security code of the card. Also known as the CVV, CVC, CVN, CVE, or CID. This parameter cannot be present in the request when `payment_initiator=MERCHANT`."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        },
+        "verification_method": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationMethod",
+          "traits": {
+            "smithy.api#documentation": "The API caller can opt in to verify the payment token through PayPal offered verification services (e.g. Smart Dollar Auth, 3DS)."
+          }
+        },
+        "experience_context": {
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardExperienceContext",
+          "traits": {
+            "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
+          }
+        },
+        "network_transaction_reference": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Resource representing a request to vault a Card."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequest": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description displayed to the consumer on the approval flow for a digital wallet, as well as on the merchant view of the payment token management experience. exp: PayPal.com."
+          }
+        },
+        "usage_pattern": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestUsagePattern",
+          "traits": {
+            "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+          }
+        },
+        "shipping": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShipping",
+          "traits": {
+            "smithy.api#documentation": "The shipping details."
+          }
+        },
+        "permit_multiple_payment_tokens": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source."
+          }
+        },
+        "usage_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestUsageType",
+          "traits": {
+            "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+          }
+        },
+        "customer_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestCustomerType",
+          "traits": {
+            "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+          }
+        },
+        "billing_plan": {
+          "target": "com.paypal.vault_payment_tokens_v3#Plan"
+        },
+        "experience_context": {
+          "target": "com.paypal.vault_payment_tokens_v3#ExperienceContext"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource representing a request to vault PayPal Wallet."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestUsagePattern": {
+      "type": "enum",
+      "members": {
+        "IMMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMMEDIATE"
+          }
+        },
+        "DEFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFERRED"
+          }
+        },
+        "RECURRING_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_PREPAID"
+          }
+        },
+        "RECURRING_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_POSTPAID"
+          }
+        },
+        "THRESHOLD_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_PREPAID"
+          }
+        },
+        "THRESHOLD_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_POSTPAID"
+          }
+        },
+        "INSTALLMENT_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_POSTPAID"
+          }
+        },
+        "INSTALLMENT_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_PREPAID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingName": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingPhoneNumber": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingType": {
+      "type": "enum",
+      "members": {
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "PICKUP_IN_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_PERSON"
+          }
+        },
+        "PICKUP_IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_STORE"
+          }
+        },
+        "PICKUP_FROM_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FROM_PERSON"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShipping": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone_number": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingPhoneNumber",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingType",
+          "traits": {
+            "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+          }
+        },
+        "address": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestUsageType": {
+      "type": "enum",
+      "members": {
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaypalWalletRequestCustomerType": {
+      "type": "enum",
+      "members": {
+        "CONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#Plan": {
+      "type": "structure",
+      "members": {
+        "billing_cycles": {
+          "target": "com.paypal.vault_payment_tokens_v3#BillingCycleList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Product details associated with any one-time product purchase."
+          }
+        },
+        "one_time_charges": {
+          "target": "com.paypal.vault_payment_tokens_v3#OneTimeCharges",
+          "traits": {
+            "smithy.api#documentation": "Price and currency for any one-time charges due at plan signup.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the recurring plan."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The merchant level Recurring Billing plan metadata for the Billing Agreement."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#BillingCycleList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.vault_payment_tokens_v3#BillingCycle"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#BillingCycle": {
+      "type": "structure",
+      "members": {
+        "tenure_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#BillingCycleTenureType",
+          "traits": {
+            "smithy.api#documentation": "The tenure type of the billing cycle identifies if the billing cycle is a trial(free or discounted) or regular billing cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricing_scheme": {
+          "target": "com.paypal.vault_payment_tokens_v3#PricingScheme",
+          "traits": {
+            "smithy.api#documentation": "The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme."
+          }
+        },
+        "frequency": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The frequency details for this billing cycle."
+          }
+        },
+        "total_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>)."
+          }
+        },
+        "sequence": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle."
+          }
+        },
+        "start_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start date for the billing cycle, in YYYY-MM-DD. This field should be not be provided if the billing cycle starts at the time of checkout. When this field is not provided, the billing cycle amount will be included in any data validations confirming that the total provided by the merchant match the sum of individual items due at the time of checkout. Only one billing cycle (with sequence equal to 1) can have a no start date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing cycle providing details of the billing frequency, amount, duration and if the billing cycle is a free, discounted or regular billing cycle. The sequence of the billing cycle will be in the following order - free trial billing cycle(s), discounted trial billing cycle(s), regular billing cycle(s)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#BillingCycleTenureType": {
+      "type": "enum",
+      "members": {
+        "REGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR"
+          }
+        },
+        "TRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tenure type of the billing cycle identifies if the billing cycle is a trial(free or discounted) or regular billing cycle."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PricingScheme": {
+      "type": "structure",
+      "members": {
+        "price": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The price the customer will be charged based on the pricing model"
+          }
+        },
+        "pricing_model": {
+          "target": "com.paypal.vault_payment_tokens_v3#PricingSchemePricingModel",
+          "traits": {
+            "smithy.api#documentation": "The pricing model for the billing cycle.",
+            "smithy.api#required": {}
+          }
+        },
+        "reload_threshold_amount": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The threshold amount on which the reload charge would be triggered. This will be associated with the account-balance where if the account-balance goes below this amount then customer would incur reload charge."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing scheme details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PricingSchemePricingModel": {
+      "type": "enum",
+      "members": {
+        "FIXED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIXED"
+          }
+        },
+        "VARIABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VARIABLE"
+          }
+        },
+        "AUTO_RELOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_RELOAD"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The pricing model for the billing cycle."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#OneTimeCharges": {
+      "type": "structure",
+      "members": {
+        "setup_fee": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The setup fee for the recurring plan."
+          }
+        },
+        "shipping_amount": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping amount due at the time of checkout."
+          }
+        },
+        "taxes": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The taxes due at the time of checkout."
+          }
+        },
+        "product_price": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The product price for any one-time product purchased at the time of checkout."
+          }
+        },
+        "total_amount": {
+          "target": "com.paypal.vault_payment_tokens_v3#Money",
+          "traits": {
+            "smithy.api#documentation": "The total amount at the time of checkout. This is calculated by using the formula x + y + z where x is subtotal, y is shipping-amount and z is taxes.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The one-time charge info at the time of checkout."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ExperienceContext": {
+      "type": "structure",
+      "members": {
+        "brand_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The BCP 47-formatted locale of pages that the PayPal vaulting experience shows. PayPal supports a five-character code. For example, `DA-DK`, `HE-IL`, `ID-ID`, `JA-JP`, `NO-NO`, `PT-BR`, `RU-RU`, `SV-SE`, `TH-TH`, `ZH-CN`, `ZH-HK`, or `ZH-TW`."
+          }
+        },
+        "return_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after customer approves leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS."
+          }
+        },
+        "cancel_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL where the customer is redirected after customer cancels or leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS."
+          }
+        },
+        "shipping_preference": {
+          "target": "com.paypal.vault_payment_tokens_v3#ExperienceContextShippingPreference",
+          "traits": {
+            "smithy.api#documentation": "The shipping preference. This only applies to PayPal payment source."
+          }
+        },
+        "vault_instruction": {
+          "target": "com.paypal.vault_payment_tokens_v3#VaultInstruction",
+          "traits": {
+            "smithy.api#documentation": "Vault Instruction on action to be performed after a successful payer approval."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#ExperienceContextShippingPreference": {
+      "type": "enum",
+      "members": {
+        "GET_FROM_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET_FROM_FILE"
+          }
+        },
+        "NO_SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SHIPPING"
+          }
+        },
+        "SET_PROVIDED_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET_PROVIDED_ADDRESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping preference. This only applies to PayPal payment source."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequest": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description displayed to the consumer on the approval flow for a digital wallet, as well as on the merchant view of the payment token management experience. exp: PayPal.com."
+          }
+        },
+        "usage_pattern": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestUsagePattern",
+          "traits": {
+            "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+          }
+        },
+        "shipping": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestShipping",
+          "traits": {
+            "smithy.api#documentation": "The shipping details."
+          }
+        },
+        "permit_multiple_payment_tokens": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source."
+          }
+        },
+        "usage_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestUsageType",
+          "traits": {
+            "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+          }
+        },
+        "customer_type": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestCustomerType",
+          "traits": {
+            "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+          }
+        },
+        "experience_context": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestExperienceContext",
+          "traits": {
+            "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestUsagePattern": {
+      "type": "enum",
+      "members": {
+        "IMMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IMMEDIATE"
+          }
+        },
+        "DEFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEFERRED"
+          }
+        },
+        "RECURRING_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_PREPAID"
+          }
+        },
+        "RECURRING_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECURRING_POSTPAID"
+          }
+        },
+        "THRESHOLD_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_PREPAID"
+          }
+        },
+        "THRESHOLD_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THRESHOLD_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_POSTPAID"
+          }
+        },
+        "UNSCHEDULED_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNSCHEDULED_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_PREPAID"
+          }
+        },
+        "SUBSCRIPTION_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUBSCRIPTION_POSTPAID"
+          }
+        },
+        "INSTALLMENT_POSTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_POSTPAID"
+          }
+        },
+        "INSTALLMENT_PREPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTALLMENT_PREPAID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Expected business/charge model for the billing agreement."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingName": {
+      "type": "structure",
+      "members": {
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingPhoneNumber": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingType": {
+      "type": "enum",
+      "members": {
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "PICKUP_IN_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_PERSON"
+          }
+        },
+        "PICKUP_IN_STORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_IN_STORE"
+          }
+        },
+        "PICKUP_FROM_PERSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICKUP_FROM_PERSON"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestShipping": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingName",
+          "traits": {
+            "smithy.api#documentation": "The name of the party."
+          }
+        },
+        "phone_number": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingPhoneNumber",
+          "traits": {
+            "smithy.api#documentation": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingType",
+          "traits": {
+            "smithy.api#documentation": "A classification for the method of purchase fulfillment (e.g shipping, in-store pickup, etc). Either `type` or `options` may be present, but not both."
+          }
+        },
+        "address": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestUsageType": {
+      "type": "enum",
+      "members": {
+        "MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANT"
+          }
+        },
+        "PLATFORM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLATFORM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The usage type associated with a digital wallet payment token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestCustomerType": {
+      "type": "enum",
+      "members": {
+        "CONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestExperienceContextShippingPreference": {
+      "type": "enum",
+      "members": {
+        "GET_FROM_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET_FROM_FILE"
+          }
+        },
+        "NO_SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_SHIPPING"
+          }
+        },
+        "SET_PROVIDED_ADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SET_PROVIDED_ADDRESS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping preference. This only applies to PayPal payment source."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VenmoRequestExperienceContext": {
+      "type": "structure",
+      "members": {
+        "brand_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode."
+          }
+        },
+        "shipping_preference": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequestExperienceContextShippingPreference",
+          "traits": {
+            "smithy.api#documentation": "The shipping preference. This only applies to PayPal payment source."
+          }
+        },
+        "vault_instruction": {
+          "target": "com.paypal.vault_payment_tokens_v3#VaultInstruction",
+          "traits": {
+            "smithy.api#documentation": "Vault Instruction on action to be performed after a successful payer approval."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSource": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCard",
+          "traits": {
+            "smithy.api#documentation": "A Resource representing a request to vault a Card."
+          }
+        },
+        "paypal": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletRequest"
+        },
+        "venmo": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoRequest"
+        },
+        "token": {
+          "target": "com.paypal.vault_payment_tokens_v3#TokenIdRequest"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment method to vault with the instrument details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequest": {
+      "type": "structure",
+      "members": {
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 3 hours."
+          }
+        },
+        "customer": {
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestCustomer",
+          "traits": {
+            "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+          }
+        },
+        "payment_source": {
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSource",
+          "traits": {
+            "smithy.api#documentation": "The payment method to vault with the instrument details.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#SetupTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the vault token."
+          }
+        },
+        "customer": {
+          "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponseCustomer",
+          "traits": {
+            "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+          }
+        },
+        "status": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the payment token."
+          }
+        },
+        "payment_source": {
+          "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSource",
+          "traits": {
+            "smithy.api#documentation": "The setup payment method details."
+          }
+        },
+        "links": {
+          "target": "com.paypal.vault_payment_tokens_v3#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimal representation of a cached setup token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#SetupTokenResponseCustomer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID for a customer in merchant's or partner's system of records."
+          }
+        },
+        "merchant_customer_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Merchants and partners may already have a data-store where their customer information is persisted. Use merchant_customer_id to associate the PayPal-generated customer.id to your representation of a customer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#PaymentTokenStatus": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "PAYER_ACTION_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYER_ACTION_REQUIRED"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPROVED"
+          }
+        },
+        "VAULTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VAULTED"
+          }
+        },
+        "TOKENIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOKENIZED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the payment token."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSourceCardBillingAddress": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address, such as number and street, for example, `173 Drury Lane`. Needed for data entry, and Compliance and Risk checks. This field needs to pass the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address, for example, a suite or apartment number."
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest-level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. This data is formatted for postal delivery, for example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A *kanton*.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the ZIP code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource ID of the address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Address request details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSourceCardAuthenticationResult": {
+      "type": "structure",
+      "members": {
+        "three_d_secure": {
+          "target": "com.paypal.vault_payment_tokens_v3#ThreeDSecureAuthenticationResponse2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Results of Authentication such as 3D Secure."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSourceCard": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card holder's name as it appears on the card."
+          }
+        },
+        "last_digits": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last digits of the payment card."
+          }
+        },
+        "brand": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardBrand",
+          "traits": {
+            "smithy.api#documentation": "The card brand or network. Typically used in the response."
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "billing_address": {
+          "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSourceCardBillingAddress",
+          "traits": {
+            "smithy.api#documentation": "Address request details."
+          }
+        },
+        "verification_status": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationStatus",
+          "traits": {
+            "smithy.api#documentation": "Card Verification status."
+          }
+        },
+        "verification": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardVerificationDetails"
+        },
+        "network_transaction_reference": {
+          "target": "com.paypal.vault_payment_tokens_v3#NetworkTransactionReferenceEntity"
+        },
+        "authentication_result": {
+          "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSourceCardAuthenticationResult",
+          "traits": {
+            "smithy.api#documentation": "Results of Authentication such as 3D Secure."
+          }
+        },
+        "bin_details": {
+          "target": "com.paypal.vault_payment_tokens_v3#BinDetails",
+          "traits": {
+            "smithy.api#documentation": "Bank Identification Number (BIN) details used to fund a payment."
+          }
+        },
+        "type": {
+          "target": "com.paypal.vault_payment_tokens_v3#CardType",
+          "traits": {
+            "smithy.api#documentation": "The payment card type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSource": {
+      "type": "structure",
+      "members": {
+        "card": {
+          "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponsePaymentSourceCard"
+        },
+        "paypal": {
+          "target": "com.paypal.vault_payment_tokens_v3#PaypalWalletResponse"
+        },
+        "venmo": {
+          "target": "com.paypal.vault_payment_tokens_v3#VenmoResponse"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The setup payment method details."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#CreateSetupToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequest"
+      },
+      "output": {
+        "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#BadRequest"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#Forbidden"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v3/vault/setup-tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a setup token\n\nCreates a Setup Token from the given payment source and adds it to the Vault of the associated customer."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#GetSetupTokenRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the setup token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#GetSetupToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.vault_payment_tokens_v3#GetSetupTokenRequest"
+      },
+      "output": {
+        "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#Forbidden"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#NotFound"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v3/vault/setup-tokens/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a setup token\n\nReturns a readable representation of temporarily vaulted payment source associated with the setup token id."
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.paypal.vault_payment_tokens_v3#VaultPaymentTokensV3": {
+      "type": "service",
+      "version": "3.4",
+      "operations": [
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentToken"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#CreatePaymentToken"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#GetPaymentToken"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#DeletePaymentToken"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupToken"
+        },
+        {
+          "target": "com.paypal.vault_payment_tokens_v3#GetSetupToken"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Payment Method Tokens",
+        "smithy.api#documentation": "The Payment Method Tokens API saves payment methods so payers don't have to enter details for future transactions. Payers can check out faster or pay without being present after they agree to save a payment method.<br><br>The API associates a payment method with a temporary setup token. Pass the setup token to the API to exchange the setup token for a permanent token.<br><br>The permanent token represents a payment method that's saved to the vault. This token can be used repeatedly for checkout or recurring transactions such as subscriptions."
+      }
+    }
+  }
+}

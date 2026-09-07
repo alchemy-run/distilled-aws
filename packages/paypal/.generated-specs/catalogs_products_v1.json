@@ -1,0 +1,3383 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.paypal.catalogs_products_v1#ListProductsRequest": {
+      "type": "structure",
+      "members": {
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The number of items to return in the response."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items."
+          }
+        },
+        "total_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "total_required",
+            "smithy.api#documentation": "Indicates whether to show the total items and total pages in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.catalogs_products_v1#ProductCollection": {
+      "type": "structure",
+      "members": {
+        "products": {
+          "target": "com.paypal.catalogs_products_v1#ProductCollectionElementList"
+        },
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages."
+          }
+        },
+        "links": {
+          "target": "com.paypal.catalogs_products_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of products, with details."
+      }
+    },
+    "com.paypal.catalogs_products_v1#ProductCollectionElementList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.catalogs_products_v1#ProductCollectionElement"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of products."
+      }
+    },
+    "com.paypal.catalogs_products_v1#ProductCollectionElement": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the product."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product description."
+          }
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the product was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "links": {
+          "target": "com.paypal.catalogs_products_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details for a product in the collection response."
+      }
+    },
+    "com.paypal.catalogs_products_v1#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.catalogs_products_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links)."
+      }
+    },
+    "com.paypal.catalogs_products_v1#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.catalogs_products_v1#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.catalogs_products_v1#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.catalogs_products_v1#ListProducts": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.catalogs_products_v1#ListProductsRequest"
+      },
+      "output": {
+        "target": "com.paypal.catalogs_products_v1#ProductCollection"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.catalogs_products_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/catalogs/products",
+          "code": 200
+        },
+        "smithy.api#documentation": "List products\n\nLists products."
+      }
+    },
+    "com.paypal.catalogs_products_v1#CreateProductRequestType": {
+      "type": "enum",
+      "members": {
+        "PHYSICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHYSICAL"
+          }
+        },
+        "DIGITAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIGITAL"
+          }
+        },
+        "SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The product type. Indicates whether the product is physical or digital goods, or a service."
+      }
+    },
+    "com.paypal.catalogs_products_v1#ProductCategory": {
+      "type": "enum",
+      "members": {
+        "AC_REFRIGERATION_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AC_REFRIGERATION_REPAIR"
+          }
+        },
+        "ACADEMIC_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACADEMIC_SOFTWARE"
+          }
+        },
+        "ACCESSORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESSORIES"
+          }
+        },
+        "ACCOUNTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCOUNTING"
+          }
+        },
+        "ADULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADULT"
+          }
+        },
+        "ADVERTISING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADVERTISING"
+          }
+        },
+        "AFFILIATED_AUTO_RENTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AFFILIATED_AUTO_RENTAL"
+          }
+        },
+        "AGENCIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGENCIES"
+          }
+        },
+        "AGGREGATORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGGREGATORS"
+          }
+        },
+        "AGRICULTURAL_COOPERATIVE_FOR_MAIL_ORDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGRICULTURAL_COOPERATIVE_FOR_MAIL_ORDER"
+          }
+        },
+        "AIR_CARRIERS_AIRLINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIR_CARRIERS_AIRLINES"
+          }
+        },
+        "AIRLINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRLINES"
+          }
+        },
+        "AIRPORTS_FLYING_FIELDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AIRPORTS_FLYING_FIELDS"
+          }
+        },
+        "ALCOHOLIC_BEVERAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALCOHOLIC_BEVERAGES"
+          }
+        },
+        "AMUSEMENT_PARKS_CARNIVALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMUSEMENT_PARKS_CARNIVALS"
+          }
+        },
+        "ANIMATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANIMATION"
+          }
+        },
+        "ANTIQUES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ANTIQUES"
+          }
+        },
+        "APPLIANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "APPLIANCES"
+          }
+        },
+        "AQUARIAMS_SEAQUARIUMS_DOLPHINARIUMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AQUARIAMS_SEAQUARIUMS_DOLPHINARIUMS"
+          }
+        },
+        "ARCHITECTURAL_ENGINEERING_AND_SURVEYING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHITECTURAL_ENGINEERING_AND_SURVEYING_SERVICES"
+          }
+        },
+        "ART_AND_CRAFT_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ART_AND_CRAFT_SUPPLIES"
+          }
+        },
+        "ART_DEALERS_AND_GALLERIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ART_DEALERS_AND_GALLERIES"
+          }
+        },
+        "ARTIFACTS_GRAVE_RELATED_AND_NATIVE_AMERICAN_CRAFTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARTIFACTS_GRAVE_RELATED_AND_NATIVE_AMERICAN_CRAFTS"
+          }
+        },
+        "ARTS_AND_CRAFTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARTS_AND_CRAFTS"
+          }
+        },
+        "ARTS_CRAFTS_AND_COLLECTIBLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARTS_CRAFTS_AND_COLLECTIBLES"
+          }
+        },
+        "AUDIO_BOOKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUDIO_BOOKS"
+          }
+        },
+        "AUTO_ASSOCIATIONS_CLUBS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_ASSOCIATIONS_CLUBS"
+          }
+        },
+        "AUTO_DEALER_USED_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_DEALER_USED_ONLY"
+          }
+        },
+        "AUTO_RENTALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_RENTALS"
+          }
+        },
+        "AUTO_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_SERVICE"
+          }
+        },
+        "AUTOMATED_FUEL_DISPENSERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMATED_FUEL_DISPENSERS"
+          }
+        },
+        "AUTOMOBILE_ASSOCIATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMOBILE_ASSOCIATIONS"
+          }
+        },
+        "AUTOMOTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMOTIVE"
+          }
+        },
+        "AUTOMOTIVE_REPAIR_SHOPS_NON_DEALER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMOTIVE_REPAIR_SHOPS_NON_DEALER"
+          }
+        },
+        "AUTOMOTIVE_TOP_AND_BODY_SHOPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTOMOTIVE_TOP_AND_BODY_SHOPS"
+          }
+        },
+        "AVIATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AVIATION"
+          }
+        },
+        "BABIES_CLOTHING_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BABIES_CLOTHING_AND_SUPPLIES"
+          }
+        },
+        "BABY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BABY"
+          }
+        },
+        "BANDS_ORCHESTRAS_ENTERTAINERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BANDS_ORCHESTRAS_ENTERTAINERS"
+          }
+        },
+        "BARBIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BARBIES"
+          }
+        },
+        "BATH_AND_BODY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BATH_AND_BODY"
+          }
+        },
+        "BATTERIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BATTERIES"
+          }
+        },
+        "BEAN_BABIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEAN_BABIES"
+          }
+        },
+        "BEAUTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEAUTY"
+          }
+        },
+        "BEAUTY_AND_FRAGRANCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEAUTY_AND_FRAGRANCES"
+          }
+        },
+        "BED_AND_BATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BED_AND_BATH"
+          }
+        },
+        "BICYCLE_SHOPS_SALES_AND_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BICYCLE_SHOPS_SALES_AND_SERVICE"
+          }
+        },
+        "BICYCLES_AND_ACCESSORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BICYCLES_AND_ACCESSORIES"
+          }
+        },
+        "BILLIARD_POOL_ESTABLISHMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLIARD_POOL_ESTABLISHMENTS"
+          }
+        },
+        "BOAT_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOAT_DEALERS"
+          }
+        },
+        "BOAT_RENTALS_AND_LEASING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOAT_RENTALS_AND_LEASING"
+          }
+        },
+        "BOATING_SAILING_AND_ACCESSORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOATING_SAILING_AND_ACCESSORIES"
+          }
+        },
+        "BOOKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOKS"
+          }
+        },
+        "BOOKS_AND_MAGAZINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOKS_AND_MAGAZINES"
+          }
+        },
+        "BOOKS_MANUSCRIPTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOKS_MANUSCRIPTS"
+          }
+        },
+        "BOOKS_PERIODICALS_AND_NEWSPAPERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOOKS_PERIODICALS_AND_NEWSPAPERS"
+          }
+        },
+        "BOWLING_ALLEYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOWLING_ALLEYS"
+          }
+        },
+        "BULLETIN_BOARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BULLETIN_BOARD"
+          }
+        },
+        "BUS_LINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUS_LINE"
+          }
+        },
+        "BUS_LINES_CHARTERS_TOUR_BUSES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUS_LINES_CHARTERS_TOUR_BUSES"
+          }
+        },
+        "BUSINESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS"
+          }
+        },
+        "BUSINESS_AND_SECRETARIAL_SCHOOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUSINESS_AND_SECRETARIAL_SCHOOLS"
+          }
+        },
+        "BUYING_AND_SHOPPING_SERVICES_AND_CLUBS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BUYING_AND_SHOPPING_SERVICES_AND_CLUBS"
+          }
+        },
+        "CABLE_SATELLITE_AND_OTHER_PAY_TELEVISION_AND_RADIO_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CABLE_SATELLITE_AND_OTHER_PAY_TELEVISION_AND_RADIO_SERVICES"
+          }
+        },
+        "CABLE_SATELLITE_AND_OTHER_PAY_TV_AND_RADIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CABLE_SATELLITE_AND_OTHER_PAY_TV_AND_RADIO"
+          }
+        },
+        "CAMERA_AND_PHOTOGRAPHIC_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMERA_AND_PHOTOGRAPHIC_SUPPLIES"
+          }
+        },
+        "CAMERAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMERAS"
+          }
+        },
+        "CAMERAS_AND_PHOTOGRAPHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMERAS_AND_PHOTOGRAPHY"
+          }
+        },
+        "CAMPER_RECREATIONAL_AND_UTILITY_TRAILER_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMPER_RECREATIONAL_AND_UTILITY_TRAILER_DEALERS"
+          }
+        },
+        "CAMPING_AND_OUTDOORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMPING_AND_OUTDOORS"
+          }
+        },
+        "CAMPING_AND_SURVIVAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAMPING_AND_SURVIVAL"
+          }
+        },
+        "CAR_AND_TRUCK_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAR_AND_TRUCK_DEALERS"
+          }
+        },
+        "CAR_AND_TRUCK_DEALERS_USED_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAR_AND_TRUCK_DEALERS_USED_ONLY"
+          }
+        },
+        "CAR_AUDIO_AND_ELECTRONICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAR_AUDIO_AND_ELECTRONICS"
+          }
+        },
+        "CAR_RENTAL_AGENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAR_RENTAL_AGENCY"
+          }
+        },
+        "CATALOG_MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATALOG_MERCHANT"
+          }
+        },
+        "CATALOG_RETAIL_MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATALOG_RETAIL_MERCHANT"
+          }
+        },
+        "CATERING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATERING_SERVICES"
+          }
+        },
+        "CHARITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHARITY"
+          }
+        },
+        "CHECK_CASHIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK_CASHIER"
+          }
+        },
+        "CHILD_CARE_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHILD_CARE_SERVICES"
+          }
+        },
+        "CHILDREN_BOOKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHILDREN_BOOKS"
+          }
+        },
+        "CHIROPODISTS_PODIATRISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHIROPODISTS_PODIATRISTS"
+          }
+        },
+        "CHIROPRACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHIROPRACTORS"
+          }
+        },
+        "CIGAR_STORES_AND_STANDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CIGAR_STORES_AND_STANDS"
+          }
+        },
+        "CIVIC_SOCIAL_FRATERNAL_ASSOCIATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CIVIC_SOCIAL_FRATERNAL_ASSOCIATIONS"
+          }
+        },
+        "CIVIL_SOCIAL_FRAT_ASSOCIATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CIVIL_SOCIAL_FRAT_ASSOCIATIONS"
+          }
+        },
+        "CLOTHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOTHING"
+          }
+        },
+        "CLOTHING_ACCESSORIES_AND_SHOES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOTHING_ACCESSORIES_AND_SHOES"
+          }
+        },
+        "CLOTHING_RENTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CLOTHING_RENTAL"
+          }
+        },
+        "COFFEE_AND_TEA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COFFEE_AND_TEA"
+          }
+        },
+        "COIN_OPERATED_BANKS_AND_CASINOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COIN_OPERATED_BANKS_AND_CASINOS"
+          }
+        },
+        "COLLECTIBLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTIBLES"
+          }
+        },
+        "COLLECTION_AGENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLECTION_AGENCY"
+          }
+        },
+        "COLLEGES_AND_UNIVERSITIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLLEGES_AND_UNIVERSITIES"
+          }
+        },
+        "COMMERCIAL_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMERCIAL_EQUIPMENT"
+          }
+        },
+        "COMMERCIAL_FOOTWEAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMERCIAL_FOOTWEAR"
+          }
+        },
+        "COMMERCIAL_PHOTOGRAPHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMERCIAL_PHOTOGRAPHY"
+          }
+        },
+        "COMMERCIAL_PHOTOGRAPHY_ART_AND_GRAPHICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMERCIAL_PHOTOGRAPHY_ART_AND_GRAPHICS"
+          }
+        },
+        "COMMERCIAL_SPORTS_PROFESSIONA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMERCIAL_SPORTS_PROFESSIONA"
+          }
+        },
+        "COMMODITIES_AND_FUTURES_EXCHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMMODITIES_AND_FUTURES_EXCHANGE"
+          }
+        },
+        "COMPUTER_AND_DATA_PROCESSING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPUTER_AND_DATA_PROCESSING_SERVICES"
+          }
+        },
+        "COMPUTER_HARDWARE_AND_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPUTER_HARDWARE_AND_SOFTWARE"
+          }
+        },
+        "COMPUTER_MAINTENANCE_REPAIR_AND_SERVICES_NOT_ELSEWHERE_CLAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COMPUTER_MAINTENANCE_REPAIR_AND_SERVICES_NOT_ELSEWHERE_CLAS"
+          }
+        },
+        "CONSTRUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSTRUCTION"
+          }
+        },
+        "CONSTRUCTION_MATERIALS_NOT_ELSEWHERE_CLASSIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSTRUCTION_MATERIALS_NOT_ELSEWHERE_CLASSIFIED"
+          }
+        },
+        "CONSULTING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSULTING_SERVICES"
+          }
+        },
+        "CONSUMER_CREDIT_REPORTING_AGENCIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSUMER_CREDIT_REPORTING_AGENCIES"
+          }
+        },
+        "CONVALESCENT_HOMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONVALESCENT_HOMES"
+          }
+        },
+        "COSMETIC_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COSMETIC_STORES"
+          }
+        },
+        "COUNSELING_SERVICES_DEBT_MARRIAGE_PERSONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNSELING_SERVICES_DEBT_MARRIAGE_PERSONAL"
+          }
+        },
+        "COUNTERFEIT_CURRENCY_AND_STAMPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTERFEIT_CURRENCY_AND_STAMPS"
+          }
+        },
+        "COUNTERFEIT_ITEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTERFEIT_ITEMS"
+          }
+        },
+        "COUNTRY_CLUBS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COUNTRY_CLUBS"
+          }
+        },
+        "COURIER_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COURIER_SERVICES"
+          }
+        },
+        "COURIER_SERVICES_AIR_AND_GROUND_AND_FREIGHT_FORWARDERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COURIER_SERVICES_AIR_AND_GROUND_AND_FREIGHT_FORWARDERS"
+          }
+        },
+        "COURT_COSTS_ALIMNY_CHILD_SUPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COURT_COSTS_ALIMNY_CHILD_SUPT"
+          }
+        },
+        "COURT_COSTS_INCLUDING_ALIMONY_AND_CHILD_SUPPORT_COURTS_OF_LAW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COURT_COSTS_INCLUDING_ALIMONY_AND_CHILD_SUPPORT_COURTS_OF_LAW"
+          }
+        },
+        "CREDIT_CARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREDIT_CARDS"
+          }
+        },
+        "CREDIT_UNION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREDIT_UNION"
+          }
+        },
+        "CULTURE_AND_RELIGION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CULTURE_AND_RELIGION"
+          }
+        },
+        "DAIRY_PRODUCTS_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAIRY_PRODUCTS_STORES"
+          }
+        },
+        "DANCE_HALLS_STUDIOS_AND_SCHOOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DANCE_HALLS_STUDIOS_AND_SCHOOLS"
+          }
+        },
+        "DECORATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DECORATIVE"
+          }
+        },
+        "DENTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENTAL"
+          }
+        },
+        "DENTISTS_AND_ORTHODONTISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENTISTS_AND_ORTHODONTISTS"
+          }
+        },
+        "DEPARTMENT_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPARTMENT_STORES"
+          }
+        },
+        "DESKTOP_PCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP_PCS"
+          }
+        },
+        "DEVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVICES"
+          }
+        },
+        "DIECAST_TOYS_VEHICLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIECAST_TOYS_VEHICLES"
+          }
+        },
+        "DIGITAL_GAMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIGITAL_GAMES"
+          }
+        },
+        "DIGITAL_MEDIA_BOOKS_MOVIES_MUSIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIGITAL_MEDIA_BOOKS_MOVIES_MUSIC"
+          }
+        },
+        "DIRECT_MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_MARKETING"
+          }
+        },
+        "DIRECT_MARKETING_CATALOG_MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_MARKETING_CATALOG_MERCHANT"
+          }
+        },
+        "DIRECT_MARKETING_INBOUND_TELE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_MARKETING_INBOUND_TELE"
+          }
+        },
+        "DIRECT_MARKETING_OUTBOUND_TELE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_MARKETING_OUTBOUND_TELE"
+          }
+        },
+        "DIRECT_MARKETING_SUBSCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECT_MARKETING_SUBSCRIPTION"
+          }
+        },
+        "DISCOUNT_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOUNT_STORES"
+          }
+        },
+        "DOOR_TO_DOOR_SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOOR_TO_DOOR_SALES"
+          }
+        },
+        "DRAPERY_WINDOW_COVERING_AND_UPHOLSTERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAPERY_WINDOW_COVERING_AND_UPHOLSTERY"
+          }
+        },
+        "DRINKING_PLACES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRINKING_PLACES"
+          }
+        },
+        "DRUGSTORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRUGSTORE"
+          }
+        },
+        "DURABLE_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DURABLE_GOODS"
+          }
+        },
+        "ECOMMERCE_DEVELOPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECOMMERCE_DEVELOPMENT"
+          }
+        },
+        "ECOMMERCE_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ECOMMERCE_SERVICES"
+          }
+        },
+        "EDUCATIONAL_AND_TEXTBOOKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EDUCATIONAL_AND_TEXTBOOKS"
+          }
+        },
+        "ELECTRIC_RAZOR_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRIC_RAZOR_STORES"
+          }
+        },
+        "ELECTRICAL_AND_SMALL_APPLIANCE_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRICAL_AND_SMALL_APPLIANCE_REPAIR"
+          }
+        },
+        "ELECTRICAL_CONTRACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRICAL_CONTRACTORS"
+          }
+        },
+        "ELECTRICAL_PARTS_AND_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRICAL_PARTS_AND_EQUIPMENT"
+          }
+        },
+        "ELECTRONIC_CASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELECTRONIC_CASH"
+          }
+        },
+        "ELEMENTARY_AND_SECONDARY_SCHOOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ELEMENTARY_AND_SECONDARY_SCHOOLS"
+          }
+        },
+        "EMPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMPLOYMENT"
+          }
+        },
+        "ENTERTAINERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTERTAINERS"
+          }
+        },
+        "ENTERTAINMENT_AND_MEDIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENTERTAINMENT_AND_MEDIA"
+          }
+        },
+        "EQUIP_TOOL_FURNITURE_AND_APPLIANCE_RENTAL_AND_LEASING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EQUIP_TOOL_FURNITURE_AND_APPLIANCE_RENTAL_AND_LEASING"
+          }
+        },
+        "ESCROW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ESCROW"
+          }
+        },
+        "EVENT_AND_WEDDING_PLANNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT_AND_WEDDING_PLANNING"
+          }
+        },
+        "EXERCISE_AND_FITNESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXERCISE_AND_FITNESS"
+          }
+        },
+        "EXERCISE_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXERCISE_EQUIPMENT"
+          }
+        },
+        "EXTERMINATING_AND_DISINFECTING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTERMINATING_AND_DISINFECTING_SERVICES"
+          }
+        },
+        "FABRICS_AND_SEWING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FABRICS_AND_SEWING"
+          }
+        },
+        "FAMILY_CLOTHING_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAMILY_CLOTHING_STORES"
+          }
+        },
+        "FASHION_JEWELRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FASHION_JEWELRY"
+          }
+        },
+        "FAST_FOOD_RESTAURANTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAST_FOOD_RESTAURANTS"
+          }
+        },
+        "FICTION_AND_NONFICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FICTION_AND_NONFICTION"
+          }
+        },
+        "FINANCE_COMPANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINANCE_COMPANY"
+          }
+        },
+        "FINANCIAL_AND_INVESTMENT_ADVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINANCIAL_AND_INVESTMENT_ADVICE"
+          }
+        },
+        "FINANCIAL_INSTITUTIONS_MERCHANDISE_AND_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINANCIAL_INSTITUTIONS_MERCHANDISE_AND_SERVICES"
+          }
+        },
+        "FIREARM_ACCESSORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREARM_ACCESSORIES"
+          }
+        },
+        "FIREARMS_WEAPONS_AND_KNIVES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREARMS_WEAPONS_AND_KNIVES"
+          }
+        },
+        "FIREPLACE_AND_FIREPLACE_SCREENS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREPLACE_AND_FIREPLACE_SCREENS"
+          }
+        },
+        "FIREWORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIREWORKS"
+          }
+        },
+        "FISHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FISHING"
+          }
+        },
+        "FLORISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLORISTS"
+          }
+        },
+        "FLOWERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FLOWERS"
+          }
+        },
+        "FOOD_DRINK_AND_NUTRITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_DRINK_AND_NUTRITION"
+          }
+        },
+        "FOOD_PRODUCTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_PRODUCTS"
+          }
+        },
+        "FOOD_RETAIL_AND_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOOD_RETAIL_AND_SERVICE"
+          }
+        },
+        "FRAGRANCES_AND_PERFUMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRAGRANCES_AND_PERFUMES"
+          }
+        },
+        "FREEZER_AND_LOCKER_MEAT_PROVISIONERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FREEZER_AND_LOCKER_MEAT_PROVISIONERS"
+          }
+        },
+        "FUEL_DEALERS_FUEL_OIL_WOOD_AND_COAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUEL_DEALERS_FUEL_OIL_WOOD_AND_COAL"
+          }
+        },
+        "FUEL_DEALERS_NON_AUTOMOTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUEL_DEALERS_NON_AUTOMOTIVE"
+          }
+        },
+        "FUNERAL_SERVICES_AND_CREMATORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FUNERAL_SERVICES_AND_CREMATORIES"
+          }
+        },
+        "FURNISHING_AND_DECORATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FURNISHING_AND_DECORATING"
+          }
+        },
+        "FURNITURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FURNITURE"
+          }
+        },
+        "FURRIERS_AND_FUR_SHOPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FURRIERS_AND_FUR_SHOPS"
+          }
+        },
+        "GADGETS_AND_OTHER_ELECTRONICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GADGETS_AND_OTHER_ELECTRONICS"
+          }
+        },
+        "GAMBLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GAMBLING"
+          }
+        },
+        "GAME_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GAME_SOFTWARE"
+          }
+        },
+        "GAMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GAMES"
+          }
+        },
+        "GARDEN_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GARDEN_SUPPLIES"
+          }
+        },
+        "GENERAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL"
+          }
+        },
+        "GENERAL_CONTRACTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_CONTRACTORS"
+          }
+        },
+        "GENERAL_GOVERNMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_GOVERNMENT"
+          }
+        },
+        "GENERAL_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_SOFTWARE"
+          }
+        },
+        "GENERAL_TELECOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_TELECOM"
+          }
+        },
+        "GIFTS_AND_FLOWERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GIFTS_AND_FLOWERS"
+          }
+        },
+        "GLASS_PAINT_AND_WALLPAPER_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLASS_PAINT_AND_WALLPAPER_STORES"
+          }
+        },
+        "GLASSWARE_CRYSTAL_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GLASSWARE_CRYSTAL_STORES"
+          }
+        },
+        "GOVERNMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERNMENT"
+          }
+        },
+        "GOVERNMENT_IDS_AND_LICENSES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERNMENT_IDS_AND_LICENSES"
+          }
+        },
+        "GOVERNMENT_LICENSED_ON_LINE_CASINOS_ON_LINE_GAMBLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERNMENT_LICENSED_ON_LINE_CASINOS_ON_LINE_GAMBLING"
+          }
+        },
+        "GOVERNMENT_OWNED_LOTTERIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERNMENT_OWNED_LOTTERIES"
+          }
+        },
+        "GOVERNMENT_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOVERNMENT_SERVICES"
+          }
+        },
+        "GRAPHIC_AND_COMMERCIAL_DESIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GRAPHIC_AND_COMMERCIAL_DESIGN"
+          }
+        },
+        "GREETING_CARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GREETING_CARDS"
+          }
+        },
+        "GROCERY_STORES_AND_SUPERMARKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GROCERY_STORES_AND_SUPERMARKETS"
+          }
+        },
+        "HARDWARE_AND_TOOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HARDWARE_AND_TOOLS"
+          }
+        },
+        "HARDWARE_EQUIPMENT_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HARDWARE_EQUIPMENT_AND_SUPPLIES"
+          }
+        },
+        "HAZARDOUS_RESTRICTED_AND_PERISHABLE_ITEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HAZARDOUS_RESTRICTED_AND_PERISHABLE_ITEMS"
+          }
+        },
+        "HEALTH_AND_BEAUTY_SPAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_AND_BEAUTY_SPAS"
+          }
+        },
+        "HEALTH_AND_NUTRITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_AND_NUTRITION"
+          }
+        },
+        "HEALTH_AND_PERSONAL_CARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_AND_PERSONAL_CARE"
+          }
+        },
+        "HEARING_AIDS_SALES_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEARING_AIDS_SALES_AND_SUPPLIES"
+          }
+        },
+        "HEATING_PLUMBING_AC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEATING_PLUMBING_AC"
+          }
+        },
+        "HIGH_RISK_MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIGH_RISK_MERCHANT"
+          }
+        },
+        "HIRING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIRING_SERVICES"
+          }
+        },
+        "HOBBIES_TOYS_AND_GAMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOBBIES_TOYS_AND_GAMES"
+          }
+        },
+        "HOME_AND_GARDEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_AND_GARDEN"
+          }
+        },
+        "HOME_AUDIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_AUDIO"
+          }
+        },
+        "HOME_DECOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_DECOR"
+          }
+        },
+        "HOME_ELECTRONICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME_ELECTRONICS"
+          }
+        },
+        "HOSPITALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOSPITALS"
+          }
+        },
+        "HOTELS_MOTELS_INNS_RESORTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOTELS_MOTELS_INNS_RESORTS"
+          }
+        },
+        "HOUSEWARES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOUSEWARES"
+          }
+        },
+        "HUMAN_PARTS_AND_REMAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HUMAN_PARTS_AND_REMAINS"
+          }
+        },
+        "HUMOROUS_GIFTS_AND_NOVELTIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HUMOROUS_GIFTS_AND_NOVELTIES"
+          }
+        },
+        "HUNTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HUNTING"
+          }
+        },
+        "IDS_LICENSES_AND_PASSPORTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDS_LICENSES_AND_PASSPORTS"
+          }
+        },
+        "ILLEGAL_DRUGS_AND_PARAPHERNALIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ILLEGAL_DRUGS_AND_PARAPHERNALIA"
+          }
+        },
+        "INDUSTRIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDUSTRIAL"
+          }
+        },
+        "INDUSTRIAL_AND_MANUFACTURING_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDUSTRIAL_AND_MANUFACTURING_SUPPLIES"
+          }
+        },
+        "INSURANCE_AUTO_AND_HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSURANCE_AUTO_AND_HOME"
+          }
+        },
+        "INSURANCE_DIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSURANCE_DIRECT"
+          }
+        },
+        "INSURANCE_LIFE_AND_ANNUITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSURANCE_LIFE_AND_ANNUITY"
+          }
+        },
+        "INSURANCE_SALES_UNDERWRITING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSURANCE_SALES_UNDERWRITING"
+          }
+        },
+        "INSURANCE_UNDERWRITING_PREMIUMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSURANCE_UNDERWRITING_PREMIUMS"
+          }
+        },
+        "INTERNET_AND_NETWORK_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNET_AND_NETWORK_SERVICES"
+          }
+        },
+        "INTRA_COMPANY_PURCHASES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTRA_COMPANY_PURCHASES"
+          }
+        },
+        "LABORATORIES_DENTAL_MEDICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LABORATORIES_DENTAL_MEDICAL"
+          }
+        },
+        "LANDSCAPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LANDSCAPING"
+          }
+        },
+        "LANDSCAPING_AND_HORTICULTURAL_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LANDSCAPING_AND_HORTICULTURAL_SERVICES"
+          }
+        },
+        "LAUNDRY_CLEANING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LAUNDRY_CLEANING_SERVICES"
+          }
+        },
+        "LEGAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL"
+          }
+        },
+        "LEGAL_SERVICES_AND_ATTORNEYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEGAL_SERVICES_AND_ATTORNEYS"
+          }
+        },
+        "LOCAL_DELIVERY_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_DELIVERY_SERVICE"
+          }
+        },
+        "LOCKSMITH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCKSMITH"
+          }
+        },
+        "LODGING_AND_ACCOMMODATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LODGING_AND_ACCOMMODATIONS"
+          }
+        },
+        "LOTTERY_AND_CONTESTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOTTERY_AND_CONTESTS"
+          }
+        },
+        "LUGGAGE_AND_LEATHER_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LUGGAGE_AND_LEATHER_GOODS"
+          }
+        },
+        "LUMBER_AND_BUILDING_MATERIALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LUMBER_AND_BUILDING_MATERIALS"
+          }
+        },
+        "MAGAZINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAGAZINES"
+          }
+        },
+        "MAINTENANCE_AND_REPAIR_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAINTENANCE_AND_REPAIR_SERVICES"
+          }
+        },
+        "MAKEUP_AND_COSMETICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAKEUP_AND_COSMETICS"
+          }
+        },
+        "MANUAL_CASH_DISBURSEMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MANUAL_CASH_DISBURSEMENTS"
+          }
+        },
+        "MASSAGE_PARLORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MASSAGE_PARLORS"
+          }
+        },
+        "MEDICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL"
+          }
+        },
+        "MEDICAL_AND_PHARMACEUTICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_AND_PHARMACEUTICAL"
+          }
+        },
+        "MEDICAL_CARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_CARE"
+          }
+        },
+        "MEDICAL_EQUIPMENT_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_EQUIPMENT_AND_SUPPLIES"
+          }
+        },
+        "MEDICAL_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEDICAL_SERVICES"
+          }
+        },
+        "MEETING_PLANNERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEETING_PLANNERS"
+          }
+        },
+        "MEMBERSHIP_CLUBS_AND_ORGANIZATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBERSHIP_CLUBS_AND_ORGANIZATIONS"
+          }
+        },
+        "MEMBERSHIP_COUNTRY_CLUBS_GOLF": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBERSHIP_COUNTRY_CLUBS_GOLF"
+          }
+        },
+        "MEMORABILIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMORABILIA"
+          }
+        },
+        "MEN_AND_BOY_CLOTHING_AND_ACCESSORY_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEN_AND_BOY_CLOTHING_AND_ACCESSORY_STORES"
+          }
+        },
+        "MEN_CLOTHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEN_CLOTHING"
+          }
+        },
+        "MERCHANDISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MERCHANDISE"
+          }
+        },
+        "METAPHYSICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METAPHYSICAL"
+          }
+        },
+        "MILITARIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MILITARIA"
+          }
+        },
+        "MILITARY_AND_CIVIL_SERVICE_UNIFORMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MILITARY_AND_CIVIL_SERVICE_UNIFORMS"
+          }
+        },
+        "MISC_AUTOMOTIVE_AIRCRAFT_AND_FARM_EQUIPMENT_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISC._AUTOMOTIVE_AIRCRAFT_AND_FARM_EQUIPMENT_DEALERS"
+          }
+        },
+        "MISC_GENERAL_MERCHANDISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISC._GENERAL_MERCHANDISE"
+          }
+        },
+        "MISCELLANEOUS_GENERAL_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISCELLANEOUS_GENERAL_SERVICES"
+          }
+        },
+        "MISCELLANEOUS_REPAIR_SHOPS_AND_RELATED_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MISCELLANEOUS_REPAIR_SHOPS_AND_RELATED_SERVICES"
+          }
+        },
+        "MODEL_KITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODEL_KITS"
+          }
+        },
+        "MONEY_TRANSFER_MEMBER_FINANCIAL_INSTITUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONEY_TRANSFER_MEMBER_FINANCIAL_INSTITUTION"
+          }
+        },
+        "MONEY_TRANSFER_MERCHANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONEY_TRANSFER_MERCHANT"
+          }
+        },
+        "MOTION_PICTURE_THEATERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTION_PICTURE_THEATERS"
+          }
+        },
+        "MOTOR_FREIGHT_CARRIERS_AND_TRUCKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTOR_FREIGHT_CARRIERS_AND_TRUCKING"
+          }
+        },
+        "MOTOR_HOME_AND_RECREATIONAL_VEHICLE_RENTAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTOR_HOME_AND_RECREATIONAL_VEHICLE_RENTAL"
+          }
+        },
+        "MOTOR_HOMES_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTOR_HOMES_DEALERS"
+          }
+        },
+        "MOTOR_VEHICLE_SUPPLIES_AND_NEW_PARTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTOR_VEHICLE_SUPPLIES_AND_NEW_PARTS"
+          }
+        },
+        "MOTORCYCLE_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTORCYCLE_DEALERS"
+          }
+        },
+        "MOTORCYCLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOTORCYCLES"
+          }
+        },
+        "MOVIE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOVIE"
+          }
+        },
+        "MOVIE_TICKETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOVIE_TICKETS"
+          }
+        },
+        "MOVING_AND_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOVING_AND_STORAGE"
+          }
+        },
+        "MULTI_LEVEL_MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTI_LEVEL_MARKETING"
+          }
+        },
+        "MUSIC_CDS_CASSETTES_AND_ALBUMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MUSIC_CDS_CASSETTES_AND_ALBUMS"
+          }
+        },
+        "MUSIC_STORE_INSTRUMENTS_AND_SHEET_MUSIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MUSIC_STORE_INSTRUMENTS_AND_SHEET_MUSIC"
+          }
+        },
+        "NETWORKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORKING"
+          }
+        },
+        "NEW_AGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_AGE"
+          }
+        },
+        "NEW_PARTS_AND_SUPPLIES_MOTOR_VEHICLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEW_PARTS_AND_SUPPLIES_MOTOR_VEHICLE"
+          }
+        },
+        "NEWS_DEALERS_AND_NEWSTANDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEWS_DEALERS_AND_NEWSTANDS"
+          }
+        },
+        "NON_DURABLE_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_DURABLE_GOODS"
+          }
+        },
+        "NON_FICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_FICTION"
+          }
+        },
+        "NON_PROFIT_POLITICAL_AND_RELIGION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_PROFIT_POLITICAL_AND_RELIGION"
+          }
+        },
+        "NONPROFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONPROFIT"
+          }
+        },
+        "NOVELTIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOVELTIES"
+          }
+        },
+        "OEM_SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OEM_SOFTWARE"
+          }
+        },
+        "OFFICE_SUPPLIES_AND_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OFFICE_SUPPLIES_AND_EQUIPMENT"
+          }
+        },
+        "ONLINE_DATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_DATING"
+          }
+        },
+        "ONLINE_GAMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_GAMING"
+          }
+        },
+        "ONLINE_GAMING_CURRENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_GAMING_CURRENCY"
+          }
+        },
+        "ONLINE_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONLINE_SERVICES"
+          }
+        },
+        "OOUTBOUND_TELEMARKETING_MERCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OOUTBOUND_TELEMARKETING_MERCH"
+          }
+        },
+        "OPHTHALMOLOGISTS_OPTOMETRIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPHTHALMOLOGISTS_OPTOMETRIST"
+          }
+        },
+        "OPTICIANS_AND_DISPENSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTICIANS_AND_DISPENSING"
+          }
+        },
+        "ORTHOPEDIC_GOODS_PROSTHETICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORTHOPEDIC_GOODS_PROSTHETICS"
+          }
+        },
+        "OSTEOPATHS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSTEOPATHS"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PACKAGE_TOUR_OPERATORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PACKAGE_TOUR_OPERATORS"
+          }
+        },
+        "PAINTBALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAINTBALL"
+          }
+        },
+        "PAINTS_VARNISHES_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAINTS_VARNISHES_AND_SUPPLIES"
+          }
+        },
+        "PARKING_LOTS_AND_GARAGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARKING_LOTS_AND_GARAGES"
+          }
+        },
+        "PARTS_AND_ACCESSORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTS_AND_ACCESSORIES"
+          }
+        },
+        "PAWN_SHOPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAWN_SHOPS"
+          }
+        },
+        "PAYCHECK_LENDER_OR_CASH_ADVANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYCHECK_LENDER_OR_CASH_ADVANCE"
+          }
+        },
+        "PERIPHERALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERIPHERALS"
+          }
+        },
+        "PERSONALIZED_GIFTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSONALIZED_GIFTS"
+          }
+        },
+        "PET_SHOPS_PET_FOOD_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PET_SHOPS_PET_FOOD_AND_SUPPLIES"
+          }
+        },
+        "PETROLEUM_AND_PETROLEUM_PRODUCTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PETROLEUM_AND_PETROLEUM_PRODUCTS"
+          }
+        },
+        "PETS_AND_ANIMALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PETS_AND_ANIMALS"
+          }
+        },
+        "PHOTOFINISHING_LABORATORIES_PHOTO_DEVELOPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHOTOFINISHING_LABORATORIES_PHOTO_DEVELOPING"
+          }
+        },
+        "PHOTOGRAPHIC_STUDIOS_PORTRAITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHOTOGRAPHIC_STUDIOS_PORTRAITS"
+          }
+        },
+        "PHOTOGRAPHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHOTOGRAPHY"
+          }
+        },
+        "PHYSICAL_GOOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHYSICAL_GOOD"
+          }
+        },
+        "PICTURE_VIDEO_PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PICTURE_VIDEO_PRODUCTION"
+          }
+        },
+        "PIECE_GOODS_NOTIONS_AND_OTHER_DRY_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PIECE_GOODS_NOTIONS_AND_OTHER_DRY_GOODS"
+          }
+        },
+        "PLANTS_AND_SEEDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLANTS_AND_SEEDS"
+          }
+        },
+        "PLUMBING_AND_HEATING_EQUIPMENTS_AND_SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PLUMBING_AND_HEATING_EQUIPMENTS_AND_SUPPLIES"
+          }
+        },
+        "POLICE_RELATED_ITEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLICE_RELATED_ITEMS"
+          }
+        },
+        "POLITICAL_ORGANIZATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLITICAL_ORGANIZATIONS"
+          }
+        },
+        "POSTAL_SERVICES_GOVERNMENT_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTAL_SERVICES_GOVERNMENT_ONLY"
+          }
+        },
+        "POSTERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POSTERS"
+          }
+        },
+        "PREPAID_AND_STORED_VALUE_CARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREPAID_AND_STORED_VALUE_CARDS"
+          }
+        },
+        "PRESCRIPTION_DRUGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRESCRIPTION_DRUGS"
+          }
+        },
+        "PROMOTIONAL_ITEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROMOTIONAL_ITEMS"
+          }
+        },
+        "PUBLIC_WAREHOUSING_AND_STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_WAREHOUSING_AND_STORAGE"
+          }
+        },
+        "PUBLISHING_AND_PRINTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLISHING_AND_PRINTING"
+          }
+        },
+        "PUBLISHING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLISHING_SERVICES"
+          }
+        },
+        "RADAR_DECTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RADAR_DECTORS"
+          }
+        },
+        "RADIO_TELEVISION_AND_STEREO_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RADIO_TELEVISION_AND_STEREO_REPAIR"
+          }
+        },
+        "REAL_ESTATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REAL_ESTATE"
+          }
+        },
+        "REAL_ESTATE_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REAL_ESTATE_AGENT"
+          }
+        },
+        "REAL_ESTATE_AGENTS_AND_MANAGERS_RENTALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REAL_ESTATE_AGENTS_AND_MANAGERS_RENTALS"
+          }
+        },
+        "RELIGION_AND_SPIRITUALITY_FOR_PROFIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELIGION_AND_SPIRITUALITY_FOR_PROFIT"
+          }
+        },
+        "RELIGIOUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELIGIOUS"
+          }
+        },
+        "RELIGIOUS_ORGANIZATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RELIGIOUS_ORGANIZATIONS"
+          }
+        },
+        "REMITTANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REMITTANCE"
+          }
+        },
+        "RENTAL_PROPERTY_MANAGEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RENTAL_PROPERTY_MANAGEMENT"
+          }
+        },
+        "RESIDENTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESIDENTIAL"
+          }
+        },
+        "RETAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETAIL"
+          }
+        },
+        "RETAIL_FINE_JEWELRY_AND_WATCHES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETAIL_FINE_JEWELRY_AND_WATCHES"
+          }
+        },
+        "REUPHOLSTERY_AND_FURNITURE_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REUPHOLSTERY_AND_FURNITURE_REPAIR"
+          }
+        },
+        "RINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RINGS"
+          }
+        },
+        "ROOFING_SIDING_SHEET_METAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROOFING_SIDING_SHEET_METAL"
+          }
+        },
+        "RUGS_AND_CARPETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUGS_AND_CARPETS"
+          }
+        },
+        "SCHOOLS_AND_COLLEGES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHOOLS_AND_COLLEGES"
+          }
+        },
+        "SCIENCE_FICTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCIENCE_FICTION"
+          }
+        },
+        "SCRAPBOOKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCRAPBOOKING"
+          }
+        },
+        "SCULPTURES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCULPTURES"
+          }
+        },
+        "SECURITIES_BROKERS_AND_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITIES_BROKERS_AND_DEALERS"
+          }
+        },
+        "SECURITY_AND_SURVEILLANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY_AND_SURVEILLANCE"
+          }
+        },
+        "SECURITY_AND_SURVEILLANCE_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY_AND_SURVEILLANCE_EQUIPMENT"
+          }
+        },
+        "SECURITY_BROKERS_AND_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY_BROKERS_AND_DEALERS"
+          }
+        },
+        "SEMINARS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEMINARS"
+          }
+        },
+        "SERVICE_STATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE_STATIONS"
+          }
+        },
+        "SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICES"
+          }
+        },
+        "SEWING_NEEDLEWORK_FABRIC_AND_PIECE_GOODS_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEWING_NEEDLEWORK_FABRIC_AND_PIECE_GOODS_STORES"
+          }
+        },
+        "SHIPPING_AND_PACKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING_AND_PACKING"
+          }
+        },
+        "SHOE_REPAIR_HAT_CLEANING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOE_REPAIR_HAT_CLEANING"
+          }
+        },
+        "SHOE_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOE_STORES"
+          }
+        },
+        "SHOES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHOES"
+          }
+        },
+        "SNOWMOBILE_DEALERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SNOWMOBILE_DEALERS"
+          }
+        },
+        "SOFTWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOFTWARE"
+          }
+        },
+        "SPECIALTY_AND_MISC_FOOD_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIALTY_AND_MISC._FOOD_STORES"
+          }
+        },
+        "SPECIALTY_CLEANING_POLISHING_AND_SANITATION_PREPARATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIALTY_CLEANING_POLISHING_AND_SANITATION_PREPARATIONS"
+          }
+        },
+        "SPECIALTY_OR_RARE_PETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPECIALTY_OR_RARE_PETS"
+          }
+        },
+        "SPORT_GAMES_AND_TOYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPORT_GAMES_AND_TOYS"
+          }
+        },
+        "SPORTING_AND_RECREATIONAL_CAMPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPORTING_AND_RECREATIONAL_CAMPS"
+          }
+        },
+        "SPORTING_GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPORTING_GOODS"
+          }
+        },
+        "SPORTS_AND_OUTDOORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPORTS_AND_OUTDOORS"
+          }
+        },
+        "SPORTS_AND_RECREATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SPORTS_AND_RECREATION"
+          }
+        },
+        "STAMP_AND_COIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STAMP_AND_COIN"
+          }
+        },
+        "STATIONARY_PRINTING_AND_WRITING_PAPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATIONARY_PRINTING_AND_WRITING_PAPER"
+          }
+        },
+        "STENOGRAPHIC_AND_SECRETARIAL_SUPPORT_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STENOGRAPHIC_AND_SECRETARIAL_SUPPORT_SERVICES"
+          }
+        },
+        "STOCKS_BONDS_SECURITIES_AND_RELATED_CERTIFICATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOCKS_BONDS_SECURITIES_AND_RELATED_CERTIFICATES"
+          }
+        },
+        "STORED_VALUE_CARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORED_VALUE_CARDS"
+          }
+        },
+        "SUPPLIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUPPLIES"
+          }
+        },
+        "SUPPLIES_AND_TOYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUPPLIES_AND_TOYS"
+          }
+        },
+        "SURVEILLANCE_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SURVEILLANCE_EQUIPMENT"
+          }
+        },
+        "SWIMMING_POOLS_AND_SPAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWIMMING_POOLS_AND_SPAS"
+          }
+        },
+        "SWIMMING_POOLS_SALES_SUPPLIES_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SWIMMING_POOLS_SALES_SUPPLIES_SERVICES"
+          }
+        },
+        "TAILORS_AND_ALTERATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAILORS_AND_ALTERATIONS"
+          }
+        },
+        "TAX_PAYMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAX_PAYMENTS"
+          }
+        },
+        "TAX_PAYMENTS_GOVERNMENT_AGENCIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAX_PAYMENTS_GOVERNMENT_AGENCIES"
+          }
+        },
+        "TAXICABS_AND_LIMOUSINES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TAXICABS_AND_LIMOUSINES"
+          }
+        },
+        "TELECOMMUNICATION_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELECOMMUNICATION_SERVICES"
+          }
+        },
+        "TELEPHONE_CARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONE_CARDS"
+          }
+        },
+        "TELEPHONE_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONE_EQUIPMENT"
+          }
+        },
+        "TELEPHONE_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONE_SERVICES"
+          }
+        },
+        "THEATER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THEATER"
+          }
+        },
+        "TIRE_RETREADING_AND_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIRE_RETREADING_AND_REPAIR"
+          }
+        },
+        "TOLL_OR_BRIDGE_FEES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOLL_OR_BRIDGE_FEES"
+          }
+        },
+        "TOOLS_AND_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOOLS_AND_EQUIPMENT"
+          }
+        },
+        "TOURIST_ATTRACTIONS_AND_EXHIBITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOURIST_ATTRACTIONS_AND_EXHIBITS"
+          }
+        },
+        "TOWING_SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOWING_SERVICE"
+          }
+        },
+        "TOYS_AND_GAMES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TOYS_AND_GAMES"
+          }
+        },
+        "TRADE_AND_VOCATIONAL_SCHOOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRADE_AND_VOCATIONAL_SCHOOLS"
+          }
+        },
+        "TRADEMARK_INFRINGEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRADEMARK_INFRINGEMENT"
+          }
+        },
+        "TRAILER_PARKS_AND_CAMPGROUNDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAILER_PARKS_AND_CAMPGROUNDS"
+          }
+        },
+        "TRAINING_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAINING_SERVICES"
+          }
+        },
+        "TRANSPORTATION_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSPORTATION_SERVICES"
+          }
+        },
+        "TRAVEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRAVEL"
+          }
+        },
+        "TRUCK_AND_UTILITY_TRAILER_RENTALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUCK_AND_UTILITY_TRAILER_RENTALS"
+          }
+        },
+        "TRUCK_STOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRUCK_STOP"
+          }
+        },
+        "TYPESETTING_PLATE_MAKING_AND_RELATED_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPESETTING_PLATE_MAKING_AND_RELATED_SERVICES"
+          }
+        },
+        "USED_MERCHANDISE_AND_SECONDHAND_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USED_MERCHANDISE_AND_SECONDHAND_STORES"
+          }
+        },
+        "USED_PARTS_MOTOR_VEHICLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "USED_PARTS_MOTOR_VEHICLE"
+          }
+        },
+        "UTILITIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UTILITIES"
+          }
+        },
+        "UTILITIES_ELECTRIC_GAS_WATER_SANITARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UTILITIES_ELECTRIC_GAS_WATER_SANITARY"
+          }
+        },
+        "VARIETY_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VARIETY_STORES"
+          }
+        },
+        "VEHICLE_SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_SALES"
+          }
+        },
+        "VEHICLE_SERVICE_AND_ACCESSORIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VEHICLE_SERVICE_AND_ACCESSORIES"
+          }
+        },
+        "VIDEO_EQUIPMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_EQUIPMENT"
+          }
+        },
+        "VIDEO_GAME_ARCADES_ESTABLISH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_GAME_ARCADES_ESTABLISH"
+          }
+        },
+        "VIDEO_GAMES_AND_SYSTEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_GAMES_AND_SYSTEMS"
+          }
+        },
+        "VIDEO_TAPE_RENTAL_STORES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIDEO_TAPE_RENTAL_STORES"
+          }
+        },
+        "VINTAGE_AND_COLLECTIBLE_VEHICLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VINTAGE_AND_COLLECTIBLE_VEHICLES"
+          }
+        },
+        "VINTAGE_AND_COLLECTIBLES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VINTAGE_AND_COLLECTIBLES"
+          }
+        },
+        "VITAMINS_AND_SUPPLEMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VITAMINS_AND_SUPPLEMENTS"
+          }
+        },
+        "VOCATIONAL_AND_TRADE_SCHOOLS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VOCATIONAL_AND_TRADE_SCHOOLS"
+          }
+        },
+        "WATCH_CLOCK_AND_JEWELRY_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WATCH_CLOCK_AND_JEWELRY_REPAIR"
+          }
+        },
+        "WEB_HOSTING_AND_DESIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEB_HOSTING_AND_DESIGN"
+          }
+        },
+        "WELDING_REPAIR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WELDING_REPAIR"
+          }
+        },
+        "WHOLESALE_CLUBS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WHOLESALE_CLUBS"
+          }
+        },
+        "WHOLESALE_FLORIST_SUPPLIERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WHOLESALE_FLORIST_SUPPLIERS"
+          }
+        },
+        "WHOLESALE_PRESCRIPTION_DRUGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WHOLESALE_PRESCRIPTION_DRUGS"
+          }
+        },
+        "WILDLIFE_PRODUCTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WILDLIFE_PRODUCTS"
+          }
+        },
+        "WIRE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WIRE_TRANSFER"
+          }
+        },
+        "WIRE_TRANSFER_AND_MONEY_ORDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WIRE_TRANSFER_AND_MONEY_ORDER"
+          }
+        },
+        "WOMEN_ACCESSORY_SPECIALITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WOMEN_ACCESSORY_SPECIALITY"
+          }
+        },
+        "WOMEN_CLOTHING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WOMEN_CLOTHING"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The product category."
+      }
+    },
+    "com.paypal.catalogs_products_v1#CreateProductRequest": {
+      "type": "structure",
+      "members": {
+        "prefer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "Prefer",
+            "smithy.api#documentation": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>"
+          }
+        },
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 72 hours."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the product. You can specify the SKU for the product. If you omit the ID, the system generates it. System-generated IDs have the `PROD-` prefix."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product description."
+          }
+        },
+        "type": {
+          "target": "com.paypal.catalogs_products_v1#CreateProductRequestType",
+          "traits": {
+            "smithy.api#documentation": "The product type. Indicates whether the product is physical or digital goods, or a service.",
+            "smithy.api#required": {}
+          }
+        },
+        "category": {
+          "target": "com.paypal.catalogs_products_v1#ProductCategory"
+        },
+        "image_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image URL for the product."
+          }
+        },
+        "home_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The home page URL for the product."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.catalogs_products_v1#Product": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the product."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product description."
+          }
+        },
+        "type": {
+          "target": "com.paypal.catalogs_products_v1#ProductType",
+          "traits": {
+            "smithy.api#documentation": "The product type. Indicates whether the product is physical or digital goods, or a service."
+          }
+        },
+        "category": {
+          "target": "com.paypal.catalogs_products_v1#ProductCategory"
+        },
+        "image_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image URL for the product."
+          }
+        },
+        "home_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The home page URL for the product."
+          }
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the product was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "update_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the product was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "links": {
+          "target": "com.paypal.catalogs_products_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The product details."
+      }
+    },
+    "com.paypal.catalogs_products_v1#ProductType": {
+      "type": "enum",
+      "members": {
+        "PHYSICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHYSICAL"
+          }
+        },
+        "DIGITAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIGITAL"
+          }
+        },
+        "SERVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The product type. Indicates whether the product is physical or digital goods, or a service."
+      }
+    },
+    "com.paypal.catalogs_products_v1#CreateProduct": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.catalogs_products_v1#CreateProductRequest"
+      },
+      "output": {
+        "target": "com.paypal.catalogs_products_v1#Product"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.catalogs_products_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/catalogs/products",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create product\n\nCreates a product."
+      }
+    },
+    "com.paypal.catalogs_products_v1#GetProductRequest": {
+      "type": "structure",
+      "members": {
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The product ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.catalogs_products_v1#GetProduct": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.catalogs_products_v1#GetProductRequest"
+      },
+      "output": {
+        "target": "com.paypal.catalogs_products_v1#Product"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.catalogs_products_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/catalogs/products/{product_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show product details\n\nShows details for a product, by ID."
+      }
+    },
+    "com.paypal.catalogs_products_v1#PatchRequest": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.catalogs_products_v1#Patch"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of JSON patch objects to apply partial updates to resources."
+      }
+    },
+    "com.paypal.catalogs_products_v1#Patch": {
+      "type": "structure",
+      "members": {
+        "op": {
+          "target": "com.paypal.catalogs_products_v1#PatchOp",
+          "traits": {
+            "smithy.api#documentation": "The operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location at which to complete the operation."
+          }
+        },
+        "value": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The value to apply. The <code>remove</code> operation does not require a value.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The JSON patch object to apply partial updates to resources."
+      }
+    },
+    "com.paypal.catalogs_products_v1#PatchOp": {
+      "type": "enum",
+      "members": {
+        "ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "add"
+          }
+        },
+        "REMOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remove"
+          }
+        },
+        "REPLACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "replace"
+          }
+        },
+        "MOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "move"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "copy"
+          }
+        },
+        "TEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation."
+      }
+    },
+    "com.paypal.catalogs_products_v1#PatchProductRequest": {
+      "type": "structure",
+      "members": {
+        "product_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The product ID."
+          }
+        },
+        "body": {
+          "target": "com.paypal.catalogs_products_v1#PatchRequest",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.catalogs_products_v1#PatchProduct": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.catalogs_products_v1#PatchProductRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.catalogs_products_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#Forbidden"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#NotFound"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/v1/catalogs/products/{product_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update product\n\nUpdates a product, by ID. You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>add, replace, remove</td></tr><tr><td><code>category</code></td><td>add, replace, remove</td></tr><tr><td><code>image_url</code></td><td>add, replace, remove</td></tr><tr><td><code>home_url</code></td><td>add, replace, remove</td></tr></tbody></table>"
+      }
+    },
+    "com.paypal.catalogs_products_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.catalogs_products_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.catalogs_products_v1#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.paypal.catalogs_products_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.paypal.catalogs_products_v1#CatalogsProductsV1": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.paypal.catalogs_products_v1#ListProducts"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#CreateProduct"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#GetProduct"
+        },
+        {
+          "target": "com.paypal.catalogs_products_v1#PatchProduct"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Catalog Products",
+        "smithy.api#documentation": "Merchants can use the Catalog Products API to create products, which are goods and services."
+      }
+    }
+  }
+}

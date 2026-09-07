@@ -1,0 +1,4114 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.paypal.invoicing_v2#ListInvoicesRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The maximum number of templates to return in the response."
+          }
+        },
+        "total_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "total_required",
+            "smithy.api#documentation": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response."
+          }
+        },
+        "fields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fields",
+            "smithy.api#documentation": "The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#Invoices": {
+      "type": "structure",
+      "members": {
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages that are available for the search criteria. <blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of total_pages is constant. The value MAY change from one request to the next</blockquote>"
+          }
+        },
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of invoices that match the search criteria.<blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of <code>total_items</code> is constant. The value MAY change from one request to the next.</blockquote>"
+          }
+        },
+        "items": {
+          "target": "com.paypal.invoicing_v2#InvoiceList"
+        },
+        "links": {
+          "target": "com.paypal.invoicing_v2#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#Invoice"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of invoices that match the search criteria."
+      }
+    },
+    "com.paypal.invoicing_v2#Invoice": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the invoice."
+          }
+        },
+        "parent_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The parent ID to an invoice that defines the group invoice to which the invoice is related."
+          }
+        },
+        "status": {
+          "target": "com.paypal.invoicing_v2#InvoiceStatus"
+        },
+        "detail": {
+          "target": "com.paypal.invoicing_v2#InvoiceDetail",
+          "traits": {
+            "smithy.api#documentation": "The details of the invoice. Includes the invoice number, date, payment terms, and audit metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "invoicer": {
+          "target": "com.paypal.invoicing_v2#InvoicerInfo",
+          "traits": {
+            "smithy.api#documentation": "The invoicer information. Includes the business name, email, address, phone, fax, tax ID, additional notes, and logo URL."
+          }
+        },
+        "primary_recipients": {
+          "target": "com.paypal.invoicing_v2#RecipientInfoList"
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        },
+        "items": {
+          "target": "com.paypal.invoicing_v2#ItemList"
+        },
+        "configuration": {
+          "target": "com.paypal.invoicing_v2#Configuration",
+          "traits": {
+            "smithy.api#documentation": "The invoice configuration details. Includes partial payment, tip, and tax calculated after discount."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#AmountSummaryDetail",
+          "traits": {
+            "smithy.api#documentation": "The invoice amount summary of item total, discount, tax total and shipping.."
+          }
+        },
+        "due_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The due amount, which is the balance amount outstanding after payments."
+          }
+        },
+        "gratuity": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount paid by the payer as gratuity to the invoicer."
+          }
+        },
+        "payments": {
+          "target": "com.paypal.invoicing_v2#Payments",
+          "traits": {
+            "smithy.api#documentation": "List of payments registered against the invoice.."
+          }
+        },
+        "refunds": {
+          "target": "com.paypal.invoicing_v2#Refunds",
+          "traits": {
+            "smithy.api#documentation": "List of refunds against this invoice. The invoicing refund details includes refund type, date, amount, and method."
+          }
+        },
+        "links": {
+          "target": "com.paypal.invoicing_v2#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoice details which includes all information of the invoice like items, billing information."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceStatus": {
+      "type": "enum",
+      "members": {
+        "DRAFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DRAFT"
+          }
+        },
+        "SENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SENT"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULED"
+          }
+        },
+        "PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAID"
+          }
+        },
+        "MARKED_AS_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MARKED_AS_PAID"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUNDED"
+          }
+        },
+        "PARTIALLY_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIALLY_PAID"
+          }
+        },
+        "PARTIALLY_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTIALLY_REFUNDED"
+          }
+        },
+        "MARKED_AS_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MARKED_AS_REFUNDED"
+          }
+        },
+        "UNPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNPAID"
+          }
+        },
+        "PAYMENT_PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYMENT_PENDING"
+          }
+        },
+        "AUTO_CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTO_CANCELLED"
+          }
+        },
+        "PAID_EXTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAID_EXTERNAL"
+          }
+        },
+        "REFUNDED_EXTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUNDED_EXTERNAL"
+          }
+        },
+        "SHARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHARED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceDetail": {
+      "type": "structure",
+      "members": {
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference data. Includes a Purchase Order (PO) number."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the invoice recipient. Also appears on the invoice notification email."
+          }
+        },
+        "terms_and_conditions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The general terms of the invoice. Can include return or cancellation policy and other terms and conditions."
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A private bookkeeping memo for the user."
+          }
+        },
+        "attachments": {
+          "target": "com.paypal.invoicing_v2#FileReferenceList"
+        },
+        "invoice_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice number. Default is the number that is auto-incremented number from the last number."
+          }
+        },
+        "invoice_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice date as specificed by the sender, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Only UTC is supported in response. For example, *yyyy*-*MM*-*dd*T*z*."
+          }
+        },
+        "payment_term": {
+          "target": "com.paypal.invoicing_v2#InvoicePaymentTerm",
+          "traits": {
+            "smithy.api#documentation": "The payment due date for the invoice. Value is either but not both <code>term_type</code> or <code>due_date</code>."
+          }
+        },
+        "metadata": {
+          "target": "com.paypal.invoicing_v2#Metadata",
+          "traits": {
+            "smithy.api#documentation": "The audit metadata. Captures all invoicing actions on create, send, update, and cancel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the invoice. Includes invoice number, date, payment terms, and audit metadata."
+      }
+    },
+    "com.paypal.invoicing_v2#FileReferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#FileReference"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of PayPal IDs for the files that are attached to an invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#FileReference": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the referenced file."
+          }
+        },
+        "reference_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference URL for the file."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [Internet Assigned Numbers Authority (IANA) media type of the file](https://www.iana.org/assignments/media-types/media-types.xhtml)."
+          }
+        },
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the file was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The size of the file, in bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The file reference. Can be a file in PayPal MediaServ, PayPal DMS, or other custom store."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicePaymentTerm": {
+      "type": "structure",
+      "members": {
+        "term_type": {
+          "target": "com.paypal.invoicing_v2#PaymentTermType",
+          "traits": {
+            "smithy.api#documentation": "The payment term. Payment can be due upon receipt, a specified date, or in a set number of days."
+          }
+        },
+        "due_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the invoice payment is due, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd*T*z*."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment term of the invoice. Payment can be due upon receipt, a specified date, or in a set number of days."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentTermType": {
+      "type": "enum",
+      "members": {
+        "DUE_ON_RECEIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DUE_ON_RECEIPT"
+          }
+        },
+        "DUE_ON_DATE_SPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DUE_ON_DATE_SPECIFIED"
+          }
+        },
+        "NET_10": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NET_10"
+          }
+        },
+        "NET_15": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NET_15"
+          }
+        },
+        "NET_30": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NET_30"
+          }
+        },
+        "NET_45": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NET_45"
+          }
+        },
+        "NET_60": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NET_60"
+          }
+        },
+        "NET_90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NET_90"
+          }
+        },
+        "NO_DUE_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NO_DUE_DATE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment term. Payment can be due upon receipt, a specified date, or in a set number of days."
+      }
+    },
+    "com.paypal.invoicing_v2#Metadata": {
+      "type": "structure",
+      "members": {
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the account that created the resource."
+          }
+        },
+        "last_update_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was last edited, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_updated_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the account that last edited the resource."
+          }
+        },
+        "cancel_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was canceled, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "cancelled_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The actor who canceled the resource."
+          }
+        },
+        "first_sent_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was first sent, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_sent_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was last sent, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_sent_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the account that last sent the resource."
+          }
+        },
+        "created_by_flow": {
+          "target": "com.paypal.invoicing_v2#InvoiceCreationFlow",
+          "traits": {
+            "smithy.api#documentation": "The flow variation that created this invoice."
+          }
+        },
+        "recipient_view_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL for the invoice payer view hosted on paypal.com."
+          }
+        },
+        "invoicer_view_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL for the invoice merchant view hosted on paypal.com."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The audit metadata. Captures all invoicing actions on create, send, update, and cancel."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceCreationFlow": {
+      "type": "enum",
+      "members": {
+        "MULTIPLE_RECIPIENTS_GROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIPLE_RECIPIENTS_GROUP"
+          }
+        },
+        "BATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BATCH"
+          }
+        },
+        "REGULAR_SINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REGULAR_SINGLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The frequency at which the invoice is sent:<ul><li>Multiple recipient. Sent to multiple recipients.</li><li>Batch. Sent in a batch.</li><li>Regular single. Sent one time to a single recipient.</li></ul>"
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicerInfo": {
+      "type": "structure",
+      "members": {
+        "business_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The business name of the party."
+          }
+        },
+        "name": {
+          "target": "com.paypal.invoicing_v2#Name",
+          "traits": {
+            "smithy.api#documentation": "The first and Last name of the recipient."
+          }
+        },
+        "address": {
+          "target": "com.paypal.invoicing_v2#AddressPortable",
+          "traits": {
+            "smithy.api#documentation": "The address of the recipient."
+          }
+        },
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoicer email address, which must be listed in the user's PayPal profile. If you omit this value, notifications are sent from and to the primary email address but do not appear on the invoice."
+          }
+        },
+        "phones": {
+          "target": "com.paypal.invoicing_v2#PhoneDetailList"
+        },
+        "website": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoicer's website."
+          }
+        },
+        "tax_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoicer's tax ID."
+          }
+        },
+        "additional_notes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any additional information. Includes business hours."
+          }
+        },
+        "logo_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full URL to an external logo image. The logo image must not be larger than 250 pixels wide by 90 pixels high."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoicer business information that appears on the invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#Name": {
+      "type": "structure",
+      "members": {
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix, or title, to the party's name."
+          }
+        },
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        },
+        "middle_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The suffix for the party's name."
+          }
+        },
+        "alternate_full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business."
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.invoicing_v2#AddressPortable": {
+      "type": "structure",
+      "members": {
+        "address_line_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address."
+          }
+        },
+        "address_line_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The second line of the address. For example, suite or apartment number."
+          }
+        },
+        "address_line_3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as `next to Walmart`, or a landmark in an Indian address."
+          }
+        },
+        "admin_area_4": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained administrative levels in China.</li></ul>"
+          }
+        },
+        "admin_area_3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil. Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not always available but a sub-locality or district can be a very small area.</li></ul>"
+          }
+        },
+        "admin_area_2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A city, town, or village. Smaller than `admin_area_level_1`."
+          }
+        },
+        "admin_area_1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul>"
+          }
+        },
+        "postal_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+          }
+        },
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "address_details": {
+          "target": "com.paypal.invoicing_v2#AddressDetails"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
+      }
+    },
+    "com.paypal.invoicing_v2#AddressDetails": {
+      "type": "structure",
+      "members": {
+        "street_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street number."
+          }
+        },
+        "street_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street name. Just `Drury` in `Drury Lane`."
+          }
+        },
+        "street_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The street type. For example, avenue, boulevard, road, or expressway."
+          }
+        },
+        "delivery_service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The delivery service. Post office box, bag number, or post office name."
+          }
+        },
+        "building_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A named locations that represents the premise. Usually a building name or number or collection of buildings with a common name or number. For example, <code>Craven House</code>."
+          }
+        },
+        "sub_building": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first-order entity below a named building or location that represents the sub-premises. Usually a single building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios where fine-grain address information might be needed. Not portable with common third party and open source. Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`."
+      }
+    },
+    "com.paypal.invoicing_v2#PhoneDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#PhoneDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoicer's phone numbers. The invoicer can choose to hide the phone number on the invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#PhoneDetail": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "extension_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extension number."
+          }
+        },
+        "phone_type": {
+          "target": "com.paypal.invoicing_v2#PhoneType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone details. Includes the phone number and type."
+      }
+    },
+    "com.paypal.invoicing_v2#PhoneType": {
+      "type": "enum",
+      "members": {
+        "FAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAX"
+          }
+        },
+        "HOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOME"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        },
+        "PAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAGER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone type."
+      }
+    },
+    "com.paypal.invoicing_v2#RecipientInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#RecipientInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing and shipping information. Includes name, email, address, phone and language."
+      }
+    },
+    "com.paypal.invoicing_v2#RecipientInfo": {
+      "type": "structure",
+      "members": {
+        "billing_info": {
+          "target": "com.paypal.invoicing_v2#BillingInfo",
+          "traits": {
+            "smithy.api#documentation": "The billing information for the invoice recipient. Includes name, address, email, phone, and language."
+          }
+        },
+        "shipping_info": {
+          "target": "com.paypal.invoicing_v2#ContactNameAddress",
+          "traits": {
+            "smithy.api#documentation": "The recipient's shipping information. Includes the user's contact information, which includes name and address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing and shipping information. Includes name, email, address, phone, and language."
+      }
+    },
+    "com.paypal.invoicing_v2#BillingInfo": {
+      "type": "structure",
+      "members": {
+        "business_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The business name of the party."
+          }
+        },
+        "name": {
+          "target": "com.paypal.invoicing_v2#Name",
+          "traits": {
+            "smithy.api#documentation": "The first and Last name of the recipient."
+          }
+        },
+        "address": {
+          "target": "com.paypal.invoicing_v2#AddressPortable",
+          "traits": {
+            "smithy.api#documentation": "The address of the recipient."
+          }
+        },
+        "email_address": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice recipient email address. If you omit this value, the invoice is payable and a notification email is not sent."
+          }
+        },
+        "phones": {
+          "target": "com.paypal.invoicing_v2#DefinitionsPhoneDetailList"
+        },
+        "additional_info": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any additional information about the recipient."
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language in which to show the invoice recipient's email message. Used only when the recipient does not have a PayPal account. If you omit the language and the recipient does not have a PayPal account, the email message is sent in the language of the merchant's PayPal account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing information of the invoice recipient. Includes name, address, email, phone, and language."
+      }
+    },
+    "com.paypal.invoicing_v2#DefinitionsPhoneDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#PhoneDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoice recipient's phone numbers. Extension number is not supported."
+      }
+    },
+    "com.paypal.invoicing_v2#ContactNameAddress": {
+      "type": "structure",
+      "members": {
+        "business_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The business name of the party."
+          }
+        },
+        "name": {
+          "target": "com.paypal.invoicing_v2#Name",
+          "traits": {
+            "smithy.api#documentation": "The first and Last name of the recipient."
+          }
+        },
+        "address": {
+          "target": "com.paypal.invoicing_v2#AddressPortable",
+          "traits": {
+            "smithy.api#documentation": "The address of the recipient."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The contact information of the user. Includes name and address."
+      }
+    },
+    "com.paypal.invoicing_v2#EmailAddressList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of one or more CC: emails to which notifications are sent. If you omit this parameter, a notification is sent to all CC: email addresses that are part of the invoice.<blockquote><strong>Note:</strong> Valid values are email addresses in the `additional_recipients` value associated with the invoice.</blockquote>"
+      }
+    },
+    "com.paypal.invoicing_v2#ItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoice line item information."
+      }
+    },
+    "com.paypal.invoicing_v2#Item": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the invoice line item."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item name for the invoice line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item description for the invoice line item."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the item that the invoicer provides to the payer. Value is from `-1000000` to `1000000`. Supports up to five decimal places.",
+            "smithy.api#required": {}
+          }
+        },
+        "unit_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The unit price of the item. This does not include tax and discount. Value is from `-1000000` to `1000000`. Supports up to two decimal places.",
+            "smithy.api#required": {}
+          }
+        },
+        "tax": {
+          "target": "com.paypal.invoicing_v2#Tax",
+          "traits": {
+            "smithy.api#documentation": "The tax associated with the item. The tax amount is added to the item total. Value is from `0` to `100`. Supports up to five decimal places."
+          }
+        },
+        "item_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the item or service was provided, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd*T*z*."
+          }
+        },
+        "discount": {
+          "target": "com.paypal.invoicing_v2#Discount",
+          "traits": {
+            "smithy.api#documentation": "Discount as a percent or amount at invoice level. The invoice discount amount is subtracted from the item total."
+          }
+        },
+        "unit_of_measure": {
+          "target": "com.paypal.invoicing_v2#UnitOfMeasure",
+          "traits": {
+            "smithy.api#documentation": "The unit of measure for the invoiced item. For `AMOUNT` the `unit_amount` and `quantity` are not shown on the invoice.<blockquote><strong>Note:</strong> If your specify different `unit_of_measure` values for the same invoice, the invoice uses the first value.</blockquote>"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoice line item information. The maximum items for an invoice is `100`."
+      }
+    },
+    "com.paypal.invoicing_v2#Money": {
+      "type": "structure",
+      "members": {
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency and amount for a financial transaction, such as a balance or payment due."
+      }
+    },
+    "com.paypal.invoicing_v2#Tax": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the tax applied on the invoice items.",
+            "smithy.api#required": {}
+          }
+        },
+        "percent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tax rate. Value is from `0` to `100`. Supports up to five decimal places.",
+            "smithy.api#required": {}
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The calculated tax amount. The tax amount is added to the item total."
+          }
+        },
+        "tax_note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tax note used to track the tax related data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tax information. Includes the tax name and tax rate of invoice items. The tax amount is added to the item total."
+      }
+    },
+    "com.paypal.invoicing_v2#Discount": {
+      "type": "structure",
+      "members": {
+        "percent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The discount as a percentage value. Value is from `0` to `100`. Supports up to five decimal places."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The invoice level discount amount. Value is from `0` to `1000000`. Supports up to two decimal places."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The discount as a percent or amount at invoice level. The invoice discount amount is subtracted from the item total."
+      }
+    },
+    "com.paypal.invoicing_v2#UnitOfMeasure": {
+      "type": "enum",
+      "members": {
+        "QUANTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUANTITY"
+          }
+        },
+        "HOURS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HOURS"
+          }
+        },
+        "AMOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMOUNT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The unit of measure for the invoiced item."
+      }
+    },
+    "com.paypal.invoicing_v2#Configuration": {
+      "type": "structure",
+      "members": {
+        "tax_calculated_after_discount": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the tax is calculated before or after a discount. If `false`, the tax is calculated before a discount. If `true`, the tax is calculated after a discount."
+          }
+        },
+        "tax_inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the unit price includes tax."
+          }
+        },
+        "allow_tip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the invoice enables the customer to enter a tip amount during payment. If `true`, the invoice shows a tip amount field so that the customer can enter a tip amount. If `false`, the invoice does not show a tip amount field.<blockquote><strong>Note:</strong> This feature is not available for users in `Hong Kong`, `Taiwan`, `India`, or `Japan`.</blockquote>"
+          }
+        },
+        "partial_payment": {
+          "target": "com.paypal.invoicing_v2#PartialPayment",
+          "traits": {
+            "smithy.api#documentation": "The partial payment details. Includes the minimum amount that the invoicer wants the payer to pay."
+          }
+        },
+        "has_conditional_rule": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether conditional pricing rules are applied to the invoice. If `true`, pricing rules (such as discounts or surcharges based on specific conditions) are applied. If `false`, no conditional pricing rules are applied."
+          }
+        },
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The template ID. The template determines the layout of the invoice. Includes which fields to show and hide.<blockquote><strong>Note:</strong> This is an optional field. If you wish to customize the invoice layout using a specific template, provide a valid template ID here. You can either use an existing template ID or create a new template via the create template API and then use the newly created template's ID.</blockquote>"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoice configuration details. Includes partial payment, tip, and tax calculated after discount."
+      }
+    },
+    "com.paypal.invoicing_v2#PartialPayment": {
+      "type": "structure",
+      "members": {
+        "allow_partial_payment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the invoice allows a partial payment. If `false`, the invoice must be paid in full. If `true`, the invoice allows partial payments.<blockquote><strong>Note:</strong> This feature is not available for users in `India`, `Brazil`, or `Israel`.</blockquote>"
+          }
+        },
+        "minimum_amount_due": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The minimum amount allowed for a partial payment. Valid only when `allow_partial_payment` is `true`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The partial payment details. Includes the minimum amount that the invoicer expects from the payer."
+      }
+    },
+    "com.paypal.invoicing_v2#AmountSummaryDetail": {
+      "type": "structure",
+      "members": {
+        "currency_code": {
+          "target": "smithy.api#String"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/integration/direct/rest/currency-codes/)."
+          }
+        },
+        "breakdown": {
+          "target": "com.paypal.invoicing_v2#AmountWithBreakdown",
+          "traits": {
+            "smithy.api#documentation": "The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, custom amount, shipping and discounts, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoice amount summary of item total, discount, tax total, and shipping."
+      }
+    },
+    "com.paypal.invoicing_v2#AmountWithBreakdown": {
+      "type": "structure",
+      "members": {
+        "item_total": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The subtotal for all items. Must equal the sum of (`items[].unit_amount` * `items[].quantity`) for all items."
+          }
+        },
+        "discount": {
+          "target": "com.paypal.invoicing_v2#AggregatedDiscount",
+          "traits": {
+            "smithy.api#documentation": "The discount can be at the item or invoice level, or both. Can be applied as a percent or amount. If you provide both amount and percent, amount takes precedent."
+          }
+        },
+        "tax_total": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The aggregated amount of the item and shipping taxes."
+          }
+        },
+        "shipping": {
+          "target": "com.paypal.invoicing_v2#ShippingCost",
+          "traits": {
+            "smithy.api#documentation": "The shipping fee for all items. Includes tax on shipping."
+          }
+        },
+        "custom": {
+          "target": "com.paypal.invoicing_v2#CustomAmount",
+          "traits": {
+            "smithy.api#documentation": "The custom amount to apply to an invoice. If you include a label, you must include the custom amount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The breakdown of the amount. Includes total item amount, total tax amount, custom amount, and shipping and discounts, if any."
+      }
+    },
+    "com.paypal.invoicing_v2#AggregatedDiscount": {
+      "type": "structure",
+      "members": {
+        "invoice_discount": {
+          "target": "com.paypal.invoicing_v2#Discount",
+          "traits": {
+            "smithy.api#documentation": "The discount as a percent or amount at invoice level. The invoice discount amount is subtracted from the item total."
+          }
+        },
+        "item_discount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The discount as a percent or amount at item level. The item discount amount is subtracted from each item amount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The discount. Can be an item- or invoice-level discount, or both. Can be applied as a percent or amount. If you provide both amount and percent, amount takes precedent."
+      }
+    },
+    "com.paypal.invoicing_v2#ShippingCost": {
+      "type": "structure",
+      "members": {
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The shipping amount. Value is from `0` to `1000000`. Supports up to two decimal places."
+          }
+        },
+        "tax": {
+          "target": "com.paypal.invoicing_v2#Tax",
+          "traits": {
+            "smithy.api#documentation": "The tax associated with the shipping."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The shipping fee for all items. Includes tax on shipping."
+      }
+    },
+    "com.paypal.invoicing_v2#CustomAmount": {
+      "type": "structure",
+      "members": {
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label to the custom amount of the invoice.",
+            "smithy.api#required": {}
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The custom amount value. Value is from `-1000000` to `1000000`. Supports up to two decimal places."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The custom amount to apply to an invoice. If you include a label, you must include a custom amount."
+      }
+    },
+    "com.paypal.invoicing_v2#Payments": {
+      "type": "structure",
+      "members": {
+        "paid_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The aggregated payment amounts against this invoice."
+          }
+        },
+        "transactions": {
+          "target": "com.paypal.invoicing_v2#PaymentDetailList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of payments registered against the invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#PaymentDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of payment details for the invoice. The payment details of the invoice like payment type, method, date, discount and transaction type."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentDetail": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.paypal.invoicing_v2#PaymentType",
+          "traits": {
+            "smithy.api#documentation": "The payment type in an invoicing flow which can be PayPal or an external cash or check payment."
+          }
+        },
+        "payment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type."
+          }
+        },
+        "payment_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the invoice was paid, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd* *z*."
+          }
+        },
+        "method": {
+          "target": "com.paypal.invoicing_v2#PaymentMethod",
+          "traits": {
+            "smithy.api#documentation": "The payment mode or method through which the invoicer can accept the payment.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note associated with an external cash or check payment."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The payment amount to record against the invoice. If you omit this parameter, the total invoice amount is marked as paid. This amount cannot exceed the amount due."
+          }
+        },
+        "shipping_info": {
+          "target": "com.paypal.invoicing_v2#ContactNameAddress",
+          "traits": {
+            "smithy.api#documentation": "The recipient's shipping information. Includes the user's contact information, which includes name and address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment details of the invoice. Includes payment type, method, date, discount, and transaction type."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentType": {
+      "type": "enum",
+      "members": {
+        "PAYPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL"
+          }
+        },
+        "EXTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTERNAL"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment type. Can be PayPal or an external payment. Includes cash or a check."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentMethod": {
+      "type": "enum",
+      "members": {
+        "BANK_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BANK_TRANSFER"
+          }
+        },
+        "CASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CASH"
+          }
+        },
+        "CHECK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHECK"
+          }
+        },
+        "CREDIT_CARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREDIT_CARD"
+          }
+        },
+        "DEBIT_CARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEBIT_CARD"
+          }
+        },
+        "PAYPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL"
+          }
+        },
+        "WIRE_TRANSFER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WIRE_TRANSFER"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OTHER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment mode or method through which the invoicer can accept the payments."
+      }
+    },
+    "com.paypal.invoicing_v2#Refunds": {
+      "type": "structure",
+      "members": {
+        "refund_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The aggregated refund amounts."
+          }
+        },
+        "transactions": {
+          "target": "com.paypal.invoicing_v2#RefundDetailList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoicing refund details. Includes the refund type, date, amount, and method."
+      }
+    },
+    "com.paypal.invoicing_v2#RefundDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#RefundDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of refund details for the invoice. Includes the refund type, date, amount, and method."
+      }
+    },
+    "com.paypal.invoicing_v2#RefundDetail": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.paypal.invoicing_v2#PaymentType",
+          "traits": {
+            "smithy.api#documentation": "The PayPal refund type. Indicates whether the refund was paid through PayPal or externally in the invoicing flow. The record refund method supports the `EXTERNAL` refund type. The `PAYPAL` refund type is supported for backward compatibility."
+          }
+        },
+        "refund_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type."
+          }
+        },
+        "refund_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the invoice was refunded, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, `2014-02-27`."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount to record as refunded. If you omit the amount, the total invoice paid amount is recorded as refunded."
+          }
+        },
+        "method": {
+          "target": "com.paypal.invoicing_v2#PaymentMethod",
+          "traits": {
+            "smithy.api#documentation": "The payment mode or method through which the invoicer can accept the payments.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The refund details of the invoice. Includes the refund type, date, amount, and method."
+      }
+    },
+    "com.paypal.invoicing_v2#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.invoicing_v2#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.invoicing_v2#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.invoicing_v2#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.invoicing_v2#ListInvoices": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#ListInvoicesRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Invoices"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/invoicing/invoices",
+          "code": 200
+        },
+        "smithy.api#documentation": "List invoices\n\nLists invoices. To filter the invoices that appear in the response, you can specify one or more optional query parameters."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceDetailInput": {
+      "type": "structure",
+      "members": {
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference data. Includes a Purchase Order (PO) number."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the invoice recipient. Also appears on the invoice notification email."
+          }
+        },
+        "terms_and_conditions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The general terms of the invoice. Can include return or cancellation policy and other terms and conditions."
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A private bookkeeping memo for the user."
+          }
+        },
+        "attachments": {
+          "target": "com.paypal.invoicing_v2#FileReferenceList"
+        },
+        "invoice_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice number. Default is the number that is auto-incremented number from the last number."
+          }
+        },
+        "invoice_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice date as specificed by the sender, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Only UTC is supported in response. For example, *yyyy*-*MM*-*dd*T*z*."
+          }
+        },
+        "payment_term": {
+          "target": "com.paypal.invoicing_v2#InvoicePaymentTerm",
+          "traits": {
+            "smithy.api#documentation": "The payment due date for the invoice. Value is either but not both <code>term_type</code> or <code>due_date</code>."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of the invoice. Includes invoice number, date, payment terms, and audit metadata."
+      }
+    },
+    "com.paypal.invoicing_v2#ItemListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#ItemInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoice line item information."
+      }
+    },
+    "com.paypal.invoicing_v2#ItemInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item name for the invoice line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The item description for the invoice line item."
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quantity of the item that the invoicer provides to the payer. Value is from `-1000000` to `1000000`. Supports up to five decimal places.",
+            "smithy.api#required": {}
+          }
+        },
+        "unit_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The unit price of the item. This does not include tax and discount. Value is from `-1000000` to `1000000`. Supports up to two decimal places.",
+            "smithy.api#required": {}
+          }
+        },
+        "tax": {
+          "target": "com.paypal.invoicing_v2#Tax",
+          "traits": {
+            "smithy.api#documentation": "The tax associated with the item. The tax amount is added to the item total. Value is from `0` to `100`. Supports up to five decimal places."
+          }
+        },
+        "item_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the item or service was provided, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd*T*z*."
+          }
+        },
+        "discount": {
+          "target": "com.paypal.invoicing_v2#Discount",
+          "traits": {
+            "smithy.api#documentation": "Discount as a percent or amount at invoice level. The invoice discount amount is subtracted from the item total."
+          }
+        },
+        "unit_of_measure": {
+          "target": "com.paypal.invoicing_v2#UnitOfMeasure",
+          "traits": {
+            "smithy.api#documentation": "The unit of measure for the invoiced item. For `AMOUNT` the `unit_amount` and `quantity` are not shown on the invoice.<blockquote><strong>Note:</strong> If your specify different `unit_of_measure` values for the same invoice, the invoice uses the first value.</blockquote>"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoice line item information. The maximum items for an invoice is `100`."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentsInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "An array of payments registered against the invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#RefundsInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The invoicing refund details. Includes the refund type, date, amount, and method."
+      }
+    },
+    "com.paypal.invoicing_v2#CreateInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "detail": {
+          "target": "com.paypal.invoicing_v2#InvoiceDetailInput",
+          "traits": {
+            "smithy.api#documentation": "The details of the invoice. Includes the invoice number, date, payment terms, and audit metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "invoicer": {
+          "target": "com.paypal.invoicing_v2#InvoicerInfo",
+          "traits": {
+            "smithy.api#documentation": "The invoicer information. Includes the business name, email, address, phone, fax, tax ID, additional notes, and logo URL."
+          }
+        },
+        "primary_recipients": {
+          "target": "com.paypal.invoicing_v2#RecipientInfoList"
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        },
+        "items": {
+          "target": "com.paypal.invoicing_v2#ItemListInput"
+        },
+        "configuration": {
+          "target": "com.paypal.invoicing_v2#Configuration",
+          "traits": {
+            "smithy.api#documentation": "The invoice configuration details. Includes partial payment, tip, and tax calculated after discount."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#AmountSummaryDetail",
+          "traits": {
+            "smithy.api#documentation": "The invoice amount summary of item total, discount, tax total and shipping.."
+          }
+        },
+        "payments": {
+          "target": "com.paypal.invoicing_v2#PaymentsInput",
+          "traits": {
+            "smithy.api#documentation": "List of payments registered against the invoice.."
+          }
+        },
+        "refunds": {
+          "target": "com.paypal.invoicing_v2#RefundsInput",
+          "traits": {
+            "smithy.api#documentation": "List of refunds against this invoice. The invoicing refund details includes refund type, date, amount, and method."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#CreateInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#CreateInvoiceRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Invoice"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create draft invoice\n\nCreates a draft invoice. To move the invoice from a draft to payable state, you must <a href=\"#invoices_send\">send the invoice</a>.<br/><br/>In the JSON request body, include invoice details including merchant information. The <code>invoice</code> object must include an <code>items</code> array.<blockquote><strong>Note:</strong> The merchant that you specify in an invoice must have a PayPal account in good standing.</blockquote>."
+      }
+    },
+    "com.paypal.invoicing_v2#SendInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote>"
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote>"
+          }
+        },
+        "send_to_invoicer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to send a copy of the email to the merchant."
+          }
+        },
+        "send_to_recipient": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to send a copy of the email to the recipient."
+          }
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#SendInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#SendInvoiceRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#LinkDescription"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/send",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send invoice\n\nSends or schedules an invoice, by ID, to be sent to a customer. The action depends on the invoice issue date:<ul><li>If the invoice issue date is current or in the past, sends the invoice immediately.</li><li>If the invoice issue date is in the future, schedules the invoice to be sent on that date.</li></ul>To suppress the merchant's email notification, set the `send_to_invoicer` body parameter to `false`. To send the invoice through a share link and not through PayPal, set the <code>send_to_recipient</code> parameter to <code>false</code> in the <code>notification</code> object. The <code>send_to_recipient</code> parameter does not apply to a future issue date because the invoice is scheduled to be sent through PayPal on that date.<blockquote><strong>Notes:</strong><ul><li>After you send an invoice, resending it has no effect.</li><li>To send a notification for updates, <a href=\"#invoices_update\">update the invoice</a> and set the <code>send_to_recipient</code> body parameter to <code>true</code>.</li></ul></blockquote>"
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesRemindRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote>"
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote>"
+          }
+        },
+        "send_to_invoicer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to send a copy of the email to the merchant."
+          }
+        },
+        "send_to_recipient": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to send a copy of the email to the recipient."
+          }
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesRemind": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#InvoicesRemindRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/remind",
+          "code": 200
+        },
+        "smithy.api#documentation": "Send invoice reminder\n\nSends a reminder to the payer about an invoice, by ID. In the JSON request body, include a `notification` object that defines the subject of the reminder and other details. <blockquote><strong>Notes:</strong><ul><li>API caller can send only 2 reminders in a day.</li></ul></blockquote>."
+      }
+    },
+    "com.paypal.invoicing_v2#CancelInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote>"
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote>"
+          }
+        },
+        "send_to_invoicer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to send a copy of the email to the merchant."
+          }
+        },
+        "send_to_recipient": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to send a copy of the email to the recipient."
+          }
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#CancelInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#CancelInvoiceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/cancel",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel sent invoice\n\nCancels a sent invoice, by ID, and, optionally, sends a notification about the cancellation to the payer, merchant, and CC: emails."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesPaymentsRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "payment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type."
+          }
+        },
+        "payment_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the invoice was paid, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd* *z*."
+          }
+        },
+        "method": {
+          "target": "com.paypal.invoicing_v2#PaymentMethod",
+          "traits": {
+            "smithy.api#documentation": "The payment mode or method through which the invoicer can accept the payment.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note associated with an external cash or check payment."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The payment amount to record against the invoice. If you omit this parameter, the total invoice amount is marked as paid. This amount cannot exceed the amount due."
+          }
+        },
+        "shipping_info": {
+          "target": "com.paypal.invoicing_v2#ContactNameAddress",
+          "traits": {
+            "smithy.api#documentation": "The recipient's shipping information. Includes the user's contact information, which includes name and address."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentReference": {
+      "type": "structure",
+      "members": {
+        "payment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the invoice payment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reference to the payment detail."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesPayments": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#InvoicesPaymentsRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#PaymentReference"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/payments",
+          "code": 200
+        },
+        "smithy.api#documentation": "Record payment for invoice\n\nRecords a payment for the invoice. If no payment is due, the invoice is marked as `PAID`. Otherwise, the invoice is marked as `PARTIALLY PAID`."
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteInvoicesPaymentRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the external refund transaction to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteInvoicesPayment": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#DeleteInvoicesPaymentRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete external payment\n\nDeletes an external payment, by invoice ID and transaction ID."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesRefundsRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "refund_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date when the invoice was refunded, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, `2014-02-27`."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount to record as refunded. If you omit the amount, the total invoice paid amount is recorded as refunded."
+          }
+        },
+        "method": {
+          "target": "com.paypal.invoicing_v2#PaymentMethod",
+          "traits": {
+            "smithy.api#documentation": "The payment mode or method through which the invoicer can accept the payments.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#RefundReference": {
+      "type": "structure",
+      "members": {
+        "refund_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the refund of an invoice payment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reference to the refund payment detail."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesRefunds": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#InvoicesRefundsRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#RefundReference"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/refunds",
+          "code": 200
+        },
+        "smithy.api#documentation": "Record refund for invoice\n\nRecords a refund for the invoice. If all payments are refunded, the invoice is marked as `REFUNDED`. Otherwise, the invoice is marked as `PARTIALLY REFUNDED`."
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteInvoicesRefundRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the external refund transaction to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteInvoicesRefund": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#DeleteInvoicesRefundRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete external refund\n\nDeletes an external refund, by invoice ID and transaction ID."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesGenerateQrCodeRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The width, in pixels, of the QR code image. Value is from `150` to `500`."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The height, in pixels, of the QR code image. Value is from `150` to `500`."
+          }
+        },
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of URL for which to generate a QR code. Valid values are `pay` and `details`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicesGenerateQrCode": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#InvoicesGenerateQrCodeRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/invoices/{invoice_id}/generate-qr-code",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate QR code\n\nGenerates a QR code for an invoice, by ID. The QR code is a PNG image in <a href=\"https://www.base64encode.org/\">Base64-encoded</a> format that corresponds to the invoice ID. You can generate a QR code for an invoice and add it to a paper or PDF invoice. When customers use their mobile devices to scan the QR code, they are redirected to the PayPal mobile payment flow where they can view the invoice and pay online with PayPal or a credit card. Before you get a QR code, you must <a href=\"#invoices_create\">create an invoice</a> and <a href=\"#invoices_send\">send an invoice</a> to move the invoice from a draft to payable state. Do not include an email address if you do not want the invoice emailed."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicingGenerateNextInvoiceNumberRequest": {
+      "type": "structure",
+      "members": {
+        "fetch_id": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional to decide the number or ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceNumber": {
+      "type": "structure",
+      "members": {
+        "invoice_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The invoice number. If you omit this value, the default is the auto-incremented number from the last number."
+          }
+        },
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The invoice number."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicingGenerateNextInvoiceNumber": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#InvoicingGenerateNextInvoiceNumberRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#InvoiceNumber"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/generate-next-invoice-number",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate invoice number\n\nGenerates the next invoice number that is available to the merchant. The next invoice number uses the prefix and suffix from the last invoice number and increments the number by one. For example, the next invoice number after `INVOICE-1234` is `INVOICE-1235`."
+      }
+    },
+    "com.paypal.invoicing_v2#GetInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#GetInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#GetInvoiceRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Invoice"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/invoicing/invoices/{invoice_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show invoice details\n\nShows details for an invoice, by ID."
+      }
+    },
+    "com.paypal.invoicing_v2#UpdateInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        },
+        "send_to_recipient": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "send_to_recipient",
+            "smithy.api#documentation": "Indicates whether to send the invoice update notification to the recipient."
+          }
+        },
+        "send_to_invoicer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "send_to_invoicer",
+            "smithy.api#documentation": "Indicates whether to send the invoice update notification to the merchant."
+          }
+        },
+        "detail": {
+          "target": "com.paypal.invoicing_v2#InvoiceDetailInput",
+          "traits": {
+            "smithy.api#documentation": "The details of the invoice. Includes the invoice number, date, payment terms, and audit metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "invoicer": {
+          "target": "com.paypal.invoicing_v2#InvoicerInfo",
+          "traits": {
+            "smithy.api#documentation": "The invoicer information. Includes the business name, email, address, phone, fax, tax ID, additional notes, and logo URL."
+          }
+        },
+        "primary_recipients": {
+          "target": "com.paypal.invoicing_v2#RecipientInfoList"
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        },
+        "items": {
+          "target": "com.paypal.invoicing_v2#ItemListInput"
+        },
+        "configuration": {
+          "target": "com.paypal.invoicing_v2#Configuration",
+          "traits": {
+            "smithy.api#documentation": "The invoice configuration details. Includes partial payment, tip, and tax calculated after discount."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#AmountSummaryDetail",
+          "traits": {
+            "smithy.api#documentation": "The invoice amount summary of item total, discount, tax total and shipping.."
+          }
+        },
+        "payments": {
+          "target": "com.paypal.invoicing_v2#PaymentsInput",
+          "traits": {
+            "smithy.api#documentation": "List of payments registered against the invoice.."
+          }
+        },
+        "refunds": {
+          "target": "com.paypal.invoicing_v2#RefundsInput",
+          "traits": {
+            "smithy.api#documentation": "List of refunds against this invoice. The invoicing refund details includes refund type, date, amount, and method."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#UpdateInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#UpdateInvoiceRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Invoice"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v2/invoicing/invoices/{invoice_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fully update invoice\n\nFully updates an invoice, by ID. In the JSON request body, include a complete `invoice` object. This call does not support partial updates. <blockquote><strong>Notes:</strong><ul><li>API caller can change/modify recipient only 2 times in 72 hours.</li></ul></blockquote>."
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteInvoiceRequest": {
+      "type": "structure",
+      "members": {
+        "invoice_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the draft invoice to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteInvoice": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#DeleteInvoiceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/invoicing/invoices/{invoice_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete invoice\n\nDeletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href=\"/docs/api/invoicing/v2/#invoices_cancel\">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#InvoiceStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of status values."
+      }
+    },
+    "com.paypal.invoicing_v2#AmountRange": {
+      "type": "structure",
+      "members": {
+        "lower_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The lower limit of the amount range.",
+            "smithy.api#required": {}
+          }
+        },
+        "upper_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The upper limit of the amount range.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The amount range."
+      }
+    },
+    "com.paypal.invoicing_v2#DateRange": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date.",
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The date range. Filters invoices by creation date, invoice date, due date, and payment date."
+      }
+    },
+    "com.paypal.invoicing_v2#DateTimeRange": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date.",
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. <blockquote><strong>Note: The regular expression provides guidance but does not reject all invalid dates.</strong></blockquote><br/>Minimum length: 20.<br/>Maximum length: 64<br/>Pattern: <code>^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$</code>",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The date and time range. Filters invoices by creation date, invoice date, due date, and payment date."
+      }
+    },
+    "com.paypal.invoicing_v2#FieldsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>."
+      }
+    },
+    "com.paypal.invoicing_v2#SearchInvoicesRequest": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The maximum number of templates to return in the response."
+          }
+        },
+        "total_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "total_required",
+            "smithy.api#documentation": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response."
+          }
+        },
+        "recipient_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by the email address."
+          }
+        },
+        "recipient_first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by the recipient first name."
+          }
+        },
+        "recipient_last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by the recipient last name."
+          }
+        },
+        "recipient_business_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by the recipient business name."
+          }
+        },
+        "invoice_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by the invoice number."
+          }
+        },
+        "status": {
+          "target": "com.paypal.invoicing_v2#InvoiceStatusList"
+        },
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference data. Includes a Purchase Order (PO) number."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency."
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A private bookkeeping memo for the user."
+          }
+        },
+        "total_amount_range": {
+          "target": "com.paypal.invoicing_v2#AmountRange",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by the total amount."
+          }
+        },
+        "invoice_date_range": {
+          "target": "com.paypal.invoicing_v2#DateRange",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by a date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "due_date_range": {
+          "target": "com.paypal.invoicing_v2#DateRange",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by a due date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "payment_date_range": {
+          "target": "com.paypal.invoicing_v2#DateTimeRange"
+        },
+        "creation_date_range": {
+          "target": "com.paypal.invoicing_v2#DateTimeRange",
+          "traits": {
+            "smithy.api#documentation": "Filters the search by a creation date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to list merchant-archived invoices in the response. Value is:<ul><li><code>true</code>. Response lists only merchant-archived invoices.</li><li><code>false</code>. Response lists only unarchived invoices.</li><li><code>null</code>. Response lists all invoices.</li></ul>"
+          }
+        },
+        "fields": {
+          "target": "com.paypal.invoicing_v2#FieldsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#SearchInvoices": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#SearchInvoicesRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Invoices"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/search-invoices",
+          "code": 200
+        },
+        "smithy.api#documentation": "Search for invoices\n\nSearches for and lists invoices that match search criteria. If you pass multiple criteria, the response lists invoices that match all criteria."
+      }
+    },
+    "com.paypal.invoicing_v2#ListTemplatesRequest": {
+      "type": "structure",
+      "members": {
+        "fields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fields",
+            "smithy.api#documentation": "The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The maximum number of templates to return in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#Templates": {
+      "type": "structure",
+      "members": {
+        "addresses": {
+          "target": "com.paypal.invoicing_v2#AddressPortableList"
+        },
+        "emails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An array of emails in the user's PayPal profile."
+          }
+        },
+        "phones": {
+          "target": "com.paypal.invoicing_v2#TemplatesDefinitionsPhoneDetailList"
+        },
+        "templates": {
+          "target": "com.paypal.invoicing_v2#TemplateList"
+        },
+        "links": {
+          "target": "com.paypal.invoicing_v2#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of merchant-created templates with associated details that include the emails, addresses, and phone numbers from the user's PayPal profile."
+      }
+    },
+    "com.paypal.invoicing_v2#AddressPortableList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#AddressPortable"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of addresses in the user's PayPal profile."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplatesDefinitionsPhoneDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#PhoneDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of phone numbers in the user's PayPal profile."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#Template"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of details for each template. If `fields` is `none`, returns only the template name, ID, and default status."
+      }
+    },
+    "com.paypal.invoicing_v2#Template": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the template."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The template name.<blockquote><strong>Note:</strong> The template name must be unique.</blockquote>"
+          }
+        },
+        "default_template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether this template is the default template. A invoicer can have one default template."
+          }
+        },
+        "template_info": {
+          "target": "com.paypal.invoicing_v2#TemplateInfo",
+          "traits": {
+            "smithy.api#documentation": "The template details. Includes invoicer business information, invoice recipients, items, and configuration."
+          }
+        },
+        "settings": {
+          "target": "com.paypal.invoicing_v2#TemplateSettings",
+          "traits": {
+            "smithy.api#documentation": "The template settings. Describes which fields to show or hide when you create an invoice."
+          }
+        },
+        "unit_of_measure": {
+          "target": "com.paypal.invoicing_v2#UnitOfMeasure",
+          "traits": {
+            "smithy.api#documentation": "The unit of measure for the template. Value is quantity, hours, or amount."
+          }
+        },
+        "standard_template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether this template is a invoicer-created custom template. The system generates non-custom templates."
+          }
+        },
+        "links": {
+          "target": "com.paypal.invoicing_v2#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template with invoice details to load with all captured fields."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateInfo": {
+      "type": "structure",
+      "members": {
+        "detail": {
+          "target": "com.paypal.invoicing_v2#TemplateDetail",
+          "traits": {
+            "smithy.api#documentation": "The template-related details. Includes notes, terms and conditions, memo, and attachments."
+          }
+        },
+        "invoicer": {
+          "target": "com.paypal.invoicing_v2#InvoicerInfo",
+          "traits": {
+            "smithy.api#documentation": "The invoicer information. Includes business name, email, address, phone, fax, tax ID, additional notes, and logo URL."
+          }
+        },
+        "primary_recipients": {
+          "target": "com.paypal.invoicing_v2#DefinitionsRecipientInfoList"
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        },
+        "items": {
+          "target": "com.paypal.invoicing_v2#DefinitionsItemList"
+        },
+        "configuration": {
+          "target": "com.paypal.invoicing_v2#TemplateConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The template configuration details. Includes tax information, tip, and partial payment."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#AmountSummaryDetail",
+          "traits": {
+            "smithy.api#documentation": "The invoice amount summary of the item total, discount, tax total, and shipping."
+          }
+        },
+        "due_amount": {
+          "target": "com.paypal.invoicing_v2#Money",
+          "traits": {
+            "smithy.api#documentation": "The amount due for the invoice."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template details. Includes invoicer business information, invoice recipients, items, and configuration."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateDetail": {
+      "type": "structure",
+      "members": {
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference data. Includes a Purchase Order (PO) number."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the invoice recipient. Also appears on the invoice notification email."
+          }
+        },
+        "terms_and_conditions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The general terms of the invoice. Can include return or cancellation policy and other terms and conditions."
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A private bookkeeping memo for the user."
+          }
+        },
+        "attachments": {
+          "target": "com.paypal.invoicing_v2#FileReferenceList"
+        },
+        "payment_term": {
+          "target": "com.paypal.invoicing_v2#PaymentTerm",
+          "traits": {
+            "smithy.api#documentation": "The payment due date for the invoice. Value is either but not both <code>term_type</code> or <code>due_date</code>."
+          }
+        },
+        "metadata": {
+          "target": "com.paypal.invoicing_v2#TemplateMetadata",
+          "traits": {
+            "smithy.api#documentation": "The audit metadata. Captures all template actions on create and update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template-related details. Includes notes, terms and conditions, memo, and attachments."
+      }
+    },
+    "com.paypal.invoicing_v2#PaymentTerm": {
+      "type": "structure",
+      "members": {
+        "term_type": {
+          "target": "com.paypal.invoicing_v2#PaymentTermType",
+          "traits": {
+            "smithy.api#documentation": "The payment term. Payment can be due upon receipt, a specified date, or in a set number of days."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payment term of the invoice. Payment can be due upon receipt, a specified date, or in a set number of days."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateMetadata": {
+      "type": "structure",
+      "members": {
+        "create_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the account that created the resource."
+          }
+        },
+        "last_update_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource was last edited, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "last_updated_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the account that last edited the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The audit metadata. Captures all template actions on create and update."
+      }
+    },
+    "com.paypal.invoicing_v2#DefinitionsRecipientInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#RecipientInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The billing and shipping information. Includes name, email, address, phone, and language."
+      }
+    },
+    "com.paypal.invoicing_v2#DefinitionsItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#Item"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoice line-item information."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateConfiguration": {
+      "type": "structure",
+      "members": {
+        "tax_calculated_after_discount": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the tax is calculated before or after a discount. If `false`, the tax is calculated before a discount. If `true`, the tax is calculated after a discount."
+          }
+        },
+        "tax_inclusive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the unit price includes tax."
+          }
+        },
+        "allow_tip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the invoice enables the customer to enter a tip amount during payment. If `true`, the invoice shows a tip amount field so that the customer can enter a tip amount. If `false`, the invoice does not show a tip amount field.<blockquote><strong>Note:</strong> This feature is not available for users in `Hong Kong`, `Taiwan`, `India`, or `Japan`.</blockquote>"
+          }
+        },
+        "partial_payment": {
+          "target": "com.paypal.invoicing_v2#PartialPayment",
+          "traits": {
+            "smithy.api#documentation": "The partial payment details. Includes the minimum amount that the invoicer wants the payer to pay."
+          }
+        },
+        "has_conditional_rule": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether conditional pricing rules are applied to the invoice. If `true`, pricing rules (such as discounts or surcharges based on specific conditions) are applied. If `false`, no conditional pricing rules are applied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template configuration details. Includes tax information, tip, and partial payment."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateSettings": {
+      "type": "structure",
+      "members": {
+        "template_item_settings": {
+          "target": "com.paypal.invoicing_v2#TemplateItemSettingList"
+        },
+        "template_subtotal_settings": {
+          "target": "com.paypal.invoicing_v2#TemplateSubtotalSettingList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template settings. Sets a template as the default template or edit template."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateItemSettingList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#TemplateItemSetting"
+      },
+      "traits": {
+        "smithy.api#documentation": "The template item headers display preference."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateItemSetting": {
+      "type": "structure",
+      "members": {
+        "field_name": {
+          "target": "com.paypal.invoicing_v2#TemplateItemField",
+          "traits": {
+            "smithy.api#documentation": "The field name in `template_data` for which to map corresponding display preferences."
+          }
+        },
+        "display_preference": {
+          "target": "com.paypal.invoicing_v2#TemplateDisplayPreference",
+          "traits": {
+            "smithy.api#documentation": "The display preference."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template item setting. Sets a template as the default template or edit template."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateItemField": {
+      "type": "enum",
+      "members": {
+        "ITEMS_QUANTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEMS_QUANTITY"
+          }
+        },
+        "ITEMS_DESCRIPTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEMS_DESCRIPTION"
+          }
+        },
+        "ITEMS_DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEMS_DATE"
+          }
+        },
+        "ITEMS_DISCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEMS_DISCOUNT"
+          }
+        },
+        "ITEMS_TAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ITEMS_TAX"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The field names for the invoice line items in the template."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateDisplayPreference": {
+      "type": "structure",
+      "members": {
+        "hidden": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether to show or hide this field."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template display preference."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateSubtotalSettingList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#TemplateSubtotalSetting"
+      },
+      "traits": {
+        "smithy.api#documentation": "The template subtotal headers display preference."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateSubtotalSetting": {
+      "type": "structure",
+      "members": {
+        "field_name": {
+          "target": "com.paypal.invoicing_v2#TemplateSubtotalField",
+          "traits": {
+            "smithy.api#documentation": "The field name in `template_data` for which to map corresponding display preferences."
+          }
+        },
+        "display_preference": {
+          "target": "com.paypal.invoicing_v2#TemplateDisplayPreference",
+          "traits": {
+            "smithy.api#documentation": "The display preference."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template subtotal setting. Includes the field name and display preference."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateSubtotalField": {
+      "type": "enum",
+      "members": {
+        "DISCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOUNT"
+          }
+        },
+        "SHIPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHIPPING"
+          }
+        },
+        "CUSTOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CUSTOM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The field names in the template for discount, shipping, and custom amounts."
+      }
+    },
+    "com.paypal.invoicing_v2#ListTemplates": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#ListTemplatesRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Templates"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/invoicing/templates",
+          "code": 200
+        },
+        "smithy.api#documentation": "List templates\n\nLists merchant-created templates with associated details. The associated details include the emails, addresses, and phone numbers from the user's PayPal profile.<br/>The user can select which values to show in the business information section of their template."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateInfoInput": {
+      "type": "structure",
+      "members": {
+        "detail": {
+          "target": "com.paypal.invoicing_v2#TemplateDetailInput",
+          "traits": {
+            "smithy.api#documentation": "The template-related details. Includes notes, terms and conditions, memo, and attachments."
+          }
+        },
+        "invoicer": {
+          "target": "com.paypal.invoicing_v2#InvoicerInfo",
+          "traits": {
+            "smithy.api#documentation": "The invoicer information. Includes business name, email, address, phone, fax, tax ID, additional notes, and logo URL."
+          }
+        },
+        "primary_recipients": {
+          "target": "com.paypal.invoicing_v2#DefinitionsRecipientInfoList"
+        },
+        "additional_recipients": {
+          "target": "com.paypal.invoicing_v2#EmailAddressList"
+        },
+        "items": {
+          "target": "com.paypal.invoicing_v2#DefinitionsItemListInput"
+        },
+        "configuration": {
+          "target": "com.paypal.invoicing_v2#TemplateConfiguration",
+          "traits": {
+            "smithy.api#documentation": "The template configuration details. Includes tax information, tip, and partial payment."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.invoicing_v2#AmountSummaryDetail",
+          "traits": {
+            "smithy.api#documentation": "The invoice amount summary of the item total, discount, tax total, and shipping."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template details. Includes invoicer business information, invoice recipients, items, and configuration."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateDetailInput": {
+      "type": "structure",
+      "members": {
+        "reference": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reference data. Includes a Purchase Order (PO) number."
+          }
+        },
+        "currency_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A note to the invoice recipient. Also appears on the invoice notification email."
+          }
+        },
+        "terms_and_conditions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The general terms of the invoice. Can include return or cancellation policy and other terms and conditions."
+          }
+        },
+        "memo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A private bookkeeping memo for the user."
+          }
+        },
+        "attachments": {
+          "target": "com.paypal.invoicing_v2#FileReferenceList"
+        },
+        "payment_term": {
+          "target": "com.paypal.invoicing_v2#PaymentTerm",
+          "traits": {
+            "smithy.api#documentation": "The payment due date for the invoice. Value is either but not both <code>term_type</code> or <code>due_date</code>."
+          }
+        },
+        "metadata": {
+          "target": "com.paypal.invoicing_v2#TemplateMetadataInput",
+          "traits": {
+            "smithy.api#documentation": "The audit metadata. Captures all template actions on create and update."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template-related details. Includes notes, terms and conditions, memo, and attachments."
+      }
+    },
+    "com.paypal.invoicing_v2#TemplateMetadataInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The audit metadata. Captures all template actions on create and update."
+      }
+    },
+    "com.paypal.invoicing_v2#DefinitionsItemListInput": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#ItemInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of invoice line-item information."
+      }
+    },
+    "com.paypal.invoicing_v2#CreateTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The template name.<blockquote><strong>Note:</strong> The template name must be unique.</blockquote>"
+          }
+        },
+        "default_template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether this template is the default template. A invoicer can have one default template."
+          }
+        },
+        "template_info": {
+          "target": "com.paypal.invoicing_v2#TemplateInfoInput",
+          "traits": {
+            "smithy.api#documentation": "The template details. Includes invoicer business information, invoice recipients, items, and configuration."
+          }
+        },
+        "settings": {
+          "target": "com.paypal.invoicing_v2#TemplateSettings",
+          "traits": {
+            "smithy.api#documentation": "The template settings. Describes which fields to show or hide when you create an invoice."
+          }
+        },
+        "unit_of_measure": {
+          "target": "com.paypal.invoicing_v2#UnitOfMeasure",
+          "traits": {
+            "smithy.api#documentation": "The unit of measure for the template. Value is quantity, hours, or amount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#CreateTemplate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#CreateTemplateRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Template"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v2/invoicing/templates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create template\n\nCreates an invoice template. You can use details from this template to create an invoice. You can create up to 50 templates.<blockquote><strong>Note:</strong> Every merchant starts with three PayPal system templates that are optimized for the unit type billed. The template includes `Quantity`, `Hours`, and `Amount`.</blockquote>"
+      }
+    },
+    "com.paypal.invoicing_v2#GetTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the template to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#GetTemplate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#GetTemplateRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Template"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/invoicing/templates/{template_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show template details\n\nShows details for a template, by ID."
+      }
+    },
+    "com.paypal.invoicing_v2#UpdateTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the template to delete."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The template name.<blockquote><strong>Note:</strong> The template name must be unique.</blockquote>"
+          }
+        },
+        "default_template": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether this template is the default template. A invoicer can have one default template."
+          }
+        },
+        "template_info": {
+          "target": "com.paypal.invoicing_v2#TemplateInfoInput",
+          "traits": {
+            "smithy.api#documentation": "The template details. Includes invoicer business information, invoice recipients, items, and configuration."
+          }
+        },
+        "settings": {
+          "target": "com.paypal.invoicing_v2#TemplateSettings",
+          "traits": {
+            "smithy.api#documentation": "The template settings. Describes which fields to show or hide when you create an invoice."
+          }
+        },
+        "unit_of_measure": {
+          "target": "com.paypal.invoicing_v2#UnitOfMeasure",
+          "traits": {
+            "smithy.api#documentation": "The unit of measure for the template. Value is quantity, hours, or amount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#UpdateTemplate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#UpdateTemplateRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Template"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/v2/invoicing/templates/{template_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fully update template\n\nFully updates a template, by ID. In the JSON request body, include a complete `template` object. This call does not support partial updates."
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "template_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the template to delete."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#DeleteTemplate": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#DeleteTemplateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v2/invoicing/templates/{template_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete template\n\nDeletes a template, by ID."
+      }
+    },
+    "com.paypal.invoicing_v2#Connections": {
+      "type": "structure",
+      "members": {
+        "connections": {
+          "target": "com.paypal.invoicing_v2#ConnectionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object contains an array of connection details. It is used to load sync status for a user."
+      }
+    },
+    "com.paypal.invoicing_v2#ConnectionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#Connection"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of connection-level details."
+      }
+    },
+    "com.paypal.invoicing_v2#Connection": {
+      "type": "structure",
+      "members": {
+        "platform_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the platform. This property supports Unicode. The pattern is not provided because the value is defined by an external party."
+          }
+        },
+        "last_sync_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the resource is last synced with the accounting platform. This property supports Unicode."
+          }
+        },
+        "last_sync_status": {
+          "target": "com.paypal.invoicing_v2#ConnectionLastSyncStatus",
+          "traits": {
+            "smithy.api#documentation": "The status of the last sync. This property supports Unicode."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This lists last sync status and connection platform name."
+      }
+    },
+    "com.paypal.invoicing_v2#ConnectionLastSyncStatus": {
+      "type": "enum",
+      "members": {
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the last sync. This property supports Unicode."
+      }
+    },
+    "com.paypal.invoicing_v2#GetConnection": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#Connections"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/invoicing/accounting-sync/merchant/connections",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Connections.\n\nLists connections to accounting platforms per merchant."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceConnectionDetailsGetRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The invoice id of the account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceConnectionDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the invoice. This property supports Unicode."
+          }
+        },
+        "connection_status": {
+          "target": "com.paypal.invoicing_v2#ConnectionsList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Returns invoice connection status with timestamp per invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#ConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.invoicing_v2#Connections"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of connection-level details."
+      }
+    },
+    "com.paypal.invoicing_v2#InvoiceConnectionDetailsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.invoicing_v2#InvoiceConnectionDetailsGetRequest"
+      },
+      "output": {
+        "target": "com.paypal.invoicing_v2#InvoiceConnectionDetails"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.invoicing_v2#BadRequest"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#Forbidden"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v2/invoicing/accounting-sync/invoices/{id}/connections",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Connection Status for an Invoice.\n\nLists connections to accounting platforms per invoice."
+      }
+    },
+    "com.paypal.invoicing_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.invoicing_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.invoicing_v2#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.paypal.invoicing_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.paypal.invoicing_v2#InvoicingV2": {
+      "type": "service",
+      "version": "2.6",
+      "operations": [
+        {
+          "target": "com.paypal.invoicing_v2#ListInvoices"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#CreateInvoice"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#SendInvoice"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#InvoicesRemind"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#CancelInvoice"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#InvoicesPayments"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#DeleteInvoicesPayment"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#InvoicesRefunds"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#DeleteInvoicesRefund"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#InvoicesGenerateQrCode"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#InvoicingGenerateNextInvoiceNumber"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#GetInvoice"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UpdateInvoice"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#DeleteInvoice"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#SearchInvoices"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#ListTemplates"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#CreateTemplate"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#GetTemplate"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#UpdateTemplate"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#DeleteTemplate"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#GetConnection"
+        },
+        {
+          "target": "com.paypal.invoicing_v2#InvoiceConnectionDetailsGet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Invoices",
+        "smithy.api#documentation": "Use the Invoicing API to create, send, and manage invoices. You can also use the API or webhooks to track invoice payments. When you send an invoice to a customer, the invoice moves from draft to payable state. PayPal then emails the customer a link to the invoice on the PayPal website. Customers with a PayPal account can log in and pay the invoice with PayPal. Alternatively, customers can pay as a guest with a debit card or credit card. For more information, see the <a href=\"/docs/invoicing/\">Invoicing Overview</a> and the <a href=\"/docs/invoicing/basic-integration/\">Invoicing Integration Guide</a>."
+      }
+    }
+  }
+}

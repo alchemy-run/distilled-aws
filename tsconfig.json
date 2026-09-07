@@ -183,6 +183,12 @@
     },
     {
       "path": "./packages/coolify/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/paypal/tsconfig.json"
+    },
+    {
+      "path": "./packages/paypal/tsconfig.scripts.json"
     }
   ]
 }

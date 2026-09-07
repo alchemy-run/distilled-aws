@@ -1,0 +1,1391 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.paypal.payments_payouts_batch_v1#SenderBatchHeader": {
+      "type": "structure",
+      "members": {
+        "sender_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A sender-specified ID number. Tracks the payout in an accounting system.<blockquote><strong>Note:</strong> <p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>. The API completes a payment only once for a <code>sender_batch_id</code> that is used within 30 days.</p></blockquote>"
+          }
+        },
+        "recipient_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID type that identifies the recipient of the payment. For example, <code>EMAIL</code>."
+          }
+        },
+        "email_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject line for the email that PayPal sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string of up to 255 single-byte characters."
+          }
+        },
+        "email_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email message that PayPal sends when the payout item completes. The message is the same for all recipients."
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The payouts and item-level notes are concatenated in the email. The maximum combined length of the notes is 1000 characters."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The sender-provided payout header for a payout request."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutItemRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#PayoutItemRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of individual payout items."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutItemRequest": {
+      "type": "structure",
+      "members": {
+        "recipient_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recipient type. Value is:<ul><li><p><code>EMAIL</code>. The unencrypted email. Value is a string of up to 127 single-byte characters.</p></li><li><p><code>PHONE</code>. The unencrypted phone number.</p><blockquote><strong>Note:</strong> The PayPal sandbox does not support the <code>PHONE</code> recipient type.</blockquote></li><li><p><code>PAYPAL_ID</code>. The encrypted PayPal account number.</p></li><li><p><code>USER_HANDLE</code>. User handle (or) Username associated with Venmo account.</p></li></ul><br/>If the <code>sender_batch_header</code> includes the <code>recipient_type</code> attribute, payout items use the <code>recipient_type</code> of the <code>sender_batch_header</code>, unless a payout item has its own <code>recipient_type</code> attribute. If the <code>sender_batch_header</code> omits the <code>recipient_type</code> attribute, each payout item must include its own <code>recipient_type</code> value."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The currency and amount to pay the receiver.",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sender-specified note for notifications. Supports up to 4000 ASCII characters and 1000 non-ASCII characters."
+          }
+        },
+        "receiver": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The receiver of the payment. Corresponds to the `recipient_type` value in the request. Max value of up to 127 single-byte characters.",
+            "smithy.api#required": {}
+          }
+        },
+        "sender_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sender-specified ID number. Tracks the payout in an accounting system."
+          }
+        },
+        "recipient_wallet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recipient wallet."
+          }
+        },
+        "alternate_notification_method": {
+          "target": "com.paypal.payments_payouts_batch_v1#AlternateNotificationMethod",
+          "traits": {
+            "smithy.api#documentation": "Captures additional notification modes to reach out to the receiver regarding this payment."
+          }
+        },
+        "notification_language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language in which to show the payout recipient's email message. Used only when the recipient does not have a PayPal account. If you omit the language or provide invalid language and the recipient does not have a PayPal account, the email message is sent in the language of the merchant's PayPal account."
+          }
+        },
+        "application_context": {
+          "target": "com.paypal.payments_payouts_batch_v1#ApplicationContext",
+          "traits": {
+            "smithy.api#documentation": "Metadata for accepting additional information from merchants to Venmo."
+          }
+        },
+        "purpose": {
+          "target": "com.paypal.payments_payouts_batch_v1#PurposeEnum",
+          "traits": {
+            "smithy.api#documentation": "The purpose of the transaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The sender-created payout to a recipient."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#Currency": {
+      "type": "structure",
+      "members": {
+        "currency": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency and amount for a financial transaction, such as a balance or payment due."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#AlternateNotificationMethod": {
+      "type": "structure",
+      "members": {
+        "phone": {
+          "target": "com.paypal.payments_payouts_batch_v1#Phone",
+          "traits": {
+            "smithy.api#documentation": "The mobile phone number of the receiver."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Captures additional notification modes to reach out to the receiver regarding this payment."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#Phone": {
+      "type": "structure",
+      "members": {
+        "country_code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country calling code (CC), in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the CC and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "national_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The national number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). The combined length of the country calling code (CC) and the national number must not be greater than 15 digits. The national number consists of a national destination code (NDC) and subscriber number (SN).",
+            "smithy.api#required": {}
+          }
+        },
+        "extension_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The extension number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The phone number in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en)."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#ApplicationContext": {
+      "type": "structure",
+      "members": {
+        "social_feed_privacy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This attribute controls the privacy of a payout transaction in recipient’s feed. PUBLIC, FRIENDS_ONLY & PRIVATE are the values that can be used. PUBLIC - The payment displays on the recipient's public Venmo feed. FRIENDS_ONLY - The payment displays only to the recipient's Venmo friends. PRIVATE - The payment displays only on the recipient's personal feed. Defaults to `PRIVATE` if left blank."
+          }
+        },
+        "holler_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to a Holler sticker. For Venmo recipients, the sticker displays with the payout message. The maximum URL length is 151."
+          }
+        },
+        "logo_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to a logo that displays as the sender's profile image in the recipient's Venmo feed. Used to add or update the business profile image. Max image size: 1024 x 1024 pixels. The image should be square and maximum URL length is 2000."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata for Venmo transactions."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PurposeEnum": {
+      "type": "enum",
+      "members": {
+        "AWARDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AWARDS"
+          }
+        },
+        "PRIZES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PRIZES"
+          }
+        },
+        "DONATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DONATIONS"
+          }
+        },
+        "GOODS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GOODS"
+          }
+        },
+        "SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SERVICES"
+          }
+        },
+        "REBATES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REBATES"
+          }
+        },
+        "CASHBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CASHBACK"
+          }
+        },
+        "DISCOUNTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISCOUNTS"
+          }
+        },
+        "NON_GOODS_OR_SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NON_GOODS_OR_SERVICES"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The purpose of the transaction."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PostPayoutRequest": {
+      "type": "structure",
+      "members": {
+        "payPalRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "PayPal-Request-Id",
+            "smithy.api#documentation": "The server stores keys for 30 days."
+          }
+        },
+        "sender_batch_header": {
+          "target": "com.paypal.payments_payouts_batch_v1#SenderBatchHeader",
+          "traits": {
+            "smithy.api#documentation": "The sender-provided payout header for a payout request.",
+            "smithy.api#required": {}
+          }
+        },
+        "items": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutItemRequestList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#Payout": {
+      "type": "structure",
+      "members": {
+        "batch_header": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutHeader",
+          "traits": {
+            "smithy.api#documentation": "The payout header."
+          }
+        },
+        "links": {
+          "target": "com.paypal.payments_payouts_batch_v1#DefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The create payout response."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutHeader": {
+      "type": "structure",
+      "members": {
+        "payout_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for a payout.",
+            "smithy.api#required": {}
+          }
+        },
+        "batch_status": {
+          "target": "com.paypal.payments_payouts_batch_v1#BatchEnum",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated payout status. If the payout passes preliminary checks, the status is `PENDING`.",
+            "smithy.api#required": {}
+          }
+        },
+        "time_created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when processing for the payout began, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "sender_batch_header": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutSenderBatchHeader",
+          "traits": {
+            "smithy.api#documentation": "The original payout header, as provided by the payment sender.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payout header that is returned in response to a payout header request. Shows details for an entire payout request."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#BatchEnum": {
+      "type": "enum",
+      "members": {
+        "DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DENIED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROCESSING"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payouts status."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutSenderBatchHeader": {
+      "type": "structure",
+      "members": {
+        "sender_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sender-specified ID number. Tracks the payout in an accounting system.<blockquote><strong>Note:</strong> <p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>. The API completes a payment only once for a <code>sender_batch_id</code> that is used within 30 days.</p></blockquote>"
+          }
+        },
+        "recipient_type": {
+          "target": "com.paypal.payments_payouts_batch_v1#RecipientEnum"
+        },
+        "email_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subject line for the email that PayPal sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string with a maximum length of 255 single-byte characters."
+          }
+        },
+        "email_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email message that PayPal sends when the payout item completes. The message is the same for all recipients."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The sender-provided header for a payout request."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#RecipientEnum": {
+      "type": "enum",
+      "members": {
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EMAIL"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PHONE"
+          }
+        },
+        "PAYPAL_ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL_ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID type that identifies the payment receiver."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#DefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#LinkDescription": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.",
+            "smithy.api#required": {}
+          }
+        },
+        "rel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).",
+            "smithy.api#required": {}
+          }
+        },
+        "method": {
+          "target": "com.paypal.payments_payouts_batch_v1#LinkDescriptionMethod",
+          "traits": {
+            "smithy.api#documentation": "The HTTP method required to make the related call."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#LinkDescriptionMethod": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "CONNECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONNECT"
+          }
+        },
+        "OPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OPTIONS"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The HTTP method required to make the related call."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PostPayout": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payments_payouts_batch_v1#PostPayoutRequest"
+      },
+      "output": {
+        "target": "com.paypal.payments_payouts_batch_v1#Payout"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/payments/payouts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create batch payout\n\nCreates a batch payout. In the JSON request body, pass a `sender_batch_header` and an `items` array. The `sender_batch_header` defines how to handle the payout. The `items` array defines the payout items.<br/>You can make payouts to one or more recipients.<blockquote><strong>Notes:</strong> <ul><li><p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>.</p></li><li><p>The Payouts API does not support build notation (BN) codes. In a future Payouts release, you can optionally provide BN codes in the <code>PayPal-Partner-Attribution-Id</code> request header.</p><p>For information about the <code>PayPal-Partner-Attribution-Id</code> header, see <a href=\"/api/rest/requests/#http-request-headers\">HTTP request headers</a>. To learn about or request a BN code, contact your partner manager or see <a href=\"https://www.paypal.com/us/webapps/mpp/partner-program\">PayPal Partner Program</a>.</p></li></ul></blockquote>"
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#GetPayoutRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the payout for which to show details."
+          }
+        },
+        "fields": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "fields",
+            "smithy.api#documentation": "Shows details for only the specified fields."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "A non-zero integer representing the page of the results."
+          }
+        },
+        "page_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page_size",
+            "smithy.api#documentation": "The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`."
+          }
+        },
+        "total_required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "total_required",
+            "smithy.api#documentation": "Indicates whether to show the total items and total pages count in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutBatch": {
+      "type": "structure",
+      "members": {
+        "total_items": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of items in the full result list."
+          }
+        },
+        "total_pages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of pages."
+          }
+        },
+        "batch_header": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutBatchHeader",
+          "traits": {
+            "smithy.api#documentation": "A payout header. Includes the generated payout status."
+          }
+        },
+        "items": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutBatchItemsList"
+        },
+        "links": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutBatchDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The PayPal-generated batch status."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutBatchHeader": {
+      "type": "structure",
+      "members": {
+        "payout_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for a payout.",
+            "smithy.api#required": {}
+          }
+        },
+        "batch_status": {
+          "target": "com.paypal.payments_payouts_batch_v1#BatchEnum",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated payout status. If the payout passes preliminary checks, the status is `PENDING`.",
+            "smithy.api#required": {}
+          }
+        },
+        "time_created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when processing for the payout began, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "time_completed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when processing for the payout was completed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "time_closed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when the payout was closed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). A payout is considered closed when all items in a batch are processed and the available balance from the temporary hold is released."
+          }
+        },
+        "sender_batch_header": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutSenderBatchHeader",
+          "traits": {
+            "smithy.api#documentation": "The original payout header, as provided by the payment sender.",
+            "smithy.api#required": {}
+          }
+        },
+        "funding_source": {
+          "target": "com.paypal.payments_payouts_batch_v1#FundingSource",
+          "traits": {
+            "smithy.api#documentation": "The ID to differentiate a PayPal balance-funded transaction from a PayPal treasury-funded transaction."
+          }
+        },
+        "amount": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The currency and total amount requested for the payouts."
+          }
+        },
+        "fees": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The currency and amount of the total estimate for the applicable payouts fees. Initially, the fee is `0`. The fee is populated after the payout moves to the `PROCESSING` state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payout header that is returned in response to a payout header request. Shows details for an entire payout request."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#FundingSource": {
+      "type": "enum",
+      "members": {
+        "BALANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BALANCE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies a funding source type."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutBatchItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#PayoutBatchItems"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of individual items."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutBatchItems": {
+      "type": "structure",
+      "members": {
+        "payout_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the payout item. Viewable when you show details for a payout.",
+            "smithy.api#required": {}
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the transaction."
+          }
+        },
+        "activity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique PayPal-generated common ID created to link sender side and receiver side transaction. Used for tracking."
+          }
+        },
+        "transaction_status": {
+          "target": "com.paypal.payments_payouts_batch_v1#TransactionEnum"
+        },
+        "payout_item_fee": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The fee, in U.S. dollars."
+          }
+        },
+        "payout_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the payout.",
+            "smithy.api#required": {}
+          }
+        },
+        "payout_item": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutItemDetail",
+          "traits": {
+            "smithy.api#documentation": "The sender-provided information for the payout item.",
+            "smithy.api#required": {}
+          }
+        },
+        "currency_conversion": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutCurrencyConversion",
+          "traits": {
+            "smithy.api#documentation": "The currency conversion applicable for this payout item."
+          }
+        },
+        "time_processed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when this item was last processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "errors": {
+          "target": "com.paypal.payments_payouts_batch_v1#Error"
+        },
+        "links": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutBatchItemsDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payout item status and other details."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#TransactionEnum": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PENDING"
+          }
+        },
+        "UNCLAIMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNCLAIMED"
+          }
+        },
+        "RETURNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETURNED"
+          }
+        },
+        "ONHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ONHOLD"
+          }
+        },
+        "BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKED"
+          }
+        },
+        "REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REFUNDED"
+          }
+        },
+        "REVERSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REVERSED"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote>"
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutItemDetail": {
+      "type": "structure",
+      "members": {
+        "recipient_type": {
+          "target": "com.paypal.payments_payouts_batch_v1#RecipientEnum"
+        },
+        "amount": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The currency and amount of payout item. Might be an integer for currencies like `JPY` that are not typically fractional or a decimal fraction for currencies like `TND` that are subdivided into thousandths. For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).",
+            "smithy.api#required": {}
+          }
+        },
+        "note": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sender-specified note for notifications. Supports up to 4000 ASCII characters and 1000 non-ASCII characters."
+          }
+        },
+        "receiver": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The receiver of the payment. Corresponds to the `recipient_type` value in the request.",
+            "smithy.api#required": {}
+          }
+        },
+        "sender_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A sender-specified ID number. Tracks the payout in an accounting system."
+          }
+        },
+        "recipient_name": {
+          "target": "com.paypal.payments_payouts_batch_v1#Name",
+          "traits": {
+            "smithy.api#documentation": "The name of the recipient where money is credited. For `UNCLAIMED` payments, the recipient name is populated after the payment is claimed."
+          }
+        },
+        "recipient_wallet": {
+          "target": "com.paypal.payments_payouts_batch_v1#RecipientWalletEnum",
+          "traits": {
+            "smithy.api#documentation": "The recipient wallet."
+          }
+        },
+        "purpose": {
+          "target": "com.paypal.payments_payouts_batch_v1#PurposeEnum",
+          "traits": {
+            "smithy.api#documentation": "The purpose of the transaction."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details for a sender-created payout to a single recipient."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#Name": {
+      "type": "structure",
+      "members": {
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The prefix, or title, to the party's name."
+          }
+        },
+        "given_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's given, or first, name."
+          }
+        },
+        "surname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname."
+          }
+        },
+        "middle_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name."
+          }
+        },
+        "suffix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The suffix for the party's name."
+          }
+        },
+        "alternate_full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business."
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the party is a person, the party's full name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the party."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#RecipientWalletEnum": {
+      "type": "enum",
+      "members": {
+        "PAYPAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYPAL"
+          }
+        },
+        "VENMO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VENMO"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutCurrencyConversion": {
+      "type": "structure",
+      "members": {
+        "from_amount": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The amount that is converted from."
+          }
+        },
+        "to_amount": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The amount that is converted to."
+          }
+        },
+        "exchange_rate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The exchange rate that is applied for this payout."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The currency conversion resource."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#Error": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable, unique name of the error.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The message that describes the error.",
+            "smithy.api#required": {}
+          }
+        },
+        "debug_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal internal ID. Used for correlation purposes.",
+            "smithy.api#required": {}
+          }
+        },
+        "information_link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The information link, or URI, that shows detailed information about this error for the developer."
+          }
+        },
+        "details": {
+          "target": "com.paypal.payments_payouts_batch_v1#ErrorDetailsList"
+        },
+        "links": {
+          "target": "com.paypal.payments_payouts_batch_v1#LinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#ErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#ErrorDetails2"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of additional details about the error."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#ErrorDetails2": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the field that caused the error."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the field that caused the error. Value is `body`, `path`, or `query`."
+          }
+        },
+        "issue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique, fine-grained application-level error code.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details. Required for client-side `4XX` errors."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#LinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutBatchItemsDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutBatchDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#GetPayout": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payments_payouts_batch_v1#GetPayoutRequest"
+      },
+      "output": {
+        "target": "com.paypal.payments_payouts_batch_v1#PayoutBatch"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/payments/payouts/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show payout batch details\n\nShows the latest status of a batch payout. Includes the transaction status and other data for individual payout items."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#GetPayoutsItemRequest": {
+      "type": "structure",
+      "members": {
+        "payout_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the payout item to cancel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutItem": {
+      "type": "structure",
+      "members": {
+        "payout_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID for the payout item. Visible when you show details for a payout.",
+            "smithy.api#required": {}
+          }
+        },
+        "transaction_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the transaction."
+          }
+        },
+        "activity_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique PayPal-generated common ID that links the sender- and receiver-side transactions. Used for tracking."
+          }
+        },
+        "transaction_status": {
+          "target": "com.paypal.payments_payouts_batch_v1#TransactionEnum"
+        },
+        "payout_item_fee": {
+          "target": "com.paypal.payments_payouts_batch_v1#Currency",
+          "traits": {
+            "smithy.api#documentation": "The estimate for the payout fee. Initially, the fee is `0`. The fee is populated after the item moves to the `PENDING` state"
+          }
+        },
+        "payout_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The PayPal-generated ID for the payout batch.",
+            "smithy.api#required": {}
+          }
+        },
+        "sender_batch_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A sender-specified ID. Tracks the payout in an accounting system. Should be unique within 30 days."
+          }
+        },
+        "payout_item": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutItemDetail",
+          "traits": {
+            "smithy.api#documentation": "The sender-provided information for the payout item.",
+            "smithy.api#required": {}
+          }
+        },
+        "currency_conversion": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutCurrencyConversion",
+          "traits": {
+            "smithy.api#documentation": "The currency conversion applicable for this payout item."
+          }
+        },
+        "time_processed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when this item was last processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+          }
+        },
+        "errors": {
+          "target": "com.paypal.payments_payouts_batch_v1#Error",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "links": {
+          "target": "com.paypal.payments_payouts_batch_v1#PayoutItemDefinitionsLinkDescriptionList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The payout item status and other details. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PayoutItemDefinitionsLinkDescriptionList": {
+      "type": "list",
+      "member": {
+        "target": "com.paypal.payments_payouts_batch_v1#LinkDescription"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links)."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#GetPayoutsItem": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payments_payouts_batch_v1#GetPayoutsItemRequest"
+      },
+      "output": {
+        "target": "com.paypal.payments_payouts_batch_v1#PayoutItem"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/payments/payouts-item/{payout_item_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show payout item details\n\nShows details for a payout item, by ID. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#CancelPayoutsItemRequest": {
+      "type": "structure",
+      "members": {
+        "payout_item_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the payout item to cancel."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#CancelPayoutsItem": {
+      "type": "operation",
+      "input": {
+        "target": "com.paypal.payments_payouts_batch_v1#CancelPayoutsItemRequest"
+      },
+      "output": {
+        "target": "com.paypal.payments_payouts_batch_v1#PayoutItem"
+      },
+      "errors": [
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#BadRequest"
+        },
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/payments/payouts-item/{payout_item_id}/cancel",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel unclaimed payout item\n\nCancels an unclaimed payout item, by ID. If no one claims the unclaimed item within 30 days, the API automatically returns the funds to the sender. Use this call to cancel the unclaimed item before the automatic 30-day refund. You can cancel payout items with a <code>transaction_status</code> of <code>UNCLAIMED</code>."
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.paypal.payments_payouts_batch_v1#PaymentsPayoutsBatchV1": {
+      "type": "service",
+      "version": "1.9",
+      "operations": [
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#PostPayout"
+        },
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#GetPayout"
+        },
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#GetPayoutsItem"
+        },
+        {
+          "target": "com.paypal.payments_payouts_batch_v1#CancelPayoutsItem"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Payouts",
+        "smithy.api#documentation": "Use the Payouts API to make payments to multiple PayPal or Venmo recipients. The Payouts API is a fast, convenient way to send commissions, rebates, rewards, and general disbursements. You can send up to 15,000 payments per call. If you integrated the Payouts API before September 1, 2017, you receive transaction reports through <a href=\"/docs/payouts/standard/reports/\">Payouts Reporting</a>. The Payouts API uses the <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">ISO 8601 Internet date and time format</a>."
+      }
+    }
+  }
+}
