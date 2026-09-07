@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vanta.auditor_api#CreateAuditorRequest": {
@@ -9643,7 +9644,7 @@
         "smithy.api#documentation": "List risks for an audit\n\nRetrieves risk population data for an audit.\n\nThis endpoint provides access to the risk records visible to auditors\nduring an audit engagement. Risk data is scoped to a specific risk\nassessment snapshot identified by the `snapshotId` parameter.\n\nOnly Controlled Audit View (CAV) audits are supported. Full Audit\nView audits are rejected with 403.\n\nSupports filtering by:\n- `search`: Searches risk scenario descriptions (case-insensitive)\n\nResults are sorted by identified date (newest first) by default.\nUse `orderBy` and `orderDirection` to customize sorting.\nSort parameters must remain consistent across paginated requests.\n\nUses cursor-based pagination. To paginate:\n1. Make initial request with desired `pageSize`\n2. Check `results.pageInfo.hasNextPage`\n3. Use `results.pageInfo.endCursor` as `pageCursor` for next request\n\nRate limit: 10 requests / minute."
       }
     },
-    "com.vanta.auditor_api#ShareInformationRequestListRequest": {
+    "com.vanta.auditor_api#ListShareInformationRequestRequest": {
       "type": "structure",
       "members": {
         "auditId": {
@@ -9658,10 +9659,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.vanta.auditor_api#ShareInformationRequestList": {
+    "com.vanta.auditor_api#ListShareInformationRequest": {
       "type": "operation",
       "input": {
-        "target": "com.vanta.auditor_api#ShareInformationRequestListRequest"
+        "target": "com.vanta.auditor_api#ListShareInformationRequestRequest"
       },
       "output": {
         "target": "com.vanta.auditor_api#Audit"
@@ -9830,7 +9831,7 @@
           "target": "com.vanta.auditor_api#ListAuditRisks"
         },
         {
-          "target": "com.vanta.auditor_api#ShareInformationRequestList"
+          "target": "com.vanta.auditor_api#ListShareInformationRequest"
         }
       ],
       "traits": {
