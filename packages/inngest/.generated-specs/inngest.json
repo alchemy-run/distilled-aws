@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.inngest.api#V2FetchAccountResponse": {
@@ -77,7 +78,7 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2FetchAccount": {
+    "com.inngest.api#FetchV2Account": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -99,7 +100,7 @@
         "smithy.api#documentation": "Get account\n\nReturns the account for the authenticated user"
       }
     },
-    "com.inngest.api#V2GetAppsRequest": {
+    "com.inngest.api#GetV2AppsRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -335,10 +336,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetApps": {
+    "com.inngest.api#GetV2Apps": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetAppsRequest"
+        "target": "com.inngest.api#GetV2AppsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetAppsResponse"
@@ -352,7 +353,7 @@
         "smithy.api#documentation": "Get apps\n\nLists active apps in the authenticated environment. Set archived to true to list archived apps instead."
       }
     },
-    "com.inngest.api#V2GetAppRequest": {
+    "com.inngest.api#GetV2AppRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -380,10 +381,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetApp": {
+    "com.inngest.api#GetV2App": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetAppRequest"
+        "target": "com.inngest.api#GetV2AppRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetAppResponse"
@@ -397,7 +398,7 @@
         "smithy.api#documentation": "Get app\n\nFetches details for a single app, including sync metadata and function count"
       }
     },
-    "com.inngest.api#V2GetFunctionsRequest": {
+    "com.inngest.api#GetV2FunctionsRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -775,10 +776,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetFunctions": {
+    "com.inngest.api#GetV2Functions": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetFunctionsRequest"
+        "target": "com.inngest.api#GetV2FunctionsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetFunctionsResponse"
@@ -792,7 +793,7 @@
         "smithy.api#documentation": "Get functions\n\nLists function configuration and status details for an app"
       }
     },
-    "com.inngest.api#V2GetFunctionRequest": {
+    "com.inngest.api#GetV2FunctionRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -826,10 +827,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetFunction": {
+    "com.inngest.api#GetV2Function": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetFunctionRequest"
+        "target": "com.inngest.api#GetV2FunctionRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetFunctionResponse"
@@ -843,7 +844,7 @@
         "smithy.api#documentation": "Get function\n\nFetches function configuration and status details for a function within an app"
       }
     },
-    "com.inngest.api#V2ListExperiments2Request": {
+    "com.inngest.api#ListV2Experiments2Request": {
       "type": "structure",
       "members": {
         "appId": {
@@ -974,10 +975,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListExperiments2": {
+    "com.inngest.api#ListV2Experiments2": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListExperiments2Request"
+        "target": "com.inngest.api#ListV2Experiments2Request"
       },
       "output": {
         "target": "com.inngest.api#V2ListExperimentsResponse"
@@ -991,7 +992,7 @@
         "smithy.api#documentation": "List experiments for a function\n\nLists observed experiments for one function in the authenticated environment."
       }
     },
-    "com.inngest.api#V2GetExperimentRequest": {
+    "com.inngest.api#GetV2ExperimentRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -1141,10 +1142,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetExperiment": {
+    "com.inngest.api#GetV2Experiment": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetExperimentRequest"
+        "target": "com.inngest.api#GetV2ExperimentRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetExperimentResponse"
@@ -1158,7 +1159,7 @@
         "smithy.api#documentation": "Get experiment aggregates\n\nFetches variant run counts and score aggregates for one experiment on one function."
       }
     },
-    "com.inngest.api#V2InvokeFunctionRequest": {
+    "com.inngest.api#InvokeV2FunctionRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -1248,10 +1249,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2InvokeFunction": {
+    "com.inngest.api#InvokeV2Function": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2InvokeFunctionRequest"
+        "target": "com.inngest.api#InvokeV2FunctionRequest"
       },
       "output": {
         "target": "com.inngest.api#V2InvokeFunctionResponse"
@@ -1282,14 +1283,14 @@
         "smithy.api#documentation": "Invoke function\n\nInvokes a function, executing the function either asynchronously or synchronously based on the mode parameter in the request body"
       }
     },
-    "com.inngest.api#V2ListFunctionRunsRequestStatusList": {
+    "com.inngest.api#ListV2FunctionRunsRequestStatusList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListFunctionRunsRequest": {
+    "com.inngest.api#ListV2FunctionRunsRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -1348,7 +1349,7 @@
           }
         },
         "status": {
-          "target": "com.inngest.api#V2ListFunctionRunsRequestStatusList",
+          "target": "com.inngest.api#ListV2FunctionRunsRequestStatusList",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Statuses to include, using response status values such as COMPLETED, FAILED, RUNNING, QUEUED, or CANCELLED"
@@ -1501,10 +1502,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListFunctionRuns": {
+    "com.inngest.api#ListV2FunctionRuns": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListFunctionRunsRequest"
+        "target": "com.inngest.api#ListV2FunctionRunsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListFunctionRunsResponse"
@@ -1518,7 +1519,7 @@
         "smithy.api#documentation": "List runs for a function\n\nLists runs for one function in the authenticated environment"
       }
     },
-    "com.inngest.api#V2SyncAppRequest": {
+    "com.inngest.api#SyncV2AppRequest": {
       "type": "structure",
       "members": {
         "appId": {
@@ -1623,10 +1624,10 @@
         "smithy.api#documentation": "Status of the sync. `success` and `duplicate` are successful terminal states. `duplicate` means the sync payload matched the previous successful sync, so no function configuration changes were applied. `error` is a failed terminal state, and `pending` means the sync is still in progress."
       }
     },
-    "com.inngest.api#V2SyncApp": {
+    "com.inngest.api#SyncV2App": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2SyncAppRequest"
+        "target": "com.inngest.api#SyncV2AppRequest"
       },
       "output": {
         "target": "com.inngest.api#V2SyncAppResponse"
@@ -1654,7 +1655,7 @@
         "smithy.api#documentation": "Sync app\n\nSync an app at the provided URL."
       }
     },
-    "com.inngest.api#V2ListWebhooksRequest": {
+    "com.inngest.api#ListV2WebhooksRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -1773,10 +1774,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListWebhooks": {
+    "com.inngest.api#ListV2Webhooks": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListWebhooksRequest"
+        "target": "com.inngest.api#ListV2WebhooksRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListWebhooksResponse"
@@ -1798,7 +1799,7 @@
         "smithy.api#documentation": "List webhooks\n\nLists all webhooks in the specified environment"
       }
     },
-    "com.inngest.api#V2CreateWebhookRequest": {
+    "com.inngest.api#CreateV2WebhookRequest": {
       "type": "structure",
       "members": {
         "eventFilter": {
@@ -1839,10 +1840,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreateWebhook": {
+    "com.inngest.api#CreateV2Webhook": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2CreateWebhookRequest"
+        "target": "com.inngest.api#CreateV2WebhookRequest"
       },
       "output": {
         "target": "com.inngest.api#V2CreateWebhookResponse"
@@ -1870,7 +1871,7 @@
         "smithy.api#documentation": "Create webhook\n\nCreates a new webhook for receiving events"
       }
     },
-    "com.inngest.api#V2FetchAccountEnvsRequest": {
+    "com.inngest.api#FetchV2AccountEnvsRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -1959,10 +1960,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2FetchAccountEnvs": {
+    "com.inngest.api#FetchV2AccountEnvs": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2FetchAccountEnvsRequest"
+        "target": "com.inngest.api#FetchV2AccountEnvsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2FetchAccountEnvsResponse"
@@ -1987,7 +1988,7 @@
         "smithy.api#documentation": "List environments\n\nList of all custom environments."
       }
     },
-    "com.inngest.api#V2CreateEnvRequest": {
+    "com.inngest.api#CreateV2EnvRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2013,10 +2014,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreateEnv": {
+    "com.inngest.api#CreateV2Env": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2CreateEnvRequest"
+        "target": "com.inngest.api#CreateV2EnvRequest"
       },
       "output": {
         "target": "com.inngest.api#V2CreateEnvResponse"
@@ -2041,7 +2042,7 @@
         "smithy.api#documentation": "Create environment\n\nCreate custom environment"
       }
     },
-    "com.inngest.api#V2PatchEnvRequest": {
+    "com.inngest.api#PatchV2EnvRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2075,10 +2076,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2PatchEnv": {
+    "com.inngest.api#PatchV2Env": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2PatchEnvRequest"
+        "target": "com.inngest.api#PatchV2EnvRequest"
       },
       "output": {
         "target": "com.inngest.api#V2PatchEnvsResponse"
@@ -2106,7 +2107,7 @@
         "smithy.api#documentation": "Update environment\n\nPartially updates an environment. Only the provided fields will be modified."
       }
     },
-    "com.inngest.api#V2SendEventRequest": {
+    "com.inngest.api#SendV2EventRequest": {
       "type": "structure",
       "members": {
         "data": {
@@ -2169,10 +2170,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2SendEvent": {
+    "com.inngest.api#SendV2Event": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2SendEventRequest"
+        "target": "com.inngest.api#SendV2EventRequest"
       },
       "output": {
         "target": "com.inngest.api#V2SendEventResponse"
@@ -2194,7 +2195,7 @@
         "smithy.api#documentation": "Send event\n\nSends one event for testing and debugging. The request accepts the name, data, user, id, and ts fields; send batches and other Event API fields through an Inngest SDK or the Event API. This endpoint uses REST API rate limits and is not intended for high-volume ingestion. Use the returned event ID with the event runs endpoint to inspect any function runs triggered by the event."
       }
     },
-    "com.inngest.api#V2GetEventRunsRequest": {
+    "com.inngest.api#GetV2EventRunsRequest": {
       "type": "structure",
       "members": {
         "eventId": {
@@ -2251,10 +2252,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetEventRuns": {
+    "com.inngest.api#GetV2EventRuns": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetEventRunsRequest"
+        "target": "com.inngest.api#GetV2EventRunsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetEventRunsResponse"
@@ -2268,7 +2269,7 @@
         "smithy.api#documentation": "Get event runs\n\nLists function runs triggered by a specific event"
       }
     },
-    "com.inngest.api#V2ListExperimentsRequest": {
+    "com.inngest.api#ListV2ExperimentsRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -2314,10 +2315,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.inngest.api#V2ListExperiments": {
+    "com.inngest.api#ListV2Experiments": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListExperimentsRequest"
+        "target": "com.inngest.api#ListV2ExperimentsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListExperimentsResponse"
@@ -2331,7 +2332,7 @@
         "smithy.api#documentation": "List experiments\n\nLists observed experiments in the authenticated environment. Use the nested app and function route to scope results to one function."
       }
     },
-    "com.inngest.api#V2ListInsightsEventSchemasRequest": {
+    "com.inngest.api#ListV2InsightsEventSchemasRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -2398,10 +2399,10 @@
         "smithy.api#documentation": "Paginated list of event type schemas"
       }
     },
-    "com.inngest.api#V2ListInsightsEventSchemas": {
+    "com.inngest.api#ListV2InsightsEventSchemas": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListInsightsEventSchemasRequest"
+        "target": "com.inngest.api#ListV2InsightsEventSchemasRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListInsightsEventSchemasResponse"
@@ -2840,7 +2841,7 @@
         "smithy.api#documentation": "List of available tables that can be queried via the Insights query endpoint"
       }
     },
-    "com.inngest.api#V2ListInsightsTables": {
+    "com.inngest.api#ListV2InsightsTables": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2862,7 +2863,7 @@
         "smithy.api#documentation": "List insights tables\n\nLists the available tables that can be queried via the Insights query endpoint."
       }
     },
-    "com.inngest.api#V2FetchAccountEventKeysRequest": {
+    "com.inngest.api#FetchV2AccountEventKeysRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -2927,10 +2928,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2FetchAccountEventKeys": {
+    "com.inngest.api#FetchV2AccountEventKeys": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2FetchAccountEventKeysRequest"
+        "target": "com.inngest.api#FetchV2AccountEventKeysRequest"
       },
       "output": {
         "target": "com.inngest.api#V2FetchAccountEventKeysResponse"
@@ -2955,7 +2956,7 @@
         "smithy.api#documentation": "List account event keys\n\nLists event keys for a specific account, optionally filtered by environment. If the environment header isn't specified, this returns the default production environment's keys."
       }
     },
-    "com.inngest.api#V2FetchAccountSigningKeysRequest": {
+    "com.inngest.api#FetchV2AccountSigningKeysRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -3020,10 +3021,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2FetchAccountSigningKeys": {
+    "com.inngest.api#FetchV2AccountSigningKeys": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2FetchAccountSigningKeysRequest"
+        "target": "com.inngest.api#FetchV2AccountSigningKeysRequest"
       },
       "output": {
         "target": "com.inngest.api#V2FetchAccountSigningKeysResponse"
@@ -3048,7 +3049,7 @@
         "smithy.api#documentation": "List account signing keys\n\nLists signing keys for a specific account, optionally filtered by environment.  If the environment header isn't specified, this returns the default production environment's keys."
       }
     },
-    "com.inngest.api#V2FetchPartnerAccountsRequest": {
+    "com.inngest.api#FetchV2PartnerAccountsRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -3092,10 +3093,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2FetchPartnerAccounts": {
+    "com.inngest.api#FetchV2PartnerAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2FetchPartnerAccountsRequest"
+        "target": "com.inngest.api#FetchV2PartnerAccountsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2FetchAccountsResponse"
@@ -3117,7 +3118,7 @@
         "smithy.api#documentation": "List partner accounts\n\nLists sub-accounts (if you have partner access)"
       }
     },
-    "com.inngest.api#V2CreatePartnerAccountRequest": {
+    "com.inngest.api#CreateV2PartnerAccountRequest": {
       "type": "structure",
       "members": {
         "email": {
@@ -3170,10 +3171,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreatePartnerAccount": {
+    "com.inngest.api#CreateV2PartnerAccount": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2CreatePartnerAccountRequest"
+        "target": "com.inngest.api#CreateV2PartnerAccountRequest"
       },
       "output": {
         "target": "com.inngest.api#V2CreateAccountResponse"
@@ -3198,28 +3199,28 @@
         "smithy.api#documentation": "Create partner account\n\nCreates a sub-account (if you have partner access)"
       }
     },
-    "com.inngest.api#V2ListRunsRequestStatusList": {
+    "com.inngest.api#ListV2RunsRequestStatusList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListRunsRequestAppIdList": {
+    "com.inngest.api#ListV2RunsRequestAppIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListRunsRequestFunctionIdList": {
+    "com.inngest.api#ListV2RunsRequestFunctionIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListRunsRequest": {
+    "com.inngest.api#ListV2RunsRequest": {
       "type": "structure",
       "members": {
         "includeOutput": {
@@ -3264,21 +3265,21 @@
           }
         },
         "status": {
-          "target": "com.inngest.api#V2ListRunsRequestStatusList",
+          "target": "com.inngest.api#ListV2RunsRequestStatusList",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Statuses to include, using response status values such as COMPLETED, FAILED, RUNNING, QUEUED, or CANCELLED"
           }
         },
         "appId": {
-          "target": "com.inngest.api#V2ListRunsRequestAppIdList",
+          "target": "com.inngest.api#ListV2RunsRequestAppIdList",
           "traits": {
             "smithy.api#httpQuery": "appId",
             "smithy.api#documentation": "App IDs to include"
           }
         },
         "functionId": {
-          "target": "com.inngest.api#V2ListRunsRequestFunctionIdList",
+          "target": "com.inngest.api#ListV2RunsRequestFunctionIdList",
           "traits": {
             "smithy.api#httpQuery": "functionId",
             "smithy.api#documentation": "Function IDs to include"
@@ -3325,10 +3326,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListRuns": {
+    "com.inngest.api#ListV2Runs": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListRunsRequest"
+        "target": "com.inngest.api#ListV2RunsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListRunsResponse"
@@ -3342,7 +3343,7 @@
         "smithy.api#documentation": "List runs\n\nLists runs in the authenticated environment, optionally filtered by app and function IDs"
       }
     },
-    "com.inngest.api#V2GetFunctionRunRequest": {
+    "com.inngest.api#GetV2FunctionRunRequest": {
       "type": "structure",
       "members": {
         "runId": {
@@ -3375,10 +3376,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetFunctionRun": {
+    "com.inngest.api#GetV2FunctionRun": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetFunctionRunRequest"
+        "target": "com.inngest.api#GetV2FunctionRunRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetFunctionRunResponse"
@@ -3392,7 +3393,7 @@
         "smithy.api#documentation": "Get function run\n\nFetches the canonical run summary for a single function run"
       }
     },
-    "com.inngest.api#V2CancelRunRequest": {
+    "com.inngest.api#CancelV2RunRequest": {
       "type": "structure",
       "members": {
         "runId": {
@@ -3431,10 +3432,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CancelRun": {
+    "com.inngest.api#CancelV2Run": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2CancelRunRequest"
+        "target": "com.inngest.api#CancelV2RunRequest"
       },
       "output": {
         "target": "com.inngest.api#V2CancelRunResponse"
@@ -3579,7 +3580,7 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreateScoreRequestBodyList": {
+    "com.inngest.api#CreateV2ScoreRequestBodyList": {
       "type": "list",
       "member": {
         "target": "com.inngest.api#V2CreateScoreInput"
@@ -3588,7 +3589,7 @@
         "smithy.api#documentation": "Scores to record for the run. The REST request body is this array. Writes are applied in order and are not atomic; if a later score fails, earlier scores may already be recorded. Score writes are best-effort: run and step targets are not validated before writing, and scores for targets that do not exist may not surface in queries. Maximum 100 scores."
       }
     },
-    "com.inngest.api#V2CreateScoreRequest": {
+    "com.inngest.api#CreateV2ScoreRequest": {
       "type": "structure",
       "members": {
         "runId": {
@@ -3600,7 +3601,7 @@
           }
         },
         "body": {
-          "target": "com.inngest.api#V2CreateScoreRequestBodyList",
+          "target": "com.inngest.api#CreateV2ScoreRequestBodyList",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -3663,10 +3664,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreateScore": {
+    "com.inngest.api#CreateV2Score": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2CreateScoreRequest"
+        "target": "com.inngest.api#CreateV2ScoreRequest"
       },
       "output": {
         "target": "com.inngest.api#V2CreateScoreResponse"
@@ -3680,7 +3681,7 @@
         "smithy.api#documentation": "Create score\n\nSubmits one or more named scores for a function run, or for specific steps when step IDs are provided. Scores are recorded as run metadata and aggregated for experiments."
       }
     },
-    "com.inngest.api#V2GetFunctionTraceRequest": {
+    "com.inngest.api#GetV2FunctionTraceRequest": {
       "type": "structure",
       "members": {
         "runId": {
@@ -3914,10 +3915,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetFunctionTrace": {
+    "com.inngest.api#GetV2FunctionTrace": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetFunctionTraceRequest"
+        "target": "com.inngest.api#GetV2FunctionTraceRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetFunctionTraceResponse"
@@ -3931,7 +3932,7 @@
         "smithy.api#documentation": "Get function trace\n\nFetches the trace tree for a single function run"
       }
     },
-    "com.inngest.api#V2ListSandboxesRequest": {
+    "com.inngest.api#ListV2SandboxesRequest": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -4099,10 +4100,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListSandboxes": {
+    "com.inngest.api#ListV2Sandboxes": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListSandboxesRequest"
+        "target": "com.inngest.api#ListV2SandboxesRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListSandboxesResponse"
@@ -4116,7 +4117,7 @@
         "smithy.api#documentation": "List sandboxes"
       }
     },
-    "com.inngest.api#V2CreateSandboxRequestEnvironmentMap": {
+    "com.inngest.api#CreateV2SandboxRequestEnvironmentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4126,11 +4127,11 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreateSandboxRequest": {
+    "com.inngest.api#CreateV2SandboxRequest": {
       "type": "structure",
       "members": {
         "environment": {
-          "target": "com.inngest.api#V2CreateSandboxRequestEnvironmentMap"
+          "target": "com.inngest.api#CreateV2SandboxRequestEnvironmentMap"
         },
         "memoryMb": {
           "target": "smithy.api#Integer"
@@ -4158,10 +4159,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2CreateSandbox": {
+    "com.inngest.api#CreateV2Sandbox": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2CreateSandboxRequest"
+        "target": "com.inngest.api#CreateV2SandboxRequest"
       },
       "output": {
         "target": "com.inngest.api#V2CreateSandboxResponse"
@@ -4175,7 +4176,7 @@
         "smithy.api#documentation": "Create a sandbox"
       }
     },
-    "com.inngest.api#V2GetSandboxRequest": {
+    "com.inngest.api#GetV2SandboxRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4202,10 +4203,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetSandbox": {
+    "com.inngest.api#GetV2Sandbox": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetSandboxRequest"
+        "target": "com.inngest.api#GetV2SandboxRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetSandboxResponse"
@@ -4263,14 +4264,14 @@
         "smithy.api#documentation": "Destroy a sandbox"
       }
     },
-    "com.inngest.api#V2ExecSandboxRequestCommandList": {
+    "com.inngest.api#ExecV2SandboxRequestCommandList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.inngest.api#V2ExecSandboxRequestEnvironmentMap": {
+    "com.inngest.api#ExecV2SandboxRequestEnvironmentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4280,7 +4281,7 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ExecSandboxRequest": {
+    "com.inngest.api#ExecV2SandboxRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4291,13 +4292,13 @@
           }
         },
         "command": {
-          "target": "com.inngest.api#V2ExecSandboxRequestCommandList"
+          "target": "com.inngest.api#ExecV2SandboxRequestCommandList"
         },
         "cwd": {
           "target": "smithy.api#String"
         },
         "environment": {
-          "target": "com.inngest.api#V2ExecSandboxRequestEnvironmentMap"
+          "target": "com.inngest.api#ExecV2SandboxRequestEnvironmentMap"
         },
         "timeout": {
           "target": "smithy.api#String"
@@ -4337,10 +4338,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ExecSandbox": {
+    "com.inngest.api#ExecV2Sandbox": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ExecSandboxRequest"
+        "target": "com.inngest.api#ExecV2SandboxRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ExecSandboxResponse"
@@ -4354,7 +4355,7 @@
         "smithy.api#documentation": "Execute a command in a sandbox"
       }
     },
-    "com.inngest.api#V2ReadSandboxFileRequest": {
+    "com.inngest.api#ReadV2SandboxFileRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4375,7 +4376,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.inngest.api#V2ReadSandboxFileResponse": {
+    "com.inngest.api#ReadV2SandboxFileResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4390,13 +4391,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.inngest.api#V2ReadSandboxFile": {
+    "com.inngest.api#ReadV2SandboxFile": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ReadSandboxFileRequest"
+        "target": "com.inngest.api#ReadV2SandboxFileRequest"
       },
       "output": {
-        "target": "com.inngest.api#V2ReadSandboxFileResponse"
+        "target": "com.inngest.api#ReadV2SandboxFileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4642,7 +4643,7 @@
         "smithy.api#documentation": "Stream sandbox logs"
       }
     },
-    "com.inngest.api#V2ListSandboxProcessesRequest": {
+    "com.inngest.api#ListV2SandboxProcessesRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4776,10 +4777,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListSandboxProcesses": {
+    "com.inngest.api#ListV2SandboxProcesses": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListSandboxProcessesRequest"
+        "target": "com.inngest.api#ListV2SandboxProcessesRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListSandboxProcessesResponse"
@@ -4793,14 +4794,14 @@
         "smithy.api#documentation": "List sandbox processes"
       }
     },
-    "com.inngest.api#V2StartSandboxProcessRequestCommandList": {
+    "com.inngest.api#StartV2SandboxProcessRequestCommandList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.inngest.api#V2StartSandboxProcessRequestEnvironmentMap": {
+    "com.inngest.api#StartV2SandboxProcessRequestEnvironmentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4810,7 +4811,7 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2StartSandboxProcessRequest": {
+    "com.inngest.api#StartV2SandboxProcessRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4821,13 +4822,13 @@
           }
         },
         "command": {
-          "target": "com.inngest.api#V2StartSandboxProcessRequestCommandList"
+          "target": "com.inngest.api#StartV2SandboxProcessRequestCommandList"
         },
         "cwd": {
           "target": "smithy.api#String"
         },
         "environment": {
-          "target": "com.inngest.api#V2StartSandboxProcessRequestEnvironmentMap"
+          "target": "com.inngest.api#StartV2SandboxProcessRequestEnvironmentMap"
         }
       },
       "traits": {
@@ -4846,10 +4847,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2StartSandboxProcess": {
+    "com.inngest.api#StartV2SandboxProcess": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2StartSandboxProcessRequest"
+        "target": "com.inngest.api#StartV2SandboxProcessRequest"
       },
       "output": {
         "target": "com.inngest.api#V2StartSandboxProcessResponse"
@@ -4863,7 +4864,7 @@
         "smithy.api#documentation": "Start a sandbox process"
       }
     },
-    "com.inngest.api#V2GetSandboxProcessRequest": {
+    "com.inngest.api#GetV2SandboxProcessRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4897,10 +4898,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetSandboxProcess": {
+    "com.inngest.api#GetV2SandboxProcess": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetSandboxProcessRequest"
+        "target": "com.inngest.api#GetV2SandboxProcessRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetSandboxProcessResponse"
@@ -4914,7 +4915,7 @@
         "smithy.api#documentation": "Get a sandbox process"
       }
     },
-    "com.inngest.api#V2GetSandboxProcessOutputRequest": {
+    "com.inngest.api#GetV2SandboxProcessOutputRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -4970,10 +4971,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2GetSandboxProcessOutput": {
+    "com.inngest.api#GetV2SandboxProcessOutput": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2GetSandboxProcessOutputRequest"
+        "target": "com.inngest.api#GetV2SandboxProcessOutputRequest"
       },
       "output": {
         "target": "com.inngest.api#V2GetSandboxProcessOutputResponse"
@@ -5055,7 +5056,7 @@
         "smithy.api#documentation": "Stream sandbox process output"
       }
     },
-    "com.inngest.api#V2SignalSandboxProcessRequest": {
+    "com.inngest.api#SignalV2SandboxProcessRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -5083,7 +5084,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.inngest.api#V2SignalSandboxProcessResponse2": {
+    "com.inngest.api#SignalV2SandboxProcessResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -5098,13 +5099,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.inngest.api#V2SignalSandboxProcess": {
+    "com.inngest.api#SignalV2SandboxProcess": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2SignalSandboxProcessRequest"
+        "target": "com.inngest.api#SignalV2SandboxProcessRequest"
       },
       "output": {
-        "target": "com.inngest.api#V2SignalSandboxProcessResponse2"
+        "target": "com.inngest.api#SignalV2SandboxProcessResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5115,7 +5116,7 @@
         "smithy.api#documentation": "Signal a sandbox process"
       }
     },
-    "com.inngest.api#V2WaitSandboxProcessRequest": {
+    "com.inngest.api#WaitV2SandboxProcessRequest": {
       "type": "structure",
       "members": {
         "sandboxId": {
@@ -5155,10 +5156,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2WaitSandboxProcess": {
+    "com.inngest.api#WaitV2SandboxProcess": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2WaitSandboxProcessRequest"
+        "target": "com.inngest.api#WaitV2SandboxProcessRequest"
       },
       "output": {
         "target": "com.inngest.api#V2WaitSandboxProcessResponse"
@@ -5172,7 +5173,7 @@
         "smithy.api#documentation": "Wait for a sandbox process"
       }
     },
-    "com.inngest.api#V2ListSessionKeysRequest": {
+    "com.inngest.api#ListV2SessionKeysRequest": {
       "type": "structure",
       "members": {
         "search": {
@@ -5234,10 +5235,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListSessionKeys": {
+    "com.inngest.api#ListV2SessionKeys": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListSessionKeysRequest"
+        "target": "com.inngest.api#ListV2SessionKeysRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListSessionKeysResponse"
@@ -5251,7 +5252,7 @@
         "smithy.api#documentation": "List session keys\n\nLists session keys observed in the authenticated environment."
       }
     },
-    "com.inngest.api#V2ListSessionsRequest": {
+    "com.inngest.api#ListV2SessionsRequest": {
       "type": "structure",
       "members": {
         "sessionKey": {
@@ -5351,10 +5352,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListSessions": {
+    "com.inngest.api#ListV2Sessions": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListSessionsRequest"
+        "target": "com.inngest.api#ListV2SessionsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListSessionsResponse"
@@ -5368,7 +5369,7 @@
         "smithy.api#documentation": "List sessions\n\nLists session IDs for one session key in the authenticated environment."
       }
     },
-    "com.inngest.api#V2ListSessionRunsRequest": {
+    "com.inngest.api#ListV2SessionRunsRequest": {
       "type": "structure",
       "members": {
         "sessionKey": {
@@ -5465,10 +5466,10 @@
       },
       "traits": {}
     },
-    "com.inngest.api#V2ListSessionRuns": {
+    "com.inngest.api#ListV2SessionRuns": {
       "type": "operation",
       "input": {
-        "target": "com.inngest.api#V2ListSessionRunsRequest"
+        "target": "com.inngest.api#ListV2SessionRunsRequest"
       },
       "output": {
         "target": "com.inngest.api#V2ListSessionRunsResponse"
@@ -5552,61 +5553,61 @@
       "version": "2.0.0",
       "operations": [
         {
-          "target": "com.inngest.api#V2FetchAccount"
+          "target": "com.inngest.api#FetchV2Account"
         },
         {
-          "target": "com.inngest.api#V2GetApps"
+          "target": "com.inngest.api#GetV2Apps"
         },
         {
-          "target": "com.inngest.api#V2GetApp"
+          "target": "com.inngest.api#GetV2App"
         },
         {
-          "target": "com.inngest.api#V2GetFunctions"
+          "target": "com.inngest.api#GetV2Functions"
         },
         {
-          "target": "com.inngest.api#V2GetFunction"
+          "target": "com.inngest.api#GetV2Function"
         },
         {
-          "target": "com.inngest.api#V2ListExperiments2"
+          "target": "com.inngest.api#ListV2Experiments2"
         },
         {
-          "target": "com.inngest.api#V2GetExperiment"
+          "target": "com.inngest.api#GetV2Experiment"
         },
         {
-          "target": "com.inngest.api#V2InvokeFunction"
+          "target": "com.inngest.api#InvokeV2Function"
         },
         {
-          "target": "com.inngest.api#V2ListFunctionRuns"
+          "target": "com.inngest.api#ListV2FunctionRuns"
         },
         {
-          "target": "com.inngest.api#V2SyncApp"
+          "target": "com.inngest.api#SyncV2App"
         },
         {
-          "target": "com.inngest.api#V2ListWebhooks"
+          "target": "com.inngest.api#ListV2Webhooks"
         },
         {
-          "target": "com.inngest.api#V2CreateWebhook"
+          "target": "com.inngest.api#CreateV2Webhook"
         },
         {
-          "target": "com.inngest.api#V2FetchAccountEnvs"
+          "target": "com.inngest.api#FetchV2AccountEnvs"
         },
         {
-          "target": "com.inngest.api#V2CreateEnv"
+          "target": "com.inngest.api#CreateV2Env"
         },
         {
-          "target": "com.inngest.api#V2PatchEnv"
+          "target": "com.inngest.api#PatchV2Env"
         },
         {
-          "target": "com.inngest.api#V2SendEvent"
+          "target": "com.inngest.api#SendV2Event"
         },
         {
-          "target": "com.inngest.api#V2GetEventRuns"
+          "target": "com.inngest.api#GetV2EventRuns"
         },
         {
-          "target": "com.inngest.api#V2ListExperiments"
+          "target": "com.inngest.api#ListV2Experiments"
         },
         {
-          "target": "com.inngest.api#V2ListInsightsEventSchemas"
+          "target": "com.inngest.api#ListV2InsightsEventSchemas"
         },
         {
           "target": "com.inngest.api#V2QueryInsights"
@@ -5615,55 +5616,55 @@
           "target": "com.inngest.api#V2QueryInsightsPrompt"
         },
         {
-          "target": "com.inngest.api#V2ListInsightsTables"
+          "target": "com.inngest.api#ListV2InsightsTables"
         },
         {
-          "target": "com.inngest.api#V2FetchAccountEventKeys"
+          "target": "com.inngest.api#FetchV2AccountEventKeys"
         },
         {
-          "target": "com.inngest.api#V2FetchAccountSigningKeys"
+          "target": "com.inngest.api#FetchV2AccountSigningKeys"
         },
         {
-          "target": "com.inngest.api#V2FetchPartnerAccounts"
+          "target": "com.inngest.api#FetchV2PartnerAccounts"
         },
         {
-          "target": "com.inngest.api#V2CreatePartnerAccount"
+          "target": "com.inngest.api#CreateV2PartnerAccount"
         },
         {
-          "target": "com.inngest.api#V2ListRuns"
+          "target": "com.inngest.api#ListV2Runs"
         },
         {
-          "target": "com.inngest.api#V2GetFunctionRun"
+          "target": "com.inngest.api#GetV2FunctionRun"
         },
         {
-          "target": "com.inngest.api#V2CancelRun"
+          "target": "com.inngest.api#CancelV2Run"
         },
         {
           "target": "com.inngest.api#V2Rerun"
         },
         {
-          "target": "com.inngest.api#V2CreateScore"
+          "target": "com.inngest.api#CreateV2Score"
         },
         {
-          "target": "com.inngest.api#V2GetFunctionTrace"
+          "target": "com.inngest.api#GetV2FunctionTrace"
         },
         {
-          "target": "com.inngest.api#V2ListSandboxes"
+          "target": "com.inngest.api#ListV2Sandboxes"
         },
         {
-          "target": "com.inngest.api#V2CreateSandbox"
+          "target": "com.inngest.api#CreateV2Sandbox"
         },
         {
-          "target": "com.inngest.api#V2GetSandbox"
+          "target": "com.inngest.api#GetV2Sandbox"
         },
         {
           "target": "com.inngest.api#V2DestroySandbox"
         },
         {
-          "target": "com.inngest.api#V2ExecSandbox"
+          "target": "com.inngest.api#ExecV2Sandbox"
         },
         {
-          "target": "com.inngest.api#V2ReadSandboxFile"
+          "target": "com.inngest.api#ReadV2SandboxFile"
         },
         {
           "target": "com.inngest.api#V2WriteSandboxFile"
@@ -5672,34 +5673,34 @@
           "target": "com.inngest.api#V2StreamSandboxLogs"
         },
         {
-          "target": "com.inngest.api#V2ListSandboxProcesses"
+          "target": "com.inngest.api#ListV2SandboxProcesses"
         },
         {
-          "target": "com.inngest.api#V2StartSandboxProcess"
+          "target": "com.inngest.api#StartV2SandboxProcess"
         },
         {
-          "target": "com.inngest.api#V2GetSandboxProcess"
+          "target": "com.inngest.api#GetV2SandboxProcess"
         },
         {
-          "target": "com.inngest.api#V2GetSandboxProcessOutput"
+          "target": "com.inngest.api#GetV2SandboxProcessOutput"
         },
         {
           "target": "com.inngest.api#V2StreamSandboxProcessOutput"
         },
         {
-          "target": "com.inngest.api#V2SignalSandboxProcess"
+          "target": "com.inngest.api#SignalV2SandboxProcess"
         },
         {
-          "target": "com.inngest.api#V2WaitSandboxProcess"
+          "target": "com.inngest.api#WaitV2SandboxProcess"
         },
         {
-          "target": "com.inngest.api#V2ListSessionKeys"
+          "target": "com.inngest.api#ListV2SessionKeys"
         },
         {
-          "target": "com.inngest.api#V2ListSessions"
+          "target": "com.inngest.api#ListV2Sessions"
         },
         {
-          "target": "com.inngest.api#V2ListSessionRuns"
+          "target": "com.inngest.api#ListV2SessionRuns"
         }
       ],
       "traits": {
