@@ -57,6 +57,17 @@ const cases: ReadonlyArray<readonly [string, string]> = [
   ["ImageListTags", "imageListTags"],
   // GraphQL nounVerb
   ["projectCreate", "createProject"],
+  // Swagger tag-prefixed (Forgejo/Gitea)
+  ["orgDelete", "deleteOrg"],
+  ["orgGetAll", "orgGetAll"],
+  ["issueListIssues", "listIssues"],
+  ["issueCreateIssue", "createIssue"],
+  ["repoGetRepo", "getRepo"],
+  ["issueGetRepoComments", "issueGetRepoComments"],
+  ["userGetCurrent", "userGetCurrent"],
+  ["environmentPatchCommit", "environmentPatchCommit"],
+  ["adminCreateOrg", "adminCreateOrg"],
+  ["activitypubInstanceActor", "activitypubInstanceActor"],
   ["serviceDelete", "deleteService"],
   ["projectTokenCreate", "createProjectToken"],
   ["volumeInstanceUpdate", "updateVolumeInstance"],

@@ -172,6 +172,7 @@ const STRONG_VERBS = new Set([
  */
 const TRAILING_VERBS = new Set([
   ...STRONG_VERBS,
+  "notify",
   "set",
   "check",
   "run",
@@ -208,7 +209,6 @@ const TRAILING_VERBS = new Set([
   "flush",
   "merge",
   "dispatch",
-  "notify",
   "poll",
   "redeem",
   "claim",
@@ -270,7 +270,6 @@ const WEAK_LEADING_VERBS = new Set([
   "vote",
   "debug",
   "expire",
-  "issue",
   "process",
   "redirect",
   "estimate",
@@ -688,6 +687,21 @@ export const toVerbNoun = (operationId: string): string => {
     return alias(first) + parts.slice(1).map(pascalToken).join("");
   }
   if (parts.some((p) => /^(or|and)$/i.test(p))) return lowerFirst(trimmed);
+
+  // Swagger tag-prefixed ids whose object repeats the tag (`issueListIssues`,
+  // `repoGetRepo`): the tag is redundant, drop it. Other tag-prefixed shapes
+  // (`userGetCurrent`, `notifyGetList`) are left for per-package
+  // `operationNames`; a middle verb is too often a noun (`environmentPatchCommit`).
+  if (
+    parts.length >= 3 &&
+    !isWeakLeadingVerb(first) &&
+    !isVersionToken(first) &&
+    isStrongVerb(parts[1]!) &&
+    singularize(parts[2]!).toLowerCase() === singularize(first).toLowerCase() &&
+    !parts.slice(2).some(isStrongVerb)
+  ) {
+    return alias(parts[1]!) + parts.slice(2).map(pascalToken).join("");
+  }
 
   const reorder = isWeakLeadingVerb(first)
     ? isStrongVerb(last)
