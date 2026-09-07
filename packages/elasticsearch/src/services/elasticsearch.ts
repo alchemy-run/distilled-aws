@@ -38514,6 +38514,135 @@ export const DeleteSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteSnapshotRequest",
 }) as any as S.Schema<DeleteSnapshotRequest>;
 
+export interface DeleteSynonymRequest {
+  /** The synonyms set identifier to delete. */
+  id: string;
+}
+export const DeleteSynonymRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/_synonyms/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteSynonymRequest",
+}) as any as S.Schema<DeleteSynonymRequest>;
+
+export interface DeleteSynonymRuleRequest {
+  /** The ID of the synonym set to update. */
+  set_id: string;
+  /** The ID of the synonym rule to delete. */
+  rule_id: string;
+  /** If `true`, the request will refresh the analyzers with the deleted synonym rule and wait for the new synonyms to be available before returning. If `false`, analyzers will not be reloaded with the deleted synonym rule */
+  refresh?: boolean;
+}
+export const DeleteSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    set_id: S.String.pipe(T.Label()),
+    rule_id: S.String.pipe(T.Label()),
+    refresh: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/_synonyms/{set_id}/{rule_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSynonymRuleRequest",
+}) as any as S.Schema<DeleteSynonymRuleRequest>;
+
+export type IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList =
+  Array<string>;
+export const IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList>;
+
+export type IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList =
+  Array<string>;
+export const IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList>;
+
+export interface IndicesReloadSearchAnalyzersReloadDetails {
+  index: string;
+  reloaded_analyzers: IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList;
+  reloaded_node_ids: IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList;
+}
+export const IndicesReloadSearchAnalyzersReloadDetails =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      index: S.String,
+      reloaded_analyzers:
+        IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList,
+      reloaded_node_ids:
+        IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList,
+    }),
+  ).annotate({
+    identifier: "IndicesReloadSearchAnalyzersReloadDetails",
+  }) as any as S.Schema<IndicesReloadSearchAnalyzersReloadDetails>;
+
+export type IndicesReloadSearchAnalyzersReloadResultReloadDetailsList =
+  Array<IndicesReloadSearchAnalyzersReloadDetails>;
+export const IndicesReloadSearchAnalyzersReloadResultReloadDetailsList =
+  /*@__PURE__*/ S.Array(
+    IndicesReloadSearchAnalyzersReloadDetails,
+  ) as any as S.Schema<IndicesReloadSearchAnalyzersReloadResultReloadDetailsList>;
+
+export interface IndicesReloadSearchAnalyzersReloadResult {
+  reload_details: IndicesReloadSearchAnalyzersReloadResultReloadDetailsList;
+  _shards: TypesShardStatistics;
+}
+export const IndicesReloadSearchAnalyzersReloadResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      reload_details: IndicesReloadSearchAnalyzersReloadResultReloadDetailsList,
+      _shards: TypesShardStatistics,
+    }),
+).annotate({
+  identifier: "IndicesReloadSearchAnalyzersReloadResult",
+}) as any as S.Schema<IndicesReloadSearchAnalyzersReloadResult>;
+
+export interface SynonymsTypesSynonymsUpdateResult {
+  /** The update operation result. */
+  result: TypesResult;
+  /** Updating synonyms in a synonym set can reload the associated analyzers in case refresh is set to true. This information is the analyzers reloading result. */
+  reload_analyzers_details?: IndicesReloadSearchAnalyzersReloadResult;
+}
+export const SynonymsTypesSynonymsUpdateResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+    reload_analyzers_details: S.optional(
+      IndicesReloadSearchAnalyzersReloadResult,
+    ),
+  }),
+).annotate({
+  identifier: "SynonymsTypesSynonymsUpdateResult",
+}) as any as S.Schema<SynonymsTypesSynonymsUpdateResult>;
+
+export interface DeleteTransformRequest {
+  /** Identifier for the transform. */
+  transform_id: string;
+  /** If this value is false, the transform must be stopped before it can be deleted. If true, the transform is deleted regardless of its current state. */
+  force?: boolean;
+  /** If this value is true, the destination index is deleted together with the transform. If false, the destination index will not be deleted */
+  delete_dest_index?: boolean;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const DeleteTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+    delete_dest_index: S.optional(S.Boolean.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/_transform/{transform_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteTransformRequest",
+}) as any as S.Schema<DeleteTransformRequest>;
+
 export type DisableStreamsLogRequestName = "logs" | "logs.otel" | "logs.ecs";
 export const DisableStreamsLogRequestName = /*@__PURE__*/ S.String;
 
@@ -40490,77 +40619,6 @@ export const Explain1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "Explain1Response",
 }) as any as S.Schema<Explain1Response>;
 
-export interface FeaturesGetFeaturesRequest {
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-}
-export const FeaturesGetFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_features", code: 200 })),
-).annotate({
-  identifier: "FeaturesGetFeaturesRequest",
-}) as any as S.Schema<FeaturesGetFeaturesRequest>;
-
-export interface FeaturesTypesFeature {
-  name: string;
-  description: string;
-}
-export const FeaturesTypesFeature = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    description: S.String,
-  }),
-).annotate({
-  identifier: "FeaturesTypesFeature",
-}) as any as S.Schema<FeaturesTypesFeature>;
-
-export type FeaturesGetFeaturesResponseFeaturesList =
-  Array<FeaturesTypesFeature>;
-export const FeaturesGetFeaturesResponseFeaturesList = /*@__PURE__*/ S.Array(
-  FeaturesTypesFeature,
-) as any as S.Schema<FeaturesGetFeaturesResponseFeaturesList>;
-
-export interface FeaturesGetFeaturesResponse {
-  features: FeaturesGetFeaturesResponseFeaturesList;
-}
-export const FeaturesGetFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    features: FeaturesGetFeaturesResponseFeaturesList,
-  }),
-).annotate({
-  identifier: "FeaturesGetFeaturesResponse",
-}) as any as S.Schema<FeaturesGetFeaturesResponse>;
-
-export interface FeaturesResetFeaturesRequest {
-  /** Period to wait for a connection to the master node. */
-  master_timeout?: TypesDuration;
-}
-export const FeaturesResetFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(T.Http({ method: "POST", uri: "/_features/_reset", code: 200 })),
-).annotate({
-  identifier: "FeaturesResetFeaturesRequest",
-}) as any as S.Schema<FeaturesResetFeaturesRequest>;
-
-export type FeaturesResetFeaturesResponseFeaturesList =
-  Array<FeaturesTypesFeature>;
-export const FeaturesResetFeaturesResponseFeaturesList = /*@__PURE__*/ S.Array(
-  FeaturesTypesFeature,
-) as any as S.Schema<FeaturesResetFeaturesResponseFeaturesList>;
-
-export interface FeaturesResetFeaturesResponse {
-  features: FeaturesResetFeaturesResponseFeaturesList;
-}
-export const FeaturesResetFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    features: FeaturesResetFeaturesResponseFeaturesList,
-  }),
-).annotate({
-  identifier: "FeaturesResetFeaturesResponse",
-}) as any as S.Schema<FeaturesResetFeaturesResponse>;
-
 export type FieldCapsRequestFiltersCase1List = Array<string>;
 export const FieldCapsRequestFiltersCase1List = /*@__PURE__*/ S.Array(
   S.String,
@@ -42396,6 +42454,47 @@ export const GetEsqlAsyncQueryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetEsqlAsyncQueryResponse",
 }) as any as S.Schema<GetEsqlAsyncQueryResponse>;
 
+export interface GetFeaturesRequest {
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+}
+export const GetFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_features", code: 200 })),
+).annotate({
+  identifier: "GetFeaturesRequest",
+}) as any as S.Schema<GetFeaturesRequest>;
+
+export interface FeaturesTypesFeature {
+  name: string;
+  description: string;
+}
+export const FeaturesTypesFeature = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    description: S.String,
+  }),
+).annotate({
+  identifier: "FeaturesTypesFeature",
+}) as any as S.Schema<FeaturesTypesFeature>;
+
+export type GetFeaturesResponseFeaturesList = Array<FeaturesTypesFeature>;
+export const GetFeaturesResponseFeaturesList = /*@__PURE__*/ S.Array(
+  FeaturesTypesFeature,
+) as any as S.Schema<GetFeaturesResponseFeaturesList>;
+
+export interface GetFeaturesResponse {
+  features: GetFeaturesResponseFeaturesList;
+}
+export const GetFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    features: GetFeaturesResponseFeaturesList,
+  }),
+).annotate({
+  identifier: "GetFeaturesResponse",
+}) as any as S.Schema<GetFeaturesResponse>;
+
 export type IndicesGetFeature = "aliases" | "mappings" | "settings";
 export const IndicesGetFeature = /*@__PURE__*/ S.String;
 
@@ -43131,6 +43230,134 @@ export const GetSourceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSourceResponse",
 }) as any as S.Schema<GetSourceResponse>;
 
+export interface GetSynonymRequest {
+  /** The synonyms set identifier to retrieve. */
+  id: string;
+  /** The starting offset for synonym rules to retrieve. */
+  from?: number;
+  /** The max number of synonym rules to retrieve. */
+  size?: number;
+  /** The synonym rule ID to use as a cursor for pagination. The next page of results will start after this rule ID. This parameter cannot be used with `from`. */
+  search_after?: string;
+}
+export const GetSynonymRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    search_after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_synonyms/{id}", code: 200 })),
+).annotate({
+  identifier: "GetSynonymRequest",
+}) as any as S.Schema<GetSynonymRequest>;
+
+export interface SynonymsTypesSynonymRuleRead {
+  /** The identifier for the synonym rule. If you do not specify a synonym rule ID when you create a rule, an identifier is created automatically by Elasticsearch. */
+  id: string;
+  /** The synonyms that conform the synonym rule in Solr format. */
+  synonyms: string;
+}
+export const SynonymsTypesSynonymRuleRead = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    synonyms: S.String,
+  }),
+).annotate({
+  identifier: "SynonymsTypesSynonymRuleRead",
+}) as any as S.Schema<SynonymsTypesSynonymRuleRead>;
+
+/** Synonym rule details. */
+export type GetSynonymResponseSynonymsSetList =
+  Array<SynonymsTypesSynonymRuleRead>;
+export const GetSynonymResponseSynonymsSetList = /*@__PURE__*/ S.Array(
+  SynonymsTypesSynonymRuleRead,
+) as any as S.Schema<GetSynonymResponseSynonymsSetList>;
+
+export interface GetSynonymResponse {
+  /** The total number of synonyms rules that the synonyms set contains. */
+  count: number;
+  /** Synonym rule details. */
+  synonyms_set: GetSynonymResponseSynonymsSetList;
+}
+export const GetSynonymResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    synonyms_set: GetSynonymResponseSynonymsSetList,
+  }),
+).annotate({
+  identifier: "GetSynonymResponse",
+}) as any as S.Schema<GetSynonymResponse>;
+
+export interface GetSynonymRuleRequest {
+  /** The ID of the synonym set to retrieve the synonym rule from. */
+  set_id: string;
+  /** The ID of the synonym rule to retrieve. */
+  rule_id: string;
+}
+export const GetSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    set_id: S.String.pipe(T.Label()),
+    rule_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_synonyms/{set_id}/{rule_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSynonymRuleRequest",
+}) as any as S.Schema<GetSynonymRuleRequest>;
+
+export interface GetSynonymsSetsRequest {
+  /** The starting offset for synonyms sets to retrieve. */
+  from?: number;
+  /** The maximum number of synonyms sets to retrieve. */
+  size?: number;
+}
+export const GetSynonymsSetsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_synonyms", code: 200 })),
+).annotate({
+  identifier: "GetSynonymsSetsRequest",
+}) as any as S.Schema<GetSynonymsSetsRequest>;
+
+export interface SynonymsGetSynonymsSetsSynonymsSetItem {
+  /** Synonyms set identifier */
+  synonyms_set: string;
+  /** Number of synonym rules that the synonym set contains */
+  count: number;
+}
+export const SynonymsGetSynonymsSetsSynonymsSetItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      synonyms_set: S.String,
+      count: S.Number,
+    }),
+).annotate({
+  identifier: "SynonymsGetSynonymsSetsSynonymsSetItem",
+}) as any as S.Schema<SynonymsGetSynonymsSetsSynonymsSetItem>;
+
+/** The identifier and total number of defined synonym rules for each synonyms set. */
+export type GetSynonymsSetsResponseResultsList =
+  Array<SynonymsGetSynonymsSetsSynonymsSetItem>;
+export const GetSynonymsSetsResponseResultsList = /*@__PURE__*/ S.Array(
+  SynonymsGetSynonymsSetsSynonymsSetItem,
+) as any as S.Schema<GetSynonymsSetsResponseResultsList>;
+
+export interface GetSynonymsSetsResponse {
+  /** The total number of synonyms sets defined. */
+  count: number;
+  /** The identifier and total number of defined synonym rules for each synonyms set. */
+  results: GetSynonymsSetsResponseResultsList;
+}
+export const GetSynonymsSetsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    results: GetSynonymsSetsResponseResultsList,
+  }),
+).annotate({
+  identifier: "GetSynonymsSetsResponse",
+}) as any as S.Schema<GetSynonymsSetsResponse>;
+
 export interface GetTaskRequest {
   /** The task identifier. */
   task_id: string;
@@ -43163,6 +43390,670 @@ export const GetTaskResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTaskResponse",
 }) as any as S.Schema<GetTaskResponse>;
+
+export interface GetTransformRequest {
+  /** Identifier for the transform. It can be a transform identifier or a wildcard expression. You can get information for all transforms by using `_all`, by specifying `*` as the `<transform_id>`, or by omitting the `<transform_id>`. */
+  transform_id: string;
+  /** Specifies what to do when the request: 1. Contains wildcard expressions and there are no transforms that match. 2. Contains the _all string or no identifiers and there are no matches. 3. Contains wildcard expressions and there are only partial matches. If this parameter is false, the request returns a 404 status code when there are no matches or only partial matches. */
+  allow_no_match?: boolean;
+  /** Skips the specified number of transforms. */
+  from?: number;
+  /** Specifies the maximum number of transforms to obtain. */
+  size?: number;
+  /** Excludes fields that were automatically added when creating the transform. This allows the configuration to be in an acceptable format to be retrieved and then added to another cluster. */
+  exclude_generated?: boolean;
+}
+export const GetTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    exclude_generated: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/_transform/{transform_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetTransformRequest",
+}) as any as S.Schema<GetTransformRequest>;
+
+export interface MlTypesApiKeyAuthorization {
+  /** The identifier for the API key. */
+  id: string;
+  /** The name of the API key. */
+  name: string;
+}
+export const MlTypesApiKeyAuthorization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "MlTypesApiKeyAuthorization",
+}) as any as S.Schema<MlTypesApiKeyAuthorization>;
+
+/** If a user ID was used for the most recent update to the transform, its roles at the time of the update are listed in the response. */
+export type MlTypesTransformAuthorizationRolesList = Array<string>;
+export const MlTypesTransformAuthorizationRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MlTypesTransformAuthorizationRolesList>;
+
+export interface MlTypesTransformAuthorization {
+  /** If an API key was used for the most recent update to the transform, its name and identifier are listed in the response. */
+  api_key?: MlTypesApiKeyAuthorization;
+  /** If a user ID was used for the most recent update to the transform, its roles at the time of the update are listed in the response. */
+  roles?: MlTypesTransformAuthorizationRolesList;
+  /** If a service account was used for the most recent update to the transform, the account name is listed in the response. */
+  service_account?: string;
+}
+export const MlTypesTransformAuthorization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    api_key: S.optional(MlTypesApiKeyAuthorization),
+    roles: S.optional(MlTypesTransformAuthorizationRolesList),
+    service_account: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MlTypesTransformAuthorization",
+}) as any as S.Schema<MlTypesTransformAuthorization>;
+
+export interface TransformTypesDestinationAlias {
+  /** The name of the alias. */
+  alias: string;
+  /** Whether the destination index should be the only index in this alias. If `true`, all the other indices will be removed from this alias before adding the destination index to this alias. This does not delete the removed indices; it only removes them from the alias. */
+  move_on_creation?: boolean;
+}
+export const TransformTypesDestinationAlias = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alias: S.String,
+    move_on_creation: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "TransformTypesDestinationAlias",
+}) as any as S.Schema<TransformTypesDestinationAlias>;
+
+/** The aliases that the destination index for the transform should have. Aliases are manipulated using the stored credentials of the transform, which means the secondary credentials supplied at creation time (if both primary and secondary credentials are specified). The destination index is added to the aliases regardless of whether the destination index was created by the transform or pre-created by the user. */
+export type TransformTypesDestinationAliasesList =
+  Array<TransformTypesDestinationAlias>;
+export const TransformTypesDestinationAliasesList = /*@__PURE__*/ S.Array(
+  TransformTypesDestinationAlias,
+) as any as S.Schema<TransformTypesDestinationAliasesList>;
+
+export interface TransformTypesDestination {
+  /** The destination index for the transform. The mappings of the destination index are deduced based on the source fields when possible. If alternate mappings are required, use the create index API prior to starting the transform. */
+  index?: string;
+  /** The aliases that the destination index for the transform should have. Aliases are manipulated using the stored credentials of the transform, which means the secondary credentials supplied at creation time (if both primary and secondary credentials are specified). The destination index is added to the aliases regardless of whether the destination index was created by the transform or pre-created by the user. */
+  aliases?: TransformTypesDestinationAliasesList;
+  /** The unique identifier for an ingest pipeline. */
+  pipeline?: string;
+}
+export const TransformTypesDestination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.optional(S.String),
+    aliases: S.optional(TransformTypesDestinationAliasesList),
+    pipeline: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TransformTypesDestination",
+}) as any as S.Schema<TransformTypesDestination>;
+
+/** Specifies an array of one or more fields that are used to group the data. */
+export type TransformTypesLatestUniqueKeyList = Array<string>;
+export const TransformTypesLatestUniqueKeyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TransformTypesLatestUniqueKeyList>;
+
+export interface TransformTypesLatest {
+  /** Specifies the date field that is used to identify the latest documents. */
+  sort: string;
+  /** Specifies an array of one or more fields that are used to group the data. */
+  unique_key: TransformTypesLatestUniqueKeyList;
+}
+export const TransformTypesLatest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sort: S.String,
+    unique_key: TransformTypesLatestUniqueKeyList,
+  }),
+).annotate({
+  identifier: "TransformTypesLatest",
+}) as any as S.Schema<TransformTypesLatest>;
+
+/** Defines how to aggregate the grouped data. The following aggregations are currently supported: average, bucket script, bucket selector, cardinality, filter, geo bounds, geo centroid, geo line, max, median absolute deviation, min, missing, percentiles, rare terms, scripted metric, stats, sum, terms, top metrics, value count, weighted average. */
+export type TransformTypesPivotAggregationsMap = {
+  [key: string]: TypesAggregationsAggregationContainer | undefined;
+};
+export const TransformTypesPivotAggregationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TypesAggregationsAggregationContainer,
+) as any as S.Schema<TransformTypesPivotAggregationsMap>;
+
+export interface TransformTypesPivotGroupByContainer {
+  date_histogram?: TypesAggregationsDateHistogramAggregation;
+  geotile_grid?: TypesAggregationsGeoTileGridAggregation;
+  histogram?: TypesAggregationsHistogramAggregation;
+  terms?: TypesAggregationsTermsAggregation;
+}
+export const TransformTypesPivotGroupByContainer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date_histogram: S.optional(TypesAggregationsDateHistogramAggregation),
+    geotile_grid: S.optional(TypesAggregationsGeoTileGridAggregation),
+    histogram: S.optional(TypesAggregationsHistogramAggregation),
+    terms: S.optional(TypesAggregationsTermsAggregation),
+  }),
+).annotate({
+  identifier: "TransformTypesPivotGroupByContainer",
+}) as any as S.Schema<TransformTypesPivotGroupByContainer>;
+
+/** Defines how to group the data. More than one grouping can be defined per pivot. The following groupings are currently supported: date histogram, geotile grid, histogram, terms. */
+export type TransformTypesPivotGroupByMap = {
+  [key: string]: TransformTypesPivotGroupByContainer | undefined;
+};
+export const TransformTypesPivotGroupByMap = /*@__PURE__*/ S.Record(
+  S.String,
+  TransformTypesPivotGroupByContainer,
+) as any as S.Schema<TransformTypesPivotGroupByMap>;
+
+export interface TransformTypesPivot {
+  /** Defines how to aggregate the grouped data. The following aggregations are currently supported: average, bucket script, bucket selector, cardinality, filter, geo bounds, geo centroid, geo line, max, median absolute deviation, min, missing, percentiles, rare terms, scripted metric, stats, sum, terms, top metrics, value count, weighted average. */
+  aggregations?: TransformTypesPivotAggregationsMap;
+  /** Defines how to group the data. More than one grouping can be defined per pivot. The following groupings are currently supported: date histogram, geotile grid, histogram, terms. */
+  group_by?: TransformTypesPivotGroupByMap;
+}
+export const TransformTypesPivot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aggregations: S.optional(TransformTypesPivotAggregationsMap),
+    group_by: S.optional(TransformTypesPivotGroupByMap),
+  }),
+).annotate({
+  identifier: "TransformTypesPivot",
+}) as any as S.Schema<TransformTypesPivot>;
+
+export interface TransformTypesRetentionPolicy {
+  /** The date field that is used to calculate the age of the document. */
+  field: string;
+  /** Specifies the maximum age of a document in the destination index. Documents that are older than the configured value are removed from the destination index. */
+  max_age: TypesDuration;
+}
+export const TransformTypesRetentionPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    field: S.String,
+    max_age: TypesDuration,
+  }),
+).annotate({
+  identifier: "TransformTypesRetentionPolicy",
+}) as any as S.Schema<TransformTypesRetentionPolicy>;
+
+export interface TransformTypesRetentionPolicyContainer {
+  /** Specifies that the transform uses a time field to set the retention policy. */
+  time?: TransformTypesRetentionPolicy;
+}
+export const TransformTypesRetentionPolicyContainer = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      time: S.optional(TransformTypesRetentionPolicy),
+    }),
+).annotate({
+  identifier: "TransformTypesRetentionPolicyContainer",
+}) as any as S.Schema<TransformTypesRetentionPolicyContainer>;
+
+/** The source of the data for the transform. */
+export interface TransformTypesSettings {
+  /** Specifies whether the transform checkpoint ranges should be optimized for performance. Such optimization can align checkpoint ranges with the date histogram interval when date histogram is specified as a group source in the transform config. As a result, less document updates in the destination index will be performed thus improving overall performance. */
+  align_checkpoints?: boolean;
+  /** Defines if dates in the ouput should be written as ISO formatted string or as millis since epoch. epoch_millis was the default for transforms created before version 7.11. For compatible output set this value to `true`. */
+  dates_as_epoch_millis?: boolean;
+  /** Specifies whether the transform should deduce the destination index mappings from the transform configuration. */
+  deduce_mappings?: boolean;
+  /** Specifies a limit on the number of input documents per second. This setting throttles the transform by adding a wait time between search requests. The default value is null, which disables throttling. */
+  docs_per_second?: number;
+  /** Defines the initial page size to use for the composite aggregation for each checkpoint. If circuit breaker exceptions occur, the page size is dynamically adjusted to a lower value. The minimum value is `10` and the maximum is `65,536`. The default value is `500` for `pivot` transforms and `5000` for `latest` transforms. */
+  max_page_search_size?: number;
+  /** Specifies whether the transform checkpoint will use the Point In Time API while searching over the source index. In general, Point In Time is an optimization that will reduce pressure on the source index by reducing the amount of refreshes and merges, but it can be expensive if a large number of Point In Times are opened and closed for a given index. The benefits and impact depend on the data being searched, the ingest rate into the source index, and the amount of other consumers searching the same source index. */
+  use_point_in_time?: boolean;
+  /** Defines the number of retries on a recoverable failure before the transform task is marked as `failed`. The minimum value is `0` and the maximum is `100`, where `-1` indicates that the transform retries indefinitely. If unset, the cluster-level setting `num_transform_failure_retries` is used. This setting cannot be specified when `unattended` is `true`, because unattended transforms always retry indefinitely. */
+  num_failure_retries?: number;
+  /** If `true`, the transform runs in unattended mode. In unattended mode, the transform retries indefinitely in case of an error which means the transform never fails. Setting the number of retries other than infinite fails in validation. */
+  unattended?: boolean;
+}
+export const TransformTypesSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    align_checkpoints: S.optional(S.Boolean),
+    dates_as_epoch_millis: S.optional(S.Boolean),
+    deduce_mappings: S.optional(S.Boolean),
+    docs_per_second: S.optional(S.Number),
+    max_page_search_size: S.optional(S.Number),
+    use_point_in_time: S.optional(S.Boolean),
+    num_failure_retries: S.optional(S.Number),
+    unattended: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "TransformTypesSettings",
+}) as any as S.Schema<TransformTypesSettings>;
+
+export interface TransformTypesSource {
+  /** The source indices for the transform. It can be a single index, an index pattern (for example, `"my-index-*""`), an array of indices (for example, `["my-index-000001", "my-index-000002"]`), or an array of index patterns (for example, `["my-index-*", "my-other-index-*"]`. For remote indices use the syntax `"remote_name:index_name"`. If any indices are in remote clusters then the master node and at least one transform node must have the `remote_cluster_client` node role. */
+  index: TypesIndices;
+  /** A query clause that retrieves a subset of data from the source index. */
+  query?: TypesQueryDslQueryContainer;
+  /** Definitions of search-time runtime fields that can be used by the transform. For search runtime fields all data nodes, including remote nodes, must be 7.12 or later. */
+  runtime_mappings?: TypesMappingRuntimeFields;
+}
+export const TransformTypesSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: TypesIndices,
+    query: S.optional(TypesQueryDslQueryContainer),
+    runtime_mappings: S.optional(TypesMappingRuntimeFields),
+  }),
+).annotate({
+  identifier: "TransformTypesSource",
+}) as any as S.Schema<TransformTypesSource>;
+
+export interface TransformTypesTimeSync {
+  /** The time delay between the current time and the latest input data time. */
+  delay?: TypesDuration;
+  /** The date field that is used to identify new documents in the source. In general, it’s a good idea to use a field that contains the ingest timestamp. If you use a different field, you might need to set the delay such that it accounts for data transmission delays. */
+  field: string;
+}
+export const TransformTypesTimeSync = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    delay: S.optional(TypesDuration),
+    field: S.String,
+  }),
+).annotate({
+  identifier: "TransformTypesTimeSync",
+}) as any as S.Schema<TransformTypesTimeSync>;
+
+export interface TransformTypesSyncContainer {
+  /** Specifies that the transform uses a time field to synchronize the source and destination indices. */
+  time?: TransformTypesTimeSync;
+}
+export const TransformTypesSyncContainer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    time: S.optional(TransformTypesTimeSync),
+  }),
+).annotate({
+  identifier: "TransformTypesSyncContainer",
+}) as any as S.Schema<TransformTypesSyncContainer>;
+
+export interface TransformGetTransformTransformSummary {
+  /** The security privileges that the transform uses to run its queries. If Elastic Stack security features were disabled at the time of the most recent update to the transform, this property is omitted. */
+  authorization?: MlTypesTransformAuthorization;
+  /** The time the transform was created. */
+  create_time?: number;
+  create_time_string?: TypesDateTime;
+  /** Free text description of the transform. */
+  description?: string;
+  /** The destination for the transform. */
+  dest: TransformTypesDestination;
+  frequency?: TypesDuration;
+  id: string;
+  latest?: TransformTypesLatest;
+  /** The pivot method transforms the data by aggregating and grouping it. */
+  pivot?: TransformTypesPivot;
+  retention_policy?: TransformTypesRetentionPolicyContainer;
+  /** Defines optional transform settings. */
+  settings?: TransformTypesSettings;
+  /** The source of the data for the transform. */
+  source: TransformTypesSource;
+  /** Defines the properties transforms require to run continuously. */
+  sync?: TransformTypesSyncContainer;
+  /** The version of Elasticsearch that existed on the node when the transform was created. */
+  version?: string;
+  _meta?: TypesMetadata;
+}
+export const TransformGetTransformTransformSummary = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      authorization: S.optional(MlTypesTransformAuthorization),
+      create_time: S.optional(S.Number),
+      create_time_string: S.optional(TypesDateTime),
+      description: S.optional(S.String),
+      dest: TransformTypesDestination,
+      frequency: S.optional(TypesDuration),
+      id: S.String,
+      latest: S.optional(TransformTypesLatest),
+      pivot: S.optional(TransformTypesPivot),
+      retention_policy: S.optional(TransformTypesRetentionPolicyContainer),
+      settings: S.optional(TransformTypesSettings),
+      source: TransformTypesSource,
+      sync: S.optional(TransformTypesSyncContainer),
+      version: S.optional(S.String),
+      _meta: S.optional(TypesMetadata),
+    }),
+).annotate({
+  identifier: "TransformGetTransformTransformSummary",
+}) as any as S.Schema<TransformGetTransformTransformSummary>;
+
+export type GetTransformResponseTransformsList =
+  Array<TransformGetTransformTransformSummary>;
+export const GetTransformResponseTransformsList = /*@__PURE__*/ S.Array(
+  TransformGetTransformTransformSummary,
+) as any as S.Schema<GetTransformResponseTransformsList>;
+
+export interface GetTransformResponse {
+  count: number;
+  transforms: GetTransformResponseTransformsList;
+}
+export const GetTransformResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    transforms: GetTransformResponseTransformsList,
+  }),
+).annotate({
+  identifier: "GetTransformResponse",
+}) as any as S.Schema<GetTransformResponse>;
+
+export interface GetTransform1Request {
+  /** Specifies what to do when the request: 1. Contains wildcard expressions and there are no transforms that match. 2. Contains the _all string or no identifiers and there are no matches. 3. Contains wildcard expressions and there are only partial matches. If this parameter is false, the request returns a 404 status code when there are no matches or only partial matches. */
+  allow_no_match?: boolean;
+  /** Skips the specified number of transforms. */
+  from?: number;
+  /** Specifies the maximum number of transforms to obtain. */
+  size?: number;
+  /** Excludes fields that were automatically added when creating the transform. This allows the configuration to be in an acceptable format to be retrieved and then added to another cluster. */
+  exclude_generated?: boolean;
+}
+export const GetTransform1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    exclude_generated: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/_transform", code: 200 })),
+).annotate({
+  identifier: "GetTransform1Request",
+}) as any as S.Schema<GetTransform1Request>;
+
+export type GetTransform1ResponseTransformsList =
+  Array<TransformGetTransformTransformSummary>;
+export const GetTransform1ResponseTransformsList = /*@__PURE__*/ S.Array(
+  TransformGetTransformTransformSummary,
+) as any as S.Schema<GetTransform1ResponseTransformsList>;
+
+export interface GetTransform1Response {
+  count: number;
+  transforms: GetTransform1ResponseTransformsList;
+}
+export const GetTransform1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    transforms: GetTransform1ResponseTransformsList,
+  }),
+).annotate({
+  identifier: "GetTransform1Response",
+}) as any as S.Schema<GetTransform1Response>;
+
+export interface GetTransformStatsRequest {
+  /** Identifier for the transform. It can be a transform identifier or a wildcard expression. You can get information for all transforms by using `_all`, by specifying `*` as the `<transform_id>`, or by omitting the `<transform_id>`. */
+  transform_id: string;
+  /** Specifies what to do when the request: 1. Contains wildcard expressions and there are no transforms that match. 2. Contains the _all string or no identifiers and there are no matches. 3. Contains wildcard expressions and there are only partial matches. If this parameter is false, the request returns a 404 status code when there are no matches or only partial matches. */
+  allow_no_match?: boolean;
+  /** If true, the response includes `id`, `state`, `node`, `stats`, `health`, and basic `checkpointing` information (the last and next checkpoint numbers, and the next checkpoint's `position` and `progress`). Skips statistics that require heavy computations to calculate: `operations_behind`, `changes_last_detected_at`, `last_search_time`, and the checkpoint timestamps. */
+  basic?: boolean;
+  /** Skips the specified number of transforms. */
+  from?: number;
+  /** Specifies the maximum number of transforms to obtain. */
+  size?: number;
+  /** Controls the time to wait for the stats */
+  timeout?: TypesDuration;
+}
+export const GetTransformStatsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
+    basic: S.optional(S.Boolean.pipe(T.Query())),
+    from: S.optional(S.Number.pipe(T.Query())),
+    size: S.optional(S.Number.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/_transform/{transform_id}/_stats",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetTransformStatsRequest",
+}) as any as S.Schema<GetTransformStatsRequest>;
+
+export interface TransformGetTransformStatsTransformProgress {
+  docs_indexed: number;
+  docs_processed: number;
+  docs_remaining?: number;
+  percent_complete?: number;
+  total_docs?: number;
+}
+export const TransformGetTransformStatsTransformProgress =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      docs_indexed: S.Number,
+      docs_processed: S.Number,
+      docs_remaining: S.optional(S.Number),
+      percent_complete: S.optional(S.Number),
+      total_docs: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "TransformGetTransformStatsTransformProgress",
+  }) as any as S.Schema<TransformGetTransformStatsTransformProgress>;
+
+export interface TransformGetTransformStatsCheckpointStats {
+  checkpoint: number;
+  checkpoint_progress?: TransformGetTransformStatsTransformProgress;
+  timestamp?: TypesDateTime;
+  timestamp_millis?: number;
+  time_upper_bound?: TypesDateTime;
+  time_upper_bound_millis?: number;
+}
+export const TransformGetTransformStatsCheckpointStats =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      checkpoint: S.Number,
+      checkpoint_progress: S.optional(
+        TransformGetTransformStatsTransformProgress,
+      ),
+      timestamp: S.optional(TypesDateTime),
+      timestamp_millis: S.optional(S.Number),
+      time_upper_bound: S.optional(TypesDateTime),
+      time_upper_bound_millis: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "TransformGetTransformStatsCheckpointStats",
+  }) as any as S.Schema<TransformGetTransformStatsCheckpointStats>;
+
+export interface TransformGetTransformStatsCheckpointing {
+  changes_last_detected_at?: number;
+  changes_last_detected_at_string?: TypesDateTime;
+  last: TransformGetTransformStatsCheckpointStats;
+  next?: TransformGetTransformStatsCheckpointStats;
+  operations_behind?: number;
+  last_search_time?: number;
+  last_search_time_string?: TypesDateTime;
+}
+export const TransformGetTransformStatsCheckpointing = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      changes_last_detected_at: S.optional(S.Number),
+      changes_last_detected_at_string: S.optional(TypesDateTime),
+      last: TransformGetTransformStatsCheckpointStats,
+      next: S.optional(TransformGetTransformStatsCheckpointStats),
+      operations_behind: S.optional(S.Number),
+      last_search_time: S.optional(S.Number),
+      last_search_time_string: S.optional(TypesDateTime),
+    }),
+).annotate({
+  identifier: "TransformGetTransformStatsCheckpointing",
+}) as any as S.Schema<TransformGetTransformStatsCheckpointing>;
+
+export interface TransformGetTransformStatsTransformHealthIssue {
+  /** The type of the issue */
+  type: string;
+  /** A description of the issue */
+  issue: string;
+  /** Details about the issue */
+  details?: string;
+  /** Number of times this issue has occurred since it started */
+  count: number;
+  /** The timestamp this issue occurred for for the first time */
+  first_occurrence?: number;
+  first_occurence_string?: TypesDateTime;
+}
+export const TransformGetTransformStatsTransformHealthIssue =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.String,
+      issue: S.String,
+      details: S.optional(S.String),
+      count: S.Number,
+      first_occurrence: S.optional(S.Number),
+      first_occurence_string: S.optional(TypesDateTime),
+    }),
+  ).annotate({
+    identifier: "TransformGetTransformStatsTransformHealthIssue",
+  }) as any as S.Schema<TransformGetTransformStatsTransformHealthIssue>;
+
+/** If a non-healthy status is returned, contains a list of issues of the transform. */
+export type TransformGetTransformStatsTransformStatsHealthIssuesList =
+  Array<TransformGetTransformStatsTransformHealthIssue>;
+export const TransformGetTransformStatsTransformStatsHealthIssuesList =
+  /*@__PURE__*/ S.Array(
+    TransformGetTransformStatsTransformHealthIssue,
+  ) as any as S.Schema<TransformGetTransformStatsTransformStatsHealthIssuesList>;
+
+export interface TransformGetTransformStatsTransformStatsHealth {
+  status: TypesHealthStatus;
+  /** If a non-healthy status is returned, contains a list of issues of the transform. */
+  issues?: TransformGetTransformStatsTransformStatsHealthIssuesList;
+}
+export const TransformGetTransformStatsTransformStatsHealth =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: TypesHealthStatus,
+      issues: S.optional(
+        TransformGetTransformStatsTransformStatsHealthIssuesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "TransformGetTransformStatsTransformStatsHealth",
+  }) as any as S.Schema<TransformGetTransformStatsTransformStatsHealth>;
+
+/** Lists node attributes. */
+export type TypesNodeAttributesAttributesMap = {
+  [key: string]: string | undefined;
+};
+export const TypesNodeAttributesAttributesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TypesNodeAttributesAttributesMap>;
+
+export interface TypesNodeAttributes {
+  /** Lists node attributes. */
+  attributes: TypesNodeAttributesAttributesMap;
+  /** The ephemeral ID of the node. */
+  ephemeral_id: string;
+  /** The unique identifier of the node. */
+  id?: string;
+  /** The unique identifier of the node. */
+  name: string;
+  /** The host and port where transport HTTP connections are accepted. */
+  transport_address: string;
+}
+export const TypesNodeAttributes = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributes: TypesNodeAttributesAttributesMap,
+    ephemeral_id: S.String,
+    id: S.optional(S.String),
+    name: S.String,
+    transport_address: S.String,
+  }),
+).annotate({
+  identifier: "TypesNodeAttributes",
+}) as any as S.Schema<TypesNodeAttributes>;
+
+export interface TransformGetTransformStatsTransformIndexerStats {
+  delete_time_in_ms?: number;
+  documents_indexed: number;
+  documents_deleted?: number;
+  documents_processed: number;
+  exponential_avg_checkpoint_duration_ms: number;
+  exponential_avg_documents_indexed: number;
+  exponential_avg_documents_processed: number;
+  index_failures: number;
+  index_time_in_ms: number;
+  index_total: number;
+  pages_processed: number;
+  processing_time_in_ms: number;
+  processing_total: number;
+  search_failures: number;
+  search_time_in_ms: number;
+  search_total: number;
+  trigger_count: number;
+}
+export const TransformGetTransformStatsTransformIndexerStats =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      delete_time_in_ms: S.optional(S.Number),
+      documents_indexed: S.Number,
+      documents_deleted: S.optional(S.Number),
+      documents_processed: S.Number,
+      exponential_avg_checkpoint_duration_ms: S.Number,
+      exponential_avg_documents_indexed: S.Number,
+      exponential_avg_documents_processed: S.Number,
+      index_failures: S.Number,
+      index_time_in_ms: S.Number,
+      index_total: S.Number,
+      pages_processed: S.Number,
+      processing_time_in_ms: S.Number,
+      processing_total: S.Number,
+      search_failures: S.Number,
+      search_time_in_ms: S.Number,
+      search_total: S.Number,
+      trigger_count: S.Number,
+    }),
+  ).annotate({
+    identifier: "TransformGetTransformStatsTransformIndexerStats",
+  }) as any as S.Schema<TransformGetTransformStatsTransformIndexerStats>;
+
+export interface TransformGetTransformStatsTransformStats {
+  checkpointing: TransformGetTransformStatsCheckpointing;
+  health?: TransformGetTransformStatsTransformStatsHealth;
+  id: string;
+  node?: TypesNodeAttributes;
+  reason?: string;
+  state: string;
+  stats: TransformGetTransformStatsTransformIndexerStats;
+}
+export const TransformGetTransformStatsTransformStats = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      checkpointing: TransformGetTransformStatsCheckpointing,
+      health: S.optional(TransformGetTransformStatsTransformStatsHealth),
+      id: S.String,
+      node: S.optional(TypesNodeAttributes),
+      reason: S.optional(S.String),
+      state: S.String,
+      stats: TransformGetTransformStatsTransformIndexerStats,
+    }),
+).annotate({
+  identifier: "TransformGetTransformStatsTransformStats",
+}) as any as S.Schema<TransformGetTransformStatsTransformStats>;
+
+export type GetTransformStatsResponseTransformsList =
+  Array<TransformGetTransformStatsTransformStats>;
+export const GetTransformStatsResponseTransformsList = /*@__PURE__*/ S.Array(
+  TransformGetTransformStatsTransformStats,
+) as any as S.Schema<GetTransformStatsResponseTransformsList>;
+
+export interface GetTransformStatsResponse {
+  count: number;
+  transforms: GetTransformStatsResponseTransformsList;
+}
+export const GetTransformStatsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    transforms: GetTransformStatsResponseTransformsList,
+  }),
+).annotate({
+  identifier: "GetTransformStatsResponse",
+}) as any as S.Schema<GetTransformStatsResponse>;
 
 /** Prevents the specified terms from being included in the results. */
 export type GraphTypesVertexDefinitionExcludeList = Array<string>;
@@ -50070,59 +50961,6 @@ export const IndicesReloadSearchAnalyzersRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "IndicesReloadSearchAnalyzersRequest",
 }) as any as S.Schema<IndicesReloadSearchAnalyzersRequest>;
-
-export type IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList =
-  Array<string>;
-export const IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList>;
-
-export type IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList =
-  Array<string>;
-export const IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList>;
-
-export interface IndicesReloadSearchAnalyzersReloadDetails {
-  index: string;
-  reloaded_analyzers: IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList;
-  reloaded_node_ids: IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList;
-}
-export const IndicesReloadSearchAnalyzersReloadDetails =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      index: S.String,
-      reloaded_analyzers:
-        IndicesReloadSearchAnalyzersReloadDetailsReloadedAnalyzersList,
-      reloaded_node_ids:
-        IndicesReloadSearchAnalyzersReloadDetailsReloadedNodeIdsList,
-    }),
-  ).annotate({
-    identifier: "IndicesReloadSearchAnalyzersReloadDetails",
-  }) as any as S.Schema<IndicesReloadSearchAnalyzersReloadDetails>;
-
-export type IndicesReloadSearchAnalyzersReloadResultReloadDetailsList =
-  Array<IndicesReloadSearchAnalyzersReloadDetails>;
-export const IndicesReloadSearchAnalyzersReloadResultReloadDetailsList =
-  /*@__PURE__*/ S.Array(
-    IndicesReloadSearchAnalyzersReloadDetails,
-  ) as any as S.Schema<IndicesReloadSearchAnalyzersReloadResultReloadDetailsList>;
-
-export interface IndicesReloadSearchAnalyzersReloadResult {
-  reload_details: IndicesReloadSearchAnalyzersReloadResultReloadDetailsList;
-  _shards: TypesShardStatistics;
-}
-export const IndicesReloadSearchAnalyzersReloadResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      reload_details: IndicesReloadSearchAnalyzersReloadResultReloadDetailsList,
-      _shards: TypesShardStatistics,
-    }),
-).annotate({
-  identifier: "IndicesReloadSearchAnalyzersReloadResult",
-}) as any as S.Schema<IndicesReloadSearchAnalyzersReloadResult>;
 
 export interface IndicesReloadSearchAnalyzers1Request {
   /** A comma-separated list of index names to reload analyzers for */
@@ -66482,21 +67320,6 @@ export const MlTypesDatafeedAggregationsMap = /*@__PURE__*/ S.Record(
   TypesAggregationsAggregationContainer,
 ) as any as S.Schema<MlTypesDatafeedAggregationsMap>;
 
-export interface MlTypesApiKeyAuthorization {
-  /** The identifier for the API key. */
-  id: string;
-  /** The name of the API key. */
-  name: string;
-}
-export const MlTypesApiKeyAuthorization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "MlTypesApiKeyAuthorization",
-}) as any as S.Schema<MlTypesApiKeyAuthorization>;
-
 /** If a user ID was used for the most recent update to the datafeed, its roles at the time of the update are listed in the response. */
 export type MlTypesDatafeedAuthorizationRolesList = Array<string>;
 export const MlTypesDatafeedAuthorizationRolesList = /*@__PURE__*/ S.Array(
@@ -67306,39 +68129,6 @@ export const MlTypesDataframeAnalyticsStatsMemoryUsage =
   ).annotate({
     identifier: "MlTypesDataframeAnalyticsStatsMemoryUsage",
   }) as any as S.Schema<MlTypesDataframeAnalyticsStatsMemoryUsage>;
-
-/** Lists node attributes. */
-export type TypesNodeAttributesAttributesMap = {
-  [key: string]: string | undefined;
-};
-export const TypesNodeAttributesAttributesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TypesNodeAttributesAttributesMap>;
-
-export interface TypesNodeAttributes {
-  /** Lists node attributes. */
-  attributes: TypesNodeAttributesAttributesMap;
-  /** The ephemeral ID of the node. */
-  ephemeral_id: string;
-  /** The unique identifier of the node. */
-  id?: string;
-  /** The unique identifier of the node. */
-  name: string;
-  /** The host and port where transport HTTP connections are accepted. */
-  transport_address: string;
-}
-export const TypesNodeAttributes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributes: TypesNodeAttributesAttributesMap,
-    ephemeral_id: S.String,
-    id: S.optional(S.String),
-    name: S.String,
-    transport_address: S.String,
-  }),
-).annotate({
-  identifier: "TypesNodeAttributes",
-}) as any as S.Schema<TypesNodeAttributes>;
 
 export interface MlTypesDataframeAnalyticsStatsProgress {
   /** Defines the phase of the data frame analytics job. */
@@ -78538,6 +79328,145 @@ export const PutScript3Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutScript3Request",
 }) as any as S.Schema<PutScript3Request>;
 
+export interface SynonymsTypesSynonymRule {
+  /** The identifier for the synonym rule. If you do not specify a synonym rule ID when you create a rule, an identifier is created automatically by Elasticsearch. */
+  id?: string;
+  /** The synonyms that conform the synonym rule in Solr format. */
+  synonyms: string;
+}
+export const SynonymsTypesSynonymRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    synonyms: S.String,
+  }),
+).annotate({
+  identifier: "SynonymsTypesSynonymRule",
+}) as any as S.Schema<SynonymsTypesSynonymRule>;
+
+export type PutSynonymRequestSynonymsSetCase1List =
+  Array<SynonymsTypesSynonymRule>;
+export const PutSynonymRequestSynonymsSetCase1List = /*@__PURE__*/ S.Array(
+  SynonymsTypesSynonymRule,
+) as any as S.Schema<PutSynonymRequestSynonymsSetCase1List>;
+
+/** The synonym rules definitions for the synonyms set. */
+export type PutSynonymRequestSynonymsSet =
+  | SynonymsTypesSynonymRule
+  | PutSynonymRequestSynonymsSetCase1List;
+export const PutSynonymRequestSynonymsSet =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PutSynonymRequestSynonymsSet>;
+
+export interface PutSynonymRequest {
+  /** The ID of the synonyms set to be created or updated. */
+  id: string;
+  /** If `true`, the request will refresh the analyzers with the new synonyms set and wait for the new synonyms to be available before returning. If `false`, analyzers will not be reloaded with the new synonym set */
+  refresh?: boolean;
+  /** If `true`, the provided synonym rules are appended to the existing set, with matching IDs overwriting existing rules. If `false`, the entire synonyms set is replaced with the new synonym rules definitions. */
+  append?: boolean;
+  /** The synonym rules definitions for the synonyms set. */
+  synonyms_set: PutSynonymRequestSynonymsSet;
+}
+export const PutSynonymRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    refresh: S.optional(S.Boolean.pipe(T.Query())),
+    append: S.optional(S.Boolean.pipe(T.Query())),
+    synonyms_set: PutSynonymRequestSynonymsSet,
+  }).pipe(T.Http({ method: "PUT", uri: "/_synonyms/{id}", code: 200 })),
+).annotate({
+  identifier: "PutSynonymRequest",
+}) as any as S.Schema<PutSynonymRequest>;
+
+export interface PutSynonymResponse {
+  /** The update operation result. */
+  result: TypesResult;
+  /** Updating a synonyms set can reload the associated analyzers in case refresh is set to true. This information is the analyzers reloading result. */
+  reload_analyzers_details?: IndicesReloadSearchAnalyzersReloadResult;
+}
+export const PutSynonymResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: TypesResult,
+    reload_analyzers_details: S.optional(
+      IndicesReloadSearchAnalyzersReloadResult,
+    ),
+  }),
+).annotate({
+  identifier: "PutSynonymResponse",
+}) as any as S.Schema<PutSynonymResponse>;
+
+export interface PutSynonymRuleRequest {
+  /** The ID of the synonym set. */
+  set_id: string;
+  /** The ID of the synonym rule to be updated or created. */
+  rule_id: string;
+  /** If `true`, the request will refresh the analyzers with the new synonym rule and wait for the new synonyms to be available before returning. If `false`, analyzers will not be reloaded with the new synonym rule */
+  refresh?: boolean;
+  /** The synonym rule information definition, which must be in Solr format. */
+  synonyms: string;
+}
+export const PutSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    set_id: S.String.pipe(T.Label()),
+    rule_id: S.String.pipe(T.Label()),
+    refresh: S.optional(S.Boolean.pipe(T.Query())),
+    synonyms: S.String,
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/_synonyms/{set_id}/{rule_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutSynonymRuleRequest",
+}) as any as S.Schema<PutSynonymRuleRequest>;
+
+export interface PutTransformRequest {
+  /** Identifier for the transform. This identifier can contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It has a 64 character limit and must start and end with alphanumeric characters. */
+  transform_id: string;
+  /** When the transform is created, a series of validations occur to ensure its success. For example, there is a check for the existence of the source indices and a check that the destination index is not part of the source index pattern. You can use this parameter to skip the checks, for example when the source index does not exist until after the transform is created. The validations are always run when you start the transform, however, with the exception of privilege checks. */
+  defer_validation?: boolean;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  /** The destination for the transform. */
+  dest: TransformTypesDestination;
+  /** Free text description of the transform. */
+  description?: string;
+  /** The interval between checks for changes in the source indices when the transform is running continuously. Also determines the retry interval in the event of transient failures while the transform is searching or indexing. The minimum value is `1s` and the maximum is `1h`. */
+  frequency?: TypesDuration;
+  /** The latest method transforms the data by finding the latest document for each unique key. */
+  latest?: TransformTypesLatest;
+  /** Defines optional transform metadata. */
+  _meta?: TypesMetadata;
+  /** The pivot method transforms the data by aggregating and grouping it. These objects define the group by fields and the aggregation to reduce the data. */
+  pivot?: TransformTypesPivot;
+  /** Defines a retention policy for the transform. Data that meets the defined criteria is deleted from the destination index. */
+  retention_policy?: TransformTypesRetentionPolicyContainer;
+  /** Defines optional transform settings. */
+  settings?: TransformTypesSettings;
+  /** The source of the data for the transform. */
+  source: TransformTypesSource;
+  /** Defines the properties transforms require to run continuously. */
+  sync?: TransformTypesSyncContainer;
+}
+export const PutTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    defer_validation: S.optional(S.Boolean.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    dest: TransformTypesDestination,
+    description: S.optional(S.String),
+    frequency: S.optional(TypesDuration),
+    latest: S.optional(TransformTypesLatest),
+    _meta: S.optional(TypesMetadata),
+    pivot: S.optional(TransformTypesPivot),
+    retention_policy: S.optional(TransformTypesRetentionPolicyContainer),
+    settings: S.optional(TransformTypesSettings),
+    source: TransformTypesSource,
+    sync: S.optional(TransformTypesSyncContainer),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/_transform/{transform_id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PutTransformRequest",
+}) as any as S.Schema<PutTransformRequest>;
+
 export interface QueryRulesDeleteRuleRequest {
   /** The unique identifier of the query ruleset containing the rule to delete */
   ruleset_id: string;
@@ -80231,6 +81160,58 @@ export const ResetEncryptionRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResetEncryptionRequest",
 }) as any as S.Schema<ResetEncryptionRequest>;
+
+export interface ResetFeaturesRequest {
+  /** Period to wait for a connection to the master node. */
+  master_timeout?: TypesDuration;
+}
+export const ResetFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    master_timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(T.Http({ method: "POST", uri: "/_features/_reset", code: 200 })),
+).annotate({
+  identifier: "ResetFeaturesRequest",
+}) as any as S.Schema<ResetFeaturesRequest>;
+
+export type ResetFeaturesResponseFeaturesList = Array<FeaturesTypesFeature>;
+export const ResetFeaturesResponseFeaturesList = /*@__PURE__*/ S.Array(
+  FeaturesTypesFeature,
+) as any as S.Schema<ResetFeaturesResponseFeaturesList>;
+
+export interface ResetFeaturesResponse {
+  features: ResetFeaturesResponseFeaturesList;
+}
+export const ResetFeaturesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    features: ResetFeaturesResponseFeaturesList,
+  }),
+).annotate({
+  identifier: "ResetFeaturesResponse",
+}) as any as S.Schema<ResetFeaturesResponse>;
+
+export interface ResetTransformRequest {
+  /** Identifier for the transform. This identifier can contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It has a 64 character limit and must start and end with alphanumeric characters. */
+  transform_id: string;
+  /** If this value is `true`, the transform is reset regardless of its current state. If it's `false`, the transform must be stopped before it can be reset. */
+  force?: boolean;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+}
+export const ResetTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_transform/{transform_id}/_reset",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ResetTransformRequest",
+}) as any as S.Schema<ResetTransformRequest>;
 
 /** The feature states to restore. If `include_global_state` is `true`, the request restores all feature states in the snapshot by default. If `include_global_state` is `false`, the request restores no feature states by default. Note that specifying an empty array will result in the default behavior. To restore no feature states, regardless of the `include_global_state` value, specify an array containing only the value `none` (`["none"]`). */
 export type RestoreSnapshotRequestFeatureStatesList = Array<string>;
@@ -93869,6 +94850,30 @@ export const StartSlmRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "StartSlmRequest",
 }) as any as S.Schema<StartSlmRequest>;
 
+export interface StartTransformRequest {
+  /** Identifier for the transform. */
+  transform_id: string;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  /** Restricts the set of transformed entities to those changed after this time. Relative times like now-30d are supported. Only applicable for continuous transforms. */
+  from?: string;
+}
+export const StartTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    from: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_transform/{transform_id}/_start",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "StartTransformRequest",
+}) as any as S.Schema<StartTransformRequest>;
+
 export interface StartWatcherRequest {
   /** Period to wait for a connection to the master node. */
   master_timeout?: TypesDuration;
@@ -93924,6 +94929,39 @@ export const StopSlmRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(T.Http({ method: "POST", uri: "/_slm/stop", code: 200 })),
 ).annotate({ identifier: "StopSlmRequest" }) as any as S.Schema<StopSlmRequest>;
 
+export interface StopTransformRequest {
+  /** Identifier for the transform. To stop multiple transforms, use a comma-separated list or a wildcard expression. To stop all transforms, use `_all` or `*` as the identifier. */
+  transform_id: string;
+  /** Specifies what to do when the request: contains wildcard expressions and there are no transforms that match; contains the `_all` string or no identifiers and there are no matches; contains wildcard expressions and there are only partial matches. If it is true, the API returns a successful acknowledgement message when there are no matches. When there are only partial matches, the API stops the appropriate transforms. If it is false, the request returns a 404 status code when there are no matches or only partial matches. */
+  allow_no_match?: boolean;
+  /** If it is true, the API forcefully stops the transforms. */
+  force?: boolean;
+  /** Period to wait for a response when `wait_for_completion` is `true`. If no response is received before the timeout expires, the request returns a timeout exception. However, the request continues processing and eventually moves the transform to a STOPPED state. */
+  timeout?: TypesDuration;
+  /** If it is true, the transform does not completely stop until the current checkpoint is completed. If it is false, the transform stops as soon as possible. */
+  wait_for_checkpoint?: boolean;
+  /** If it is true, the API blocks until the indexer state completely stops. If it is false, the API returns immediately and the indexer is stopped asynchronously in the background. */
+  wait_for_completion?: boolean;
+}
+export const StopTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
+    force: S.optional(S.Boolean.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    wait_for_checkpoint: S.optional(S.Boolean.pipe(T.Query())),
+    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_transform/{transform_id}/_stop",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "StopTransformRequest",
+}) as any as S.Schema<StopTransformRequest>;
+
 export interface StopWatcherRequest {
   /** The period to wait for the master node. If the master node is not available before the timeout expires, the request fails and returns an error. To indicate that the request should never timeout, set it to `-1`. */
   master_timeout?: TypesDuration;
@@ -93974,277 +95012,6 @@ export const StreamsStatusResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "StreamsStatusResponse",
 }) as any as S.Schema<StreamsStatusResponse>;
-
-export interface SynonymsDeleteSynonymRequest {
-  /** The synonyms set identifier to delete. */
-  id: string;
-}
-export const SynonymsDeleteSynonymRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/_synonyms/{id}", code: 200 })),
-).annotate({
-  identifier: "SynonymsDeleteSynonymRequest",
-}) as any as S.Schema<SynonymsDeleteSynonymRequest>;
-
-export interface SynonymsDeleteSynonymRuleRequest {
-  /** The ID of the synonym set to update. */
-  set_id: string;
-  /** The ID of the synonym rule to delete. */
-  rule_id: string;
-  /** If `true`, the request will refresh the analyzers with the deleted synonym rule and wait for the new synonyms to be available before returning. If `false`, analyzers will not be reloaded with the deleted synonym rule */
-  refresh?: boolean;
-}
-export const SynonymsDeleteSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    set_id: S.String.pipe(T.Label()),
-    rule_id: S.String.pipe(T.Label()),
-    refresh: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/_synonyms/{set_id}/{rule_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SynonymsDeleteSynonymRuleRequest",
-}) as any as S.Schema<SynonymsDeleteSynonymRuleRequest>;
-
-export interface SynonymsTypesSynonymsUpdateResult {
-  /** The update operation result. */
-  result: TypesResult;
-  /** Updating synonyms in a synonym set can reload the associated analyzers in case refresh is set to true. This information is the analyzers reloading result. */
-  reload_analyzers_details?: IndicesReloadSearchAnalyzersReloadResult;
-}
-export const SynonymsTypesSynonymsUpdateResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-    reload_analyzers_details: S.optional(
-      IndicesReloadSearchAnalyzersReloadResult,
-    ),
-  }),
-).annotate({
-  identifier: "SynonymsTypesSynonymsUpdateResult",
-}) as any as S.Schema<SynonymsTypesSynonymsUpdateResult>;
-
-export interface SynonymsGetSynonymRequest {
-  /** The synonyms set identifier to retrieve. */
-  id: string;
-  /** The starting offset for synonym rules to retrieve. */
-  from?: number;
-  /** The max number of synonym rules to retrieve. */
-  size?: number;
-  /** The synonym rule ID to use as a cursor for pagination. The next page of results will start after this rule ID. This parameter cannot be used with `from`. */
-  search_after?: string;
-}
-export const SynonymsGetSynonymRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    search_after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_synonyms/{id}", code: 200 })),
-).annotate({
-  identifier: "SynonymsGetSynonymRequest",
-}) as any as S.Schema<SynonymsGetSynonymRequest>;
-
-export interface SynonymsTypesSynonymRuleRead {
-  /** The identifier for the synonym rule. If you do not specify a synonym rule ID when you create a rule, an identifier is created automatically by Elasticsearch. */
-  id: string;
-  /** The synonyms that conform the synonym rule in Solr format. */
-  synonyms: string;
-}
-export const SynonymsTypesSynonymRuleRead = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    synonyms: S.String,
-  }),
-).annotate({
-  identifier: "SynonymsTypesSynonymRuleRead",
-}) as any as S.Schema<SynonymsTypesSynonymRuleRead>;
-
-/** Synonym rule details. */
-export type SynonymsGetSynonymResponseSynonymsSetList =
-  Array<SynonymsTypesSynonymRuleRead>;
-export const SynonymsGetSynonymResponseSynonymsSetList = /*@__PURE__*/ S.Array(
-  SynonymsTypesSynonymRuleRead,
-) as any as S.Schema<SynonymsGetSynonymResponseSynonymsSetList>;
-
-export interface SynonymsGetSynonymResponse {
-  /** The total number of synonyms rules that the synonyms set contains. */
-  count: number;
-  /** Synonym rule details. */
-  synonyms_set: SynonymsGetSynonymResponseSynonymsSetList;
-}
-export const SynonymsGetSynonymResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    synonyms_set: SynonymsGetSynonymResponseSynonymsSetList,
-  }),
-).annotate({
-  identifier: "SynonymsGetSynonymResponse",
-}) as any as S.Schema<SynonymsGetSynonymResponse>;
-
-export interface SynonymsGetSynonymRuleRequest {
-  /** The ID of the synonym set to retrieve the synonym rule from. */
-  set_id: string;
-  /** The ID of the synonym rule to retrieve. */
-  rule_id: string;
-}
-export const SynonymsGetSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    set_id: S.String.pipe(T.Label()),
-    rule_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/_synonyms/{set_id}/{rule_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "SynonymsGetSynonymRuleRequest",
-}) as any as S.Schema<SynonymsGetSynonymRuleRequest>;
-
-export interface SynonymsGetSynonymsSetsRequest {
-  /** The starting offset for synonyms sets to retrieve. */
-  from?: number;
-  /** The maximum number of synonyms sets to retrieve. */
-  size?: number;
-}
-export const SynonymsGetSynonymsSetsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_synonyms", code: 200 })),
-).annotate({
-  identifier: "SynonymsGetSynonymsSetsRequest",
-}) as any as S.Schema<SynonymsGetSynonymsSetsRequest>;
-
-export interface SynonymsGetSynonymsSetsSynonymsSetItem {
-  /** Synonyms set identifier */
-  synonyms_set: string;
-  /** Number of synonym rules that the synonym set contains */
-  count: number;
-}
-export const SynonymsGetSynonymsSetsSynonymsSetItem = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      synonyms_set: S.String,
-      count: S.Number,
-    }),
-).annotate({
-  identifier: "SynonymsGetSynonymsSetsSynonymsSetItem",
-}) as any as S.Schema<SynonymsGetSynonymsSetsSynonymsSetItem>;
-
-/** The identifier and total number of defined synonym rules for each synonyms set. */
-export type SynonymsGetSynonymsSetsResponseResultsList =
-  Array<SynonymsGetSynonymsSetsSynonymsSetItem>;
-export const SynonymsGetSynonymsSetsResponseResultsList = /*@__PURE__*/ S.Array(
-  SynonymsGetSynonymsSetsSynonymsSetItem,
-) as any as S.Schema<SynonymsGetSynonymsSetsResponseResultsList>;
-
-export interface SynonymsGetSynonymsSetsResponse {
-  /** The total number of synonyms sets defined. */
-  count: number;
-  /** The identifier and total number of defined synonym rules for each synonyms set. */
-  results: SynonymsGetSynonymsSetsResponseResultsList;
-}
-export const SynonymsGetSynonymsSetsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    results: SynonymsGetSynonymsSetsResponseResultsList,
-  }),
-).annotate({
-  identifier: "SynonymsGetSynonymsSetsResponse",
-}) as any as S.Schema<SynonymsGetSynonymsSetsResponse>;
-
-export interface SynonymsTypesSynonymRule {
-  /** The identifier for the synonym rule. If you do not specify a synonym rule ID when you create a rule, an identifier is created automatically by Elasticsearch. */
-  id?: string;
-  /** The synonyms that conform the synonym rule in Solr format. */
-  synonyms: string;
-}
-export const SynonymsTypesSynonymRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    synonyms: S.String,
-  }),
-).annotate({
-  identifier: "SynonymsTypesSynonymRule",
-}) as any as S.Schema<SynonymsTypesSynonymRule>;
-
-export type SynonymsPutSynonymRequestSynonymsSetCase1List =
-  Array<SynonymsTypesSynonymRule>;
-export const SynonymsPutSynonymRequestSynonymsSetCase1List =
-  /*@__PURE__*/ S.Array(
-    SynonymsTypesSynonymRule,
-  ) as any as S.Schema<SynonymsPutSynonymRequestSynonymsSetCase1List>;
-
-/** The synonym rules definitions for the synonyms set. */
-export type SynonymsPutSynonymRequestSynonymsSet =
-  | SynonymsTypesSynonymRule
-  | SynonymsPutSynonymRequestSynonymsSetCase1List;
-export const SynonymsPutSynonymRequestSynonymsSet =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<SynonymsPutSynonymRequestSynonymsSet>;
-
-export interface SynonymsPutSynonymRequest {
-  /** The ID of the synonyms set to be created or updated. */
-  id: string;
-  /** If `true`, the request will refresh the analyzers with the new synonyms set and wait for the new synonyms to be available before returning. If `false`, analyzers will not be reloaded with the new synonym set */
-  refresh?: boolean;
-  /** If `true`, the provided synonym rules are appended to the existing set, with matching IDs overwriting existing rules. If `false`, the entire synonyms set is replaced with the new synonym rules definitions. */
-  append?: boolean;
-  /** The synonym rules definitions for the synonyms set. */
-  synonyms_set: SynonymsPutSynonymRequestSynonymsSet;
-}
-export const SynonymsPutSynonymRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    refresh: S.optional(S.Boolean.pipe(T.Query())),
-    append: S.optional(S.Boolean.pipe(T.Query())),
-    synonyms_set: SynonymsPutSynonymRequestSynonymsSet,
-  }).pipe(T.Http({ method: "PUT", uri: "/_synonyms/{id}", code: 200 })),
-).annotate({
-  identifier: "SynonymsPutSynonymRequest",
-}) as any as S.Schema<SynonymsPutSynonymRequest>;
-
-export interface SynonymsPutSynonymResponse {
-  /** The update operation result. */
-  result: TypesResult;
-  /** Updating a synonyms set can reload the associated analyzers in case refresh is set to true. This information is the analyzers reloading result. */
-  reload_analyzers_details?: IndicesReloadSearchAnalyzersReloadResult;
-}
-export const SynonymsPutSynonymResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: TypesResult,
-    reload_analyzers_details: S.optional(
-      IndicesReloadSearchAnalyzersReloadResult,
-    ),
-  }),
-).annotate({
-  identifier: "SynonymsPutSynonymResponse",
-}) as any as S.Schema<SynonymsPutSynonymResponse>;
-
-export interface SynonymsPutSynonymRuleRequest {
-  /** The ID of the synonym set. */
-  set_id: string;
-  /** The ID of the synonym rule to be updated or created. */
-  rule_id: string;
-  /** If `true`, the request will refresh the analyzers with the new synonym rule and wait for the new synonyms to be available before returning. If `false`, analyzers will not be reloaded with the new synonym rule */
-  refresh?: boolean;
-  /** The synonym rule information definition, which must be in Solr format. */
-  synonyms: string;
-}
-export const SynonymsPutSynonymRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    set_id: S.String.pipe(T.Label()),
-    rule_id: S.String.pipe(T.Label()),
-    refresh: S.optional(S.Boolean.pipe(T.Query())),
-    synonyms: S.String,
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/_synonyms/{set_id}/{rule_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "SynonymsPutSynonymRuleRequest",
-}) as any as S.Schema<SynonymsPutSynonymRuleRequest>;
 
 export type TasksCancel1RequestActionsCase1List = Array<string>;
 export const TasksCancel1RequestActionsCase1List = /*@__PURE__*/ S.Array(
@@ -95647,29 +96414,6 @@ export const TextStructureTestGrokPattern1Response = /*@__PURE__*/ S.suspend(
   identifier: "TextStructureTestGrokPattern1Response",
 }) as any as S.Schema<TextStructureTestGrokPattern1Response>;
 
-export interface TransformDeleteTransformRequest {
-  /** Identifier for the transform. */
-  transform_id: string;
-  /** If this value is false, the transform must be stopped before it can be deleted. If true, the transform is deleted regardless of its current state. */
-  force?: boolean;
-  /** If this value is true, the destination index is deleted together with the transform. If false, the destination index will not be deleted */
-  delete_dest_index?: boolean;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const TransformDeleteTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-    delete_dest_index: S.optional(S.Boolean.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/_transform/{transform_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "TransformDeleteTransformRequest",
-}) as any as S.Schema<TransformDeleteTransformRequest>;
-
 export interface TransformGetNodeStatsRequest {}
 export const TransformGetNodeStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
@@ -95716,625 +96460,6 @@ export const TransformGetNodeStatsTransformNodeFullStats =
   ).annotate({
     identifier: "TransformGetNodeStatsTransformNodeFullStats",
   }) as any as S.Schema<TransformGetNodeStatsTransformNodeFullStats>;
-
-export interface TransformGetTransformRequest {
-  /** Identifier for the transform. It can be a transform identifier or a wildcard expression. You can get information for all transforms by using `_all`, by specifying `*` as the `<transform_id>`, or by omitting the `<transform_id>`. */
-  transform_id: string;
-  /** Specifies what to do when the request: 1. Contains wildcard expressions and there are no transforms that match. 2. Contains the _all string or no identifiers and there are no matches. 3. Contains wildcard expressions and there are only partial matches. If this parameter is false, the request returns a 404 status code when there are no matches or only partial matches. */
-  allow_no_match?: boolean;
-  /** Skips the specified number of transforms. */
-  from?: number;
-  /** Specifies the maximum number of transforms to obtain. */
-  size?: number;
-  /** Excludes fields that were automatically added when creating the transform. This allows the configuration to be in an acceptable format to be retrieved and then added to another cluster. */
-  exclude_generated?: boolean;
-}
-export const TransformGetTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    exclude_generated: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/_transform/{transform_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "TransformGetTransformRequest",
-}) as any as S.Schema<TransformGetTransformRequest>;
-
-/** If a user ID was used for the most recent update to the transform, its roles at the time of the update are listed in the response. */
-export type MlTypesTransformAuthorizationRolesList = Array<string>;
-export const MlTypesTransformAuthorizationRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MlTypesTransformAuthorizationRolesList>;
-
-export interface MlTypesTransformAuthorization {
-  /** If an API key was used for the most recent update to the transform, its name and identifier are listed in the response. */
-  api_key?: MlTypesApiKeyAuthorization;
-  /** If a user ID was used for the most recent update to the transform, its roles at the time of the update are listed in the response. */
-  roles?: MlTypesTransformAuthorizationRolesList;
-  /** If a service account was used for the most recent update to the transform, the account name is listed in the response. */
-  service_account?: string;
-}
-export const MlTypesTransformAuthorization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    api_key: S.optional(MlTypesApiKeyAuthorization),
-    roles: S.optional(MlTypesTransformAuthorizationRolesList),
-    service_account: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MlTypesTransformAuthorization",
-}) as any as S.Schema<MlTypesTransformAuthorization>;
-
-export interface TransformTypesDestinationAlias {
-  /** The name of the alias. */
-  alias: string;
-  /** Whether the destination index should be the only index in this alias. If `true`, all the other indices will be removed from this alias before adding the destination index to this alias. This does not delete the removed indices; it only removes them from the alias. */
-  move_on_creation?: boolean;
-}
-export const TransformTypesDestinationAlias = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alias: S.String,
-    move_on_creation: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "TransformTypesDestinationAlias",
-}) as any as S.Schema<TransformTypesDestinationAlias>;
-
-/** The aliases that the destination index for the transform should have. Aliases are manipulated using the stored credentials of the transform, which means the secondary credentials supplied at creation time (if both primary and secondary credentials are specified). The destination index is added to the aliases regardless of whether the destination index was created by the transform or pre-created by the user. */
-export type TransformTypesDestinationAliasesList =
-  Array<TransformTypesDestinationAlias>;
-export const TransformTypesDestinationAliasesList = /*@__PURE__*/ S.Array(
-  TransformTypesDestinationAlias,
-) as any as S.Schema<TransformTypesDestinationAliasesList>;
-
-export interface TransformTypesDestination {
-  /** The destination index for the transform. The mappings of the destination index are deduced based on the source fields when possible. If alternate mappings are required, use the create index API prior to starting the transform. */
-  index?: string;
-  /** The aliases that the destination index for the transform should have. Aliases are manipulated using the stored credentials of the transform, which means the secondary credentials supplied at creation time (if both primary and secondary credentials are specified). The destination index is added to the aliases regardless of whether the destination index was created by the transform or pre-created by the user. */
-  aliases?: TransformTypesDestinationAliasesList;
-  /** The unique identifier for an ingest pipeline. */
-  pipeline?: string;
-}
-export const TransformTypesDestination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.optional(S.String),
-    aliases: S.optional(TransformTypesDestinationAliasesList),
-    pipeline: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TransformTypesDestination",
-}) as any as S.Schema<TransformTypesDestination>;
-
-/** Specifies an array of one or more fields that are used to group the data. */
-export type TransformTypesLatestUniqueKeyList = Array<string>;
-export const TransformTypesLatestUniqueKeyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TransformTypesLatestUniqueKeyList>;
-
-export interface TransformTypesLatest {
-  /** Specifies the date field that is used to identify the latest documents. */
-  sort: string;
-  /** Specifies an array of one or more fields that are used to group the data. */
-  unique_key: TransformTypesLatestUniqueKeyList;
-}
-export const TransformTypesLatest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sort: S.String,
-    unique_key: TransformTypesLatestUniqueKeyList,
-  }),
-).annotate({
-  identifier: "TransformTypesLatest",
-}) as any as S.Schema<TransformTypesLatest>;
-
-/** Defines how to aggregate the grouped data. The following aggregations are currently supported: average, bucket script, bucket selector, cardinality, filter, geo bounds, geo centroid, geo line, max, median absolute deviation, min, missing, percentiles, rare terms, scripted metric, stats, sum, terms, top metrics, value count, weighted average. */
-export type TransformTypesPivotAggregationsMap = {
-  [key: string]: TypesAggregationsAggregationContainer | undefined;
-};
-export const TransformTypesPivotAggregationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TypesAggregationsAggregationContainer,
-) as any as S.Schema<TransformTypesPivotAggregationsMap>;
-
-export interface TransformTypesPivotGroupByContainer {
-  date_histogram?: TypesAggregationsDateHistogramAggregation;
-  geotile_grid?: TypesAggregationsGeoTileGridAggregation;
-  histogram?: TypesAggregationsHistogramAggregation;
-  terms?: TypesAggregationsTermsAggregation;
-}
-export const TransformTypesPivotGroupByContainer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date_histogram: S.optional(TypesAggregationsDateHistogramAggregation),
-    geotile_grid: S.optional(TypesAggregationsGeoTileGridAggregation),
-    histogram: S.optional(TypesAggregationsHistogramAggregation),
-    terms: S.optional(TypesAggregationsTermsAggregation),
-  }),
-).annotate({
-  identifier: "TransformTypesPivotGroupByContainer",
-}) as any as S.Schema<TransformTypesPivotGroupByContainer>;
-
-/** Defines how to group the data. More than one grouping can be defined per pivot. The following groupings are currently supported: date histogram, geotile grid, histogram, terms. */
-export type TransformTypesPivotGroupByMap = {
-  [key: string]: TransformTypesPivotGroupByContainer | undefined;
-};
-export const TransformTypesPivotGroupByMap = /*@__PURE__*/ S.Record(
-  S.String,
-  TransformTypesPivotGroupByContainer,
-) as any as S.Schema<TransformTypesPivotGroupByMap>;
-
-export interface TransformTypesPivot {
-  /** Defines how to aggregate the grouped data. The following aggregations are currently supported: average, bucket script, bucket selector, cardinality, filter, geo bounds, geo centroid, geo line, max, median absolute deviation, min, missing, percentiles, rare terms, scripted metric, stats, sum, terms, top metrics, value count, weighted average. */
-  aggregations?: TransformTypesPivotAggregationsMap;
-  /** Defines how to group the data. More than one grouping can be defined per pivot. The following groupings are currently supported: date histogram, geotile grid, histogram, terms. */
-  group_by?: TransformTypesPivotGroupByMap;
-}
-export const TransformTypesPivot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aggregations: S.optional(TransformTypesPivotAggregationsMap),
-    group_by: S.optional(TransformTypesPivotGroupByMap),
-  }),
-).annotate({
-  identifier: "TransformTypesPivot",
-}) as any as S.Schema<TransformTypesPivot>;
-
-export interface TransformTypesRetentionPolicy {
-  /** The date field that is used to calculate the age of the document. */
-  field: string;
-  /** Specifies the maximum age of a document in the destination index. Documents that are older than the configured value are removed from the destination index. */
-  max_age: TypesDuration;
-}
-export const TransformTypesRetentionPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    field: S.String,
-    max_age: TypesDuration,
-  }),
-).annotate({
-  identifier: "TransformTypesRetentionPolicy",
-}) as any as S.Schema<TransformTypesRetentionPolicy>;
-
-export interface TransformTypesRetentionPolicyContainer {
-  /** Specifies that the transform uses a time field to set the retention policy. */
-  time?: TransformTypesRetentionPolicy;
-}
-export const TransformTypesRetentionPolicyContainer = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      time: S.optional(TransformTypesRetentionPolicy),
-    }),
-).annotate({
-  identifier: "TransformTypesRetentionPolicyContainer",
-}) as any as S.Schema<TransformTypesRetentionPolicyContainer>;
-
-/** The source of the data for the transform. */
-export interface TransformTypesSettings {
-  /** Specifies whether the transform checkpoint ranges should be optimized for performance. Such optimization can align checkpoint ranges with the date histogram interval when date histogram is specified as a group source in the transform config. As a result, less document updates in the destination index will be performed thus improving overall performance. */
-  align_checkpoints?: boolean;
-  /** Defines if dates in the ouput should be written as ISO formatted string or as millis since epoch. epoch_millis was the default for transforms created before version 7.11. For compatible output set this value to `true`. */
-  dates_as_epoch_millis?: boolean;
-  /** Specifies whether the transform should deduce the destination index mappings from the transform configuration. */
-  deduce_mappings?: boolean;
-  /** Specifies a limit on the number of input documents per second. This setting throttles the transform by adding a wait time between search requests. The default value is null, which disables throttling. */
-  docs_per_second?: number;
-  /** Defines the initial page size to use for the composite aggregation for each checkpoint. If circuit breaker exceptions occur, the page size is dynamically adjusted to a lower value. The minimum value is `10` and the maximum is `65,536`. The default value is `500` for `pivot` transforms and `5000` for `latest` transforms. */
-  max_page_search_size?: number;
-  /** Specifies whether the transform checkpoint will use the Point In Time API while searching over the source index. In general, Point In Time is an optimization that will reduce pressure on the source index by reducing the amount of refreshes and merges, but it can be expensive if a large number of Point In Times are opened and closed for a given index. The benefits and impact depend on the data being searched, the ingest rate into the source index, and the amount of other consumers searching the same source index. */
-  use_point_in_time?: boolean;
-  /** Defines the number of retries on a recoverable failure before the transform task is marked as `failed`. The minimum value is `0` and the maximum is `100`, where `-1` indicates that the transform retries indefinitely. If unset, the cluster-level setting `num_transform_failure_retries` is used. This setting cannot be specified when `unattended` is `true`, because unattended transforms always retry indefinitely. */
-  num_failure_retries?: number;
-  /** If `true`, the transform runs in unattended mode. In unattended mode, the transform retries indefinitely in case of an error which means the transform never fails. Setting the number of retries other than infinite fails in validation. */
-  unattended?: boolean;
-}
-export const TransformTypesSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    align_checkpoints: S.optional(S.Boolean),
-    dates_as_epoch_millis: S.optional(S.Boolean),
-    deduce_mappings: S.optional(S.Boolean),
-    docs_per_second: S.optional(S.Number),
-    max_page_search_size: S.optional(S.Number),
-    use_point_in_time: S.optional(S.Boolean),
-    num_failure_retries: S.optional(S.Number),
-    unattended: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "TransformTypesSettings",
-}) as any as S.Schema<TransformTypesSettings>;
-
-export interface TransformTypesSource {
-  /** The source indices for the transform. It can be a single index, an index pattern (for example, `"my-index-*""`), an array of indices (for example, `["my-index-000001", "my-index-000002"]`), or an array of index patterns (for example, `["my-index-*", "my-other-index-*"]`. For remote indices use the syntax `"remote_name:index_name"`. If any indices are in remote clusters then the master node and at least one transform node must have the `remote_cluster_client` node role. */
-  index: TypesIndices;
-  /** A query clause that retrieves a subset of data from the source index. */
-  query?: TypesQueryDslQueryContainer;
-  /** Definitions of search-time runtime fields that can be used by the transform. For search runtime fields all data nodes, including remote nodes, must be 7.12 or later. */
-  runtime_mappings?: TypesMappingRuntimeFields;
-}
-export const TransformTypesSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: TypesIndices,
-    query: S.optional(TypesQueryDslQueryContainer),
-    runtime_mappings: S.optional(TypesMappingRuntimeFields),
-  }),
-).annotate({
-  identifier: "TransformTypesSource",
-}) as any as S.Schema<TransformTypesSource>;
-
-export interface TransformTypesTimeSync {
-  /** The time delay between the current time and the latest input data time. */
-  delay?: TypesDuration;
-  /** The date field that is used to identify new documents in the source. In general, it’s a good idea to use a field that contains the ingest timestamp. If you use a different field, you might need to set the delay such that it accounts for data transmission delays. */
-  field: string;
-}
-export const TransformTypesTimeSync = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    delay: S.optional(TypesDuration),
-    field: S.String,
-  }),
-).annotate({
-  identifier: "TransformTypesTimeSync",
-}) as any as S.Schema<TransformTypesTimeSync>;
-
-export interface TransformTypesSyncContainer {
-  /** Specifies that the transform uses a time field to synchronize the source and destination indices. */
-  time?: TransformTypesTimeSync;
-}
-export const TransformTypesSyncContainer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    time: S.optional(TransformTypesTimeSync),
-  }),
-).annotate({
-  identifier: "TransformTypesSyncContainer",
-}) as any as S.Schema<TransformTypesSyncContainer>;
-
-export interface TransformGetTransformTransformSummary {
-  /** The security privileges that the transform uses to run its queries. If Elastic Stack security features were disabled at the time of the most recent update to the transform, this property is omitted. */
-  authorization?: MlTypesTransformAuthorization;
-  /** The time the transform was created. */
-  create_time?: number;
-  create_time_string?: TypesDateTime;
-  /** Free text description of the transform. */
-  description?: string;
-  /** The destination for the transform. */
-  dest: TransformTypesDestination;
-  frequency?: TypesDuration;
-  id: string;
-  latest?: TransformTypesLatest;
-  /** The pivot method transforms the data by aggregating and grouping it. */
-  pivot?: TransformTypesPivot;
-  retention_policy?: TransformTypesRetentionPolicyContainer;
-  /** Defines optional transform settings. */
-  settings?: TransformTypesSettings;
-  /** The source of the data for the transform. */
-  source: TransformTypesSource;
-  /** Defines the properties transforms require to run continuously. */
-  sync?: TransformTypesSyncContainer;
-  /** The version of Elasticsearch that existed on the node when the transform was created. */
-  version?: string;
-  _meta?: TypesMetadata;
-}
-export const TransformGetTransformTransformSummary = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      authorization: S.optional(MlTypesTransformAuthorization),
-      create_time: S.optional(S.Number),
-      create_time_string: S.optional(TypesDateTime),
-      description: S.optional(S.String),
-      dest: TransformTypesDestination,
-      frequency: S.optional(TypesDuration),
-      id: S.String,
-      latest: S.optional(TransformTypesLatest),
-      pivot: S.optional(TransformTypesPivot),
-      retention_policy: S.optional(TransformTypesRetentionPolicyContainer),
-      settings: S.optional(TransformTypesSettings),
-      source: TransformTypesSource,
-      sync: S.optional(TransformTypesSyncContainer),
-      version: S.optional(S.String),
-      _meta: S.optional(TypesMetadata),
-    }),
-).annotate({
-  identifier: "TransformGetTransformTransformSummary",
-}) as any as S.Schema<TransformGetTransformTransformSummary>;
-
-export type TransformGetTransformResponseTransformsList =
-  Array<TransformGetTransformTransformSummary>;
-export const TransformGetTransformResponseTransformsList =
-  /*@__PURE__*/ S.Array(
-    TransformGetTransformTransformSummary,
-  ) as any as S.Schema<TransformGetTransformResponseTransformsList>;
-
-export interface TransformGetTransformResponse {
-  count: number;
-  transforms: TransformGetTransformResponseTransformsList;
-}
-export const TransformGetTransformResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    transforms: TransformGetTransformResponseTransformsList,
-  }),
-).annotate({
-  identifier: "TransformGetTransformResponse",
-}) as any as S.Schema<TransformGetTransformResponse>;
-
-export interface TransformGetTransform1Request {
-  /** Specifies what to do when the request: 1. Contains wildcard expressions and there are no transforms that match. 2. Contains the _all string or no identifiers and there are no matches. 3. Contains wildcard expressions and there are only partial matches. If this parameter is false, the request returns a 404 status code when there are no matches or only partial matches. */
-  allow_no_match?: boolean;
-  /** Skips the specified number of transforms. */
-  from?: number;
-  /** Specifies the maximum number of transforms to obtain. */
-  size?: number;
-  /** Excludes fields that were automatically added when creating the transform. This allows the configuration to be in an acceptable format to be retrieved and then added to another cluster. */
-  exclude_generated?: boolean;
-}
-export const TransformGetTransform1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    exclude_generated: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/_transform", code: 200 })),
-).annotate({
-  identifier: "TransformGetTransform1Request",
-}) as any as S.Schema<TransformGetTransform1Request>;
-
-export type TransformGetTransform1ResponseTransformsList =
-  Array<TransformGetTransformTransformSummary>;
-export const TransformGetTransform1ResponseTransformsList =
-  /*@__PURE__*/ S.Array(
-    TransformGetTransformTransformSummary,
-  ) as any as S.Schema<TransformGetTransform1ResponseTransformsList>;
-
-export interface TransformGetTransform1Response {
-  count: number;
-  transforms: TransformGetTransform1ResponseTransformsList;
-}
-export const TransformGetTransform1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    transforms: TransformGetTransform1ResponseTransformsList,
-  }),
-).annotate({
-  identifier: "TransformGetTransform1Response",
-}) as any as S.Schema<TransformGetTransform1Response>;
-
-export interface TransformGetTransformStatsRequest {
-  /** Identifier for the transform. It can be a transform identifier or a wildcard expression. You can get information for all transforms by using `_all`, by specifying `*` as the `<transform_id>`, or by omitting the `<transform_id>`. */
-  transform_id: string;
-  /** Specifies what to do when the request: 1. Contains wildcard expressions and there are no transforms that match. 2. Contains the _all string or no identifiers and there are no matches. 3. Contains wildcard expressions and there are only partial matches. If this parameter is false, the request returns a 404 status code when there are no matches or only partial matches. */
-  allow_no_match?: boolean;
-  /** If true, the response includes `id`, `state`, `node`, `stats`, `health`, and basic `checkpointing` information (the last and next checkpoint numbers, and the next checkpoint's `position` and `progress`). Skips statistics that require heavy computations to calculate: `operations_behind`, `changes_last_detected_at`, `last_search_time`, and the checkpoint timestamps. */
-  basic?: boolean;
-  /** Skips the specified number of transforms. */
-  from?: number;
-  /** Specifies the maximum number of transforms to obtain. */
-  size?: number;
-  /** Controls the time to wait for the stats */
-  timeout?: TypesDuration;
-}
-export const TransformGetTransformStatsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
-    basic: S.optional(S.Boolean.pipe(T.Query())),
-    from: S.optional(S.Number.pipe(T.Query())),
-    size: S.optional(S.Number.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/_transform/{transform_id}/_stats",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TransformGetTransformStatsRequest",
-}) as any as S.Schema<TransformGetTransformStatsRequest>;
-
-export interface TransformGetTransformStatsTransformProgress {
-  docs_indexed: number;
-  docs_processed: number;
-  docs_remaining?: number;
-  percent_complete?: number;
-  total_docs?: number;
-}
-export const TransformGetTransformStatsTransformProgress =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      docs_indexed: S.Number,
-      docs_processed: S.Number,
-      docs_remaining: S.optional(S.Number),
-      percent_complete: S.optional(S.Number),
-      total_docs: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "TransformGetTransformStatsTransformProgress",
-  }) as any as S.Schema<TransformGetTransformStatsTransformProgress>;
-
-export interface TransformGetTransformStatsCheckpointStats {
-  checkpoint: number;
-  checkpoint_progress?: TransformGetTransformStatsTransformProgress;
-  timestamp?: TypesDateTime;
-  timestamp_millis?: number;
-  time_upper_bound?: TypesDateTime;
-  time_upper_bound_millis?: number;
-}
-export const TransformGetTransformStatsCheckpointStats =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      checkpoint: S.Number,
-      checkpoint_progress: S.optional(
-        TransformGetTransformStatsTransformProgress,
-      ),
-      timestamp: S.optional(TypesDateTime),
-      timestamp_millis: S.optional(S.Number),
-      time_upper_bound: S.optional(TypesDateTime),
-      time_upper_bound_millis: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "TransformGetTransformStatsCheckpointStats",
-  }) as any as S.Schema<TransformGetTransformStatsCheckpointStats>;
-
-export interface TransformGetTransformStatsCheckpointing {
-  changes_last_detected_at?: number;
-  changes_last_detected_at_string?: TypesDateTime;
-  last: TransformGetTransformStatsCheckpointStats;
-  next?: TransformGetTransformStatsCheckpointStats;
-  operations_behind?: number;
-  last_search_time?: number;
-  last_search_time_string?: TypesDateTime;
-}
-export const TransformGetTransformStatsCheckpointing = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      changes_last_detected_at: S.optional(S.Number),
-      changes_last_detected_at_string: S.optional(TypesDateTime),
-      last: TransformGetTransformStatsCheckpointStats,
-      next: S.optional(TransformGetTransformStatsCheckpointStats),
-      operations_behind: S.optional(S.Number),
-      last_search_time: S.optional(S.Number),
-      last_search_time_string: S.optional(TypesDateTime),
-    }),
-).annotate({
-  identifier: "TransformGetTransformStatsCheckpointing",
-}) as any as S.Schema<TransformGetTransformStatsCheckpointing>;
-
-export interface TransformGetTransformStatsTransformHealthIssue {
-  /** The type of the issue */
-  type: string;
-  /** A description of the issue */
-  issue: string;
-  /** Details about the issue */
-  details?: string;
-  /** Number of times this issue has occurred since it started */
-  count: number;
-  /** The timestamp this issue occurred for for the first time */
-  first_occurrence?: number;
-  first_occurence_string?: TypesDateTime;
-}
-export const TransformGetTransformStatsTransformHealthIssue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.String,
-      issue: S.String,
-      details: S.optional(S.String),
-      count: S.Number,
-      first_occurrence: S.optional(S.Number),
-      first_occurence_string: S.optional(TypesDateTime),
-    }),
-  ).annotate({
-    identifier: "TransformGetTransformStatsTransformHealthIssue",
-  }) as any as S.Schema<TransformGetTransformStatsTransformHealthIssue>;
-
-/** If a non-healthy status is returned, contains a list of issues of the transform. */
-export type TransformGetTransformStatsTransformStatsHealthIssuesList =
-  Array<TransformGetTransformStatsTransformHealthIssue>;
-export const TransformGetTransformStatsTransformStatsHealthIssuesList =
-  /*@__PURE__*/ S.Array(
-    TransformGetTransformStatsTransformHealthIssue,
-  ) as any as S.Schema<TransformGetTransformStatsTransformStatsHealthIssuesList>;
-
-export interface TransformGetTransformStatsTransformStatsHealth {
-  status: TypesHealthStatus;
-  /** If a non-healthy status is returned, contains a list of issues of the transform. */
-  issues?: TransformGetTransformStatsTransformStatsHealthIssuesList;
-}
-export const TransformGetTransformStatsTransformStatsHealth =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: TypesHealthStatus,
-      issues: S.optional(
-        TransformGetTransformStatsTransformStatsHealthIssuesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "TransformGetTransformStatsTransformStatsHealth",
-  }) as any as S.Schema<TransformGetTransformStatsTransformStatsHealth>;
-
-export interface TransformGetTransformStatsTransformIndexerStats {
-  delete_time_in_ms?: number;
-  documents_indexed: number;
-  documents_deleted?: number;
-  documents_processed: number;
-  exponential_avg_checkpoint_duration_ms: number;
-  exponential_avg_documents_indexed: number;
-  exponential_avg_documents_processed: number;
-  index_failures: number;
-  index_time_in_ms: number;
-  index_total: number;
-  pages_processed: number;
-  processing_time_in_ms: number;
-  processing_total: number;
-  search_failures: number;
-  search_time_in_ms: number;
-  search_total: number;
-  trigger_count: number;
-}
-export const TransformGetTransformStatsTransformIndexerStats =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      delete_time_in_ms: S.optional(S.Number),
-      documents_indexed: S.Number,
-      documents_deleted: S.optional(S.Number),
-      documents_processed: S.Number,
-      exponential_avg_checkpoint_duration_ms: S.Number,
-      exponential_avg_documents_indexed: S.Number,
-      exponential_avg_documents_processed: S.Number,
-      index_failures: S.Number,
-      index_time_in_ms: S.Number,
-      index_total: S.Number,
-      pages_processed: S.Number,
-      processing_time_in_ms: S.Number,
-      processing_total: S.Number,
-      search_failures: S.Number,
-      search_time_in_ms: S.Number,
-      search_total: S.Number,
-      trigger_count: S.Number,
-    }),
-  ).annotate({
-    identifier: "TransformGetTransformStatsTransformIndexerStats",
-  }) as any as S.Schema<TransformGetTransformStatsTransformIndexerStats>;
-
-export interface TransformGetTransformStatsTransformStats {
-  checkpointing: TransformGetTransformStatsCheckpointing;
-  health?: TransformGetTransformStatsTransformStatsHealth;
-  id: string;
-  node?: TypesNodeAttributes;
-  reason?: string;
-  state: string;
-  stats: TransformGetTransformStatsTransformIndexerStats;
-}
-export const TransformGetTransformStatsTransformStats = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      checkpointing: TransformGetTransformStatsCheckpointing,
-      health: S.optional(TransformGetTransformStatsTransformStatsHealth),
-      id: S.String,
-      node: S.optional(TypesNodeAttributes),
-      reason: S.optional(S.String),
-      state: S.String,
-      stats: TransformGetTransformStatsTransformIndexerStats,
-    }),
-).annotate({
-  identifier: "TransformGetTransformStatsTransformStats",
-}) as any as S.Schema<TransformGetTransformStatsTransformStats>;
-
-export type TransformGetTransformStatsResponseTransformsList =
-  Array<TransformGetTransformStatsTransformStats>;
-export const TransformGetTransformStatsResponseTransformsList =
-  /*@__PURE__*/ S.Array(
-    TransformGetTransformStatsTransformStats,
-  ) as any as S.Schema<TransformGetTransformStatsResponseTransformsList>;
-
-export interface TransformGetTransformStatsResponse {
-  count: number;
-  transforms: TransformGetTransformStatsResponseTransformsList;
-}
-export const TransformGetTransformStatsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    transforms: TransformGetTransformStatsResponseTransformsList,
-  }),
-).annotate({
-  identifier: "TransformGetTransformStatsResponse",
-}) as any as S.Schema<TransformGetTransformStatsResponse>;
 
 export interface TransformPreviewTransformRequest {
   /** Identifier for the transform to preview. If you specify this path parameter, you cannot provide transform configuration details in the request body. */
@@ -96586,80 +96711,6 @@ export const TransformPreviewTransform3Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "TransformPreviewTransform3Response",
 }) as any as S.Schema<TransformPreviewTransform3Response>;
 
-export interface TransformPutTransformRequest {
-  /** Identifier for the transform. This identifier can contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It has a 64 character limit and must start and end with alphanumeric characters. */
-  transform_id: string;
-  /** When the transform is created, a series of validations occur to ensure its success. For example, there is a check for the existence of the source indices and a check that the destination index is not part of the source index pattern. You can use this parameter to skip the checks, for example when the source index does not exist until after the transform is created. The validations are always run when you start the transform, however, with the exception of privilege checks. */
-  defer_validation?: boolean;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  /** The destination for the transform. */
-  dest: TransformTypesDestination;
-  /** Free text description of the transform. */
-  description?: string;
-  /** The interval between checks for changes in the source indices when the transform is running continuously. Also determines the retry interval in the event of transient failures while the transform is searching or indexing. The minimum value is `1s` and the maximum is `1h`. */
-  frequency?: TypesDuration;
-  /** The latest method transforms the data by finding the latest document for each unique key. */
-  latest?: TransformTypesLatest;
-  /** Defines optional transform metadata. */
-  _meta?: TypesMetadata;
-  /** The pivot method transforms the data by aggregating and grouping it. These objects define the group by fields and the aggregation to reduce the data. */
-  pivot?: TransformTypesPivot;
-  /** Defines a retention policy for the transform. Data that meets the defined criteria is deleted from the destination index. */
-  retention_policy?: TransformTypesRetentionPolicyContainer;
-  /** Defines optional transform settings. */
-  settings?: TransformTypesSettings;
-  /** The source of the data for the transform. */
-  source: TransformTypesSource;
-  /** Defines the properties transforms require to run continuously. */
-  sync?: TransformTypesSyncContainer;
-}
-export const TransformPutTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    defer_validation: S.optional(S.Boolean.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    dest: TransformTypesDestination,
-    description: S.optional(S.String),
-    frequency: S.optional(TypesDuration),
-    latest: S.optional(TransformTypesLatest),
-    _meta: S.optional(TypesMetadata),
-    pivot: S.optional(TransformTypesPivot),
-    retention_policy: S.optional(TransformTypesRetentionPolicyContainer),
-    settings: S.optional(TransformTypesSettings),
-    source: TransformTypesSource,
-    sync: S.optional(TransformTypesSyncContainer),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/_transform/{transform_id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "TransformPutTransformRequest",
-}) as any as S.Schema<TransformPutTransformRequest>;
-
-export interface TransformResetTransformRequest {
-  /** Identifier for the transform. This identifier can contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It has a 64 character limit and must start and end with alphanumeric characters. */
-  transform_id: string;
-  /** If this value is `true`, the transform is reset regardless of its current state. If it's `false`, the transform must be stopped before it can be reset. */
-  force?: boolean;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-}
-export const TransformResetTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_transform/{transform_id}/_reset",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TransformResetTransformRequest",
-}) as any as S.Schema<TransformResetTransformRequest>;
-
 export interface TransformScheduleNowTransformRequest {
   /** Identifier for the transform. */
   transform_id: string;
@@ -96701,157 +96752,6 @@ export const TransformSetUpgradeModeRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TransformSetUpgradeModeRequest",
 }) as any as S.Schema<TransformSetUpgradeModeRequest>;
-
-export interface TransformStartTransformRequest {
-  /** Identifier for the transform. */
-  transform_id: string;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  /** Restricts the set of transformed entities to those changed after this time. Relative times like now-30d are supported. Only applicable for continuous transforms. */
-  from?: string;
-}
-export const TransformStartTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    from: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_transform/{transform_id}/_start",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TransformStartTransformRequest",
-}) as any as S.Schema<TransformStartTransformRequest>;
-
-export interface TransformStopTransformRequest {
-  /** Identifier for the transform. To stop multiple transforms, use a comma-separated list or a wildcard expression. To stop all transforms, use `_all` or `*` as the identifier. */
-  transform_id: string;
-  /** Specifies what to do when the request: contains wildcard expressions and there are no transforms that match; contains the `_all` string or no identifiers and there are no matches; contains wildcard expressions and there are only partial matches. If it is true, the API returns a successful acknowledgement message when there are no matches. When there are only partial matches, the API stops the appropriate transforms. If it is false, the request returns a 404 status code when there are no matches or only partial matches. */
-  allow_no_match?: boolean;
-  /** If it is true, the API forcefully stops the transforms. */
-  force?: boolean;
-  /** Period to wait for a response when `wait_for_completion` is `true`. If no response is received before the timeout expires, the request returns a timeout exception. However, the request continues processing and eventually moves the transform to a STOPPED state. */
-  timeout?: TypesDuration;
-  /** If it is true, the transform does not completely stop until the current checkpoint is completed. If it is false, the transform stops as soon as possible. */
-  wait_for_checkpoint?: boolean;
-  /** If it is true, the API blocks until the indexer state completely stops. If it is false, the API returns immediately and the indexer is stopped asynchronously in the background. */
-  wait_for_completion?: boolean;
-}
-export const TransformStopTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    allow_no_match: S.optional(S.Boolean.pipe(T.Query())),
-    force: S.optional(S.Boolean.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    wait_for_checkpoint: S.optional(S.Boolean.pipe(T.Query())),
-    wait_for_completion: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_transform/{transform_id}/_stop",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TransformStopTransformRequest",
-}) as any as S.Schema<TransformStopTransformRequest>;
-
-/** Defines a retention policy for the transform. Data that meets the defined criteria is deleted from the destination index. */
-export type TransformUpdateTransformRequestRetentionPolicy =
-  | TransformTypesRetentionPolicyContainer
-  | string;
-export const TransformUpdateTransformRequestRetentionPolicy =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<TransformUpdateTransformRequestRetentionPolicy>;
-
-export interface TransformUpdateTransformRequest {
-  /** Identifier for the transform. */
-  transform_id: string;
-  /** When true, deferrable validations are not run. This behavior may be desired if the source index does not exist until after the transform is created. */
-  defer_validation?: boolean;
-  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
-  timeout?: TypesDuration;
-  /** The destination for the transform. */
-  dest?: TransformTypesDestination;
-  /** Free text description of the transform. */
-  description?: string;
-  /** The interval between checks for changes in the source indices when the transform is running continuously. Also determines the retry interval in the event of transient failures while the transform is searching or indexing. The minimum value is 1s and the maximum is 1h. */
-  frequency?: TypesDuration;
-  /** Defines optional transform metadata. */
-  _meta?: TypesMetadata;
-  /** The source of the data for the transform. */
-  source?: TransformTypesSource;
-  /** Defines optional transform settings. */
-  settings?: TransformTypesSettings;
-  /** Defines the properties transforms require to run continuously. */
-  sync?: TransformTypesSyncContainer;
-  /** Defines a retention policy for the transform. Data that meets the defined criteria is deleted from the destination index. */
-  retention_policy?: TransformUpdateTransformRequestRetentionPolicy;
-}
-export const TransformUpdateTransformRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transform_id: S.String.pipe(T.Label()),
-    defer_validation: S.optional(S.Boolean.pipe(T.Query())),
-    timeout: S.optional(TypesDuration.pipe(T.Query())),
-    dest: S.optional(TransformTypesDestination),
-    description: S.optional(S.String),
-    frequency: S.optional(TypesDuration),
-    _meta: S.optional(TypesMetadata),
-    source: S.optional(TransformTypesSource),
-    settings: S.optional(TransformTypesSettings),
-    sync: S.optional(TransformTypesSyncContainer),
-    retention_policy: S.optional(
-      TransformUpdateTransformRequestRetentionPolicy,
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/_transform/{transform_id}/_update",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TransformUpdateTransformRequest",
-}) as any as S.Schema<TransformUpdateTransformRequest>;
-
-export interface TransformUpdateTransformResponse {
-  authorization?: MlTypesTransformAuthorization;
-  create_time: number;
-  description: string;
-  dest: TransformTypesDestination;
-  frequency?: TypesDuration;
-  id: string;
-  latest?: TransformTypesLatest;
-  pivot?: TransformTypesPivot;
-  retention_policy?: TransformTypesRetentionPolicyContainer;
-  settings: TransformTypesSettings;
-  source: GlobalReindexSource;
-  sync?: TransformTypesSyncContainer;
-  version: string;
-  _meta?: TypesMetadata;
-}
-export const TransformUpdateTransformResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authorization: S.optional(MlTypesTransformAuthorization),
-    create_time: S.Number,
-    description: S.String,
-    dest: TransformTypesDestination,
-    frequency: S.optional(TypesDuration),
-    id: S.String,
-    latest: S.optional(TransformTypesLatest),
-    pivot: S.optional(TransformTypesPivot),
-    retention_policy: S.optional(TransformTypesRetentionPolicyContainer),
-    settings: TransformTypesSettings,
-    source: GlobalReindexSource,
-    sync: S.optional(TransformTypesSyncContainer),
-    version: S.String,
-    _meta: S.optional(TypesMetadata),
-  }),
-).annotate({
-  identifier: "TransformUpdateTransformResponse",
-}) as any as S.Schema<TransformUpdateTransformResponse>;
 
 export interface TransformUpgradeTransformsRequest {
   /** When true, the request checks for updates but does not run them. */
@@ -97349,6 +97249,98 @@ export const UpdateInferenceResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateInferenceResponse",
 }) as any as S.Schema<UpdateInferenceResponse>;
+
+/** Defines a retention policy for the transform. Data that meets the defined criteria is deleted from the destination index. */
+export type UpdateTransformRequestRetentionPolicy =
+  | TransformTypesRetentionPolicyContainer
+  | string;
+export const UpdateTransformRequestRetentionPolicy =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateTransformRequestRetentionPolicy>;
+
+export interface UpdateTransformRequest {
+  /** Identifier for the transform. */
+  transform_id: string;
+  /** When true, deferrable validations are not run. This behavior may be desired if the source index does not exist until after the transform is created. */
+  defer_validation?: boolean;
+  /** Period to wait for a response. If no response is received before the timeout expires, the request fails and returns an error. */
+  timeout?: TypesDuration;
+  /** The destination for the transform. */
+  dest?: TransformTypesDestination;
+  /** Free text description of the transform. */
+  description?: string;
+  /** The interval between checks for changes in the source indices when the transform is running continuously. Also determines the retry interval in the event of transient failures while the transform is searching or indexing. The minimum value is 1s and the maximum is 1h. */
+  frequency?: TypesDuration;
+  /** Defines optional transform metadata. */
+  _meta?: TypesMetadata;
+  /** The source of the data for the transform. */
+  source?: TransformTypesSource;
+  /** Defines optional transform settings. */
+  settings?: TransformTypesSettings;
+  /** Defines the properties transforms require to run continuously. */
+  sync?: TransformTypesSyncContainer;
+  /** Defines a retention policy for the transform. Data that meets the defined criteria is deleted from the destination index. */
+  retention_policy?: UpdateTransformRequestRetentionPolicy;
+}
+export const UpdateTransformRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transform_id: S.String.pipe(T.Label()),
+    defer_validation: S.optional(S.Boolean.pipe(T.Query())),
+    timeout: S.optional(TypesDuration.pipe(T.Query())),
+    dest: S.optional(TransformTypesDestination),
+    description: S.optional(S.String),
+    frequency: S.optional(TypesDuration),
+    _meta: S.optional(TypesMetadata),
+    source: S.optional(TransformTypesSource),
+    settings: S.optional(TransformTypesSettings),
+    sync: S.optional(TransformTypesSyncContainer),
+    retention_policy: S.optional(UpdateTransformRequestRetentionPolicy),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/_transform/{transform_id}/_update",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateTransformRequest",
+}) as any as S.Schema<UpdateTransformRequest>;
+
+export interface UpdateTransformResponse {
+  authorization?: MlTypesTransformAuthorization;
+  create_time: number;
+  description: string;
+  dest: TransformTypesDestination;
+  frequency?: TypesDuration;
+  id: string;
+  latest?: TransformTypesLatest;
+  pivot?: TransformTypesPivot;
+  retention_policy?: TransformTypesRetentionPolicyContainer;
+  settings: TransformTypesSettings;
+  source: GlobalReindexSource;
+  sync?: TransformTypesSyncContainer;
+  version: string;
+  _meta?: TypesMetadata;
+}
+export const UpdateTransformResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authorization: S.optional(MlTypesTransformAuthorization),
+    create_time: S.Number,
+    description: S.String,
+    dest: TransformTypesDestination,
+    frequency: S.optional(TypesDuration),
+    id: S.String,
+    latest: S.optional(TransformTypesLatest),
+    pivot: S.optional(TransformTypesPivot),
+    retention_policy: S.optional(TransformTypesRetentionPolicyContainer),
+    settings: TransformTypesSettings,
+    source: GlobalReindexSource,
+    sync: S.optional(TransformTypesSyncContainer),
+    version: S.String,
+    _meta: S.optional(TypesMetadata),
+  }),
+).annotate({
+  identifier: "UpdateTransformResponse",
+}) as any as S.Schema<UpdateTransformResponse>;
 
 export interface WatcherAckWatch1Request {
   /** The watch identifier. */
@@ -104313,6 +104305,51 @@ export const deleteSnapshot: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteSynonymError = ElasticsearchOpError;
+/** Delete a synonym set You can only delete a synonyms set that is not in use by any index analyzer. Synonyms sets can be used in synonym graph token filters and synonym token filters. These synonym filters can be used as part of search analyzers. Analyzers need to be loaded when an index is restored (such as when a node starts, or the index becomes open). Even if the analyzer is not used on any field mapping, it still needs to be loaded on the index recovery phase. If any analyzers cannot be loaded, the index becomes unavailable and the cluster status becomes red or yellow as index shards are not available. To prevent that, synonyms sets that are used in analyzers can't be deleted. A delete request in this case will return a 400 response code. To remove a synonyms set, you must first remove all indices that contain analyzers using it. You can migrate an index by creating a new index that does not contain the token filter with the synonyms set, and use the reindex API in order to copy over the index data. Once finished, you can delete the index. When the synonyms set is not used in analyzers, you will be able to delete it. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const deleteSynonym: API.OperationMethod<
+  DeleteSynonymRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteSynonymError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSynonymRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSynonymRuleError = ElasticsearchOpError;
+/** Delete a synonym rule Delete a synonym rule from a synonym set. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const deleteSynonymRule: API.OperationMethod<
+  DeleteSynonymRuleRequest,
+  SynonymsTypesSynonymsUpdateResult,
+  DeleteSynonymRuleError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSynonymRuleRequest,
+  output: SynonymsTypesSynonymsUpdateResult,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTransformError = ElasticsearchOpError;
+/** Delete a transform ## Required authorization * Cluster privileges: `manage_transform` */
+export const deleteTransform: API.OperationMethod<
+  DeleteTransformRequest,
+  TypesAcknowledgedResponseBase,
+  DeleteTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTransformRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DisableStreamsLogError = ElasticsearchOpError;
 /** Disable a named stream Turn off the named stream feature for this cluster. ## Required authorization * Cluster privileges: `manage` */
 export const disableStreamsLog: API.OperationMethod<
@@ -104748,36 +104785,6 @@ export const explain1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FeaturesGetFeaturesError = ElasticsearchOpError;
-/** Get the features Get a list of features that can be included in snapshots using the `feature_states` field when creating a snapshot. You can use this API to determine which feature states to include when taking a snapshot. By default, all feature states are included in a snapshot if that snapshot includes the global state, or none if it does not. A feature state includes one or more system indices necessary for a given feature to function. In order to ensure data integrity, all system indices that comprise a feature state are snapshotted and restored together. The features listed by this API are a combination of built-in features and features defined by plugins. In order for a feature state to be listed in this API and recognized as a valid feature state by the create snapshot API, the plugin that defines that feature must be installed on the master node. */
-export const featuresGetFeatures: API.OperationMethod<
-  FeaturesGetFeaturesRequest,
-  FeaturesGetFeaturesResponse,
-  FeaturesGetFeaturesError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesGetFeaturesRequest,
-  output: FeaturesGetFeaturesResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeaturesResetFeaturesError = ElasticsearchOpError;
-/** Reset the features Clear all of the state information stored in system indices by Elasticsearch features, including the security and machine learning indices. WARNING: Intended for development and testing use only. Do not reset features on a production cluster. Return a cluster to the same state as a new installation by resetting the feature state for all Elasticsearch features. This deletes all state information stored in system indices. The response code is HTTP 200 if the state is successfully reset for all features. It is HTTP 500 if the reset operation failed for any feature. Note that select features might provide a way to reset particular system indices. Using this API resets all features, both those that are built-in and implemented as plugins. To list the features that will be affected, use the get features API. IMPORTANT: The features installed on the node you submit this request to are the features that will be reset. Run on the master node if you have any doubts about which plugins are installed on individual nodes. */
-export const featuresResetFeatures: API.OperationMethod<
-  FeaturesResetFeaturesRequest,
-  FeaturesResetFeaturesResponse,
-  FeaturesResetFeaturesError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesResetFeaturesRequest,
-  output: FeaturesResetFeaturesResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FieldCapsError = ElasticsearchOpError;
 /** Get the field capabilities Get information about the capabilities of fields among multiple indices. For data streams, the API returns field capabilities among the stream’s backing indices. It returns runtime fields like any other field. For example, a runtime field with a type of keyword is returned the same as any other field that belongs to the `keyword` family. ## Required authorization * Index privileges: `view_index_metadata`,`read` */
 export const fieldCaps: API.OperationMethod<
@@ -105048,6 +105055,21 @@ export const getEsqlAsyncQuery: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetFeaturesError = ElasticsearchOpError;
+/** Get the features Get a list of features that can be included in snapshots using the `feature_states` field when creating a snapshot. You can use this API to determine which feature states to include when taking a snapshot. By default, all feature states are included in a snapshot if that snapshot includes the global state, or none if it does not. A feature state includes one or more system indices necessary for a given feature to function. In order to ensure data integrity, all system indices that comprise a feature state are snapshotted and restored together. The features listed by this API are a combination of built-in features and features defined by plugins. In order for a feature state to be listed in this API and recognized as a valid feature state by the create snapshot API, the plugin that defines that feature must be installed on the master node. */
+export const getFeatures: API.OperationMethod<
+  GetFeaturesRequest,
+  GetFeaturesResponse,
+  GetFeaturesError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeaturesRequest,
+  output: GetFeaturesResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetIndexError = ElasticsearchOpError;
 /** Get index information Get information about one or more indices. For data streams, the API returns information about the stream’s backing indices. ## Required authorization * Index privileges: `view_index_metadata`,`manage` */
 export const getIndex: API.OperationMethod<
@@ -105183,6 +105205,51 @@ export const getSource: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSynonymError = ElasticsearchOpError;
+/** Get a synonym set ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const getSynonym: API.OperationMethod<
+  GetSynonymRequest,
+  GetSynonymResponse,
+  GetSynonymError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymRequest,
+  output: GetSynonymResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynonymRuleError = ElasticsearchOpError;
+/** Get a synonym rule Get a synonym rule from a synonym set. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const getSynonymRule: API.OperationMethod<
+  GetSynonymRuleRequest,
+  SynonymsTypesSynonymRuleRead,
+  GetSynonymRuleError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymRuleRequest,
+  output: SynonymsTypesSynonymRuleRead,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynonymsSetsError = ElasticsearchOpError;
+/** Get all synonym sets Get a summary of all defined synonym sets. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const getSynonymsSets: API.OperationMethod<
+  GetSynonymsSetsRequest,
+  GetSynonymsSetsResponse,
+  GetSynonymsSetsError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymsSetsRequest,
+  output: GetSynonymsSetsResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetTaskError = ElasticsearchOpError;
 /** Get task information Get information about a task currently running in the cluster. WARNING: The task management API is new and should still be considered a beta feature. The API may change in ways that are not backwards compatible. If the task identifier is not found, a 404 response code indicates that there are no resources that match the request. For relocatable tasks, this API transparently follows the task across graceful shutdown relocations, so callers can keep using the original task ID. The returned task reports its `original_task_id` and `original_start_time_in_millis` if it is continuing work from an earlier task. ## Required authorization * Cluster privileges: `monitor` */
 export const getTask: API.OperationMethod<
@@ -105193,6 +105260,51 @@ export const getTask: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetTaskRequest,
   output: GetTaskResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTransformError = ElasticsearchOpError;
+/** Get transforms Get configuration information for transforms. ## Required authorization * Cluster privileges: `monitor_transform` */
+export const getTransform: API.OperationMethod<
+  GetTransformRequest,
+  GetTransformResponse,
+  GetTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTransformRequest,
+  output: GetTransformResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTransform1Error = ElasticsearchOpError;
+/** Get transforms Get configuration information for transforms. ## Required authorization * Cluster privileges: `monitor_transform` */
+export const getTransform1: API.OperationMethod<
+  GetTransform1Request,
+  GetTransform1Response,
+  GetTransform1Error,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTransform1Request,
+  output: GetTransform1Response,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTransformStatsError = ElasticsearchOpError;
+/** Get transform stats Get usage information for transforms. ## Required authorization * Index privileges: `read`,`view_index_metadata` * Cluster privileges: `monitor_transform` */
+export const getTransformStats: API.OperationMethod<
+  GetTransformStatsRequest,
+  GetTransformStatsResponse,
+  GetTransformStatsError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTransformStatsRequest,
+  output: GetTransformStatsResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -110508,6 +110620,51 @@ export const putScript3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PutSynonymError = ElasticsearchOpError;
+/** Create or update a synonym set Synonym sets are limited to a maximum of 100,000 synonym rules per set by default. This limit is configurable using the `synonyms.max_synonym_rules` cluster setting. When an existing synonyms set is updated, the search analyzers that use the synonyms set are reloaded automatically for all indices. This is equivalent to invoking the reload search analyzers API for all indices that use the synonyms set. For practical examples of how to create or update a synonyms set, refer to the External documentation. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const putSynonym: API.OperationMethod<
+  PutSynonymRequest,
+  PutSynonymResponse,
+  PutSynonymError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutSynonymRequest,
+  output: PutSynonymResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutSynonymRuleError = ElasticsearchOpError;
+/** Create or update a synonym rule Create or update a synonym rule in a synonym set. If any of the synonym rules included is invalid, the API returns an error. When you update a synonym rule, all analyzers using the synonyms set will be reloaded automatically to reflect the new rule. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
+export const putSynonymRule: API.OperationMethod<
+  PutSynonymRuleRequest,
+  SynonymsTypesSynonymsUpdateResult,
+  PutSynonymRuleError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutSynonymRuleRequest,
+  output: SynonymsTypesSynonymsUpdateResult,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutTransformError = ElasticsearchOpError;
+/** Create a transform Creates a transform. A transform copies data from source indices, transforms it, and persists it into an entity-centric destination index. You can also think of the destination index as a two-dimensional tabular data structure (known as a data frame). The ID for each document in the data frame is generated from a hash of the entity, so there is a unique row per entity. You must choose either the latest or pivot method for your transform; you cannot use both in a single transform. If you choose to use the pivot method for your transform, the entities are defined by the set of `group_by` fields in the pivot object. If you choose to use the latest method, the entities are defined by the `unique_key` field values in the latest object. You must have `create_index`, `index`, and `read` privileges on the destination index and `read` and `view_index_metadata` privileges on the source indices. When Elasticsearch security features are enabled, the transform remembers which roles the user that created it had at the time of creation and uses those same roles. If those roles do not have the required privileges on the source and destination indices, the transform fails when it attempts unauthorized operations. NOTE: You must use Kibana or this API to create a transform. Do not add a transform directly into any `.transform-internal*` indices using the Elasticsearch index API. If Elasticsearch security features are enabled, do not give users any privileges on `.transform-internal*` indices. If you used transforms prior to 7.5, also do not give users any privileges on `.data-frame-internal*` indices. ## Required authorization * Index privileges: `create_index`,`read`,`index`,`view_index_metadata` * Cluster privileges: `manage_transform` */
+export const putTransform: API.OperationMethod<
+  PutTransformRequest,
+  TypesAcknowledgedResponseBase,
+  PutTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutTransformRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type QueryRulesDeleteRuleError = ElasticsearchOpError;
 /** Delete a query rule Delete a query rule within a query ruleset. This is a destructive action that is only recoverable by re-adding the same rule with the create or update query rule API. ## Required authorization * Cluster privileges: `manage_search_query_rules` */
 export const queryRulesDeleteRule: API.OperationMethod<
@@ -110802,6 +110959,36 @@ export const resetEncryption: API.OperationMethod<
   ElasticsearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: ResetEncryptionRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetFeaturesError = ElasticsearchOpError;
+/** Reset the features Clear all of the state information stored in system indices by Elasticsearch features, including the security and machine learning indices. WARNING: Intended for development and testing use only. Do not reset features on a production cluster. Return a cluster to the same state as a new installation by resetting the feature state for all Elasticsearch features. This deletes all state information stored in system indices. The response code is HTTP 200 if the state is successfully reset for all features. It is HTTP 500 if the reset operation failed for any feature. Note that select features might provide a way to reset particular system indices. Using this API resets all features, both those that are built-in and implemented as plugins. To list the features that will be affected, use the get features API. IMPORTANT: The features installed on the node you submit this request to are the features that will be reset. Run on the master node if you have any doubts about which plugins are installed on individual nodes. */
+export const resetFeatures: API.OperationMethod<
+  ResetFeaturesRequest,
+  ResetFeaturesResponse,
+  ResetFeaturesError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetFeaturesRequest,
+  output: ResetFeaturesResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetTransformError = ElasticsearchOpError;
+/** Reset a transform Before you can reset it, you must stop it; alternatively, use the `force` query parameter. If the destination index was created by the transform, it is deleted. ## Required authorization * Cluster privileges: `manage_transform` */
+export const resetTransform: API.OperationMethod<
+  ResetTransformRequest,
+  TypesAcknowledgedResponseBase,
+  ResetTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetTransformRequest,
   output: TypesAcknowledgedResponseBase,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
@@ -113253,6 +113440,21 @@ export const startSlm: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type StartTransformError = ElasticsearchOpError;
+/** Start a transform When you start a transform, it creates the destination index if it does not already exist. The `number_of_shards` is set to `1` and the `auto_expand_replicas` is set to `0-1`. If it is a pivot transform, it deduces the mapping definitions for the destination index from the source indices and the transform aggregations. If fields in the destination index are derived from scripts (as in the case of `scripted_metric` or `bucket_script` aggregations), the transform uses dynamic mappings unless an index template exists. If it is a latest transform, it does not deduce mapping definitions; it uses dynamic mappings. To use explicit mappings, create the destination index before you start the transform. Alternatively, you can create an index template, though it does not affect the deduced mappings in a pivot transform. When the transform starts, a series of validations occur to ensure its success. If you deferred validation when you created the transform, they occur when you start the transform—​with the exception of privilege checks. When Elasticsearch security features are enabled, the transform remembers which roles the user that created it had at the time of creation and uses those same roles. If those roles do not have the required privileges on the source and destination indices, the transform fails when it attempts unauthorized operations. ## Required authorization * Index privileges: `read`,`view_index_metadata` * Cluster privileges: `manage_transform` */
+export const startTransform: API.OperationMethod<
+  StartTransformRequest,
+  TypesAcknowledgedResponseBase,
+  StartTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartTransformRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type StartWatcherError = ElasticsearchOpError;
 /** Start the watch service Start the Watcher service if it is not already running. ## Required authorization * Cluster privileges: `manage_watcher` */
 export const startWatcher: API.OperationMethod<
@@ -113313,6 +113515,21 @@ export const stopSlm: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type StopTransformError = ElasticsearchOpError;
+/** Stop transforms Stops one or more transforms. ## Required authorization * Cluster privileges: `manage_transform` */
+export const stopTransform: API.OperationMethod<
+  StopTransformRequest,
+  TypesAcknowledgedResponseBase,
+  StopTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopTransformRequest,
+  output: TypesAcknowledgedResponseBase,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type StopWatcherError = ElasticsearchOpError;
 /** Stop the watch service Stop the Watcher service if it is running. ## Required authorization * Cluster privileges: `manage_watcher` */
 export const stopWatcher: API.OperationMethod<
@@ -113338,111 +113555,6 @@ export const streamsStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StreamsStatusRequest,
   output: StreamsStatusResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsDeleteSynonymError = ElasticsearchOpError;
-/** Delete a synonym set You can only delete a synonyms set that is not in use by any index analyzer. Synonyms sets can be used in synonym graph token filters and synonym token filters. These synonym filters can be used as part of search analyzers. Analyzers need to be loaded when an index is restored (such as when a node starts, or the index becomes open). Even if the analyzer is not used on any field mapping, it still needs to be loaded on the index recovery phase. If any analyzers cannot be loaded, the index becomes unavailable and the cluster status becomes red or yellow as index shards are not available. To prevent that, synonyms sets that are used in analyzers can't be deleted. A delete request in this case will return a 400 response code. To remove a synonyms set, you must first remove all indices that contain analyzers using it. You can migrate an index by creating a new index that does not contain the token filter with the synonyms set, and use the reindex API in order to copy over the index data. Once finished, you can delete the index. When the synonyms set is not used in analyzers, you will be able to delete it. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsDeleteSynonym: API.OperationMethod<
-  SynonymsDeleteSynonymRequest,
-  TypesAcknowledgedResponseBase,
-  SynonymsDeleteSynonymError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsDeleteSynonymRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsDeleteSynonymRuleError = ElasticsearchOpError;
-/** Delete a synonym rule Delete a synonym rule from a synonym set. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsDeleteSynonymRule: API.OperationMethod<
-  SynonymsDeleteSynonymRuleRequest,
-  SynonymsTypesSynonymsUpdateResult,
-  SynonymsDeleteSynonymRuleError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsDeleteSynonymRuleRequest,
-  output: SynonymsTypesSynonymsUpdateResult,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsGetSynonymError = ElasticsearchOpError;
-/** Get a synonym set ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsGetSynonym: API.OperationMethod<
-  SynonymsGetSynonymRequest,
-  SynonymsGetSynonymResponse,
-  SynonymsGetSynonymError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsGetSynonymRequest,
-  output: SynonymsGetSynonymResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsGetSynonymRuleError = ElasticsearchOpError;
-/** Get a synonym rule Get a synonym rule from a synonym set. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsGetSynonymRule: API.OperationMethod<
-  SynonymsGetSynonymRuleRequest,
-  SynonymsTypesSynonymRuleRead,
-  SynonymsGetSynonymRuleError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsGetSynonymRuleRequest,
-  output: SynonymsTypesSynonymRuleRead,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsGetSynonymsSetsError = ElasticsearchOpError;
-/** Get all synonym sets Get a summary of all defined synonym sets. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsGetSynonymsSets: API.OperationMethod<
-  SynonymsGetSynonymsSetsRequest,
-  SynonymsGetSynonymsSetsResponse,
-  SynonymsGetSynonymsSetsError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsGetSynonymsSetsRequest,
-  output: SynonymsGetSynonymsSetsResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsPutSynonymError = ElasticsearchOpError;
-/** Create or update a synonym set Synonym sets are limited to a maximum of 100,000 synonym rules per set by default. This limit is configurable using the `synonyms.max_synonym_rules` cluster setting. When an existing synonyms set is updated, the search analyzers that use the synonyms set are reloaded automatically for all indices. This is equivalent to invoking the reload search analyzers API for all indices that use the synonyms set. For practical examples of how to create or update a synonyms set, refer to the External documentation. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsPutSynonym: API.OperationMethod<
-  SynonymsPutSynonymRequest,
-  SynonymsPutSynonymResponse,
-  SynonymsPutSynonymError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsPutSynonymRequest,
-  output: SynonymsPutSynonymResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SynonymsPutSynonymRuleError = ElasticsearchOpError;
-/** Create or update a synonym rule Create or update a synonym rule in a synonym set. If any of the synonym rules included is invalid, the API returns an error. When you update a synonym rule, all analyzers using the synonyms set will be reloaded automatically to reflect the new rule. ## Required authorization * Cluster privileges: `manage_search_synonyms` */
-export const synonymsPutSynonymRule: API.OperationMethod<
-  SynonymsPutSynonymRuleRequest,
-  SynonymsTypesSynonymsUpdateResult,
-  SynonymsPutSynonymRuleError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SynonymsPutSynonymRuleRequest,
-  output: SynonymsTypesSynonymsUpdateResult,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -113643,21 +113755,6 @@ export const textStructureTestGrokPattern1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TransformDeleteTransformError = ElasticsearchOpError;
-/** Delete a transform ## Required authorization * Cluster privileges: `manage_transform` */
-export const transformDeleteTransform: API.OperationMethod<
-  TransformDeleteTransformRequest,
-  TypesAcknowledgedResponseBase,
-  TransformDeleteTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformDeleteTransformRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TransformGetNodeStatsError = ElasticsearchOpError;
 /** Get node stats Get per-node information about transform usage. */
 export const transformGetNodeStats: API.OperationMethod<
@@ -113668,51 +113765,6 @@ export const transformGetNodeStats: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TransformGetNodeStatsRequest,
   output: TransformGetNodeStatsTransformNodeFullStats,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformGetTransformError = ElasticsearchOpError;
-/** Get transforms Get configuration information for transforms. ## Required authorization * Cluster privileges: `monitor_transform` */
-export const transformGetTransform: API.OperationMethod<
-  TransformGetTransformRequest,
-  TransformGetTransformResponse,
-  TransformGetTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformGetTransformRequest,
-  output: TransformGetTransformResponse,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformGetTransform1Error = ElasticsearchOpError;
-/** Get transforms Get configuration information for transforms. ## Required authorization * Cluster privileges: `monitor_transform` */
-export const transformGetTransform1: API.OperationMethod<
-  TransformGetTransform1Request,
-  TransformGetTransform1Response,
-  TransformGetTransform1Error,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformGetTransform1Request,
-  output: TransformGetTransform1Response,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformGetTransformStatsError = ElasticsearchOpError;
-/** Get transform stats Get usage information for transforms. ## Required authorization * Index privileges: `read`,`view_index_metadata` * Cluster privileges: `monitor_transform` */
-export const transformGetTransformStats: API.OperationMethod<
-  TransformGetTransformStatsRequest,
-  TransformGetTransformStatsResponse,
-  TransformGetTransformStatsError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformGetTransformStatsRequest,
-  output: TransformGetTransformStatsResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -113778,36 +113830,6 @@ export const transformPreviewTransform3: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TransformPutTransformError = ElasticsearchOpError;
-/** Create a transform Creates a transform. A transform copies data from source indices, transforms it, and persists it into an entity-centric destination index. You can also think of the destination index as a two-dimensional tabular data structure (known as a data frame). The ID for each document in the data frame is generated from a hash of the entity, so there is a unique row per entity. You must choose either the latest or pivot method for your transform; you cannot use both in a single transform. If you choose to use the pivot method for your transform, the entities are defined by the set of `group_by` fields in the pivot object. If you choose to use the latest method, the entities are defined by the `unique_key` field values in the latest object. You must have `create_index`, `index`, and `read` privileges on the destination index and `read` and `view_index_metadata` privileges on the source indices. When Elasticsearch security features are enabled, the transform remembers which roles the user that created it had at the time of creation and uses those same roles. If those roles do not have the required privileges on the source and destination indices, the transform fails when it attempts unauthorized operations. NOTE: You must use Kibana or this API to create a transform. Do not add a transform directly into any `.transform-internal*` indices using the Elasticsearch index API. If Elasticsearch security features are enabled, do not give users any privileges on `.transform-internal*` indices. If you used transforms prior to 7.5, also do not give users any privileges on `.data-frame-internal*` indices. ## Required authorization * Index privileges: `create_index`,`read`,`index`,`view_index_metadata` * Cluster privileges: `manage_transform` */
-export const transformPutTransform: API.OperationMethod<
-  TransformPutTransformRequest,
-  TypesAcknowledgedResponseBase,
-  TransformPutTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformPutTransformRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformResetTransformError = ElasticsearchOpError;
-/** Reset a transform Before you can reset it, you must stop it; alternatively, use the `force` query parameter. If the destination index was created by the transform, it is deleted. ## Required authorization * Cluster privileges: `manage_transform` */
-export const transformResetTransform: API.OperationMethod<
-  TransformResetTransformRequest,
-  TypesAcknowledgedResponseBase,
-  TransformResetTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformResetTransformRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TransformScheduleNowTransformError = ElasticsearchOpError;
 /** Schedule a transform to start now Instantly run a transform to process data. If you run this API, the transform will process the new data instantly, without waiting for the configured frequency interval. After the API is called, the transform will be processed again at `now + frequency` unless the API is called again in the meantime. ## Required authorization * Cluster privileges: `manage_transform` */
 export const transformScheduleNowTransform: API.OperationMethod<
@@ -113833,51 +113855,6 @@ export const transformSetUpgradeMode: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TransformSetUpgradeModeRequest,
   output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformStartTransformError = ElasticsearchOpError;
-/** Start a transform When you start a transform, it creates the destination index if it does not already exist. The `number_of_shards` is set to `1` and the `auto_expand_replicas` is set to `0-1`. If it is a pivot transform, it deduces the mapping definitions for the destination index from the source indices and the transform aggregations. If fields in the destination index are derived from scripts (as in the case of `scripted_metric` or `bucket_script` aggregations), the transform uses dynamic mappings unless an index template exists. If it is a latest transform, it does not deduce mapping definitions; it uses dynamic mappings. To use explicit mappings, create the destination index before you start the transform. Alternatively, you can create an index template, though it does not affect the deduced mappings in a pivot transform. When the transform starts, a series of validations occur to ensure its success. If you deferred validation when you created the transform, they occur when you start the transform—​with the exception of privilege checks. When Elasticsearch security features are enabled, the transform remembers which roles the user that created it had at the time of creation and uses those same roles. If those roles do not have the required privileges on the source and destination indices, the transform fails when it attempts unauthorized operations. ## Required authorization * Index privileges: `read`,`view_index_metadata` * Cluster privileges: `manage_transform` */
-export const transformStartTransform: API.OperationMethod<
-  TransformStartTransformRequest,
-  TypesAcknowledgedResponseBase,
-  TransformStartTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformStartTransformRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformStopTransformError = ElasticsearchOpError;
-/** Stop transforms Stops one or more transforms. ## Required authorization * Cluster privileges: `manage_transform` */
-export const transformStopTransform: API.OperationMethod<
-  TransformStopTransformRequest,
-  TypesAcknowledgedResponseBase,
-  TransformStopTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformStopTransformRequest,
-  output: TypesAcknowledgedResponseBase,
-  errors: [UnknownElasticsearchError],
-  protocol: ElasticsearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TransformUpdateTransformError = ElasticsearchOpError;
-/** Update a transform Updates certain properties of a transform. All updated properties except `description` do not take effect until after the transform starts the next checkpoint, thus there is data consistency in each checkpoint. To use this API, you must have `read` and `view_index_metadata` privileges for the source indices. You must also have `index` and `read` privileges for the destination index. When Elasticsearch security features are enabled, the transform remembers which roles the user who updated it had at the time of update and runs with those privileges. ## Required authorization * Index privileges: `read`,`index`,`view_index_metadata` * Cluster privileges: `manage_transform` */
-export const transformUpdateTransform: API.OperationMethod<
-  TransformUpdateTransformRequest,
-  TransformUpdateTransformResponse,
-  TransformUpdateTransformError,
-  ElasticsearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TransformUpdateTransformRequest,
-  output: TransformUpdateTransformResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,
@@ -113968,6 +113945,21 @@ export const updateInference: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateInferenceRequest,
   output: UpdateInferenceResponse,
+  errors: [UnknownElasticsearchError],
+  protocol: ElasticsearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTransformError = ElasticsearchOpError;
+/** Update a transform Updates certain properties of a transform. All updated properties except `description` do not take effect until after the transform starts the next checkpoint, thus there is data consistency in each checkpoint. To use this API, you must have `read` and `view_index_metadata` privileges for the source indices. You must also have `index` and `read` privileges for the destination index. When Elasticsearch security features are enabled, the transform remembers which roles the user who updated it had at the time of update and runs with those privileges. ## Required authorization * Index privileges: `read`,`index`,`view_index_metadata` * Cluster privileges: `manage_transform` */
+export const updateTransform: API.OperationMethod<
+  UpdateTransformRequest,
+  UpdateTransformResponse,
+  UpdateTransformError,
+  ElasticsearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTransformRequest,
+  output: UpdateTransformResponse,
   errors: [UnknownElasticsearchError],
   protocol: ElasticsearchProtocol,
   retry: Retry.Retry,

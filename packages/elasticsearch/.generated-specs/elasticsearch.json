@@ -77971,7 +77971,7 @@
         "smithy.api#documentation": "Explain a document match result\n\nGet information about why a specific document matches, or doesn't match, a query.\nIt computes a score explanation for a query and a specific document.\n\n## Required authorization\n\n* Index privileges: `read`"
       }
     },
-    "com.elasticsearch.api#FeaturesGetFeaturesRequest": {
+    "com.elasticsearch.api#GetFeaturesRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -78004,18 +78004,18 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FeaturesGetFeaturesResponseFeaturesList": {
+    "com.elasticsearch.api#GetFeaturesResponseFeaturesList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#FeaturesTypesFeature"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FeaturesGetFeaturesResponse": {
+    "com.elasticsearch.api#GetFeaturesResponse": {
       "type": "structure",
       "members": {
         "features": {
-          "target": "com.elasticsearch.api#FeaturesGetFeaturesResponseFeaturesList",
+          "target": "com.elasticsearch.api#GetFeaturesResponseFeaturesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -78025,13 +78025,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#FeaturesGetFeatures": {
+    "com.elasticsearch.api#GetFeatures": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#FeaturesGetFeaturesRequest"
+        "target": "com.elasticsearch.api#GetFeaturesRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#FeaturesGetFeaturesResponse"
+        "target": "com.elasticsearch.api#GetFeaturesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -78042,7 +78042,7 @@
         "smithy.api#documentation": "Get the features\n\nGet a list of features that can be included in snapshots using the `feature_states` field when creating a snapshot.\nYou can use this API to determine which feature states to include when taking a snapshot.\nBy default, all feature states are included in a snapshot if that snapshot includes the global state, or none if it does not.\n\nA feature state includes one or more system indices necessary for a given feature to function.\nIn order to ensure data integrity, all system indices that comprise a feature state are snapshotted and restored together.\n\nThe features listed by this API are a combination of built-in features and features defined by plugins.\nIn order for a feature state to be listed in this API and recognized as a valid feature state by the create snapshot API, the plugin that defines that feature must be installed on the master node."
       }
     },
-    "com.elasticsearch.api#FeaturesResetFeaturesRequest": {
+    "com.elasticsearch.api#ResetFeaturesRequest": {
       "type": "structure",
       "members": {
         "master_timeout": {
@@ -78057,18 +78057,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#FeaturesResetFeaturesResponseFeaturesList": {
+    "com.elasticsearch.api#ResetFeaturesResponseFeaturesList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#FeaturesTypesFeature"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#FeaturesResetFeaturesResponse": {
+    "com.elasticsearch.api#ResetFeaturesResponse": {
       "type": "structure",
       "members": {
         "features": {
-          "target": "com.elasticsearch.api#FeaturesResetFeaturesResponseFeaturesList",
+          "target": "com.elasticsearch.api#ResetFeaturesResponseFeaturesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -78078,13 +78078,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#FeaturesResetFeatures": {
+    "com.elasticsearch.api#ResetFeatures": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#FeaturesResetFeaturesRequest"
+        "target": "com.elasticsearch.api#ResetFeaturesRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#FeaturesResetFeaturesResponse"
+        "target": "com.elasticsearch.api#ResetFeaturesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -172565,7 +172565,7 @@
         "smithy.api#documentation": "Get the status of streams\n\nGet the current status for all types of streams.\n\n## Required authorization\n\n* Cluster privileges: `monitor`"
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymRequest": {
+    "com.elasticsearch.api#GetSynonymRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -172622,7 +172622,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SynonymsGetSynonymResponseSynonymsSetList": {
+    "com.elasticsearch.api#GetSynonymResponseSynonymsSetList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#SynonymsTypesSynonymRuleRead"
@@ -172631,7 +172631,7 @@
         "smithy.api#documentation": "Synonym rule details."
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymResponse": {
+    "com.elasticsearch.api#GetSynonymResponse": {
       "type": "structure",
       "members": {
         "count": {
@@ -172642,7 +172642,7 @@
           }
         },
         "synonyms_set": {
-          "target": "com.elasticsearch.api#SynonymsGetSynonymResponseSynonymsSetList",
+          "target": "com.elasticsearch.api#GetSynonymResponseSynonymsSetList",
           "traits": {
             "smithy.api#documentation": "Synonym rule details.",
             "smithy.api#required": {}
@@ -172653,13 +172653,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonym": {
+    "com.elasticsearch.api#GetSynonym": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsGetSynonymRequest"
+        "target": "com.elasticsearch.api#GetSynonymRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SynonymsGetSynonymResponse"
+        "target": "com.elasticsearch.api#GetSynonymResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -172689,28 +172689,28 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SynonymsPutSynonymRequestSynonymsSetCase1List": {
+    "com.elasticsearch.api#PutSynonymRequestSynonymsSetCase1List": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#SynonymsTypesSynonymRule"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SynonymsPutSynonymRequestSynonymsSet": {
+    "com.elasticsearch.api#PutSynonymRequestSynonymsSet": {
       "type": "union",
       "members": {
         "SynonymsTypesSynonymRule": {
           "target": "com.elasticsearch.api#SynonymsTypesSynonymRule"
         },
         "Case1": {
-          "target": "com.elasticsearch.api#SynonymsPutSynonymRequestSynonymsSetCase1List"
+          "target": "com.elasticsearch.api#PutSynonymRequestSynonymsSetCase1List"
         }
       },
       "traits": {
         "smithy.api#documentation": "The synonym rules definitions for the synonyms set."
       }
     },
-    "com.elasticsearch.api#SynonymsPutSynonymRequest": {
+    "com.elasticsearch.api#PutSynonymRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -172736,7 +172736,7 @@
           }
         },
         "synonyms_set": {
-          "target": "com.elasticsearch.api#SynonymsPutSynonymRequestSynonymsSet",
+          "target": "com.elasticsearch.api#PutSynonymRequestSynonymsSet",
           "traits": {
             "smithy.api#documentation": "The synonym rules definitions for the synonyms set.",
             "smithy.api#required": {}
@@ -172747,7 +172747,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SynonymsPutSynonymResponse": {
+    "com.elasticsearch.api#PutSynonymResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -172768,13 +172768,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SynonymsPutSynonym": {
+    "com.elasticsearch.api#PutSynonym": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsPutSynonymRequest"
+        "target": "com.elasticsearch.api#PutSynonymRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SynonymsPutSynonymResponse"
+        "target": "com.elasticsearch.api#PutSynonymResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -172785,7 +172785,7 @@
         "smithy.api#documentation": "Create or update a synonym set\n\nSynonym sets are limited to a maximum of 100,000 synonym rules per set by default.\nThis limit is configurable using the `synonyms.max_synonym_rules` cluster setting.\n\nWhen an existing synonyms set is updated, the search analyzers that use the synonyms set are reloaded automatically for all indices.\nThis is equivalent to invoking the reload search analyzers API for all indices that use the synonyms set.\n\nFor practical examples of how to create or update a synonyms set, refer to the External documentation.\n\n## Required authorization\n\n* Cluster privileges: `manage_search_synonyms`"
       }
     },
-    "com.elasticsearch.api#SynonymsDeleteSynonymRequest": {
+    "com.elasticsearch.api#DeleteSynonymRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -172801,10 +172801,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SynonymsDeleteSynonym": {
+    "com.elasticsearch.api#DeleteSynonym": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsDeleteSynonymRequest"
+        "target": "com.elasticsearch.api#DeleteSynonymRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -172818,7 +172818,7 @@
         "smithy.api#documentation": "Delete a synonym set\n\nYou can only delete a synonyms set that is not in use by any index analyzer.\n\nSynonyms sets can be used in synonym graph token filters and synonym token filters.\nThese synonym filters can be used as part of search analyzers.\n\nAnalyzers need to be loaded when an index is restored (such as when a node starts, or the index becomes open).\nEven if the analyzer is not used on any field mapping, it still needs to be loaded on the index recovery phase.\n\nIf any analyzers cannot be loaded, the index becomes unavailable and the cluster status becomes red or yellow as index shards are not available.\nTo prevent that, synonyms sets that are used in analyzers can't be deleted.\nA delete request in this case will return a 400 response code.\n\nTo remove a synonyms set, you must first remove all indices that contain analyzers using it.\nYou can migrate an index by creating a new index that does not contain the token filter with the synonyms set, and use the reindex API in order to copy over the index data.\nOnce finished, you can delete the index.\nWhen the synonyms set is not used in analyzers, you will be able to delete it.\n\n## Required authorization\n\n* Cluster privileges: `manage_search_synonyms`"
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymRuleRequest": {
+    "com.elasticsearch.api#GetSynonymRuleRequest": {
       "type": "structure",
       "members": {
         "set_id": {
@@ -172842,10 +172842,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymRule": {
+    "com.elasticsearch.api#GetSynonymRule": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsGetSynonymRuleRequest"
+        "target": "com.elasticsearch.api#GetSynonymRuleRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#SynonymsTypesSynonymRuleRead"
@@ -172859,7 +172859,7 @@
         "smithy.api#documentation": "Get a synonym rule\n\nGet a synonym rule from a synonym set.\n\n## Required authorization\n\n* Cluster privileges: `manage_search_synonyms`"
       }
     },
-    "com.elasticsearch.api#SynonymsPutSynonymRuleRequest": {
+    "com.elasticsearch.api#PutSynonymRuleRequest": {
       "type": "structure",
       "members": {
         "set_id": {
@@ -172916,10 +172916,10 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SynonymsPutSynonymRule": {
+    "com.elasticsearch.api#PutSynonymRule": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsPutSynonymRuleRequest"
+        "target": "com.elasticsearch.api#PutSynonymRuleRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#SynonymsTypesSynonymsUpdateResult"
@@ -172933,7 +172933,7 @@
         "smithy.api#documentation": "Create or update a synonym rule\n\nCreate or update a synonym rule in a synonym set.\n\nIf any of the synonym rules included is invalid, the API returns an error.\n\nWhen you update a synonym rule, all analyzers using the synonyms set will be reloaded automatically to reflect the new rule.\n\n## Required authorization\n\n* Cluster privileges: `manage_search_synonyms`"
       }
     },
-    "com.elasticsearch.api#SynonymsDeleteSynonymRuleRequest": {
+    "com.elasticsearch.api#DeleteSynonymRuleRequest": {
       "type": "structure",
       "members": {
         "set_id": {
@@ -172964,10 +172964,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#SynonymsDeleteSynonymRule": {
+    "com.elasticsearch.api#DeleteSynonymRule": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsDeleteSynonymRuleRequest"
+        "target": "com.elasticsearch.api#DeleteSynonymRuleRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#SynonymsTypesSynonymsUpdateResult"
@@ -172981,7 +172981,7 @@
         "smithy.api#documentation": "Delete a synonym rule\n\nDelete a synonym rule from a synonym set.\n\n## Required authorization\n\n* Cluster privileges: `manage_search_synonyms`"
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymsSetsRequest": {
+    "com.elasticsearch.api#GetSynonymsSetsRequest": {
       "type": "structure",
       "members": {
         "from": {
@@ -173023,7 +173023,7 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#SynonymsGetSynonymsSetsResponseResultsList": {
+    "com.elasticsearch.api#GetSynonymsSetsResponseResultsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#SynonymsGetSynonymsSetsSynonymsSetItem"
@@ -173032,7 +173032,7 @@
         "smithy.api#documentation": "The identifier and total number of defined synonym rules for each synonyms set."
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymsSetsResponse": {
+    "com.elasticsearch.api#GetSynonymsSetsResponse": {
       "type": "structure",
       "members": {
         "count": {
@@ -173043,7 +173043,7 @@
           }
         },
         "results": {
-          "target": "com.elasticsearch.api#SynonymsGetSynonymsSetsResponseResultsList",
+          "target": "com.elasticsearch.api#GetSynonymsSetsResponseResultsList",
           "traits": {
             "smithy.api#documentation": "The identifier and total number of defined synonym rules for each synonyms set.",
             "smithy.api#required": {}
@@ -173054,13 +173054,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#SynonymsGetSynonymsSets": {
+    "com.elasticsearch.api#GetSynonymsSets": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#SynonymsGetSynonymsSetsRequest"
+        "target": "com.elasticsearch.api#GetSynonymsSetsRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#SynonymsGetSynonymsSetsResponse"
+        "target": "com.elasticsearch.api#GetSynonymsSetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -175906,7 +175906,7 @@
         "smithy.api#documentation": "Test a Grok pattern\n\nTest a Grok pattern on one or more lines of text.\nThe API indicates whether the lines match the pattern together with the offsets and lengths of the matched substrings."
       }
     },
-    "com.elasticsearch.api#TransformGetTransformRequest": {
+    "com.elasticsearch.api#GetTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -176351,14 +176351,14 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TransformGetTransformResponseTransformsList": {
+    "com.elasticsearch.api#GetTransformResponseTransformsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TransformGetTransformTransformSummary"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TransformGetTransformResponse": {
+    "com.elasticsearch.api#GetTransformResponse": {
       "type": "structure",
       "members": {
         "count": {
@@ -176368,7 +176368,7 @@
           }
         },
         "transforms": {
-          "target": "com.elasticsearch.api#TransformGetTransformResponseTransformsList",
+          "target": "com.elasticsearch.api#GetTransformResponseTransformsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -176378,13 +176378,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#TransformGetTransform": {
+    "com.elasticsearch.api#GetTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformGetTransformRequest"
+        "target": "com.elasticsearch.api#GetTransformRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#TransformGetTransformResponse"
+        "target": "com.elasticsearch.api#GetTransformResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -176395,7 +176395,7 @@
         "smithy.api#documentation": "Get transforms\n\nGet configuration information for transforms.\n\n## Required authorization\n\n* Cluster privileges: `monitor_transform`"
       }
     },
-    "com.elasticsearch.api#TransformPutTransformRequest": {
+    "com.elasticsearch.api#PutTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -176487,10 +176487,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformPutTransform": {
+    "com.elasticsearch.api#PutTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformPutTransformRequest"
+        "target": "com.elasticsearch.api#PutTransformRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -176504,7 +176504,7 @@
         "smithy.api#documentation": "Create a transform\n\nCreates a transform.\n\nA transform copies data from source indices, transforms it, and persists it into an entity-centric destination index. You can also think of the destination index as a two-dimensional tabular data structure (known as\na data frame). The ID for each document in the data frame is generated from a hash of the entity, so there is a\nunique row per entity.\n\nYou must choose either the latest or pivot method for your transform; you cannot use both in a single transform. If\nyou choose to use the pivot method for your transform, the entities are defined by the set of `group_by` fields in\nthe pivot object. If you choose to use the latest method, the entities are defined by the `unique_key` field values\nin the latest object.\n\nYou must have `create_index`, `index`, and `read` privileges on the destination index and `read` and\n`view_index_metadata` privileges on the source indices. When Elasticsearch security features are enabled, the\ntransform remembers which roles the user that created it had at the time of creation and uses those same roles. If\nthose roles do not have the required privileges on the source and destination indices, the transform fails when it\nattempts unauthorized operations.\n\nNOTE: You must use Kibana or this API to create a transform. Do not add a transform directly into any\n`.transform-internal*` indices using the Elasticsearch index API. If Elasticsearch security features are enabled, do\nnot give users any privileges on `.transform-internal*` indices. If you used transforms prior to 7.5, also do not\ngive users any privileges on `.data-frame-internal*` indices.\n\n## Required authorization\n\n* Index privileges: `create_index`,`read`,`index`,`view_index_metadata`\n* Cluster privileges: `manage_transform`"
       }
     },
-    "com.elasticsearch.api#TransformDeleteTransformRequest": {
+    "com.elasticsearch.api#DeleteTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -176541,10 +176541,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformDeleteTransform": {
+    "com.elasticsearch.api#DeleteTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformDeleteTransformRequest"
+        "target": "com.elasticsearch.api#DeleteTransformRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -176614,7 +176614,7 @@
         "smithy.api#documentation": "Get node stats\n\nGet per-node information about transform usage."
       }
     },
-    "com.elasticsearch.api#TransformGetTransform1Request": {
+    "com.elasticsearch.api#GetTransform1Request": {
       "type": "structure",
       "members": {
         "allow_no_match": {
@@ -176650,14 +176650,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformGetTransform1ResponseTransformsList": {
+    "com.elasticsearch.api#GetTransform1ResponseTransformsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TransformGetTransformTransformSummary"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TransformGetTransform1Response": {
+    "com.elasticsearch.api#GetTransform1Response": {
       "type": "structure",
       "members": {
         "count": {
@@ -176667,7 +176667,7 @@
           }
         },
         "transforms": {
-          "target": "com.elasticsearch.api#TransformGetTransform1ResponseTransformsList",
+          "target": "com.elasticsearch.api#GetTransform1ResponseTransformsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -176677,13 +176677,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#TransformGetTransform1": {
+    "com.elasticsearch.api#GetTransform1": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformGetTransform1Request"
+        "target": "com.elasticsearch.api#GetTransform1Request"
       },
       "output": {
-        "target": "com.elasticsearch.api#TransformGetTransform1Response"
+        "target": "com.elasticsearch.api#GetTransform1Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -176694,7 +176694,7 @@
         "smithy.api#documentation": "Get transforms\n\nGet configuration information for transforms.\n\n## Required authorization\n\n* Cluster privileges: `monitor_transform`"
       }
     },
-    "com.elasticsearch.api#TransformGetTransformStatsRequest": {
+    "com.elasticsearch.api#GetTransformStatsRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -177039,14 +177039,14 @@
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TransformGetTransformStatsResponseTransformsList": {
+    "com.elasticsearch.api#GetTransformStatsResponseTransformsList": {
       "type": "list",
       "member": {
         "target": "com.elasticsearch.api#TransformGetTransformStatsTransformStats"
       },
       "traits": {}
     },
-    "com.elasticsearch.api#TransformGetTransformStatsResponse": {
+    "com.elasticsearch.api#GetTransformStatsResponse": {
       "type": "structure",
       "members": {
         "count": {
@@ -177056,7 +177056,7 @@
           }
         },
         "transforms": {
-          "target": "com.elasticsearch.api#TransformGetTransformStatsResponseTransformsList",
+          "target": "com.elasticsearch.api#GetTransformStatsResponseTransformsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -177066,13 +177066,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#TransformGetTransformStats": {
+    "com.elasticsearch.api#GetTransformStats": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformGetTransformStatsRequest"
+        "target": "com.elasticsearch.api#GetTransformStatsRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#TransformGetTransformStatsResponse"
+        "target": "com.elasticsearch.api#GetTransformStatsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -177551,7 +177551,7 @@
         "smithy.api#documentation": "Preview a transform\n\nGenerates a preview of the results that you will get when you create a transform with the same configuration.\n\nIt returns a maximum of 100 results. The calculations are based on all the current data in the source index. It also\ngenerates a list of mappings and settings for the destination index. These values are determined based on the field\ntypes of the source index and the transform aggregations.\n\n## Required authorization\n\n* Index privileges: `read`,`view_index_metadata`\n* Cluster privileges: `manage_transform`"
       }
     },
-    "com.elasticsearch.api#TransformResetTransformRequest": {
+    "com.elasticsearch.api#ResetTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -177581,10 +177581,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformResetTransform": {
+    "com.elasticsearch.api#ResetTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformResetTransformRequest"
+        "target": "com.elasticsearch.api#ResetTransformRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -177684,7 +177684,7 @@
         "smithy.api#documentation": "Set upgrade_mode for transform indices\n\nSets a cluster wide upgrade_mode setting that prepares transform\nindices for an upgrade.\nWhen upgrading your cluster, in some circumstances you must restart your\nnodes and reindex your transform indices. In those circumstances,\nthere must be no transforms running. You can close the transforms,\ndo the upgrade, then open all the transforms again. Alternatively,\nyou can use this API to temporarily halt tasks associated with the transforms\nand prevent new transforms from opening. You can also use this API\nduring upgrades that do not require you to reindex your transform\nindices, though stopping transforms is not a requirement in that case.\nYou can see the current value for the upgrade_mode setting by using the get\ntransform info API.\n\n## Required authorization\n\n* Cluster privileges: `manage_transform`"
       }
     },
-    "com.elasticsearch.api#TransformStartTransformRequest": {
+    "com.elasticsearch.api#StartTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -177714,10 +177714,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformStartTransform": {
+    "com.elasticsearch.api#StartTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformStartTransformRequest"
+        "target": "com.elasticsearch.api#StartTransformRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -177731,7 +177731,7 @@
         "smithy.api#documentation": "Start a transform\n\nWhen you start a transform, it creates the destination index if it does not already exist. The `number_of_shards` is\nset to `1` and the `auto_expand_replicas` is set to `0-1`. If it is a pivot transform, it deduces the mapping\ndefinitions for the destination index from the source indices and the transform aggregations. If fields in the\ndestination index are derived from scripts (as in the case of `scripted_metric` or `bucket_script` aggregations),\nthe transform uses dynamic mappings unless an index template exists. If it is a latest transform, it does not deduce\nmapping definitions; it uses dynamic mappings. To use explicit mappings, create the destination index before you\nstart the transform. Alternatively, you can create an index template, though it does not affect the deduced mappings\nin a pivot transform.\n\nWhen the transform starts, a series of validations occur to ensure its success. If you deferred validation when you\ncreated the transform, they occur when you start the transform—​with the exception of privilege checks. When\nElasticsearch security features are enabled, the transform remembers which roles the user that created it had at the\ntime of creation and uses those same roles. If those roles do not have the required privileges on the source and\ndestination indices, the transform fails when it attempts unauthorized operations.\n\n## Required authorization\n\n* Index privileges: `read`,`view_index_metadata`\n* Cluster privileges: `manage_transform`"
       }
     },
-    "com.elasticsearch.api#TransformStopTransformRequest": {
+    "com.elasticsearch.api#StopTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -177782,10 +177782,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformStopTransform": {
+    "com.elasticsearch.api#StopTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformStopTransformRequest"
+        "target": "com.elasticsearch.api#StopTransformRequest"
       },
       "output": {
         "target": "com.elasticsearch.api#TypesAcknowledgedResponseBase"
@@ -177799,7 +177799,7 @@
         "smithy.api#documentation": "Stop transforms\n\nStops one or more transforms.\n\n## Required authorization\n\n* Cluster privileges: `manage_transform`"
       }
     },
-    "com.elasticsearch.api#TransformUpdateTransformRequestRetentionPolicy": {
+    "com.elasticsearch.api#UpdateTransformRequestRetentionPolicy": {
       "type": "union",
       "members": {
         "TransformTypesRetentionPolicyContainer": {
@@ -177813,7 +177813,7 @@
         "smithy.api#documentation": "Defines a retention policy for the transform. Data that meets the defined\ncriteria is deleted from the destination index."
       }
     },
-    "com.elasticsearch.api#TransformUpdateTransformRequest": {
+    "com.elasticsearch.api#UpdateTransformRequest": {
       "type": "structure",
       "members": {
         "transform_id": {
@@ -177881,7 +177881,7 @@
           }
         },
         "retention_policy": {
-          "target": "com.elasticsearch.api#TransformUpdateTransformRequestRetentionPolicy",
+          "target": "com.elasticsearch.api#UpdateTransformRequestRetentionPolicy",
           "traits": {
             "smithy.api#documentation": "Defines a retention policy for the transform. Data that meets the defined\ncriteria is deleted from the destination index."
           }
@@ -177891,7 +177891,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.elasticsearch.api#TransformUpdateTransformResponse": {
+    "com.elasticsearch.api#UpdateTransformResponse": {
       "type": "structure",
       "members": {
         "authorization": {
@@ -177962,13 +177962,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.elasticsearch.api#TransformUpdateTransform": {
+    "com.elasticsearch.api#UpdateTransform": {
       "type": "operation",
       "input": {
-        "target": "com.elasticsearch.api#TransformUpdateTransformRequest"
+        "target": "com.elasticsearch.api#UpdateTransformRequest"
       },
       "output": {
-        "target": "com.elasticsearch.api#TransformUpdateTransformResponse"
+        "target": "com.elasticsearch.api#UpdateTransformResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -187511,10 +187511,10 @@
           "target": "com.elasticsearch.api#Explain1"
         },
         {
-          "target": "com.elasticsearch.api#FeaturesGetFeatures"
+          "target": "com.elasticsearch.api#GetFeatures"
         },
         {
-          "target": "com.elasticsearch.api#FeaturesResetFeatures"
+          "target": "com.elasticsearch.api#ResetFeatures"
         },
         {
           "target": "com.elasticsearch.api#FieldCaps"
@@ -189191,25 +189191,25 @@
           "target": "com.elasticsearch.api#StreamsStatus"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsGetSynonym"
+          "target": "com.elasticsearch.api#GetSynonym"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsPutSynonym"
+          "target": "com.elasticsearch.api#PutSynonym"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsDeleteSynonym"
+          "target": "com.elasticsearch.api#DeleteSynonym"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsGetSynonymRule"
+          "target": "com.elasticsearch.api#GetSynonymRule"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsPutSynonymRule"
+          "target": "com.elasticsearch.api#PutSynonymRule"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsDeleteSynonymRule"
+          "target": "com.elasticsearch.api#DeleteSynonymRule"
         },
         {
-          "target": "com.elasticsearch.api#SynonymsGetSynonymsSets"
+          "target": "com.elasticsearch.api#GetSynonymsSets"
         },
         {
           "target": "com.elasticsearch.api#CancelTask"
@@ -189260,22 +189260,22 @@
           "target": "com.elasticsearch.api#TextStructureTestGrokPattern1"
         },
         {
-          "target": "com.elasticsearch.api#TransformGetTransform"
+          "target": "com.elasticsearch.api#GetTransform"
         },
         {
-          "target": "com.elasticsearch.api#TransformPutTransform"
+          "target": "com.elasticsearch.api#PutTransform"
         },
         {
-          "target": "com.elasticsearch.api#TransformDeleteTransform"
+          "target": "com.elasticsearch.api#DeleteTransform"
         },
         {
           "target": "com.elasticsearch.api#TransformGetNodeStats"
         },
         {
-          "target": "com.elasticsearch.api#TransformGetTransform1"
+          "target": "com.elasticsearch.api#GetTransform1"
         },
         {
-          "target": "com.elasticsearch.api#TransformGetTransformStats"
+          "target": "com.elasticsearch.api#GetTransformStats"
         },
         {
           "target": "com.elasticsearch.api#TransformPreviewTransform"
@@ -189290,7 +189290,7 @@
           "target": "com.elasticsearch.api#TransformPreviewTransform3"
         },
         {
-          "target": "com.elasticsearch.api#TransformResetTransform"
+          "target": "com.elasticsearch.api#ResetTransform"
         },
         {
           "target": "com.elasticsearch.api#TransformScheduleNowTransform"
@@ -189299,13 +189299,13 @@
           "target": "com.elasticsearch.api#TransformSetUpgradeMode"
         },
         {
-          "target": "com.elasticsearch.api#TransformStartTransform"
+          "target": "com.elasticsearch.api#StartTransform"
         },
         {
-          "target": "com.elasticsearch.api#TransformStopTransform"
+          "target": "com.elasticsearch.api#StopTransform"
         },
         {
-          "target": "com.elasticsearch.api#TransformUpdateTransform"
+          "target": "com.elasticsearch.api#UpdateTransform"
         },
         {
           "target": "com.elasticsearch.api#TransformUpgradeTransforms"
