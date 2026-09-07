@@ -49,35 +49,6 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface AbortBulkActionV1Request {
-  /** The ID of a bulk action, starts with `bulk_`. */
-  bulkActionId: string;
-}
-export const AbortBulkActionV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bulkActionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v1/bulk-actions/{bulkActionId}/abort",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AbortBulkActionV1Request",
-}) as any as S.Schema<AbortBulkActionV1Request>;
-
-export interface AbortBulkActionResponse {
-  id: string;
-}
-export const AbortBulkActionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "AbortBulkActionResponse",
-}) as any as S.Schema<AbortBulkActionResponse>;
-
 export interface ActivateScheduleV1Request {
   /** The ID of the schedule. */
   schedule_id: string;
@@ -207,201 +178,34 @@ export const AddRunTagsV1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddRunTagsV1Response",
 }) as any as S.Schema<AddRunTagsV1Response>;
 
-export interface QueueOptions {
-  /** You can define a shared queue and then pass the name in to your task. */
-  name?: string;
-  /** An optional property that specifies the maximum number of concurrent run executions. If this property is omitted, the task can potentially use up the full concurrency of an environment. */
-  concurrencyLimit?: number;
+export interface BulkAbortActionV1Request {
+  /** The ID of a bulk action, starts with `bulk_`. */
+  bulkActionId: string;
 }
-export const QueueOptions = /*@__PURE__*/ S.suspend(() =>
+export const BulkAbortActionV1Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    concurrencyLimit: S.optional(S.Number),
-  }),
-).annotate({ identifier: "QueueOptions" }) as any as S.Schema<QueueOptions>;
-
-/** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
-export type TriggerTaskRequestBodyOptionsMachine =
-  | "micro"
-  | "small-1x"
-  | "small-2x"
-  | "medium-1x"
-  | "medium-2x"
-  | "large-1x"
-  | "large-2x";
-export const TriggerTaskRequestBodyOptionsMachine = /*@__PURE__*/ S.String;
-
-export interface TriggerTaskRequestBodyOptions {
-  queue?: QueueOptions;
-  /** Scope the concurrency limit to a specific key. */
-  concurrencyKey?: string;
-  /** An optional property that specifies the idempotency key used to prevent creating duplicate runs. If you provide an existing idempotency key, we will return the existing run ID. */
-  idempotencyKey?: string;
-  ttl?: unknown;
-  delay?: string;
-  /** Tags to attach to the run. Tags can be used to filter runs in the dashboard and using the SDK. You can set up to 10 tags per run, each must be less than 128 characters. We recommend prefixing tags with a namespace using an underscore or colon, like `user_1234567` or `org:9876543`. Stripe uses underscores. */
-  tags?: RunTags;
-  /** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
-  machine?: TriggerTaskRequestBodyOptionsMachine | (string & {});
-}
-export const TriggerTaskRequestBodyOptions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queue: S.optional(QueueOptions),
-    concurrencyKey: S.optional(S.String),
-    idempotencyKey: S.optional(S.String),
-    ttl: S.optional(S.Unknown),
-    delay: S.optional(S.String),
-    tags: S.optional(RunTags),
-    machine: S.optional(TriggerTaskRequestBodyOptionsMachine),
-  }),
-).annotate({
-  identifier: "TriggerTaskRequestBodyOptions",
-}) as any as S.Schema<TriggerTaskRequestBodyOptions>;
-
-export interface TriggerTaskRequestBody {
-  /** The payload can include any valid JSON */
-  payload?: unknown;
-  /** The context can include any valid JSON */
-  context?: unknown;
-  options?: TriggerTaskRequestBodyOptions;
-}
-export const TriggerTaskRequestBody = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payload: S.optional(S.Unknown),
-    context: S.optional(S.Unknown),
-    options: S.optional(TriggerTaskRequestBodyOptions),
-  }),
-).annotate({
-  identifier: "TriggerTaskRequestBody",
-}) as any as S.Schema<TriggerTaskRequestBody>;
-
-/** An array of payloads to trigger the task with (max 1,000 items). */
-export type BatchTriggerTaskByIdV1RequestItemsList =
-  Array<TriggerTaskRequestBody>;
-export const BatchTriggerTaskByIdV1RequestItemsList = /*@__PURE__*/ S.Array(
-  TriggerTaskRequestBody,
-) as any as S.Schema<BatchTriggerTaskByIdV1RequestItemsList>;
-
-export interface BatchTriggerTaskByIdV1Request {
-  /** The id of a task */
-  taskIdentifier: string;
-  /** An array of payloads to trigger the task with (max 1,000 items). */
-  items: BatchTriggerTaskByIdV1RequestItemsList;
-}
-export const BatchTriggerTaskByIdV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskIdentifier: S.String.pipe(T.Label()),
-    items: BatchTriggerTaskByIdV1RequestItemsList,
+    bulkActionId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/v1/tasks/{taskIdentifier}/batch",
+      uri: "/api/v1/bulk-actions/{bulkActionId}/abort",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "BatchTriggerTaskByIdV1Request",
-}) as any as S.Schema<BatchTriggerTaskByIdV1Request>;
+  identifier: "BulkAbortActionV1Request",
+}) as any as S.Schema<BulkAbortActionV1Request>;
 
-/** An array of run IDs that were triggered */
-export type BatchTriggerTaskResponseRunsList = Array<string>;
-export const BatchTriggerTaskResponseRunsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<BatchTriggerTaskResponseRunsList>;
-
-export interface BatchTriggerTaskResponse {
-  /** The ID of the batch that was triggered */
-  batchId: string;
-  /** An array of run IDs that were triggered */
-  runs: BatchTriggerTaskResponseRunsList;
+export interface AbortBulkActionResponse {
+  id: string;
 }
-export const BatchTriggerTaskResponse = /*@__PURE__*/ S.suspend(() =>
+export const AbortBulkActionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    batchId: S.String,
-    runs: BatchTriggerTaskResponseRunsList,
+    id: S.String,
   }),
 ).annotate({
-  identifier: "BatchTriggerTaskResponse",
-}) as any as S.Schema<BatchTriggerTaskResponse>;
-
-/** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
-export type BatchTriggerTaskRequestBodyItemOptionsMachine =
-  | "micro"
-  | "small-1x"
-  | "small-2x"
-  | "medium-1x"
-  | "medium-2x"
-  | "large-1x"
-  | "large-2x";
-export const BatchTriggerTaskRequestBodyItemOptionsMachine =
-  /*@__PURE__*/ S.String;
-
-export interface BatchTriggerTaskRequestBodyItemOptions {
-  queue?: QueueOptions;
-  /** Scope the concurrency limit to a specific key. */
-  concurrencyKey?: string;
-  /** An optional property that specifies the idempotency key used to prevent creating duplicate runs. If you provide an existing idempotency key, we will return the existing run ID. */
-  idempotencyKey?: string;
-  ttl?: unknown;
-  delay?: string;
-  /** Tags to attach to the run. Tags can be used to filter runs in the dashboard and using the SDK. You can set up to 10 tags per run, each must be less than 128 characters. We recommend prefixing tags with a namespace using an underscore or colon, like `user_1234567` or `org:9876543`. Stripe uses underscores. */
-  tags?: RunTags;
-  /** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
-  machine?: BatchTriggerTaskRequestBodyItemOptionsMachine | (string & {});
-}
-export const BatchTriggerTaskRequestBodyItemOptions = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      queue: S.optional(QueueOptions),
-      concurrencyKey: S.optional(S.String),
-      idempotencyKey: S.optional(S.String),
-      ttl: S.optional(S.Unknown),
-      delay: S.optional(S.String),
-      tags: S.optional(RunTags),
-      machine: S.optional(BatchTriggerTaskRequestBodyItemOptionsMachine),
-    }),
-).annotate({
-  identifier: "BatchTriggerTaskRequestBodyItemOptions",
-}) as any as S.Schema<BatchTriggerTaskRequestBodyItemOptions>;
-
-export interface BatchTriggerTaskRequestBodyItem {
-  /** The payload can include any valid JSON */
-  payload?: unknown;
-  /** The context can include any valid JSON */
-  context?: unknown;
-  options?: BatchTriggerTaskRequestBodyItemOptions;
-  /** The task identifier to trigger. This is the `id` set in your `task()` functions. */
-  task: string;
-}
-export const BatchTriggerTaskRequestBodyItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payload: S.optional(S.Unknown),
-    context: S.optional(S.Unknown),
-    options: S.optional(BatchTriggerTaskRequestBodyItemOptions),
-    task: S.String,
-  }),
-).annotate({
-  identifier: "BatchTriggerTaskRequestBodyItem",
-}) as any as S.Schema<BatchTriggerTaskRequestBodyItem>;
-
-/** An array of payloads to trigger the task with */
-export type BatchTriggerTaskV1RequestItemsList =
-  Array<BatchTriggerTaskRequestBodyItem>;
-export const BatchTriggerTaskV1RequestItemsList = /*@__PURE__*/ S.Array(
-  BatchTriggerTaskRequestBodyItem,
-) as any as S.Schema<BatchTriggerTaskV1RequestItemsList>;
-
-export interface BatchTriggerTaskV1Request {
-  /** An array of payloads to trigger the task with */
-  items: BatchTriggerTaskV1RequestItemsList;
-}
-export const BatchTriggerTaskV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: BatchTriggerTaskV1RequestItemsList,
-  }).pipe(T.Http({ method: "POST", uri: "/api/v1/tasks/batch", code: 200 })),
-).annotate({
-  identifier: "BatchTriggerTaskV1Request",
-}) as any as S.Schema<BatchTriggerTaskV1Request>;
+  identifier: "AbortBulkActionResponse",
+}) as any as S.Schema<AbortBulkActionResponse>;
 
 export interface CancelRunV1Request {
   /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
@@ -1376,6 +1180,166 @@ export const GetBatchResultsV1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetBatchResultsV1Response",
 }) as any as S.Schema<GetBatchResultsV1Response>;
 
+export interface GetBatchV1Request {
+  /** The ID of the batch, starts with `batch_`. */
+  batchId: string;
+}
+export const GetBatchV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    batchId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/batches/{batchId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBatchV1Request",
+}) as any as S.Schema<GetBatchV1Request>;
+
+/** The current status of the batch. */
+export type GetBatchV1ResponseStatus =
+  | "PENDING"
+  | "PROCESSING"
+  | "COMPLETED"
+  | "PARTIAL_FAILED"
+  | "ABORTED";
+export const GetBatchV1ResponseStatus = /*@__PURE__*/ S.String;
+
+/** Array of run IDs in the batch. */
+export type GetBatchV1ResponseRunsList = Array<string>;
+export const GetBatchV1ResponseRunsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetBatchV1ResponseRunsList>;
+
+export interface GetBatchV1ResponseErrorsItem {
+  /** The index of the failed item. */
+  index?: number;
+  /** The task identifier of the failed item. */
+  taskIdentifier?: string;
+  /** The error details. */
+  error?: unknown;
+  /** An optional error code. */
+  errorCode?: string | null;
+}
+export const GetBatchV1ResponseErrorsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index: S.optional(S.Number),
+    taskIdentifier: S.optional(S.String),
+    error: S.optional(S.Unknown),
+    errorCode: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "GetBatchV1ResponseErrorsItem",
+}) as any as S.Schema<GetBatchV1ResponseErrorsItem>;
+
+/** Error details for failed items (present for PARTIAL_FAILED batches). */
+export type GetBatchV1ResponseErrorsList = Array<GetBatchV1ResponseErrorsItem>;
+export const GetBatchV1ResponseErrorsList = /*@__PURE__*/ S.Array(
+  GetBatchV1ResponseErrorsItem,
+) as any as S.Schema<GetBatchV1ResponseErrorsList>;
+
+export interface GetBatchV1Response {
+  /** The batch ID. */
+  id?: string;
+  /** The current status of the batch. */
+  status?: GetBatchV1ResponseStatus;
+  /** The idempotency key provided when triggering, if any. */
+  idempotencyKey?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+  /** The total number of runs in the batch. */
+  runCount?: number;
+  /** Array of run IDs in the batch. */
+  runs?: GetBatchV1ResponseRunsList;
+  /** Number of successful runs (populated after completion). */
+  successfulRunCount?: number | null;
+  /** Number of failed runs (populated after completion). */
+  failedRunCount?: number | null;
+  /** Error details for failed items (present for PARTIAL_FAILED batches). */
+  errors?: GetBatchV1ResponseErrorsList | null;
+}
+export const GetBatchV1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    status: S.optional(GetBatchV1ResponseStatus),
+    idempotencyKey: S.optional(S.NullOr(S.String)),
+    createdAt: S.optional(S.String),
+    updatedAt: S.optional(S.String),
+    runCount: S.optional(S.Number),
+    runs: S.optional(GetBatchV1ResponseRunsList),
+    successfulRunCount: S.optional(S.NullOr(S.Number)),
+    failedRunCount: S.optional(S.NullOr(S.Number)),
+    errors: S.optional(S.NullOr(GetBatchV1ResponseErrorsList)),
+  }),
+).annotate({
+  identifier: "GetBatchV1Response",
+}) as any as S.Schema<GetBatchV1Response>;
+
+export interface GetBulkActionV1Request {
+  /** The ID of a bulk action, starts with `bulk_`. */
+  bulkActionId: string;
+}
+export const GetBulkActionV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bulkActionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/bulk-actions/{bulkActionId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBulkActionV1Request",
+}) as any as S.Schema<GetBulkActionV1Request>;
+
+export type BulkActionObjectType = "CANCEL" | "REPLAY";
+export const BulkActionObjectType = /*@__PURE__*/ S.String;
+
+export type BulkActionObjectStatus = "PENDING" | "COMPLETED" | "ABORTED";
+export const BulkActionObjectStatus = /*@__PURE__*/ S.String;
+
+export interface BulkActionObjectCounts {
+  /** The number of runs selected when the bulk action was created. */
+  total: number;
+  /** The number of runs processed successfully. */
+  success: number;
+  /** The number of runs that could not be processed. */
+  failure: number;
+}
+export const BulkActionObjectCounts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total: S.Number,
+    success: S.Number,
+    failure: S.Number,
+  }),
+).annotate({
+  identifier: "BulkActionObjectCounts",
+}) as any as S.Schema<BulkActionObjectCounts>;
+
+export interface BulkActionObject {
+  /** The bulk action ID, prefixed with `bulk_`. */
+  id: string;
+  /** The name provided when the bulk action was created. */
+  name?: string;
+  type: BulkActionObjectType;
+  status: BulkActionObjectStatus;
+  counts: BulkActionObjectCounts;
+  createdAt: string;
+  completedAt?: string;
+}
+export const BulkActionObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.optional(S.String),
+    type: BulkActionObjectType,
+    status: BulkActionObjectStatus,
+    counts: BulkActionObjectCounts,
+    createdAt: S.String,
+    completedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BulkActionObject",
+}) as any as S.Schema<BulkActionObject>;
+
 export interface GetDeploymentV1Request {
   /** The deployment ID. */
   deploymentId: string;
@@ -1484,6 +1448,82 @@ export const GetDeploymentV1Response = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetDeploymentV1Response",
 }) as any as S.Schema<GetDeploymentV1Response>;
+
+export interface GetErrorV1Request {
+  /** The ID of an error group, starts with `error_`. */
+  errorId: string;
+}
+export const GetErrorV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/errors/{errorId}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetErrorV1Request",
+}) as any as S.Schema<GetErrorV1Request>;
+
+/** The most recent worker versions the error has occurred in (up to five) */
+export type ErrorObjectAffectedVersionsList = Array<string>;
+export const ErrorObjectAffectedVersionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ErrorObjectAffectedVersionsList>;
+
+export type ErrorObjectStatus = "unresolved" | "resolved" | "ignored";
+export const ErrorObjectStatus = /*@__PURE__*/ S.String;
+
+export interface ErrorObject {
+  /** The unique ID of the error group, prefixed with `error_` */
+  id: string;
+  /** The raw fingerprint the error is grouped by */
+  fingerprint: string;
+  /** The identifier of the task the error belongs to */
+  taskIdentifier: string;
+  /** The error type or name (e.g. `TypeError`) */
+  errorType: string;
+  /** The normalized error message */
+  errorMessage: string;
+  /** The total number of occurrences of this error group */
+  count: number;
+  firstSeen: string;
+  lastSeen: string;
+  /** The most recent worker versions the error has occurred in (up to five) */
+  affectedVersions: ErrorObjectAffectedVersionsList;
+  status: ErrorObjectStatus;
+  resolvedAt?: string | null;
+  resolvedInVersion?: string | null;
+  /** The ID of the user who resolved the error, when attributable */
+  resolvedBy?: string | null;
+  ignoredAt?: string | null;
+  ignoredUntil?: string | null;
+  ignoredReason?: string | null;
+  ignoredByUserId?: string | null;
+  ignoredUntilOccurrenceRate?: number | null;
+  ignoredUntilTotalOccurrences?: number | null;
+}
+export const ErrorObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    fingerprint: S.String,
+    taskIdentifier: S.String,
+    errorType: S.String,
+    errorMessage: S.String,
+    count: S.Number,
+    firstSeen: S.String,
+    lastSeen: S.String,
+    affectedVersions: ErrorObjectAffectedVersionsList,
+    status: ErrorObjectStatus,
+    resolvedAt: S.optional(S.NullOr(S.String)),
+    resolvedInVersion: S.optional(S.NullOr(S.String)),
+    resolvedBy: S.optional(S.NullOr(S.String)),
+    ignoredAt: S.optional(S.NullOr(S.String)),
+    ignoredUntil: S.optional(S.NullOr(S.String)),
+    ignoredReason: S.optional(S.NullOr(S.String)),
+    ignoredByUserId: S.optional(S.NullOr(S.String)),
+    ignoredUntilOccurrenceRate: S.optional(S.NullOr(S.Number)),
+    ignoredUntilTotalOccurrences: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({ identifier: "ErrorObject" }) as any as S.Schema<ErrorObject>;
 
 export interface GetLatestDeploymentV1Request {}
 export const GetLatestDeploymentV1Request = /*@__PURE__*/ S.suspend(() =>
@@ -1662,6 +1702,86 @@ export const GetQuerySchemaV1Response = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetQuerySchemaV1Response",
 }) as any as S.Schema<GetQuerySchemaV1Response>;
+
+export type GetQueueV1RequestType = "id" | "task" | "custom";
+export const GetQueueV1RequestType = /*@__PURE__*/ S.String;
+
+export interface GetQueueV1Request {
+  /** The queue ID (e.g., `queue_1234`), or the name of the queue when using the `type` query parameter. */
+  queueParam: string;
+  /** How to interpret the `queueParam` path parameter: - `id`: Treat as a queue ID (default) - `task`: Treat as a task ID to get the task's default queue - `custom`: Treat as a custom queue name */
+  type?: GetQueueV1RequestType | (string & {});
+}
+export const GetQueueV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    queueParam: S.String.pipe(T.Label()),
+    type: S.optional(GetQueueV1RequestType.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/queues/{queueParam}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetQueueV1Request",
+}) as any as S.Schema<GetQueueV1Request>;
+
+/** The type of queue: - `task`: Created automatically for each task - `custom`: Created explicitly in your code using `queue()` */
+export type QueueObjectType = "task" | "custom";
+export const QueueObjectType = /*@__PURE__*/ S.String;
+
+/** Detailed concurrency information */
+export interface QueueObjectConcurrency {
+  /** The effective/current concurrency limit */
+  current?: number | null;
+  /** The base concurrency limit defined in code */
+  base?: number | null;
+  /** The override concurrency limit (if set) */
+  override?: number | null;
+  /** When the concurrency limit was overridden */
+  overriddenAt?: string | null;
+  /** Who overrode the concurrency limit (null if via API) */
+  overriddenBy?: string | null;
+}
+export const QueueObjectConcurrency = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    current: S.optional(S.NullOr(S.Number)),
+    base: S.optional(S.NullOr(S.Number)),
+    override: S.optional(S.NullOr(S.Number)),
+    overriddenAt: S.optional(S.NullOr(S.String)),
+    overriddenBy: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "QueueObjectConcurrency",
+}) as any as S.Schema<QueueObjectConcurrency>;
+
+export interface QueueObject {
+  /** The queue ID, e.g., `queue_1234` */
+  id: string;
+  /** The queue name. For task queues, this is the task ID. For custom queues, this is the name you specified. */
+  name: string;
+  /** The type of queue: - `task`: Created automatically for each task - `custom`: Created explicitly in your code using `queue()` */
+  type: QueueObjectType;
+  /** The number of runs currently executing */
+  running: number;
+  /** The number of runs currently queued */
+  queued: number;
+  /** Whether the queue is paused. When paused, no new runs will start. */
+  paused: boolean;
+  /** The current concurrency limit of the queue */
+  concurrencyLimit?: number | null;
+  /** Detailed concurrency information */
+  concurrency?: QueueObjectConcurrency;
+}
+export const QueueObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    type: QueueObjectType,
+    running: S.Number,
+    queued: S.Number,
+    paused: S.Boolean,
+    concurrencyLimit: S.optional(S.NullOr(S.Number)),
+    concurrency: S.optional(QueueObjectConcurrency),
+  }),
+).annotate({ identifier: "QueueObject" }) as any as S.Schema<QueueObject>;
 
 export interface GetRunEventsV1Request {
   /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
@@ -2012,6 +2132,353 @@ export const GetRunTraceV1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRunTraceV1Response",
 }) as any as S.Schema<GetRunTraceV1Response>;
 
+export interface GetRunV1Request {
+  /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
+  runId: string;
+}
+export const GetRunV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    runId: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/api/v3/runs/{runId}", code: 200 })),
+).annotate({
+  identifier: "GetRunV1Request",
+}) as any as S.Schema<GetRunV1Request>;
+
+/** The status of the run */
+export type GetRunV1ResponseStatus =
+  | "PENDING_VERSION"
+  | "DELAYED"
+  | "QUEUED"
+  | "EXECUTING"
+  | "REATTEMPTING"
+  | "FROZEN"
+  | "COMPLETED"
+  | "CANCELED"
+  | "FAILED"
+  | "CRASHED"
+  | "INTERRUPTED"
+  | "SYSTEM_FAILURE";
+export const GetRunV1ResponseStatus = /*@__PURE__*/ S.String;
+
+/** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
+export type GetRunV1ResponseTagsList = Array<string>;
+export const GetRunV1ResponseTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetRunV1ResponseTagsList>;
+
+/** The name of the function that triggered the run */
+export type GetRunV1ResponseTriggerFunction =
+  | "trigger"
+  | "triggerAndWait"
+  | "batchTrigger"
+  | "batchTriggerAndWait";
+export const GetRunV1ResponseTriggerFunction = /*@__PURE__*/ S.String;
+
+/** The status of the run */
+export type CommonRunObjectStatus =
+  | "PENDING_VERSION"
+  | "DELAYED"
+  | "QUEUED"
+  | "EXECUTING"
+  | "REATTEMPTING"
+  | "FROZEN"
+  | "COMPLETED"
+  | "CANCELED"
+  | "FAILED"
+  | "CRASHED"
+  | "INTERRUPTED"
+  | "SYSTEM_FAILURE";
+export const CommonRunObjectStatus = /*@__PURE__*/ S.String;
+
+/** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
+export type CommonRunObjectTagsList = Array<string>;
+export const CommonRunObjectTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CommonRunObjectTagsList>;
+
+/** The name of the function that triggered the run */
+export type CommonRunObjectTriggerFunction =
+  | "trigger"
+  | "triggerAndWait"
+  | "batchTrigger"
+  | "batchTriggerAndWait";
+export const CommonRunObjectTriggerFunction = /*@__PURE__*/ S.String;
+
+export interface CommonRunObject {
+  /** The unique ID of the run, prefixed with `run_` */
+  id: string;
+  /** The status of the run */
+  status: CommonRunObjectStatus;
+  /** The identifier of the task that was run */
+  taskIdentifier: string;
+  /** The version of the worker that executed the run */
+  version?: string;
+  /** The idempotency key used to prevent creating duplicate runs, if provided */
+  idempotencyKey?: string;
+  createdAt: string;
+  updatedAt: string;
+  /** Whether the run is a test run or not */
+  isTest?: boolean;
+  /** The time the run started */
+  startedAt?: string;
+  /** The time the run finished */
+  finishedAt?: string;
+  /** If the run was triggered with a delay, this will be the time the run will be enqueued to execute */
+  delayedUntil?: string;
+  ttl?: unknown;
+  /** If the run had a TTL and that time has passed, when the run "expired". */
+  expiredAt?: string;
+  /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
+  tags?: CommonRunObjectTagsList;
+  /** The metadata of the run. See [Metadata](/runs/metadata) for more information. */
+  metadata?: unknown;
+  /** The compute cost of the run (so far) in cents. This cost does not apply to DEV runs. */
+  costInCents?: number;
+  /** The invocation cost of the run in cents. This cost does not apply to DEV runs. */
+  baseCostInCents?: number;
+  /** The duration of compute (so far) in milliseconds. This does not include waits. */
+  durationMs?: number;
+  /** The depth of the run in the task run hierarchy. The root run has a depth of 0. */
+  depth?: number;
+  /** The ID of the batch that this run belongs to */
+  batchId?: string;
+  /** The name of the function that triggered the run */
+  triggerFunction?: CommonRunObjectTriggerFunction;
+}
+export const CommonRunObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    status: CommonRunObjectStatus,
+    taskIdentifier: S.String,
+    version: S.optional(S.String),
+    idempotencyKey: S.optional(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+    isTest: S.optional(S.Boolean),
+    startedAt: S.optional(S.String),
+    finishedAt: S.optional(S.String),
+    delayedUntil: S.optional(S.String),
+    ttl: S.optional(S.Unknown),
+    expiredAt: S.optional(S.String),
+    tags: S.optional(CommonRunObjectTagsList),
+    metadata: S.optional(S.Unknown),
+    costInCents: S.optional(S.Number),
+    baseCostInCents: S.optional(S.Number),
+    durationMs: S.optional(S.Number),
+    depth: S.optional(S.Number),
+    batchId: S.optional(S.String),
+    triggerFunction: S.optional(CommonRunObjectTriggerFunction),
+  }),
+).annotate({
+  identifier: "CommonRunObject",
+}) as any as S.Schema<CommonRunObject>;
+
+/** The immediate children of the run. Will be omitted if the run has no children */
+export type GetRunV1ResponseRelatedRunsChildrenList = Array<CommonRunObject>;
+export const GetRunV1ResponseRelatedRunsChildrenList = /*@__PURE__*/ S.Array(
+  CommonRunObject,
+) as any as S.Schema<GetRunV1ResponseRelatedRunsChildrenList>;
+
+export interface GetRunV1ResponseRelatedRuns {
+  /** The root run of the run hierarchy. Will be omitted if the run is the root run */
+  root?: CommonRunObject;
+  /** The parent run of the run. Will be omitted if the run is the root run */
+  parent?: CommonRunObject;
+  /** The immediate children of the run. Will be omitted if the run has no children */
+  children?: GetRunV1ResponseRelatedRunsChildrenList;
+}
+export const GetRunV1ResponseRelatedRuns = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    root: S.optional(CommonRunObject),
+    parent: S.optional(CommonRunObject),
+    children: S.optional(GetRunV1ResponseRelatedRunsChildrenList),
+  }),
+).annotate({
+  identifier: "GetRunV1ResponseRelatedRuns",
+}) as any as S.Schema<GetRunV1ResponseRelatedRuns>;
+
+export type GetRunV1ResponseScheduleGeneratorType = "CRON";
+export const GetRunV1ResponseScheduleGeneratorType = /*@__PURE__*/ S.String;
+
+export interface GetRunV1ResponseScheduleGenerator {
+  type?: GetRunV1ResponseScheduleGeneratorType;
+  /** The cron expression used to generate the schedule */
+  expression?: string;
+  /** The description of the generator in plain english */
+  description?: string;
+}
+export const GetRunV1ResponseScheduleGenerator = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(GetRunV1ResponseScheduleGeneratorType),
+    expression: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetRunV1ResponseScheduleGenerator",
+}) as any as S.Schema<GetRunV1ResponseScheduleGenerator>;
+
+/** The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule */
+export interface GetRunV1ResponseSchedule {
+  /** The unique ID of the schedule, prefixed with `sched_` */
+  id: string;
+  /** The external ID of the schedule. Can be anything that is useful to you (e.g., user ID, org ID, etc.) */
+  externalId?: string;
+  /** The deduplication key used to prevent creating duplicate schedules */
+  deduplicationKey?: string;
+  generator: GetRunV1ResponseScheduleGenerator;
+}
+export const GetRunV1ResponseSchedule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    externalId: S.optional(S.String),
+    deduplicationKey: S.optional(S.String),
+    generator: GetRunV1ResponseScheduleGenerator,
+  }),
+).annotate({
+  identifier: "GetRunV1ResponseSchedule",
+}) as any as S.Schema<GetRunV1ResponseSchedule>;
+
+export type GetRunV1ResponseAttemptsItemStatus =
+  | "PENDING"
+  | "EXECUTING"
+  | "PAUSED"
+  | "COMPLETED"
+  | "FAILED"
+  | "CANCELED";
+export const GetRunV1ResponseAttemptsItemStatus = /*@__PURE__*/ S.String;
+
+export interface SerializedError {
+  message: string;
+  name?: string;
+  stackTrace?: string;
+}
+export const SerializedError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+    name: S.optional(S.String),
+    stackTrace: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SerializedError",
+}) as any as S.Schema<SerializedError>;
+
+export interface GetRunV1ResponseAttemptsItem {
+  /** The unique ID of the attempt, prefixed with `attempt_` */
+  id: string;
+  status: GetRunV1ResponseAttemptsItemStatus;
+  error?: SerializedError;
+  createdAt: string;
+  updatedAt: string;
+  startedAt?: string;
+  completedAt?: string;
+}
+export const GetRunV1ResponseAttemptsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    status: GetRunV1ResponseAttemptsItemStatus,
+    error: S.optional(SerializedError),
+    createdAt: S.String,
+    updatedAt: S.String,
+    startedAt: S.optional(S.String),
+    completedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetRunV1ResponseAttemptsItem",
+}) as any as S.Schema<GetRunV1ResponseAttemptsItem>;
+
+export type GetRunV1ResponseAttemptsList = Array<GetRunV1ResponseAttemptsItem>;
+export const GetRunV1ResponseAttemptsList = /*@__PURE__*/ S.Array(
+  GetRunV1ResponseAttemptsItem,
+) as any as S.Schema<GetRunV1ResponseAttemptsList>;
+
+export interface GetRunV1Response {
+  /** The unique ID of the run, prefixed with `run_` */
+  id: string;
+  /** The status of the run */
+  status: GetRunV1ResponseStatus;
+  /** The identifier of the task that was run */
+  taskIdentifier: string;
+  /** The version of the worker that executed the run */
+  version?: string;
+  /** The idempotency key used to prevent creating duplicate runs, if provided */
+  idempotencyKey?: string;
+  createdAt: string;
+  updatedAt: string;
+  /** Whether the run is a test run or not */
+  isTest?: boolean;
+  /** The time the run started */
+  startedAt?: string;
+  /** The time the run finished */
+  finishedAt?: string;
+  /** If the run was triggered with a delay, this will be the time the run will be enqueued to execute */
+  delayedUntil?: string;
+  ttl?: unknown;
+  /** If the run had a TTL and that time has passed, when the run "expired". */
+  expiredAt?: string;
+  /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
+  tags?: GetRunV1ResponseTagsList;
+  /** The metadata of the run. See [Metadata](/runs/metadata) for more information. */
+  metadata?: unknown;
+  /** The compute cost of the run (so far) in cents. This cost does not apply to DEV runs. */
+  costInCents?: number;
+  /** The invocation cost of the run in cents. This cost does not apply to DEV runs. */
+  baseCostInCents?: number;
+  /** The duration of compute (so far) in milliseconds. This does not include waits. */
+  durationMs?: number;
+  /** The depth of the run in the task run hierarchy. The root run has a depth of 0. */
+  depth?: number;
+  /** The ID of the batch that this run belongs to */
+  batchId?: string;
+  /** The name of the function that triggered the run */
+  triggerFunction?: GetRunV1ResponseTriggerFunction;
+  /** The payload that was sent to the task. Will be omitted if the request was made with a Public API key */
+  payload?: unknown;
+  /** The presigned URL to download the payload. Will only be included if the payload is too large to be included in the response. Expires in 5 minutes. */
+  payloadPresignedUrl?: string;
+  /** The output of the run. Will be omitted if the request was made with a Public API key */
+  output?: unknown;
+  /** The presigned URL to download the output. Will only be included if the output is too large to be included in the response. Expires in 5 minutes. */
+  outputPresignedUrl?: string;
+  relatedRuns?: GetRunV1ResponseRelatedRuns;
+  /** The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule */
+  schedule?: GetRunV1ResponseSchedule;
+  attempts: GetRunV1ResponseAttemptsList;
+}
+export const GetRunV1Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    status: GetRunV1ResponseStatus,
+    taskIdentifier: S.String,
+    version: S.optional(S.String),
+    idempotencyKey: S.optional(S.String),
+    createdAt: S.String,
+    updatedAt: S.String,
+    isTest: S.optional(S.Boolean),
+    startedAt: S.optional(S.String),
+    finishedAt: S.optional(S.String),
+    delayedUntil: S.optional(S.String),
+    ttl: S.optional(S.Unknown),
+    expiredAt: S.optional(S.String),
+    tags: S.optional(GetRunV1ResponseTagsList),
+    metadata: S.optional(S.Unknown),
+    costInCents: S.optional(S.Number),
+    baseCostInCents: S.optional(S.Number),
+    durationMs: S.optional(S.Number),
+    depth: S.optional(S.Number),
+    batchId: S.optional(S.String),
+    triggerFunction: S.optional(GetRunV1ResponseTriggerFunction),
+    payload: S.optional(S.Unknown),
+    payloadPresignedUrl: S.optional(S.String),
+    output: S.optional(S.Unknown),
+    outputPresignedUrl: S.optional(S.String),
+    relatedRuns: S.optional(GetRunV1ResponseRelatedRuns),
+    schedule: S.optional(GetRunV1ResponseSchedule),
+    attempts: GetRunV1ResponseAttemptsList,
+  }),
+).annotate({
+  identifier: "GetRunV1Response",
+}) as any as S.Schema<GetRunV1Response>;
+
 export interface GetScheduleV1Request {
   /** The ID of the schedule. */
   schedule_id: string;
@@ -2029,6 +2496,20 @@ export const GetScheduleV1Request = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetScheduleV1Request",
 }) as any as S.Schema<GetScheduleV1Request>;
+
+export interface GetSessionV1Request {
+  /** The session's friendly ID (`session_…`) or your `externalId`. The server disambiguates by the `session_` prefix. */
+  session: string;
+}
+export const GetSessionV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    session: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/api/v1/sessions/{session}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSessionV1Request",
+}) as any as S.Schema<GetSessionV1Request>;
 
 export interface GetTimezonesV1Request {
   /** Defaults to false. Whether to include UTC in the results or not. */
@@ -2057,6 +2538,79 @@ export const GetTimezonesResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTimezonesResult",
 }) as any as S.Schema<GetTimezonesResult>;
+
+export interface GetWaitpointTokenV1Request {
+  /** The ID of the waitpoint token. */
+  waitpointId: string;
+}
+export const GetWaitpointTokenV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    waitpointId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/v1/waitpoints/tokens/{waitpointId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWaitpointTokenV1Request",
+}) as any as S.Schema<GetWaitpointTokenV1Request>;
+
+/** The current status of the waitpoint token. */
+export type WaitpointTokenObjectStatus = "WAITING" | "COMPLETED" | "TIMED_OUT";
+export const WaitpointTokenObjectStatus = /*@__PURE__*/ S.String;
+
+/** Tags attached to the waitpoint. */
+export type WaitpointTokenObjectTagsList = Array<string>;
+export const WaitpointTokenObjectTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WaitpointTokenObjectTagsList>;
+
+export interface WaitpointTokenObject {
+  /** The unique ID of the waitpoint token. */
+  id: string;
+  /** An HTTP callback URL. A POST request to this URL (with an optional JSON body) will complete the waitpoint without needing an API key. */
+  url: string;
+  /** The current status of the waitpoint token. */
+  status: WaitpointTokenObjectStatus;
+  /** The idempotency key used when creating the token, if any. */
+  idempotencyKey?: string | null;
+  /** When the idempotency key expires. */
+  idempotencyKeyExpiresAt?: string | null;
+  /** When the token will time out, if a timeout was set. */
+  timeoutAt?: string | null;
+  /** When the token was completed, if it has been completed. */
+  completedAt?: string | null;
+  /** The serialized output data passed when completing the token. Only present when `status` is `COMPLETED`. */
+  output?: string | null;
+  /** The content type of the output (e.g. `"application/json"`). */
+  outputType?: string | null;
+  /** Whether the output represents an error (e.g. a timeout). */
+  outputIsError?: boolean | null;
+  /** Tags attached to the waitpoint. */
+  tags: WaitpointTokenObjectTagsList;
+  /** When the waitpoint token was created. */
+  createdAt: string;
+}
+export const WaitpointTokenObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    url: S.String,
+    status: WaitpointTokenObjectStatus,
+    idempotencyKey: S.optional(S.NullOr(S.String)),
+    idempotencyKeyExpiresAt: S.optional(S.NullOr(S.String)),
+    timeoutAt: S.optional(S.NullOr(S.String)),
+    completedAt: S.optional(S.NullOr(S.String)),
+    output: S.optional(S.NullOr(S.String)),
+    outputType: S.optional(S.NullOr(S.String)),
+    outputIsError: S.optional(S.NullOr(S.Boolean)),
+    tags: WaitpointTokenObjectTagsList,
+    createdAt: S.String,
+  }),
+).annotate({
+  identifier: "WaitpointTokenObject",
+}) as any as S.Schema<WaitpointTokenObject>;
 
 export interface IgnoreErrorV1Request {
   /** The ID of an error group, starts with `error_`. */
@@ -2088,68 +2642,6 @@ export const IgnoreErrorV1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "IgnoreErrorV1Request",
 }) as any as S.Schema<IgnoreErrorV1Request>;
 
-/** The most recent worker versions the error has occurred in (up to five) */
-export type ErrorObjectAffectedVersionsList = Array<string>;
-export const ErrorObjectAffectedVersionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ErrorObjectAffectedVersionsList>;
-
-export type ErrorObjectStatus = "unresolved" | "resolved" | "ignored";
-export const ErrorObjectStatus = /*@__PURE__*/ S.String;
-
-export interface ErrorObject {
-  /** The unique ID of the error group, prefixed with `error_` */
-  id: string;
-  /** The raw fingerprint the error is grouped by */
-  fingerprint: string;
-  /** The identifier of the task the error belongs to */
-  taskIdentifier: string;
-  /** The error type or name (e.g. `TypeError`) */
-  errorType: string;
-  /** The normalized error message */
-  errorMessage: string;
-  /** The total number of occurrences of this error group */
-  count: number;
-  firstSeen: string;
-  lastSeen: string;
-  /** The most recent worker versions the error has occurred in (up to five) */
-  affectedVersions: ErrorObjectAffectedVersionsList;
-  status: ErrorObjectStatus;
-  resolvedAt?: string | null;
-  resolvedInVersion?: string | null;
-  /** The ID of the user who resolved the error, when attributable */
-  resolvedBy?: string | null;
-  ignoredAt?: string | null;
-  ignoredUntil?: string | null;
-  ignoredReason?: string | null;
-  ignoredByUserId?: string | null;
-  ignoredUntilOccurrenceRate?: number | null;
-  ignoredUntilTotalOccurrences?: number | null;
-}
-export const ErrorObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    fingerprint: S.String,
-    taskIdentifier: S.String,
-    errorType: S.String,
-    errorMessage: S.String,
-    count: S.Number,
-    firstSeen: S.String,
-    lastSeen: S.String,
-    affectedVersions: ErrorObjectAffectedVersionsList,
-    status: ErrorObjectStatus,
-    resolvedAt: S.optional(S.NullOr(S.String)),
-    resolvedInVersion: S.optional(S.NullOr(S.String)),
-    resolvedBy: S.optional(S.NullOr(S.String)),
-    ignoredAt: S.optional(S.NullOr(S.String)),
-    ignoredUntil: S.optional(S.NullOr(S.String)),
-    ignoredReason: S.optional(S.NullOr(S.String)),
-    ignoredByUserId: S.optional(S.NullOr(S.String)),
-    ignoredUntilOccurrenceRate: S.optional(S.NullOr(S.Number)),
-    ignoredUntilTotalOccurrences: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({ identifier: "ErrorObject" }) as any as S.Schema<ErrorObject>;
-
 export interface ListBulkActionsV1RequestPage {
   /** Number of bulk actions per page. Maximum is 100. */
   size?: number;
@@ -2179,55 +2671,6 @@ export const ListBulkActionsV1Request = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListBulkActionsV1Request",
 }) as any as S.Schema<ListBulkActionsV1Request>;
-
-export type BulkActionObjectType = "CANCEL" | "REPLAY";
-export const BulkActionObjectType = /*@__PURE__*/ S.String;
-
-export type BulkActionObjectStatus = "PENDING" | "COMPLETED" | "ABORTED";
-export const BulkActionObjectStatus = /*@__PURE__*/ S.String;
-
-export interface BulkActionObjectCounts {
-  /** The number of runs selected when the bulk action was created. */
-  total: number;
-  /** The number of runs processed successfully. */
-  success: number;
-  /** The number of runs that could not be processed. */
-  failure: number;
-}
-export const BulkActionObjectCounts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total: S.Number,
-    success: S.Number,
-    failure: S.Number,
-  }),
-).annotate({
-  identifier: "BulkActionObjectCounts",
-}) as any as S.Schema<BulkActionObjectCounts>;
-
-export interface BulkActionObject {
-  /** The bulk action ID, prefixed with `bulk_`. */
-  id: string;
-  /** The name provided when the bulk action was created. */
-  name?: string;
-  type: BulkActionObjectType;
-  status: BulkActionObjectStatus;
-  counts: BulkActionObjectCounts;
-  createdAt: string;
-  completedAt?: string;
-}
-export const BulkActionObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.optional(S.String),
-    type: BulkActionObjectType,
-    status: BulkActionObjectStatus,
-    counts: BulkActionObjectCounts,
-    createdAt: S.String,
-    completedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BulkActionObject",
-}) as any as S.Schema<BulkActionObject>;
 
 export type ListBulkActionsResultDataList = Array<BulkActionObject>;
 export const ListBulkActionsResultDataList = /*@__PURE__*/ S.Array(
@@ -2958,66 +3401,6 @@ export const ListQueuesV1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListQueuesV1Request",
 }) as any as S.Schema<ListQueuesV1Request>;
 
-/** The type of queue: - `task`: Created automatically for each task - `custom`: Created explicitly in your code using `queue()` */
-export type QueueObjectType = "task" | "custom";
-export const QueueObjectType = /*@__PURE__*/ S.String;
-
-/** Detailed concurrency information */
-export interface QueueObjectConcurrency {
-  /** The effective/current concurrency limit */
-  current?: number | null;
-  /** The base concurrency limit defined in code */
-  base?: number | null;
-  /** The override concurrency limit (if set) */
-  override?: number | null;
-  /** When the concurrency limit was overridden */
-  overriddenAt?: string | null;
-  /** Who overrode the concurrency limit (null if via API) */
-  overriddenBy?: string | null;
-}
-export const QueueObjectConcurrency = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    current: S.optional(S.NullOr(S.Number)),
-    base: S.optional(S.NullOr(S.Number)),
-    override: S.optional(S.NullOr(S.Number)),
-    overriddenAt: S.optional(S.NullOr(S.String)),
-    overriddenBy: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "QueueObjectConcurrency",
-}) as any as S.Schema<QueueObjectConcurrency>;
-
-export interface QueueObject {
-  /** The queue ID, e.g., `queue_1234` */
-  id: string;
-  /** The queue name. For task queues, this is the task ID. For custom queues, this is the name you specified. */
-  name: string;
-  /** The type of queue: - `task`: Created automatically for each task - `custom`: Created explicitly in your code using `queue()` */
-  type: QueueObjectType;
-  /** The number of runs currently executing */
-  running: number;
-  /** The number of runs currently queued */
-  queued: number;
-  /** Whether the queue is paused. When paused, no new runs will start. */
-  paused: boolean;
-  /** The current concurrency limit of the queue */
-  concurrencyLimit?: number | null;
-  /** Detailed concurrency information */
-  concurrency?: QueueObjectConcurrency;
-}
-export const QueueObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    type: QueueObjectType,
-    running: S.Number,
-    queued: S.Number,
-    paused: S.Boolean,
-    concurrencyLimit: S.optional(S.NullOr(S.Number)),
-    concurrency: S.optional(QueueObjectConcurrency),
-  }),
-).annotate({ identifier: "QueueObject" }) as any as S.Schema<QueueObject>;
-
 /** An array of queue objects */
 export type ListQueuesResultDataList = Array<QueueObject>;
 export const ListQueuesResultDataList = /*@__PURE__*/ S.Array(
@@ -3383,61 +3766,6 @@ export const ListWaitpointTokensV1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListWaitpointTokensV1Request",
 }) as any as S.Schema<ListWaitpointTokensV1Request>;
 
-/** The current status of the waitpoint token. */
-export type WaitpointTokenObjectStatus = "WAITING" | "COMPLETED" | "TIMED_OUT";
-export const WaitpointTokenObjectStatus = /*@__PURE__*/ S.String;
-
-/** Tags attached to the waitpoint. */
-export type WaitpointTokenObjectTagsList = Array<string>;
-export const WaitpointTokenObjectTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WaitpointTokenObjectTagsList>;
-
-export interface WaitpointTokenObject {
-  /** The unique ID of the waitpoint token. */
-  id: string;
-  /** An HTTP callback URL. A POST request to this URL (with an optional JSON body) will complete the waitpoint without needing an API key. */
-  url: string;
-  /** The current status of the waitpoint token. */
-  status: WaitpointTokenObjectStatus;
-  /** The idempotency key used when creating the token, if any. */
-  idempotencyKey?: string | null;
-  /** When the idempotency key expires. */
-  idempotencyKeyExpiresAt?: string | null;
-  /** When the token will time out, if a timeout was set. */
-  timeoutAt?: string | null;
-  /** When the token was completed, if it has been completed. */
-  completedAt?: string | null;
-  /** The serialized output data passed when completing the token. Only present when `status` is `COMPLETED`. */
-  output?: string | null;
-  /** The content type of the output (e.g. `"application/json"`). */
-  outputType?: string | null;
-  /** Whether the output represents an error (e.g. a timeout). */
-  outputIsError?: boolean | null;
-  /** Tags attached to the waitpoint. */
-  tags: WaitpointTokenObjectTagsList;
-  /** When the waitpoint token was created. */
-  createdAt: string;
-}
-export const WaitpointTokenObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    url: S.String,
-    status: WaitpointTokenObjectStatus,
-    idempotencyKey: S.optional(S.NullOr(S.String)),
-    idempotencyKeyExpiresAt: S.optional(S.NullOr(S.String)),
-    timeoutAt: S.optional(S.NullOr(S.String)),
-    completedAt: S.optional(S.NullOr(S.String)),
-    output: S.optional(S.NullOr(S.String)),
-    outputType: S.optional(S.NullOr(S.String)),
-    outputIsError: S.optional(S.NullOr(S.Boolean)),
-    tags: WaitpointTokenObjectTagsList,
-    createdAt: S.String,
-  }),
-).annotate({
-  identifier: "WaitpointTokenObject",
-}) as any as S.Schema<WaitpointTokenObject>;
-
 /** An array of waitpoint token objects. */
 export type ListWaitpointTokensResultDataList = Array<WaitpointTokenObject>;
 export const ListWaitpointTokensResultDataList = /*@__PURE__*/ S.Array(
@@ -3569,392 +3897,6 @@ export const PromoteDeploymentV1Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "PromoteDeploymentV1Response",
 }) as any as S.Schema<PromoteDeploymentV1Response>;
 
-export interface ReplayRunV1Request {
-  /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
-  runId: string;
-}
-export const ReplayRunV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    runId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/api/v1/runs/{runId}/replay", code: 200 }),
-  ),
-).annotate({
-  identifier: "ReplayRunV1Request",
-}) as any as S.Schema<ReplayRunV1Request>;
-
-export interface ReplayRunV1Response {
-  /** The ID of the new run. */
-  id?: string;
-}
-export const ReplayRunV1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplayRunV1Response",
-}) as any as S.Schema<ReplayRunV1Response>;
-
-export interface RescheduleRunV1Request {
-  /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
-  runId: string;
-  delay?: string;
-}
-export const RescheduleRunV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    runId: S.String.pipe(T.Label()),
-    delay: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/v1/runs/{runId}/reschedule",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RescheduleRunV1Request",
-}) as any as S.Schema<RescheduleRunV1Request>;
-
-/** The status of the run */
-export type RescheduleRunV1ResponseStatus =
-  | "PENDING_VERSION"
-  | "DELAYED"
-  | "QUEUED"
-  | "EXECUTING"
-  | "REATTEMPTING"
-  | "FROZEN"
-  | "COMPLETED"
-  | "CANCELED"
-  | "FAILED"
-  | "CRASHED"
-  | "INTERRUPTED"
-  | "SYSTEM_FAILURE";
-export const RescheduleRunV1ResponseStatus = /*@__PURE__*/ S.String;
-
-/** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
-export type RescheduleRunV1ResponseTagsList = Array<string>;
-export const RescheduleRunV1ResponseTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RescheduleRunV1ResponseTagsList>;
-
-/** The name of the function that triggered the run */
-export type RescheduleRunV1ResponseTriggerFunction =
-  | "trigger"
-  | "triggerAndWait"
-  | "batchTrigger"
-  | "batchTriggerAndWait";
-export const RescheduleRunV1ResponseTriggerFunction = /*@__PURE__*/ S.String;
-
-/** The status of the run */
-export type CommonRunObjectStatus =
-  | "PENDING_VERSION"
-  | "DELAYED"
-  | "QUEUED"
-  | "EXECUTING"
-  | "REATTEMPTING"
-  | "FROZEN"
-  | "COMPLETED"
-  | "CANCELED"
-  | "FAILED"
-  | "CRASHED"
-  | "INTERRUPTED"
-  | "SYSTEM_FAILURE";
-export const CommonRunObjectStatus = /*@__PURE__*/ S.String;
-
-/** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
-export type CommonRunObjectTagsList = Array<string>;
-export const CommonRunObjectTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CommonRunObjectTagsList>;
-
-/** The name of the function that triggered the run */
-export type CommonRunObjectTriggerFunction =
-  | "trigger"
-  | "triggerAndWait"
-  | "batchTrigger"
-  | "batchTriggerAndWait";
-export const CommonRunObjectTriggerFunction = /*@__PURE__*/ S.String;
-
-export interface CommonRunObject {
-  /** The unique ID of the run, prefixed with `run_` */
-  id: string;
-  /** The status of the run */
-  status: CommonRunObjectStatus;
-  /** The identifier of the task that was run */
-  taskIdentifier: string;
-  /** The version of the worker that executed the run */
-  version?: string;
-  /** The idempotency key used to prevent creating duplicate runs, if provided */
-  idempotencyKey?: string;
-  createdAt: string;
-  updatedAt: string;
-  /** Whether the run is a test run or not */
-  isTest?: boolean;
-  /** The time the run started */
-  startedAt?: string;
-  /** The time the run finished */
-  finishedAt?: string;
-  /** If the run was triggered with a delay, this will be the time the run will be enqueued to execute */
-  delayedUntil?: string;
-  ttl?: unknown;
-  /** If the run had a TTL and that time has passed, when the run "expired". */
-  expiredAt?: string;
-  /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
-  tags?: CommonRunObjectTagsList;
-  /** The metadata of the run. See [Metadata](/runs/metadata) for more information. */
-  metadata?: unknown;
-  /** The compute cost of the run (so far) in cents. This cost does not apply to DEV runs. */
-  costInCents?: number;
-  /** The invocation cost of the run in cents. This cost does not apply to DEV runs. */
-  baseCostInCents?: number;
-  /** The duration of compute (so far) in milliseconds. This does not include waits. */
-  durationMs?: number;
-  /** The depth of the run in the task run hierarchy. The root run has a depth of 0. */
-  depth?: number;
-  /** The ID of the batch that this run belongs to */
-  batchId?: string;
-  /** The name of the function that triggered the run */
-  triggerFunction?: CommonRunObjectTriggerFunction;
-}
-export const CommonRunObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    status: CommonRunObjectStatus,
-    taskIdentifier: S.String,
-    version: S.optional(S.String),
-    idempotencyKey: S.optional(S.String),
-    createdAt: S.String,
-    updatedAt: S.String,
-    isTest: S.optional(S.Boolean),
-    startedAt: S.optional(S.String),
-    finishedAt: S.optional(S.String),
-    delayedUntil: S.optional(S.String),
-    ttl: S.optional(S.Unknown),
-    expiredAt: S.optional(S.String),
-    tags: S.optional(CommonRunObjectTagsList),
-    metadata: S.optional(S.Unknown),
-    costInCents: S.optional(S.Number),
-    baseCostInCents: S.optional(S.Number),
-    durationMs: S.optional(S.Number),
-    depth: S.optional(S.Number),
-    batchId: S.optional(S.String),
-    triggerFunction: S.optional(CommonRunObjectTriggerFunction),
-  }),
-).annotate({
-  identifier: "CommonRunObject",
-}) as any as S.Schema<CommonRunObject>;
-
-/** The immediate children of the run. Will be omitted if the run has no children */
-export type RescheduleRunV1ResponseRelatedRunsChildrenList =
-  Array<CommonRunObject>;
-export const RescheduleRunV1ResponseRelatedRunsChildrenList =
-  /*@__PURE__*/ S.Array(
-    CommonRunObject,
-  ) as any as S.Schema<RescheduleRunV1ResponseRelatedRunsChildrenList>;
-
-export interface RescheduleRunV1ResponseRelatedRuns {
-  /** The root run of the run hierarchy. Will be omitted if the run is the root run */
-  root?: CommonRunObject;
-  /** The parent run of the run. Will be omitted if the run is the root run */
-  parent?: CommonRunObject;
-  /** The immediate children of the run. Will be omitted if the run has no children */
-  children?: RescheduleRunV1ResponseRelatedRunsChildrenList;
-}
-export const RescheduleRunV1ResponseRelatedRuns = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    root: S.optional(CommonRunObject),
-    parent: S.optional(CommonRunObject),
-    children: S.optional(RescheduleRunV1ResponseRelatedRunsChildrenList),
-  }),
-).annotate({
-  identifier: "RescheduleRunV1ResponseRelatedRuns",
-}) as any as S.Schema<RescheduleRunV1ResponseRelatedRuns>;
-
-export type RescheduleRunV1ResponseScheduleGeneratorType = "CRON";
-export const RescheduleRunV1ResponseScheduleGeneratorType =
-  /*@__PURE__*/ S.String;
-
-export interface RescheduleRunV1ResponseScheduleGenerator {
-  type?: RescheduleRunV1ResponseScheduleGeneratorType;
-  /** The cron expression used to generate the schedule */
-  expression?: string;
-  /** The description of the generator in plain english */
-  description?: string;
-}
-export const RescheduleRunV1ResponseScheduleGenerator = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: S.optional(RescheduleRunV1ResponseScheduleGeneratorType),
-      expression: S.optional(S.String),
-      description: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RescheduleRunV1ResponseScheduleGenerator",
-}) as any as S.Schema<RescheduleRunV1ResponseScheduleGenerator>;
-
-/** The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule */
-export interface RescheduleRunV1ResponseSchedule {
-  /** The unique ID of the schedule, prefixed with `sched_` */
-  id: string;
-  /** The external ID of the schedule. Can be anything that is useful to you (e.g., user ID, org ID, etc.) */
-  externalId?: string;
-  /** The deduplication key used to prevent creating duplicate schedules */
-  deduplicationKey?: string;
-  generator: RescheduleRunV1ResponseScheduleGenerator;
-}
-export const RescheduleRunV1ResponseSchedule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    externalId: S.optional(S.String),
-    deduplicationKey: S.optional(S.String),
-    generator: RescheduleRunV1ResponseScheduleGenerator,
-  }),
-).annotate({
-  identifier: "RescheduleRunV1ResponseSchedule",
-}) as any as S.Schema<RescheduleRunV1ResponseSchedule>;
-
-export type RescheduleRunV1ResponseAttemptsItemStatus =
-  | "PENDING"
-  | "EXECUTING"
-  | "PAUSED"
-  | "COMPLETED"
-  | "FAILED"
-  | "CANCELED";
-export const RescheduleRunV1ResponseAttemptsItemStatus = /*@__PURE__*/ S.String;
-
-export interface SerializedError {
-  message: string;
-  name?: string;
-  stackTrace?: string;
-}
-export const SerializedError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-    name: S.optional(S.String),
-    stackTrace: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SerializedError",
-}) as any as S.Schema<SerializedError>;
-
-export interface RescheduleRunV1ResponseAttemptsItem {
-  /** The unique ID of the attempt, prefixed with `attempt_` */
-  id: string;
-  status: RescheduleRunV1ResponseAttemptsItemStatus;
-  error?: SerializedError;
-  createdAt: string;
-  updatedAt: string;
-  startedAt?: string;
-  completedAt?: string;
-}
-export const RescheduleRunV1ResponseAttemptsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    status: RescheduleRunV1ResponseAttemptsItemStatus,
-    error: S.optional(SerializedError),
-    createdAt: S.String,
-    updatedAt: S.String,
-    startedAt: S.optional(S.String),
-    completedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RescheduleRunV1ResponseAttemptsItem",
-}) as any as S.Schema<RescheduleRunV1ResponseAttemptsItem>;
-
-export type RescheduleRunV1ResponseAttemptsList =
-  Array<RescheduleRunV1ResponseAttemptsItem>;
-export const RescheduleRunV1ResponseAttemptsList = /*@__PURE__*/ S.Array(
-  RescheduleRunV1ResponseAttemptsItem,
-) as any as S.Schema<RescheduleRunV1ResponseAttemptsList>;
-
-export interface RescheduleRunV1Response {
-  /** The unique ID of the run, prefixed with `run_` */
-  id: string;
-  /** The status of the run */
-  status: RescheduleRunV1ResponseStatus;
-  /** The identifier of the task that was run */
-  taskIdentifier: string;
-  /** The version of the worker that executed the run */
-  version?: string;
-  /** The idempotency key used to prevent creating duplicate runs, if provided */
-  idempotencyKey?: string;
-  createdAt: string;
-  updatedAt: string;
-  /** Whether the run is a test run or not */
-  isTest?: boolean;
-  /** The time the run started */
-  startedAt?: string;
-  /** The time the run finished */
-  finishedAt?: string;
-  /** If the run was triggered with a delay, this will be the time the run will be enqueued to execute */
-  delayedUntil?: string;
-  ttl?: unknown;
-  /** If the run had a TTL and that time has passed, when the run "expired". */
-  expiredAt?: string;
-  /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
-  tags?: RescheduleRunV1ResponseTagsList;
-  /** The metadata of the run. See [Metadata](/runs/metadata) for more information. */
-  metadata?: unknown;
-  /** The compute cost of the run (so far) in cents. This cost does not apply to DEV runs. */
-  costInCents?: number;
-  /** The invocation cost of the run in cents. This cost does not apply to DEV runs. */
-  baseCostInCents?: number;
-  /** The duration of compute (so far) in milliseconds. This does not include waits. */
-  durationMs?: number;
-  /** The depth of the run in the task run hierarchy. The root run has a depth of 0. */
-  depth?: number;
-  /** The ID of the batch that this run belongs to */
-  batchId?: string;
-  /** The name of the function that triggered the run */
-  triggerFunction?: RescheduleRunV1ResponseTriggerFunction;
-  /** The payload that was sent to the task. Will be omitted if the request was made with a Public API key */
-  payload?: unknown;
-  /** The presigned URL to download the payload. Will only be included if the payload is too large to be included in the response. Expires in 5 minutes. */
-  payloadPresignedUrl?: string;
-  /** The output of the run. Will be omitted if the request was made with a Public API key */
-  output?: unknown;
-  /** The presigned URL to download the output. Will only be included if the output is too large to be included in the response. Expires in 5 minutes. */
-  outputPresignedUrl?: string;
-  relatedRuns?: RescheduleRunV1ResponseRelatedRuns;
-  /** The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule */
-  schedule?: RescheduleRunV1ResponseSchedule;
-  attempts: RescheduleRunV1ResponseAttemptsList;
-}
-export const RescheduleRunV1Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    status: RescheduleRunV1ResponseStatus,
-    taskIdentifier: S.String,
-    version: S.optional(S.String),
-    idempotencyKey: S.optional(S.String),
-    createdAt: S.String,
-    updatedAt: S.String,
-    isTest: S.optional(S.Boolean),
-    startedAt: S.optional(S.String),
-    finishedAt: S.optional(S.String),
-    delayedUntil: S.optional(S.String),
-    ttl: S.optional(S.Unknown),
-    expiredAt: S.optional(S.String),
-    tags: S.optional(RescheduleRunV1ResponseTagsList),
-    metadata: S.optional(S.Unknown),
-    costInCents: S.optional(S.Number),
-    baseCostInCents: S.optional(S.Number),
-    durationMs: S.optional(S.Number),
-    depth: S.optional(S.Number),
-    batchId: S.optional(S.String),
-    triggerFunction: S.optional(RescheduleRunV1ResponseTriggerFunction),
-    payload: S.optional(S.Unknown),
-    payloadPresignedUrl: S.optional(S.String),
-    output: S.optional(S.Unknown),
-    outputPresignedUrl: S.optional(S.String),
-    relatedRuns: S.optional(RescheduleRunV1ResponseRelatedRuns),
-    schedule: S.optional(RescheduleRunV1ResponseSchedule),
-    attempts: RescheduleRunV1ResponseAttemptsList,
-  }),
-).annotate({
-  identifier: "RescheduleRunV1Response",
-}) as any as S.Schema<RescheduleRunV1Response>;
-
 /** How to interpret the `queueParam` path parameter: - `id`: Treat as a queue ID (default) - `task`: Treat as a task ID to get the task's default queue - `custom`: Treat as a custom queue name */
 export type ResetQueueConcurrencyV1RequestType = "id" | "task" | "custom";
 export const ResetQueueConcurrencyV1RequestType = /*@__PURE__*/ S.String;
@@ -4001,166 +3943,54 @@ export const ResolveErrorV1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResolveErrorV1Request",
 }) as any as S.Schema<ResolveErrorV1Request>;
 
-export interface RetrieveBatchV1Request {
-  /** The ID of the batch, starts with `batch_`. */
-  batchId: string;
+export interface RunReplayV1Request {
+  /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
+  runId: string;
 }
-export const RetrieveBatchV1Request = /*@__PURE__*/ S.suspend(() =>
+export const RunReplayV1Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    batchId: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/batches/{batchId}", code: 200 }),
+    T.Http({ method: "POST", uri: "/api/v1/runs/{runId}/replay", code: 200 }),
   ),
 ).annotate({
-  identifier: "RetrieveBatchV1Request",
-}) as any as S.Schema<RetrieveBatchV1Request>;
+  identifier: "RunReplayV1Request",
+}) as any as S.Schema<RunReplayV1Request>;
 
-/** The current status of the batch. */
-export type RetrieveBatchV1ResponseStatus =
-  | "PENDING"
-  | "PROCESSING"
-  | "COMPLETED"
-  | "PARTIAL_FAILED"
-  | "ABORTED";
-export const RetrieveBatchV1ResponseStatus = /*@__PURE__*/ S.String;
-
-/** Array of run IDs in the batch. */
-export type RetrieveBatchV1ResponseRunsList = Array<string>;
-export const RetrieveBatchV1ResponseRunsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrieveBatchV1ResponseRunsList>;
-
-export interface RetrieveBatchV1ResponseErrorsItem {
-  /** The index of the failed item. */
-  index?: number;
-  /** The task identifier of the failed item. */
-  taskIdentifier?: string;
-  /** The error details. */
-  error?: unknown;
-  /** An optional error code. */
-  errorCode?: string | null;
-}
-export const RetrieveBatchV1ResponseErrorsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index: S.optional(S.Number),
-    taskIdentifier: S.optional(S.String),
-    error: S.optional(S.Unknown),
-    errorCode: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "RetrieveBatchV1ResponseErrorsItem",
-}) as any as S.Schema<RetrieveBatchV1ResponseErrorsItem>;
-
-/** Error details for failed items (present for PARTIAL_FAILED batches). */
-export type RetrieveBatchV1ResponseErrorsList =
-  Array<RetrieveBatchV1ResponseErrorsItem>;
-export const RetrieveBatchV1ResponseErrorsList = /*@__PURE__*/ S.Array(
-  RetrieveBatchV1ResponseErrorsItem,
-) as any as S.Schema<RetrieveBatchV1ResponseErrorsList>;
-
-export interface RetrieveBatchV1Response {
-  /** The batch ID. */
+export interface RunReplayV1Response {
+  /** The ID of the new run. */
   id?: string;
-  /** The current status of the batch. */
-  status?: RetrieveBatchV1ResponseStatus;
-  /** The idempotency key provided when triggering, if any. */
-  idempotencyKey?: string | null;
-  createdAt?: string;
-  updatedAt?: string;
-  /** The total number of runs in the batch. */
-  runCount?: number;
-  /** Array of run IDs in the batch. */
-  runs?: RetrieveBatchV1ResponseRunsList;
-  /** Number of successful runs (populated after completion). */
-  successfulRunCount?: number | null;
-  /** Number of failed runs (populated after completion). */
-  failedRunCount?: number | null;
-  /** Error details for failed items (present for PARTIAL_FAILED batches). */
-  errors?: RetrieveBatchV1ResponseErrorsList | null;
 }
-export const RetrieveBatchV1Response = /*@__PURE__*/ S.suspend(() =>
+export const RunReplayV1Response = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
-    status: S.optional(RetrieveBatchV1ResponseStatus),
-    idempotencyKey: S.optional(S.NullOr(S.String)),
-    createdAt: S.optional(S.String),
-    updatedAt: S.optional(S.String),
-    runCount: S.optional(S.Number),
-    runs: S.optional(RetrieveBatchV1ResponseRunsList),
-    successfulRunCount: S.optional(S.NullOr(S.Number)),
-    failedRunCount: S.optional(S.NullOr(S.Number)),
-    errors: S.optional(S.NullOr(RetrieveBatchV1ResponseErrorsList)),
   }),
 ).annotate({
-  identifier: "RetrieveBatchV1Response",
-}) as any as S.Schema<RetrieveBatchV1Response>;
+  identifier: "RunReplayV1Response",
+}) as any as S.Schema<RunReplayV1Response>;
 
-export interface RetrieveBulkActionV1Request {
-  /** The ID of a bulk action, starts with `bulk_`. */
-  bulkActionId: string;
+export interface RunRescheduleV1Request {
+  /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
+  runId: string;
+  delay?: string;
 }
-export const RetrieveBulkActionV1Request = /*@__PURE__*/ S.suspend(() =>
+export const RunRescheduleV1Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    bulkActionId: S.String.pipe(T.Label()),
+    runId: S.String.pipe(T.Label()),
+    delay: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/v1/bulk-actions/{bulkActionId}",
+      method: "POST",
+      uri: "/api/v1/runs/{runId}/reschedule",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "RetrieveBulkActionV1Request",
-}) as any as S.Schema<RetrieveBulkActionV1Request>;
-
-export interface RetrieveErrorV1Request {
-  /** The ID of an error group, starts with `error_`. */
-  errorId: string;
-}
-export const RetrieveErrorV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errorId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/errors/{errorId}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveErrorV1Request",
-}) as any as S.Schema<RetrieveErrorV1Request>;
-
-export type RetrieveQueueV1RequestType = "id" | "task" | "custom";
-export const RetrieveQueueV1RequestType = /*@__PURE__*/ S.String;
-
-export interface RetrieveQueueV1Request {
-  /** The queue ID (e.g., `queue_1234`), or the name of the queue when using the `type` query parameter. */
-  queueParam: string;
-  /** How to interpret the `queueParam` path parameter: - `id`: Treat as a queue ID (default) - `task`: Treat as a task ID to get the task's default queue - `custom`: Treat as a custom queue name */
-  type?: RetrieveQueueV1RequestType | (string & {});
-}
-export const RetrieveQueueV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    queueParam: S.String.pipe(T.Label()),
-    type: S.optional(RetrieveQueueV1RequestType.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/queues/{queueParam}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveQueueV1Request",
-}) as any as S.Schema<RetrieveQueueV1Request>;
-
-export interface RetrieveRunV1Request {
-  /** The ID of an run, starts with `run_`. The run ID will be returned when you trigger a run on a task. */
-  runId: string;
-}
-export const RetrieveRunV1Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    runId: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/api/v3/runs/{runId}", code: 200 })),
-).annotate({
-  identifier: "RetrieveRunV1Request",
-}) as any as S.Schema<RetrieveRunV1Request>;
+  identifier: "RunRescheduleV1Request",
+}) as any as S.Schema<RunRescheduleV1Request>;
 
 /** The status of the run */
-export type RetrieveRunV1ResponseStatus =
+export type RunRescheduleV1ResponseStatus =
   | "PENDING_VERSION"
   | "DELAYED"
   | "QUEUED"
@@ -4173,114 +4003,114 @@ export type RetrieveRunV1ResponseStatus =
   | "CRASHED"
   | "INTERRUPTED"
   | "SYSTEM_FAILURE";
-export const RetrieveRunV1ResponseStatus = /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseStatus = /*@__PURE__*/ S.String;
 
 /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
-export type RetrieveRunV1ResponseTagsList = Array<string>;
-export const RetrieveRunV1ResponseTagsList = /*@__PURE__*/ S.Array(
+export type RunRescheduleV1ResponseTagsList = Array<string>;
+export const RunRescheduleV1ResponseTagsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RetrieveRunV1ResponseTagsList>;
+) as any as S.Schema<RunRescheduleV1ResponseTagsList>;
 
 /** The name of the function that triggered the run */
-export type RetrieveRunV1ResponseTriggerFunction =
+export type RunRescheduleV1ResponseTriggerFunction =
   | "trigger"
   | "triggerAndWait"
   | "batchTrigger"
   | "batchTriggerAndWait";
-export const RetrieveRunV1ResponseTriggerFunction = /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseTriggerFunction = /*@__PURE__*/ S.String;
 
 /** The immediate children of the run. Will be omitted if the run has no children */
-export type RetrieveRunV1ResponseRelatedRunsChildrenList =
+export type RunRescheduleV1ResponseRelatedRunsChildrenList =
   Array<CommonRunObject>;
-export const RetrieveRunV1ResponseRelatedRunsChildrenList =
+export const RunRescheduleV1ResponseRelatedRunsChildrenList =
   /*@__PURE__*/ S.Array(
     CommonRunObject,
-  ) as any as S.Schema<RetrieveRunV1ResponseRelatedRunsChildrenList>;
+  ) as any as S.Schema<RunRescheduleV1ResponseRelatedRunsChildrenList>;
 
-export interface RetrieveRunV1ResponseRelatedRuns {
+export interface RunRescheduleV1ResponseRelatedRuns {
   /** The root run of the run hierarchy. Will be omitted if the run is the root run */
   root?: CommonRunObject;
   /** The parent run of the run. Will be omitted if the run is the root run */
   parent?: CommonRunObject;
   /** The immediate children of the run. Will be omitted if the run has no children */
-  children?: RetrieveRunV1ResponseRelatedRunsChildrenList;
+  children?: RunRescheduleV1ResponseRelatedRunsChildrenList;
 }
-export const RetrieveRunV1ResponseRelatedRuns = /*@__PURE__*/ S.suspend(() =>
+export const RunRescheduleV1ResponseRelatedRuns = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     root: S.optional(CommonRunObject),
     parent: S.optional(CommonRunObject),
-    children: S.optional(RetrieveRunV1ResponseRelatedRunsChildrenList),
+    children: S.optional(RunRescheduleV1ResponseRelatedRunsChildrenList),
   }),
 ).annotate({
-  identifier: "RetrieveRunV1ResponseRelatedRuns",
-}) as any as S.Schema<RetrieveRunV1ResponseRelatedRuns>;
+  identifier: "RunRescheduleV1ResponseRelatedRuns",
+}) as any as S.Schema<RunRescheduleV1ResponseRelatedRuns>;
 
-export type RetrieveRunV1ResponseScheduleGeneratorType = "CRON";
-export const RetrieveRunV1ResponseScheduleGeneratorType =
+export type RunRescheduleV1ResponseScheduleGeneratorType = "CRON";
+export const RunRescheduleV1ResponseScheduleGeneratorType =
   /*@__PURE__*/ S.String;
 
-export interface RetrieveRunV1ResponseScheduleGenerator {
-  type?: RetrieveRunV1ResponseScheduleGeneratorType;
+export interface RunRescheduleV1ResponseScheduleGenerator {
+  type?: RunRescheduleV1ResponseScheduleGeneratorType;
   /** The cron expression used to generate the schedule */
   expression?: string;
   /** The description of the generator in plain english */
   description?: string;
 }
-export const RetrieveRunV1ResponseScheduleGenerator = /*@__PURE__*/ S.suspend(
+export const RunRescheduleV1ResponseScheduleGenerator = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      type: S.optional(RetrieveRunV1ResponseScheduleGeneratorType),
+      type: S.optional(RunRescheduleV1ResponseScheduleGeneratorType),
       expression: S.optional(S.String),
       description: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "RetrieveRunV1ResponseScheduleGenerator",
-}) as any as S.Schema<RetrieveRunV1ResponseScheduleGenerator>;
+  identifier: "RunRescheduleV1ResponseScheduleGenerator",
+}) as any as S.Schema<RunRescheduleV1ResponseScheduleGenerator>;
 
 /** The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule */
-export interface RetrieveRunV1ResponseSchedule {
+export interface RunRescheduleV1ResponseSchedule {
   /** The unique ID of the schedule, prefixed with `sched_` */
   id: string;
   /** The external ID of the schedule. Can be anything that is useful to you (e.g., user ID, org ID, etc.) */
   externalId?: string;
   /** The deduplication key used to prevent creating duplicate schedules */
   deduplicationKey?: string;
-  generator: RetrieveRunV1ResponseScheduleGenerator;
+  generator: RunRescheduleV1ResponseScheduleGenerator;
 }
-export const RetrieveRunV1ResponseSchedule = /*@__PURE__*/ S.suspend(() =>
+export const RunRescheduleV1ResponseSchedule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     externalId: S.optional(S.String),
     deduplicationKey: S.optional(S.String),
-    generator: RetrieveRunV1ResponseScheduleGenerator,
+    generator: RunRescheduleV1ResponseScheduleGenerator,
   }),
 ).annotate({
-  identifier: "RetrieveRunV1ResponseSchedule",
-}) as any as S.Schema<RetrieveRunV1ResponseSchedule>;
+  identifier: "RunRescheduleV1ResponseSchedule",
+}) as any as S.Schema<RunRescheduleV1ResponseSchedule>;
 
-export type RetrieveRunV1ResponseAttemptsItemStatus =
+export type RunRescheduleV1ResponseAttemptsItemStatus =
   | "PENDING"
   | "EXECUTING"
   | "PAUSED"
   | "COMPLETED"
   | "FAILED"
   | "CANCELED";
-export const RetrieveRunV1ResponseAttemptsItemStatus = /*@__PURE__*/ S.String;
+export const RunRescheduleV1ResponseAttemptsItemStatus = /*@__PURE__*/ S.String;
 
-export interface RetrieveRunV1ResponseAttemptsItem {
+export interface RunRescheduleV1ResponseAttemptsItem {
   /** The unique ID of the attempt, prefixed with `attempt_` */
   id: string;
-  status: RetrieveRunV1ResponseAttemptsItemStatus;
+  status: RunRescheduleV1ResponseAttemptsItemStatus;
   error?: SerializedError;
   createdAt: string;
   updatedAt: string;
   startedAt?: string;
   completedAt?: string;
 }
-export const RetrieveRunV1ResponseAttemptsItem = /*@__PURE__*/ S.suspend(() =>
+export const RunRescheduleV1ResponseAttemptsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    status: RetrieveRunV1ResponseAttemptsItemStatus,
+    status: RunRescheduleV1ResponseAttemptsItemStatus,
     error: S.optional(SerializedError),
     createdAt: S.String,
     updatedAt: S.String,
@@ -4288,20 +4118,20 @@ export const RetrieveRunV1ResponseAttemptsItem = /*@__PURE__*/ S.suspend(() =>
     completedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "RetrieveRunV1ResponseAttemptsItem",
-}) as any as S.Schema<RetrieveRunV1ResponseAttemptsItem>;
+  identifier: "RunRescheduleV1ResponseAttemptsItem",
+}) as any as S.Schema<RunRescheduleV1ResponseAttemptsItem>;
 
-export type RetrieveRunV1ResponseAttemptsList =
-  Array<RetrieveRunV1ResponseAttemptsItem>;
-export const RetrieveRunV1ResponseAttemptsList = /*@__PURE__*/ S.Array(
-  RetrieveRunV1ResponseAttemptsItem,
-) as any as S.Schema<RetrieveRunV1ResponseAttemptsList>;
+export type RunRescheduleV1ResponseAttemptsList =
+  Array<RunRescheduleV1ResponseAttemptsItem>;
+export const RunRescheduleV1ResponseAttemptsList = /*@__PURE__*/ S.Array(
+  RunRescheduleV1ResponseAttemptsItem,
+) as any as S.Schema<RunRescheduleV1ResponseAttemptsList>;
 
-export interface RetrieveRunV1Response {
+export interface RunRescheduleV1Response {
   /** The unique ID of the run, prefixed with `run_` */
   id: string;
   /** The status of the run */
-  status: RetrieveRunV1ResponseStatus;
+  status: RunRescheduleV1ResponseStatus;
   /** The identifier of the task that was run */
   taskIdentifier: string;
   /** The version of the worker that executed the run */
@@ -4322,7 +4152,7 @@ export interface RetrieveRunV1Response {
   /** If the run had a TTL and that time has passed, when the run "expired". */
   expiredAt?: string;
   /** Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`) */
-  tags?: RetrieveRunV1ResponseTagsList;
+  tags?: RunRescheduleV1ResponseTagsList;
   /** The metadata of the run. See [Metadata](/runs/metadata) for more information. */
   metadata?: unknown;
   /** The compute cost of the run (so far) in cents. This cost does not apply to DEV runs. */
@@ -4336,7 +4166,7 @@ export interface RetrieveRunV1Response {
   /** The ID of the batch that this run belongs to */
   batchId?: string;
   /** The name of the function that triggered the run */
-  triggerFunction?: RetrieveRunV1ResponseTriggerFunction;
+  triggerFunction?: RunRescheduleV1ResponseTriggerFunction;
   /** The payload that was sent to the task. Will be omitted if the request was made with a Public API key */
   payload?: unknown;
   /** The presigned URL to download the payload. Will only be included if the payload is too large to be included in the response. Expires in 5 minutes. */
@@ -4345,15 +4175,15 @@ export interface RetrieveRunV1Response {
   output?: unknown;
   /** The presigned URL to download the output. Will only be included if the output is too large to be included in the response. Expires in 5 minutes. */
   outputPresignedUrl?: string;
-  relatedRuns?: RetrieveRunV1ResponseRelatedRuns;
+  relatedRuns?: RunRescheduleV1ResponseRelatedRuns;
   /** The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule */
-  schedule?: RetrieveRunV1ResponseSchedule;
-  attempts: RetrieveRunV1ResponseAttemptsList;
+  schedule?: RunRescheduleV1ResponseSchedule;
+  attempts: RunRescheduleV1ResponseAttemptsList;
 }
-export const RetrieveRunV1Response = /*@__PURE__*/ S.suspend(() =>
+export const RunRescheduleV1Response = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    status: RetrieveRunV1ResponseStatus,
+    status: RunRescheduleV1ResponseStatus,
     taskIdentifier: S.String,
     version: S.optional(S.String),
     idempotencyKey: S.optional(S.String),
@@ -4365,57 +4195,221 @@ export const RetrieveRunV1Response = /*@__PURE__*/ S.suspend(() =>
     delayedUntil: S.optional(S.String),
     ttl: S.optional(S.Unknown),
     expiredAt: S.optional(S.String),
-    tags: S.optional(RetrieveRunV1ResponseTagsList),
+    tags: S.optional(RunRescheduleV1ResponseTagsList),
     metadata: S.optional(S.Unknown),
     costInCents: S.optional(S.Number),
     baseCostInCents: S.optional(S.Number),
     durationMs: S.optional(S.Number),
     depth: S.optional(S.Number),
     batchId: S.optional(S.String),
-    triggerFunction: S.optional(RetrieveRunV1ResponseTriggerFunction),
+    triggerFunction: S.optional(RunRescheduleV1ResponseTriggerFunction),
     payload: S.optional(S.Unknown),
     payloadPresignedUrl: S.optional(S.String),
     output: S.optional(S.Unknown),
     outputPresignedUrl: S.optional(S.String),
-    relatedRuns: S.optional(RetrieveRunV1ResponseRelatedRuns),
-    schedule: S.optional(RetrieveRunV1ResponseSchedule),
-    attempts: RetrieveRunV1ResponseAttemptsList,
+    relatedRuns: S.optional(RunRescheduleV1ResponseRelatedRuns),
+    schedule: S.optional(RunRescheduleV1ResponseSchedule),
+    attempts: RunRescheduleV1ResponseAttemptsList,
   }),
 ).annotate({
-  identifier: "RetrieveRunV1Response",
-}) as any as S.Schema<RetrieveRunV1Response>;
+  identifier: "RunRescheduleV1Response",
+}) as any as S.Schema<RunRescheduleV1Response>;
 
-export interface RetrieveSessionV1Request {
-  /** The session's friendly ID (`session_…`) or your `externalId`. The server disambiguates by the `session_` prefix. */
-  session: string;
+export interface QueueOptions {
+  /** You can define a shared queue and then pass the name in to your task. */
+  name?: string;
+  /** An optional property that specifies the maximum number of concurrent run executions. If this property is omitted, the task can potentially use up the full concurrency of an environment. */
+  concurrencyLimit?: number;
 }
-export const RetrieveSessionV1Request = /*@__PURE__*/ S.suspend(() =>
+export const QueueOptions = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    session: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/api/v1/sessions/{session}", code: 200 }),
-  ),
+    name: S.optional(S.String),
+    concurrencyLimit: S.optional(S.Number),
+  }),
+).annotate({ identifier: "QueueOptions" }) as any as S.Schema<QueueOptions>;
+
+/** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
+export type TriggerTaskRequestBodyOptionsMachine =
+  | "micro"
+  | "small-1x"
+  | "small-2x"
+  | "medium-1x"
+  | "medium-2x"
+  | "large-1x"
+  | "large-2x";
+export const TriggerTaskRequestBodyOptionsMachine = /*@__PURE__*/ S.String;
+
+export interface TriggerTaskRequestBodyOptions {
+  queue?: QueueOptions;
+  /** Scope the concurrency limit to a specific key. */
+  concurrencyKey?: string;
+  /** An optional property that specifies the idempotency key used to prevent creating duplicate runs. If you provide an existing idempotency key, we will return the existing run ID. */
+  idempotencyKey?: string;
+  ttl?: unknown;
+  delay?: string;
+  /** Tags to attach to the run. Tags can be used to filter runs in the dashboard and using the SDK. You can set up to 10 tags per run, each must be less than 128 characters. We recommend prefixing tags with a namespace using an underscore or colon, like `user_1234567` or `org:9876543`. Stripe uses underscores. */
+  tags?: RunTags;
+  /** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
+  machine?: TriggerTaskRequestBodyOptionsMachine | (string & {});
+}
+export const TriggerTaskRequestBodyOptions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    queue: S.optional(QueueOptions),
+    concurrencyKey: S.optional(S.String),
+    idempotencyKey: S.optional(S.String),
+    ttl: S.optional(S.Unknown),
+    delay: S.optional(S.String),
+    tags: S.optional(RunTags),
+    machine: S.optional(TriggerTaskRequestBodyOptionsMachine),
+  }),
 ).annotate({
-  identifier: "RetrieveSessionV1Request",
-}) as any as S.Schema<RetrieveSessionV1Request>;
+  identifier: "TriggerTaskRequestBodyOptions",
+}) as any as S.Schema<TriggerTaskRequestBodyOptions>;
 
-export interface RetrieveWaitpointTokenV1Request {
-  /** The ID of the waitpoint token. */
-  waitpointId: string;
+export interface TriggerTaskRequestBody {
+  /** The payload can include any valid JSON */
+  payload?: unknown;
+  /** The context can include any valid JSON */
+  context?: unknown;
+  options?: TriggerTaskRequestBodyOptions;
 }
-export const RetrieveWaitpointTokenV1Request = /*@__PURE__*/ S.suspend(() =>
+export const TriggerTaskRequestBody = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    waitpointId: S.String.pipe(T.Label()),
+    payload: S.optional(S.Unknown),
+    context: S.optional(S.Unknown),
+    options: S.optional(TriggerTaskRequestBodyOptions),
+  }),
+).annotate({
+  identifier: "TriggerTaskRequestBody",
+}) as any as S.Schema<TriggerTaskRequestBody>;
+
+/** An array of payloads to trigger the task with (max 1,000 items). */
+export type TriggerBatchTaskByIdV1RequestItemsList =
+  Array<TriggerTaskRequestBody>;
+export const TriggerBatchTaskByIdV1RequestItemsList = /*@__PURE__*/ S.Array(
+  TriggerTaskRequestBody,
+) as any as S.Schema<TriggerBatchTaskByIdV1RequestItemsList>;
+
+export interface TriggerBatchTaskByIdV1Request {
+  /** The id of a task */
+  taskIdentifier: string;
+  /** An array of payloads to trigger the task with (max 1,000 items). */
+  items: TriggerBatchTaskByIdV1RequestItemsList;
+}
+export const TriggerBatchTaskByIdV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskIdentifier: S.String.pipe(T.Label()),
+    items: TriggerBatchTaskByIdV1RequestItemsList,
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/v1/waitpoints/tokens/{waitpointId}",
+      method: "POST",
+      uri: "/api/v1/tasks/{taskIdentifier}/batch",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "RetrieveWaitpointTokenV1Request",
-}) as any as S.Schema<RetrieveWaitpointTokenV1Request>;
+  identifier: "TriggerBatchTaskByIdV1Request",
+}) as any as S.Schema<TriggerBatchTaskByIdV1Request>;
+
+/** An array of run IDs that were triggered */
+export type BatchTriggerTaskResponseRunsList = Array<string>;
+export const BatchTriggerTaskResponseRunsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<BatchTriggerTaskResponseRunsList>;
+
+export interface BatchTriggerTaskResponse {
+  /** The ID of the batch that was triggered */
+  batchId: string;
+  /** An array of run IDs that were triggered */
+  runs: BatchTriggerTaskResponseRunsList;
+}
+export const BatchTriggerTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    batchId: S.String,
+    runs: BatchTriggerTaskResponseRunsList,
+  }),
+).annotate({
+  identifier: "BatchTriggerTaskResponse",
+}) as any as S.Schema<BatchTriggerTaskResponse>;
+
+/** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
+export type BatchTriggerTaskRequestBodyItemOptionsMachine =
+  | "micro"
+  | "small-1x"
+  | "small-2x"
+  | "medium-1x"
+  | "medium-2x"
+  | "large-1x"
+  | "large-2x";
+export const BatchTriggerTaskRequestBodyItemOptionsMachine =
+  /*@__PURE__*/ S.String;
+
+export interface BatchTriggerTaskRequestBodyItemOptions {
+  queue?: QueueOptions;
+  /** Scope the concurrency limit to a specific key. */
+  concurrencyKey?: string;
+  /** An optional property that specifies the idempotency key used to prevent creating duplicate runs. If you provide an existing idempotency key, we will return the existing run ID. */
+  idempotencyKey?: string;
+  ttl?: unknown;
+  delay?: string;
+  /** Tags to attach to the run. Tags can be used to filter runs in the dashboard and using the SDK. You can set up to 10 tags per run, each must be less than 128 characters. We recommend prefixing tags with a namespace using an underscore or colon, like `user_1234567` or `org:9876543`. Stripe uses underscores. */
+  tags?: RunTags;
+  /** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
+  machine?: BatchTriggerTaskRequestBodyItemOptionsMachine | (string & {});
+}
+export const BatchTriggerTaskRequestBodyItemOptions = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      queue: S.optional(QueueOptions),
+      concurrencyKey: S.optional(S.String),
+      idempotencyKey: S.optional(S.String),
+      ttl: S.optional(S.Unknown),
+      delay: S.optional(S.String),
+      tags: S.optional(RunTags),
+      machine: S.optional(BatchTriggerTaskRequestBodyItemOptionsMachine),
+    }),
+).annotate({
+  identifier: "BatchTriggerTaskRequestBodyItemOptions",
+}) as any as S.Schema<BatchTriggerTaskRequestBodyItemOptions>;
+
+export interface BatchTriggerTaskRequestBodyItem {
+  /** The payload can include any valid JSON */
+  payload?: unknown;
+  /** The context can include any valid JSON */
+  context?: unknown;
+  options?: BatchTriggerTaskRequestBodyItemOptions;
+  /** The task identifier to trigger. This is the `id` set in your `task()` functions. */
+  task: string;
+}
+export const BatchTriggerTaskRequestBodyItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    payload: S.optional(S.Unknown),
+    context: S.optional(S.Unknown),
+    options: S.optional(BatchTriggerTaskRequestBodyItemOptions),
+    task: S.String,
+  }),
+).annotate({
+  identifier: "BatchTriggerTaskRequestBodyItem",
+}) as any as S.Schema<BatchTriggerTaskRequestBodyItem>;
+
+/** An array of payloads to trigger the task with */
+export type TriggerBatchTaskV1RequestItemsList =
+  Array<BatchTriggerTaskRequestBodyItem>;
+export const TriggerBatchTaskV1RequestItemsList = /*@__PURE__*/ S.Array(
+  BatchTriggerTaskRequestBodyItem,
+) as any as S.Schema<TriggerBatchTaskV1RequestItemsList>;
+
+export interface TriggerBatchTaskV1Request {
+  /** An array of payloads to trigger the task with */
+  items: TriggerBatchTaskV1RequestItemsList;
+}
+export const TriggerBatchTaskV1Request = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: TriggerBatchTaskV1RequestItemsList,
+  }).pipe(T.Http({ method: "POST", uri: "/api/v1/tasks/batch", code: 200 })),
+).annotate({
+  identifier: "TriggerBatchTaskV1Request",
+}) as any as S.Schema<TriggerBatchTaskV1Request>;
 
 /** The machine preset to use for this run. This will override the task's machine preset and any defaults. */
 export type TriggerTaskV1RequestOptionsMachine =
@@ -4668,21 +4662,6 @@ export const UploadProjectEnvvarsV1Request = /*@__PURE__*/ S.suspend(() =>
   identifier: "UploadProjectEnvvarsV1Request",
 }) as any as S.Schema<UploadProjectEnvvarsV1Request>;
 
-export type AbortBulkActionV1Error = BadRequest | NotFound | TriggerDevOpError;
-/** Abort bulk action Abort a pending bulk action so it stops processing additional runs. Runs already processed by the action are not undone. */
-export const abortBulkActionV1: API.OperationMethod<
-  AbortBulkActionV1Request,
-  AbortBulkActionResponse,
-  AbortBulkActionV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AbortBulkActionV1Request,
-  output: AbortBulkActionResponse,
-  errors: [BadRequest, NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ActivateScheduleV1Error = NotFound | TriggerDevOpError;
 /** Activate Schedule Activate a schedule by its ID. This will only work on `IMPERATIVE` schedules that were created in the dashboard or using the imperative SDK functions like `schedules.create()`. */
 export const activateScheduleV1: API.OperationMethod<
@@ -4716,34 +4695,16 @@ export const addRunTagsV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BatchTriggerTaskByIdV1Error =
-  | BadRequest
-  | NotFound
-  | TriggerDevOpError;
-/** Batch trigger a specific task Batch trigger a specific task with up to 1,000 payloads. All items in the batch run the same task. */
-export const batchTriggerTaskByIdV1: API.OperationMethod<
-  BatchTriggerTaskByIdV1Request,
-  BatchTriggerTaskResponse,
-  BatchTriggerTaskByIdV1Error,
+export type BulkAbortActionV1Error = BadRequest | NotFound | TriggerDevOpError;
+/** Abort bulk action Abort a pending bulk action so it stops processing additional runs. Runs already processed by the action are not undone. */
+export const bulkAbortActionV1: API.OperationMethod<
+  BulkAbortActionV1Request,
+  AbortBulkActionResponse,
+  BulkAbortActionV1Error,
   TriggerDevOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BatchTriggerTaskByIdV1Request,
-  output: BatchTriggerTaskResponse,
-  errors: [BadRequest, NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchTriggerTaskV1Error = BadRequest | NotFound | TriggerDevOpError;
-/** Batch trigger tasks Batch trigger tasks with up to 1,000 payloads with SDK 4.3.1+ (500 in prior versions). */
-export const batchTriggerTaskV1: API.OperationMethod<
-  BatchTriggerTaskV1Request,
-  BatchTriggerTaskResponse,
-  BatchTriggerTaskV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchTriggerTaskV1Request,
-  output: BatchTriggerTaskResponse,
+  input: BulkAbortActionV1Request,
+  output: AbortBulkActionResponse,
   errors: [BadRequest, NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
@@ -4978,6 +4939,36 @@ export const getBatchResultsV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetBatchV1Error = NotFound | TriggerDevOpError;
+/** Retrieve a batch Retrieve a batch by its ID, including its status and the IDs of all runs in the batch. */
+export const getBatchV1: API.OperationMethod<
+  GetBatchV1Request,
+  GetBatchV1Response,
+  GetBatchV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchV1Request,
+  output: GetBatchV1Response,
+  errors: [NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBulkActionV1Error = NotFound | TriggerDevOpError;
+/** Retrieve bulk action Retrieve the status and aggregate processing counts for a bulk action. */
+export const getBulkActionV1: API.OperationMethod<
+  GetBulkActionV1Request,
+  BulkActionObject,
+  GetBulkActionV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBulkActionV1Request,
+  output: BulkActionObject,
+  errors: [NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDeploymentV1Error = NotFound | TriggerDevOpError;
 /** Get deployment Retrieve information about a specific deployment by its ID. */
 export const getDeploymentV1: API.OperationMethod<
@@ -4988,6 +4979,21 @@ export const getDeploymentV1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetDeploymentV1Request,
   output: GetDeploymentV1Response,
+  errors: [NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetErrorV1Error = NotFound | TriggerDevOpError;
+/** Retrieve an error Retrieve detailed information about a single error group, including its lifecycle state and the worker versions it has affected. */
+export const getErrorV1: API.OperationMethod<
+  GetErrorV1Request,
+  ErrorObject,
+  GetErrorV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetErrorV1Request,
+  output: ErrorObject,
   errors: [NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
@@ -5038,6 +5044,21 @@ export const getQuerySchemaV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetQueueV1Error = NotFound | TriggerDevOpError;
+/** Retrieve a queue Get a queue by its ID, or by type and name. */
+export const getQueueV1: API.OperationMethod<
+  GetQueueV1Request,
+  QueueObject,
+  GetQueueV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueueV1Request,
+  output: QueueObject,
+  errors: [NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetRunEventsV1Error = NotFound | TriggerDevOpError;
 /** Retrieve run events Returns all OTel span events for a run. Useful for debugging and observability. */
 export const getRunEventsV1: API.OperationMethod<
@@ -5083,6 +5104,21 @@ export const getRunTraceV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetRunV1Error = BadRequest | NotFound | TriggerDevOpError;
+/** Retrieve a run Retrieve information about a run, including its status, payload, output, and attempts. If you authenticate with a Public API key, we will omit the payload and output fields for security reasons. */
+export const getRunV1: API.OperationMethod<
+  GetRunV1Request,
+  GetRunV1Response,
+  GetRunV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRunV1Request,
+  output: GetRunV1Response,
+  errors: [BadRequest, NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetScheduleV1Error = NotFound | TriggerDevOpError;
 /** Retrieve Schedule Get a schedule by its ID. */
 export const getScheduleV1: API.OperationMethod<
@@ -5093,6 +5129,21 @@ export const getScheduleV1: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetScheduleV1Request,
   output: ScheduleObject,
+  errors: [NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSessionV1Error = NotFound | TriggerDevOpError;
+/** Retrieve a session Retrieve a single session by its friendly id (`session_…`) or your `externalId`. The response includes `triggerConfig` and the friendly `currentRunId` of the live run, if any. */
+export const getSessionV1: API.OperationMethod<
+  GetSessionV1Request,
+  SessionObject,
+  GetSessionV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSessionV1Request,
+  output: SessionObject,
   errors: [NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
@@ -5109,6 +5160,21 @@ export const getTimezonesV1: API.OperationMethod<
   input: GetTimezonesV1Request,
   output: GetTimezonesResult,
   errors: [UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWaitpointTokenV1Error = NotFound | TriggerDevOpError;
+/** Retrieve a waitpoint token Retrieves a waitpoint token by its ID, including its current status and output if it has been completed. */
+export const getWaitpointTokenV1: API.OperationMethod<
+  GetWaitpointTokenV1Request,
+  WaitpointTokenObject,
+  GetWaitpointTokenV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWaitpointTokenV1Request,
+  output: WaitpointTokenObject,
+  errors: [NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
 }));
@@ -5349,36 +5415,6 @@ export const promoteDeploymentV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReplayRunV1Error = BadRequest | NotFound | TriggerDevOpError;
-/** Replay a run Creates a new run with the same payload and options as the original run. */
-export const replayRunV1: API.OperationMethod<
-  ReplayRunV1Request,
-  ReplayRunV1Response,
-  ReplayRunV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplayRunV1Request,
-  output: ReplayRunV1Response,
-  errors: [BadRequest, NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RescheduleRunV1Error = BadRequest | NotFound | TriggerDevOpError;
-/** Rescheduled a delayed run Updates a delayed run with a new delay. Only valid when the run is in the DELAYED state. */
-export const rescheduleRunV1: API.OperationMethod<
-  RescheduleRunV1Request,
-  RescheduleRunV1Response,
-  RescheduleRunV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RescheduleRunV1Request,
-  output: RescheduleRunV1Response,
-  errors: [BadRequest, NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ResetQueueConcurrencyV1Error =
   | BadRequest
   | NotFound
@@ -5412,107 +5448,65 @@ export const resolveErrorV1: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RetrieveBatchV1Error = NotFound | TriggerDevOpError;
-/** Retrieve a batch Retrieve a batch by its ID, including its status and the IDs of all runs in the batch. */
-export const retrieveBatchV1: API.OperationMethod<
-  RetrieveBatchV1Request,
-  RetrieveBatchV1Response,
-  RetrieveBatchV1Error,
+export type RunReplayV1Error = BadRequest | NotFound | TriggerDevOpError;
+/** Replay a run Creates a new run with the same payload and options as the original run. */
+export const runReplayV1: API.OperationMethod<
+  RunReplayV1Request,
+  RunReplayV1Response,
+  RunReplayV1Error,
   TriggerDevOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveBatchV1Request,
-  output: RetrieveBatchV1Response,
-  errors: [NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveBulkActionV1Error = NotFound | TriggerDevOpError;
-/** Retrieve bulk action Retrieve the status and aggregate processing counts for a bulk action. */
-export const retrieveBulkActionV1: API.OperationMethod<
-  RetrieveBulkActionV1Request,
-  BulkActionObject,
-  RetrieveBulkActionV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveBulkActionV1Request,
-  output: BulkActionObject,
-  errors: [NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveErrorV1Error = NotFound | TriggerDevOpError;
-/** Retrieve an error Retrieve detailed information about a single error group, including its lifecycle state and the worker versions it has affected. */
-export const retrieveErrorV1: API.OperationMethod<
-  RetrieveErrorV1Request,
-  ErrorObject,
-  RetrieveErrorV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveErrorV1Request,
-  output: ErrorObject,
-  errors: [NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveQueueV1Error = NotFound | TriggerDevOpError;
-/** Retrieve a queue Get a queue by its ID, or by type and name. */
-export const retrieveQueueV1: API.OperationMethod<
-  RetrieveQueueV1Request,
-  QueueObject,
-  RetrieveQueueV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveQueueV1Request,
-  output: QueueObject,
-  errors: [NotFound, UnknownTriggerDevError],
-  protocol: TriggerDevProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveRunV1Error = BadRequest | NotFound | TriggerDevOpError;
-/** Retrieve a run Retrieve information about a run, including its status, payload, output, and attempts. If you authenticate with a Public API key, we will omit the payload and output fields for security reasons. */
-export const retrieveRunV1: API.OperationMethod<
-  RetrieveRunV1Request,
-  RetrieveRunV1Response,
-  RetrieveRunV1Error,
-  TriggerDevOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveRunV1Request,
-  output: RetrieveRunV1Response,
+  input: RunReplayV1Request,
+  output: RunReplayV1Response,
   errors: [BadRequest, NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
 }));
 
-export type RetrieveSessionV1Error = NotFound | TriggerDevOpError;
-/** Retrieve a session Retrieve a single session by its friendly id (`session_…`) or your `externalId`. The response includes `triggerConfig` and the friendly `currentRunId` of the live run, if any. */
-export const retrieveSessionV1: API.OperationMethod<
-  RetrieveSessionV1Request,
-  SessionObject,
-  RetrieveSessionV1Error,
+export type RunRescheduleV1Error = BadRequest | NotFound | TriggerDevOpError;
+/** Rescheduled a delayed run Updates a delayed run with a new delay. Only valid when the run is in the DELAYED state. */
+export const runRescheduleV1: API.OperationMethod<
+  RunRescheduleV1Request,
+  RunRescheduleV1Response,
+  RunRescheduleV1Error,
   TriggerDevOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSessionV1Request,
-  output: SessionObject,
-  errors: [NotFound, UnknownTriggerDevError],
+  input: RunRescheduleV1Request,
+  output: RunRescheduleV1Response,
+  errors: [BadRequest, NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
 }));
 
-export type RetrieveWaitpointTokenV1Error = NotFound | TriggerDevOpError;
-/** Retrieve a waitpoint token Retrieves a waitpoint token by its ID, including its current status and output if it has been completed. */
-export const retrieveWaitpointTokenV1: API.OperationMethod<
-  RetrieveWaitpointTokenV1Request,
-  WaitpointTokenObject,
-  RetrieveWaitpointTokenV1Error,
+export type TriggerBatchTaskByIdV1Error =
+  | BadRequest
+  | NotFound
+  | TriggerDevOpError;
+/** Batch trigger a specific task Batch trigger a specific task with up to 1,000 payloads. All items in the batch run the same task. */
+export const triggerBatchTaskByIdV1: API.OperationMethod<
+  TriggerBatchTaskByIdV1Request,
+  BatchTriggerTaskResponse,
+  TriggerBatchTaskByIdV1Error,
   TriggerDevOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveWaitpointTokenV1Request,
-  output: WaitpointTokenObject,
-  errors: [NotFound, UnknownTriggerDevError],
+  input: TriggerBatchTaskByIdV1Request,
+  output: BatchTriggerTaskResponse,
+  errors: [BadRequest, NotFound, UnknownTriggerDevError],
+  protocol: TriggerDevProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TriggerBatchTaskV1Error = BadRequest | NotFound | TriggerDevOpError;
+/** Batch trigger tasks Batch trigger tasks with up to 1,000 payloads with SDK 4.3.1+ (500 in prior versions). */
+export const triggerBatchTaskV1: API.OperationMethod<
+  TriggerBatchTaskV1Request,
+  BatchTriggerTaskResponse,
+  TriggerBatchTaskV1Error,
+  TriggerDevOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TriggerBatchTaskV1Request,
+  output: BatchTriggerTaskResponse,
+  errors: [BadRequest, NotFound, UnknownTriggerDevError],
   protocol: TriggerDevProtocol,
   retry: Retry.Retry,
 }));

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.trigger.dev.api#ListSchedulesV1Request": {
@@ -530,7 +531,7 @@
         "smithy.api#documentation": "Get all supported timezones\n\nGet all supported timezones that schedule tasks support."
       }
     },
-    "com.trigger.dev.api#ReplayRunV1Request": {
+    "com.trigger.dev.api#RunReplayV1Request": {
       "type": "structure",
       "members": {
         "runId": {
@@ -546,7 +547,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#ReplayRunV1Response": {
+    "com.trigger.dev.api#RunReplayV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -560,13 +561,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.trigger.dev.api#ReplayRunV1": {
+    "com.trigger.dev.api#RunReplayV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#ReplayRunV1Request"
+        "target": "com.trigger.dev.api#RunReplayV1Request"
       },
       "output": {
-        "target": "com.trigger.dev.api#ReplayRunV1Response"
+        "target": "com.trigger.dev.api#RunReplayV1Response"
       },
       "errors": [
         {
@@ -2488,7 +2489,7 @@
         "smithy.api#documentation": "List built-in dashboards\n\nList available built-in dashboards with their widgets. Each dashboard contains pre-built TRQL queries for common metrics like run success rates, costs, and LLM usage."
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1Request": {
+    "com.trigger.dev.api#RunRescheduleV1Request": {
       "type": "structure",
       "members": {
         "runId": {
@@ -2507,7 +2508,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseStatus": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseStatus": {
       "type": "enum",
       "members": {
         "PENDING_VERSION": {
@@ -2587,7 +2588,7 @@
         "smithy.api#documentation": "The status of the run"
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseTagsList": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2596,7 +2597,7 @@
         "smithy.api#documentation": "Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`)"
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseTriggerFunction": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseTriggerFunction": {
       "type": "enum",
       "members": {
         "TRIGGER": {
@@ -2881,7 +2882,7 @@
         "smithy.api#documentation": "The name of the function that triggered the run"
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseRelatedRunsChildrenList": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseRelatedRunsChildrenList": {
       "type": "list",
       "member": {
         "target": "com.trigger.dev.api#CommonRunObject"
@@ -2890,7 +2891,7 @@
         "smithy.api#documentation": "The immediate children of the run. Will be omitted if the run has no children"
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseRelatedRuns": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseRelatedRuns": {
       "type": "structure",
       "members": {
         "root": {
@@ -2906,7 +2907,7 @@
           }
         },
         "children": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseRelatedRunsChildrenList",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseRelatedRunsChildrenList",
           "traits": {
             "smithy.api#documentation": "The immediate children of the run. Will be omitted if the run has no children"
           }
@@ -2914,7 +2915,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseScheduleGeneratorType": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseScheduleGeneratorType": {
       "type": "enum",
       "members": {
         "CRON": {
@@ -2926,11 +2927,11 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseScheduleGenerator": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseScheduleGenerator": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseScheduleGeneratorType"
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseScheduleGeneratorType"
         },
         "expression": {
           "target": "smithy.api#String",
@@ -2947,7 +2948,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseSchedule": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseSchedule": {
       "type": "structure",
       "members": {
         "id": {
@@ -2970,7 +2971,7 @@
           }
         },
         "generator": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseScheduleGenerator",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseScheduleGenerator",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2980,7 +2981,7 @@
         "smithy.api#documentation": "The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule"
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseAttemptsItemStatus": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseAttemptsItemStatus": {
       "type": "enum",
       "members": {
         "PENDING": {
@@ -3040,7 +3041,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseAttemptsItem": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseAttemptsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -3051,7 +3052,7 @@
           }
         },
         "status": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseAttemptsItemStatus",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseAttemptsItemStatus",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3080,14 +3081,14 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RescheduleRunV1ResponseAttemptsList": {
+    "com.trigger.dev.api#RunRescheduleV1ResponseAttemptsList": {
       "type": "list",
       "member": {
-        "target": "com.trigger.dev.api#RescheduleRunV1ResponseAttemptsItem"
+        "target": "com.trigger.dev.api#RunRescheduleV1ResponseAttemptsItem"
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RescheduleRunV1Response": {
+    "com.trigger.dev.api#RunRescheduleV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -3098,7 +3099,7 @@
           }
         },
         "status": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseStatus",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the run",
             "smithy.api#required": {}
@@ -3169,7 +3170,7 @@
           }
         },
         "tags": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseTagsList",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseTagsList",
           "traits": {
             "smithy.api#documentation": "Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`)"
           }
@@ -3211,7 +3212,7 @@
           }
         },
         "triggerFunction": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseTriggerFunction",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseTriggerFunction",
           "traits": {
             "smithy.api#documentation": "The name of the function that triggered the run"
           }
@@ -3241,16 +3242,16 @@
           }
         },
         "relatedRuns": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseRelatedRuns"
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseRelatedRuns"
         },
         "schedule": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseSchedule",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseSchedule",
           "traits": {
             "smithy.api#documentation": "The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule"
           }
         },
         "attempts": {
-          "target": "com.trigger.dev.api#RescheduleRunV1ResponseAttemptsList",
+          "target": "com.trigger.dev.api#RunRescheduleV1ResponseAttemptsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3260,13 +3261,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.trigger.dev.api#RescheduleRunV1": {
+    "com.trigger.dev.api#RunRescheduleV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RescheduleRunV1Request"
+        "target": "com.trigger.dev.api#RunRescheduleV1Request"
       },
       "output": {
-        "target": "com.trigger.dev.api#RescheduleRunV1Response"
+        "target": "com.trigger.dev.api#RunRescheduleV1Response"
       },
       "errors": [
         {
@@ -3389,7 +3390,7 @@
         "smithy.api#documentation": "Retrieve run result\n\nReturns the execution result of a completed run. Returns 404 if the run doesn't exist or hasn't finished yet."
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1Request": {
+    "com.trigger.dev.api#GetRunV1Request": {
       "type": "structure",
       "members": {
         "runId": {
@@ -3405,7 +3406,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseStatus": {
+    "com.trigger.dev.api#GetRunV1ResponseStatus": {
       "type": "enum",
       "members": {
         "PENDING_VERSION": {
@@ -3485,7 +3486,7 @@
         "smithy.api#documentation": "The status of the run"
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseTagsList": {
+    "com.trigger.dev.api#GetRunV1ResponseTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3494,7 +3495,7 @@
         "smithy.api#documentation": "Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`)"
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseTriggerFunction": {
+    "com.trigger.dev.api#GetRunV1ResponseTriggerFunction": {
       "type": "enum",
       "members": {
         "TRIGGER": {
@@ -3526,7 +3527,7 @@
         "smithy.api#documentation": "The name of the function that triggered the run"
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseRelatedRunsChildrenList": {
+    "com.trigger.dev.api#GetRunV1ResponseRelatedRunsChildrenList": {
       "type": "list",
       "member": {
         "target": "com.trigger.dev.api#CommonRunObject"
@@ -3535,7 +3536,7 @@
         "smithy.api#documentation": "The immediate children of the run. Will be omitted if the run has no children"
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseRelatedRuns": {
+    "com.trigger.dev.api#GetRunV1ResponseRelatedRuns": {
       "type": "structure",
       "members": {
         "root": {
@@ -3551,7 +3552,7 @@
           }
         },
         "children": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseRelatedRunsChildrenList",
+          "target": "com.trigger.dev.api#GetRunV1ResponseRelatedRunsChildrenList",
           "traits": {
             "smithy.api#documentation": "The immediate children of the run. Will be omitted if the run has no children"
           }
@@ -3559,7 +3560,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseScheduleGeneratorType": {
+    "com.trigger.dev.api#GetRunV1ResponseScheduleGeneratorType": {
       "type": "enum",
       "members": {
         "CRON": {
@@ -3571,11 +3572,11 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseScheduleGenerator": {
+    "com.trigger.dev.api#GetRunV1ResponseScheduleGenerator": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseScheduleGeneratorType"
+          "target": "com.trigger.dev.api#GetRunV1ResponseScheduleGeneratorType"
         },
         "expression": {
           "target": "smithy.api#String",
@@ -3592,7 +3593,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseSchedule": {
+    "com.trigger.dev.api#GetRunV1ResponseSchedule": {
       "type": "structure",
       "members": {
         "id": {
@@ -3615,7 +3616,7 @@
           }
         },
         "generator": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseScheduleGenerator",
+          "target": "com.trigger.dev.api#GetRunV1ResponseScheduleGenerator",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3625,7 +3626,7 @@
         "smithy.api#documentation": "The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule"
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseAttemptsItemStatus": {
+    "com.trigger.dev.api#GetRunV1ResponseAttemptsItemStatus": {
       "type": "enum",
       "members": {
         "PENDING": {
@@ -3667,7 +3668,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseAttemptsItem": {
+    "com.trigger.dev.api#GetRunV1ResponseAttemptsItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -3678,7 +3679,7 @@
           }
         },
         "status": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseAttemptsItemStatus",
+          "target": "com.trigger.dev.api#GetRunV1ResponseAttemptsItemStatus",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3707,14 +3708,14 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveRunV1ResponseAttemptsList": {
+    "com.trigger.dev.api#GetRunV1ResponseAttemptsList": {
       "type": "list",
       "member": {
-        "target": "com.trigger.dev.api#RetrieveRunV1ResponseAttemptsItem"
+        "target": "com.trigger.dev.api#GetRunV1ResponseAttemptsItem"
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveRunV1Response": {
+    "com.trigger.dev.api#GetRunV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -3725,7 +3726,7 @@
           }
         },
         "status": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseStatus",
+          "target": "com.trigger.dev.api#GetRunV1ResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the run",
             "smithy.api#required": {}
@@ -3796,7 +3797,7 @@
           }
         },
         "tags": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseTagsList",
+          "target": "com.trigger.dev.api#GetRunV1ResponseTagsList",
           "traits": {
             "smithy.api#documentation": "Tags can be attached to a run to make it easy to find runs (in the dashboard or using SDK functions like `runs.list`)"
           }
@@ -3838,7 +3839,7 @@
           }
         },
         "triggerFunction": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseTriggerFunction",
+          "target": "com.trigger.dev.api#GetRunV1ResponseTriggerFunction",
           "traits": {
             "smithy.api#documentation": "The name of the function that triggered the run"
           }
@@ -3868,16 +3869,16 @@
           }
         },
         "relatedRuns": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseRelatedRuns"
+          "target": "com.trigger.dev.api#GetRunV1ResponseRelatedRuns"
         },
         "schedule": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseSchedule",
+          "target": "com.trigger.dev.api#GetRunV1ResponseSchedule",
           "traits": {
             "smithy.api#documentation": "The schedule that triggered the run. Will be omitted if the run was not triggered by a schedule"
           }
         },
         "attempts": {
-          "target": "com.trigger.dev.api#RetrieveRunV1ResponseAttemptsList",
+          "target": "com.trigger.dev.api#GetRunV1ResponseAttemptsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3887,13 +3888,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.trigger.dev.api#RetrieveRunV1": {
+    "com.trigger.dev.api#GetRunV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveRunV1Request"
+        "target": "com.trigger.dev.api#GetRunV1Request"
       },
       "output": {
-        "target": "com.trigger.dev.api#RetrieveRunV1Response"
+        "target": "com.trigger.dev.api#GetRunV1Response"
       },
       "errors": [
         {
@@ -5302,7 +5303,7 @@
         "smithy.api#documentation": "Create bulk action\n\nCreate an asynchronous bulk action to cancel or replay runs selected by run IDs or filters."
       }
     },
-    "com.trigger.dev.api#RetrieveBulkActionV1Request": {
+    "com.trigger.dev.api#GetBulkActionV1Request": {
       "type": "structure",
       "members": {
         "bulkActionId": {
@@ -5318,10 +5319,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RetrieveBulkActionV1": {
+    "com.trigger.dev.api#GetBulkActionV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveBulkActionV1Request"
+        "target": "com.trigger.dev.api#GetBulkActionV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#BulkActionObject"
@@ -5340,7 +5341,7 @@
         "smithy.api#documentation": "Retrieve bulk action\n\nRetrieve the status and aggregate processing counts for a bulk action."
       }
     },
-    "com.trigger.dev.api#AbortBulkActionV1Request": {
+    "com.trigger.dev.api#BulkAbortActionV1Request": {
       "type": "structure",
       "members": {
         "bulkActionId": {
@@ -5368,10 +5369,10 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#AbortBulkActionV1": {
+    "com.trigger.dev.api#BulkAbortActionV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#AbortBulkActionV1Request"
+        "target": "com.trigger.dev.api#BulkAbortActionV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#AbortBulkActionResponse"
@@ -6539,7 +6540,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#BatchTriggerTaskByIdV1RequestItemsList": {
+    "com.trigger.dev.api#TriggerBatchTaskByIdV1RequestItemsList": {
       "type": "list",
       "member": {
         "target": "com.trigger.dev.api#TriggerTaskRequestBody"
@@ -6548,7 +6549,7 @@
         "smithy.api#documentation": "An array of payloads to trigger the task with (max 1,000 items)."
       }
     },
-    "com.trigger.dev.api#BatchTriggerTaskByIdV1Request": {
+    "com.trigger.dev.api#TriggerBatchTaskByIdV1Request": {
       "type": "structure",
       "members": {
         "taskIdentifier": {
@@ -6560,7 +6561,7 @@
           }
         },
         "items": {
-          "target": "com.trigger.dev.api#BatchTriggerTaskByIdV1RequestItemsList",
+          "target": "com.trigger.dev.api#TriggerBatchTaskByIdV1RequestItemsList",
           "traits": {
             "smithy.api#documentation": "An array of payloads to trigger the task with (max 1,000 items).",
             "smithy.api#required": {}
@@ -6600,10 +6601,10 @@
         "smithy.api#documentation": "An array of run IDs that were triggered"
       }
     },
-    "com.trigger.dev.api#BatchTriggerTaskByIdV1": {
+    "com.trigger.dev.api#TriggerBatchTaskByIdV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#BatchTriggerTaskByIdV1Request"
+        "target": "com.trigger.dev.api#TriggerBatchTaskByIdV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#BatchTriggerTaskResponse"
@@ -6742,7 +6743,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#BatchTriggerTaskV1RequestItemsList": {
+    "com.trigger.dev.api#TriggerBatchTaskV1RequestItemsList": {
       "type": "list",
       "member": {
         "target": "com.trigger.dev.api#BatchTriggerTaskRequestBodyItem"
@@ -6751,11 +6752,11 @@
         "smithy.api#documentation": "An array of payloads to trigger the task with"
       }
     },
-    "com.trigger.dev.api#BatchTriggerTaskV1Request": {
+    "com.trigger.dev.api#TriggerBatchTaskV1Request": {
       "type": "structure",
       "members": {
         "items": {
-          "target": "com.trigger.dev.api#BatchTriggerTaskV1RequestItemsList",
+          "target": "com.trigger.dev.api#TriggerBatchTaskV1RequestItemsList",
           "traits": {
             "smithy.api#documentation": "An array of payloads to trigger the task with",
             "smithy.api#required": {}
@@ -6766,10 +6767,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#BatchTriggerTaskV1": {
+    "com.trigger.dev.api#TriggerBatchTaskV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#BatchTriggerTaskV1Request"
+        "target": "com.trigger.dev.api#TriggerBatchTaskV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#BatchTriggerTaskResponse"
@@ -6791,7 +6792,7 @@
         "smithy.api#documentation": "Batch trigger tasks\n\nBatch trigger tasks with up to 1,000 payloads with SDK 4.3.1+ (500 in prior versions)."
       }
     },
-    "com.trigger.dev.api#RetrieveBatchV1Request": {
+    "com.trigger.dev.api#GetBatchV1Request": {
       "type": "structure",
       "members": {
         "batchId": {
@@ -6807,7 +6808,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RetrieveBatchV1ResponseStatus": {
+    "com.trigger.dev.api#GetBatchV1ResponseStatus": {
       "type": "enum",
       "members": {
         "PENDING": {
@@ -6845,7 +6846,7 @@
         "smithy.api#documentation": "The current status of the batch."
       }
     },
-    "com.trigger.dev.api#RetrieveBatchV1ResponseRunsList": {
+    "com.trigger.dev.api#GetBatchV1ResponseRunsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6854,7 +6855,7 @@
         "smithy.api#documentation": "Array of run IDs in the batch."
       }
     },
-    "com.trigger.dev.api#RetrieveBatchV1ResponseErrorsItem": {
+    "com.trigger.dev.api#GetBatchV1ResponseErrorsItem": {
       "type": "structure",
       "members": {
         "index": {
@@ -6885,16 +6886,16 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveBatchV1ResponseErrorsList": {
+    "com.trigger.dev.api#GetBatchV1ResponseErrorsList": {
       "type": "list",
       "member": {
-        "target": "com.trigger.dev.api#RetrieveBatchV1ResponseErrorsItem"
+        "target": "com.trigger.dev.api#GetBatchV1ResponseErrorsItem"
       },
       "traits": {
         "smithy.api#documentation": "Error details for failed items (present for PARTIAL_FAILED batches)."
       }
     },
-    "com.trigger.dev.api#RetrieveBatchV1Response": {
+    "com.trigger.dev.api#GetBatchV1Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -6904,7 +6905,7 @@
           }
         },
         "status": {
-          "target": "com.trigger.dev.api#RetrieveBatchV1ResponseStatus",
+          "target": "com.trigger.dev.api#GetBatchV1ResponseStatus",
           "traits": {
             "smithy.api#documentation": "The current status of the batch."
           }
@@ -6929,7 +6930,7 @@
           }
         },
         "runs": {
-          "target": "com.trigger.dev.api#RetrieveBatchV1ResponseRunsList",
+          "target": "com.trigger.dev.api#GetBatchV1ResponseRunsList",
           "traits": {
             "smithy.api#documentation": "Array of run IDs in the batch."
           }
@@ -6949,7 +6950,7 @@
           }
         },
         "errors": {
-          "target": "com.trigger.dev.api#RetrieveBatchV1ResponseErrorsList",
+          "target": "com.trigger.dev.api#GetBatchV1ResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Error details for failed items (present for PARTIAL_FAILED batches).",
             "com.distilled.openapi#nullable": {}
@@ -6960,13 +6961,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.trigger.dev.api#RetrieveBatchV1": {
+    "com.trigger.dev.api#GetBatchV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveBatchV1Request"
+        "target": "com.trigger.dev.api#GetBatchV1Request"
       },
       "output": {
-        "target": "com.trigger.dev.api#RetrieveBatchV1Response"
+        "target": "com.trigger.dev.api#GetBatchV1Response"
       },
       "errors": [
         {
@@ -7323,7 +7324,7 @@
         "smithy.api#documentation": "List all queues\n\nList all queues in your environment with pagination support."
       }
     },
-    "com.trigger.dev.api#RetrieveQueueV1RequestType": {
+    "com.trigger.dev.api#GetQueueV1RequestType": {
       "type": "enum",
       "members": {
         "ID": {
@@ -7347,7 +7348,7 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveQueueV1Request": {
+    "com.trigger.dev.api#GetQueueV1Request": {
       "type": "structure",
       "members": {
         "queueParam": {
@@ -7359,7 +7360,7 @@
           }
         },
         "type": {
-          "target": "com.trigger.dev.api#RetrieveQueueV1RequestType",
+          "target": "com.trigger.dev.api#GetQueueV1RequestType",
           "traits": {
             "smithy.api#httpQuery": "type",
             "smithy.api#documentation": "How to interpret the `queueParam` path parameter:\n- `id`: Treat as a queue ID (default)\n- `task`: Treat as a task ID to get the task's default queue\n- `custom`: Treat as a custom queue name\n"
@@ -7370,10 +7371,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RetrieveQueueV1": {
+    "com.trigger.dev.api#GetQueueV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveQueueV1Request"
+        "target": "com.trigger.dev.api#GetQueueV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#QueueObject"
@@ -8116,7 +8117,7 @@
         "smithy.api#documentation": "Complete a waitpoint token\n\nCompletes a waitpoint token, unblocking any run that is waiting for it via `wait.forToken()`. An optional `data` payload can be passed and will be returned to the waiting run. If the token is already completed, this is a no-op and returns `success: true`.\n\nThis endpoint accepts both secret API keys and short-lived JWTs (public access tokens), making it safe to call from frontend clients."
       }
     },
-    "com.trigger.dev.api#RetrieveWaitpointTokenV1Request": {
+    "com.trigger.dev.api#GetWaitpointTokenV1Request": {
       "type": "structure",
       "members": {
         "waitpointId": {
@@ -8132,10 +8133,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RetrieveWaitpointTokenV1": {
+    "com.trigger.dev.api#GetWaitpointTokenV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveWaitpointTokenV1Request"
+        "target": "com.trigger.dev.api#GetWaitpointTokenV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#WaitpointTokenObject"
@@ -8813,7 +8814,7 @@
         "smithy.api#documentation": "Create a session\n\nCreate a Session and trigger its first run in one atomic call. A Session is the durable identity for a bi-directional stream of records (the `.in` and `.out` channels) that survives across the runs processing it.\n\nIdempotent on `externalId` within an environment. Calling create again with an `externalId` that already maps to an open session returns the existing session with `isCached: true` and `201` becomes `200`. Reusing an `externalId` whose session is already closed or expired returns `409`.\n\nAuthorize with a secret key, or a public token carrying `write:sessions` for the session you are creating."
       }
     },
-    "com.trigger.dev.api#RetrieveSessionV1Request": {
+    "com.trigger.dev.api#GetSessionV1Request": {
       "type": "structure",
       "members": {
         "session": {
@@ -8829,10 +8830,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.trigger.dev.api#RetrieveSessionV1": {
+    "com.trigger.dev.api#GetSessionV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveSessionV1Request"
+        "target": "com.trigger.dev.api#GetSessionV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#SessionObject"
@@ -9285,7 +9286,7 @@
         "smithy.api#documentation": "List errors\n\nList error groups in a specific environment. Runs that fail are grouped by a fingerprint derived from the error type, message, and stack trace. Filter by task identifier, version, status, search text, and time range."
       }
     },
-    "com.trigger.dev.api#RetrieveErrorV1Request": {
+    "com.trigger.dev.api#GetErrorV1Request": {
       "type": "structure",
       "members": {
         "errorId": {
@@ -9462,10 +9463,10 @@
       },
       "traits": {}
     },
-    "com.trigger.dev.api#RetrieveErrorV1": {
+    "com.trigger.dev.api#GetErrorV1": {
       "type": "operation",
       "input": {
-        "target": "com.trigger.dev.api#RetrieveErrorV1Request"
+        "target": "com.trigger.dev.api#GetErrorV1Request"
       },
       "output": {
         "target": "com.trigger.dev.api#ErrorObject"
@@ -9709,7 +9710,7 @@
           "target": "com.trigger.dev.api#GetTimezonesV1"
         },
         {
-          "target": "com.trigger.dev.api#ReplayRunV1"
+          "target": "com.trigger.dev.api#RunReplayV1"
         },
         {
           "target": "com.trigger.dev.api#AddRunTagsV1"
@@ -9748,13 +9749,13 @@
           "target": "com.trigger.dev.api#ListDashboardsV1"
         },
         {
-          "target": "com.trigger.dev.api#RescheduleRunV1"
+          "target": "com.trigger.dev.api#RunRescheduleV1"
         },
         {
           "target": "com.trigger.dev.api#GetRunResultV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveRunV1"
+          "target": "com.trigger.dev.api#GetRunV1"
         },
         {
           "target": "com.trigger.dev.api#ListRunsV1"
@@ -9766,10 +9767,10 @@
           "target": "com.trigger.dev.api#CreateBulkActionV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveBulkActionV1"
+          "target": "com.trigger.dev.api#GetBulkActionV1"
         },
         {
-          "target": "com.trigger.dev.api#AbortBulkActionV1"
+          "target": "com.trigger.dev.api#BulkAbortActionV1"
         },
         {
           "target": "com.trigger.dev.api#ListProjectRunsV1"
@@ -9796,13 +9797,13 @@
           "target": "com.trigger.dev.api#TriggerTaskV1"
         },
         {
-          "target": "com.trigger.dev.api#BatchTriggerTaskByIdV1"
+          "target": "com.trigger.dev.api#TriggerBatchTaskByIdV1"
         },
         {
-          "target": "com.trigger.dev.api#BatchTriggerTaskV1"
+          "target": "com.trigger.dev.api#TriggerBatchTaskV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveBatchV1"
+          "target": "com.trigger.dev.api#GetBatchV1"
         },
         {
           "target": "com.trigger.dev.api#GetBatchResultsV1"
@@ -9811,7 +9812,7 @@
           "target": "com.trigger.dev.api#ListQueuesV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveQueueV1"
+          "target": "com.trigger.dev.api#GetQueueV1"
         },
         {
           "target": "com.trigger.dev.api#PauseQueueV1"
@@ -9835,7 +9836,7 @@
           "target": "com.trigger.dev.api#CompleteWaitpointTokenV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveWaitpointTokenV1"
+          "target": "com.trigger.dev.api#GetWaitpointTokenV1"
         },
         {
           "target": "com.trigger.dev.api#ListSessionsV1"
@@ -9844,7 +9845,7 @@
           "target": "com.trigger.dev.api#CreateSessionV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveSessionV1"
+          "target": "com.trigger.dev.api#GetSessionV1"
         },
         {
           "target": "com.trigger.dev.api#UpdateSessionV1"
@@ -9856,7 +9857,7 @@
           "target": "com.trigger.dev.api#ListErrorsV1"
         },
         {
-          "target": "com.trigger.dev.api#RetrieveErrorV1"
+          "target": "com.trigger.dev.api#GetErrorV1"
         },
         {
           "target": "com.trigger.dev.api#ResolveErrorV1"
