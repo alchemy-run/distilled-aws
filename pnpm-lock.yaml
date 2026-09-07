@@ -631,10 +631,10 @@ importers:
         version: 4.0.0-rc.112(effect@4.0.0-rc.112)
       '@types/bun':
         specifier: catalog:tooling
-        version: 1.4.0
+        version: 1.4.1
       '@types/node':
         specifier: catalog:tooling
-        version: 26.4.0
+        version: 26.4.1
 
   packages/stripe:
     dependencies:
@@ -2033,9 +2033,6 @@ packages:
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
-
-  '@types/node@26.4.0':
-    resolution: {integrity: sha512-faiGnoIrLH/V8cibOMEAZ8pMw6oXqSukl29ra4mN8GdaB2ZewzeaLj+INpV5N+Z1eKWzY+IzaIZH2EIR6YZRNQ==}
 
   '@types/node@26.4.1':
     resolution: {integrity: sha512-k97ENvZWtvA6yqz5/FS6a7duDgOPEeOQOc2iKS/nY6mX6qJUKtLnWzQS+Xj6tXweyj6ZcTAK2Qecetnvi9nCLA==}
@@ -4465,10 +4462,6 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
-  '@types/node@26.4.0':
-    dependencies:
-      undici-types: 8.3.0
-
   '@types/node@26.4.1':
     dependencies:
       undici-types: 8.3.0
@@ -4670,7 +4663,7 @@ snapshots:
 
   bun-types@1.4.1:
     dependencies:
-      '@types/node': 26.4.0
+      '@types/node': 26.4.1
 
   bundle-name@4.1.0:
     dependencies:
