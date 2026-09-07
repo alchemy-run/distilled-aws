@@ -285,6 +285,12 @@
     },
     {
       "path": "./packages/datadog/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/docker/tsconfig.json"
+    },
+    {
+      "path": "./packages/docker/tsconfig.scripts.json"
     }
   ]
 }
