@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.forgejo.user#User": {
@@ -1048,7 +1049,7 @@
         "smithy.api#documentation": "Delete a user-level variable which is created by current doer"
       }
     },
-    "com.forgejo.user#UserCurrentActivityPubFollowRequest": {
+    "com.forgejo.user#FollowUserCurrentActivityPubRequest": {
       "type": "structure",
       "members": {
         "target": {
@@ -1059,10 +1060,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.user#UserCurrentActivityPubFollow": {
+    "com.forgejo.user#FollowUserCurrentActivityPub": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.user#UserCurrentActivityPubFollowRequest"
+        "target": "com.forgejo.user#FollowUserCurrentActivityPubRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5327,7 +5328,7 @@
         "smithy.api#documentation": "List the current user's tracked times"
       }
     },
-    "com.forgejo.user#UserUnblockUserRequest": {
+    "com.forgejo.user#UnblockUserRequest": {
       "type": "structure",
       "members": {
         "username": {
@@ -5343,10 +5344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.user#UserUnblockUser": {
+    "com.forgejo.user#UnblockUser": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.user#UserUnblockUserRequest"
+        "target": "com.forgejo.user#UnblockUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5371,7 +5372,7 @@
         "smithy.api#documentation": "Unblocks a user from the doer"
       }
     },
-    "com.forgejo.user#UserSearchRequestSort": {
+    "com.forgejo.user#SearchUserRequestSort": {
       "type": "enum",
       "members": {
         "OLDEST": {
@@ -5413,7 +5414,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.user#UserSearchRequest": {
+    "com.forgejo.user#SearchUserRequest": {
       "type": "structure",
       "members": {
         "q": {
@@ -5431,7 +5432,7 @@
           }
         },
         "sort": {
-          "target": "com.forgejo.user#UserSearchRequestSort",
+          "target": "com.forgejo.user#SearchUserRequestSort",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "sort order of results"
@@ -5456,18 +5457,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.user#UserSearchResponseDataList": {
+    "com.forgejo.user#SearchUserResponseDataList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.user#User"
       },
       "traits": {}
     },
-    "com.forgejo.user#UserSearchResponse": {
+    "com.forgejo.user#SearchUserResponse": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.forgejo.user#UserSearchResponseDataList"
+          "target": "com.forgejo.user#SearchUserResponseDataList"
         },
         "ok": {
           "target": "smithy.api#Boolean"
@@ -5477,13 +5478,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.user#UserSearch": {
+    "com.forgejo.user#SearchUser": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.user#UserSearchRequest"
+        "target": "com.forgejo.user#SearchUserRequest"
       },
       "output": {
-        "target": "com.forgejo.user#UserSearchResponse"
+        "target": "com.forgejo.user#SearchUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5494,7 +5495,7 @@
         "smithy.api#documentation": "Search for users"
       }
     },
-    "com.forgejo.user#UserGetRequest": {
+    "com.forgejo.user#GetUserRequest": {
       "type": "structure",
       "members": {
         "username": {
@@ -5510,10 +5511,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.user#UserGet": {
+    "com.forgejo.user#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.user#UserGetRequest"
+        "target": "com.forgejo.user#GetUserRequest"
       },
       "output": {
         "target": "com.forgejo.user#User"
@@ -6944,7 +6945,7 @@
           "target": "com.forgejo.user#DeleteUserVariable"
         },
         {
-          "target": "com.forgejo.user#UserCurrentActivityPubFollow"
+          "target": "com.forgejo.user#FollowUserCurrentActivityPub"
         },
         {
           "target": "com.forgejo.user#UserGetOAuth2Applications"
@@ -7091,13 +7092,13 @@
           "target": "com.forgejo.user#UserCurrentTrackedTimes"
         },
         {
-          "target": "com.forgejo.user#UserUnblockUser"
+          "target": "com.forgejo.user#UnblockUser"
         },
         {
-          "target": "com.forgejo.user#UserSearch"
+          "target": "com.forgejo.user#SearchUser"
         },
         {
-          "target": "com.forgejo.user#UserGet"
+          "target": "com.forgejo.user#GetUser"
         },
         {
           "target": "com.forgejo.user#UserListActivityFeeds"

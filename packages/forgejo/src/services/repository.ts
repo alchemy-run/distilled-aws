@@ -606,6 +606,23 @@ export const CancelActionRunResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CancelActionRunResponse",
 }) as any as S.Schema<CancelActionRunResponse>;
 
+export interface ConvertRepoRequest {
+  /** owner of the repo to convert */
+  owner: string;
+  /** name of the repo to convert */
+  repo: string;
+}
+export const ConvertRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/repos/{owner}/{repo}/convert", code: 200 }),
+  ),
+).annotate({
+  identifier: "ConvertRepoRequest",
+}) as any as S.Schema<ConvertRepoRequest>;
+
 /** ObjectFormatName of the underlying git repository */
 export type CreateCurrentUserRepoRequestObjectFormatName = "sha1" | "sha256";
 export const CreateCurrentUserRepoRequestObjectFormatName =
@@ -793,6 +810,30 @@ export const DeleteActionRunResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteActionRunResponse",
 }) as any as S.Schema<DeleteActionRunResponse>;
+
+export interface DeleteRepoRequest {
+  /** owner of the repo to delete */
+  owner: string;
+  /** name of the repo to delete */
+  repo: string;
+}
+export const DeleteRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "DELETE", uri: "/repos/{owner}/{repo}", code: 200 }),
+  ),
+).annotate({
+  identifier: "DeleteRepoRequest",
+}) as any as S.Schema<DeleteRepoRequest>;
+
+export interface DeleteRepoResponse {}
+export const DeleteRepoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRepoResponse",
+}) as any as S.Schema<DeleteRepoResponse>;
 
 export interface DeleteRepoRunnerRequest {
   /** owner of the repo */
@@ -984,6 +1025,120 @@ export const DownloadActionArtifactResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DownloadActionArtifactResponse",
 }) as any as S.Schema<DownloadActionArtifactResponse>;
+
+export interface EditRepoRequest {
+  /** owner of the repo to edit */
+  owner: string;
+  /** name of the repo to edit */
+  repo: string;
+  /** either `true` to allow fast-forward-only merging pull requests, or `false` to prevent fast-forward-only merging. */
+  allow_fast_forward_only_merge?: boolean;
+  /** either `true` to allow mark pr as merged manually, or `false` to prevent it. */
+  allow_manual_merge?: boolean;
+  /** either `true` to allow merging pull requests with a merge commit, or `false` to prevent merging pull requests with merge commits. */
+  allow_merge_commits?: boolean;
+  /** either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging. */
+  allow_rebase?: boolean;
+  /** either `true` to allow rebase with explicit merge commits (--no-ff), or `false` to prevent rebase with explicit merge commits. */
+  allow_rebase_explicit?: boolean;
+  /** either `true` to allow updating pull request branch by rebase, or `false` to prevent it. */
+  allow_rebase_update?: boolean;
+  /** either `true` to allow squash-merging pull requests, or `false` to prevent squash-merging. */
+  allow_squash_merge?: boolean;
+  /** set to `true` to archive this repository. */
+  archived?: boolean;
+  /** either `true` to enable AutodetectManualMerge, or `false` to prevent it. Note: In some special cases, misjudgments can occur. */
+  autodetect_manual_merge?: boolean;
+  /** set to `true` to allow edits from maintainers by default */
+  default_allow_maintainer_edit?: boolean;
+  /** sets the default branch for this repository. */
+  default_branch?: string;
+  /** set to `true` to delete pr branch after merge by default */
+  default_delete_branch_after_merge?: boolean;
+  /** set to a merge style to be used by this repository: "merge", "rebase", "rebase-merge", "squash", "fast-forward-only", "manually-merged", or "rebase-update-only". */
+  default_merge_style?: string;
+  /** set to a update style to be used by this repository: "rebase" or "merge" */
+  default_update_style?: string;
+  /** a short description of the repository. */
+  description?: string;
+  /** enable prune - remove obsolete remote-tracking references when mirroring */
+  enable_prune?: boolean;
+  external_tracker?: ExternalTracker;
+  external_wiki?: ExternalWiki;
+  /** set the globally editable state of the wiki */
+  globally_editable_wiki?: boolean;
+  /** either `true` to enable actions unit, or `false` to disable them. */
+  has_actions?: boolean;
+  /** either `true` to enable issues for this repository or `false` to disable them. */
+  has_issues?: boolean;
+  /** either `true` to enable packages unit, or `false` to disable them. */
+  has_packages?: boolean;
+  /** either `true` to enable project unit, or `false` to disable them. */
+  has_projects?: boolean;
+  /** either `true` to allow pull requests, or `false` to prevent pull request. */
+  has_pull_requests?: boolean;
+  /** either `true` to enable releases unit, or `false` to disable them. */
+  has_releases?: boolean;
+  /** either `true` to enable the wiki for this repository or `false` to disable it. */
+  has_wiki?: boolean;
+  /** either `true` to ignore whitespace for conflicts, or `false` to not ignore whitespace. */
+  ignore_whitespace_conflicts?: boolean;
+  internal_tracker?: InternalTracker;
+  /** set to a string like `8h30m0s` to set the mirror interval time */
+  mirror_interval?: string;
+  /** name of the repository */
+  name?: string;
+  /** either `true` to make the repository private or `false` to make it public. Note: you will get a 422 error if the organization restricts changing repository visibility to organization owners and a non-owner tries to change the value of private. */
+  private?: boolean;
+  /** either `true` to make this repository a template or `false` to make it a normal repository */
+  template?: boolean;
+  /** a URL with more information about the repository. */
+  website?: string;
+  /** sets the branch used for this repository's wiki. */
+  wiki_branch?: string;
+}
+export const EditRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    allow_fast_forward_only_merge: S.optional(S.Boolean),
+    allow_manual_merge: S.optional(S.Boolean),
+    allow_merge_commits: S.optional(S.Boolean),
+    allow_rebase: S.optional(S.Boolean),
+    allow_rebase_explicit: S.optional(S.Boolean),
+    allow_rebase_update: S.optional(S.Boolean),
+    allow_squash_merge: S.optional(S.Boolean),
+    archived: S.optional(S.Boolean),
+    autodetect_manual_merge: S.optional(S.Boolean),
+    default_allow_maintainer_edit: S.optional(S.Boolean),
+    default_branch: S.optional(S.String),
+    default_delete_branch_after_merge: S.optional(S.Boolean),
+    default_merge_style: S.optional(S.String),
+    default_update_style: S.optional(S.String),
+    description: S.optional(S.String),
+    enable_prune: S.optional(S.Boolean),
+    external_tracker: S.optional(ExternalTracker),
+    external_wiki: S.optional(ExternalWiki),
+    globally_editable_wiki: S.optional(S.Boolean),
+    has_actions: S.optional(S.Boolean),
+    has_issues: S.optional(S.Boolean),
+    has_packages: S.optional(S.Boolean),
+    has_projects: S.optional(S.Boolean),
+    has_pull_requests: S.optional(S.Boolean),
+    has_releases: S.optional(S.Boolean),
+    has_wiki: S.optional(S.Boolean),
+    ignore_whitespace_conflicts: S.optional(S.Boolean),
+    internal_tracker: S.optional(InternalTracker),
+    mirror_interval: S.optional(S.String),
+    name: S.optional(S.String),
+    private: S.optional(S.Boolean),
+    template: S.optional(S.Boolean),
+    website: S.optional(S.String),
+    wiki_branch: S.optional(S.String),
+  }).pipe(T.Http({ method: "PATCH", uri: "/repos/{owner}/{repo}", code: 200 })),
+).annotate({
+  identifier: "EditRepoRequest",
+}) as any as S.Schema<EditRepoRequest>;
 
 export interface GenerateRepoRequest {
   /** name of the template repository owner */
@@ -1299,6 +1454,59 @@ export const GetBlobsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetBlobsResponse",
 }) as any as S.Schema<GetBlobsResponse>;
+
+export interface GetRepoRequest {
+  /** owner of the repo */
+  owner: string;
+  /** name of the repo */
+  repo: string;
+}
+export const GetRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/repos/{owner}/{repo}", code: 200 })),
+).annotate({ identifier: "GetRepoRequest" }) as any as S.Schema<GetRepoRequest>;
+
+export interface GetRepoPermissionsRequest {
+  /** owner of the repo */
+  owner: string;
+  /** name of the repo */
+  repo: string;
+  /** username of the collaborator */
+  collaborator: string;
+}
+export const GetRepoPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    collaborator: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/repos/{owner}/{repo}/collaborators/{collaborator}/permission",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetRepoPermissionsRequest",
+}) as any as S.Schema<GetRepoPermissionsRequest>;
+
+/** RepoCollaboratorPermission to get repository permission for a collaborator */
+export interface RepoCollaboratorPermission {
+  permission?: string;
+  role_name?: string;
+  user?: User;
+}
+export const RepoCollaboratorPermission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    permission: S.optional(S.String),
+    role_name: S.optional(S.String),
+    user: S.optional(User),
+  }),
+).annotate({
+  identifier: "RepoCollaboratorPermission",
+}) as any as S.Schema<RepoCollaboratorPermission>;
 
 export interface GetRepoRunnerRequest {
   /** owner of the repo */
@@ -1974,6 +2182,70 @@ export const ListForksResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListForksResponse",
 }) as any as S.Schema<ListForksResponse>;
+
+export type MigrateRepoRequestService =
+  | "git"
+  | "github"
+  | "gitea"
+  | "gitlab"
+  | "gogs"
+  | "onedev"
+  | "gitbucket"
+  | "codebase"
+  | "forgejo"
+  | "pagure";
+export const MigrateRepoRequestService = /*@__PURE__*/ S.String;
+
+export interface MigrateRepoRequest {
+  auth_password?: string | Redacted.Redacted<string>;
+  auth_token?: string;
+  auth_username?: string;
+  clone_addr: string;
+  description?: string;
+  issues?: boolean;
+  labels?: boolean;
+  lfs?: boolean;
+  lfs_endpoint?: string;
+  milestones?: boolean;
+  mirror?: boolean;
+  mirror_interval?: string;
+  private?: boolean;
+  pull_requests?: boolean;
+  releases?: boolean;
+  repo_name: string;
+  /** Name of User or Organisation who will own Repo after migration */
+  repo_owner?: string;
+  service?: MigrateRepoRequestService | (string & {});
+  /** deprecated (only for backwards compatibility) */
+  uid?: number;
+  wiki?: boolean;
+}
+export const MigrateRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    auth_password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    auth_token: S.optional(S.String),
+    auth_username: S.optional(S.String),
+    clone_addr: S.String,
+    description: S.optional(S.String),
+    issues: S.optional(S.Boolean),
+    labels: S.optional(S.Boolean),
+    lfs: S.optional(S.Boolean),
+    lfs_endpoint: S.optional(S.String),
+    milestones: S.optional(S.Boolean),
+    mirror: S.optional(S.Boolean),
+    mirror_interval: S.optional(S.String),
+    private: S.optional(S.Boolean),
+    pull_requests: S.optional(S.Boolean),
+    releases: S.optional(S.Boolean),
+    repo_name: S.String,
+    repo_owner: S.optional(S.String),
+    service: S.optional(MigrateRepoRequestService),
+    uid: S.optional(S.Number),
+    wiki: S.optional(S.Boolean),
+  }).pipe(T.Http({ method: "POST", uri: "/repos/migrate", code: 200 })),
+).annotate({
+  identifier: "MigrateRepoRequest",
+}) as any as S.Schema<MigrateRepoRequest>;
 
 export interface RegisterRepoRunnerRequest {
   /** owner of the repo */
@@ -2778,23 +3050,6 @@ export const Compare = /*@__PURE__*/ S.suspend(() =>
     total_commits: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Compare" }) as any as S.Schema<Compare>;
-
-export interface RepoConvertRequest {
-  /** owner of the repo to convert */
-  owner: string;
-  /** name of the repo to convert */
-  repo: string;
-}
-export const RepoConvertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/repos/{owner}/{repo}/convert", code: 200 }),
-  ),
-).annotate({
-  identifier: "RepoConvertRequest",
-}) as any as S.Schema<RepoConvertRequest>;
 
 export interface RepoCreateBranchRequest {
   /** owner of the repo */
@@ -4192,30 +4447,6 @@ export const WikiPage = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WikiPage" }) as any as S.Schema<WikiPage>;
 
-export interface RepoDeleteRequest {
-  /** owner of the repo to delete */
-  owner: string;
-  /** name of the repo to delete */
-  repo: string;
-}
-export const RepoDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "DELETE", uri: "/repos/{owner}/{repo}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RepoDeleteRequest",
-}) as any as S.Schema<RepoDeleteRequest>;
-
-export interface RepoDeleteResponse {}
-export const RepoDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RepoDeleteResponse",
-}) as any as S.Schema<RepoDeleteResponse>;
-
 export interface RepoDeleteAllFlagsRequest {
   /** owner of the repo */
   owner: string;
@@ -4952,37 +5183,6 @@ export const RepoDeleteWikiPageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepoDeleteWikiPageResponse",
 }) as any as S.Schema<RepoDeleteWikiPageResponse>;
 
-export interface RepoDismissPullReviewRequest {
-  /** owner of the repo */
-  owner: string;
-  /** name of the repo */
-  repo: string;
-  /** index of the pull request */
-  index: number;
-  /** id of the review */
-  id: number;
-  message?: string;
-  priors?: boolean;
-}
-export const RepoDismissPullReviewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    index: S.Number.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    message: S.optional(S.String),
-    priors: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}/dismissals",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepoDismissPullReviewRequest",
-}) as any as S.Schema<RepoDismissPullReviewRequest>;
-
 export type RepoDownloadCommitDiffOrPatchRequestDiffType = "diff" | "patch";
 export const RepoDownloadCommitDiffOrPatchRequestDiffType =
   /*@__PURE__*/ S.String;
@@ -5062,120 +5262,6 @@ export const RepoDownloadPullDiffOrPatchResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RepoDownloadPullDiffOrPatchResponse",
 }) as any as S.Schema<RepoDownloadPullDiffOrPatchResponse>;
-
-export interface RepoEditRequest {
-  /** owner of the repo to edit */
-  owner: string;
-  /** name of the repo to edit */
-  repo: string;
-  /** either `true` to allow fast-forward-only merging pull requests, or `false` to prevent fast-forward-only merging. */
-  allow_fast_forward_only_merge?: boolean;
-  /** either `true` to allow mark pr as merged manually, or `false` to prevent it. */
-  allow_manual_merge?: boolean;
-  /** either `true` to allow merging pull requests with a merge commit, or `false` to prevent merging pull requests with merge commits. */
-  allow_merge_commits?: boolean;
-  /** either `true` to allow rebase-merging pull requests, or `false` to prevent rebase-merging. */
-  allow_rebase?: boolean;
-  /** either `true` to allow rebase with explicit merge commits (--no-ff), or `false` to prevent rebase with explicit merge commits. */
-  allow_rebase_explicit?: boolean;
-  /** either `true` to allow updating pull request branch by rebase, or `false` to prevent it. */
-  allow_rebase_update?: boolean;
-  /** either `true` to allow squash-merging pull requests, or `false` to prevent squash-merging. */
-  allow_squash_merge?: boolean;
-  /** set to `true` to archive this repository. */
-  archived?: boolean;
-  /** either `true` to enable AutodetectManualMerge, or `false` to prevent it. Note: In some special cases, misjudgments can occur. */
-  autodetect_manual_merge?: boolean;
-  /** set to `true` to allow edits from maintainers by default */
-  default_allow_maintainer_edit?: boolean;
-  /** sets the default branch for this repository. */
-  default_branch?: string;
-  /** set to `true` to delete pr branch after merge by default */
-  default_delete_branch_after_merge?: boolean;
-  /** set to a merge style to be used by this repository: "merge", "rebase", "rebase-merge", "squash", "fast-forward-only", "manually-merged", or "rebase-update-only". */
-  default_merge_style?: string;
-  /** set to a update style to be used by this repository: "rebase" or "merge" */
-  default_update_style?: string;
-  /** a short description of the repository. */
-  description?: string;
-  /** enable prune - remove obsolete remote-tracking references when mirroring */
-  enable_prune?: boolean;
-  external_tracker?: ExternalTracker;
-  external_wiki?: ExternalWiki;
-  /** set the globally editable state of the wiki */
-  globally_editable_wiki?: boolean;
-  /** either `true` to enable actions unit, or `false` to disable them. */
-  has_actions?: boolean;
-  /** either `true` to enable issues for this repository or `false` to disable them. */
-  has_issues?: boolean;
-  /** either `true` to enable packages unit, or `false` to disable them. */
-  has_packages?: boolean;
-  /** either `true` to enable project unit, or `false` to disable them. */
-  has_projects?: boolean;
-  /** either `true` to allow pull requests, or `false` to prevent pull request. */
-  has_pull_requests?: boolean;
-  /** either `true` to enable releases unit, or `false` to disable them. */
-  has_releases?: boolean;
-  /** either `true` to enable the wiki for this repository or `false` to disable it. */
-  has_wiki?: boolean;
-  /** either `true` to ignore whitespace for conflicts, or `false` to not ignore whitespace. */
-  ignore_whitespace_conflicts?: boolean;
-  internal_tracker?: InternalTracker;
-  /** set to a string like `8h30m0s` to set the mirror interval time */
-  mirror_interval?: string;
-  /** name of the repository */
-  name?: string;
-  /** either `true` to make the repository private or `false` to make it public. Note: you will get a 422 error if the organization restricts changing repository visibility to organization owners and a non-owner tries to change the value of private. */
-  private?: boolean;
-  /** either `true` to make this repository a template or `false` to make it a normal repository */
-  template?: boolean;
-  /** a URL with more information about the repository. */
-  website?: string;
-  /** sets the branch used for this repository's wiki. */
-  wiki_branch?: string;
-}
-export const RepoEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    allow_fast_forward_only_merge: S.optional(S.Boolean),
-    allow_manual_merge: S.optional(S.Boolean),
-    allow_merge_commits: S.optional(S.Boolean),
-    allow_rebase: S.optional(S.Boolean),
-    allow_rebase_explicit: S.optional(S.Boolean),
-    allow_rebase_update: S.optional(S.Boolean),
-    allow_squash_merge: S.optional(S.Boolean),
-    archived: S.optional(S.Boolean),
-    autodetect_manual_merge: S.optional(S.Boolean),
-    default_allow_maintainer_edit: S.optional(S.Boolean),
-    default_branch: S.optional(S.String),
-    default_delete_branch_after_merge: S.optional(S.Boolean),
-    default_merge_style: S.optional(S.String),
-    default_update_style: S.optional(S.String),
-    description: S.optional(S.String),
-    enable_prune: S.optional(S.Boolean),
-    external_tracker: S.optional(ExternalTracker),
-    external_wiki: S.optional(ExternalWiki),
-    globally_editable_wiki: S.optional(S.Boolean),
-    has_actions: S.optional(S.Boolean),
-    has_issues: S.optional(S.Boolean),
-    has_packages: S.optional(S.Boolean),
-    has_projects: S.optional(S.Boolean),
-    has_pull_requests: S.optional(S.Boolean),
-    has_releases: S.optional(S.Boolean),
-    has_wiki: S.optional(S.Boolean),
-    ignore_whitespace_conflicts: S.optional(S.Boolean),
-    internal_tracker: S.optional(InternalTracker),
-    mirror_interval: S.optional(S.String),
-    name: S.optional(S.String),
-    private: S.optional(S.Boolean),
-    template: S.optional(S.Boolean),
-    website: S.optional(S.String),
-    wiki_branch: S.optional(S.String),
-  }).pipe(T.Http({ method: "PATCH", uri: "/repos/{owner}/{repo}", code: 200 })),
-).annotate({
-  identifier: "RepoEditRequest",
-}) as any as S.Schema<RepoEditRequest>;
 
 export type RepoEditBranchProtectionRequestApprovalsWhitelistTeamsList =
   Array<string>;
@@ -5599,19 +5685,6 @@ export const RepoEditWikiPageRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RepoEditWikiPageRequest",
 }) as any as S.Schema<RepoEditWikiPageRequest>;
-
-export interface RepoGetRequest {
-  /** owner of the repo */
-  owner: string;
-  /** name of the repo */
-  repo: string;
-}
-export const RepoGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/repos/{owner}/{repo}", code: 200 })),
-).annotate({ identifier: "RepoGetRequest" }) as any as S.Schema<RepoGetRequest>;
 
 export interface RepoGetActionJobLogsRequest {
   /** owner of the repo */
@@ -6816,46 +6889,6 @@ export const RepoGetReleaseByTagRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RepoGetReleaseByTagRequest",
 }) as any as S.Schema<RepoGetReleaseByTagRequest>;
-
-export interface RepoGetRepoPermissionsRequest {
-  /** owner of the repo */
-  owner: string;
-  /** name of the repo */
-  repo: string;
-  /** username of the collaborator */
-  collaborator: string;
-}
-export const RepoGetRepoPermissionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    collaborator: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/repos/{owner}/{repo}/collaborators/{collaborator}/permission",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepoGetRepoPermissionsRequest",
-}) as any as S.Schema<RepoGetRepoPermissionsRequest>;
-
-/** RepoCollaboratorPermission to get repository permission for a collaborator */
-export interface RepoCollaboratorPermission {
-  permission?: string;
-  role_name?: string;
-  user?: User;
-}
-export const RepoCollaboratorPermission = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    permission: S.optional(S.String),
-    role_name: S.optional(S.String),
-    user: S.optional(User),
-  }),
-).annotate({
-  identifier: "RepoCollaboratorPermission",
-}) as any as S.Schema<RepoCollaboratorPermission>;
 
 export interface RepoGetReviewersRequest {
   /** owner of the repo */
@@ -8440,98 +8473,6 @@ export const RepoMergePullRequestResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepoMergePullRequestResponse",
 }) as any as S.Schema<RepoMergePullRequestResponse>;
 
-export type RepoMigrateRequestService =
-  | "git"
-  | "github"
-  | "gitea"
-  | "gitlab"
-  | "gogs"
-  | "onedev"
-  | "gitbucket"
-  | "codebase"
-  | "forgejo"
-  | "pagure";
-export const RepoMigrateRequestService = /*@__PURE__*/ S.String;
-
-export interface RepoMigrateRequest {
-  auth_password?: string | Redacted.Redacted<string>;
-  auth_token?: string;
-  auth_username?: string;
-  clone_addr: string;
-  description?: string;
-  issues?: boolean;
-  labels?: boolean;
-  lfs?: boolean;
-  lfs_endpoint?: string;
-  milestones?: boolean;
-  mirror?: boolean;
-  mirror_interval?: string;
-  private?: boolean;
-  pull_requests?: boolean;
-  releases?: boolean;
-  repo_name: string;
-  /** Name of User or Organisation who will own Repo after migration */
-  repo_owner?: string;
-  service?: RepoMigrateRequestService | (string & {});
-  /** deprecated (only for backwards compatibility) */
-  uid?: number;
-  wiki?: boolean;
-}
-export const RepoMigrateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    auth_password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    auth_token: S.optional(S.String),
-    auth_username: S.optional(S.String),
-    clone_addr: S.String,
-    description: S.optional(S.String),
-    issues: S.optional(S.Boolean),
-    labels: S.optional(S.Boolean),
-    lfs: S.optional(S.Boolean),
-    lfs_endpoint: S.optional(S.String),
-    milestones: S.optional(S.Boolean),
-    mirror: S.optional(S.Boolean),
-    mirror_interval: S.optional(S.String),
-    private: S.optional(S.Boolean),
-    pull_requests: S.optional(S.Boolean),
-    releases: S.optional(S.Boolean),
-    repo_name: S.String,
-    repo_owner: S.optional(S.String),
-    service: S.optional(RepoMigrateRequestService),
-    uid: S.optional(S.Number),
-    wiki: S.optional(S.Boolean),
-  }).pipe(T.Http({ method: "POST", uri: "/repos/migrate", code: 200 })),
-).annotate({
-  identifier: "RepoMigrateRequest",
-}) as any as S.Schema<RepoMigrateRequest>;
-
-export interface RepoMirrorSyncRequest {
-  /** owner of the repo to sync */
-  owner: string;
-  /** name of the repo to sync */
-  repo: string;
-}
-export const RepoMirrorSyncRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/mirror-sync",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepoMirrorSyncRequest",
-}) as any as S.Schema<RepoMirrorSyncRequest>;
-
-export interface RepoMirrorSyncResponse {}
-export const RepoMirrorSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RepoMirrorSyncResponse",
-}) as any as S.Schema<RepoMirrorSyncResponse>;
-
 export interface RepoNewPinAllowedRequest {
   /** owner of the repo */
   owner: string;
@@ -8598,34 +8539,6 @@ export const RepoPullRequestIsMergedResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepoPullRequestIsMergedResponse",
 }) as any as S.Schema<RepoPullRequestIsMergedResponse>;
 
-export interface RepoPushMirrorSyncRequest {
-  /** owner of the repo to sync */
-  owner: string;
-  /** name of the repo to sync */
-  repo: string;
-}
-export const RepoPushMirrorSyncRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/push_mirrors-sync",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepoPushMirrorSyncRequest",
-}) as any as S.Schema<RepoPushMirrorSyncRequest>;
-
-export interface RepoPushMirrorSyncResponse {}
-export const RepoPushMirrorSyncResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RepoPushMirrorSyncResponse",
-}) as any as S.Schema<RepoPushMirrorSyncResponse>;
-
 export interface RepoRemoveNoteRequest {
   /** owner of the repo */
   owner: string;
@@ -8687,98 +8600,6 @@ export const RepoReplaceAllFlagsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RepoReplaceAllFlagsResponse",
 }) as any as S.Schema<RepoReplaceAllFlagsResponse>;
-
-export type RepoSearchRequestSort =
-  | "alpha"
-  | "created"
-  | "updated"
-  | "size"
-  | "git_size"
-  | "lfs_size"
-  | "id"
-  | "stars"
-  | "forks";
-export const RepoSearchRequestSort = /*@__PURE__*/ S.String;
-
-export type RepoSearchRequestOrder = "asc" | "desc";
-export const RepoSearchRequestOrder = /*@__PURE__*/ S.String;
-
-export interface RepoSearchRequest {
-  /** keyword */
-  q?: string;
-  /** Limit search to repositories with keyword as topic */
-  topic?: boolean;
-  /** include search of keyword within repository description */
-  includeDesc?: boolean;
-  /** search only for repos that the user with the given id owns or contributes to */
-  uid?: number;
-  /** repo owner to prioritize in the results */
-  priority_owner_id?: number;
-  /** search only for repos that belong to the given team id */
-  team_id?: number;
-  /** search only for repos that the user with the given id has starred */
-  starredBy?: number;
-  /** include private repositories this user has access to (defaults to true) */
-  private?: boolean;
-  /** show only public, private or all repositories (defaults to all) */
-  is_private?: boolean;
-  /** show only template, non-template or all repositories (defaults to all) */
-  template?: boolean;
-  /** show only archived, non-archived or all repositories (defaults to all) */
-  archived?: boolean;
-  /** type of repository to search for. Supported values are "fork", "source", "mirror" and "collaborative" */
-  mode?: string;
-  /** if `uid` is given, search only for repos that the user owns */
-  exclusive?: boolean;
-  /** sort repos by attribute. Supported values are "alpha", "created", "updated", "size", "git_size", "lfs_size", "stars", "forks" and "id". Default is "alpha" */
-  sort?: RepoSearchRequestSort | (string & {});
-  /** sort order, either "asc" (ascending) or "desc" (descending). Default is "asc", ignored if "sort" is not specified. */
-  order?: RepoSearchRequestOrder | (string & {});
-  /** page number of results to return (1-based) */
-  page?: number;
-  /** page size of results */
-  limit?: number;
-}
-export const RepoSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    q: S.optional(S.String.pipe(T.Query())),
-    topic: S.optional(S.Boolean.pipe(T.Query())),
-    includeDesc: S.optional(S.Boolean.pipe(T.Query())),
-    uid: S.optional(S.Number.pipe(T.Query())),
-    priority_owner_id: S.optional(S.Number.pipe(T.Query())),
-    team_id: S.optional(S.Number.pipe(T.Query())),
-    starredBy: S.optional(S.Number.pipe(T.Query())),
-    private: S.optional(S.Boolean.pipe(T.Query())),
-    is_private: S.optional(S.Boolean.pipe(T.Query())),
-    template: S.optional(S.Boolean.pipe(T.Query())),
-    archived: S.optional(S.Boolean.pipe(T.Query())),
-    mode: S.optional(S.String.pipe(T.Query())),
-    exclusive: S.optional(S.Boolean.pipe(T.Query())),
-    sort: S.optional(RepoSearchRequestSort.pipe(T.Query())),
-    order: S.optional(RepoSearchRequestOrder.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/repos/search", code: 200 })),
-).annotate({
-  identifier: "RepoSearchRequest",
-}) as any as S.Schema<RepoSearchRequest>;
-
-export type SearchResultsDataList = Array<Repository>;
-export const SearchResultsDataList = /*@__PURE__*/ S.Array(
-  Repository,
-) as any as S.Schema<SearchResultsDataList>;
-
-/** SearchResults results of a successful search */
-export interface SearchResults {
-  data?: SearchResultsDataList;
-  ok?: boolean;
-}
-export const SearchResults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: S.optional(SearchResultsDataList),
-    ok: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "SearchResults" }) as any as S.Schema<SearchResults>;
 
 export interface RepoSearchRunJobsRequest {
   /** owner of the repo */
@@ -9124,72 +8945,6 @@ export const RepoTrackedTimesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepoTrackedTimesResponse",
 }) as any as S.Schema<RepoTrackedTimesResponse>;
 
-/** ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories. */
-export type RepoTransferRequestTeamIdsList = Array<number>;
-export const RepoTransferRequestTeamIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<RepoTransferRequestTeamIdsList>;
-
-export interface RepoTransferRequest {
-  /** owner of the repo to transfer */
-  owner: string;
-  /** name of the repo to transfer */
-  repo: string;
-  new_owner: string;
-  /** ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories. */
-  team_ids?: RepoTransferRequestTeamIdsList;
-}
-export const RepoTransferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    new_owner: S.String,
-    team_ids: S.optional(RepoTransferRequestTeamIdsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/transfer",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepoTransferRequest",
-}) as any as S.Schema<RepoTransferRequest>;
-
-export interface RepoTransfer2Response {}
-export const RepoTransfer2Response = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RepoTransfer2Response",
-}) as any as S.Schema<RepoTransfer2Response>;
-
-export interface RepoUnDismissPullReviewRequest {
-  /** owner of the repo */
-  owner: string;
-  /** name of the repo */
-  repo: string;
-  /** index of the pull request */
-  index: number;
-  /** id of the review */
-  id: number;
-}
-export const RepoUnDismissPullReviewRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    owner: S.String.pipe(T.Label()),
-    repo: S.String.pipe(T.Label()),
-    index: S.Number.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}/undismissals",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RepoUnDismissPullReviewRequest",
-}) as any as S.Schema<RepoUnDismissPullReviewRequest>;
-
 export interface RepoUpdateAvatarRequest {
   /** owner of the repo */
   owner: string;
@@ -9409,7 +9164,157 @@ export const IssueConfigValidation = /*@__PURE__*/ S.suspend(() =>
   identifier: "IssueConfigValidation",
 }) as any as S.Schema<IssueConfigValidation>;
 
-export interface TopicSearchRequest {
+export interface ReviewRepoDismissPullRequest {
+  /** owner of the repo */
+  owner: string;
+  /** name of the repo */
+  repo: string;
+  /** index of the pull request */
+  index: number;
+  /** id of the review */
+  id: number;
+  message?: string;
+  priors?: boolean;
+}
+export const ReviewRepoDismissPullRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    index: S.Number.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    message: S.optional(S.String),
+    priors: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}/dismissals",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ReviewRepoDismissPullRequest",
+}) as any as S.Schema<ReviewRepoDismissPullRequest>;
+
+export interface ReviewRepoUnDismissPullRequest {
+  /** owner of the repo */
+  owner: string;
+  /** name of the repo */
+  repo: string;
+  /** index of the pull request */
+  index: number;
+  /** id of the review */
+  id: number;
+}
+export const ReviewRepoUnDismissPullRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    index: S.Number.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}/undismissals",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ReviewRepoUnDismissPullRequest",
+}) as any as S.Schema<ReviewRepoUnDismissPullRequest>;
+
+export type SearchRepoRequestSort =
+  | "alpha"
+  | "created"
+  | "updated"
+  | "size"
+  | "git_size"
+  | "lfs_size"
+  | "id"
+  | "stars"
+  | "forks";
+export const SearchRepoRequestSort = /*@__PURE__*/ S.String;
+
+export type SearchRepoRequestOrder = "asc" | "desc";
+export const SearchRepoRequestOrder = /*@__PURE__*/ S.String;
+
+export interface SearchRepoRequest {
+  /** keyword */
+  q?: string;
+  /** Limit search to repositories with keyword as topic */
+  topic?: boolean;
+  /** include search of keyword within repository description */
+  includeDesc?: boolean;
+  /** search only for repos that the user with the given id owns or contributes to */
+  uid?: number;
+  /** repo owner to prioritize in the results */
+  priority_owner_id?: number;
+  /** search only for repos that belong to the given team id */
+  team_id?: number;
+  /** search only for repos that the user with the given id has starred */
+  starredBy?: number;
+  /** include private repositories this user has access to (defaults to true) */
+  private?: boolean;
+  /** show only public, private or all repositories (defaults to all) */
+  is_private?: boolean;
+  /** show only template, non-template or all repositories (defaults to all) */
+  template?: boolean;
+  /** show only archived, non-archived or all repositories (defaults to all) */
+  archived?: boolean;
+  /** type of repository to search for. Supported values are "fork", "source", "mirror" and "collaborative" */
+  mode?: string;
+  /** if `uid` is given, search only for repos that the user owns */
+  exclusive?: boolean;
+  /** sort repos by attribute. Supported values are "alpha", "created", "updated", "size", "git_size", "lfs_size", "stars", "forks" and "id". Default is "alpha" */
+  sort?: SearchRepoRequestSort | (string & {});
+  /** sort order, either "asc" (ascending) or "desc" (descending). Default is "asc", ignored if "sort" is not specified. */
+  order?: SearchRepoRequestOrder | (string & {});
+  /** page number of results to return (1-based) */
+  page?: number;
+  /** page size of results */
+  limit?: number;
+}
+export const SearchRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    q: S.optional(S.String.pipe(T.Query())),
+    topic: S.optional(S.Boolean.pipe(T.Query())),
+    includeDesc: S.optional(S.Boolean.pipe(T.Query())),
+    uid: S.optional(S.Number.pipe(T.Query())),
+    priority_owner_id: S.optional(S.Number.pipe(T.Query())),
+    team_id: S.optional(S.Number.pipe(T.Query())),
+    starredBy: S.optional(S.Number.pipe(T.Query())),
+    private: S.optional(S.Boolean.pipe(T.Query())),
+    is_private: S.optional(S.Boolean.pipe(T.Query())),
+    template: S.optional(S.Boolean.pipe(T.Query())),
+    archived: S.optional(S.Boolean.pipe(T.Query())),
+    mode: S.optional(S.String.pipe(T.Query())),
+    exclusive: S.optional(S.Boolean.pipe(T.Query())),
+    sort: S.optional(SearchRepoRequestSort.pipe(T.Query())),
+    order: S.optional(SearchRepoRequestOrder.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/repos/search", code: 200 })),
+).annotate({
+  identifier: "SearchRepoRequest",
+}) as any as S.Schema<SearchRepoRequest>;
+
+export type SearchResultsDataList = Array<Repository>;
+export const SearchResultsDataList = /*@__PURE__*/ S.Array(
+  Repository,
+) as any as S.Schema<SearchResultsDataList>;
+
+/** SearchResults results of a successful search */
+export interface SearchResults {
+  data?: SearchResultsDataList;
+  ok?: boolean;
+}
+export const SearchResults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.optional(SearchResultsDataList),
+    ok: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "SearchResults" }) as any as S.Schema<SearchResults>;
+
+export interface SearchTopicRequest {
   /** keyword to search for */
   q: string;
   /** page number of results to return (1-based) */
@@ -9417,15 +9322,15 @@ export interface TopicSearchRequest {
   /** page size of results */
   limit?: number;
 }
-export const TopicSearchRequest = /*@__PURE__*/ S.suspend(() =>
+export const SearchTopicRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     q: S.String.pipe(T.Query()),
     page: S.optional(S.Number.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/topics/search", code: 200 })),
 ).annotate({
-  identifier: "TopicSearchRequest",
-}) as any as S.Schema<TopicSearchRequest>;
+  identifier: "SearchTopicRequest",
+}) as any as S.Schema<SearchTopicRequest>;
 
 /** TopicResponse for returning topics */
 export interface TopicResponse {
@@ -9445,21 +9350,116 @@ export const TopicResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "TopicResponse" }) as any as S.Schema<TopicResponse>;
 
-export type TopicSearchResponseTopicsList = Array<TopicResponse>;
-export const TopicSearchResponseTopicsList = /*@__PURE__*/ S.Array(
+export type SearchTopicResponseTopicsList = Array<TopicResponse>;
+export const SearchTopicResponseTopicsList = /*@__PURE__*/ S.Array(
   TopicResponse,
-) as any as S.Schema<TopicSearchResponseTopicsList>;
+) as any as S.Schema<SearchTopicResponseTopicsList>;
 
-export interface TopicSearchResponse {
-  topics?: TopicSearchResponseTopicsList;
+export interface SearchTopicResponse {
+  topics?: SearchTopicResponseTopicsList;
 }
-export const TopicSearchResponse = /*@__PURE__*/ S.suspend(() =>
+export const SearchTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    topics: S.optional(TopicSearchResponseTopicsList),
+    topics: S.optional(SearchTopicResponseTopicsList),
   }),
 ).annotate({
-  identifier: "TopicSearchResponse",
-}) as any as S.Schema<TopicSearchResponse>;
+  identifier: "SearchTopicResponse",
+}) as any as S.Schema<SearchTopicResponse>;
+
+export interface SyncRepoMirrorRequest {
+  /** owner of the repo to sync */
+  owner: string;
+  /** name of the repo to sync */
+  repo: string;
+}
+export const SyncRepoMirrorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/mirror-sync",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SyncRepoMirrorRequest",
+}) as any as S.Schema<SyncRepoMirrorRequest>;
+
+export interface SyncRepoMirrorResponse {}
+export const SyncRepoMirrorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SyncRepoMirrorResponse",
+}) as any as S.Schema<SyncRepoMirrorResponse>;
+
+export interface SyncRepoPushMirrorRequest {
+  /** owner of the repo to sync */
+  owner: string;
+  /** name of the repo to sync */
+  repo: string;
+}
+export const SyncRepoPushMirrorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/push_mirrors-sync",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SyncRepoPushMirrorRequest",
+}) as any as S.Schema<SyncRepoPushMirrorRequest>;
+
+export interface SyncRepoPushMirrorResponse {}
+export const SyncRepoPushMirrorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SyncRepoPushMirrorResponse",
+}) as any as S.Schema<SyncRepoPushMirrorResponse>;
+
+/** ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories. */
+export type TransferRepoRequestTeamIdsList = Array<number>;
+export const TransferRepoRequestTeamIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<TransferRepoRequestTeamIdsList>;
+
+export interface TransferRepoRequest {
+  /** owner of the repo to transfer */
+  owner: string;
+  /** name of the repo to transfer */
+  repo: string;
+  new_owner: string;
+  /** ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories. */
+  team_ids?: TransferRepoRequestTeamIdsList;
+}
+export const TransferRepoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    owner: S.String.pipe(T.Label()),
+    repo: S.String.pipe(T.Label()),
+    new_owner: S.String,
+    team_ids: S.optional(TransferRepoRequestTeamIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/repos/{owner}/{repo}/transfer",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "TransferRepoRequest",
+}) as any as S.Schema<TransferRepoRequest>;
+
+export interface TransferRepoResponse {}
+export const TransferRepoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "TransferRepoResponse",
+}) as any as S.Schema<TransferRepoResponse>;
 
 export interface UpdateRepoSecretRequest {
   /** owner of the repository */
@@ -9672,6 +9672,25 @@ export const cancelActionRun: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ConvertRepoError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Convert a mirror repo to a normal repo. */
+export const convertRepo: API.OperationMethod<
+  ConvertRepoRequest,
+  Repository,
+  ConvertRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ConvertRepoRequest,
+  output: Repository,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateCurrentUserRepoError =
   | BadRequest
   | Forbidden
@@ -9765,6 +9784,21 @@ export const deleteActionRun: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteRepoError = Forbidden | NotFound | ForgejoOpError;
+/** Delete a repository */
+export const deleteRepo: API.OperationMethod<
+  DeleteRepoRequest,
+  DeleteRepoResponse,
+  DeleteRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRepoRequest,
+  output: DeleteRepoResponse,
+  errors: [Forbidden, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteRepoRunnerError = BadRequest | NotFound | ForgejoOpError;
 /** Delete a particular runner that belongs to a repository */
 export const deleteRepoRunner: API.OperationMethod<
@@ -9840,6 +9874,25 @@ export const downloadActionArtifact: API.OperationMethod<
   input: DownloadActionArtifactRequest,
   output: DownloadActionArtifactResponse,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditRepoError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Edit a repository's properties. Only fields that are set will be changed. */
+export const editRepo: API.OperationMethod<
+  EditRepoRequest,
+  Repository,
+  EditRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditRepoRequest,
+  output: Repository,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -9924,6 +9977,36 @@ export const getBlobs: API.OperationMethod<
   input: GetBlobsRequest,
   output: GetBlobsResponse,
   errors: [BadRequest],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRepoError = NotFound | ForgejoOpError;
+/** Get a repository */
+export const getRepo: API.OperationMethod<
+  GetRepoRequest,
+  Repository,
+  GetRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRepoRequest,
+  output: Repository,
+  errors: [NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRepoPermissionsError = Forbidden | NotFound | ForgejoOpError;
+/** Get repository permissions for a user */
+export const getRepoPermissions: API.OperationMethod<
+  GetRepoPermissionsRequest,
+  RepoCollaboratorPermission,
+  GetRepoPermissionsError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRepoPermissionsRequest,
+  output: RepoCollaboratorPermission,
+  errors: [Forbidden, NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -10107,6 +10190,25 @@ export const listForks: API.OperationMethod<
   input: ListForksRequest,
   output: ListForksResponse,
   errors: [NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MigrateRepoError =
+  | Forbidden
+  | Conflict
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Migrate a remote git repository */
+export const migrateRepo: API.OperationMethod<
+  MigrateRepoRequest,
+  Repository,
+  MigrateRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MigrateRepoRequest,
+  output: Repository,
+  errors: [Forbidden, Conflict, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -10338,25 +10440,6 @@ export const repoCompareDiff: API.OperationMethod<
   input: RepoCompareDiffRequest,
   output: Compare,
   errors: [NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoConvertError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Convert a mirror repo to a normal repo. */
-export const repoConvert: API.OperationMethod<
-  RepoConvertRequest,
-  Repository,
-  RepoConvertError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoConvertRequest,
-  output: Repository,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -10638,21 +10721,6 @@ export const repoCreateWikiPage: API.OperationMethod<
   input: RepoCreateWikiPageRequest,
   output: WikiPage,
   errors: [BadRequest, Forbidden, NotFound, Locked],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoDeleteError = Forbidden | NotFound | ForgejoOpError;
-/** Delete a repository */
-export const repoDelete: API.OperationMethod<
-  RepoDeleteRequest,
-  RepoDeleteResponse,
-  RepoDeleteError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoDeleteRequest,
-  output: RepoDeleteResponse,
-  errors: [Forbidden, NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -11027,25 +11095,6 @@ export const repoDeleteWikiPage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RepoDismissPullReviewError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Dismiss a review for a pull request */
-export const repoDismissPullReview: API.OperationMethod<
-  RepoDismissPullReviewRequest,
-  PullReview,
-  RepoDismissPullReviewError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoDismissPullReviewRequest,
-  output: PullReview,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RepoDownloadCommitDiffOrPatchError = NotFound | ForgejoOpError;
 /** Get a commit's diff or patch */
 export const repoDownloadCommitDiffOrPatch: API.OperationMethod<
@@ -11072,25 +11121,6 @@ export const repoDownloadPullDiffOrPatch: API.OperationMethod<
   input: RepoDownloadPullDiffOrPatchRequest,
   output: RepoDownloadPullDiffOrPatchResponse,
   errors: [NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoEditError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Edit a repository's properties. Only fields that are set will be changed. */
-export const repoEdit: API.OperationMethod<
-  RepoEditRequest,
-  Repository,
-  RepoEditError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoEditRequest,
-  output: Repository,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -11229,21 +11259,6 @@ export const repoEditWikiPage: API.OperationMethod<
   input: RepoEditWikiPageRequest,
   output: WikiPage,
   errors: [BadRequest, Forbidden, NotFound, Locked],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoGetError = NotFound | ForgejoOpError;
-/** Get a repository */
-export const repoGet: API.OperationMethod<
-  RepoGetRequest,
-  Repository,
-  RepoGetError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoGetRequest,
-  output: Repository,
-  errors: [NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -11764,21 +11779,6 @@ export const repoGetReleaseByTag: API.OperationMethod<
   input: RepoGetReleaseByTagRequest,
   output: Release,
   errors: [NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoGetRepoPermissionsError = Forbidden | NotFound | ForgejoOpError;
-/** Get repository permissions for a user */
-export const repoGetRepoPermissions: API.OperationMethod<
-  RepoGetRepoPermissionsRequest,
-  RepoCollaboratorPermission,
-  RepoGetRepoPermissionsError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoGetRepoPermissionsRequest,
-  output: RepoCollaboratorPermission,
-  errors: [Forbidden, NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -12307,40 +12307,6 @@ export const repoMergePullRequest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RepoMigrateError =
-  | Forbidden
-  | Conflict
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Migrate a remote git repository */
-export const repoMigrate: API.OperationMethod<
-  RepoMigrateRequest,
-  Repository,
-  RepoMigrateError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoMigrateRequest,
-  output: Repository,
-  errors: [Forbidden, Conflict, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoMirrorSyncError = Forbidden | NotFound | ForgejoOpError;
-/** Sync a mirrored repository */
-export const repoMirrorSync: API.OperationMethod<
-  RepoMirrorSyncRequest,
-  RepoMirrorSyncResponse,
-  RepoMirrorSyncError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoMirrorSyncRequest,
-  output: RepoMirrorSyncResponse,
-  errors: [Forbidden, NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RepoNewPinAllowedError = NotFound | ForgejoOpError;
 /** Returns if new Issue Pins are allowed */
 export const repoNewPinAllowed: API.OperationMethod<
@@ -12367,25 +12333,6 @@ export const repoPullRequestIsMerged: API.OperationMethod<
   input: RepoPullRequestIsMergedRequest,
   output: RepoPullRequestIsMergedResponse,
   errors: [NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoPushMirrorSyncError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | ForgejoOpError;
-/** Sync all push mirrored repository */
-export const repoPushMirrorSync: API.OperationMethod<
-  RepoPushMirrorSyncRequest,
-  RepoPushMirrorSyncResponse,
-  RepoPushMirrorSyncError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoPushMirrorSyncRequest,
-  output: RepoPushMirrorSyncResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -12419,21 +12366,6 @@ export const repoReplaceAllFlags: API.OperationMethod<
   input: RepoReplaceAllFlagsRequest,
   output: RepoReplaceAllFlagsResponse,
   errors: [Forbidden, NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoSearchError = UnprocessableEntity | ForgejoOpError;
-/** Search for repositories */
-export const repoSearch: API.OperationMethod<
-  RepoSearchRequest,
-  SearchResults,
-  RepoSearchError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoSearchRequest,
-  output: SearchResults,
-  errors: [UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -12602,44 +12534,6 @@ export const repoTrackedTimes: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RepoTransfer2Error =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Transfer a repo ownership */
-export const repoTransfer2: API.OperationMethod<
-  RepoTransferRequest,
-  RepoTransfer2Response,
-  RepoTransfer2Error,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoTransferRequest,
-  output: RepoTransfer2Response,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RepoUnDismissPullReviewError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Cancel to dismiss a review for a pull request */
-export const repoUnDismissPullReview: API.OperationMethod<
-  RepoUnDismissPullReviewRequest,
-  PullReview,
-  RepoUnDismissPullReviewError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RepoUnDismissPullReviewRequest,
-  output: PullReview,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RepoUpdateAvatarError = NotFound | ForgejoOpError;
 /** Update a repository's avatar */
 export const repoUpdateAvatar: API.OperationMethod<
@@ -12748,17 +12642,123 @@ export const repoValidateIssueConfig: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TopicSearchError = Forbidden | NotFound | ForgejoOpError;
-/** Search for topics by keyword */
-export const topicSearch: API.OperationMethod<
-  TopicSearchRequest,
-  TopicSearchResponse,
-  TopicSearchError,
+export type ReviewRepoDismissPullError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Dismiss a review for a pull request */
+export const reviewRepoDismissPull: API.OperationMethod<
+  ReviewRepoDismissPullRequest,
+  PullReview,
+  ReviewRepoDismissPullError,
   ForgejoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TopicSearchRequest,
-  output: TopicSearchResponse,
+  input: ReviewRepoDismissPullRequest,
+  output: PullReview,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReviewRepoUnDismissPullError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Cancel to dismiss a review for a pull request */
+export const reviewRepoUnDismissPull: API.OperationMethod<
+  ReviewRepoUnDismissPullRequest,
+  PullReview,
+  ReviewRepoUnDismissPullError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReviewRepoUnDismissPullRequest,
+  output: PullReview,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchRepoError = UnprocessableEntity | ForgejoOpError;
+/** Search for repositories */
+export const searchRepo: API.OperationMethod<
+  SearchRepoRequest,
+  SearchResults,
+  SearchRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchRepoRequest,
+  output: SearchResults,
+  errors: [UnprocessableEntity],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchTopicError = Forbidden | NotFound | ForgejoOpError;
+/** Search for topics by keyword */
+export const searchTopic: API.OperationMethod<
+  SearchTopicRequest,
+  SearchTopicResponse,
+  SearchTopicError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchTopicRequest,
+  output: SearchTopicResponse,
   errors: [Forbidden, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncRepoMirrorError = Forbidden | NotFound | ForgejoOpError;
+/** Sync a mirrored repository */
+export const syncRepoMirror: API.OperationMethod<
+  SyncRepoMirrorRequest,
+  SyncRepoMirrorResponse,
+  SyncRepoMirrorError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncRepoMirrorRequest,
+  output: SyncRepoMirrorResponse,
+  errors: [Forbidden, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SyncRepoPushMirrorError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | ForgejoOpError;
+/** Sync all push mirrored repository */
+export const syncRepoPushMirror: API.OperationMethod<
+  SyncRepoPushMirrorRequest,
+  SyncRepoPushMirrorResponse,
+  SyncRepoPushMirrorError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SyncRepoPushMirrorRequest,
+  output: SyncRepoPushMirrorResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TransferRepoError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Transfer a repo ownership */
+export const transferRepo: API.OperationMethod<
+  TransferRepoRequest,
+  TransferRepoResponse,
+  TransferRepoError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TransferRepoRequest,
+  output: TransferRepoResponse,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));

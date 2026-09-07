@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.forgejo.repository#RepoMigrateRequestService": {
+    "com.forgejo.repository#MigrateRepoRequestService": {
       "type": "enum",
       "members": {
         "GIT": {
@@ -83,7 +84,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.repository#RepoMigrateRequest": {
+    "com.forgejo.repository#MigrateRepoRequest": {
       "type": "structure",
       "members": {
         "auth_password": {
@@ -150,7 +151,7 @@
           }
         },
         "service": {
-          "target": "com.forgejo.repository#RepoMigrateRequestService"
+          "target": "com.forgejo.repository#MigrateRepoRequestService"
         },
         "uid": {
           "target": "smithy.api#Integer",
@@ -829,10 +830,10 @@
       },
       "traits": {}
     },
-    "com.forgejo.repository#RepoMigrate": {
+    "com.forgejo.repository#MigrateRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoMigrateRequest"
+        "target": "com.forgejo.repository#MigrateRepoRequest"
       },
       "output": {
         "target": "com.forgejo.repository#Repository"
@@ -857,7 +858,7 @@
         "smithy.api#documentation": "Migrate a remote git repository"
       }
     },
-    "com.forgejo.repository#RepoSearchRequestSort": {
+    "com.forgejo.repository#SearchRepoRequestSort": {
       "type": "enum",
       "members": {
         "ALPHA": {
@@ -917,7 +918,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.repository#RepoSearchRequestOrder": {
+    "com.forgejo.repository#SearchRepoRequestOrder": {
       "type": "enum",
       "members": {
         "ASC": {
@@ -935,7 +936,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.repository#RepoSearchRequest": {
+    "com.forgejo.repository#SearchRepoRequest": {
       "type": "structure",
       "members": {
         "q": {
@@ -1030,14 +1031,14 @@
           }
         },
         "sort": {
-          "target": "com.forgejo.repository#RepoSearchRequestSort",
+          "target": "com.forgejo.repository#SearchRepoRequestSort",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "sort repos by attribute. Supported values are \"alpha\", \"created\", \"updated\", \"size\", \"git_size\", \"lfs_size\", \"stars\", \"forks\" and \"id\". Default is \"alpha\""
           }
         },
         "order": {
-          "target": "com.forgejo.repository#RepoSearchRequestOrder",
+          "target": "com.forgejo.repository#SearchRepoRequestOrder",
           "traits": {
             "smithy.api#httpQuery": "order",
             "smithy.api#documentation": "sort order, either \"asc\" (ascending) or \"desc\" (descending). Default is \"asc\", ignored if \"sort\" is not specified."
@@ -1083,10 +1084,10 @@
       },
       "traits": {}
     },
-    "com.forgejo.repository#RepoSearch": {
+    "com.forgejo.repository#SearchRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoSearchRequest"
+        "target": "com.forgejo.repository#SearchRepoRequest"
       },
       "output": {
         "target": "com.forgejo.repository#SearchResults"
@@ -1105,7 +1106,7 @@
         "smithy.api#documentation": "Search for repositories"
       }
     },
-    "com.forgejo.repository#RepoGetRequest": {
+    "com.forgejo.repository#GetRepoRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1129,10 +1130,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoGet": {
+    "com.forgejo.repository#GetRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoGetRequest"
+        "target": "com.forgejo.repository#GetRepoRequest"
       },
       "output": {
         "target": "com.forgejo.repository#Repository"
@@ -1151,7 +1152,7 @@
         "smithy.api#documentation": "Get a repository"
       }
     },
-    "com.forgejo.repository#RepoEditRequest": {
+    "com.forgejo.repository#EditRepoRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1370,10 +1371,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoEdit": {
+    "com.forgejo.repository#EditRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoEditRequest"
+        "target": "com.forgejo.repository#EditRepoRequest"
       },
       "output": {
         "target": "com.forgejo.repository#Repository"
@@ -1398,7 +1399,7 @@
         "smithy.api#documentation": "Edit a repository's properties. Only fields that are set will be changed."
       }
     },
-    "com.forgejo.repository#RepoDeleteRequest": {
+    "com.forgejo.repository#DeleteRepoRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1422,10 +1423,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoDelete": {
+    "com.forgejo.repository#DeleteRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoDeleteRequest"
+        "target": "com.forgejo.repository#DeleteRepoRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6208,7 +6209,7 @@
         "smithy.api#documentation": "Delete a collaborator from a repository"
       }
     },
-    "com.forgejo.repository#RepoGetRepoPermissionsRequest": {
+    "com.forgejo.repository#GetRepoPermissionsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -6257,10 +6258,10 @@
         "smithy.api#documentation": "RepoCollaboratorPermission to get repository permission for a collaborator"
       }
     },
-    "com.forgejo.repository#RepoGetRepoPermissions": {
+    "com.forgejo.repository#GetRepoPermissions": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoGetRepoPermissionsRequest"
+        "target": "com.forgejo.repository#GetRepoPermissionsRequest"
       },
       "output": {
         "target": "com.forgejo.repository#RepoCollaboratorPermission"
@@ -8129,7 +8130,7 @@
         "smithy.api#documentation": "Delete a file in a repository"
       }
     },
-    "com.forgejo.repository#RepoConvertRequest": {
+    "com.forgejo.repository#ConvertRepoRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -8153,10 +8154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoConvert": {
+    "com.forgejo.repository#ConvertRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoConvertRequest"
+        "target": "com.forgejo.repository#ConvertRepoRequest"
       },
       "output": {
         "target": "com.forgejo.repository#Repository"
@@ -11643,7 +11644,7 @@
         "smithy.api#documentation": "Get a file or it's LFS object from a repository"
       }
     },
-    "com.forgejo.repository#RepoMirrorSyncRequest": {
+    "com.forgejo.repository#SyncRepoMirrorRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -11667,10 +11668,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoMirrorSync": {
+    "com.forgejo.repository#SyncRepoMirror": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoMirrorSyncRequest"
+        "target": "com.forgejo.repository#SyncRepoMirrorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13985,7 +13986,7 @@
         "smithy.api#documentation": "Delete a pull review comment"
       }
     },
-    "com.forgejo.repository#RepoDismissPullReviewRequest": {
+    "com.forgejo.repository#ReviewRepoDismissPullRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -14031,10 +14032,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoDismissPullReview": {
+    "com.forgejo.repository#ReviewRepoDismissPull": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoDismissPullReviewRequest"
+        "target": "com.forgejo.repository#ReviewRepoDismissPullRequest"
       },
       "output": {
         "target": "com.forgejo.repository#PullReview"
@@ -14059,7 +14060,7 @@
         "smithy.api#documentation": "Dismiss a review for a pull request"
       }
     },
-    "com.forgejo.repository#RepoUnDismissPullReviewRequest": {
+    "com.forgejo.repository#ReviewRepoUnDismissPullRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -14099,10 +14100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoUnDismissPullReview": {
+    "com.forgejo.repository#ReviewRepoUnDismissPull": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoUnDismissPullReviewRequest"
+        "target": "com.forgejo.repository#ReviewRepoUnDismissPullRequest"
       },
       "output": {
         "target": "com.forgejo.repository#PullReview"
@@ -14417,7 +14418,7 @@
         "smithy.api#documentation": "Set up a new push mirror in a repository"
       }
     },
-    "com.forgejo.repository#RepoPushMirrorSyncRequest": {
+    "com.forgejo.repository#SyncRepoPushMirrorRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -14441,10 +14442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoPushMirrorSync": {
+    "com.forgejo.repository#SyncRepoPushMirror": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoPushMirrorSyncRequest"
+        "target": "com.forgejo.repository#SyncRepoPushMirrorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17829,7 +17830,7 @@
         "smithy.api#documentation": "Delete a topic from a repository"
       }
     },
-    "com.forgejo.repository#RepoTransferRequestTeamIdsList": {
+    "com.forgejo.repository#TransferRepoRequestTeamIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -17838,7 +17839,7 @@
         "smithy.api#documentation": "ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories."
       }
     },
-    "com.forgejo.repository#RepoTransferRequest": {
+    "com.forgejo.repository#TransferRepoRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -17864,7 +17865,7 @@
           }
         },
         "team_ids": {
-          "target": "com.forgejo.repository#RepoTransferRequestTeamIdsList",
+          "target": "com.forgejo.repository#TransferRepoRequestTeamIdsList",
           "traits": {
             "smithy.api#documentation": "ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories."
           }
@@ -17874,10 +17875,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.repository#RepoTransfer2": {
+    "com.forgejo.repository#TransferRepo": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#RepoTransferRequest"
+        "target": "com.forgejo.repository#TransferRepoRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18674,7 +18675,7 @@
         "smithy.api#documentation": "Get a repository by id"
       }
     },
-    "com.forgejo.repository#TopicSearchRequest": {
+    "com.forgejo.repository#SearchTopicRequest": {
       "type": "structure",
       "members": {
         "q": {
@@ -18727,31 +18728,31 @@
         "smithy.api#documentation": "TopicResponse for returning topics"
       }
     },
-    "com.forgejo.repository#TopicSearchResponseTopicsList": {
+    "com.forgejo.repository#SearchTopicResponseTopicsList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.repository#TopicResponse"
       },
       "traits": {}
     },
-    "com.forgejo.repository#TopicSearchResponse": {
+    "com.forgejo.repository#SearchTopicResponse": {
       "type": "structure",
       "members": {
         "topics": {
-          "target": "com.forgejo.repository#TopicSearchResponseTopicsList"
+          "target": "com.forgejo.repository#SearchTopicResponseTopicsList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.repository#TopicSearch": {
+    "com.forgejo.repository#SearchTopic": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.repository#TopicSearchRequest"
+        "target": "com.forgejo.repository#SearchTopicRequest"
       },
       "output": {
-        "target": "com.forgejo.repository#TopicSearchResponse"
+        "target": "com.forgejo.repository#SearchTopicResponse"
       },
       "errors": [
         {
@@ -19017,19 +19018,19 @@
       "version": "16.0.3",
       "operations": [
         {
-          "target": "com.forgejo.repository#RepoMigrate"
+          "target": "com.forgejo.repository#MigrateRepo"
         },
         {
-          "target": "com.forgejo.repository#RepoSearch"
+          "target": "com.forgejo.repository#SearchRepo"
         },
         {
-          "target": "com.forgejo.repository#RepoGet"
+          "target": "com.forgejo.repository#GetRepo"
         },
         {
-          "target": "com.forgejo.repository#RepoEdit"
+          "target": "com.forgejo.repository#EditRepo"
         },
         {
-          "target": "com.forgejo.repository#RepoDelete"
+          "target": "com.forgejo.repository#DeleteRepo"
         },
         {
           "target": "com.forgejo.repository#ListActionArtifacts"
@@ -19170,7 +19171,7 @@
           "target": "com.forgejo.repository#RepoDeleteCollaborator"
         },
         {
-          "target": "com.forgejo.repository#RepoGetRepoPermissions"
+          "target": "com.forgejo.repository#GetRepoPermissions"
         },
         {
           "target": "com.forgejo.repository#RepoGetAllCommits"
@@ -19206,7 +19207,7 @@
           "target": "com.forgejo.repository#RepoDeleteFile"
         },
         {
-          "target": "com.forgejo.repository#RepoConvert"
+          "target": "com.forgejo.repository#ConvertRepo"
         },
         {
           "target": "com.forgejo.repository#RepoApplyDiffPatch"
@@ -19332,7 +19333,7 @@
           "target": "com.forgejo.repository#RepoGetRawFileOrLFS"
         },
         {
-          "target": "com.forgejo.repository#RepoMirrorSync"
+          "target": "com.forgejo.repository#SyncRepoMirror"
         },
         {
           "target": "com.forgejo.repository#RepoNewPinAllowed"
@@ -19407,10 +19408,10 @@
           "target": "com.forgejo.repository#RepoDeletePullReviewComment"
         },
         {
-          "target": "com.forgejo.repository#RepoDismissPullReview"
+          "target": "com.forgejo.repository#ReviewRepoDismissPull"
         },
         {
-          "target": "com.forgejo.repository#RepoUnDismissPullReview"
+          "target": "com.forgejo.repository#ReviewRepoUnDismissPull"
         },
         {
           "target": "com.forgejo.repository#RepoUpdatePullRequest"
@@ -19422,7 +19423,7 @@
           "target": "com.forgejo.repository#RepoAddPushMirror"
         },
         {
-          "target": "com.forgejo.repository#RepoPushMirrorSync"
+          "target": "com.forgejo.repository#SyncRepoPushMirror"
         },
         {
           "target": "com.forgejo.repository#RepoGetPushMirrorByRemoteName"
@@ -19566,7 +19567,7 @@
           "target": "com.forgejo.repository#RepoDeleteTopic"
         },
         {
-          "target": "com.forgejo.repository#RepoTransfer2"
+          "target": "com.forgejo.repository#TransferRepo"
         },
         {
           "target": "com.forgejo.repository#AcceptRepoTransfer"
@@ -19599,7 +19600,7 @@
           "target": "com.forgejo.repository#RepoGetByID"
         },
         {
-          "target": "com.forgejo.repository#TopicSearch"
+          "target": "com.forgejo.repository#SearchTopic"
         },
         {
           "target": "com.forgejo.repository#CreateCurrentUserRepo"

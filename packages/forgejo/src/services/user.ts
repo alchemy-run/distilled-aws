@@ -152,6 +152,108 @@ export const DeleteUserVariableResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteUserVariableResponse",
 }) as any as S.Schema<DeleteUserVariableResponse>;
 
+export interface FollowUserCurrentActivityPubRequest {
+  target?: string;
+}
+export const FollowUserCurrentActivityPubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    target: S.optional(S.String),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/user/activitypub/follow", code: 200 }),
+  ),
+).annotate({
+  identifier: "FollowUserCurrentActivityPubRequest",
+}) as any as S.Schema<FollowUserCurrentActivityPubRequest>;
+
+export interface FollowUserCurrentActivityPubResponse {}
+export const FollowUserCurrentActivityPubResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "FollowUserCurrentActivityPubResponse",
+}) as any as S.Schema<FollowUserCurrentActivityPubResponse>;
+
+export interface GetUserRequest {
+  /** username of user to get */
+  username: string;
+}
+export const GetUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    username: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/users/{username}", code: 200 })),
+).annotate({ identifier: "GetUserRequest" }) as any as S.Schema<GetUserRequest>;
+
+/** User represents a user */
+export interface User {
+  /** Is user active */
+  active?: boolean;
+  /** URL to the user's avatar */
+  avatar_url?: string;
+  created?: string;
+  /** the user's description */
+  description?: string;
+  email?: string;
+  /** user counts */
+  followers_count?: number;
+  following_count?: number;
+  /** the user's full name */
+  full_name?: string;
+  /** URL to the user's profile page */
+  html_url?: string;
+  /** the user's id */
+  id: number;
+  /** Is the user an administrator */
+  is_admin?: boolean;
+  /** User locale */
+  language?: string;
+  last_login?: string;
+  /** the user's location */
+  location?: string;
+  /** the user's username */
+  login: string;
+  /** the user's authentication sign-in name. */
+  login_name?: string;
+  /** Is user login prohibited */
+  prohibit_login?: boolean;
+  /** the user's pronouns */
+  pronouns?: string;
+  /** Is user restricted */
+  restricted?: boolean;
+  /** The ID of the user's Authentication Source */
+  source_id?: number;
+  starred_repos_count?: number;
+  /** User visibility level option: public, limited, private */
+  visibility?: string;
+  /** the user's website */
+  website?: string;
+}
+export const User = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    active: S.optional(S.Boolean),
+    avatar_url: S.optional(S.String),
+    created: S.optional(S.String),
+    description: S.optional(S.String),
+    email: S.optional(S.String),
+    followers_count: S.optional(S.Number),
+    following_count: S.optional(S.Number),
+    full_name: S.optional(S.String),
+    html_url: S.optional(S.String),
+    id: S.Number,
+    is_admin: S.optional(S.Boolean),
+    language: S.optional(S.String),
+    last_login: S.optional(S.String),
+    location: S.optional(S.String),
+    login: S.String,
+    login_name: S.optional(S.String),
+    prohibit_login: S.optional(S.Boolean),
+    pronouns: S.optional(S.String),
+    restricted: S.optional(S.Boolean),
+    source_id: S.optional(S.Number),
+    starred_repos_count: S.optional(S.Number),
+    visibility: S.optional(S.String),
+    website: S.optional(S.String),
+  }),
+).annotate({ identifier: "User" }) as any as S.Schema<User>;
+
 export interface GetUserRunnerRequest {
   /** ID of the runner */
   runner_id: string;
@@ -403,6 +505,78 @@ export const RegisterRunnerResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RegisterRunnerResponse",
 }) as any as S.Schema<RegisterRunnerResponse>;
+
+export type SearchUserRequestSort =
+  | "oldest"
+  | "newest"
+  | "alphabetically"
+  | "reversealphabetically"
+  | "recentupdate"
+  | "leastupdate";
+export const SearchUserRequestSort = /*@__PURE__*/ S.String;
+
+export interface SearchUserRequest {
+  /** keyword */
+  q?: string;
+  /** ID of the user to search for */
+  uid?: number;
+  /** sort order of results */
+  sort?: SearchUserRequestSort | (string & {});
+  /** page number of results to return (1-based) */
+  page?: number;
+  /** page size of results */
+  limit?: number;
+}
+export const SearchUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    q: S.optional(S.String.pipe(T.Query())),
+    uid: S.optional(S.Number.pipe(T.Query())),
+    sort: S.optional(SearchUserRequestSort.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/users/search", code: 200 })),
+).annotate({
+  identifier: "SearchUserRequest",
+}) as any as S.Schema<SearchUserRequest>;
+
+export type SearchUserResponseDataList = Array<User>;
+export const SearchUserResponseDataList = /*@__PURE__*/ S.Array(
+  User,
+) as any as S.Schema<SearchUserResponseDataList>;
+
+export interface SearchUserResponse {
+  data?: SearchUserResponseDataList;
+  ok?: boolean;
+}
+export const SearchUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.optional(SearchUserResponseDataList),
+    ok: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SearchUserResponse",
+}) as any as S.Schema<SearchUserResponse>;
+
+export interface UnblockUserRequest {
+  /** username of the user */
+  username: string;
+}
+export const UnblockUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    username: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "PUT", uri: "/user/unblock/{username}", code: 200 }),
+  ),
+).annotate({
+  identifier: "UnblockUserRequest",
+}) as any as S.Schema<UnblockUserRequest>;
+
+export interface UnblockUserResponse {}
+export const UnblockUserResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UnblockUserResponse",
+}) as any as S.Schema<UnblockUserResponse>;
 
 export interface UpdateUserSecretRequest {
   /** name of the secret */
@@ -852,26 +1026,6 @@ export const AccessToken = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AccessToken" }) as any as S.Schema<AccessToken>;
 
-export interface UserCurrentActivityPubFollowRequest {
-  target?: string;
-}
-export const UserCurrentActivityPubFollowRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    target: S.optional(S.String),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/user/activitypub/follow", code: 200 }),
-  ),
-).annotate({
-  identifier: "UserCurrentActivityPubFollowRequest",
-}) as any as S.Schema<UserCurrentActivityPubFollowRequest>;
-
-export interface UserCurrentActivityPubFollowResponse {}
-export const UserCurrentActivityPubFollowResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "UserCurrentActivityPubFollowResponse",
-}) as any as S.Schema<UserCurrentActivityPubFollowResponse>;
-
 export interface UserCurrentCheckFollowingRequest {
   /** username of followed user */
   username: string;
@@ -1083,78 +1237,6 @@ export const UserCurrentGetKeyRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UserCurrentGetKeyRequest",
 }) as any as S.Schema<UserCurrentGetKeyRequest>;
-
-/** User represents a user */
-export interface User {
-  /** Is user active */
-  active?: boolean;
-  /** URL to the user's avatar */
-  avatar_url?: string;
-  created?: string;
-  /** the user's description */
-  description?: string;
-  email?: string;
-  /** user counts */
-  followers_count?: number;
-  following_count?: number;
-  /** the user's full name */
-  full_name?: string;
-  /** URL to the user's profile page */
-  html_url?: string;
-  /** the user's id */
-  id: number;
-  /** Is the user an administrator */
-  is_admin?: boolean;
-  /** User locale */
-  language?: string;
-  last_login?: string;
-  /** the user's location */
-  location?: string;
-  /** the user's username */
-  login: string;
-  /** the user's authentication sign-in name. */
-  login_name?: string;
-  /** Is user login prohibited */
-  prohibit_login?: boolean;
-  /** the user's pronouns */
-  pronouns?: string;
-  /** Is user restricted */
-  restricted?: boolean;
-  /** The ID of the user's Authentication Source */
-  source_id?: number;
-  starred_repos_count?: number;
-  /** User visibility level option: public, limited, private */
-  visibility?: string;
-  /** the user's website */
-  website?: string;
-}
-export const User = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    active: S.optional(S.Boolean),
-    avatar_url: S.optional(S.String),
-    created: S.optional(S.String),
-    description: S.optional(S.String),
-    email: S.optional(S.String),
-    followers_count: S.optional(S.Number),
-    following_count: S.optional(S.Number),
-    full_name: S.optional(S.String),
-    html_url: S.optional(S.String),
-    id: S.Number,
-    is_admin: S.optional(S.Boolean),
-    language: S.optional(S.String),
-    last_login: S.optional(S.String),
-    location: S.optional(S.String),
-    login: S.String,
-    login_name: S.optional(S.String),
-    prohibit_login: S.optional(S.Boolean),
-    pronouns: S.optional(S.String),
-    restricted: S.optional(S.Boolean),
-    source_id: S.optional(S.Number),
-    starred_repos_count: S.optional(S.Number),
-    visibility: S.optional(S.String),
-    website: S.optional(S.String),
-  }),
-).annotate({ identifier: "User" }) as any as S.Schema<User>;
 
 /** PublicKey publickey is a user key to push code to repository */
 export interface PublicKey {
@@ -2170,16 +2252,6 @@ export const UserEditHookRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserEditHookRequest",
 }) as any as S.Schema<UserEditHookRequest>;
 
-export interface UserGetRequest {
-  /** username of user to get */
-  username: string;
-}
-export const UserGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    username: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/users/{username}", code: 200 })),
-).annotate({ identifier: "UserGetRequest" }) as any as S.Schema<UserGetRequest>;
-
 export interface UserGetCurrentRequest {}
 export const UserGetCurrentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/user", code: 200 })),
@@ -3191,57 +3263,6 @@ export const UserListTeamsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserListTeamsResponse",
 }) as any as S.Schema<UserListTeamsResponse>;
 
-export type UserSearchRequestSort =
-  | "oldest"
-  | "newest"
-  | "alphabetically"
-  | "reversealphabetically"
-  | "recentupdate"
-  | "leastupdate";
-export const UserSearchRequestSort = /*@__PURE__*/ S.String;
-
-export interface UserSearchRequest {
-  /** keyword */
-  q?: string;
-  /** ID of the user to search for */
-  uid?: number;
-  /** sort order of results */
-  sort?: UserSearchRequestSort | (string & {});
-  /** page number of results to return (1-based) */
-  page?: number;
-  /** page size of results */
-  limit?: number;
-}
-export const UserSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    q: S.optional(S.String.pipe(T.Query())),
-    uid: S.optional(S.Number.pipe(T.Query())),
-    sort: S.optional(UserSearchRequestSort.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/users/search", code: 200 })),
-).annotate({
-  identifier: "UserSearchRequest",
-}) as any as S.Schema<UserSearchRequest>;
-
-export type UserSearchResponseDataList = Array<User>;
-export const UserSearchResponseDataList = /*@__PURE__*/ S.Array(
-  User,
-) as any as S.Schema<UserSearchResponseDataList>;
-
-export interface UserSearchResponse {
-  data?: UserSearchResponseDataList;
-  ok?: boolean;
-}
-export const UserSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: S.optional(UserSearchResponseDataList),
-    ok: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "UserSearchResponse",
-}) as any as S.Schema<UserSearchResponse>;
-
 export interface UserSearchRunJobsRequest {
   /** a comma separated list of run job labels to search for */
   labels?: string;
@@ -3320,27 +3341,6 @@ export const UserSearchRunJobsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UserSearchRunJobsResponse",
 }) as any as S.Schema<UserSearchRunJobsResponse>;
-
-export interface UserUnblockUserRequest {
-  /** username of the user */
-  username: string;
-}
-export const UserUnblockUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    username: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "PUT", uri: "/user/unblock/{username}", code: 200 }),
-  ),
-).annotate({
-  identifier: "UserUnblockUserRequest",
-}) as any as S.Schema<UserUnblockUserRequest>;
-
-export interface UserUnblockUserResponse {}
-export const UserUnblockUserResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserUnblockUserResponse",
-}) as any as S.Schema<UserUnblockUserResponse>;
 
 export interface UserUpdateAvatarRequest {
   /** image must be base64 encoded */
@@ -3479,6 +3479,39 @@ export const deleteUserVariable: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type FollowUserCurrentActivityPubError =
+  | Forbidden
+  | NotFound
+  | ForgejoOpError;
+/** Follow a remote activitypub account */
+export const followUserCurrentActivityPub: API.OperationMethod<
+  FollowUserCurrentActivityPubRequest,
+  FollowUserCurrentActivityPubResponse,
+  FollowUserCurrentActivityPubError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FollowUserCurrentActivityPubRequest,
+  output: FollowUserCurrentActivityPubResponse,
+  errors: [Forbidden, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUserError = NotFound | ForgejoOpError;
+/** Get a user */
+export const getUser: API.OperationMethod<
+  GetUserRequest,
+  User,
+  GetUserError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUserRequest,
+  output: User,
+  errors: [NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetUserRunnerError = BadRequest | NotFound | ForgejoOpError;
 /** Get a particular runner that belongs to the user */
 export const getUserRunner: API.OperationMethod<
@@ -3588,6 +3621,40 @@ export const registerUserRunner: API.OperationMethod<
   input: RegisterUserRunnerRequest,
   output: RegisterRunnerResponse,
   errors: [BadRequest, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchUserError = ForgejoOpError;
+/** Search for users */
+export const searchUser: API.OperationMethod<
+  SearchUserRequest,
+  SearchUserResponse,
+  SearchUserError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchUserRequest,
+  output: SearchUserResponse,
+  errors: [],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UnblockUserError =
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | ForgejoOpError;
+/** Unblocks a user from the doer */
+export const unblockUser: API.OperationMethod<
+  UnblockUserRequest,
+  UnblockUserResponse,
+  UnblockUserError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnblockUserRequest,
+  output: UnblockUserResponse,
+  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -3763,24 +3830,6 @@ export const userCreateToken: API.OperationMethod<
   input: UserCreateTokenRequest,
   output: AccessToken,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UserCurrentActivityPubFollowError =
-  | Forbidden
-  | NotFound
-  | ForgejoOpError;
-/** Follow a remote activitypub account */
-export const userCurrentActivityPubFollow: API.OperationMethod<
-  UserCurrentActivityPubFollowRequest,
-  UserCurrentActivityPubFollowResponse,
-  UserCurrentActivityPubFollowError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserCurrentActivityPubFollowRequest,
-  output: UserCurrentActivityPubFollowResponse,
-  errors: [Forbidden, NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -4204,21 +4253,6 @@ export const userEditHook: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UserGetError = NotFound | ForgejoOpError;
-/** Get a user */
-export const userGet: API.OperationMethod<
-  UserGetRequest,
-  User,
-  UserGetError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserGetRequest,
-  output: User,
-  errors: [NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UserGetCurrentError = Forbidden | ForgejoOpError;
 /** Get the authenticated user */
 export const userGetCurrent: API.OperationMethod<
@@ -4567,21 +4601,6 @@ export const userListTeams: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UserSearchError = ForgejoOpError;
-/** Search for users */
-export const userSearch: API.OperationMethod<
-  UserSearchRequest,
-  UserSearchResponse,
-  UserSearchError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserSearchRequest,
-  output: UserSearchResponse,
-  errors: [],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UserSearchRunJobsError = Forbidden | ForgejoOpError;
 /** Search for user's action jobs according filter conditions */
 export const userSearchRunJobs: API.OperationMethod<
@@ -4593,25 +4612,6 @@ export const userSearchRunJobs: API.OperationMethod<
   input: UserSearchRunJobsRequest,
   output: UserSearchRunJobsResponse,
   errors: [Forbidden],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UserUnblockUserError =
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | ForgejoOpError;
-/** Unblocks a user from the doer */
-export const userUnblockUser: API.OperationMethod<
-  UserUnblockUserRequest,
-  UserUnblockUserResponse,
-  UserUnblockUserError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UserUnblockUserRequest,
-  output: UserUnblockUserResponse,
-  errors: [Forbidden, NotFound, UnprocessableEntity],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));

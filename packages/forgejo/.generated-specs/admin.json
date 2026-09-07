@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.forgejo.admin#GetAdminRunnersRequest": {
@@ -496,7 +497,7 @@
         "smithy.api#documentation": "Delete a particular runner, no matter whether it is a global runner or scoped to an organization, user, or repository"
       }
     },
-    "com.forgejo.admin#AdminCronListRequest": {
+    "com.forgejo.admin#ListAdminCronRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -541,18 +542,18 @@
         "smithy.api#documentation": "Cron represents a Cron task"
       }
     },
-    "com.forgejo.admin#AdminCronListResponseBodyList": {
+    "com.forgejo.admin#ListAdminCronResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.admin#Cron"
       },
       "traits": {}
     },
-    "com.forgejo.admin#AdminCronListResponse": {
+    "com.forgejo.admin#ListAdminCronResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.admin#AdminCronListResponseBodyList",
+          "target": "com.forgejo.admin#ListAdminCronResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -563,13 +564,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.admin#AdminCronList": {
+    "com.forgejo.admin#ListAdminCron": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.admin#AdminCronListRequest"
+        "target": "com.forgejo.admin#ListAdminCronRequest"
       },
       "output": {
-        "target": "com.forgejo.admin#AdminCronListResponse"
+        "target": "com.forgejo.admin#ListAdminCronResponse"
       },
       "errors": [
         {
@@ -585,7 +586,7 @@
         "smithy.api#documentation": "List cron tasks"
       }
     },
-    "com.forgejo.admin#AdminCronRunRequest": {
+    "com.forgejo.admin#RunAdminCronRequest": {
       "type": "structure",
       "members": {
         "task": {
@@ -601,10 +602,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.admin#AdminCronRun": {
+    "com.forgejo.admin#RunAdminCron": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.admin#AdminCronRunRequest"
+        "target": "com.forgejo.admin#RunAdminCronRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2296,7 +2297,7 @@
         "smithy.api#documentation": "Deletes a quota rule"
       }
     },
-    "com.forgejo.admin#AdminUnadoptedListRequest": {
+    "com.forgejo.admin#ListAdminUnadoptedRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -2325,18 +2326,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.admin#AdminUnadoptedListResponseBodyList": {
+    "com.forgejo.admin#ListAdminUnadoptedResponseBodyList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.forgejo.admin#AdminUnadoptedListResponse": {
+    "com.forgejo.admin#ListAdminUnadoptedResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.admin#AdminUnadoptedListResponseBodyList",
+          "target": "com.forgejo.admin#ListAdminUnadoptedResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2347,13 +2348,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.admin#AdminUnadoptedList": {
+    "com.forgejo.admin#ListAdminUnadopted": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.admin#AdminUnadoptedListRequest"
+        "target": "com.forgejo.admin#ListAdminUnadoptedRequest"
       },
       "output": {
-        "target": "com.forgejo.admin#AdminUnadoptedListResponse"
+        "target": "com.forgejo.admin#ListAdminUnadoptedResponse"
       },
       "errors": [
         {
@@ -4538,10 +4539,10 @@
           "target": "com.forgejo.admin#DeleteAdminRunner"
         },
         {
-          "target": "com.forgejo.admin#AdminCronList"
+          "target": "com.forgejo.admin#ListAdminCron"
         },
         {
-          "target": "com.forgejo.admin#AdminCronRun"
+          "target": "com.forgejo.admin#RunAdminCron"
         },
         {
           "target": "com.forgejo.admin#AdminGetAllEmails"
@@ -4610,7 +4611,7 @@
           "target": "com.forgejo.admin#AdminDeleteQuotaRule"
         },
         {
-          "target": "com.forgejo.admin#AdminUnadoptedList"
+          "target": "com.forgejo.admin#ListAdminUnadopted"
         },
         {
           "target": "com.forgejo.admin#AdminAdoptRepository"

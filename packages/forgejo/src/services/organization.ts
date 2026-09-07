@@ -75,6 +75,69 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+/** possible values are `public` (default), `limited` or `private` */
+export type CreateOrgRequestVisibility = "public" | "limited" | "private";
+export const CreateOrgRequestVisibility = /*@__PURE__*/ S.String;
+
+export interface CreateOrgRequest {
+  description?: string;
+  email?: string;
+  full_name?: string;
+  location?: string;
+  repo_admin_change_team_access?: boolean;
+  username: string;
+  /** possible values are `public` (default), `limited` or `private` */
+  visibility?: CreateOrgRequestVisibility | (string & {});
+  website?: string;
+}
+export const CreateOrgRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    email: S.optional(S.String),
+    full_name: S.optional(S.String),
+    location: S.optional(S.String),
+    repo_admin_change_team_access: S.optional(S.Boolean),
+    username: S.String,
+    visibility: S.optional(CreateOrgRequestVisibility),
+    website: S.optional(S.String),
+  }).pipe(T.Http({ method: "POST", uri: "/orgs", code: 200 })),
+).annotate({
+  identifier: "CreateOrgRequest",
+}) as any as S.Schema<CreateOrgRequest>;
+
+/** Organization represents an organization */
+export interface Organization {
+  avatar_url?: string;
+  created?: string;
+  description?: string;
+  email?: string;
+  full_name?: string;
+  id: number;
+  location?: string;
+  name?: string;
+  repo_admin_change_team_access?: boolean;
+  /** deprecated */
+  username: string;
+  visibility?: string;
+  website?: string;
+}
+export const Organization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    avatar_url: S.optional(S.String),
+    created: S.optional(S.String),
+    description: S.optional(S.String),
+    email: S.optional(S.String),
+    full_name: S.optional(S.String),
+    id: S.Number,
+    location: S.optional(S.String),
+    name: S.optional(S.String),
+    repo_admin_change_team_access: S.optional(S.Boolean),
+    username: S.String,
+    visibility: S.optional(S.String),
+    website: S.optional(S.String),
+  }),
+).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
+
 /** ObjectFormatName of the underlying git repository */
 export type CreateOrgRepoRequestObjectFormatName = "sha1" | "sha256";
 export const CreateOrgRepoRequestObjectFormatName = /*@__PURE__*/ S.String;
@@ -276,39 +339,6 @@ export const Permission = /*@__PURE__*/ S.suspend(() =>
     push: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Permission" }) as any as S.Schema<Permission>;
-
-/** Organization represents an organization */
-export interface Organization {
-  avatar_url?: string;
-  created?: string;
-  description?: string;
-  email?: string;
-  full_name?: string;
-  id: number;
-  location?: string;
-  name?: string;
-  repo_admin_change_team_access?: boolean;
-  /** deprecated */
-  username: string;
-  visibility?: string;
-  website?: string;
-}
-export const Organization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    avatar_url: S.optional(S.String),
-    created: S.optional(S.String),
-    description: S.optional(S.String),
-    email: S.optional(S.String),
-    full_name: S.optional(S.String),
-    id: S.Number,
-    location: S.optional(S.String),
-    name: S.optional(S.String),
-    repo_admin_change_team_access: S.optional(S.Boolean),
-    username: S.String,
-    visibility: S.optional(S.String),
-    website: S.optional(S.String),
-  }),
-).annotate({ identifier: "Organization" }) as any as S.Schema<Organization>;
 
 export type TeamPermission = "none" | "read" | "write" | "admin" | "owner";
 export const TeamPermission = /*@__PURE__*/ S.String;
@@ -548,6 +578,25 @@ export const CreateOrgVariableResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateOrgVariableResponse",
 }) as any as S.Schema<CreateOrgVariableResponse>;
 
+export interface DeleteOrgRequest {
+  /** organization that is to be deleted */
+  org: string;
+}
+export const DeleteOrgRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/orgs/{org}", code: 200 })),
+).annotate({
+  identifier: "DeleteOrgRequest",
+}) as any as S.Schema<DeleteOrgRequest>;
+
+export interface DeleteOrgResponse {}
+export const DeleteOrgResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOrgResponse",
+}) as any as S.Schema<DeleteOrgResponse>;
+
 export interface DeleteOrgRunnerRequest {
   /** name of the organization */
   org: string;
@@ -631,6 +680,45 @@ export const DeleteOrgVariableResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteOrgVariableResponse",
 }) as any as S.Schema<DeleteOrgVariableResponse>;
+
+/** possible values are `public`, `limited` or `private` */
+export type EditOrgRequestVisibility = "public" | "limited" | "private";
+export const EditOrgRequestVisibility = /*@__PURE__*/ S.String;
+
+export interface EditOrgRequest {
+  /** name of the organization to edit */
+  org: string;
+  description?: string;
+  email?: string;
+  full_name?: string;
+  location?: string;
+  repo_admin_change_team_access?: boolean;
+  /** possible values are `public`, `limited` or `private` */
+  visibility?: EditOrgRequestVisibility | (string & {});
+  website?: string;
+}
+export const EditOrgRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+    description: S.optional(S.String),
+    email: S.optional(S.String),
+    full_name: S.optional(S.String),
+    location: S.optional(S.String),
+    repo_admin_change_team_access: S.optional(S.Boolean),
+    visibility: S.optional(EditOrgRequestVisibility),
+    website: S.optional(S.String),
+  }).pipe(T.Http({ method: "PATCH", uri: "/orgs/{org}", code: 200 })),
+).annotate({ identifier: "EditOrgRequest" }) as any as S.Schema<EditOrgRequest>;
+
+export interface GetOrgRequest {
+  /** name of the organization to get */
+  org: string;
+}
+export const GetOrgRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    org: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/orgs/{org}", code: 200 })),
+).annotate({ identifier: "GetOrgRequest" }) as any as S.Schema<GetOrgRequest>;
 
 export interface GetOrgRunnerRequest {
   /** name of the organization */
@@ -934,36 +1022,6 @@ export const OrgConcealMemberResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrgConcealMemberResponse",
 }) as any as S.Schema<OrgConcealMemberResponse>;
 
-/** possible values are `public` (default), `limited` or `private` */
-export type OrgCreateRequestVisibility = "public" | "limited" | "private";
-export const OrgCreateRequestVisibility = /*@__PURE__*/ S.String;
-
-export interface OrgCreateRequest {
-  description?: string;
-  email?: string;
-  full_name?: string;
-  location?: string;
-  repo_admin_change_team_access?: boolean;
-  username: string;
-  /** possible values are `public` (default), `limited` or `private` */
-  visibility?: OrgCreateRequestVisibility | (string & {});
-  website?: string;
-}
-export const OrgCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    email: S.optional(S.String),
-    full_name: S.optional(S.String),
-    location: S.optional(S.String),
-    repo_admin_change_team_access: S.optional(S.Boolean),
-    username: S.String,
-    visibility: S.optional(OrgCreateRequestVisibility),
-    website: S.optional(S.String),
-  }).pipe(T.Http({ method: "POST", uri: "/orgs", code: 200 })),
-).annotate({
-  identifier: "OrgCreateRequest",
-}) as any as S.Schema<OrgCreateRequest>;
-
 /** CreateHookOptionConfig has all config options in it required are "content_type" and "url" Required */
 export type CreateHookOptionConfig = { [key: string]: string | undefined };
 export const CreateHookOptionConfig = /*@__PURE__*/ S.Record(
@@ -1145,25 +1203,6 @@ export const OrgCreateTeamRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrgCreateTeamRequest",
 }) as any as S.Schema<OrgCreateTeamRequest>;
 
-export interface OrgDeleteRequest {
-  /** organization that is to be deleted */
-  org: string;
-}
-export const OrgDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/orgs/{org}", code: 200 })),
-).annotate({
-  identifier: "OrgDeleteRequest",
-}) as any as S.Schema<OrgDeleteRequest>;
-
-export interface OrgDeleteResponse {}
-export const OrgDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OrgDeleteResponse",
-}) as any as S.Schema<OrgDeleteResponse>;
-
 export interface OrgDeleteAvatarRequest {
   /** name of the organization */
   org: string;
@@ -1278,35 +1317,6 @@ export const OrgDeleteTeamResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "OrgDeleteTeamResponse",
 }) as any as S.Schema<OrgDeleteTeamResponse>;
 
-/** possible values are `public`, `limited` or `private` */
-export type OrgEditRequestVisibility = "public" | "limited" | "private";
-export const OrgEditRequestVisibility = /*@__PURE__*/ S.String;
-
-export interface OrgEditRequest {
-  /** name of the organization to edit */
-  org: string;
-  description?: string;
-  email?: string;
-  full_name?: string;
-  location?: string;
-  repo_admin_change_team_access?: boolean;
-  /** possible values are `public`, `limited` or `private` */
-  visibility?: OrgEditRequestVisibility | (string & {});
-  website?: string;
-}
-export const OrgEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-    description: S.optional(S.String),
-    email: S.optional(S.String),
-    full_name: S.optional(S.String),
-    location: S.optional(S.String),
-    repo_admin_change_team_access: S.optional(S.Boolean),
-    visibility: S.optional(OrgEditRequestVisibility),
-    website: S.optional(S.String),
-  }).pipe(T.Http({ method: "PATCH", uri: "/orgs/{org}", code: 200 })),
-).annotate({ identifier: "OrgEditRequest" }) as any as S.Schema<OrgEditRequest>;
-
 export type OrgEditHookRequestConfigMap = { [key: string]: string | undefined };
 export const OrgEditHookRequestConfigMap = /*@__PURE__*/ S.Record(
   S.String,
@@ -1413,16 +1423,6 @@ export const OrgEditTeamRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OrgEditTeamRequest",
 }) as any as S.Schema<OrgEditTeamRequest>;
-
-export interface OrgGetRequest {
-  /** name of the organization to get */
-  org: string;
-}
-export const OrgGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    org: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/orgs/{org}", code: 200 })),
-).annotate({ identifier: "OrgGetRequest" }) as any as S.Schema<OrgGetRequest>;
 
 export interface OrgGetAllRequest {
   /** page number of results to return (1-based) */
@@ -2862,7 +2862,7 @@ export const RenameOrgResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RenameOrgResponse",
 }) as any as S.Schema<RenameOrgResponse>;
 
-export interface TeamSearchRequest {
+export interface SearchTeamRequest {
   /** name of the organization */
   org: string;
   /** keywords to search */
@@ -2874,7 +2874,7 @@ export interface TeamSearchRequest {
   /** page size of results */
   limit?: number;
 }
-export const TeamSearchRequest = /*@__PURE__*/ S.suspend(() =>
+export const SearchTeamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     org: S.String.pipe(T.Label()),
     q: S.optional(S.String.pipe(T.Query())),
@@ -2885,26 +2885,26 @@ export const TeamSearchRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/orgs/{org}/teams/search", code: 200 }),
   ),
 ).annotate({
-  identifier: "TeamSearchRequest",
-}) as any as S.Schema<TeamSearchRequest>;
+  identifier: "SearchTeamRequest",
+}) as any as S.Schema<SearchTeamRequest>;
 
-export type TeamSearchResponseDataList = Array<Team>;
-export const TeamSearchResponseDataList = /*@__PURE__*/ S.Array(
+export type SearchTeamResponseDataList = Array<Team>;
+export const SearchTeamResponseDataList = /*@__PURE__*/ S.Array(
   Team,
-) as any as S.Schema<TeamSearchResponseDataList>;
+) as any as S.Schema<SearchTeamResponseDataList>;
 
-export interface TeamSearchResponse {
-  data?: TeamSearchResponseDataList;
+export interface SearchTeamResponse {
+  data?: SearchTeamResponseDataList;
   ok?: boolean;
 }
-export const TeamSearchResponse = /*@__PURE__*/ S.suspend(() =>
+export const SearchTeamResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: S.optional(TeamSearchResponseDataList),
+    data: S.optional(SearchTeamResponseDataList),
     ok: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "TeamSearchResponse",
-}) as any as S.Schema<TeamSearchResponse>;
+  identifier: "SearchTeamResponse",
+}) as any as S.Schema<SearchTeamResponse>;
 
 export interface UpdateOrgSecretRequest {
   /** name of organization */
@@ -2971,6 +2971,21 @@ export const UpdateOrgVariableResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateOrgVariableResponse",
 }) as any as S.Schema<UpdateOrgVariableResponse>;
 
+export type CreateOrgError = Forbidden | UnprocessableEntity | ForgejoOpError;
+/** Create an organization */
+export const createOrg: API.OperationMethod<
+  CreateOrgRequest,
+  Organization,
+  CreateOrgError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateOrgRequest,
+  output: Organization,
+  errors: [Forbidden, UnprocessableEntity],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateOrgRepoError =
   | BadRequest
   | Forbidden
@@ -3002,6 +3017,24 @@ export const createOrgVariable: API.OperationMethod<
   input: CreateOrgVariableRequest,
   output: CreateOrgVariableResponse,
   errors: [BadRequest, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOrgError =
+  | NotFound
+  | OrganizationOwnsRepositories
+  | ForgejoOpError;
+/** Delete an organization */
+export const deleteOrg: API.OperationMethod<
+  DeleteOrgRequest,
+  DeleteOrgResponse,
+  DeleteOrgError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOrgRequest,
+  output: DeleteOrgResponse,
+  errors: [NotFound, OrganizationOwnsRepositories],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -3047,6 +3080,36 @@ export const deleteOrgVariable: API.OperationMethod<
   input: DeleteOrgVariableRequest,
   output: DeleteOrgVariableResponse,
   errors: [BadRequest, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditOrgError = NotFound | UnprocessableEntity | ForgejoOpError;
+/** Edit an organization */
+export const editOrg: API.OperationMethod<
+  EditOrgRequest,
+  Organization,
+  EditOrgError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditOrgRequest,
+  output: Organization,
+  errors: [NotFound, UnprocessableEntity],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrgError = NotFound | ForgejoOpError;
+/** Get an organization */
+export const getOrg: API.OperationMethod<
+  GetOrgRequest,
+  Organization,
+  GetOrgError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrgRequest,
+  output: Organization,
+  errors: [NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -3194,21 +3257,6 @@ export const orgConcealMember: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OrgCreateError = Forbidden | UnprocessableEntity | ForgejoOpError;
-/** Create an organization */
-export const orgCreate: API.OperationMethod<
-  OrgCreateRequest,
-  Organization,
-  OrgCreateError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrgCreateRequest,
-  output: Organization,
-  errors: [Forbidden, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OrgCreateHookError = NotFound | ForgejoOpError;
 /** Create a hook */
 export const orgCreateHook: API.OperationMethod<
@@ -3256,24 +3304,6 @@ export const orgCreateTeam: API.OperationMethod<
   input: OrgCreateTeamRequest,
   output: Team,
   errors: [NotFound, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrgDeleteError =
-  | NotFound
-  | OrganizationOwnsRepositories
-  | ForgejoOpError;
-/** Delete an organization */
-export const orgDelete: API.OperationMethod<
-  OrgDeleteRequest,
-  OrgDeleteResponse,
-  OrgDeleteError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrgDeleteRequest,
-  output: OrgDeleteResponse,
-  errors: [NotFound, OrganizationOwnsRepositories],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -3353,21 +3383,6 @@ export const orgDeleteTeam: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OrgEditError = NotFound | UnprocessableEntity | ForgejoOpError;
-/** Edit an organization */
-export const orgEdit: API.OperationMethod<
-  OrgEditRequest,
-  Organization,
-  OrgEditError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrgEditRequest,
-  output: Organization,
-  errors: [NotFound, UnprocessableEntity],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OrgEditHookError = NotFound | ForgejoOpError;
 /** Update a hook */
 export const orgEditHook: API.OperationMethod<
@@ -3408,21 +3423,6 @@ export const orgEditTeam: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: OrgEditTeamRequest,
   output: Team,
-  errors: [NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrgGetError = NotFound | ForgejoOpError;
-/** Get an organization */
-export const orgGet: API.OperationMethod<
-  OrgGetRequest,
-  Organization,
-  OrgGetError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrgGetRequest,
-  output: Organization,
   errors: [NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
@@ -3962,16 +3962,16 @@ export const renameOrg: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TeamSearchError = NotFound | ForgejoOpError;
+export type SearchTeamError = NotFound | ForgejoOpError;
 /** Search for teams within an organization */
-export const teamSearch: API.OperationMethod<
-  TeamSearchRequest,
-  TeamSearchResponse,
-  TeamSearchError,
+export const searchTeam: API.OperationMethod<
+  SearchTeamRequest,
+  SearchTeamResponse,
+  SearchTeamError,
   ForgejoOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TeamSearchRequest,
-  output: TeamSearchResponse,
+  input: SearchTeamRequest,
+  output: SearchTeamResponse,
   errors: [NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,

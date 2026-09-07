@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.forgejo.organization#OrgGetAllRequest": {
@@ -129,7 +130,7 @@
         "smithy.api#documentation": "List all organizations"
       }
     },
-    "com.forgejo.organization#OrgCreateRequestVisibility": {
+    "com.forgejo.organization#CreateOrgRequestVisibility": {
       "type": "enum",
       "members": {
         "PUBLIC": {
@@ -155,7 +156,7 @@
         "smithy.api#documentation": "possible values are `public` (default), `limited` or `private`"
       }
     },
-    "com.forgejo.organization#OrgCreateRequest": {
+    "com.forgejo.organization#CreateOrgRequest": {
       "type": "structure",
       "members": {
         "description": {
@@ -180,7 +181,7 @@
           }
         },
         "visibility": {
-          "target": "com.forgejo.organization#OrgCreateRequestVisibility",
+          "target": "com.forgejo.organization#CreateOrgRequestVisibility",
           "traits": {
             "smithy.api#documentation": "possible values are `public` (default), `limited` or `private`"
           }
@@ -193,10 +194,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.organization#OrgCreate": {
+    "com.forgejo.organization#CreateOrg": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.organization#OrgCreateRequest"
+        "target": "com.forgejo.organization#CreateOrgRequest"
       },
       "output": {
         "target": "com.forgejo.organization#Organization"
@@ -218,7 +219,7 @@
         "smithy.api#documentation": "Create an organization"
       }
     },
-    "com.forgejo.organization#OrgGetRequest": {
+    "com.forgejo.organization#GetOrgRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -234,10 +235,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.organization#OrgGet": {
+    "com.forgejo.organization#GetOrg": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.organization#OrgGetRequest"
+        "target": "com.forgejo.organization#GetOrgRequest"
       },
       "output": {
         "target": "com.forgejo.organization#Organization"
@@ -256,7 +257,7 @@
         "smithy.api#documentation": "Get an organization"
       }
     },
-    "com.forgejo.organization#OrgEditRequestVisibility": {
+    "com.forgejo.organization#EditOrgRequestVisibility": {
       "type": "enum",
       "members": {
         "PUBLIC": {
@@ -282,7 +283,7 @@
         "smithy.api#documentation": "possible values are `public`, `limited` or `private`"
       }
     },
-    "com.forgejo.organization#OrgEditRequest": {
+    "com.forgejo.organization#EditOrgRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -309,7 +310,7 @@
           "target": "smithy.api#Boolean"
         },
         "visibility": {
-          "target": "com.forgejo.organization#OrgEditRequestVisibility",
+          "target": "com.forgejo.organization#EditOrgRequestVisibility",
           "traits": {
             "smithy.api#documentation": "possible values are `public`, `limited` or `private`"
           }
@@ -322,10 +323,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.organization#OrgEdit": {
+    "com.forgejo.organization#EditOrg": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.organization#OrgEditRequest"
+        "target": "com.forgejo.organization#EditOrgRequest"
       },
       "output": {
         "target": "com.forgejo.organization#Organization"
@@ -347,7 +348,7 @@
         "smithy.api#documentation": "Edit an organization"
       }
     },
-    "com.forgejo.organization#OrgDeleteRequest": {
+    "com.forgejo.organization#DeleteOrgRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -363,10 +364,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.organization#OrgDelete": {
+    "com.forgejo.organization#DeleteOrg": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.organization#OrgDeleteRequest"
+        "target": "com.forgejo.organization#DeleteOrgRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5060,7 +5061,7 @@
         "smithy.api#documentation": "Create a team"
       }
     },
-    "com.forgejo.organization#TeamSearchRequest": {
+    "com.forgejo.organization#SearchTeamRequest": {
       "type": "structure",
       "members": {
         "org": {
@@ -5104,18 +5105,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.organization#TeamSearchResponseDataList": {
+    "com.forgejo.organization#SearchTeamResponseDataList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.organization#Team"
       },
       "traits": {}
     },
-    "com.forgejo.organization#TeamSearchResponse": {
+    "com.forgejo.organization#SearchTeamResponse": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.forgejo.organization#TeamSearchResponseDataList"
+          "target": "com.forgejo.organization#SearchTeamResponseDataList"
         },
         "ok": {
           "target": "smithy.api#Boolean"
@@ -5125,13 +5126,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.organization#TeamSearch": {
+    "com.forgejo.organization#SearchTeam": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.organization#TeamSearchRequest"
+        "target": "com.forgejo.organization#SearchTeamRequest"
       },
       "output": {
-        "target": "com.forgejo.organization#TeamSearchResponse"
+        "target": "com.forgejo.organization#SearchTeamResponse"
       },
       "errors": [
         {
@@ -6201,16 +6202,16 @@
           "target": "com.forgejo.organization#OrgGetAll"
         },
         {
-          "target": "com.forgejo.organization#OrgCreate"
+          "target": "com.forgejo.organization#CreateOrg"
         },
         {
-          "target": "com.forgejo.organization#OrgGet"
+          "target": "com.forgejo.organization#GetOrg"
         },
         {
-          "target": "com.forgejo.organization#OrgEdit"
+          "target": "com.forgejo.organization#EditOrg"
         },
         {
-          "target": "com.forgejo.organization#OrgDelete"
+          "target": "com.forgejo.organization#DeleteOrg"
         },
         {
           "target": "com.forgejo.organization#GetOrgRunners"
@@ -6348,7 +6349,7 @@
           "target": "com.forgejo.organization#OrgCreateTeam"
         },
         {
-          "target": "com.forgejo.organization#TeamSearch"
+          "target": "com.forgejo.organization#SearchTeam"
         },
         {
           "target": "com.forgejo.organization#OrgUnblockUser"

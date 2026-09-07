@@ -1015,70 +1015,6 @@ export const AccessToken = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "AccessToken" }) as any as S.Schema<AccessToken>;
 
-export interface AdminCronListRequest {
-  /** page number of results to return (1-based) */
-  page?: number;
-  /** page size of results */
-  limit?: number;
-}
-export const AdminCronListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/admin/cron", code: 200 })),
-).annotate({
-  identifier: "AdminCronListRequest",
-}) as any as S.Schema<AdminCronListRequest>;
-
-/** Cron represents a Cron task */
-export interface Cron {
-  exec_times?: number;
-  name?: string;
-  next?: string;
-  prev?: string;
-  schedule?: string;
-}
-export const Cron = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    exec_times: S.optional(S.Number),
-    name: S.optional(S.String),
-    next: S.optional(S.String),
-    prev: S.optional(S.String),
-    schedule: S.optional(S.String),
-  }),
-).annotate({ identifier: "Cron" }) as any as S.Schema<Cron>;
-
-export type AdminCronListResponseBodyList = Array<Cron>;
-export const AdminCronListResponseBodyList = /*@__PURE__*/ S.Array(
-  Cron,
-) as any as S.Schema<AdminCronListResponseBodyList>;
-
-export type AdminCronListResponse = AdminCronListResponseBodyList;
-export const AdminCronListResponse = /*@__PURE__*/ S.suspend(() =>
-  AdminCronListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "AdminCronListResponse",
-}) as any as S.Schema<AdminCronListResponse>;
-
-export interface AdminCronRunRequest {
-  /** task to run */
-  task: string;
-}
-export const AdminCronRunRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    task: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "POST", uri: "/admin/cron/{task}", code: 200 })),
-).annotate({
-  identifier: "AdminCronRunRequest",
-}) as any as S.Schema<AdminCronRunRequest>;
-
-export interface AdminCronRunResponse {}
-export const AdminCronRunResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AdminCronRunResponse",
-}) as any as S.Schema<AdminCronRunResponse>;
-
 export interface AdminDeleteHookRequest {
   /** id of the hook to delete */
   id: number;
@@ -2089,36 +2025,6 @@ export const AdminSetUserQuotaGroupsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AdminSetUserQuotaGroupsResponse",
 }) as any as S.Schema<AdminSetUserQuotaGroupsResponse>;
 
-export interface AdminUnadoptedListRequest {
-  /** page number of results to return (1-based) */
-  page?: number;
-  /** page size of results */
-  limit?: number;
-  /** pattern of repositories to search for */
-  pattern?: string;
-}
-export const AdminUnadoptedListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    pattern: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/admin/unadopted", code: 200 })),
-).annotate({
-  identifier: "AdminUnadoptedListRequest",
-}) as any as S.Schema<AdminUnadoptedListRequest>;
-
-export type AdminUnadoptedListResponseBodyList = Array<string>;
-export const AdminUnadoptedListResponseBodyList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AdminUnadoptedListResponseBodyList>;
-
-export type AdminUnadoptedListResponse = AdminUnadoptedListResponseBodyList;
-export const AdminUnadoptedListResponse = /*@__PURE__*/ S.suspend(() =>
-  AdminUnadoptedListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "AdminUnadoptedListResponse",
-}) as any as S.Schema<AdminUnadoptedListResponse>;
-
 export interface DeleteAdminRunnerRequest {
   /** ID of the runner */
   runner_id: string;
@@ -2240,6 +2146,81 @@ export const GetAdminRunnersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetAdminRunnersResponse",
 }) as any as S.Schema<GetAdminRunnersResponse>;
 
+export interface ListAdminCronRequest {
+  /** page number of results to return (1-based) */
+  page?: number;
+  /** page size of results */
+  limit?: number;
+}
+export const ListAdminCronRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/admin/cron", code: 200 })),
+).annotate({
+  identifier: "ListAdminCronRequest",
+}) as any as S.Schema<ListAdminCronRequest>;
+
+/** Cron represents a Cron task */
+export interface Cron {
+  exec_times?: number;
+  name?: string;
+  next?: string;
+  prev?: string;
+  schedule?: string;
+}
+export const Cron = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    exec_times: S.optional(S.Number),
+    name: S.optional(S.String),
+    next: S.optional(S.String),
+    prev: S.optional(S.String),
+    schedule: S.optional(S.String),
+  }),
+).annotate({ identifier: "Cron" }) as any as S.Schema<Cron>;
+
+export type ListAdminCronResponseBodyList = Array<Cron>;
+export const ListAdminCronResponseBodyList = /*@__PURE__*/ S.Array(
+  Cron,
+) as any as S.Schema<ListAdminCronResponseBodyList>;
+
+export type ListAdminCronResponse = ListAdminCronResponseBodyList;
+export const ListAdminCronResponse = /*@__PURE__*/ S.suspend(() =>
+  ListAdminCronResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListAdminCronResponse",
+}) as any as S.Schema<ListAdminCronResponse>;
+
+export interface ListAdminUnadoptedRequest {
+  /** page number of results to return (1-based) */
+  page?: number;
+  /** page size of results */
+  limit?: number;
+  /** pattern of repositories to search for */
+  pattern?: string;
+}
+export const ListAdminUnadoptedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    pattern: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/admin/unadopted", code: 200 })),
+).annotate({
+  identifier: "ListAdminUnadoptedRequest",
+}) as any as S.Schema<ListAdminUnadoptedRequest>;
+
+export type ListAdminUnadoptedResponseBodyList = Array<string>;
+export const ListAdminUnadoptedResponseBodyList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListAdminUnadoptedResponseBodyList>;
+
+export type ListAdminUnadoptedResponse = ListAdminUnadoptedResponseBodyList;
+export const ListAdminUnadoptedResponse = /*@__PURE__*/ S.suspend(() =>
+  ListAdminUnadoptedResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListAdminUnadoptedResponse",
+}) as any as S.Schema<ListAdminUnadoptedResponse>;
+
 export interface RegisterAdminRunnerRequest {
   /** Description of the runner to register. */
   description?: string;
@@ -2272,6 +2253,25 @@ export const RegisterRunnerResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RegisterRunnerResponse",
 }) as any as S.Schema<RegisterRunnerResponse>;
+
+export interface RunAdminCronRequest {
+  /** task to run */
+  task: string;
+}
+export const RunAdminCronRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    task: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "POST", uri: "/admin/cron/{task}", code: 200 })),
+).annotate({
+  identifier: "RunAdminCronRequest",
+}) as any as S.Schema<RunAdminCronRequest>;
+
+export interface RunAdminCronResponse {}
+export const RunAdminCronResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RunAdminCronResponse",
+}) as any as S.Schema<RunAdminCronResponse>;
 
 export type AdminAddRuleToQuotaGroupError =
   | BadRequest
@@ -2476,36 +2476,6 @@ export const adminCreateUserAccessToken: API.OperationMethod<
   input: AdminCreateUserAccessTokenRequest,
   output: AccessToken,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AdminCronListError = Forbidden | ForgejoOpError;
-/** List cron tasks */
-export const adminCronList: API.OperationMethod<
-  AdminCronListRequest,
-  AdminCronListResponse,
-  AdminCronListError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdminCronListRequest,
-  output: AdminCronListResponse,
-  errors: [Forbidden],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AdminCronRunError = NotFound | ForgejoOpError;
-/** Run cron task */
-export const adminCronRun: API.OperationMethod<
-  AdminCronRunRequest,
-  AdminCronRunResponse,
-  AdminCronRunError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdminCronRunRequest,
-  output: AdminCronRunResponse,
-  errors: [NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));
@@ -3027,21 +2997,6 @@ export const adminSetUserQuotaGroups: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AdminUnadoptedListError = Forbidden | ForgejoOpError;
-/** List unadopted repositories */
-export const adminUnadoptedList: API.OperationMethod<
-  AdminUnadoptedListRequest,
-  AdminUnadoptedListResponse,
-  AdminUnadoptedListError,
-  ForgejoOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdminUnadoptedListRequest,
-  output: AdminUnadoptedListResponse,
-  errors: [Forbidden],
-  protocol: ForgejoProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteAdminRunnerError = BadRequest | NotFound | ForgejoOpError;
 /** Delete a particular runner, no matter whether it is a global runner or scoped to an organization, user, or repository */
 export const deleteAdminRunner: API.OperationMethod<
@@ -3087,6 +3042,36 @@ export const getAdminRunners: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListAdminCronError = Forbidden | ForgejoOpError;
+/** List cron tasks */
+export const listAdminCron: API.OperationMethod<
+  ListAdminCronRequest,
+  ListAdminCronResponse,
+  ListAdminCronError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAdminCronRequest,
+  output: ListAdminCronResponse,
+  errors: [Forbidden],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAdminUnadoptedError = Forbidden | ForgejoOpError;
+/** List unadopted repositories */
+export const listAdminUnadopted: API.OperationMethod<
+  ListAdminUnadoptedRequest,
+  ListAdminUnadoptedResponse,
+  ListAdminUnadoptedError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAdminUnadoptedRequest,
+  output: ListAdminUnadoptedResponse,
+  errors: [Forbidden],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RegisterAdminRunnerError = BadRequest | NotFound | ForgejoOpError;
 /** Register a new global runner */
 export const registerAdminRunner: API.OperationMethod<
@@ -3098,6 +3083,21 @@ export const registerAdminRunner: API.OperationMethod<
   input: RegisterAdminRunnerRequest,
   output: RegisterRunnerResponse,
   errors: [BadRequest, NotFound],
+  protocol: ForgejoProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunAdminCronError = NotFound | ForgejoOpError;
+/** Run cron task */
+export const runAdminCron: API.OperationMethod<
+  RunAdminCronRequest,
+  RunAdminCronResponse,
+  RunAdminCronError,
+  ForgejoOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunAdminCronRequest,
+  output: RunAdminCronResponse,
+  errors: [NotFound],
   protocol: ForgejoProtocol,
   retry: Retry.Retry,
 }));

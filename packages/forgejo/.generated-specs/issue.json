@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.forgejo.issue#IssueSearchIssuesRequestState": {
+    "com.forgejo.issue#SearchIssuesRequestState": {
       "type": "enum",
       "members": {
         "OPEN": {
@@ -41,7 +42,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueSearchIssuesRequestType": {
+    "com.forgejo.issue#SearchIssuesRequestType": {
       "type": "enum",
       "members": {
         "ISSUES": {
@@ -59,7 +60,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueSearchIssuesRequestSort": {
+    "com.forgejo.issue#SearchIssuesRequestSort": {
       "type": "enum",
       "members": {
         "RELEVANCE": {
@@ -119,11 +120,11 @@
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueSearchIssuesRequest": {
+    "com.forgejo.issue#SearchIssuesRequest": {
       "type": "structure",
       "members": {
         "state": {
-          "target": "com.forgejo.issue#IssueSearchIssuesRequestState",
+          "target": "com.forgejo.issue#SearchIssuesRequestState",
           "traits": {
             "smithy.api#httpQuery": "state",
             "smithy.api#documentation": "State of the issue"
@@ -158,7 +159,7 @@
           }
         },
         "type": {
-          "target": "com.forgejo.issue#IssueSearchIssuesRequestType",
+          "target": "com.forgejo.issue#SearchIssuesRequestType",
           "traits": {
             "smithy.api#httpQuery": "type",
             "smithy.api#documentation": "Filter by issue type"
@@ -242,7 +243,7 @@
           }
         },
         "sort": {
-          "target": "com.forgejo.issue#IssueSearchIssuesRequestSort",
+          "target": "com.forgejo.issue#SearchIssuesRequestSort",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "Type of sort"
@@ -656,18 +657,18 @@
         "smithy.api#documentation": "RepositoryMeta basic repository information"
       }
     },
-    "com.forgejo.issue#IssueSearchIssuesResponseBodyList": {
+    "com.forgejo.issue#SearchIssuesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.issue#Issue"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueSearchIssuesResponse": {
+    "com.forgejo.issue#SearchIssuesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.issue#IssueSearchIssuesResponseBodyList",
+          "target": "com.forgejo.issue#SearchIssuesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -678,13 +679,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.issue#IssueSearchIssues": {
+    "com.forgejo.issue#SearchIssues": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueSearchIssuesRequest"
+        "target": "com.forgejo.issue#SearchIssuesRequest"
       },
       "output": {
-        "target": "com.forgejo.issue#IssueSearchIssuesResponse"
+        "target": "com.forgejo.issue#SearchIssuesResponse"
       },
       "errors": [
         {
@@ -703,7 +704,7 @@
         "smithy.api#documentation": "Search for issues across the repositories that the user has access to"
       }
     },
-    "com.forgejo.issue#IssueListIssuesRequestState": {
+    "com.forgejo.issue#ListIssuesRequestState": {
       "type": "enum",
       "members": {
         "CLOSED": {
@@ -727,7 +728,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssuesRequestType": {
+    "com.forgejo.issue#ListIssuesRequestType": {
       "type": "enum",
       "members": {
         "ISSUES": {
@@ -745,7 +746,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssuesRequestSort": {
+    "com.forgejo.issue#ListIssuesRequestSort": {
       "type": "enum",
       "members": {
         "RELEVANCE": {
@@ -805,7 +806,7 @@
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssuesRequest": {
+    "com.forgejo.issue#ListIssuesRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -825,7 +826,7 @@
           }
         },
         "state": {
-          "target": "com.forgejo.issue#IssueListIssuesRequestState",
+          "target": "com.forgejo.issue#ListIssuesRequestState",
           "traits": {
             "smithy.api#httpQuery": "state",
             "smithy.api#documentation": "whether issue is open or closed"
@@ -846,7 +847,7 @@
           }
         },
         "type": {
-          "target": "com.forgejo.issue#IssueListIssuesRequestType",
+          "target": "com.forgejo.issue#ListIssuesRequestType",
           "traits": {
             "smithy.api#httpQuery": "type",
             "smithy.api#documentation": "filter by type (issues / pulls) if set"
@@ -909,7 +910,7 @@
           }
         },
         "sort": {
-          "target": "com.forgejo.issue#IssueListIssuesRequestSort",
+          "target": "com.forgejo.issue#ListIssuesRequestSort",
           "traits": {
             "smithy.api#httpQuery": "sort",
             "smithy.api#documentation": "Type of sort"
@@ -920,18 +921,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueListIssuesResponseBodyList": {
+    "com.forgejo.issue#ListIssuesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.issue#Issue"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssuesResponse": {
+    "com.forgejo.issue#ListIssuesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.issue#IssueListIssuesResponseBodyList",
+          "target": "com.forgejo.issue#ListIssuesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -942,13 +943,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.issue#IssueListIssues": {
+    "com.forgejo.issue#ListIssues": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueListIssuesRequest"
+        "target": "com.forgejo.issue#ListIssuesRequest"
       },
       "output": {
-        "target": "com.forgejo.issue#IssueListIssuesResponse"
+        "target": "com.forgejo.issue#ListIssuesResponse"
       },
       "errors": [
         {
@@ -967,14 +968,14 @@
         "smithy.api#documentation": "List a repository's issues"
       }
     },
-    "com.forgejo.issue#IssueCreateIssueRequestAssigneesList": {
+    "com.forgejo.issue#CreateIssueRequestAssigneesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueCreateIssueRequestLabelsList": {
+    "com.forgejo.issue#CreateIssueRequestLabelsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -983,7 +984,7 @@
         "smithy.api#documentation": "list of label ids"
       }
     },
-    "com.forgejo.issue#IssueCreateIssueRequest": {
+    "com.forgejo.issue#CreateIssueRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1009,7 +1010,7 @@
           }
         },
         "assignees": {
-          "target": "com.forgejo.issue#IssueCreateIssueRequestAssigneesList"
+          "target": "com.forgejo.issue#CreateIssueRequestAssigneesList"
         },
         "body": {
           "target": "smithy.api#String"
@@ -1021,7 +1022,7 @@
           "target": "smithy.api#String"
         },
         "labels": {
-          "target": "com.forgejo.issue#IssueCreateIssueRequestLabelsList",
+          "target": "com.forgejo.issue#CreateIssueRequestLabelsList",
           "traits": {
             "smithy.api#documentation": "list of label ids"
           }
@@ -1046,10 +1047,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueCreateIssue": {
+    "com.forgejo.issue#CreateIssue": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueCreateIssueRequest"
+        "target": "com.forgejo.issue#CreateIssueRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -1440,7 +1441,7 @@
         "smithy.api#documentation": "Delete a comment"
       }
     },
-    "com.forgejo.issue#IssueListIssueCommentAttachmentsRequest": {
+    "com.forgejo.issue#ListIssueCommentAttachmentsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1472,18 +1473,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueListIssueCommentAttachmentsResponseBodyList": {
+    "com.forgejo.issue#ListIssueCommentAttachmentsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.issue#Attachment"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssueCommentAttachmentsResponse": {
+    "com.forgejo.issue#ListIssueCommentAttachmentsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.issue#IssueListIssueCommentAttachmentsResponseBodyList",
+          "target": "com.forgejo.issue#ListIssueCommentAttachmentsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1494,13 +1495,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.issue#IssueListIssueCommentAttachments": {
+    "com.forgejo.issue#ListIssueCommentAttachments": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueListIssueCommentAttachmentsRequest"
+        "target": "com.forgejo.issue#ListIssueCommentAttachmentsRequest"
       },
       "output": {
-        "target": "com.forgejo.issue#IssueListIssueCommentAttachmentsResponse"
+        "target": "com.forgejo.issue#ListIssueCommentAttachmentsResponse"
       },
       "errors": [
         {
@@ -1516,7 +1517,7 @@
         "smithy.api#documentation": "List comment's attachments"
       }
     },
-    "com.forgejo.issue#IssueCreateIssueCommentAttachmentRequest": {
+    "com.forgejo.issue#CreateIssueCommentAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1562,10 +1563,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueCreateIssueCommentAttachment": {
+    "com.forgejo.issue#CreateIssueCommentAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueCreateIssueCommentAttachmentRequest"
+        "target": "com.forgejo.issue#CreateIssueCommentAttachmentRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Attachment"
@@ -1593,7 +1594,7 @@
         "smithy.api#documentation": "Create a comment attachment"
       }
     },
-    "com.forgejo.issue#IssueGetIssueCommentAttachmentRequest": {
+    "com.forgejo.issue#GetIssueCommentAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1633,10 +1634,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueGetIssueCommentAttachment": {
+    "com.forgejo.issue#GetIssueCommentAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueGetIssueCommentAttachmentRequest"
+        "target": "com.forgejo.issue#GetIssueCommentAttachmentRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Attachment"
@@ -1655,7 +1656,7 @@
         "smithy.api#documentation": "Get a comment attachment"
       }
     },
-    "com.forgejo.issue#IssueEditIssueCommentAttachmentRequest": {
+    "com.forgejo.issue#EditIssueCommentAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1704,10 +1705,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueEditIssueCommentAttachment": {
+    "com.forgejo.issue#EditIssueCommentAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueEditIssueCommentAttachmentRequest"
+        "target": "com.forgejo.issue#EditIssueCommentAttachmentRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Attachment"
@@ -1729,7 +1730,7 @@
         "smithy.api#documentation": "Edit a comment attachment"
       }
     },
-    "com.forgejo.issue#IssueDeleteIssueCommentAttachmentRequest": {
+    "com.forgejo.issue#DeleteIssueCommentAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -1769,10 +1770,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueDeleteIssueCommentAttachment": {
+    "com.forgejo.issue#DeleteIssueCommentAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueDeleteIssueCommentAttachmentRequest"
+        "target": "com.forgejo.issue#DeleteIssueCommentAttachmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2010,7 +2011,7 @@
         "smithy.api#documentation": "Remove a reaction from a comment of an issue"
       }
     },
-    "com.forgejo.issue#IssueGetIssueRequest": {
+    "com.forgejo.issue#GetIssueRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2042,10 +2043,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueGetIssue": {
+    "com.forgejo.issue#GetIssue": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueGetIssueRequest"
+        "target": "com.forgejo.issue#GetIssueRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -2064,14 +2065,14 @@
         "smithy.api#documentation": "Get an issue"
       }
     },
-    "com.forgejo.issue#IssueEditIssueRequestAssigneesList": {
+    "com.forgejo.issue#EditIssueRequestAssigneesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueEditIssueRequest": {
+    "com.forgejo.issue#EditIssueRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2105,7 +2106,7 @@
           }
         },
         "assignees": {
-          "target": "com.forgejo.issue#IssueEditIssueRequestAssigneesList"
+          "target": "com.forgejo.issue#EditIssueRequestAssigneesList"
         },
         "body": {
           "target": "smithy.api#String"
@@ -2136,10 +2137,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueEditIssue": {
+    "com.forgejo.issue#EditIssue": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueEditIssueRequest"
+        "target": "com.forgejo.issue#EditIssueRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -2161,7 +2162,7 @@
         "smithy.api#documentation": "Edit an issue. If using deadline only the date will be taken into account, and time of day ignored."
       }
     },
-    "com.forgejo.issue#IssueDeleteRequest": {
+    "com.forgejo.issue#DeleteIssueRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2193,10 +2194,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueDelete": {
+    "com.forgejo.issue#DeleteIssue": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueDeleteRequest"
+        "target": "com.forgejo.issue#DeleteIssueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2218,7 +2219,7 @@
         "smithy.api#documentation": "Delete an issue"
       }
     },
-    "com.forgejo.issue#IssueListIssueAttachmentsRequest": {
+    "com.forgejo.issue#ListIssueAttachmentsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2250,18 +2251,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueListIssueAttachmentsResponseBodyList": {
+    "com.forgejo.issue#ListIssueAttachmentsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.issue#Attachment"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssueAttachmentsResponse": {
+    "com.forgejo.issue#ListIssueAttachmentsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.issue#IssueListIssueAttachmentsResponseBodyList",
+          "target": "com.forgejo.issue#ListIssueAttachmentsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2272,13 +2273,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.issue#IssueListIssueAttachments": {
+    "com.forgejo.issue#ListIssueAttachments": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueListIssueAttachmentsRequest"
+        "target": "com.forgejo.issue#ListIssueAttachmentsRequest"
       },
       "output": {
-        "target": "com.forgejo.issue#IssueListIssueAttachmentsResponse"
+        "target": "com.forgejo.issue#ListIssueAttachmentsResponse"
       },
       "errors": [
         {
@@ -2294,7 +2295,7 @@
         "smithy.api#documentation": "List issue's attachments"
       }
     },
-    "com.forgejo.issue#IssueCreateIssueAttachmentRequest": {
+    "com.forgejo.issue#CreateIssueAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2340,10 +2341,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueCreateIssueAttachment": {
+    "com.forgejo.issue#CreateIssueAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueCreateIssueAttachmentRequest"
+        "target": "com.forgejo.issue#CreateIssueAttachmentRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Attachment"
@@ -2371,7 +2372,7 @@
         "smithy.api#documentation": "Create an issue attachment"
       }
     },
-    "com.forgejo.issue#IssueGetIssueAttachmentRequest": {
+    "com.forgejo.issue#GetIssueAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2411,10 +2412,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueGetIssueAttachment": {
+    "com.forgejo.issue#GetIssueAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueGetIssueAttachmentRequest"
+        "target": "com.forgejo.issue#GetIssueAttachmentRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Attachment"
@@ -2433,7 +2434,7 @@
         "smithy.api#documentation": "Get an issue attachment"
       }
     },
-    "com.forgejo.issue#IssueEditIssueAttachmentRequest": {
+    "com.forgejo.issue#EditIssueAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2482,10 +2483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueEditIssueAttachment": {
+    "com.forgejo.issue#EditIssueAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueEditIssueAttachmentRequest"
+        "target": "com.forgejo.issue#EditIssueAttachmentRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Attachment"
@@ -2507,7 +2508,7 @@
         "smithy.api#documentation": "Edit an issue attachment"
       }
     },
-    "com.forgejo.issue#IssueDeleteIssueAttachmentRequest": {
+    "com.forgejo.issue#DeleteIssueAttachmentRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2547,10 +2548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueDeleteIssueAttachment": {
+    "com.forgejo.issue#DeleteIssueAttachment": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueDeleteIssueAttachmentRequest"
+        "target": "com.forgejo.issue#DeleteIssueAttachmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2662,7 +2663,7 @@
         "smithy.api#documentation": "List issues that are blocked by this issue"
       }
     },
-    "com.forgejo.issue#IssueCreateIssueBlockingRequest": {
+    "com.forgejo.issue#CreateIssueBlockingRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2694,10 +2695,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueCreateIssueBlocking": {
+    "com.forgejo.issue#CreateIssueBlocking": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueCreateIssueBlockingRequest"
+        "target": "com.forgejo.issue#CreateIssueBlockingRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -2716,7 +2717,7 @@
         "smithy.api#documentation": "Block the issue given in the body by the issue in path"
       }
     },
-    "com.forgejo.issue#IssueRemoveIssueBlockingRequest": {
+    "com.forgejo.issue#RemoveIssueBlockingRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2748,10 +2749,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueRemoveIssueBlocking": {
+    "com.forgejo.issue#RemoveIssueBlocking": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueRemoveIssueBlockingRequest"
+        "target": "com.forgejo.issue#RemoveIssueBlockingRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -2936,7 +2937,7 @@
         "smithy.api#documentation": "Add a comment to an issue"
       }
     },
-    "com.forgejo.issue#IssueEditIssueDeadlineRequest": {
+    "com.forgejo.issue#EditIssueDeadlineRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -2985,10 +2986,10 @@
         "smithy.api#documentation": "IssueDeadline represents an issue deadline"
       }
     },
-    "com.forgejo.issue#IssueEditIssueDeadline": {
+    "com.forgejo.issue#EditIssueDeadline": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueEditIssueDeadlineRequest"
+        "target": "com.forgejo.issue#EditIssueDeadlineRequest"
       },
       "output": {
         "target": "com.forgejo.issue#IssueDeadline"
@@ -3010,7 +3011,7 @@
         "smithy.api#documentation": "Set an issue deadline. If set to null, the deadline is deleted. If using deadline only the date will be taken into account, and time of day ignored."
       }
     },
-    "com.forgejo.issue#IssueListIssueDependenciesRequest": {
+    "com.forgejo.issue#ListIssueDependenciesRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -3056,18 +3057,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueListIssueDependenciesResponseBodyList": {
+    "com.forgejo.issue#ListIssueDependenciesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.issue#Issue"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueListIssueDependenciesResponse": {
+    "com.forgejo.issue#ListIssueDependenciesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.issue#IssueListIssueDependenciesResponseBodyList",
+          "target": "com.forgejo.issue#ListIssueDependenciesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3078,13 +3079,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.issue#IssueListIssueDependencies": {
+    "com.forgejo.issue#ListIssueDependencies": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueListIssueDependenciesRequest"
+        "target": "com.forgejo.issue#ListIssueDependenciesRequest"
       },
       "output": {
-        "target": "com.forgejo.issue#IssueListIssueDependenciesResponse"
+        "target": "com.forgejo.issue#ListIssueDependenciesResponse"
       },
       "errors": [
         {
@@ -3100,7 +3101,7 @@
         "smithy.api#documentation": "List an issue's dependencies, i.e all issues that block this issue."
       }
     },
-    "com.forgejo.issue#IssueCreateIssueDependenciesRequest": {
+    "com.forgejo.issue#CreateIssueDependenciesRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -3132,10 +3133,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueCreateIssueDependencies": {
+    "com.forgejo.issue#CreateIssueDependencies": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueCreateIssueDependenciesRequest"
+        "target": "com.forgejo.issue#CreateIssueDependenciesRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -3157,7 +3158,7 @@
         "smithy.api#documentation": "Make the issue in the url depend on the issue in the form."
       }
     },
-    "com.forgejo.issue#IssueRemoveIssueDependenciesRequest": {
+    "com.forgejo.issue#RemoveIssueDependenciesRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -3189,10 +3190,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueRemoveIssueDependencies": {
+    "com.forgejo.issue#RemoveIssueDependencies": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueRemoveIssueDependenciesRequest"
+        "target": "com.forgejo.issue#RemoveIssueDependenciesRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Issue"
@@ -3794,7 +3795,7 @@
         "smithy.api#documentation": "Moves the Pin to the given Position"
       }
     },
-    "com.forgejo.issue#IssueGetIssueReactionsRequest": {
+    "com.forgejo.issue#GetIssueReactionsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -3840,18 +3841,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueGetIssueReactionsResponseBodyList": {
+    "com.forgejo.issue#GetIssueReactionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.forgejo.issue#Reaction"
       },
       "traits": {}
     },
-    "com.forgejo.issue#IssueGetIssueReactionsResponse": {
+    "com.forgejo.issue#GetIssueReactionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.forgejo.issue#IssueGetIssueReactionsResponseBodyList",
+          "target": "com.forgejo.issue#GetIssueReactionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3862,13 +3863,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.forgejo.issue#IssueGetIssueReactions": {
+    "com.forgejo.issue#GetIssueReactions": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueGetIssueReactionsRequest"
+        "target": "com.forgejo.issue#GetIssueReactionsRequest"
       },
       "output": {
-        "target": "com.forgejo.issue#IssueGetIssueReactionsResponse"
+        "target": "com.forgejo.issue#GetIssueReactionsResponse"
       },
       "errors": [
         {
@@ -3887,7 +3888,7 @@
         "smithy.api#documentation": "Get a list reactions of an issue"
       }
     },
-    "com.forgejo.issue#IssuePostIssueReactionRequest": {
+    "com.forgejo.issue#PostIssueReactionRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -3922,10 +3923,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssuePostIssueReaction": {
+    "com.forgejo.issue#PostIssueReaction": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssuePostIssueReactionRequest"
+        "target": "com.forgejo.issue#PostIssueReactionRequest"
       },
       "output": {
         "target": "com.forgejo.issue#Reaction"
@@ -3947,7 +3948,7 @@
         "smithy.api#documentation": "Add a reaction to an issue"
       }
     },
-    "com.forgejo.issue#IssueDeleteIssueReactionRequest": {
+    "com.forgejo.issue#DeleteIssueReactionRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -3982,10 +3983,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.forgejo.issue#IssueDeleteIssueReaction": {
+    "com.forgejo.issue#DeleteIssueReaction": {
       "type": "operation",
       "input": {
-        "target": "com.forgejo.issue#IssueDeleteIssueReactionRequest"
+        "target": "com.forgejo.issue#DeleteIssueReactionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5988,13 +5989,13 @@
       "version": "16.0.3",
       "operations": [
         {
-          "target": "com.forgejo.issue#IssueSearchIssues"
+          "target": "com.forgejo.issue#SearchIssues"
         },
         {
-          "target": "com.forgejo.issue#IssueListIssues"
+          "target": "com.forgejo.issue#ListIssues"
         },
         {
-          "target": "com.forgejo.issue#IssueCreateIssue"
+          "target": "com.forgejo.issue#CreateIssue"
         },
         {
           "target": "com.forgejo.issue#IssueGetRepoComments"
@@ -6009,19 +6010,19 @@
           "target": "com.forgejo.issue#IssueDeleteComment"
         },
         {
-          "target": "com.forgejo.issue#IssueListIssueCommentAttachments"
+          "target": "com.forgejo.issue#ListIssueCommentAttachments"
         },
         {
-          "target": "com.forgejo.issue#IssueCreateIssueCommentAttachment"
+          "target": "com.forgejo.issue#CreateIssueCommentAttachment"
         },
         {
-          "target": "com.forgejo.issue#IssueGetIssueCommentAttachment"
+          "target": "com.forgejo.issue#GetIssueCommentAttachment"
         },
         {
-          "target": "com.forgejo.issue#IssueEditIssueCommentAttachment"
+          "target": "com.forgejo.issue#EditIssueCommentAttachment"
         },
         {
-          "target": "com.forgejo.issue#IssueDeleteIssueCommentAttachment"
+          "target": "com.forgejo.issue#DeleteIssueCommentAttachment"
         },
         {
           "target": "com.forgejo.issue#IssueGetCommentReactions"
@@ -6033,37 +6034,37 @@
           "target": "com.forgejo.issue#IssueDeleteCommentReaction"
         },
         {
-          "target": "com.forgejo.issue#IssueGetIssue"
+          "target": "com.forgejo.issue#GetIssue"
         },
         {
-          "target": "com.forgejo.issue#IssueEditIssue"
+          "target": "com.forgejo.issue#EditIssue"
         },
         {
-          "target": "com.forgejo.issue#IssueDelete"
+          "target": "com.forgejo.issue#DeleteIssue"
         },
         {
-          "target": "com.forgejo.issue#IssueListIssueAttachments"
+          "target": "com.forgejo.issue#ListIssueAttachments"
         },
         {
-          "target": "com.forgejo.issue#IssueCreateIssueAttachment"
+          "target": "com.forgejo.issue#CreateIssueAttachment"
         },
         {
-          "target": "com.forgejo.issue#IssueGetIssueAttachment"
+          "target": "com.forgejo.issue#GetIssueAttachment"
         },
         {
-          "target": "com.forgejo.issue#IssueEditIssueAttachment"
+          "target": "com.forgejo.issue#EditIssueAttachment"
         },
         {
-          "target": "com.forgejo.issue#IssueDeleteIssueAttachment"
+          "target": "com.forgejo.issue#DeleteIssueAttachment"
         },
         {
           "target": "com.forgejo.issue#IssueListBlocks"
         },
         {
-          "target": "com.forgejo.issue#IssueCreateIssueBlocking"
+          "target": "com.forgejo.issue#CreateIssueBlocking"
         },
         {
-          "target": "com.forgejo.issue#IssueRemoveIssueBlocking"
+          "target": "com.forgejo.issue#RemoveIssueBlocking"
         },
         {
           "target": "com.forgejo.issue#IssueGetComments"
@@ -6072,16 +6073,16 @@
           "target": "com.forgejo.issue#IssueCreateComment"
         },
         {
-          "target": "com.forgejo.issue#IssueEditIssueDeadline"
+          "target": "com.forgejo.issue#EditIssueDeadline"
         },
         {
-          "target": "com.forgejo.issue#IssueListIssueDependencies"
+          "target": "com.forgejo.issue#ListIssueDependencies"
         },
         {
-          "target": "com.forgejo.issue#IssueCreateIssueDependencies"
+          "target": "com.forgejo.issue#CreateIssueDependencies"
         },
         {
-          "target": "com.forgejo.issue#IssueRemoveIssueDependencies"
+          "target": "com.forgejo.issue#RemoveIssueDependencies"
         },
         {
           "target": "com.forgejo.issue#IssueGetLabels"
@@ -6108,13 +6109,13 @@
           "target": "com.forgejo.issue#MoveIssuePin"
         },
         {
-          "target": "com.forgejo.issue#IssueGetIssueReactions"
+          "target": "com.forgejo.issue#GetIssueReactions"
         },
         {
-          "target": "com.forgejo.issue#IssuePostIssueReaction"
+          "target": "com.forgejo.issue#PostIssueReaction"
         },
         {
-          "target": "com.forgejo.issue#IssueDeleteIssueReaction"
+          "target": "com.forgejo.issue#DeleteIssueReaction"
         },
         {
           "target": "com.forgejo.issue#IssueDeleteStopWatch"
