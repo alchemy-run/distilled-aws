@@ -267,6 +267,12 @@
     },
     {
       "path": "./packages/argocd/tsconfig.scripts.json"
+    },
+    {
+      "path": "./packages/chronosphere/tsconfig.json"
+    },
+    {
+      "path": "./packages/chronosphere/tsconfig.scripts.json"
     }
   ]
 }

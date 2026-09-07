@@ -46,6 +46,7 @@ export const SPEC_REPOS: readonly SpecRepo[] = [
   { package: "aws" },
   { package: "axiom" },
   { package: "azure" },
+  { package: "chronosphere" },
   { package: "clerk" },
   {
     package: "cloudflare",
