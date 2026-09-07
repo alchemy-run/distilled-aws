@@ -12,7 +12,31 @@ import * as Retry from "../retry.ts";
 
 export type { SurrealdbOpError, SurrealdbOpContext };
 
-export interface DeleteKeyTableRequest {
+export interface CreateSqlRequest {
+  /** Sets the selected Namespace for queries */
+  nS?: string;
+  /** Sets the selected Database for queries */
+  dB?: string;
+  body: string;
+}
+export const CreateSqlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nS: S.optional(S.String.pipe(T.Header("NS"))),
+    dB: S.optional(S.String.pipe(T.Header("DB"))),
+    body: S.String.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "POST", uri: "/sql", code: 200 })),
+).annotate({
+  identifier: "CreateSqlRequest",
+}) as any as S.Schema<CreateSqlRequest>;
+
+export interface CreateSqlResponse {}
+export const CreateSqlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateSqlResponse",
+}) as any as S.Schema<CreateSqlResponse>;
+
+export interface DeleteKeyRequest {
   /** The table of the records to delete */
   table: string;
   /** Sets the selected Namespace for queries */
@@ -20,24 +44,24 @@ export interface DeleteKeyTableRequest {
   /** Sets the selected Database for queries */
   dB?: string;
 }
-export const DeleteKeyTableRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     table: S.String.pipe(T.Label()),
     nS: S.optional(S.String.pipe(T.Header("NS"))),
     dB: S.optional(S.String.pipe(T.Header("DB"))),
   }).pipe(T.Http({ method: "DELETE", uri: "/key/{table}", code: 200 })),
 ).annotate({
-  identifier: "DeleteKeyTableRequest",
-}) as any as S.Schema<DeleteKeyTableRequest>;
+  identifier: "DeleteKeyRequest",
+}) as any as S.Schema<DeleteKeyRequest>;
 
-export interface DeleteKeyTableResponse {}
-export const DeleteKeyTableResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteKeyResponse {}
+export const DeleteKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteKeyTableResponse",
-}) as any as S.Schema<DeleteKeyTableResponse>;
+  identifier: "DeleteKeyResponse",
+}) as any as S.Schema<DeleteKeyResponse>;
 
-export interface DeleteKeyTableIdRequest {
+export interface DeleteKeyByIdRequest {
   /** The table of the record to delete */
   table: string;
   /** The id of the record to delete */
@@ -47,7 +71,7 @@ export interface DeleteKeyTableIdRequest {
   /** Sets the selected Database for queries */
   dB?: string;
 }
-export const DeleteKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteKeyByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     table: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -55,15 +79,15 @@ export const DeleteKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
     dB: S.optional(S.String.pipe(T.Header("DB"))),
   }).pipe(T.Http({ method: "DELETE", uri: "/key/{table}/{id}", code: 200 })),
 ).annotate({
-  identifier: "DeleteKeyTableIdRequest",
-}) as any as S.Schema<DeleteKeyTableIdRequest>;
+  identifier: "DeleteKeyByIdRequest",
+}) as any as S.Schema<DeleteKeyByIdRequest>;
 
-export interface DeleteKeyTableIdResponse {}
-export const DeleteKeyTableIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteKeyByIdResponse {}
+export const DeleteKeyByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeleteKeyTableIdResponse",
-}) as any as S.Schema<DeleteKeyTableIdResponse>;
+  identifier: "DeleteKeyByIdResponse",
+}) as any as S.Schema<DeleteKeyByIdResponse>;
 
 export interface GetExportRequest {
   /** Sets the selected Namespace for queries */
@@ -101,7 +125,7 @@ export const GetHealthResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetHealthResponse",
 }) as any as S.Schema<GetHealthResponse>;
 
-export interface GetKeyTableRequest {
+export interface GetKeyRequest {
   /** The table of the records to select */
   table: string;
   /** The number of record results to fetch */
@@ -115,7 +139,7 @@ export interface GetKeyTableRequest {
   /** Sets the selected Database for queries */
   dB?: string;
 }
-export const GetKeyTableRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     table: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -124,18 +148,14 @@ export const GetKeyTableRequest = /*@__PURE__*/ S.suspend(() =>
     nS: S.optional(S.String.pipe(T.Header("NS"))),
     dB: S.optional(S.String.pipe(T.Header("DB"))),
   }).pipe(T.Http({ method: "GET", uri: "/key/{table}", code: 200 })),
-).annotate({
-  identifier: "GetKeyTableRequest",
-}) as any as S.Schema<GetKeyTableRequest>;
+).annotate({ identifier: "GetKeyRequest" }) as any as S.Schema<GetKeyRequest>;
 
-export interface GetKeyTableResponse {}
-export const GetKeyTableResponse = /*@__PURE__*/ S.suspend(() =>
+export interface GetKeyResponse {}
+export const GetKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
-).annotate({
-  identifier: "GetKeyTableResponse",
-}) as any as S.Schema<GetKeyTableResponse>;
+).annotate({ identifier: "GetKeyResponse" }) as any as S.Schema<GetKeyResponse>;
 
-export interface GetKeyTableIdRequest {
+export interface GetKeyByIdRequest {
   /** The table of the record to select */
   table: string;
   /** The id of the record to select */
@@ -145,7 +165,7 @@ export interface GetKeyTableIdRequest {
   /** Sets the selected Database for queries */
   dB?: string;
 }
-export const GetKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     table: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -153,56 +173,55 @@ export const GetKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
     dB: S.optional(S.String.pipe(T.Header("DB"))),
   }).pipe(T.Http({ method: "GET", uri: "/key/{table}/{id}", code: 200 })),
 ).annotate({
-  identifier: "GetKeyTableIdRequest",
-}) as any as S.Schema<GetKeyTableIdRequest>;
+  identifier: "GetKeyByIdRequest",
+}) as any as S.Schema<GetKeyByIdRequest>;
 
-export interface GetKeyTableIdResponseBodyItemResultItem {
+export interface GetKeyByIdResponseBodyItemResultItem {
   id?: string;
   some?: boolean;
 }
-export const GetKeyTableIdResponseBodyItemResultItem = /*@__PURE__*/ S.suspend(
+export const GetKeyByIdResponseBodyItemResultItem = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       some: S.optional(S.Boolean),
     }),
 ).annotate({
-  identifier: "GetKeyTableIdResponseBodyItemResultItem",
-}) as any as S.Schema<GetKeyTableIdResponseBodyItemResultItem>;
+  identifier: "GetKeyByIdResponseBodyItemResultItem",
+}) as any as S.Schema<GetKeyByIdResponseBodyItemResultItem>;
 
-export type GetKeyTableIdResponseBodyItemResultList =
-  Array<GetKeyTableIdResponseBodyItemResultItem>;
-export const GetKeyTableIdResponseBodyItemResultList = /*@__PURE__*/ S.Array(
-  GetKeyTableIdResponseBodyItemResultItem,
-) as any as S.Schema<GetKeyTableIdResponseBodyItemResultList>;
+export type GetKeyByIdResponseBodyItemResultList =
+  Array<GetKeyByIdResponseBodyItemResultItem>;
+export const GetKeyByIdResponseBodyItemResultList = /*@__PURE__*/ S.Array(
+  GetKeyByIdResponseBodyItemResultItem,
+) as any as S.Schema<GetKeyByIdResponseBodyItemResultList>;
 
-export interface GetKeyTableIdResponseBodyItem {
-  result?: GetKeyTableIdResponseBodyItemResultList;
+export interface GetKeyByIdResponseBodyItem {
+  result?: GetKeyByIdResponseBodyItemResultList;
   status?: string;
   time?: string;
 }
-export const GetKeyTableIdResponseBodyItem = /*@__PURE__*/ S.suspend(() =>
+export const GetKeyByIdResponseBodyItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.optional(GetKeyTableIdResponseBodyItemResultList),
+    result: S.optional(GetKeyByIdResponseBodyItemResultList),
     status: S.optional(S.String),
     time: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetKeyTableIdResponseBodyItem",
-}) as any as S.Schema<GetKeyTableIdResponseBodyItem>;
+  identifier: "GetKeyByIdResponseBodyItem",
+}) as any as S.Schema<GetKeyByIdResponseBodyItem>;
 
-export type GetKeyTableIdResponseBodyList =
-  Array<GetKeyTableIdResponseBodyItem>;
-export const GetKeyTableIdResponseBodyList = /*@__PURE__*/ S.Array(
-  GetKeyTableIdResponseBodyItem,
-) as any as S.Schema<GetKeyTableIdResponseBodyList>;
+export type GetKeyByIdResponseBodyList = Array<GetKeyByIdResponseBodyItem>;
+export const GetKeyByIdResponseBodyList = /*@__PURE__*/ S.Array(
+  GetKeyByIdResponseBodyItem,
+) as any as S.Schema<GetKeyByIdResponseBodyList>;
 
-export type GetKeyTableIdResponse = GetKeyTableIdResponseBodyList;
-export const GetKeyTableIdResponse = /*@__PURE__*/ S.suspend(() =>
-  GetKeyTableIdResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetKeyByIdResponse = GetKeyByIdResponseBodyList;
+export const GetKeyByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  GetKeyByIdResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "GetKeyTableIdResponse",
-}) as any as S.Schema<GetKeyTableIdResponse>;
+  identifier: "GetKeyByIdResponse",
+}) as any as S.Schema<GetKeyByIdResponse>;
 
 export interface GetStatusRequest {}
 export const GetStatusRequest = /*@__PURE__*/ S.suspend(() =>
@@ -232,244 +251,64 @@ export const GetVersionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetVersionResponse",
 }) as any as S.Schema<GetVersionResponse>;
 
-/** Fields to merge into each record */
-export type PatchKeyTableRequestBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const PatchKeyTableRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PatchKeyTableRequestBodyMap>;
-
-export interface PatchKeyTableRequest {
-  /** The table of the records to update */
-  table: string;
-  /** Sets the selected Namespace for queries */
-  nS?: string;
-  /** Sets the selected Database for queries */
-  dB?: string;
-  body: PatchKeyTableRequestBodyMap;
-}
-export const PatchKeyTableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    table: S.String.pipe(T.Label()),
-    nS: S.optional(S.String.pipe(T.Header("NS"))),
-    dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: PatchKeyTableRequestBodyMap.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "PATCH", uri: "/key/{table}", code: 200 })),
-).annotate({
-  identifier: "PatchKeyTableRequest",
-}) as any as S.Schema<PatchKeyTableRequest>;
-
-export interface PatchKeyTableResponse {}
-export const PatchKeyTableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PatchKeyTableResponse",
-}) as any as S.Schema<PatchKeyTableResponse>;
-
-/** Fields to merge into the record */
-export type PatchKeyTableIdRequestBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const PatchKeyTableIdRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PatchKeyTableIdRequestBodyMap>;
-
-export interface PatchKeyTableIdRequest {
-  /** The table of the record to update */
-  table: string;
-  /** The id of the record to update */
-  id: string;
-  /** Sets the selected Namespace for queries */
-  nS?: string;
-  /** Sets the selected Database for queries */
-  dB?: string;
-  body: PatchKeyTableIdRequestBodyMap;
-}
-export const PatchKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    table: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    nS: S.optional(S.String.pipe(T.Header("NS"))),
-    dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: PatchKeyTableIdRequestBodyMap.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "PATCH", uri: "/key/{table}/{id}", code: 200 })),
-).annotate({
-  identifier: "PatchKeyTableIdRequest",
-}) as any as S.Schema<PatchKeyTableIdRequest>;
-
-export interface PatchKeyTableIdResponse {}
-export const PatchKeyTableIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PatchKeyTableIdResponse",
-}) as any as S.Schema<PatchKeyTableIdResponse>;
-
-export interface PostImportRequest {
+export interface ImportRequest {
   /** Sets the selected Namespace for queries */
   nS?: string;
   /** Sets the selected Database for queries */
   dB?: string;
   body: string;
 }
-export const PostImportRequest = /*@__PURE__*/ S.suspend(() =>
+export const ImportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nS: S.optional(S.String.pipe(T.Header("NS"))),
     dB: S.optional(S.String.pipe(T.Header("DB"))),
     body: S.String.pipe(T.HttpBody()),
   }).pipe(T.Http({ method: "POST", uri: "/import", code: 200 })),
-).annotate({
-  identifier: "PostImportRequest",
-}) as any as S.Schema<PostImportRequest>;
+).annotate({ identifier: "ImportRequest" }) as any as S.Schema<ImportRequest>;
 
-export interface PostImportResponse {}
-export const PostImportResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ImportResponse {}
+export const ImportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
-).annotate({
-  identifier: "PostImportResponse",
-}) as any as S.Schema<PostImportResponse>;
+).annotate({ identifier: "ImportResponse" }) as any as S.Schema<ImportResponse>;
 
 /** Record content */
-export type PostKeyTableRequestBodyMap = { [key: string]: unknown | undefined };
-export const PostKeyTableRequestBodyMap = /*@__PURE__*/ S.Record(
+export type PutKeyRequestBodyMap = { [key: string]: unknown | undefined };
+export const PutKeyRequestBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<PostKeyTableRequestBodyMap>;
+) as any as S.Schema<PutKeyRequestBodyMap>;
 
-export interface PostKeyTableRequest {
-  /** The table of the record to create */
-  table: string;
-  /** Sets the selected Namespace for queries */
-  nS?: string;
-  /** Sets the selected Database for queries */
-  dB?: string;
-  body: PostKeyTableRequestBodyMap;
-}
-export const PostKeyTableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    table: S.String.pipe(T.Label()),
-    nS: S.optional(S.String.pipe(T.Header("NS"))),
-    dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: PostKeyTableRequestBodyMap.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "POST", uri: "/key/{table}", code: 200 })),
-).annotate({
-  identifier: "PostKeyTableRequest",
-}) as any as S.Schema<PostKeyTableRequest>;
-
-export interface PostKeyTableResponse {}
-export const PostKeyTableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PostKeyTableResponse",
-}) as any as S.Schema<PostKeyTableResponse>;
-
-/** Record content */
-export type PostKeyTableIdRequestBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const PostKeyTableIdRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PostKeyTableIdRequestBodyMap>;
-
-export interface PostKeyTableIdRequest {
-  /** The table of the record to create */
-  table: string;
-  /** The id of the record to create */
-  id: string;
-  /** Sets the selected Namespace for queries */
-  nS?: string;
-  /** Sets the selected Database for queries */
-  dB?: string;
-  body: PostKeyTableIdRequestBodyMap;
-}
-export const PostKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    table: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    nS: S.optional(S.String.pipe(T.Header("NS"))),
-    dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: PostKeyTableIdRequestBodyMap.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "POST", uri: "/key/{table}/{id}", code: 200 })),
-).annotate({
-  identifier: "PostKeyTableIdRequest",
-}) as any as S.Schema<PostKeyTableIdRequest>;
-
-export interface PostKeyTableIdResponse {}
-export const PostKeyTableIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PostKeyTableIdResponse",
-}) as any as S.Schema<PostKeyTableIdResponse>;
-
-export interface PostSqlRequest {
-  /** Sets the selected Namespace for queries */
-  nS?: string;
-  /** Sets the selected Database for queries */
-  dB?: string;
-  body: string;
-}
-export const PostSqlRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nS: S.optional(S.String.pipe(T.Header("NS"))),
-    dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: S.String.pipe(T.HttpBody()),
-  }).pipe(T.Http({ method: "POST", uri: "/sql", code: 200 })),
-).annotate({ identifier: "PostSqlRequest" }) as any as S.Schema<PostSqlRequest>;
-
-export interface PostSqlResponse {}
-export const PostSqlResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PostSqlResponse",
-}) as any as S.Schema<PostSqlResponse>;
-
-/** Record content */
-export type PutKeyTableRequestBodyMap = { [key: string]: unknown | undefined };
-export const PutKeyTableRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<PutKeyTableRequestBodyMap>;
-
-export interface PutKeyTableRequest {
+export interface PutKeyRequest {
   /** The table of the records to update */
   table: string;
   /** Sets the selected Namespace for queries */
   nS?: string;
   /** Sets the selected Database for queries */
   dB?: string;
-  body: PutKeyTableRequestBodyMap;
+  body: PutKeyRequestBodyMap;
 }
-export const PutKeyTableRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     table: S.String.pipe(T.Label()),
     nS: S.optional(S.String.pipe(T.Header("NS"))),
     dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: PutKeyTableRequestBodyMap.pipe(T.HttpBody()),
+    body: PutKeyRequestBodyMap.pipe(T.HttpBody()),
   }).pipe(T.Http({ method: "PUT", uri: "/key/{table}", code: 200 })),
-).annotate({
-  identifier: "PutKeyTableRequest",
-}) as any as S.Schema<PutKeyTableRequest>;
+).annotate({ identifier: "PutKeyRequest" }) as any as S.Schema<PutKeyRequest>;
 
-export interface PutKeyTableResponse {}
-export const PutKeyTableResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutKeyResponse {}
+export const PutKeyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
-).annotate({
-  identifier: "PutKeyTableResponse",
-}) as any as S.Schema<PutKeyTableResponse>;
+).annotate({ identifier: "PutKeyResponse" }) as any as S.Schema<PutKeyResponse>;
 
 /** Record content */
-export type PutKeyTableIdRequestBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const PutKeyTableIdRequestBodyMap = /*@__PURE__*/ S.Record(
+export type PutKeyByIdRequestBodyMap = { [key: string]: unknown | undefined };
+export const PutKeyByIdRequestBodyMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<PutKeyTableIdRequestBodyMap>;
+) as any as S.Schema<PutKeyByIdRequestBodyMap>;
 
-export interface PutKeyTableIdRequest {
+export interface PutKeyByIdRequest {
   /** The table of the record to update */
   table: string;
   /** The id of the record to update */
@@ -479,53 +318,216 @@ export interface PutKeyTableIdRequest {
   nS?: string;
   /** Sets the selected Database for queries */
   dB?: string;
-  body: PutKeyTableIdRequestBodyMap;
+  body: PutKeyByIdRequestBodyMap;
 }
-export const PutKeyTableIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutKeyByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     table: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     tags: S.optional(S.String.pipe(T.Query())),
     nS: S.optional(S.String.pipe(T.Header("NS"))),
     dB: S.optional(S.String.pipe(T.Header("DB"))),
-    body: PutKeyTableIdRequestBodyMap.pipe(T.HttpBody()),
+    body: PutKeyByIdRequestBodyMap.pipe(T.HttpBody()),
   }).pipe(T.Http({ method: "PUT", uri: "/key/{table}/{id}", code: 200 })),
 ).annotate({
-  identifier: "PutKeyTableIdRequest",
-}) as any as S.Schema<PutKeyTableIdRequest>;
+  identifier: "PutKeyByIdRequest",
+}) as any as S.Schema<PutKeyByIdRequest>;
 
-export interface PutKeyTableIdResponse {}
-export const PutKeyTableIdResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutKeyByIdResponse {}
+export const PutKeyByIdResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PutKeyTableIdResponse",
-}) as any as S.Schema<PutKeyTableIdResponse>;
+  identifier: "PutKeyByIdResponse",
+}) as any as S.Schema<PutKeyByIdResponse>;
 
-export type DeleteKeyTableError = SurrealdbOpError;
-/** Delete all records from a table This HTTP RESTful endpoint deletes all records from a specific table in the database. It is equivalent to running: ``` sql DELETE type::table($table); ``` */
-export const deleteKeyTable: API.OperationMethod<
-  DeleteKeyTableRequest,
-  DeleteKeyTableResponse,
-  DeleteKeyTableError,
+/** Record content */
+export type UpdateKeyRequestBodyMap = { [key: string]: unknown | undefined };
+export const UpdateKeyRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateKeyRequestBodyMap>;
+
+export interface UpdateKeyRequest {
+  /** The table of the record to create */
+  table: string;
+  /** Sets the selected Namespace for queries */
+  nS?: string;
+  /** Sets the selected Database for queries */
+  dB?: string;
+  body: UpdateKeyRequestBodyMap;
+}
+export const UpdateKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    table: S.String.pipe(T.Label()),
+    nS: S.optional(S.String.pipe(T.Header("NS"))),
+    dB: S.optional(S.String.pipe(T.Header("DB"))),
+    body: UpdateKeyRequestBodyMap.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "POST", uri: "/key/{table}", code: 200 })),
+).annotate({
+  identifier: "UpdateKeyRequest",
+}) as any as S.Schema<UpdateKeyRequest>;
+
+export interface UpdateKeyResponse {}
+export const UpdateKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateKeyResponse",
+}) as any as S.Schema<UpdateKeyResponse>;
+
+/** Record content */
+export type UpdateKeyByIdRequestBodyMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateKeyByIdRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateKeyByIdRequestBodyMap>;
+
+export interface UpdateKeyByIdRequest {
+  /** The table of the record to create */
+  table: string;
+  /** The id of the record to create */
+  id: string;
+  /** Sets the selected Namespace for queries */
+  nS?: string;
+  /** Sets the selected Database for queries */
+  dB?: string;
+  body: UpdateKeyByIdRequestBodyMap;
+}
+export const UpdateKeyByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    table: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    nS: S.optional(S.String.pipe(T.Header("NS"))),
+    dB: S.optional(S.String.pipe(T.Header("DB"))),
+    body: UpdateKeyByIdRequestBodyMap.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "POST", uri: "/key/{table}/{id}", code: 200 })),
+).annotate({
+  identifier: "UpdateKeyByIdRequest",
+}) as any as S.Schema<UpdateKeyByIdRequest>;
+
+export interface UpdateKeyByIdResponse {}
+export const UpdateKeyByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateKeyByIdResponse",
+}) as any as S.Schema<UpdateKeyByIdResponse>;
+
+/** Fields to merge into the record */
+export type UpdateKeyByIdRequestBodyMap2 = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateKeyByIdRequestBodyMap2 = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateKeyByIdRequestBodyMap2>;
+
+export interface UpdateKeyByIdRequest2 {
+  /** The table of the record to update */
+  table: string;
+  /** The id of the record to update */
+  id: string;
+  /** Sets the selected Namespace for queries */
+  nS?: string;
+  /** Sets the selected Database for queries */
+  dB?: string;
+  body: UpdateKeyByIdRequestBodyMap2;
+}
+export const UpdateKeyByIdRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    table: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    nS: S.optional(S.String.pipe(T.Header("NS"))),
+    dB: S.optional(S.String.pipe(T.Header("DB"))),
+    body: UpdateKeyByIdRequestBodyMap2.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "PATCH", uri: "/key/{table}/{id}", code: 200 })),
+).annotate({
+  identifier: "UpdateKeyByIdRequest2",
+}) as any as S.Schema<UpdateKeyByIdRequest2>;
+
+export interface UpdateKeyById2Response {}
+export const UpdateKeyById2Response = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateKeyById2Response",
+}) as any as S.Schema<UpdateKeyById2Response>;
+
+/** Fields to merge into each record */
+export type UpdateKeyByTableRequestBodyMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateKeyByTableRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<UpdateKeyByTableRequestBodyMap>;
+
+export interface UpdateKeyByTableRequest {
+  /** The table of the records to update */
+  table: string;
+  /** Sets the selected Namespace for queries */
+  nS?: string;
+  /** Sets the selected Database for queries */
+  dB?: string;
+  body: UpdateKeyByTableRequestBodyMap;
+}
+export const UpdateKeyByTableRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    table: S.String.pipe(T.Label()),
+    nS: S.optional(S.String.pipe(T.Header("NS"))),
+    dB: S.optional(S.String.pipe(T.Header("DB"))),
+    body: UpdateKeyByTableRequestBodyMap.pipe(T.HttpBody()),
+  }).pipe(T.Http({ method: "PATCH", uri: "/key/{table}", code: 200 })),
+).annotate({
+  identifier: "UpdateKeyByTableRequest",
+}) as any as S.Schema<UpdateKeyByTableRequest>;
+
+export interface UpdateKeyByTableResponse {}
+export const UpdateKeyByTableResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateKeyByTableResponse",
+}) as any as S.Schema<UpdateKeyByTableResponse>;
+
+export type CreateSqlError = SurrealdbOpError;
+/** Run SurrealQL queries against SurrealDB The SQL endpoint enables running advanced SurrealQL queries. This HTTP endpoint expects the HTTP body to be one or more SurrealQL statements, separated by a semicolon. */
+export const createSql: API.OperationMethod<
+  CreateSqlRequest,
+  CreateSqlResponse,
+  CreateSqlError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteKeyTableRequest,
-  output: DeleteKeyTableResponse,
+  input: CreateSqlRequest,
+  output: CreateSqlResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeleteKeyTableIdError = SurrealdbOpError;
-/** Delete a specific record from a table This HTTP RESTful endpoint deletes a specific record from a table in the database. It is equivalent to running: ``` sql DELETE type::thing($table, $id); ``` */
-export const deleteKeyTableId: API.OperationMethod<
-  DeleteKeyTableIdRequest,
-  DeleteKeyTableIdResponse,
-  DeleteKeyTableIdError,
+export type DeleteKeyError = SurrealdbOpError;
+/** Delete all records from a table This HTTP RESTful endpoint deletes all records from a specific table in the database. It is equivalent to running: ``` sql DELETE type::table($table); ``` */
+export const deleteKey: API.OperationMethod<
+  DeleteKeyRequest,
+  DeleteKeyResponse,
+  DeleteKeyError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeleteKeyTableIdRequest,
-  output: DeleteKeyTableIdResponse,
+  input: DeleteKeyRequest,
+  output: DeleteKeyResponse,
+  errors: [UnknownSurrealdbError],
+  protocol: SurrealdbProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteKeyByIdError = SurrealdbOpError;
+/** Delete a specific record from a table This HTTP RESTful endpoint deletes a specific record from a table in the database. It is equivalent to running: ``` sql DELETE type::thing($table, $id); ``` */
+export const deleteKeyById: API.OperationMethod<
+  DeleteKeyByIdRequest,
+  DeleteKeyByIdResponse,
+  DeleteKeyByIdError,
+  SurrealdbOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteKeyByIdRequest,
+  output: DeleteKeyByIdResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,
@@ -561,31 +563,31 @@ export const getHealth: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetKeyTableError = SurrealdbOpError;
+export type GetKeyError = SurrealdbOpError;
 /** Select all records from a table This HTTP RESTful endpoint selects all records from a specific table in the database. It is equivalent to running: ``` sql SELECT * FROM type::table($table); ``` */
-export const getKeyTable: API.OperationMethod<
-  GetKeyTableRequest,
-  GetKeyTableResponse,
-  GetKeyTableError,
+export const getKey: API.OperationMethod<
+  GetKeyRequest,
+  GetKeyResponse,
+  GetKeyError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetKeyTableRequest,
-  output: GetKeyTableResponse,
+  input: GetKeyRequest,
+  output: GetKeyResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,
 }));
 
-export type GetKeyTableIdError = SurrealdbOpError;
+export type GetKeyByIdError = SurrealdbOpError;
 /** Select a specific record from a table This HTTP RESTful endpoint selects a specific record from a table in the database. It is equivalent to running: ``` sql SELECT * FROM type::thing($table, $id); ``` */
-export const getKeyTableId: API.OperationMethod<
-  GetKeyTableIdRequest,
-  GetKeyTableIdResponse,
-  GetKeyTableIdError,
+export const getKeyById: API.OperationMethod<
+  GetKeyByIdRequest,
+  GetKeyByIdResponse,
+  GetKeyByIdError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GetKeyTableIdRequest,
-  output: GetKeyTableIdResponse,
+  input: GetKeyByIdRequest,
+  output: GetKeyByIdResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,
@@ -621,121 +623,106 @@ export const getVersion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchKeyTableError = SurrealdbOpError;
-/** Update all records in a table This HTTP RESTful endpoint updates all records in a specific table in the database. It merges the supplied request data with the records in the table, and is equivalent to running: ``` sql UPDATE type::table($table) MERGE $body; ``` */
-export const patchKeyTable: API.OperationMethod<
-  PatchKeyTableRequest,
-  PatchKeyTableResponse,
-  PatchKeyTableError,
-  SurrealdbOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchKeyTableRequest,
-  output: PatchKeyTableResponse,
-  errors: [UnknownSurrealdbError],
-  protocol: SurrealdbProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PatchKeyTableIdError = SurrealdbOpError;
-/** Update a specific record in a table This HTTP RESTful endpoint updates a specific record in a table in the database. It merges the supplied request data with the records in the table, and is equivalent to running: ``` sql UPDATE type::thing($table, $id) MERGE $body; ``` */
-export const patchKeyTableId: API.OperationMethod<
-  PatchKeyTableIdRequest,
-  PatchKeyTableIdResponse,
-  PatchKeyTableIdError,
-  SurrealdbOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchKeyTableIdRequest,
-  output: PatchKeyTableIdResponse,
-  errors: [UnknownSurrealdbError],
-  protocol: SurrealdbProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostImportError = SurrealdbOpError;
+export type ImportError = SurrealdbOpError;
 /** Import SurrealQL data into SurrealDB Imports SurrealQL data into a local or remote SurrealDB server. */
-export const postImport: API.OperationMethod<
-  PostImportRequest,
-  PostImportResponse,
-  PostImportError,
+export const Import: API.OperationMethod<
+  ImportRequest,
+  ImportResponse,
+  ImportError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostImportRequest,
-  output: PostImportResponse,
+  input: ImportRequest,
+  output: ImportResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,
 }));
 
-export type PostKeyTableError = SurrealdbOpError;
-/** Create a new record in a table This HTTP RESTful endpoint creates a record in a specific table in the database. The supplied request body is used as the content of the record, and is equivalent to running: ``` sql CREATE type::table($table) CONTENT $body; ``` */
-export const postKeyTable: API.OperationMethod<
-  PostKeyTableRequest,
-  PostKeyTableResponse,
-  PostKeyTableError,
-  SurrealdbOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostKeyTableRequest,
-  output: PostKeyTableResponse,
-  errors: [UnknownSurrealdbError],
-  protocol: SurrealdbProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostKeyTableIdError = SurrealdbOpError;
-/** Create a specific record in a table This HTTP RESTful endpoint creates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running: ``` sql CREATE type::thing($table, $id) CONTENT $body; ``` */
-export const postKeyTableId: API.OperationMethod<
-  PostKeyTableIdRequest,
-  PostKeyTableIdResponse,
-  PostKeyTableIdError,
-  SurrealdbOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostKeyTableIdRequest,
-  output: PostKeyTableIdResponse,
-  errors: [UnknownSurrealdbError],
-  protocol: SurrealdbProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostSqlError = SurrealdbOpError;
-/** Run SurrealQL queries against SurrealDB The SQL endpoint enables running advanced SurrealQL queries. This HTTP endpoint expects the HTTP body to be one or more SurrealQL statements, separated by a semicolon. */
-export const postSql: API.OperationMethod<
-  PostSqlRequest,
-  PostSqlResponse,
-  PostSqlError,
-  SurrealdbOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostSqlRequest,
-  output: PostSqlResponse,
-  errors: [UnknownSurrealdbError],
-  protocol: SurrealdbProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutKeyTableError = SurrealdbOpError;
+export type PutKeyError = SurrealdbOpError;
 /** Update all records in a table This HTTP RESTful endpoint updates all records in a specific table in the database. It replaces the record content with the supplied request data, and is equivalent to running: ``` sql UPDATE type::table($table) CONTENT $body; ``` */
-export const putKeyTable: API.OperationMethod<
-  PutKeyTableRequest,
-  PutKeyTableResponse,
-  PutKeyTableError,
+export const putKey: API.OperationMethod<
+  PutKeyRequest,
+  PutKeyResponse,
+  PutKeyError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutKeyTableRequest,
-  output: PutKeyTableResponse,
+  input: PutKeyRequest,
+  output: PutKeyResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,
 }));
 
-export type PutKeyTableIdError = SurrealdbOpError;
+export type PutKeyByIdError = SurrealdbOpError;
 /** Update a specific record in a table This HTTP RESTful endpoint updates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running: ``` sql UPDATE type::thing($table, $id) CONTENT $body; ``` */
-export const putKeyTableId: API.OperationMethod<
-  PutKeyTableIdRequest,
-  PutKeyTableIdResponse,
-  PutKeyTableIdError,
+export const putKeyById: API.OperationMethod<
+  PutKeyByIdRequest,
+  PutKeyByIdResponse,
+  PutKeyByIdError,
   SurrealdbOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PutKeyTableIdRequest,
-  output: PutKeyTableIdResponse,
+  input: PutKeyByIdRequest,
+  output: PutKeyByIdResponse,
+  errors: [UnknownSurrealdbError],
+  protocol: SurrealdbProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKeyError = SurrealdbOpError;
+/** Create a new record in a table This HTTP RESTful endpoint creates a record in a specific table in the database. The supplied request body is used as the content of the record, and is equivalent to running: ``` sql CREATE type::table($table) CONTENT $body; ``` */
+export const updateKey: API.OperationMethod<
+  UpdateKeyRequest,
+  UpdateKeyResponse,
+  UpdateKeyError,
+  SurrealdbOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKeyRequest,
+  output: UpdateKeyResponse,
+  errors: [UnknownSurrealdbError],
+  protocol: SurrealdbProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKeyByIdError = SurrealdbOpError;
+/** Create a specific record in a table This HTTP RESTful endpoint creates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running: ``` sql CREATE type::thing($table, $id) CONTENT $body; ``` */
+export const updateKeyById: API.OperationMethod<
+  UpdateKeyByIdRequest,
+  UpdateKeyByIdResponse,
+  UpdateKeyByIdError,
+  SurrealdbOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKeyByIdRequest,
+  output: UpdateKeyByIdResponse,
+  errors: [UnknownSurrealdbError],
+  protocol: SurrealdbProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKeyById2Error = SurrealdbOpError;
+/** Update a specific record in a table This HTTP RESTful endpoint updates a specific record in a table in the database. It merges the supplied request data with the records in the table, and is equivalent to running: ``` sql UPDATE type::thing($table, $id) MERGE $body; ``` */
+export const updateKeyById2: API.OperationMethod<
+  UpdateKeyByIdRequest2,
+  UpdateKeyById2Response,
+  UpdateKeyById2Error,
+  SurrealdbOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKeyByIdRequest2,
+  output: UpdateKeyById2Response,
+  errors: [UnknownSurrealdbError],
+  protocol: SurrealdbProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateKeyByTableError = SurrealdbOpError;
+/** Update all records in a table This HTTP RESTful endpoint updates all records in a specific table in the database. It merges the supplied request data with the records in the table, and is equivalent to running: ``` sql UPDATE type::table($table) MERGE $body; ``` */
+export const updateKeyByTable: API.OperationMethod<
+  UpdateKeyByTableRequest,
+  UpdateKeyByTableResponse,
+  UpdateKeyByTableError,
+  SurrealdbOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateKeyByTableRequest,
+  output: UpdateKeyByTableResponse,
   errors: [UnknownSurrealdbError],
   protocol: SurrealdbProtocol,
   retry: Retry.Retry,

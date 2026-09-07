@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.surrealdb.api#GetStatus": {
@@ -107,7 +108,7 @@
         "smithy.api#documentation": "Export SurrealQL data from SurrealDB\n\nExports SurrealQL data from a local or remote SurrealDB server."
       }
     },
-    "com.surrealdb.api#PostImportRequest": {
+    "com.surrealdb.api#ImportRequest": {
       "type": "structure",
       "members": {
         "nS": {
@@ -136,10 +137,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PostImport": {
+    "com.surrealdb.api#Import": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PostImportRequest"
+        "target": "com.surrealdb.api#ImportRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -153,7 +154,7 @@
         "smithy.api#documentation": "Import SurrealQL data into SurrealDB\n\nImports SurrealQL data into a local or remote SurrealDB server."
       }
     },
-    "com.surrealdb.api#GetKeyTableRequest": {
+    "com.surrealdb.api#GetKeyRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -204,10 +205,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#GetKeyTable": {
+    "com.surrealdb.api#GetKey": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#GetKeyTableRequest"
+        "target": "com.surrealdb.api#GetKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -221,7 +222,7 @@
         "smithy.api#documentation": "Select all records from a table\n\nThis HTTP RESTful endpoint selects all records from a specific table in the database. It is equivalent to running:\n\n``` sql\nSELECT * FROM type::table($table);\n```"
       }
     },
-    "com.surrealdb.api#PostKeyTableRequestBodyMap": {
+    "com.surrealdb.api#UpdateKeyRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -233,7 +234,7 @@
         "smithy.api#documentation": "Record content"
       }
     },
-    "com.surrealdb.api#PostKeyTableRequest": {
+    "com.surrealdb.api#UpdateKeyRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -259,7 +260,7 @@
           }
         },
         "body": {
-          "target": "com.surrealdb.api#PostKeyTableRequestBodyMap",
+          "target": "com.surrealdb.api#UpdateKeyRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -270,10 +271,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PostKeyTable": {
+    "com.surrealdb.api#UpdateKey": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PostKeyTableRequest"
+        "target": "com.surrealdb.api#UpdateKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -287,7 +288,7 @@
         "smithy.api#documentation": "Create a new record in a table\n\nThis HTTP RESTful endpoint creates a record in a specific table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nCREATE type::table($table) CONTENT $body;\n```"
       }
     },
-    "com.surrealdb.api#PutKeyTableRequestBodyMap": {
+    "com.surrealdb.api#PutKeyRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -299,7 +300,7 @@
         "smithy.api#documentation": "Record content"
       }
     },
-    "com.surrealdb.api#PutKeyTableRequest": {
+    "com.surrealdb.api#PutKeyRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -325,7 +326,7 @@
           }
         },
         "body": {
-          "target": "com.surrealdb.api#PutKeyTableRequestBodyMap",
+          "target": "com.surrealdb.api#PutKeyRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -336,10 +337,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PutKeyTable": {
+    "com.surrealdb.api#PutKey": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PutKeyTableRequest"
+        "target": "com.surrealdb.api#PutKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -353,7 +354,7 @@
         "smithy.api#documentation": "Update all records in a table\n\nThis HTTP RESTful endpoint updates all records in a specific table in the database. It replaces the record content with the supplied request data, and is equivalent to running:\n\n``` sql\nUPDATE type::table($table) CONTENT $body;\n```"
       }
     },
-    "com.surrealdb.api#PatchKeyTableRequestBodyMap": {
+    "com.surrealdb.api#UpdateKeyByTableRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -365,7 +366,7 @@
         "smithy.api#documentation": "Fields to merge into each record"
       }
     },
-    "com.surrealdb.api#PatchKeyTableRequest": {
+    "com.surrealdb.api#UpdateKeyByTableRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -391,7 +392,7 @@
           }
         },
         "body": {
-          "target": "com.surrealdb.api#PatchKeyTableRequestBodyMap",
+          "target": "com.surrealdb.api#UpdateKeyByTableRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -402,10 +403,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PatchKeyTable": {
+    "com.surrealdb.api#UpdateKeyByTable": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PatchKeyTableRequest"
+        "target": "com.surrealdb.api#UpdateKeyByTableRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -419,7 +420,7 @@
         "smithy.api#documentation": "Update all records in a table\n\nThis HTTP RESTful endpoint updates all records in a specific table in the database. It merges the supplied request data with the records in the table, and is equivalent to running:\n\n``` sql\nUPDATE type::table($table) MERGE $body;\n```"
       }
     },
-    "com.surrealdb.api#DeleteKeyTableRequest": {
+    "com.surrealdb.api#DeleteKeyRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -449,10 +450,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#DeleteKeyTable": {
+    "com.surrealdb.api#DeleteKey": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#DeleteKeyTableRequest"
+        "target": "com.surrealdb.api#DeleteKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -466,7 +467,7 @@
         "smithy.api#documentation": "Delete all records from a table\n\nThis HTTP RESTful endpoint deletes all records from a specific table in the database. It is equivalent to running:\n\n``` sql\nDELETE type::table($table);\n```"
       }
     },
-    "com.surrealdb.api#GetKeyTableIdRequest": {
+    "com.surrealdb.api#GetKeyByIdRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -504,7 +505,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#GetKeyTableIdResponseBodyItemResultItem": {
+    "com.surrealdb.api#GetKeyByIdResponseBodyItemResultItem": {
       "type": "structure",
       "members": {
         "id": {
@@ -516,18 +517,18 @@
       },
       "traits": {}
     },
-    "com.surrealdb.api#GetKeyTableIdResponseBodyItemResultList": {
+    "com.surrealdb.api#GetKeyByIdResponseBodyItemResultList": {
       "type": "list",
       "member": {
-        "target": "com.surrealdb.api#GetKeyTableIdResponseBodyItemResultItem"
+        "target": "com.surrealdb.api#GetKeyByIdResponseBodyItemResultItem"
       },
       "traits": {}
     },
-    "com.surrealdb.api#GetKeyTableIdResponseBodyItem": {
+    "com.surrealdb.api#GetKeyByIdResponseBodyItem": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.surrealdb.api#GetKeyTableIdResponseBodyItemResultList"
+          "target": "com.surrealdb.api#GetKeyByIdResponseBodyItemResultList"
         },
         "status": {
           "target": "smithy.api#String"
@@ -538,18 +539,18 @@
       },
       "traits": {}
     },
-    "com.surrealdb.api#GetKeyTableIdResponseBodyList": {
+    "com.surrealdb.api#GetKeyByIdResponseBodyList": {
       "type": "list",
       "member": {
-        "target": "com.surrealdb.api#GetKeyTableIdResponseBodyItem"
+        "target": "com.surrealdb.api#GetKeyByIdResponseBodyItem"
       },
       "traits": {}
     },
-    "com.surrealdb.api#GetKeyTableIdResponse": {
+    "com.surrealdb.api#GetKeyByIdResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.surrealdb.api#GetKeyTableIdResponseBodyList",
+          "target": "com.surrealdb.api#GetKeyByIdResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -560,13 +561,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.surrealdb.api#GetKeyTableId": {
+    "com.surrealdb.api#GetKeyById": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#GetKeyTableIdRequest"
+        "target": "com.surrealdb.api#GetKeyByIdRequest"
       },
       "output": {
-        "target": "com.surrealdb.api#GetKeyTableIdResponse"
+        "target": "com.surrealdb.api#GetKeyByIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -577,7 +578,7 @@
         "smithy.api#documentation": "Select a specific record from a table\n\nThis HTTP RESTful endpoint selects a specific record from a table in the database. It is equivalent to running:\n\n``` sql\nSELECT * FROM type::thing($table, $id);\n```"
       }
     },
-    "com.surrealdb.api#PostKeyTableIdRequestBodyMap": {
+    "com.surrealdb.api#UpdateKeyByIdRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -589,7 +590,7 @@
         "smithy.api#documentation": "Record content"
       }
     },
-    "com.surrealdb.api#PostKeyTableIdRequest": {
+    "com.surrealdb.api#UpdateKeyByIdRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -623,7 +624,7 @@
           }
         },
         "body": {
-          "target": "com.surrealdb.api#PostKeyTableIdRequestBodyMap",
+          "target": "com.surrealdb.api#UpdateKeyByIdRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -634,10 +635,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PostKeyTableId": {
+    "com.surrealdb.api#UpdateKeyById": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PostKeyTableIdRequest"
+        "target": "com.surrealdb.api#UpdateKeyByIdRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -651,7 +652,7 @@
         "smithy.api#documentation": "Create a specific record in a table\n\nThis HTTP RESTful endpoint creates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nCREATE type::thing($table, $id) CONTENT $body;\n```"
       }
     },
-    "com.surrealdb.api#PutKeyTableIdRequestBodyMap": {
+    "com.surrealdb.api#PutKeyByIdRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -663,7 +664,7 @@
         "smithy.api#documentation": "Record content"
       }
     },
-    "com.surrealdb.api#PutKeyTableIdRequest": {
+    "com.surrealdb.api#PutKeyByIdRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -703,7 +704,7 @@
           }
         },
         "body": {
-          "target": "com.surrealdb.api#PutKeyTableIdRequestBodyMap",
+          "target": "com.surrealdb.api#PutKeyByIdRequestBodyMap",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -714,10 +715,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PutKeyTableId": {
+    "com.surrealdb.api#PutKeyById": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PutKeyTableIdRequest"
+        "target": "com.surrealdb.api#PutKeyByIdRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -731,7 +732,7 @@
         "smithy.api#documentation": "Update a specific record in a table\n\nThis HTTP RESTful endpoint updates a specific record in a table in the database. The supplied request body is used as the content of the record, and is equivalent to running:\n\n``` sql\nUPDATE type::thing($table, $id) CONTENT $body;\n```"
       }
     },
-    "com.surrealdb.api#PatchKeyTableIdRequestBodyMap": {
+    "com.surrealdb.api#UpdateKeyByIdRequestBodyMap2": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -743,7 +744,7 @@
         "smithy.api#documentation": "Fields to merge into the record"
       }
     },
-    "com.surrealdb.api#PatchKeyTableIdRequest": {
+    "com.surrealdb.api#UpdateKeyByIdRequest2": {
       "type": "structure",
       "members": {
         "table": {
@@ -777,7 +778,7 @@
           }
         },
         "body": {
-          "target": "com.surrealdb.api#PatchKeyTableIdRequestBodyMap",
+          "target": "com.surrealdb.api#UpdateKeyByIdRequestBodyMap2",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#required": {}
@@ -788,10 +789,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PatchKeyTableId": {
+    "com.surrealdb.api#UpdateKeyById2": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PatchKeyTableIdRequest"
+        "target": "com.surrealdb.api#UpdateKeyByIdRequest2"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -805,7 +806,7 @@
         "smithy.api#documentation": "Update a specific record in a table\n\nThis HTTP RESTful endpoint updates a specific record in a table in the database. It merges the supplied request data with the records in the table, and is equivalent to running:\n\n``` sql\nUPDATE type::thing($table, $id) MERGE $body;\n```"
       }
     },
-    "com.surrealdb.api#DeleteKeyTableIdRequest": {
+    "com.surrealdb.api#DeleteKeyByIdRequest": {
       "type": "structure",
       "members": {
         "table": {
@@ -843,10 +844,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#DeleteKeyTableId": {
+    "com.surrealdb.api#DeleteKeyById": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#DeleteKeyTableIdRequest"
+        "target": "com.surrealdb.api#DeleteKeyByIdRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -860,7 +861,7 @@
         "smithy.api#documentation": "Delete a specific record from a table\n\nThis HTTP RESTful endpoint deletes a specific record from a table in the database. It is equivalent to running:\n\n``` sql\nDELETE type::thing($table, $id);\n```"
       }
     },
-    "com.surrealdb.api#PostSqlRequest": {
+    "com.surrealdb.api#CreateSqlRequest": {
       "type": "structure",
       "members": {
         "nS": {
@@ -889,10 +890,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.surrealdb.api#PostSql": {
+    "com.surrealdb.api#CreateSql": {
       "type": "operation",
       "input": {
-        "target": "com.surrealdb.api#PostSqlRequest"
+        "target": "com.surrealdb.api#CreateSqlRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -923,40 +924,40 @@
           "target": "com.surrealdb.api#GetExport"
         },
         {
-          "target": "com.surrealdb.api#PostImport"
+          "target": "com.surrealdb.api#Import"
         },
         {
-          "target": "com.surrealdb.api#GetKeyTable"
+          "target": "com.surrealdb.api#GetKey"
         },
         {
-          "target": "com.surrealdb.api#PostKeyTable"
+          "target": "com.surrealdb.api#UpdateKey"
         },
         {
-          "target": "com.surrealdb.api#PutKeyTable"
+          "target": "com.surrealdb.api#PutKey"
         },
         {
-          "target": "com.surrealdb.api#PatchKeyTable"
+          "target": "com.surrealdb.api#UpdateKeyByTable"
         },
         {
-          "target": "com.surrealdb.api#DeleteKeyTable"
+          "target": "com.surrealdb.api#DeleteKey"
         },
         {
-          "target": "com.surrealdb.api#GetKeyTableId"
+          "target": "com.surrealdb.api#GetKeyById"
         },
         {
-          "target": "com.surrealdb.api#PostKeyTableId"
+          "target": "com.surrealdb.api#UpdateKeyById"
         },
         {
-          "target": "com.surrealdb.api#PutKeyTableId"
+          "target": "com.surrealdb.api#PutKeyById"
         },
         {
-          "target": "com.surrealdb.api#PatchKeyTableId"
+          "target": "com.surrealdb.api#UpdateKeyById2"
         },
         {
-          "target": "com.surrealdb.api#DeleteKeyTableId"
+          "target": "com.surrealdb.api#DeleteKeyById"
         },
         {
-          "target": "com.surrealdb.api#PostSql"
+          "target": "com.surrealdb.api#CreateSql"
         }
       ],
       "traits": {
