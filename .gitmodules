@@ -253,3 +253,8 @@
 	url = https://github.com/distilled-mirror/spec-mirror-hostinger.git
 	ignore = dirty
 	shallow = true
+[submodule "packages/infisical/specs/spec-mirror-infisical"]
+	path = packages/infisical/specs/spec-mirror-infisical
+	url = https://github.com/distilled-mirror/spec-mirror-infisical.git
+	ignore = dirty
+	shallow = true
