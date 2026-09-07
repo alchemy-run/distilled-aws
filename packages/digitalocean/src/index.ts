@@ -26,7 +26,13 @@ export * as Services from "./services/index.ts";
 // Operations (and their request/response types) are importable off the package
 // root. The service-local typed error classes shadow the same-named shared
 // ones from ./errors.ts — the ops actually raise the service-local classes.
+//
+// The API also models a `Credentials` schema (a database connection's
+// user/password), which would collide with the `Credentials` service from
+// ./credentials.ts. That one stays at the root; the schema is reachable as
+// `Services.digitalocean.Credentials`.
 export * from "./services/digitalocean.ts";
+export { Credentials } from "./credentials.ts";
 export {
   BadRequest,
   Conflict,
