@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.vault_payment_tokens_v3#CustomerPaymentTokensGetRequest": {
+    "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentTokenRequest": {
       "type": "structure",
       "members": {
         "customer_id": {
@@ -2153,10 +2154,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#CustomerPaymentTokensGet": {
+    "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentToken": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.vault_payment_tokens_v3#CustomerPaymentTokensGetRequest"
+        "target": "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentTokenRequest"
       },
       "output": {
         "target": "com.paypal.vault_payment_tokens_v3#CustomerVaultPaymentTokensResponse"
@@ -2178,7 +2179,7 @@
         "smithy.api#documentation": "List all payment tokens\n\nReturns all payment tokens for a customer."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensCreateRequestCustomer": {
+    "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequestCustomer": {
       "type": "structure",
       "members": {
         "id": {
@@ -2342,7 +2343,7 @@
         "smithy.api#documentation": "The tokenization method that generated the ID."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensCreateRequest": {
+    "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequest": {
       "type": "structure",
       "members": {
         "payPalRequestId": {
@@ -2353,7 +2354,7 @@
           }
         },
         "customer": {
-          "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensCreateRequestCustomer",
+          "target": "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequestCustomer",
           "traits": {
             "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
           }
@@ -2369,10 +2370,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensCreate": {
+    "com.paypal.vault_payment_tokens_v3#CreatePaymentToken": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensCreateRequest"
+        "target": "com.paypal.vault_payment_tokens_v3#CreatePaymentTokenRequest"
       },
       "output": {
         "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenResponse"
@@ -2400,7 +2401,7 @@
         "smithy.api#documentation": "Create payment token for a given payment source\n\nCreates a Payment Token from the given payment source and adds it to the Vault of the associated customer."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensGetRequest": {
+    "com.paypal.vault_payment_tokens_v3#GetPaymentTokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2416,10 +2417,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensGet": {
+    "com.paypal.vault_payment_tokens_v3#GetPaymentToken": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensGetRequest"
+        "target": "com.paypal.vault_payment_tokens_v3#GetPaymentTokenRequest"
       },
       "output": {
         "target": "com.paypal.vault_payment_tokens_v3#PaymentTokenResponse"
@@ -2444,7 +2445,7 @@
         "smithy.api#documentation": "Retrieve a payment token\n\nReturns a readable representation of vaulted payment source associated with the payment token id."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensDeleteRequest": {
+    "com.paypal.vault_payment_tokens_v3#DeletePaymentTokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2460,10 +2461,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.vault_payment_tokens_v3#PaymentTokensDelete": {
+    "com.paypal.vault_payment_tokens_v3#DeletePaymentToken": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensDeleteRequest"
+        "target": "com.paypal.vault_payment_tokens_v3#DeletePaymentTokenRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2485,7 +2486,7 @@
         "smithy.api#documentation": "Delete payment token\n\nDelete the payment token associated with the payment token id."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestCustomer": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestCustomer": {
       "type": "structure",
       "members": {
         "id": {
@@ -2505,7 +2506,7 @@
         "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSourceCardBillingAddress": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardBillingAddress": {
       "type": "structure",
       "members": {
         "address_line_1": {
@@ -2589,7 +2590,7 @@
         "smithy.api#documentation": "Vault Instruction on action to be performed after a successful payer approval."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSourceCardExperienceContext": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardExperienceContext": {
       "type": "structure",
       "members": {
         "brand_name": {
@@ -2627,7 +2628,7 @@
         "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSourceCard": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCard": {
       "type": "structure",
       "members": {
         "name": {
@@ -2661,7 +2662,7 @@
           }
         },
         "billing_address": {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSourceCardBillingAddress",
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardBillingAddress",
           "traits": {
             "smithy.api#documentation": "The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute)."
           }
@@ -2673,7 +2674,7 @@
           }
         },
         "experience_context": {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSourceCardExperienceContext",
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCardExperienceContext",
           "traits": {
             "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
           }
@@ -3633,11 +3634,11 @@
         "smithy.api#documentation": "Customizes the Vault creation flow experience for your customers."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSource": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSource": {
       "type": "structure",
       "members": {
         "card": {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSourceCard",
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSourceCard",
           "traits": {
             "smithy.api#documentation": "A Resource representing a request to vault a Card."
           }
@@ -3656,7 +3657,7 @@
         "smithy.api#documentation": "The payment method to vault with the instrument details."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequest": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequest": {
       "type": "structure",
       "members": {
         "payPalRequestId": {
@@ -3667,13 +3668,13 @@
           }
         },
         "customer": {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestCustomer",
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestCustomer",
           "traits": {
             "smithy.api#documentation": "This object defines a customer in your system. Use it to manage customer profiles, save payment methods and contact details."
           }
         },
         "payment_source": {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequestPaymentSource",
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequestPaymentSource",
           "traits": {
             "smithy.api#documentation": "The payment method to vault with the instrument details.",
             "smithy.api#required": {}
@@ -3921,10 +3922,10 @@
         "smithy.api#documentation": "The setup payment method details."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensCreate": {
+    "com.paypal.vault_payment_tokens_v3#CreateSetupToken": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreateRequest"
+        "target": "com.paypal.vault_payment_tokens_v3#CreateSetupTokenRequest"
       },
       "output": {
         "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponse"
@@ -3949,7 +3950,7 @@
         "smithy.api#documentation": "Create a setup token\n\nCreates a Setup Token from the given payment source and adds it to the Vault of the associated customer."
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensGetRequest": {
+    "com.paypal.vault_payment_tokens_v3#GetSetupTokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3965,10 +3966,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.vault_payment_tokens_v3#SetupTokensGet": {
+    "com.paypal.vault_payment_tokens_v3#GetSetupToken": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.vault_payment_tokens_v3#SetupTokensGetRequest"
+        "target": "com.paypal.vault_payment_tokens_v3#GetSetupTokenRequest"
       },
       "output": {
         "target": "com.paypal.vault_payment_tokens_v3#SetupTokenResponse"
@@ -4050,22 +4051,22 @@
       "version": "3.4",
       "operations": [
         {
-          "target": "com.paypal.vault_payment_tokens_v3#CustomerPaymentTokensGet"
+          "target": "com.paypal.vault_payment_tokens_v3#GetCustomerPaymentToken"
         },
         {
-          "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensCreate"
+          "target": "com.paypal.vault_payment_tokens_v3#CreatePaymentToken"
         },
         {
-          "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensGet"
+          "target": "com.paypal.vault_payment_tokens_v3#GetPaymentToken"
         },
         {
-          "target": "com.paypal.vault_payment_tokens_v3#PaymentTokensDelete"
+          "target": "com.paypal.vault_payment_tokens_v3#DeletePaymentToken"
         },
         {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensCreate"
+          "target": "com.paypal.vault_payment_tokens_v3#CreateSetupToken"
         },
         {
-          "target": "com.paypal.vault_payment_tokens_v3#SetupTokensGet"
+          "target": "com.paypal.vault_payment_tokens_v3#GetSetupToken"
         }
       ],
       "traits": {

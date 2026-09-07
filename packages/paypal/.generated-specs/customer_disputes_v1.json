@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.customer_disputes_v1#DisputesListRequest": {
+    "com.paypal.customer_disputes_v1#ListDisputesRequest": {
       "type": "structure",
       "members": {
         "start_time": {
@@ -575,10 +576,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.customer_disputes_v1#DisputesList": {
+    "com.paypal.customer_disputes_v1#ListDisputes": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.customer_disputes_v1#DisputesListRequest"
+        "target": "com.paypal.customer_disputes_v1#ListDisputesRequest"
       },
       "output": {
         "target": "com.paypal.customer_disputes_v1#DisputeSearch"
@@ -597,7 +598,7 @@
         "smithy.api#documentation": "List disputes\n\nLists disputes with a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_state</code>, <code>dispute_life_cycle_stage</code>, <code>dispute_channel</code>, <code>dispute_amount</code>, <code>create_time</code> and <code>update_time</code> fields.<br/><br/>To filter the disputes in the response, specify one or more optional query parameters. To limit the number of disputes in the response, specify the <code>page_size</code> query parameter.<br/><br/>To list multiple disputes, set these query parameters in the request:<ul><li><code>page_size=2</code></li><li><code>start_time</code> instead of <code>disputed_transaction_id</code></li></ul><br/>If the response contains more than two disputes, it lists two disputes and includes a HATEOAS link to the next page of results."
       }
     },
-    "com.paypal.customer_disputes_v1#DisputesGetRequest": {
+    "com.paypal.customer_disputes_v1#GetDisputeRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -11869,10 +11870,10 @@
         "smithy.api#documentation": "The types of offer the merchant can offer the customer."
       }
     },
-    "com.paypal.customer_disputes_v1#DisputesGet": {
+    "com.paypal.customer_disputes_v1#GetDispute": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.customer_disputes_v1#DisputesGetRequest"
+        "target": "com.paypal.customer_disputes_v1#GetDisputeRequest"
       },
       "output": {
         "target": "com.paypal.customer_disputes_v1#Dispute"
@@ -11972,7 +11973,7 @@
         "smithy.api#documentation": "The operation."
       }
     },
-    "com.paypal.customer_disputes_v1#DisputesPatchRequest": {
+    "com.paypal.customer_disputes_v1#PatchDisputeRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -11994,10 +11995,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.customer_disputes_v1#DisputesPatch": {
+    "com.paypal.customer_disputes_v1#PatchDispute": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.customer_disputes_v1#DisputesPatchRequest"
+        "target": "com.paypal.customer_disputes_v1#PatchDisputeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12730,13 +12731,13 @@
       "version": "1.11",
       "operations": [
         {
-          "target": "com.paypal.customer_disputes_v1#DisputesList"
+          "target": "com.paypal.customer_disputes_v1#ListDisputes"
         },
         {
-          "target": "com.paypal.customer_disputes_v1#DisputesGet"
+          "target": "com.paypal.customer_disputes_v1#GetDispute"
         },
         {
-          "target": "com.paypal.customer_disputes_v1#DisputesPatch"
+          "target": "com.paypal.customer_disputes_v1#PatchDispute"
         },
         {
           "target": "com.paypal.customer_disputes_v1#DisputesProvideEvidence"

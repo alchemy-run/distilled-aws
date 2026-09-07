@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.billing_subscriptions_v1#PlansListRequest": {
+    "com.paypal.billing_subscriptions_v1#ListPlansRequest": {
       "type": "structure",
       "members": {
         "product_id": {
@@ -597,10 +598,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansList": {
+    "com.paypal.billing_subscriptions_v1#ListPlans": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#PlansListRequest"
+        "target": "com.paypal.billing_subscriptions_v1#ListPlansRequest"
       },
       "output": {
         "target": "com.paypal.billing_subscriptions_v1#PlanCollection"
@@ -625,7 +626,7 @@
         "smithy.api#documentation": "List plans\n\nLists billing plans."
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansCreateRequestStatus": {
+    "com.paypal.billing_subscriptions_v1#CreatePlanRequestStatus": {
       "type": "enum",
       "members": {
         "CREATED": {
@@ -764,7 +765,7 @@
         "smithy.api#documentation": "The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan."
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansCreateRequest": {
+    "com.paypal.billing_subscriptions_v1#CreatePlanRequest": {
       "type": "structure",
       "members": {
         "prefer": {
@@ -796,7 +797,7 @@
           }
         },
         "status": {
-          "target": "com.paypal.billing_subscriptions_v1#PlansCreateRequestStatus",
+          "target": "com.paypal.billing_subscriptions_v1#CreatePlanRequestStatus",
           "traits": {
             "smithy.api#documentation": "The initial state of the plan. Allowed input values are CREATED and ACTIVE."
           }
@@ -833,10 +834,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansCreate": {
+    "com.paypal.billing_subscriptions_v1#CreatePlan": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#PlansCreateRequest"
+        "target": "com.paypal.billing_subscriptions_v1#CreatePlanRequest"
       },
       "output": {
         "target": "com.paypal.billing_subscriptions_v1#Plan"
@@ -861,7 +862,7 @@
         "smithy.api#documentation": "Create plan\n\nCreates a plan that defines pricing and billing cycle details for subscriptions."
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansGetRequest": {
+    "com.paypal.billing_subscriptions_v1#GetPlanRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -877,10 +878,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansGet": {
+    "com.paypal.billing_subscriptions_v1#GetPlan": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#PlansGetRequest"
+        "target": "com.paypal.billing_subscriptions_v1#GetPlanRequest"
       },
       "output": {
         "target": "com.paypal.billing_subscriptions_v1#Plan"
@@ -988,7 +989,7 @@
         "smithy.api#documentation": "The operation."
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansPatchRequest": {
+    "com.paypal.billing_subscriptions_v1#PatchPlanRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1010,10 +1011,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansPatch": {
+    "com.paypal.billing_subscriptions_v1#PatchPlan": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#PlansPatchRequest"
+        "target": "com.paypal.billing_subscriptions_v1#PatchPlanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1041,7 +1042,7 @@
         "smithy.api#documentation": "Update plan\n\nUpdates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, you can make only status updates.<br/>You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>replace</td></tr><tr><td><code>payment_preferences.auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>taxes.percentage</code></td><td>replace</td></tr><tr><td><code>payment_preferences.payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee_failure_action</code></td><td>replace</td></tr><tr><td><code>name</code></td><td>replace</td></tr></tbody></table>"
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansActivateRequest": {
+    "com.paypal.billing_subscriptions_v1#ActivatePlanRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1057,10 +1058,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansActivate": {
+    "com.paypal.billing_subscriptions_v1#ActivatePlan": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#PlansActivateRequest"
+        "target": "com.paypal.billing_subscriptions_v1#ActivatePlanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1085,7 +1086,7 @@
         "smithy.api#documentation": "Activate plan\n\nActivates a plan, by ID."
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansDeactivateRequest": {
+    "com.paypal.billing_subscriptions_v1#DeactivatePlanRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1101,10 +1102,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#PlansDeactivate": {
+    "com.paypal.billing_subscriptions_v1#DeactivatePlan": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#PlansDeactivateRequest"
+        "target": "com.paypal.billing_subscriptions_v1#DeactivatePlanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2209,7 +2210,7 @@
         "smithy.api#documentation": "The tax details."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateRequest": {
+    "com.paypal.billing_subscriptions_v1#CreateSubscriptionRequest": {
       "type": "structure",
       "members": {
         "prefer": {
@@ -2286,7 +2287,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponseStatus": {
+    "com.paypal.billing_subscriptions_v1#CreateSubscriptionResponseStatus": {
       "type": "enum",
       "members": {
         "APPROVAL_PENDING": {
@@ -3041,7 +3042,7 @@
         "smithy.api#documentation": "The reason code for the payment failure."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponsePlan": {
+    "com.paypal.billing_subscriptions_v1#CreateSubscriptionResponsePlan": {
       "type": "structure",
       "members": {
         "product_id": {
@@ -3082,11 +3083,11 @@
         "smithy.api#documentation": "The plan details."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponse": {
+    "com.paypal.billing_subscriptions_v1#CreateSubscriptionResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponseStatus",
+          "target": "com.paypal.billing_subscriptions_v1#CreateSubscriptionResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the subscription."
           }
@@ -3149,7 +3150,7 @@
           }
         },
         "plan": {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponsePlan",
+          "target": "com.paypal.billing_subscriptions_v1#CreateSubscriptionResponsePlan",
           "traits": {
             "smithy.api#documentation": "The plan details."
           }
@@ -3162,13 +3163,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCreate": {
+    "com.paypal.billing_subscriptions_v1#CreateSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateRequest"
+        "target": "com.paypal.billing_subscriptions_v1#CreateSubscriptionRequest"
       },
       "output": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreateResponse"
+        "target": "com.paypal.billing_subscriptions_v1#CreateSubscriptionResponse"
       },
       "errors": [
         {
@@ -3190,7 +3191,7 @@
         "smithy.api#documentation": "Create subscription\n\nCreates a subscription."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsGetRequest": {
+    "com.paypal.billing_subscriptions_v1#GetSubscriptionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3213,7 +3214,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponseStatus": {
+    "com.paypal.billing_subscriptions_v1#GetSubscriptionResponseStatus": {
       "type": "enum",
       "members": {
         "APPROVAL_PENDING": {
@@ -3257,7 +3258,7 @@
         "smithy.api#documentation": "The status of the subscription."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponsePlan": {
+    "com.paypal.billing_subscriptions_v1#GetSubscriptionResponsePlan": {
       "type": "structure",
       "members": {
         "product_id": {
@@ -3298,11 +3299,11 @@
         "smithy.api#documentation": "The plan details."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponse": {
+    "com.paypal.billing_subscriptions_v1#GetSubscriptionResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponseStatus",
+          "target": "com.paypal.billing_subscriptions_v1#GetSubscriptionResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the subscription."
           }
@@ -3365,7 +3366,7 @@
           }
         },
         "plan": {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponsePlan",
+          "target": "com.paypal.billing_subscriptions_v1#GetSubscriptionResponsePlan",
           "traits": {
             "smithy.api#documentation": "The plan details."
           }
@@ -3378,13 +3379,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsGet": {
+    "com.paypal.billing_subscriptions_v1#GetSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetRequest"
+        "target": "com.paypal.billing_subscriptions_v1#GetSubscriptionRequest"
       },
       "output": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGetResponse"
+        "target": "com.paypal.billing_subscriptions_v1#GetSubscriptionResponse"
       },
       "errors": [
         {
@@ -3403,7 +3404,7 @@
         "smithy.api#documentation": "Show subscription details\n\nShows details for a subscription, by ID."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsPatchRequest": {
+    "com.paypal.billing_subscriptions_v1#PatchSubscriptionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3425,10 +3426,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsPatch": {
+    "com.paypal.billing_subscriptions_v1#PatchSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsPatchRequest"
+        "target": "com.paypal.billing_subscriptions_v1#PatchSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3731,7 +3732,7 @@
         "smithy.api#documentation": "Revise plan or quantity of subscription\n\nUpdates the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount`, `shipping_address` values for the subscription. This type of update requires the buyer's consent."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsSuspendRequest": {
+    "com.paypal.billing_subscriptions_v1#SuspendSubscriptionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3754,10 +3755,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsSuspend": {
+    "com.paypal.billing_subscriptions_v1#SuspendSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsSuspendRequest"
+        "target": "com.paypal.billing_subscriptions_v1#SuspendSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3785,7 +3786,7 @@
         "smithy.api#documentation": "Suspend subscription\n\nSuspends the subscription."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCancelRequest": {
+    "com.paypal.billing_subscriptions_v1#CancelSubscriptionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3808,10 +3809,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCancel": {
+    "com.paypal.billing_subscriptions_v1#CancelSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCancelRequest"
+        "target": "com.paypal.billing_subscriptions_v1#CancelSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3839,7 +3840,7 @@
         "smithy.api#documentation": "Cancel subscription\n\nCancels the subscription."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsActivateRequest": {
+    "com.paypal.billing_subscriptions_v1#ActivateSubscriptionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3861,10 +3862,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsActivate": {
+    "com.paypal.billing_subscriptions_v1#ActivateSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsActivateRequest"
+        "target": "com.paypal.billing_subscriptions_v1#ActivateSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3892,7 +3893,7 @@
         "smithy.api#documentation": "Activate subscription\n\nActivates the subscription."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequestCaptureType": {
+    "com.paypal.billing_subscriptions_v1#CaptureSubscriptionRequestCaptureType": {
       "type": "enum",
       "members": {
         "OUTSTANDING_BALANCE": {
@@ -3906,7 +3907,7 @@
         "smithy.api#documentation": "The type of capture."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequest": {
+    "com.paypal.billing_subscriptions_v1#CaptureSubscriptionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3932,7 +3933,7 @@
           }
         },
         "capture_type": {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequestCaptureType",
+          "target": "com.paypal.billing_subscriptions_v1#CaptureSubscriptionRequestCaptureType",
           "traits": {
             "smithy.api#documentation": "The type of capture.",
             "smithy.api#required": {}
@@ -4129,10 +4130,10 @@
         "smithy.api#documentation": "The name of the party."
       }
     },
-    "com.paypal.billing_subscriptions_v1#SubscriptionsCapture": {
+    "com.paypal.billing_subscriptions_v1#CaptureSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCaptureRequest"
+        "target": "com.paypal.billing_subscriptions_v1#CaptureSubscriptionRequest"
       },
       "output": {
         "target": "com.paypal.billing_subscriptions_v1#Transaction"
@@ -4312,49 +4313,49 @@
       "version": "1.8",
       "operations": [
         {
-          "target": "com.paypal.billing_subscriptions_v1#PlansList"
+          "target": "com.paypal.billing_subscriptions_v1#ListPlans"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#PlansCreate"
+          "target": "com.paypal.billing_subscriptions_v1#CreatePlan"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#PlansGet"
+          "target": "com.paypal.billing_subscriptions_v1#GetPlan"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#PlansPatch"
+          "target": "com.paypal.billing_subscriptions_v1#PatchPlan"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#PlansActivate"
+          "target": "com.paypal.billing_subscriptions_v1#ActivatePlan"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#PlansDeactivate"
+          "target": "com.paypal.billing_subscriptions_v1#DeactivatePlan"
         },
         {
           "target": "com.paypal.billing_subscriptions_v1#PlansUpdatePricingSchemes"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCreate"
+          "target": "com.paypal.billing_subscriptions_v1#CreateSubscription"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsGet"
+          "target": "com.paypal.billing_subscriptions_v1#GetSubscription"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsPatch"
+          "target": "com.paypal.billing_subscriptions_v1#PatchSubscription"
         },
         {
           "target": "com.paypal.billing_subscriptions_v1#SubscriptionsRevise"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsSuspend"
+          "target": "com.paypal.billing_subscriptions_v1#SuspendSubscription"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCancel"
+          "target": "com.paypal.billing_subscriptions_v1#CancelSubscription"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsActivate"
+          "target": "com.paypal.billing_subscriptions_v1#ActivateSubscription"
         },
         {
-          "target": "com.paypal.billing_subscriptions_v1#SubscriptionsCapture"
+          "target": "com.paypal.billing_subscriptions_v1#CaptureSubscription"
         },
         {
           "target": "com.paypal.billing_subscriptions_v1#SubscriptionsTransactions"

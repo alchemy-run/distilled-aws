@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.catalogs_products_v1#ProductsListRequest": {
+    "com.paypal.catalogs_products_v1#ListProductsRequest": {
       "type": "structure",
       "members": {
         "page_size": {
@@ -209,10 +210,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsList": {
+    "com.paypal.catalogs_products_v1#ListProducts": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.catalogs_products_v1#ProductsListRequest"
+        "target": "com.paypal.catalogs_products_v1#ListProductsRequest"
       },
       "output": {
         "target": "com.paypal.catalogs_products_v1#ProductCollection"
@@ -234,7 +235,7 @@
         "smithy.api#documentation": "List products\n\nLists products."
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsCreateRequestType": {
+    "com.paypal.catalogs_products_v1#CreateProductRequestType": {
       "type": "enum",
       "members": {
         "PHYSICAL": {
@@ -2944,7 +2945,7 @@
         "smithy.api#documentation": "The product category."
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsCreateRequest": {
+    "com.paypal.catalogs_products_v1#CreateProductRequest": {
       "type": "structure",
       "members": {
         "prefer": {
@@ -2981,7 +2982,7 @@
           }
         },
         "type": {
-          "target": "com.paypal.catalogs_products_v1#ProductsCreateRequestType",
+          "target": "com.paypal.catalogs_products_v1#CreateProductRequestType",
           "traits": {
             "smithy.api#documentation": "The product type. Indicates whether the product is physical or digital goods, or a service.",
             "smithy.api#required": {}
@@ -3095,10 +3096,10 @@
         "smithy.api#documentation": "The product type. Indicates whether the product is physical or digital goods, or a service."
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsCreate": {
+    "com.paypal.catalogs_products_v1#CreateProduct": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.catalogs_products_v1#ProductsCreateRequest"
+        "target": "com.paypal.catalogs_products_v1#CreateProductRequest"
       },
       "output": {
         "target": "com.paypal.catalogs_products_v1#Product"
@@ -3123,7 +3124,7 @@
         "smithy.api#documentation": "Create product\n\nCreates a product."
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsGetRequest": {
+    "com.paypal.catalogs_products_v1#GetProductRequest": {
       "type": "structure",
       "members": {
         "product_id": {
@@ -3139,10 +3140,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsGet": {
+    "com.paypal.catalogs_products_v1#GetProduct": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.catalogs_products_v1#ProductsGetRequest"
+        "target": "com.paypal.catalogs_products_v1#GetProductRequest"
       },
       "output": {
         "target": "com.paypal.catalogs_products_v1#Product"
@@ -3251,7 +3252,7 @@
         "smithy.api#documentation": "The operation."
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsPatchRequest": {
+    "com.paypal.catalogs_products_v1#PatchProductRequest": {
       "type": "structure",
       "members": {
         "product_id": {
@@ -3273,10 +3274,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.catalogs_products_v1#ProductsPatch": {
+    "com.paypal.catalogs_products_v1#PatchProduct": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.catalogs_products_v1#ProductsPatchRequest"
+        "target": "com.paypal.catalogs_products_v1#PatchProductRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3361,16 +3362,16 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.paypal.catalogs_products_v1#ProductsList"
+          "target": "com.paypal.catalogs_products_v1#ListProducts"
         },
         {
-          "target": "com.paypal.catalogs_products_v1#ProductsCreate"
+          "target": "com.paypal.catalogs_products_v1#CreateProduct"
         },
         {
-          "target": "com.paypal.catalogs_products_v1#ProductsGet"
+          "target": "com.paypal.catalogs_products_v1#GetProduct"
         },
         {
-          "target": "com.paypal.catalogs_products_v1#ProductsPatch"
+          "target": "com.paypal.catalogs_products_v1#PatchProduct"
         }
       ],
       "traits": {

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.notifications_webhooks_v1#WebhooksListRequestAnchorType": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooksRequestAnchorType": {
       "type": "enum",
       "members": {
         "APPLICATION": {
@@ -35,11 +36,11 @@
       },
       "traits": {}
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksListRequest": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooksRequest": {
       "type": "structure",
       "members": {
         "anchor_type": {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksListRequestAnchorType",
+          "target": "com.paypal.notifications_webhooks_v1#ListWebhooksRequestAnchorType",
           "traits": {
             "smithy.api#httpQuery": "anchor_type",
             "smithy.api#documentation": "Filters the webhooks in the response by an `anchor_id` entity type."
@@ -241,10 +242,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksList": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooks": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksListRequest"
+        "target": "com.paypal.notifications_webhooks_v1#ListWebhooksRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#WebhookList"
@@ -282,7 +283,7 @@
         "smithy.api#documentation": "An event type."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksPostRequest": {
+    "com.paypal.notifications_webhooks_v1#PostWebhookRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -303,10 +304,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksPost": {
+    "com.paypal.notifications_webhooks_v1#PostWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksPostRequest"
+        "target": "com.paypal.notifications_webhooks_v1#PostWebhookRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#Webhook"
@@ -320,7 +321,7 @@
         "smithy.api#documentation": "Create webhook\n\nSubscribes your webhook listener to events."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksGetRequest": {
+    "com.paypal.notifications_webhooks_v1#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -336,10 +337,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksGet": {
+    "com.paypal.notifications_webhooks_v1#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksGetRequest"
+        "target": "com.paypal.notifications_webhooks_v1#GetWebhookRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#Webhook"
@@ -440,7 +441,7 @@
         "smithy.api#documentation": "The operation."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksUpdateRequest": {
+    "com.paypal.notifications_webhooks_v1#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -462,10 +463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksUpdate": {
+    "com.paypal.notifications_webhooks_v1#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksUpdateRequest"
+        "target": "com.paypal.notifications_webhooks_v1#UpdateWebhookRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#Webhook"
@@ -479,7 +480,7 @@
         "smithy.api#documentation": "Update webhook\n\nUpdates a webhook to replace webhook fields with new values. Supports only the `replace` operation. Pass a `json_patch` object with `replace` operation and `path`, which is `/url` for a URL or `/event_types` for events. The `value` is either the URL or a list of events."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksDeleteRequest": {
+    "com.paypal.notifications_webhooks_v1#DeleteWebhookRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -495,10 +496,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksDelete": {
+    "com.paypal.notifications_webhooks_v1#DeleteWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksDeleteRequest"
+        "target": "com.paypal.notifications_webhooks_v1#DeleteWebhookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -512,7 +513,7 @@
         "smithy.api#documentation": "Delete webhook\n\nDeletes a webhook, by ID."
       }
     },
-    "com.paypal.notifications_webhooks_v1#EventTypesListRequest": {
+    "com.paypal.notifications_webhooks_v1#ListEventTypesRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -548,10 +549,10 @@
         "smithy.api#documentation": "An array of webhook events."
       }
     },
-    "com.paypal.notifications_webhooks_v1#EventTypesList": {
+    "com.paypal.notifications_webhooks_v1#ListEventTypes": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#EventTypesListRequest"
+        "target": "com.paypal.notifications_webhooks_v1#ListEventTypesRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#EventTypeList"
@@ -608,7 +609,7 @@
         "smithy.api#documentation": "The webhook lookup details."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksLookupList2": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooksLookup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -625,7 +626,7 @@
         "smithy.api#documentation": "List webhook lookups\n\nLists webhook lookups."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksLookupPost": {
+    "com.paypal.notifications_webhooks_v1#PostWebhooksLookup": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -642,7 +643,7 @@
         "smithy.api#documentation": "Create webhook lookup\n\nCreates a webhook lookup. A webhook lookup ties the API caller's REST API app to the subject account (or, if no subject is specified, to the API caller's account). If a webhook event is generated for an event that is tied to the account but not to a particular REST API app (for example, payments initiated with the NVP/SOAP APIs or through the user interface on PayPal.com), those webhook events will treated as if they were intended for the REST API app registered in the webhook lookup instead. Webhook events will then be delivered to any webhooks registered to that REST API app."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksLookupGetRequest": {
+    "com.paypal.notifications_webhooks_v1#GetWebhooksLookupRequest": {
       "type": "structure",
       "members": {
         "webhook_lookup_id": {
@@ -658,10 +659,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksLookupGet": {
+    "com.paypal.notifications_webhooks_v1#GetWebhooksLookup": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupGetRequest"
+        "target": "com.paypal.notifications_webhooks_v1#GetWebhooksLookupRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#WebhooksLookup"
@@ -675,7 +676,7 @@
         "smithy.api#documentation": "Show webhook lookup details\n\nShows details for a webhook lookup, by ID."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksLookupDeleteRequest": {
+    "com.paypal.notifications_webhooks_v1#DeleteWebhooksLookupRequest": {
       "type": "structure",
       "members": {
         "webhook_lookup_id": {
@@ -691,10 +692,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksLookupDelete": {
+    "com.paypal.notifications_webhooks_v1#DeleteWebhooksLookup": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupDeleteRequest"
+        "target": "com.paypal.notifications_webhooks_v1#DeleteWebhooksLookupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -830,7 +831,7 @@
         "smithy.api#documentation": "Verify webhook signature\n\nVerifies a webhook signature."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventTypesList": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooksEventTypes": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -847,7 +848,7 @@
         "smithy.api#documentation": "List available events\n\nLists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/)."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventsListRequest": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooksEventsRequest": {
       "type": "structure",
       "members": {
         "page_size": {
@@ -990,10 +991,10 @@
         "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventsList": {
+    "com.paypal.notifications_webhooks_v1#ListWebhooksEvents": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsListRequest"
+        "target": "com.paypal.notifications_webhooks_v1#ListWebhooksEventsRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#EventList"
@@ -1007,7 +1008,7 @@
         "smithy.api#documentation": "List event notifications\n\nLists webhooks event notifications. Use query parameters to filter the response."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventsGetRequest": {
+    "com.paypal.notifications_webhooks_v1#GetWebhooksEventRequest": {
       "type": "structure",
       "members": {
         "event_id": {
@@ -1023,10 +1024,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventsGet": {
+    "com.paypal.notifications_webhooks_v1#GetWebhooksEvent": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsGetRequest"
+        "target": "com.paypal.notifications_webhooks_v1#GetWebhooksEventRequest"
       },
       "output": {
         "target": "com.paypal.notifications_webhooks_v1#Event"
@@ -1049,7 +1050,7 @@
         "smithy.api#documentation": "An array of webhook account IDs."
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventsResendRequest": {
+    "com.paypal.notifications_webhooks_v1#ResendWebhooksEventRequest": {
       "type": "structure",
       "members": {
         "event_id": {
@@ -1068,10 +1069,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#WebhooksEventsResend": {
+    "com.paypal.notifications_webhooks_v1#ResendWebhooksEvent": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsResendRequest"
+        "target": "com.paypal.notifications_webhooks_v1#ResendWebhooksEventRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1085,7 +1086,7 @@
         "smithy.api#documentation": "Resend event notification\n\nResends a webhook event notification, by ID. Any pending notifications are not resent."
       }
     },
-    "com.paypal.notifications_webhooks_v1#SimulateEventPostRequest": {
+    "com.paypal.notifications_webhooks_v1#PostSimulateEventRequest": {
       "type": "structure",
       "members": {
         "webhook_id": {
@@ -1118,10 +1119,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.notifications_webhooks_v1#SimulateEventPost": {
+    "com.paypal.notifications_webhooks_v1#PostSimulateEvent": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.notifications_webhooks_v1#SimulateEventPostRequest"
+        "target": "com.paypal.notifications_webhooks_v1#PostSimulateEventRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1140,52 +1141,52 @@
       "version": "1.11",
       "operations": [
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksList"
+          "target": "com.paypal.notifications_webhooks_v1#ListWebhooks"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksPost"
+          "target": "com.paypal.notifications_webhooks_v1#PostWebhook"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksGet"
+          "target": "com.paypal.notifications_webhooks_v1#GetWebhook"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksUpdate"
+          "target": "com.paypal.notifications_webhooks_v1#UpdateWebhook"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksDelete"
+          "target": "com.paypal.notifications_webhooks_v1#DeleteWebhook"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#EventTypesList"
+          "target": "com.paypal.notifications_webhooks_v1#ListEventTypes"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupList2"
+          "target": "com.paypal.notifications_webhooks_v1#ListWebhooksLookup"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupPost"
+          "target": "com.paypal.notifications_webhooks_v1#PostWebhooksLookup"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupGet"
+          "target": "com.paypal.notifications_webhooks_v1#GetWebhooksLookup"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksLookupDelete"
+          "target": "com.paypal.notifications_webhooks_v1#DeleteWebhooksLookup"
         },
         {
           "target": "com.paypal.notifications_webhooks_v1#VerifyWebhookSignaturePost"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventTypesList"
+          "target": "com.paypal.notifications_webhooks_v1#ListWebhooksEventTypes"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsList"
+          "target": "com.paypal.notifications_webhooks_v1#ListWebhooksEvents"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsGet"
+          "target": "com.paypal.notifications_webhooks_v1#GetWebhooksEvent"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#WebhooksEventsResend"
+          "target": "com.paypal.notifications_webhooks_v1#ResendWebhooksEvent"
         },
         {
-          "target": "com.paypal.notifications_webhooks_v1#SimulateEventPost"
+          "target": "com.paypal.notifications_webhooks_v1#PostSimulateEvent"
         }
       ],
       "traits": {

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.payments_payment_v2#AuthorizationsGetRequest": {
+    "com.paypal.payments_payment_v2#GetAuthorizationRequest": {
       "type": "structure",
       "members": {
         "authorization_id": {
@@ -40,7 +41,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseStatus": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseStatus": {
       "type": "enum",
       "members": {
         "CREATED": {
@@ -84,7 +85,7 @@
         "smithy.api#documentation": "The status for the authorized payment."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseStatusDetailsReason": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseStatusDetailsReason": {
       "type": "enum",
       "members": {
         "PENDING_REVIEW": {
@@ -104,11 +105,11 @@
         "smithy.api#documentation": "The reason why the authorized status is `PENDING`."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseStatusDetails": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseStatusDetails": {
       "type": "structure",
       "members": {
         "reason": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseStatusDetailsReason",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseStatusDetailsReason",
           "traits": {
             "smithy.api#documentation": "The reason why the authorized status is `PENDING`."
           }
@@ -278,7 +279,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseAmount": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -329,7 +330,7 @@
         "smithy.api#documentation": "Reference values used by the card network to identify a transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtectionStatus": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtectionStatus": {
       "type": "enum",
       "members": {
         "ELIGIBLE": {
@@ -355,7 +356,7 @@
         "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtectionDisputeCategoriesItem": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtectionDisputeCategoriesItem": {
       "type": "enum",
       "members": {
         "ITEM_NOT_RECEIVED": {
@@ -375,26 +376,26 @@
         "smithy.api#documentation": "The condition that is covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtectionDisputeCategoriesList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtectionDisputeCategoriesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtectionDisputeCategoriesItem"
+        "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtectionDisputeCategoriesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of conditions that are covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtection": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtection": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtectionStatus",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtectionStatus",
           "traits": {
             "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
           }
         },
         "dispute_categories": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtectionDisputeCategoriesList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtectionDisputeCategoriesList",
           "traits": {
             "smithy.api#documentation": "An array of conditions that are covered for the transaction."
           }
@@ -402,7 +403,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemMethod": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -458,7 +459,7 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -467,7 +468,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -476,7 +477,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -485,7 +486,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaLinksList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -494,7 +495,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaMedia": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -514,7 +515,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchema": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -554,19 +555,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -578,7 +579,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -590,7 +591,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -604,7 +605,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -613,7 +614,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -622,7 +623,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -631,7 +632,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaLinksList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -640,7 +641,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaMedia": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -660,7 +661,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchema": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -700,19 +701,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -724,7 +725,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -736,7 +737,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -750,7 +751,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItem": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItem": {
       "type": "structure",
       "members": {
         "href": {
@@ -768,7 +769,7 @@
           }
         },
         "method": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemMethod",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method required to make the related call."
           }
@@ -792,24 +793,24 @@
           }
         },
         "schema": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemSchema"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemSchema"
         },
         "targetSchema": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItemTargetSchema"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItemTargetSchema"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksList": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksItem"
+        "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseSupplementaryDataRelatedIds": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseSupplementaryDataRelatedIds": {
       "type": "structure",
       "members": {
         "order_id": {
@@ -833,16 +834,16 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponseSupplementaryData": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponseSupplementaryData": {
       "type": "structure",
       "members": {
         "related_ids": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseSupplementaryDataRelatedIds"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseSupplementaryDataRelatedIds"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponsePayee": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponsePayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -854,17 +855,17 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGetResponse": {
+    "com.paypal.payments_payment_v2#GetAuthorizationResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseStatus",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status for the authorized payment."
           }
         },
         "status_details": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseStatusDetails"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseStatusDetails"
         },
         "id": {
           "target": "smithy.api#String",
@@ -873,7 +874,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseAmount"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseAmount"
         },
         "invoice_id": {
           "target": "smithy.api#String",
@@ -891,13 +892,13 @@
           "target": "com.paypal.payments_payment_v2#NetworkTransaction"
         },
         "seller_protection": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseSellerProtection"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseSellerProtection"
         },
         "expiration_time": {
           "target": "smithy.api#Document"
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseLinksList",
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseLinksList",
           "traits": {
             "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
           }
@@ -909,23 +910,23 @@
           "target": "smithy.api#Document"
         },
         "supplementary_data": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponseSupplementaryData"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponseSupplementaryData"
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponsePayee"
+          "target": "com.paypal.payments_payment_v2#GetAuthorizationResponsePayee"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsGet": {
+    "com.paypal.payments_payment_v2#GetAuthorization": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsGetRequest"
+        "target": "com.paypal.payments_payment_v2#GetAuthorizationRequest"
       },
       "output": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsGetResponse"
+        "target": "com.paypal.payments_payment_v2#GetAuthorizationResponse"
       },
       "errors": [
         {
@@ -944,7 +945,7 @@
         "smithy.api#documentation": "Show details for authorized payment\n\nShows details for an authorized payment, by ID."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequestAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -963,7 +964,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -982,7 +983,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemPayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -994,35 +995,35 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem": {
       "type": "structure",
       "members": {
         "amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemAmount",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemPayee"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem"
+        "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstruction": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstruction": {
       "type": "structure",
       "members": {
         "platform_fees": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstructionPlatformFeesList",
           "traits": {
             "smithy.api#documentation": "An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability."
           }
@@ -1045,7 +1046,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureRequest": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationRequest": {
       "type": "structure",
       "members": {
         "authorization_id": {
@@ -1090,7 +1091,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestAmount"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequestAmount"
         },
         "final_capture": {
           "target": "smithy.api#Boolean",
@@ -1099,7 +1100,7 @@
           }
         },
         "payment_instruction": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequestPaymentInstruction"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequestPaymentInstruction"
         },
         "soft_descriptor": {
           "target": "smithy.api#String",
@@ -1112,7 +1113,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseStatus": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseStatus": {
       "type": "enum",
       "members": {
         "COMPLETED": {
@@ -1156,7 +1157,7 @@
         "smithy.api#documentation": "The status of the captured payment."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseStatusDetailsReason": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseStatusDetailsReason": {
       "type": "enum",
       "members": {
         "BUYER_COMPLAINT": {
@@ -1236,11 +1237,11 @@
         "smithy.api#documentation": "The reason why the captured payment status is `PENDING` or `DENIED`."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseStatusDetails": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseStatusDetails": {
       "type": "structure",
       "members": {
         "reason": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseStatusDetailsReason",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseStatusDetailsReason",
           "traits": {
             "smithy.api#documentation": "The reason why the captured payment status is `PENDING` or `DENIED`."
           }
@@ -1248,7 +1249,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1270,7 +1271,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtectionStatus": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtectionStatus": {
       "type": "enum",
       "members": {
         "ELIGIBLE": {
@@ -1296,7 +1297,7 @@
         "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesItem": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem": {
       "type": "enum",
       "members": {
         "ITEM_NOT_RECEIVED": {
@@ -1316,26 +1317,26 @@
         "smithy.api#documentation": "The condition that is covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesItem"
+        "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of conditions that are covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtection": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtection": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtectionStatus",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtectionStatus",
           "traits": {
             "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
           }
         },
         "dispute_categories": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList",
           "traits": {
             "smithy.api#documentation": "An array of conditions that are covered for the transaction."
           }
@@ -1343,7 +1344,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownGrossAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownGrossAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1362,7 +1363,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFee": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFee": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1381,7 +1382,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1400,7 +1401,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownNetAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownNetAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1419,7 +1420,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownReceivableAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownReceivableAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1438,7 +1439,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate": {
       "type": "structure",
       "members": {
         "source_currency": {
@@ -1456,7 +1457,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -1475,7 +1476,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemPayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -1487,56 +1488,56 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItem": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItem": {
       "type": "structure",
       "members": {
         "amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemPayee"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItem"
+        "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdown": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdown": {
       "type": "structure",
       "members": {
         "gross_amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownGrossAmount",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownGrossAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "paypal_fee": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFee"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFee"
         },
         "paypal_fee_in_receivable_currency": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency"
         },
         "net_amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownNetAmount"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownNetAmount"
         },
         "receivable_amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownReceivableAmount"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownReceivableAmount"
         },
         "exchange_rate": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate"
         },
         "platform_fees": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList",
           "traits": {
             "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment."
           }
@@ -1564,7 +1565,7 @@
         "smithy.api#documentation": "The funds that are held on behalf of the merchant."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemMethod": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -1620,7 +1621,7 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1629,7 +1630,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1638,7 +1639,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1647,7 +1648,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaLinksList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1656,7 +1657,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaMedia": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -1676,7 +1677,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchema": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -1716,19 +1717,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -1740,7 +1741,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -1752,7 +1753,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -1766,7 +1767,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1775,7 +1776,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1784,7 +1785,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1793,7 +1794,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -1802,7 +1803,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaMedia": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -1822,7 +1823,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchema": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -1862,19 +1863,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -1886,7 +1887,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -1898,7 +1899,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -1912,7 +1913,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItem": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItem": {
       "type": "structure",
       "members": {
         "href": {
@@ -1930,7 +1931,7 @@
           }
         },
         "method": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemMethod",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method required to make the related call."
           }
@@ -1954,24 +1955,24 @@
           }
         },
         "schema": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemSchema"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemSchema"
         },
         "targetSchema": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItemTargetSchema"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItemTargetSchema"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksList": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksItem"
+        "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponseAvsCode": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponseAvsCode": {
       "type": "enum",
       "members": {
         "A": {
@@ -2123,7 +2124,7 @@
         "smithy.api#documentation": "The address verification code for Visa, Discover, Mastercard, or American Express transactions."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponseCvvCode": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponseCvvCode": {
       "type": "enum",
       "members": {
         "E": {
@@ -2215,7 +2216,7 @@
         "smithy.api#documentation": "The card verification value code for for Visa, Discover, Mastercard, or American Express."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponseResponseCode": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponseResponseCode": {
       "type": "enum",
       "members": {
         "_0000": {
@@ -3147,7 +3148,7 @@
         "smithy.api#documentation": "Processor response code for the non-PayPal payment processor errors."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponsePaymentAdviceCode": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode": {
       "type": "enum",
       "members": {
         "_01": {
@@ -3245,29 +3246,29 @@
         "smithy.api#documentation": "The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponse": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponse": {
       "type": "structure",
       "members": {
         "avs_code": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponseAvsCode",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponseAvsCode",
           "traits": {
             "smithy.api#documentation": "The address verification code for Visa, Discover, Mastercard, or American Express transactions."
           }
         },
         "cvv_code": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponseCvvCode",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponseCvvCode",
           "traits": {
             "smithy.api#documentation": "The card verification value code for for Visa, Discover, Mastercard, or American Express."
           }
         },
         "response_code": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponseResponseCode",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponseResponseCode",
           "traits": {
             "smithy.api#documentation": "Processor response code for the non-PayPal payment processor errors."
           }
         },
         "payment_advice_code": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponsePaymentAdviceCode",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode",
           "traits": {
             "smithy.api#documentation": "The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes."
           }
@@ -3275,7 +3276,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSupplementaryDataRelatedIds": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSupplementaryDataRelatedIds": {
       "type": "structure",
       "members": {
         "order_id": {
@@ -3299,16 +3300,16 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSupplementaryData": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSupplementaryData": {
       "type": "structure",
       "members": {
         "related_ids": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSupplementaryDataRelatedIds"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSupplementaryDataRelatedIds"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponsePayee": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponsePayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -3320,17 +3321,17 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCaptureResponse": {
+    "com.paypal.payments_payment_v2#CaptureAuthorizationResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseStatus",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the captured payment."
           }
         },
         "status_details": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseStatusDetails"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseStatusDetails"
         },
         "id": {
           "target": "smithy.api#String",
@@ -3339,7 +3340,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseAmount"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseAmount"
         },
         "invoice_id": {
           "target": "smithy.api#String",
@@ -3357,7 +3358,7 @@
           "target": "com.paypal.payments_payment_v2#NetworkTransaction"
         },
         "seller_protection": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerProtection"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerProtection"
         },
         "final_capture": {
           "target": "smithy.api#Boolean",
@@ -3366,19 +3367,19 @@
           }
         },
         "seller_receivable_breakdown": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSellerReceivableBreakdown"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSellerReceivableBreakdown"
         },
         "disbursement_mode": {
           "target": "com.paypal.payments_payment_v2#DisbursementMode"
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseLinksList",
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseLinksList",
           "traits": {
             "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
           }
         },
         "processor_response": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseProcessorResponse"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseProcessorResponse"
         },
         "create_time": {
           "target": "smithy.api#Document"
@@ -3387,23 +3388,23 @@
           "target": "smithy.api#Document"
         },
         "supplementary_data": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponseSupplementaryData"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponseSupplementaryData"
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponsePayee"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponsePayee"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsCapture": {
+    "com.paypal.payments_payment_v2#CaptureAuthorization": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureRequest"
+        "target": "com.paypal.payments_payment_v2#CaptureAuthorizationRequest"
       },
       "output": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsCaptureResponse"
+        "target": "com.paypal.payments_payment_v2#CaptureAuthorizationResponse"
       },
       "errors": [
         {
@@ -4209,7 +4210,7 @@
         "smithy.api#documentation": "Reauthorize authorized payment\n\nReauthorizes an authorized PayPal account payment, by ID. To ensure that funds are still available, reauthorize a payment after its initial three-day honor period expires. Within the 29-day authorization period, you can issue multiple re-authorizations after the honor period expires.<br/><br/>If 30 days have transpired since the date of the original authorization, you must create an authorized payment instead of reauthorizing the original authorized payment.<br/><br/>A reauthorized payment itself has a new honor period of three days.<br/><br/>You can reauthorize an authorized payment from 4 to 29 days after the 3-day honor period. The allowed amount depends on context and geography, for example in US it is up to 115% of the original authorized amount, not to exceed an increase of $75 USD.<br/><br/>Supports only the `amount` request parameter."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidRequest": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationRequest": {
       "type": "structure",
       "members": {
         "authorization_id": {
@@ -4246,7 +4247,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseStatus": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseStatus": {
       "type": "enum",
       "members": {
         "CREATED": {
@@ -4290,7 +4291,7 @@
         "smithy.api#documentation": "The status for the authorized payment."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseStatusDetailsReason": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseStatusDetailsReason": {
       "type": "enum",
       "members": {
         "PENDING_REVIEW": {
@@ -4310,11 +4311,11 @@
         "smithy.api#documentation": "The reason why the authorized status is `PENDING`."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseStatusDetails": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseStatusDetails": {
       "type": "structure",
       "members": {
         "reason": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseStatusDetailsReason",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseStatusDetailsReason",
           "traits": {
             "smithy.api#documentation": "The reason why the authorized status is `PENDING`."
           }
@@ -4322,7 +4323,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseAmount": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -4344,7 +4345,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtectionStatus": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtectionStatus": {
       "type": "enum",
       "members": {
         "ELIGIBLE": {
@@ -4370,7 +4371,7 @@
         "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtectionDisputeCategoriesItem": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem": {
       "type": "enum",
       "members": {
         "ITEM_NOT_RECEIVED": {
@@ -4390,26 +4391,26 @@
         "smithy.api#documentation": "The condition that is covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtectionDisputeCategoriesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtectionDisputeCategoriesItem"
+        "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of conditions that are covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtection": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtection": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtectionStatus",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtectionStatus",
           "traits": {
             "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
           }
         },
         "dispute_categories": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtectionDisputeCategoriesList",
           "traits": {
             "smithy.api#documentation": "An array of conditions that are covered for the transaction."
           }
@@ -4417,7 +4418,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemMethod": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -4473,7 +4474,7 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4482,7 +4483,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4491,7 +4492,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4500,7 +4501,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaLinksList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4509,7 +4510,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaMedia": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -4529,7 +4530,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchema": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -4569,19 +4570,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -4593,7 +4594,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -4605,7 +4606,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -4619,7 +4620,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4628,7 +4629,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4637,7 +4638,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4646,7 +4647,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaLinksList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4655,7 +4656,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaMedia": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -4675,7 +4676,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchema": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -4715,19 +4716,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -4739,7 +4740,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -4751,7 +4752,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -4765,7 +4766,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItem": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItem": {
       "type": "structure",
       "members": {
         "href": {
@@ -4783,7 +4784,7 @@
           }
         },
         "method": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemMethod",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method required to make the related call."
           }
@@ -4807,24 +4808,24 @@
           }
         },
         "schema": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemSchema"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemSchema"
         },
         "targetSchema": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItemTargetSchema"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItemTargetSchema"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksList": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksItem"
+        "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSupplementaryDataRelatedIds": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseSupplementaryDataRelatedIds": {
       "type": "structure",
       "members": {
         "order_id": {
@@ -4848,16 +4849,16 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSupplementaryData": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponseSupplementaryData": {
       "type": "structure",
       "members": {
         "related_ids": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSupplementaryDataRelatedIds"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseSupplementaryDataRelatedIds"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponsePayee": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponsePayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -4869,17 +4870,17 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoidResponse": {
+    "com.paypal.payments_payment_v2#VoidAuthorizationResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseStatus",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status for the authorized payment."
           }
         },
         "status_details": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseStatusDetails"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseStatusDetails"
         },
         "id": {
           "target": "smithy.api#String",
@@ -4888,7 +4889,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseAmount"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseAmount"
         },
         "invoice_id": {
           "target": "smithy.api#String",
@@ -4906,13 +4907,13 @@
           "target": "com.paypal.payments_payment_v2#NetworkTransaction"
         },
         "seller_protection": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSellerProtection"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseSellerProtection"
         },
         "expiration_time": {
           "target": "smithy.api#Document"
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseLinksList",
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseLinksList",
           "traits": {
             "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
           }
@@ -4924,23 +4925,23 @@
           "target": "smithy.api#Document"
         },
         "supplementary_data": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponseSupplementaryData"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponseSupplementaryData"
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponsePayee"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponsePayee"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.paypal.payments_payment_v2#AuthorizationsVoid": {
+    "com.paypal.payments_payment_v2#VoidAuthorization": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsVoidRequest"
+        "target": "com.paypal.payments_payment_v2#VoidAuthorizationRequest"
       },
       "output": {
-        "target": "com.paypal.payments_payment_v2#AuthorizationsVoidResponse"
+        "target": "com.paypal.payments_payment_v2#VoidAuthorizationResponse"
       },
       "errors": [
         {
@@ -4965,7 +4966,7 @@
         "smithy.api#documentation": "Void authorized payment\n\nVoids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that has been fully captured."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetRequest": {
+    "com.paypal.payments_payment_v2#GetCaptureRequest": {
       "type": "structure",
       "members": {
         "capture_id": {
@@ -4981,7 +4982,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseStatus": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseStatus": {
       "type": "enum",
       "members": {
         "COMPLETED": {
@@ -5025,7 +5026,7 @@
         "smithy.api#documentation": "The status of the captured payment."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseStatusDetailsReason": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseStatusDetailsReason": {
       "type": "enum",
       "members": {
         "BUYER_COMPLAINT": {
@@ -5105,11 +5106,11 @@
         "smithy.api#documentation": "The reason why the captured payment status is `PENDING` or `DENIED`."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseStatusDetails": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseStatusDetails": {
       "type": "structure",
       "members": {
         "reason": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseStatusDetailsReason",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseStatusDetailsReason",
           "traits": {
             "smithy.api#documentation": "The reason why the captured payment status is `PENDING` or `DENIED`."
           }
@@ -5117,7 +5118,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseAmount": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5139,7 +5140,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtectionStatus": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtectionStatus": {
       "type": "enum",
       "members": {
         "ELIGIBLE": {
@@ -5165,7 +5166,7 @@
         "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtectionDisputeCategoriesItem": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtectionDisputeCategoriesItem": {
       "type": "enum",
       "members": {
         "ITEM_NOT_RECEIVED": {
@@ -5185,26 +5186,26 @@
         "smithy.api#documentation": "The condition that is covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtectionDisputeCategoriesList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtectionDisputeCategoriesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtectionDisputeCategoriesItem"
+        "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtectionDisputeCategoriesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of conditions that are covered for the transaction."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtection": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtection": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtectionStatus",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtectionStatus",
           "traits": {
             "smithy.api#documentation": "Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection)."
           }
         },
         "dispute_categories": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtectionDisputeCategoriesList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtectionDisputeCategoriesList",
           "traits": {
             "smithy.api#documentation": "An array of conditions that are covered for the transaction."
           }
@@ -5212,7 +5213,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownGrossAmount": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownGrossAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5231,7 +5232,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPaypalFee": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPaypalFee": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5250,7 +5251,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5269,7 +5270,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownNetAmount": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownNetAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5288,7 +5289,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownReceivableAmount": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownReceivableAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5307,7 +5308,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownExchangeRate": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownExchangeRate": {
       "type": "structure",
       "members": {
         "source_currency": {
@@ -5325,7 +5326,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemAmount": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -5344,7 +5345,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemPayee": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -5356,56 +5357,56 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesItem": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesItem": {
       "type": "structure",
       "members": {
         "amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemAmount",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemPayee"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesItem"
+        "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdown": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdown": {
       "type": "structure",
       "members": {
         "gross_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownGrossAmount",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownGrossAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "paypal_fee": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPaypalFee"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPaypalFee"
         },
         "paypal_fee_in_receivable_currency": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency"
         },
         "net_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownNetAmount"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownNetAmount"
         },
         "receivable_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownReceivableAmount"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownReceivableAmount"
         },
         "exchange_rate": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownExchangeRate"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownExchangeRate"
         },
         "platform_fees": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdownPlatformFeesList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdownPlatformFeesList",
           "traits": {
             "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment."
           }
@@ -5413,7 +5414,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemMethod": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -5469,7 +5470,7 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5478,7 +5479,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5487,7 +5488,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5496,7 +5497,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaLinksList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5505,7 +5506,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaMedia": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -5525,7 +5526,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchema": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -5565,19 +5566,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -5589,7 +5590,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -5601,7 +5602,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -5615,7 +5616,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5624,7 +5625,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5633,7 +5634,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5642,7 +5643,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaLinksList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5651,7 +5652,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaMedia": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -5671,7 +5672,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchema": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -5711,19 +5712,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -5735,7 +5736,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -5747,7 +5748,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -5761,7 +5762,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksItem": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksItem": {
       "type": "structure",
       "members": {
         "href": {
@@ -5779,7 +5780,7 @@
           }
         },
         "method": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemMethod",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method required to make the related call."
           }
@@ -5803,24 +5804,24 @@
           }
         },
         "schema": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemSchema"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemSchema"
         },
         "targetSchema": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItemTargetSchema"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItemTargetSchema"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseLinksList": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseLinksList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksItem"
+        "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponseAvsCode": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponseAvsCode": {
       "type": "enum",
       "members": {
         "A": {
@@ -5972,7 +5973,7 @@
         "smithy.api#documentation": "The address verification code for Visa, Discover, Mastercard, or American Express transactions."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponseCvvCode": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponseCvvCode": {
       "type": "enum",
       "members": {
         "E": {
@@ -6064,7 +6065,7 @@
         "smithy.api#documentation": "The card verification value code for for Visa, Discover, Mastercard, or American Express."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponseResponseCode": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponseResponseCode": {
       "type": "enum",
       "members": {
         "_0000": {
@@ -6996,7 +6997,7 @@
         "smithy.api#documentation": "Processor response code for the non-PayPal payment processor errors."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponsePaymentAdviceCode": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponsePaymentAdviceCode": {
       "type": "enum",
       "members": {
         "_01": {
@@ -7094,29 +7095,29 @@
         "smithy.api#documentation": "The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponse": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponse": {
       "type": "structure",
       "members": {
         "avs_code": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponseAvsCode",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponseAvsCode",
           "traits": {
             "smithy.api#documentation": "The address verification code for Visa, Discover, Mastercard, or American Express transactions."
           }
         },
         "cvv_code": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponseCvvCode",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponseCvvCode",
           "traits": {
             "smithy.api#documentation": "The card verification value code for for Visa, Discover, Mastercard, or American Express."
           }
         },
         "response_code": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponseResponseCode",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponseResponseCode",
           "traits": {
             "smithy.api#documentation": "Processor response code for the non-PayPal payment processor errors."
           }
         },
         "payment_advice_code": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponsePaymentAdviceCode",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponsePaymentAdviceCode",
           "traits": {
             "smithy.api#documentation": "The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes."
           }
@@ -7124,7 +7125,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSupplementaryDataRelatedIds": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSupplementaryDataRelatedIds": {
       "type": "structure",
       "members": {
         "order_id": {
@@ -7148,16 +7149,16 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponseSupplementaryData": {
+    "com.paypal.payments_payment_v2#GetCaptureResponseSupplementaryData": {
       "type": "structure",
       "members": {
         "related_ids": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSupplementaryDataRelatedIds"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSupplementaryDataRelatedIds"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponsePayee": {
+    "com.paypal.payments_payment_v2#GetCaptureResponsePayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -7169,17 +7170,17 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesGetResponse": {
+    "com.paypal.payments_payment_v2#GetCaptureResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseStatus",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the captured payment."
           }
         },
         "status_details": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseStatusDetails"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseStatusDetails"
         },
         "id": {
           "target": "smithy.api#String",
@@ -7188,7 +7189,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseAmount"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseAmount"
         },
         "invoice_id": {
           "target": "smithy.api#String",
@@ -7206,7 +7207,7 @@
           "target": "com.paypal.payments_payment_v2#NetworkTransaction"
         },
         "seller_protection": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerProtection"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerProtection"
         },
         "final_capture": {
           "target": "smithy.api#Boolean",
@@ -7215,19 +7216,19 @@
           }
         },
         "seller_receivable_breakdown": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSellerReceivableBreakdown"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSellerReceivableBreakdown"
         },
         "disbursement_mode": {
           "target": "com.paypal.payments_payment_v2#DisbursementMode"
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseLinksList",
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseLinksList",
           "traits": {
             "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
           }
         },
         "processor_response": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseProcessorResponse"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseProcessorResponse"
         },
         "create_time": {
           "target": "smithy.api#Document"
@@ -7236,23 +7237,23 @@
           "target": "smithy.api#Document"
         },
         "supplementary_data": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponseSupplementaryData"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponseSupplementaryData"
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#CapturesGetResponsePayee"
+          "target": "com.paypal.payments_payment_v2#GetCaptureResponsePayee"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.paypal.payments_payment_v2#CapturesGet": {
+    "com.paypal.payments_payment_v2#GetCapture": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payments_payment_v2#CapturesGetRequest"
+        "target": "com.paypal.payments_payment_v2#GetCaptureRequest"
       },
       "output": {
-        "target": "com.paypal.payments_payment_v2#CapturesGetResponse"
+        "target": "com.paypal.payments_payment_v2#GetCaptureResponse"
       },
       "errors": [
         {
@@ -7271,7 +7272,7 @@
         "smithy.api#documentation": "Show captured payment details\n\nShows details for a captured payment, by ID."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequestAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequestAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7290,7 +7291,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesItemAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesItemAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7309,7 +7310,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesItemPayee": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesItemPayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -7321,35 +7322,35 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesItem": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesItem": {
       "type": "structure",
       "members": {
         "amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesItemAmount",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesItemAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesItemPayee"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesItemPayee"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesList": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesItem"
+        "target": "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesItem"
       },
       "traits": {
         "smithy.api#documentation": "Specifies the amount that the API caller will contribute to the refund being processed. The amount needs to be lower than platform_fees amount originally captured or the amount that is remaining if multiple refunds have been processed. This field is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstruction": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstruction": {
       "type": "structure",
       "members": {
         "platform_fees": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstructionPlatformFeesList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstructionPlatformFeesList",
           "traits": {
             "smithy.api#documentation": "Specifies the amount that the API caller will contribute to the refund being processed. The amount needs to be lower than platform_fees amount originally captured or the amount that is remaining if multiple refunds have been processed. This field is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability."
           }
@@ -7357,7 +7358,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundRequest": {
+    "com.paypal.payments_payment_v2#RefundCaptureRequest": {
       "type": "structure",
       "members": {
         "capture_id": {
@@ -7390,7 +7391,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundRequestAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureRequestAmount"
         },
         "custom_id": {
           "target": "smithy.api#String",
@@ -7411,14 +7412,14 @@
           }
         },
         "payment_instruction": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundRequestPaymentInstruction"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureRequestPaymentInstruction"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseStatus": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseStatus": {
       "type": "enum",
       "members": {
         "CANCELLED": {
@@ -7450,7 +7451,7 @@
         "smithy.api#documentation": "The status of the refund."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseStatusDetailsReason": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseStatusDetailsReason": {
       "type": "enum",
       "members": {
         "ECHECK": {
@@ -7464,11 +7465,11 @@
         "smithy.api#documentation": "The reason why the refund has the `PENDING` or `FAILED` status."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseStatusDetails": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseStatusDetails": {
       "type": "structure",
       "members": {
         "reason": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseStatusDetailsReason",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseStatusDetailsReason",
           "traits": {
             "smithy.api#documentation": "The reason why the refund has the `PENDING` or `FAILED` status."
           }
@@ -7476,7 +7477,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7495,7 +7496,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownGrossAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownGrossAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7514,7 +7515,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPaypalFee": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPaypalFee": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7533,7 +7534,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7552,7 +7553,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7571,7 +7572,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountInReceivableCurrency": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7590,7 +7591,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7609,7 +7610,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemPayee": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemPayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -7621,31 +7622,31 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesItem": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesItem": {
       "type": "structure",
       "members": {
         "amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemAmount",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemPayee"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemPayee"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesItem"
+        "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees for the refund."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7664,7 +7665,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7683,7 +7684,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate": {
       "type": "structure",
       "members": {
         "source_currency": {
@@ -7701,31 +7702,31 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItem": {
       "type": "structure",
       "members": {
         "payable_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount"
         },
         "converted_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount"
         },
         "exchange_rate": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem"
+        "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownTotalRefundedAmount": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownTotalRefundedAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -7744,45 +7745,45 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdown": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdown": {
       "type": "structure",
       "members": {
         "gross_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownGrossAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownGrossAmount"
         },
         "paypal_fee": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPaypalFee"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPaypalFee"
         },
         "paypal_fee_in_receivable_currency": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency"
         },
         "net_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmount"
         },
         "net_amount_in_receivable_currency": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountInReceivableCurrency"
         },
         "platform_fees": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownPlatformFeesList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownPlatformFeesList",
           "traits": {
             "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees for the refund."
           }
         },
         "net_amount_breakdown": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList",
           "traits": {
             "smithy.api#documentation": "An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds."
           }
         },
         "total_refunded_amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdownTotalRefundedAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdownTotalRefundedAmount"
         }
       },
       "traits": {
         "smithy.api#documentation": "The breakdown of the refund."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponsePayer": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponsePayer": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -7794,7 +7795,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemMethod": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -7850,7 +7851,7 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -7859,7 +7860,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -7868,7 +7869,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -7877,7 +7878,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaLinksList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -7886,7 +7887,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaMedia": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -7906,7 +7907,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchema": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -7946,19 +7947,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -7970,7 +7971,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -7982,7 +7983,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -7996,7 +7997,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -8005,7 +8006,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -8014,7 +8015,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -8023,7 +8024,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaLinksList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -8032,7 +8033,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaMedia": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -8052,7 +8053,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchema": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -8092,19 +8093,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -8116,7 +8117,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -8128,7 +8129,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -8142,7 +8143,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItem": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItem": {
       "type": "structure",
       "members": {
         "href": {
@@ -8160,7 +8161,7 @@
           }
         },
         "method": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemMethod",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method required to make the related call."
           }
@@ -8184,34 +8185,34 @@
           }
         },
         "schema": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemSchema"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemSchema"
         },
         "targetSchema": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItemTargetSchema"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItemTargetSchema"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponseLinksList": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponseLinksList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksItem"
+        "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefundResponse": {
+    "com.paypal.payments_payment_v2#RefundCaptureResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseStatus",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the refund."
           }
         },
         "status_details": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseStatusDetails"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseStatusDetails"
         },
         "id": {
           "target": "smithy.api#String",
@@ -8220,7 +8221,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseAmount"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseAmount"
         },
         "invoice_id": {
           "target": "smithy.api#String",
@@ -8247,16 +8248,16 @@
           }
         },
         "seller_payable_breakdown": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseSellerPayableBreakdown",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseSellerPayableBreakdown",
           "traits": {
             "smithy.api#documentation": "The breakdown of the refund."
           }
         },
         "payer": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponsePayer"
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponsePayer"
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#CapturesRefundResponseLinksList",
+          "target": "com.paypal.payments_payment_v2#RefundCaptureResponseLinksList",
           "traits": {
             "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
           }
@@ -8272,13 +8273,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.paypal.payments_payment_v2#CapturesRefund": {
+    "com.paypal.payments_payment_v2#RefundCapture": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payments_payment_v2#CapturesRefundRequest"
+        "target": "com.paypal.payments_payment_v2#RefundCaptureRequest"
       },
       "output": {
-        "target": "com.paypal.payments_payment_v2#CapturesRefundResponse"
+        "target": "com.paypal.payments_payment_v2#RefundCaptureResponse"
       },
       "errors": [
         {
@@ -9278,7 +9279,7 @@
         "smithy.api#documentation": "Find a list of eligible payment methods.\n\nGet a list of eligible payment methods based on the input parameters provided."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetRequest": {
+    "com.paypal.payments_payment_v2#GetRefundRequest": {
       "type": "structure",
       "members": {
         "refund_id": {
@@ -9301,7 +9302,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseStatus": {
+    "com.paypal.payments_payment_v2#GetRefundResponseStatus": {
       "type": "enum",
       "members": {
         "CANCELLED": {
@@ -9333,7 +9334,7 @@
         "smithy.api#documentation": "The status of the refund."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseStatusDetailsReason": {
+    "com.paypal.payments_payment_v2#GetRefundResponseStatusDetailsReason": {
       "type": "enum",
       "members": {
         "ECHECK": {
@@ -9347,11 +9348,11 @@
         "smithy.api#documentation": "The reason why the refund has the `PENDING` or `FAILED` status."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseStatusDetails": {
+    "com.paypal.payments_payment_v2#GetRefundResponseStatusDetails": {
       "type": "structure",
       "members": {
         "reason": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseStatusDetailsReason",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseStatusDetailsReason",
           "traits": {
             "smithy.api#documentation": "The reason why the refund has the `PENDING` or `FAILED` status."
           }
@@ -9359,7 +9360,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9378,7 +9379,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownGrossAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownGrossAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9397,7 +9398,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPaypalFee": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPaypalFee": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9416,7 +9417,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9435,7 +9436,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9454,7 +9455,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountInReceivableCurrency": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9473,7 +9474,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesItemAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesItemAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9492,7 +9493,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesItemPayee": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesItemPayee": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -9504,31 +9505,31 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesItem": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesItem": {
       "type": "structure",
       "members": {
         "amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesItemAmount",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesItemAmount",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "payee": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesItemPayee"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesItemPayee"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesItem"
+        "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees for the refund."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9547,7 +9548,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9566,7 +9567,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate": {
       "type": "structure",
       "members": {
         "source_currency": {
@@ -9584,31 +9585,31 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItem": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem": {
       "type": "structure",
       "members": {
         "payable_amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount"
         },
         "converted_amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount"
         },
         "exchange_rate": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItem"
+        "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownTotalRefundedAmount": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownTotalRefundedAmount": {
       "type": "structure",
       "members": {
         "currency_code": {
@@ -9627,45 +9628,45 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdown": {
+    "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdown": {
       "type": "structure",
       "members": {
         "gross_amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownGrossAmount"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownGrossAmount"
         },
         "paypal_fee": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPaypalFee"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPaypalFee"
         },
         "paypal_fee_in_receivable_currency": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency"
         },
         "net_amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmount"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmount"
         },
         "net_amount_in_receivable_currency": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountInReceivableCurrency"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency"
         },
         "platform_fees": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownPlatformFeesList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownPlatformFeesList",
           "traits": {
             "smithy.api#documentation": "An array of platform or partner fees, commissions, or brokerage fees for the refund."
           }
         },
         "net_amount_breakdown": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList",
           "traits": {
             "smithy.api#documentation": "An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds."
           }
         },
         "total_refunded_amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdownTotalRefundedAmount"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdownTotalRefundedAmount"
         }
       },
       "traits": {
         "smithy.api#documentation": "The breakdown of the refund."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponsePayer": {
+    "com.paypal.payments_payment_v2#GetRefundResponsePayer": {
       "type": "structure",
       "members": {
         "email_address": {
@@ -9677,7 +9678,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemMethod": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemMethod": {
       "type": "enum",
       "members": {
         "GET": {
@@ -9733,7 +9734,7 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9742,7 +9743,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9751,7 +9752,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9760,7 +9761,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaLinksList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9769,7 +9770,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaMedia": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -9789,7 +9790,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchema": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -9829,19 +9830,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -9853,7 +9854,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -9865,7 +9866,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -9879,7 +9880,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaAllOfList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaAllOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9888,7 +9889,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaAnyOfList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaAnyOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9897,7 +9898,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaOneOfList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaOneOfList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9906,7 +9907,7 @@
         "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaLinksList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaLinksList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -9915,7 +9916,7 @@
         "smithy.api#documentation": "An array of links."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaMedia": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaMedia": {
       "type": "structure",
       "members": {
         "type": {
@@ -9935,7 +9936,7 @@
         "smithy.api#documentation": "The media type and context-encoding scheme."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchema": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchema": {
       "type": "structure",
       "members": {
         "additionalItems": {
@@ -9975,19 +9976,19 @@
           }
         },
         "allOf": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaAllOfList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaAllOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against all sub-schemas."
           }
         },
         "anyOf": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaAnyOfList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaAnyOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one or more sub-schemas."
           }
         },
         "oneOf": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaOneOfList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaOneOfList",
           "traits": {
             "smithy.api#documentation": "An array of sub-schemas. The data must validate against one sub-schema."
           }
@@ -9999,7 +10000,7 @@
           }
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaLinksList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaLinksList",
           "traits": {
             "smithy.api#documentation": "An array of links."
           }
@@ -10011,7 +10012,7 @@
           }
         },
         "media": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchemaMedia",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchemaMedia",
           "traits": {
             "smithy.api#documentation": "The media type and context-encoding scheme."
           }
@@ -10025,7 +10026,7 @@
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksItem": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksItem": {
       "type": "structure",
       "members": {
         "href": {
@@ -10043,7 +10044,7 @@
           }
         },
         "method": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemMethod",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemMethod",
           "traits": {
             "smithy.api#documentation": "The HTTP method required to make the related call."
           }
@@ -10067,34 +10068,34 @@
           }
         },
         "schema": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemSchema"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemSchema"
         },
         "targetSchema": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItemTargetSchema"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItemTargetSchema"
         }
       },
       "traits": {}
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponseLinksList": {
+    "com.paypal.payments_payment_v2#GetRefundResponseLinksList": {
       "type": "list",
       "member": {
-        "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksItem"
+        "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksItem"
       },
       "traits": {
         "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGetResponse": {
+    "com.paypal.payments_payment_v2#GetRefundResponse": {
       "type": "structure",
       "members": {
         "status": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseStatus",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseStatus",
           "traits": {
             "smithy.api#documentation": "The status of the refund."
           }
         },
         "status_details": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseStatusDetails"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseStatusDetails"
         },
         "id": {
           "target": "smithy.api#String",
@@ -10103,7 +10104,7 @@
           }
         },
         "amount": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseAmount"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseAmount"
         },
         "invoice_id": {
           "target": "smithy.api#String",
@@ -10130,16 +10131,16 @@
           }
         },
         "seller_payable_breakdown": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseSellerPayableBreakdown",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseSellerPayableBreakdown",
           "traits": {
             "smithy.api#documentation": "The breakdown of the refund."
           }
         },
         "payer": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponsePayer"
+          "target": "com.paypal.payments_payment_v2#GetRefundResponsePayer"
         },
         "links": {
-          "target": "com.paypal.payments_payment_v2#RefundsGetResponseLinksList",
+          "target": "com.paypal.payments_payment_v2#GetRefundResponseLinksList",
           "traits": {
             "smithy.api#documentation": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
           }
@@ -10155,13 +10156,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.paypal.payments_payment_v2#RefundsGet": {
+    "com.paypal.payments_payment_v2#GetRefund": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payments_payment_v2#RefundsGetRequest"
+        "target": "com.paypal.payments_payment_v2#GetRefundRequest"
       },
       "output": {
-        "target": "com.paypal.payments_payment_v2#RefundsGetResponse"
+        "target": "com.paypal.payments_payment_v2#GetRefundResponse"
       },
       "errors": [
         {
@@ -10250,28 +10251,28 @@
       "version": "2.12",
       "operations": [
         {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsGet"
+          "target": "com.paypal.payments_payment_v2#GetAuthorization"
         },
         {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsCapture"
+          "target": "com.paypal.payments_payment_v2#CaptureAuthorization"
         },
         {
           "target": "com.paypal.payments_payment_v2#AuthorizationsReauthorize"
         },
         {
-          "target": "com.paypal.payments_payment_v2#AuthorizationsVoid"
+          "target": "com.paypal.payments_payment_v2#VoidAuthorization"
         },
         {
-          "target": "com.paypal.payments_payment_v2#CapturesGet"
+          "target": "com.paypal.payments_payment_v2#GetCapture"
         },
         {
-          "target": "com.paypal.payments_payment_v2#CapturesRefund"
+          "target": "com.paypal.payments_payment_v2#RefundCapture"
         },
         {
           "target": "com.paypal.payments_payment_v2#FindEligibleMethods"
         },
         {
-          "target": "com.paypal.payments_payment_v2#RefundsGet"
+          "target": "com.paypal.payments_payment_v2#GetRefund"
         }
       ],
       "traits": {

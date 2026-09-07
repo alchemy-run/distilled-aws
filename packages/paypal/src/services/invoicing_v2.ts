@@ -49,102 +49,13 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface ConnectionsGetRequest {}
-export const ConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v2/invoicing/accounting-sync/merchant/connections",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ConnectionsGetRequest",
-}) as any as S.Schema<ConnectionsGetRequest>;
-
-/** The status of the last sync. This property supports Unicode. */
-export type ConnectionLastSyncStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED";
-export const ConnectionLastSyncStatus = /*@__PURE__*/ S.String;
-
-/** This lists last sync status and connection platform name. */
-export interface Connection {
-  /** The name of the platform. This property supports Unicode. The pattern is not provided because the value is defined by an external party. */
-  platform_name?: string;
-  /** The date and time when the resource is last synced with the accounting platform. This property supports Unicode. */
-  last_sync_time?: string;
-  /** The status of the last sync. This property supports Unicode. */
-  last_sync_status?: ConnectionLastSyncStatus;
-}
-export const Connection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    platform_name: S.optional(S.String),
-    last_sync_time: S.optional(S.String),
-    last_sync_status: S.optional(ConnectionLastSyncStatus),
-  }),
-).annotate({ identifier: "Connection" }) as any as S.Schema<Connection>;
-
-/** An array of connection-level details. */
-export type ConnectionList = Array<Connection>;
-export const ConnectionList = /*@__PURE__*/ S.Array(
-  Connection,
-) as any as S.Schema<ConnectionList>;
-
-/** This object contains an array of connection details. It is used to load sync status for a user. */
-export interface Connections {
-  connections?: ConnectionList;
-}
-export const Connections = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    connections: S.optional(ConnectionList),
-  }),
-).annotate({ identifier: "Connections" }) as any as S.Schema<Connections>;
-
-export interface InvoiceConnectionDetailsGetRequest {
-  /** The invoice id of the account. */
-  id: string;
-}
-export const InvoiceConnectionDetailsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v2/invoicing/accounting-sync/invoices/{id}/connections",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoiceConnectionDetailsGetRequest",
-}) as any as S.Schema<InvoiceConnectionDetailsGetRequest>;
-
-/** An array of connection-level details. */
-export type ConnectionsList = Array<Connections>;
-export const ConnectionsList = /*@__PURE__*/ S.Array(
-  Connections,
-) as any as S.Schema<ConnectionsList>;
-
-/** Returns invoice connection status with timestamp per invoice. */
-export interface InvoiceConnectionDetails {
-  /** The ID of the invoice. This property supports Unicode. */
-  id?: string;
-  connection_status?: ConnectionsList;
-}
-export const InvoiceConnectionDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    connection_status: S.optional(ConnectionsList),
-  }),
-).annotate({
-  identifier: "InvoiceConnectionDetails",
-}) as any as S.Schema<InvoiceConnectionDetails>;
-
 /** An array of one or more CC: emails to which notifications are sent. If you omit this parameter, a notification is sent to all CC: email addresses that are part of the invoice.<blockquote><strong>Note:</strong> Valid values are email addresses in the `additional_recipients` value associated with the invoice.</blockquote> */
 export type EmailAddressList = Array<string>;
 export const EmailAddressList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<EmailAddressList>;
 
-export interface InvoicesCancelRequest {
+export interface CancelInvoiceRequest {
   /** The ID of the draft invoice to delete. */
   invoice_id: string;
   /** The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote> */
@@ -157,7 +68,7 @@ export interface InvoicesCancelRequest {
   send_to_recipient?: boolean;
   additional_recipients?: EmailAddressList;
 }
-export const InvoicesCancelRequest = /*@__PURE__*/ S.suspend(() =>
+export const CancelInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     invoice_id: S.String.pipe(T.Label()),
     subject: S.optional(S.String),
@@ -173,15 +84,15 @@ export const InvoicesCancelRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "InvoicesCancelRequest",
-}) as any as S.Schema<InvoicesCancelRequest>;
+  identifier: "CancelInvoiceRequest",
+}) as any as S.Schema<CancelInvoiceRequest>;
 
-export interface InvoicesCancelResponse {}
-export const InvoicesCancelResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CancelInvoiceResponse {}
+export const CancelInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "InvoicesCancelResponse",
-}) as any as S.Schema<InvoicesCancelResponse>;
+  identifier: "CancelInvoiceResponse",
+}) as any as S.Schema<CancelInvoiceResponse>;
 
 /** The file reference. Can be a file in PayPal MediaServ, PayPal DMS, or other custom store. */
 export interface FileReference {
@@ -732,7 +643,7 @@ export const PaymentsInput = /*@__PURE__*/ S.suspend(() =>
 export type RefundsInput = PaymentsInput;
 export const RefundsInput = PaymentsInput;
 
-export interface InvoicesCreateRequest {
+export interface CreateInvoiceRequest {
   /** The details of the invoice. Includes the invoice number, date, payment terms, and audit metadata. */
   detail: InvoiceDetailInput;
   /** The invoicer information. Includes the business name, email, address, phone, fax, tax ID, additional notes, and logo URL. */
@@ -749,7 +660,7 @@ export interface InvoicesCreateRequest {
   /** List of refunds against this invoice. The invoicing refund details includes refund type, date, amount, and method. */
   refunds?: PaymentsInput;
 }
-export const InvoicesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     detail: InvoiceDetailInput,
     invoicer: S.optional(InvoicerInfo),
@@ -762,8 +673,8 @@ export const InvoicesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     refunds: S.optional(PaymentsInput),
   }).pipe(T.Http({ method: "POST", uri: "/v2/invoicing/invoices", code: 200 })),
 ).annotate({
-  identifier: "InvoicesCreateRequest",
-}) as any as S.Schema<InvoicesCreateRequest>;
+  identifier: "CreateInvoiceRequest",
+}) as any as S.Schema<CreateInvoiceRequest>;
 
 /** The status of the invoice. */
 export type InvoiceStatus =
@@ -1105,544 +1016,6 @@ export const Invoice = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Invoice" }) as any as S.Schema<Invoice>;
 
-export interface InvoicesDeleteRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-}
-export const InvoicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v2/invoicing/invoices/{invoice_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesDeleteRequest",
-}) as any as S.Schema<InvoicesDeleteRequest>;
-
-export interface InvoicesDeleteResponse {}
-export const InvoicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InvoicesDeleteResponse",
-}) as any as S.Schema<InvoicesDeleteResponse>;
-
-export interface InvoicesGenerateQrCodeRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The width, in pixels, of the QR code image. Value is from `150` to `500`. */
-  width?: number;
-  /** The height, in pixels, of the QR code image. Value is from `150` to `500`. */
-  height?: number;
-  /** The type of URL for which to generate a QR code. Valid values are `pay` and `details`. */
-  action?: string;
-}
-export const InvoicesGenerateQrCodeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    width: S.optional(S.Number),
-    height: S.optional(S.Number),
-    action: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/invoicing/invoices/{invoice_id}/generate-qr-code",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesGenerateQrCodeRequest",
-}) as any as S.Schema<InvoicesGenerateQrCodeRequest>;
-
-export interface InvoicesGenerateQrCodeResponse {}
-export const InvoicesGenerateQrCodeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InvoicesGenerateQrCodeResponse",
-}) as any as S.Schema<InvoicesGenerateQrCodeResponse>;
-
-export interface InvoicesGetRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-}
-export const InvoicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v2/invoicing/invoices/{invoice_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesGetRequest",
-}) as any as S.Schema<InvoicesGetRequest>;
-
-export interface InvoicesListRequest {
-  /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
-  page?: number;
-  /** The maximum number of templates to return in the response. */
-  page_size?: number;
-  /** Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response. */
-  total_required?: boolean;
-  /** The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`. */
-  fields?: string;
-}
-export const InvoicesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    page_size: S.optional(S.Number.pipe(T.Query())),
-    total_required: S.optional(S.Boolean.pipe(T.Query())),
-    fields: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v2/invoicing/invoices", code: 200 })),
-).annotate({
-  identifier: "InvoicesListRequest",
-}) as any as S.Schema<InvoicesListRequest>;
-
-/** The list of invoices that match the search criteria. */
-export type InvoiceList = Array<Invoice>;
-export const InvoiceList = /*@__PURE__*/ S.Array(
-  Invoice,
-) as any as S.Schema<InvoiceList>;
-
-/** An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation. */
-export interface Invoices {
-  /** The total number of pages that are available for the search criteria. <blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of total_pages is constant. The value MAY change from one request to the next</blockquote> */
-  total_pages?: number;
-  /** The total number of invoices that match the search criteria.<blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of <code>total_items</code> is constant. The value MAY change from one request to the next.</blockquote> */
-  total_items?: number;
-  items?: InvoiceList;
-  links?: LinkDescriptionList;
-}
-export const Invoices = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_pages: S.optional(S.Number),
-    total_items: S.optional(S.Number),
-    items: S.optional(InvoiceList),
-    links: S.optional(LinkDescriptionList),
-  }),
-).annotate({ identifier: "Invoices" }) as any as S.Schema<Invoices>;
-
-export interface InvoicesPaymentsRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type. */
-  payment_id?: string;
-  /** The date when the invoice was paid, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd* *z*. */
-  payment_date?: string;
-  /** The payment mode or method through which the invoicer can accept the payment. */
-  method: PaymentMethod | (string & {});
-  /** A note associated with an external cash or check payment. */
-  note?: string;
-  /** The payment amount to record against the invoice. If you omit this parameter, the total invoice amount is marked as paid. This amount cannot exceed the amount due. */
-  amount?: Money;
-  /** The recipient's shipping information. Includes the user's contact information, which includes name and address. */
-  shipping_info?: ContactNameAddress;
-}
-export const InvoicesPaymentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    payment_id: S.optional(S.String),
-    payment_date: S.optional(S.String),
-    method: PaymentMethod,
-    note: S.optional(S.String),
-    amount: S.optional(Money),
-    shipping_info: S.optional(ContactNameAddress),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/invoicing/invoices/{invoice_id}/payments",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesPaymentsRequest",
-}) as any as S.Schema<InvoicesPaymentsRequest>;
-
-/** The reference to the payment detail. */
-export interface PaymentReference {
-  /** The ID for the invoice payment. */
-  payment_id?: string;
-}
-export const PaymentReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payment_id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PaymentReference",
-}) as any as S.Schema<PaymentReference>;
-
-export interface InvoicesPaymentsDeleteRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The ID of the external refund transaction to delete. */
-  transaction_id: string;
-}
-export const InvoicesPaymentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    transaction_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesPaymentsDeleteRequest",
-}) as any as S.Schema<InvoicesPaymentsDeleteRequest>;
-
-export interface InvoicesPaymentsDeleteResponse {}
-export const InvoicesPaymentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InvoicesPaymentsDeleteResponse",
-}) as any as S.Schema<InvoicesPaymentsDeleteResponse>;
-
-export interface InvoicesRefundsRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The date when the invoice was refunded, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, `2014-02-27`. */
-  refund_date?: string;
-  /** The amount to record as refunded. If you omit the amount, the total invoice paid amount is recorded as refunded. */
-  amount?: Money;
-  /** The payment mode or method through which the invoicer can accept the payments. */
-  method: PaymentMethod | (string & {});
-}
-export const InvoicesRefundsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    refund_date: S.optional(S.String),
-    amount: S.optional(Money),
-    method: PaymentMethod,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/invoicing/invoices/{invoice_id}/refunds",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesRefundsRequest",
-}) as any as S.Schema<InvoicesRefundsRequest>;
-
-/** The reference to the refund payment detail. */
-export interface RefundReference {
-  /** The ID of the refund of an invoice payment. */
-  refund_id?: string;
-}
-export const RefundReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    refund_id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RefundReference",
-}) as any as S.Schema<RefundReference>;
-
-export interface InvoicesRefundsDeleteRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The ID of the external refund transaction to delete. */
-  transaction_id: string;
-}
-export const InvoicesRefundsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    transaction_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesRefundsDeleteRequest",
-}) as any as S.Schema<InvoicesRefundsDeleteRequest>;
-
-export interface InvoicesRefundsDeleteResponse {}
-export const InvoicesRefundsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InvoicesRefundsDeleteResponse",
-}) as any as S.Schema<InvoicesRefundsDeleteResponse>;
-
-export interface InvoicesRemindRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote> */
-  subject?: string;
-  /** A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote> */
-  note?: string;
-  /** Indicates whether to send a copy of the email to the merchant. */
-  send_to_invoicer?: boolean;
-  /** Indicates whether to send a copy of the email to the recipient. */
-  send_to_recipient?: boolean;
-  additional_recipients?: EmailAddressList;
-}
-export const InvoicesRemindRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    subject: S.optional(S.String),
-    note: S.optional(S.String),
-    send_to_invoicer: S.optional(S.Boolean),
-    send_to_recipient: S.optional(S.Boolean),
-    additional_recipients: S.optional(EmailAddressList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/invoicing/invoices/{invoice_id}/remind",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesRemindRequest",
-}) as any as S.Schema<InvoicesRemindRequest>;
-
-export interface InvoicesRemindResponse {}
-export const InvoicesRemindResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "InvoicesRemindResponse",
-}) as any as S.Schema<InvoicesRemindResponse>;
-
-/** An array of status values. */
-export type InvoiceStatusList = Array<InvoiceStatus | (string & {})>;
-export const InvoiceStatusList = /*@__PURE__*/ S.Array(
-  InvoiceStatus,
-) as any as S.Schema<InvoiceStatusList>;
-
-/** The amount range. */
-export interface AmountRange {
-  /** The lower limit of the amount range. */
-  lower_amount: Money;
-  /** The upper limit of the amount range. */
-  upper_amount: Money;
-}
-export const AmountRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lower_amount: Money,
-    upper_amount: Money,
-  }),
-).annotate({ identifier: "AmountRange" }) as any as S.Schema<AmountRange>;
-
-/** The date range. Filters invoices by creation date, invoice date, due date, and payment date. */
-export interface DateRange {
-  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
-  start: string;
-  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
-  end: string;
-}
-export const DateRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    start: S.String,
-    end: S.String,
-  }),
-).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
-
-/** The date and time range. Filters invoices by creation date, invoice date, due date, and payment date. */
-export interface DateTimeRange {
-  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
-  start: string;
-  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. <blockquote><strong>Note: The regular expression provides guidance but does not reject all invalid dates.</strong></blockquote><br/>Minimum length: 20.<br/>Maximum length: 64<br/>Pattern: <code>^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$</code> */
-  end: string;
-}
-export const DateTimeRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    start: S.String,
-    end: S.String,
-  }),
-).annotate({ identifier: "DateTimeRange" }) as any as S.Schema<DateTimeRange>;
-
-/** A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>. */
-export type FieldsList = Array<string>;
-export const FieldsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FieldsList>;
-
-export interface InvoicesSearchInvoicesRequest {
-  /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
-  page?: number;
-  /** The maximum number of templates to return in the response. */
-  page_size?: number;
-  /** Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response. */
-  total_required?: boolean;
-  /** Filters the search by the email address. */
-  recipient_email?: string;
-  /** Filters the search by the recipient first name. */
-  recipient_first_name?: string;
-  /** Filters the search by the recipient last name. */
-  recipient_last_name?: string;
-  /** Filters the search by the recipient business name. */
-  recipient_business_name?: string;
-  /** Filters the search by the invoice number. */
-  invoice_number?: string;
-  status?: InvoiceStatusList;
-  /** The reference data. Includes a Purchase Order (PO) number. */
-  reference?: string;
-  /** The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency. */
-  currency_code?: string;
-  /** A private bookkeeping memo for the user. */
-  memo?: string;
-  /** Filters the search by the total amount. */
-  total_amount_range?: AmountRange;
-  /** Filters the search by a date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  invoice_date_range?: DateRange;
-  /** Filters the search by a due date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  due_date_range?: DateRange;
-  payment_date_range?: DateTimeRange;
-  /** Filters the search by a creation date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  creation_date_range?: DateTimeRange;
-  /** Indicates whether to list merchant-archived invoices in the response. Value is:<ul><li><code>true</code>. Response lists only merchant-archived invoices.</li><li><code>false</code>. Response lists only unarchived invoices.</li><li><code>null</code>. Response lists all invoices.</li></ul> */
-  archived?: boolean;
-  fields?: FieldsList;
-}
-export const InvoicesSearchInvoicesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page: S.optional(S.Number.pipe(T.Query())),
-    page_size: S.optional(S.Number.pipe(T.Query())),
-    total_required: S.optional(S.Boolean.pipe(T.Query())),
-    recipient_email: S.optional(S.String),
-    recipient_first_name: S.optional(S.String),
-    recipient_last_name: S.optional(S.String),
-    recipient_business_name: S.optional(S.String),
-    invoice_number: S.optional(S.String),
-    status: S.optional(InvoiceStatusList),
-    reference: S.optional(S.String),
-    currency_code: S.optional(S.String),
-    memo: S.optional(S.String),
-    total_amount_range: S.optional(AmountRange),
-    invoice_date_range: S.optional(DateRange),
-    due_date_range: S.optional(DateRange),
-    payment_date_range: S.optional(DateTimeRange),
-    creation_date_range: S.optional(DateTimeRange),
-    archived: S.optional(S.Boolean),
-    fields: S.optional(FieldsList),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v2/invoicing/search-invoices", code: 200 }),
-  ),
-).annotate({
-  identifier: "InvoicesSearchInvoicesRequest",
-}) as any as S.Schema<InvoicesSearchInvoicesRequest>;
-
-export interface InvoicesSendRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote> */
-  subject?: string;
-  /** A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote> */
-  note?: string;
-  /** Indicates whether to send a copy of the email to the merchant. */
-  send_to_invoicer?: boolean;
-  /** Indicates whether to send a copy of the email to the recipient. */
-  send_to_recipient?: boolean;
-  additional_recipients?: EmailAddressList;
-}
-export const InvoicesSendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    subject: S.optional(S.String),
-    note: S.optional(S.String),
-    send_to_invoicer: S.optional(S.Boolean),
-    send_to_recipient: S.optional(S.Boolean),
-    additional_recipients: S.optional(EmailAddressList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/invoicing/invoices/{invoice_id}/send",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesSendRequest",
-}) as any as S.Schema<InvoicesSendRequest>;
-
-export interface InvoicesUpdateRequest {
-  /** The ID of the draft invoice to delete. */
-  invoice_id: string;
-  /** Indicates whether to send the invoice update notification to the recipient. */
-  send_to_recipient?: boolean;
-  /** Indicates whether to send the invoice update notification to the merchant. */
-  send_to_invoicer?: boolean;
-  /** The details of the invoice. Includes the invoice number, date, payment terms, and audit metadata. */
-  detail: InvoiceDetailInput;
-  /** The invoicer information. Includes the business name, email, address, phone, fax, tax ID, additional notes, and logo URL. */
-  invoicer?: InvoicerInfo;
-  primary_recipients?: RecipientInfoList;
-  additional_recipients?: EmailAddressList;
-  items?: ItemListInput;
-  /** The invoice configuration details. Includes partial payment, tip, and tax calculated after discount. */
-  configuration?: Configuration;
-  /** The invoice amount summary of item total, discount, tax total and shipping.. */
-  amount?: AmountSummaryDetail;
-  /** List of payments registered against the invoice.. */
-  payments?: PaymentsInput;
-  /** List of refunds against this invoice. The invoicing refund details includes refund type, date, amount, and method. */
-  refunds?: PaymentsInput;
-}
-export const InvoicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_id: S.String.pipe(T.Label()),
-    send_to_recipient: S.optional(S.Boolean.pipe(T.Query())),
-    send_to_invoicer: S.optional(S.Boolean.pipe(T.Query())),
-    detail: InvoiceDetailInput,
-    invoicer: S.optional(InvoicerInfo),
-    primary_recipients: S.optional(RecipientInfoList),
-    additional_recipients: S.optional(EmailAddressList),
-    items: S.optional(ItemListInput),
-    configuration: S.optional(Configuration),
-    amount: S.optional(AmountSummaryDetail),
-    payments: S.optional(PaymentsInput),
-    refunds: S.optional(PaymentsInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/v2/invoicing/invoices/{invoice_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "InvoicesUpdateRequest",
-}) as any as S.Schema<InvoicesUpdateRequest>;
-
-export interface InvoicingGenerateNextInvoiceNumberRequest {
-  /** Optional to decide the number or ID. */
-  fetch_id?: boolean;
-}
-export const InvoicingGenerateNextInvoiceNumberRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      fetch_id: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v2/invoicing/generate-next-invoice-number",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "InvoicingGenerateNextInvoiceNumberRequest",
-  }) as any as S.Schema<InvoicingGenerateNextInvoiceNumberRequest>;
-
-/** The invoice number. */
-export interface InvoiceNumber {
-  /** The invoice number. If you omit this value, the default is the auto-incremented number from the last number. */
-  invoice_number?: string;
-  /** Resource Id. */
-  invoice_id?: string;
-}
-export const InvoiceNumber = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    invoice_number: S.optional(S.String),
-    invoice_id: S.optional(S.String),
-  }),
-).annotate({ identifier: "InvoiceNumber" }) as any as S.Schema<InvoiceNumber>;
-
 /** The payment term of the invoice. Payment can be due upon receipt, a specified date, or in a set number of days. */
 export interface PaymentTerm {
   /** The payment term. Payment can be due upon receipt, a specified date, or in a set number of days. */
@@ -1840,7 +1213,7 @@ export const TemplateSettings = /*@__PURE__*/ S.suspend(() =>
   identifier: "TemplateSettings",
 }) as any as S.Schema<TemplateSettings>;
 
-export interface TemplatesCreateRequest {
+export interface CreateTemplateRequest {
   /** The template name.<blockquote><strong>Note:</strong> The template name must be unique.</blockquote> */
   name?: string;
   /** Indicates whether this template is the default template. A invoicer can have one default template. */
@@ -1852,7 +1225,7 @@ export interface TemplatesCreateRequest {
   /** The unit of measure for the template. Value is quantity, hours, or amount. */
   unit_of_measure?: UnitOfMeasure | (string & {});
 }
-export const TemplatesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
     default_template: S.optional(S.Boolean),
@@ -1863,8 +1236,8 @@ export const TemplatesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v2/invoicing/templates", code: 200 }),
   ),
 ).annotate({
-  identifier: "TemplatesCreateRequest",
-}) as any as S.Schema<TemplatesCreateRequest>;
+  identifier: "CreateTemplateRequest",
+}) as any as S.Schema<CreateTemplateRequest>;
 
 /** The audit metadata. Captures all template actions on create and update. */
 export interface TemplateMetadata {
@@ -1985,11 +1358,92 @@ export const Template = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Template" }) as any as S.Schema<Template>;
 
-export interface TemplatesDeleteRequest {
+export interface DeleteInvoiceRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+}
+export const DeleteInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v2/invoicing/invoices/{invoice_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInvoiceRequest",
+}) as any as S.Schema<DeleteInvoiceRequest>;
+
+export interface DeleteInvoiceResponse {}
+export const DeleteInvoiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInvoiceResponse",
+}) as any as S.Schema<DeleteInvoiceResponse>;
+
+export interface DeleteInvoicesPaymentRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The ID of the external refund transaction to delete. */
+  transaction_id: string;
+}
+export const DeleteInvoicesPaymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    transaction_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInvoicesPaymentRequest",
+}) as any as S.Schema<DeleteInvoicesPaymentRequest>;
+
+export interface DeleteInvoicesPaymentResponse {}
+export const DeleteInvoicesPaymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInvoicesPaymentResponse",
+}) as any as S.Schema<DeleteInvoicesPaymentResponse>;
+
+export interface DeleteInvoicesRefundRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The ID of the external refund transaction to delete. */
+  transaction_id: string;
+}
+export const DeleteInvoicesRefundRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    transaction_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteInvoicesRefundRequest",
+}) as any as S.Schema<DeleteInvoicesRefundRequest>;
+
+export interface DeleteInvoicesRefundResponse {}
+export const DeleteInvoicesRefundResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteInvoicesRefundResponse",
+}) as any as S.Schema<DeleteInvoicesRefundResponse>;
+
+export interface DeleteTemplateRequest {
   /** The ID of the template to delete. */
   template_id: string;
 }
-export const TemplatesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     template_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -2000,21 +1454,89 @@ export const TemplatesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TemplatesDeleteRequest",
-}) as any as S.Schema<TemplatesDeleteRequest>;
+  identifier: "DeleteTemplateRequest",
+}) as any as S.Schema<DeleteTemplateRequest>;
 
-export interface TemplatesDeleteResponse {}
-export const TemplatesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteTemplateResponse {}
+export const DeleteTemplateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "TemplatesDeleteResponse",
-}) as any as S.Schema<TemplatesDeleteResponse>;
+  identifier: "DeleteTemplateResponse",
+}) as any as S.Schema<DeleteTemplateResponse>;
 
-export interface TemplatesGetRequest {
+export interface GetConnectionRequest {}
+export const GetConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/invoicing/accounting-sync/merchant/connections",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetConnectionRequest",
+}) as any as S.Schema<GetConnectionRequest>;
+
+/** The status of the last sync. This property supports Unicode. */
+export type ConnectionLastSyncStatus = "IN_PROGRESS" | "SUCCESS" | "FAILED";
+export const ConnectionLastSyncStatus = /*@__PURE__*/ S.String;
+
+/** This lists last sync status and connection platform name. */
+export interface Connection {
+  /** The name of the platform. This property supports Unicode. The pattern is not provided because the value is defined by an external party. */
+  platform_name?: string;
+  /** The date and time when the resource is last synced with the accounting platform. This property supports Unicode. */
+  last_sync_time?: string;
+  /** The status of the last sync. This property supports Unicode. */
+  last_sync_status?: ConnectionLastSyncStatus;
+}
+export const Connection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    platform_name: S.optional(S.String),
+    last_sync_time: S.optional(S.String),
+    last_sync_status: S.optional(ConnectionLastSyncStatus),
+  }),
+).annotate({ identifier: "Connection" }) as any as S.Schema<Connection>;
+
+/** An array of connection-level details. */
+export type ConnectionList = Array<Connection>;
+export const ConnectionList = /*@__PURE__*/ S.Array(
+  Connection,
+) as any as S.Schema<ConnectionList>;
+
+/** This object contains an array of connection details. It is used to load sync status for a user. */
+export interface Connections {
+  connections?: ConnectionList;
+}
+export const Connections = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    connections: S.optional(ConnectionList),
+  }),
+).annotate({ identifier: "Connections" }) as any as S.Schema<Connections>;
+
+export interface GetInvoiceRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+}
+export const GetInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/invoicing/invoices/{invoice_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetInvoiceRequest",
+}) as any as S.Schema<GetInvoiceRequest>;
+
+export interface GetTemplateRequest {
   /** The ID of the template to delete. */
   template_id: string;
 }
-export const TemplatesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     template_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -2025,10 +1547,408 @@ export const TemplatesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TemplatesGetRequest",
-}) as any as S.Schema<TemplatesGetRequest>;
+  identifier: "GetTemplateRequest",
+}) as any as S.Schema<GetTemplateRequest>;
 
-export interface TemplatesListRequest {
+export interface InvoiceConnectionDetailsGetRequest {
+  /** The invoice id of the account. */
+  id: string;
+}
+export const InvoiceConnectionDetailsGetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/invoicing/accounting-sync/invoices/{id}/connections",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "InvoiceConnectionDetailsGetRequest",
+}) as any as S.Schema<InvoiceConnectionDetailsGetRequest>;
+
+/** An array of connection-level details. */
+export type ConnectionsList = Array<Connections>;
+export const ConnectionsList = /*@__PURE__*/ S.Array(
+  Connections,
+) as any as S.Schema<ConnectionsList>;
+
+/** Returns invoice connection status with timestamp per invoice. */
+export interface InvoiceConnectionDetails {
+  /** The ID of the invoice. This property supports Unicode. */
+  id?: string;
+  connection_status?: ConnectionsList;
+}
+export const InvoiceConnectionDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    connection_status: S.optional(ConnectionsList),
+  }),
+).annotate({
+  identifier: "InvoiceConnectionDetails",
+}) as any as S.Schema<InvoiceConnectionDetails>;
+
+export interface InvoicesGenerateQrCodeRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The width, in pixels, of the QR code image. Value is from `150` to `500`. */
+  width?: number;
+  /** The height, in pixels, of the QR code image. Value is from `150` to `500`. */
+  height?: number;
+  /** The type of URL for which to generate a QR code. Valid values are `pay` and `details`. */
+  action?: string;
+}
+export const InvoicesGenerateQrCodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    width: S.optional(S.Number),
+    height: S.optional(S.Number),
+    action: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/invoicing/invoices/{invoice_id}/generate-qr-code",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "InvoicesGenerateQrCodeRequest",
+}) as any as S.Schema<InvoicesGenerateQrCodeRequest>;
+
+export interface InvoicesGenerateQrCodeResponse {}
+export const InvoicesGenerateQrCodeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "InvoicesGenerateQrCodeResponse",
+}) as any as S.Schema<InvoicesGenerateQrCodeResponse>;
+
+export interface InvoicesPaymentsRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type. */
+  payment_id?: string;
+  /** The date when the invoice was paid, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd* *z*. */
+  payment_date?: string;
+  /** The payment mode or method through which the invoicer can accept the payment. */
+  method: PaymentMethod | (string & {});
+  /** A note associated with an external cash or check payment. */
+  note?: string;
+  /** The payment amount to record against the invoice. If you omit this parameter, the total invoice amount is marked as paid. This amount cannot exceed the amount due. */
+  amount?: Money;
+  /** The recipient's shipping information. Includes the user's contact information, which includes name and address. */
+  shipping_info?: ContactNameAddress;
+}
+export const InvoicesPaymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    payment_id: S.optional(S.String),
+    payment_date: S.optional(S.String),
+    method: PaymentMethod,
+    note: S.optional(S.String),
+    amount: S.optional(Money),
+    shipping_info: S.optional(ContactNameAddress),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/invoicing/invoices/{invoice_id}/payments",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "InvoicesPaymentsRequest",
+}) as any as S.Schema<InvoicesPaymentsRequest>;
+
+/** The reference to the payment detail. */
+export interface PaymentReference {
+  /** The ID for the invoice payment. */
+  payment_id?: string;
+}
+export const PaymentReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    payment_id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PaymentReference",
+}) as any as S.Schema<PaymentReference>;
+
+export interface InvoicesRefundsRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The date when the invoice was refunded, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, `2014-02-27`. */
+  refund_date?: string;
+  /** The amount to record as refunded. If you omit the amount, the total invoice paid amount is recorded as refunded. */
+  amount?: Money;
+  /** The payment mode or method through which the invoicer can accept the payments. */
+  method: PaymentMethod | (string & {});
+}
+export const InvoicesRefundsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    refund_date: S.optional(S.String),
+    amount: S.optional(Money),
+    method: PaymentMethod,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/invoicing/invoices/{invoice_id}/refunds",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "InvoicesRefundsRequest",
+}) as any as S.Schema<InvoicesRefundsRequest>;
+
+/** The reference to the refund payment detail. */
+export interface RefundReference {
+  /** The ID of the refund of an invoice payment. */
+  refund_id?: string;
+}
+export const RefundReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    refund_id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RefundReference",
+}) as any as S.Schema<RefundReference>;
+
+export interface InvoicesRemindRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote> */
+  subject?: string;
+  /** A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote> */
+  note?: string;
+  /** Indicates whether to send a copy of the email to the merchant. */
+  send_to_invoicer?: boolean;
+  /** Indicates whether to send a copy of the email to the recipient. */
+  send_to_recipient?: boolean;
+  additional_recipients?: EmailAddressList;
+}
+export const InvoicesRemindRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    subject: S.optional(S.String),
+    note: S.optional(S.String),
+    send_to_invoicer: S.optional(S.Boolean),
+    send_to_recipient: S.optional(S.Boolean),
+    additional_recipients: S.optional(EmailAddressList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/invoicing/invoices/{invoice_id}/remind",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "InvoicesRemindRequest",
+}) as any as S.Schema<InvoicesRemindRequest>;
+
+export interface InvoicesRemindResponse {}
+export const InvoicesRemindResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "InvoicesRemindResponse",
+}) as any as S.Schema<InvoicesRemindResponse>;
+
+/** An array of status values. */
+export type InvoiceStatusList = Array<InvoiceStatus | (string & {})>;
+export const InvoiceStatusList = /*@__PURE__*/ S.Array(
+  InvoiceStatus,
+) as any as S.Schema<InvoiceStatusList>;
+
+/** The amount range. */
+export interface AmountRange {
+  /** The lower limit of the amount range. */
+  lower_amount: Money;
+  /** The upper limit of the amount range. */
+  upper_amount: Money;
+}
+export const AmountRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lower_amount: Money,
+    upper_amount: Money,
+  }),
+).annotate({ identifier: "AmountRange" }) as any as S.Schema<AmountRange>;
+
+/** The date range. Filters invoices by creation date, invoice date, due date, and payment date. */
+export interface DateRange {
+  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
+  start: string;
+  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
+  end: string;
+}
+export const DateRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    start: S.String,
+    end: S.String,
+  }),
+).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
+
+/** The date and time range. Filters invoices by creation date, invoice date, due date, and payment date. */
+export interface DateTimeRange {
+  /** The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date. */
+  start: string;
+  /** The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date. <blockquote><strong>Note: The regular expression provides guidance but does not reject all invalid dates.</strong></blockquote><br/>Minimum length: 20.<br/>Maximum length: 64<br/>Pattern: <code>^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$</code> */
+  end: string;
+}
+export const DateTimeRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    start: S.String,
+    end: S.String,
+  }),
+).annotate({ identifier: "DateTimeRange" }) as any as S.Schema<DateTimeRange>;
+
+/** A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>. */
+export type FieldsList = Array<string>;
+export const FieldsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FieldsList>;
+
+export interface InvoicesSearchInvoicesRequest {
+  /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
+  page?: number;
+  /** The maximum number of templates to return in the response. */
+  page_size?: number;
+  /** Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response. */
+  total_required?: boolean;
+  /** Filters the search by the email address. */
+  recipient_email?: string;
+  /** Filters the search by the recipient first name. */
+  recipient_first_name?: string;
+  /** Filters the search by the recipient last name. */
+  recipient_last_name?: string;
+  /** Filters the search by the recipient business name. */
+  recipient_business_name?: string;
+  /** Filters the search by the invoice number. */
+  invoice_number?: string;
+  status?: InvoiceStatusList;
+  /** The reference data. Includes a Purchase Order (PO) number. */
+  reference?: string;
+  /** The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency. */
+  currency_code?: string;
+  /** A private bookkeeping memo for the user. */
+  memo?: string;
+  /** Filters the search by the total amount. */
+  total_amount_range?: AmountRange;
+  /** Filters the search by a date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  invoice_date_range?: DateRange;
+  /** Filters the search by a due date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  due_date_range?: DateRange;
+  payment_date_range?: DateTimeRange;
+  /** Filters the search by a creation date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  creation_date_range?: DateTimeRange;
+  /** Indicates whether to list merchant-archived invoices in the response. Value is:<ul><li><code>true</code>. Response lists only merchant-archived invoices.</li><li><code>false</code>. Response lists only unarchived invoices.</li><li><code>null</code>. Response lists all invoices.</li></ul> */
+  archived?: boolean;
+  fields?: FieldsList;
+}
+export const InvoicesSearchInvoicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    page_size: S.optional(S.Number.pipe(T.Query())),
+    total_required: S.optional(S.Boolean.pipe(T.Query())),
+    recipient_email: S.optional(S.String),
+    recipient_first_name: S.optional(S.String),
+    recipient_last_name: S.optional(S.String),
+    recipient_business_name: S.optional(S.String),
+    invoice_number: S.optional(S.String),
+    status: S.optional(InvoiceStatusList),
+    reference: S.optional(S.String),
+    currency_code: S.optional(S.String),
+    memo: S.optional(S.String),
+    total_amount_range: S.optional(AmountRange),
+    invoice_date_range: S.optional(DateRange),
+    due_date_range: S.optional(DateRange),
+    payment_date_range: S.optional(DateTimeRange),
+    creation_date_range: S.optional(DateTimeRange),
+    archived: S.optional(S.Boolean),
+    fields: S.optional(FieldsList),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v2/invoicing/search-invoices", code: 200 }),
+  ),
+).annotate({
+  identifier: "InvoicesSearchInvoicesRequest",
+}) as any as S.Schema<InvoicesSearchInvoicesRequest>;
+
+/** The list of invoices that match the search criteria. */
+export type InvoiceList = Array<Invoice>;
+export const InvoiceList = /*@__PURE__*/ S.Array(
+  Invoice,
+) as any as S.Schema<InvoiceList>;
+
+/** An array of merchant invoices. Includes the total invoices count and [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links) for navigation. */
+export interface Invoices {
+  /** The total number of pages that are available for the search criteria. <blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of total_pages is constant. The value MAY change from one request to the next</blockquote> */
+  total_pages?: number;
+  /** The total number of invoices that match the search criteria.<blockquote><strong>Note:</strong> Clients MUST NOT assume that the value of <code>total_items</code> is constant. The value MAY change from one request to the next.</blockquote> */
+  total_items?: number;
+  items?: InvoiceList;
+  links?: LinkDescriptionList;
+}
+export const Invoices = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_pages: S.optional(S.Number),
+    total_items: S.optional(S.Number),
+    items: S.optional(InvoiceList),
+    links: S.optional(LinkDescriptionList),
+  }),
+).annotate({ identifier: "Invoices" }) as any as S.Schema<Invoices>;
+
+export interface InvoicingGenerateNextInvoiceNumberRequest {
+  /** Optional to decide the number or ID. */
+  fetch_id?: boolean;
+}
+export const InvoicingGenerateNextInvoiceNumberRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      fetch_id: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v2/invoicing/generate-next-invoice-number",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "InvoicingGenerateNextInvoiceNumberRequest",
+  }) as any as S.Schema<InvoicingGenerateNextInvoiceNumberRequest>;
+
+/** The invoice number. */
+export interface InvoiceNumber {
+  /** The invoice number. If you omit this value, the default is the auto-incremented number from the last number. */
+  invoice_number?: string;
+  /** Resource Id. */
+  invoice_id?: string;
+}
+export const InvoiceNumber = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_number: S.optional(S.String),
+    invoice_id: S.optional(S.String),
+  }),
+).annotate({ identifier: "InvoiceNumber" }) as any as S.Schema<InvoiceNumber>;
+
+export interface ListInvoicesRequest {
+  /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
+  page?: number;
+  /** The maximum number of templates to return in the response. */
+  page_size?: number;
+  /** Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response. */
+  total_required?: boolean;
+  /** The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`. */
+  fields?: string;
+}
+export const ListInvoicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page: S.optional(S.Number.pipe(T.Query())),
+    page_size: S.optional(S.Number.pipe(T.Query())),
+    total_required: S.optional(S.Boolean.pipe(T.Query())),
+    fields: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v2/invoicing/invoices", code: 200 })),
+).annotate({
+  identifier: "ListInvoicesRequest",
+}) as any as S.Schema<ListInvoicesRequest>;
+
+export interface ListTemplatesRequest {
   /** The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`. */
   fields?: string;
   /** The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates. */
@@ -2036,15 +1956,15 @@ export interface TemplatesListRequest {
   /** The maximum number of templates to return in the response. */
   page_size?: number;
 }
-export const TemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fields: S.optional(S.String.pipe(T.Query())),
     page: S.optional(S.Number.pipe(T.Query())),
     page_size: S.optional(S.Number.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v2/invoicing/templates", code: 200 })),
 ).annotate({
-  identifier: "TemplatesListRequest",
-}) as any as S.Schema<TemplatesListRequest>;
+  identifier: "ListTemplatesRequest",
+}) as any as S.Schema<ListTemplatesRequest>;
 
 /** An array of addresses in the user's PayPal profile. */
 export type AddressPortableList = Array<AddressPortable>;
@@ -2083,7 +2003,87 @@ export const Templates = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Templates" }) as any as S.Schema<Templates>;
 
-export interface TemplatesUpdateRequest {
+export interface SendInvoiceRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** The subject of the email that is sent as a notification to the recipient.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the subject will always be defaulted to a system-defined value.</blockquote> */
+  subject?: string;
+  /** A note to the payer.<blockquote><strong>Note:</strong> User-provided values for this field will not be honored and the note will always be defaulted to a system-defined value.</blockquote> */
+  note?: string;
+  /** Indicates whether to send a copy of the email to the merchant. */
+  send_to_invoicer?: boolean;
+  /** Indicates whether to send a copy of the email to the recipient. */
+  send_to_recipient?: boolean;
+  additional_recipients?: EmailAddressList;
+}
+export const SendInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    subject: S.optional(S.String),
+    note: S.optional(S.String),
+    send_to_invoicer: S.optional(S.Boolean),
+    send_to_recipient: S.optional(S.Boolean),
+    additional_recipients: S.optional(EmailAddressList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/invoicing/invoices/{invoice_id}/send",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SendInvoiceRequest",
+}) as any as S.Schema<SendInvoiceRequest>;
+
+export interface UpdateInvoiceRequest {
+  /** The ID of the draft invoice to delete. */
+  invoice_id: string;
+  /** Indicates whether to send the invoice update notification to the recipient. */
+  send_to_recipient?: boolean;
+  /** Indicates whether to send the invoice update notification to the merchant. */
+  send_to_invoicer?: boolean;
+  /** The details of the invoice. Includes the invoice number, date, payment terms, and audit metadata. */
+  detail: InvoiceDetailInput;
+  /** The invoicer information. Includes the business name, email, address, phone, fax, tax ID, additional notes, and logo URL. */
+  invoicer?: InvoicerInfo;
+  primary_recipients?: RecipientInfoList;
+  additional_recipients?: EmailAddressList;
+  items?: ItemListInput;
+  /** The invoice configuration details. Includes partial payment, tip, and tax calculated after discount. */
+  configuration?: Configuration;
+  /** The invoice amount summary of item total, discount, tax total and shipping.. */
+  amount?: AmountSummaryDetail;
+  /** List of payments registered against the invoice.. */
+  payments?: PaymentsInput;
+  /** List of refunds against this invoice. The invoicing refund details includes refund type, date, amount, and method. */
+  refunds?: PaymentsInput;
+}
+export const UpdateInvoiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    invoice_id: S.String.pipe(T.Label()),
+    send_to_recipient: S.optional(S.Boolean.pipe(T.Query())),
+    send_to_invoicer: S.optional(S.Boolean.pipe(T.Query())),
+    detail: InvoiceDetailInput,
+    invoicer: S.optional(InvoicerInfo),
+    primary_recipients: S.optional(RecipientInfoList),
+    additional_recipients: S.optional(EmailAddressList),
+    items: S.optional(ItemListInput),
+    configuration: S.optional(Configuration),
+    amount: S.optional(AmountSummaryDetail),
+    payments: S.optional(PaymentsInput),
+    refunds: S.optional(PaymentsInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/v2/invoicing/invoices/{invoice_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateInvoiceRequest",
+}) as any as S.Schema<UpdateInvoiceRequest>;
+
+export interface UpdateTemplateRequest {
   /** The ID of the template to delete. */
   template_id: string;
   /** The template name.<blockquote><strong>Note:</strong> The template name must be unique.</blockquote> */
@@ -2097,7 +2097,7 @@ export interface TemplatesUpdateRequest {
   /** The unit of measure for the template. Value is quantity, hours, or amount. */
   unit_of_measure?: UnitOfMeasure | (string & {});
 }
-export const TemplatesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     template_id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
@@ -2113,24 +2113,197 @@ export const TemplatesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TemplatesUpdateRequest",
-}) as any as S.Schema<TemplatesUpdateRequest>;
+  identifier: "UpdateTemplateRequest",
+}) as any as S.Schema<UpdateTemplateRequest>;
 
-export type ConnectionsGetError =
+export type CancelInvoiceError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Cancel sent invoice Cancels a sent invoice, by ID, and, optionally, sends a notification about the cancellation to the payer, merchant, and CC: emails. */
+export const cancelInvoice: API.OperationMethod<
+  CancelInvoiceRequest,
+  CancelInvoiceResponse,
+  CancelInvoiceError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelInvoiceRequest,
+  output: CancelInvoiceResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateInvoiceError =
+  | BadRequest
+  | Forbidden
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Create draft invoice Creates a draft invoice. To move the invoice from a draft to payable state, you must <a href="#invoices_send">send the invoice</a>.<br/><br/>In the JSON request body, include invoice details including merchant information. The <code>invoice</code> object must include an <code>items</code> array.<blockquote><strong>Note:</strong> The merchant that you specify in an invoice must have a PayPal account in good standing.</blockquote>. */
+export const createInvoice: API.OperationMethod<
+  CreateInvoiceRequest,
+  Invoice,
+  CreateInvoiceError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateInvoiceRequest,
+  output: Invoice,
+  errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTemplateError =
+  | BadRequest
+  | Forbidden
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Create template Creates an invoice template. You can use details from this template to create an invoice. You can create up to 50 templates.<blockquote><strong>Note:</strong> Every merchant starts with three PayPal system templates that are optimized for the unit type billed. The template includes `Quantity`, `Hours`, and `Amount`.</blockquote> */
+export const createTemplate: API.OperationMethod<
+  CreateTemplateRequest,
+  Template,
+  CreateTemplateError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTemplateRequest,
+  output: Template,
+  errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteInvoiceError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PaypalOpError;
+/** Delete invoice Deletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href="/docs/api/invoicing/v2/#invoices_cancel">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number. */
+export const deleteInvoice: API.OperationMethod<
+  DeleteInvoiceRequest,
+  DeleteInvoiceResponse,
+  DeleteInvoiceError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInvoiceRequest,
+  output: DeleteInvoiceResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteInvoicesPaymentError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Delete external payment Deletes an external payment, by invoice ID and transaction ID. */
+export const deleteInvoicesPayment: API.OperationMethod<
+  DeleteInvoicesPaymentRequest,
+  DeleteInvoicesPaymentResponse,
+  DeleteInvoicesPaymentError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInvoicesPaymentRequest,
+  output: DeleteInvoicesPaymentResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteInvoicesRefundError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PaypalOpError;
+/** Delete external refund Deletes an external refund, by invoice ID and transaction ID. */
+export const deleteInvoicesRefund: API.OperationMethod<
+  DeleteInvoicesRefundRequest,
+  DeleteInvoicesRefundResponse,
+  DeleteInvoicesRefundError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteInvoicesRefundRequest,
+  output: DeleteInvoicesRefundResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTemplateError = Forbidden | NotFound | PaypalOpError;
+/** Delete template Deletes a template, by ID. */
+export const deleteTemplate: API.OperationMethod<
+  DeleteTemplateRequest,
+  DeleteTemplateResponse,
+  DeleteTemplateError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTemplateRequest,
+  output: DeleteTemplateResponse,
+  errors: [Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConnectionError =
   | BadRequest
   | Forbidden
   | NotFound
   | PaypalOpError;
 /** List Connections. Lists connections to accounting platforms per merchant. */
-export const connectionsGet: API.OperationMethod<
-  ConnectionsGetRequest,
+export const getConnection: API.OperationMethod<
+  GetConnectionRequest,
   Connections,
-  ConnectionsGetError,
+  GetConnectionError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectionsGetRequest,
+  input: GetConnectionRequest,
   output: Connections,
   errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetInvoiceError = BadRequest | Forbidden | NotFound | PaypalOpError;
+/** Show invoice details Shows details for an invoice, by ID. */
+export const getInvoice: API.OperationMethod<
+  GetInvoiceRequest,
+  Invoice,
+  GetInvoiceError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetInvoiceRequest,
+  output: Invoice,
+  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTemplateError = Forbidden | NotFound | PaypalOpError;
+/** Show template details Shows details for a template, by ID. */
+export const getTemplate: API.OperationMethod<
+  GetTemplateRequest,
+  Template,
+  GetTemplateError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTemplateRequest,
+  output: Template,
+  errors: [Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
@@ -2149,70 +2322,6 @@ export const invoiceConnectionDetailsGet: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InvoiceConnectionDetailsGetRequest,
   output: InvoiceConnectionDetails,
-  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesCancelError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Cancel sent invoice Cancels a sent invoice, by ID, and, optionally, sends a notification about the cancellation to the payer, merchant, and CC: emails. */
-export const invoicesCancel: API.OperationMethod<
-  InvoicesCancelRequest,
-  InvoicesCancelResponse,
-  InvoicesCancelError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesCancelRequest,
-  output: InvoicesCancelResponse,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesCreateError =
-  | BadRequest
-  | Forbidden
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Create draft invoice Creates a draft invoice. To move the invoice from a draft to payable state, you must <a href="#invoices_send">send the invoice</a>.<br/><br/>In the JSON request body, include invoice details including merchant information. The <code>invoice</code> object must include an <code>items</code> array.<blockquote><strong>Note:</strong> The merchant that you specify in an invoice must have a PayPal account in good standing.</blockquote>. */
-export const invoicesCreate: API.OperationMethod<
-  InvoicesCreateRequest,
-  Invoice,
-  InvoicesCreateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesCreateRequest,
-  output: Invoice,
-  errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesDeleteError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PaypalOpError;
-/** Delete invoice Deletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href="/docs/api/invoicing/v2/#invoices_cancel">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number. */
-export const invoicesDelete: API.OperationMethod<
-  InvoicesDeleteRequest,
-  InvoicesDeleteResponse,
-  InvoicesDeleteError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesDeleteRequest,
-  output: InvoicesDeleteResponse,
   errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
@@ -2237,40 +2346,6 @@ export const invoicesGenerateQrCode: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InvoicesGetError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PaypalOpError;
-/** Show invoice details Shows details for an invoice, by ID. */
-export const invoicesGet: API.OperationMethod<
-  InvoicesGetRequest,
-  Invoice,
-  InvoicesGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesGetRequest,
-  output: Invoice,
-  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesListError = BadRequest | Forbidden | PaypalOpError;
-/** List invoices Lists invoices. To filter the invoices that appear in the response, you can specify one or more optional query parameters. */
-export const invoicesList: API.OperationMethod<
-  InvoicesListRequest,
-  Invoices,
-  InvoicesListError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesListRequest,
-  output: Invoices,
-  errors: [BadRequest, Forbidden, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InvoicesPaymentsError =
   | BadRequest
   | Forbidden
@@ -2286,32 +2361,6 @@ export const invoicesPayments: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InvoicesPaymentsRequest,
   output: PaymentReference,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesPaymentsDeleteError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Delete external payment Deletes an external payment, by invoice ID and transaction ID. */
-export const invoicesPaymentsDelete: API.OperationMethod<
-  InvoicesPaymentsDeleteRequest,
-  InvoicesPaymentsDeleteResponse,
-  InvoicesPaymentsDeleteError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesPaymentsDeleteRequest,
-  output: InvoicesPaymentsDeleteResponse,
   errors: [
     BadRequest,
     Forbidden,
@@ -2345,25 +2394,6 @@ export const invoicesRefunds: API.OperationMethod<
     UnprocessableEntity,
     UnknownPaypalError,
   ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesRefundsDeleteError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PaypalOpError;
-/** Delete external refund Deletes an external refund, by invoice ID and transaction ID. */
-export const invoicesRefundsDelete: API.OperationMethod<
-  InvoicesRefundsDeleteRequest,
-  InvoicesRefundsDeleteResponse,
-  InvoicesRefundsDeleteError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesRefundsDeleteRequest,
-  output: InvoicesRefundsDeleteResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
@@ -2412,58 +2442,6 @@ export const invoicesSearchInvoices: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InvoicesSendError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Send invoice Sends or schedules an invoice, by ID, to be sent to a customer. The action depends on the invoice issue date:<ul><li>If the invoice issue date is current or in the past, sends the invoice immediately.</li><li>If the invoice issue date is in the future, schedules the invoice to be sent on that date.</li></ul>To suppress the merchant's email notification, set the `send_to_invoicer` body parameter to `false`. To send the invoice through a share link and not through PayPal, set the <code>send_to_recipient</code> parameter to <code>false</code> in the <code>notification</code> object. The <code>send_to_recipient</code> parameter does not apply to a future issue date because the invoice is scheduled to be sent through PayPal on that date.<blockquote><strong>Notes:</strong><ul><li>After you send an invoice, resending it has no effect.</li><li>To send a notification for updates, <a href="#invoices_update">update the invoice</a> and set the <code>send_to_recipient</code> body parameter to <code>true</code>.</li></ul></blockquote> */
-export const invoicesSend: API.OperationMethod<
-  InvoicesSendRequest,
-  LinkDescription,
-  InvoicesSendError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesSendRequest,
-  output: LinkDescription,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type InvoicesUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Fully update invoice Fully updates an invoice, by ID. In the JSON request body, include a complete `invoice` object. This call does not support partial updates. <blockquote><strong>Notes:</strong><ul><li>API caller can change/modify recipient only 2 times in 72 hours.</li></ul></blockquote>. */
-export const invoicesUpdate: API.OperationMethod<
-  InvoicesUpdateRequest,
-  Invoice,
-  InvoicesUpdateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: InvoicesUpdateRequest,
-  output: Invoice,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type InvoicingGenerateNextInvoiceNumberError =
   | BadRequest
   | Forbidden
@@ -2482,83 +2460,101 @@ export const invoicingGenerateNextInvoiceNumber: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TemplatesCreateError =
-  | BadRequest
-  | Forbidden
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Create template Creates an invoice template. You can use details from this template to create an invoice. You can create up to 50 templates.<blockquote><strong>Note:</strong> Every merchant starts with three PayPal system templates that are optimized for the unit type billed. The template includes `Quantity`, `Hours`, and `Amount`.</blockquote> */
-export const templatesCreate: API.OperationMethod<
-  TemplatesCreateRequest,
-  Template,
-  TemplatesCreateError,
+export type ListInvoicesError = BadRequest | Forbidden | PaypalOpError;
+/** List invoices Lists invoices. To filter the invoices that appear in the response, you can specify one or more optional query parameters. */
+export const listInvoices: API.OperationMethod<
+  ListInvoicesRequest,
+  Invoices,
+  ListInvoicesError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TemplatesCreateRequest,
-  output: Template,
-  errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
+  input: ListInvoicesRequest,
+  output: Invoices,
+  errors: [BadRequest, Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TemplatesDeleteError = Forbidden | NotFound | PaypalOpError;
-/** Delete template Deletes a template, by ID. */
-export const templatesDelete: API.OperationMethod<
-  TemplatesDeleteRequest,
-  TemplatesDeleteResponse,
-  TemplatesDeleteError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TemplatesDeleteRequest,
-  output: TemplatesDeleteResponse,
-  errors: [Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TemplatesGetError = Forbidden | NotFound | PaypalOpError;
-/** Show template details Shows details for a template, by ID. */
-export const templatesGet: API.OperationMethod<
-  TemplatesGetRequest,
-  Template,
-  TemplatesGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TemplatesGetRequest,
-  output: Template,
-  errors: [Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TemplatesListError = BadRequest | Forbidden | PaypalOpError;
+export type ListTemplatesError = BadRequest | Forbidden | PaypalOpError;
 /** List templates Lists merchant-created templates with associated details. The associated details include the emails, addresses, and phone numbers from the user's PayPal profile.<br/>The user can select which values to show in the business information section of their template. */
-export const templatesList: API.OperationMethod<
-  TemplatesListRequest,
+export const listTemplates: API.OperationMethod<
+  ListTemplatesRequest,
   Templates,
-  TemplatesListError,
+  ListTemplatesError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TemplatesListRequest,
+  input: ListTemplatesRequest,
   output: Templates,
   errors: [BadRequest, Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TemplatesUpdateError =
+export type SendInvoiceError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Send invoice Sends or schedules an invoice, by ID, to be sent to a customer. The action depends on the invoice issue date:<ul><li>If the invoice issue date is current or in the past, sends the invoice immediately.</li><li>If the invoice issue date is in the future, schedules the invoice to be sent on that date.</li></ul>To suppress the merchant's email notification, set the `send_to_invoicer` body parameter to `false`. To send the invoice through a share link and not through PayPal, set the <code>send_to_recipient</code> parameter to <code>false</code> in the <code>notification</code> object. The <code>send_to_recipient</code> parameter does not apply to a future issue date because the invoice is scheduled to be sent through PayPal on that date.<blockquote><strong>Notes:</strong><ul><li>After you send an invoice, resending it has no effect.</li><li>To send a notification for updates, <a href="#invoices_update">update the invoice</a> and set the <code>send_to_recipient</code> body parameter to <code>true</code>.</li></ul></blockquote> */
+export const sendInvoice: API.OperationMethod<
+  SendInvoiceRequest,
+  LinkDescription,
+  SendInvoiceError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SendInvoiceRequest,
+  output: LinkDescription,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateInvoiceError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Fully update invoice Fully updates an invoice, by ID. In the JSON request body, include a complete `invoice` object. This call does not support partial updates. <blockquote><strong>Notes:</strong><ul><li>API caller can change/modify recipient only 2 times in 72 hours.</li></ul></blockquote>. */
+export const updateInvoice: API.OperationMethod<
+  UpdateInvoiceRequest,
+  Invoice,
+  UpdateInvoiceError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateInvoiceRequest,
+  output: Invoice,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTemplateError =
   | BadRequest
   | Forbidden
   | NotFound
   | PaypalOpError;
 /** Fully update template Fully updates a template, by ID. In the JSON request body, include a complete `template` object. This call does not support partial updates. */
-export const templatesUpdate: API.OperationMethod<
-  TemplatesUpdateRequest,
+export const updateTemplate: API.OperationMethod<
+  UpdateTemplateRequest,
   Template,
-  TemplatesUpdateError,
+  UpdateTemplateError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TemplatesUpdateRequest,
+  input: UpdateTemplateRequest,
   output: Template,
   errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,

@@ -12,23 +12,73 @@ import * as Retry from "../retry.ts";
 
 export type { PaypalOpError, PaypalOpContext };
 
-export interface EventTypesListRequest {
+export interface DeleteWebhookRequest {
   /** The ID of the webhook for which to list subscriptions. */
   webhook_id: string;
 }
-export const EventTypesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhook_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/notifications/webhooks/{webhook_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWebhookRequest",
+}) as any as S.Schema<DeleteWebhookRequest>;
+
+export interface DeleteWebhookResponse {}
+export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWebhookResponse",
+}) as any as S.Schema<DeleteWebhookResponse>;
+
+export interface DeleteWebhooksLookupRequest {
+  /** The ID of the webhook lookup to delete. */
+  webhook_lookup_id: string;
+}
+export const DeleteWebhooksLookupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhook_lookup_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/v1/notifications/webhooks-lookup/{webhook_lookup_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWebhooksLookupRequest",
+}) as any as S.Schema<DeleteWebhooksLookupRequest>;
+
+export interface DeleteWebhooksLookupResponse {}
+export const DeleteWebhooksLookupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWebhooksLookupResponse",
+}) as any as S.Schema<DeleteWebhooksLookupResponse>;
+
+export interface GetWebhookRequest {
+  /** The ID of the webhook for which to list subscriptions. */
+  webhook_id: string;
+}
+export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     webhook_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/v1/notifications/webhooks/{webhook_id}/event-types",
+      uri: "/v1/notifications/webhooks/{webhook_id}",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "EventTypesListRequest",
-}) as any as S.Schema<EventTypesListRequest>;
+  identifier: "GetWebhookRequest",
+}) as any as S.Schema<GetWebhookRequest>;
 
 /** Identifier for the event type example: 1.0/2.0 etc. */
 export type ResourceVersionsList = Array<string>;
@@ -55,6 +105,181 @@ export const EventType = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "EventType" }) as any as S.Schema<EventType>;
 
+/** An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href="#event-type_list">list available events</a>. */
+export type DefinitionsEventTypeList = Array<EventType>;
+export const DefinitionsEventTypeList = /*@__PURE__*/ S.Array(
+  EventType,
+) as any as S.Schema<DefinitionsEventTypeList>;
+
+/** The HTTP method required to make the related call. */
+export type LinkDescriptionMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "HEAD"
+  | "CONNECT"
+  | "OPTIONS"
+  | "PATCH";
+export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
+
+/** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
+export interface LinkDescription {
+  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
+  href: string;
+  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
+  rel: string;
+  /** The HTTP method required to make the related call. */
+  method?: LinkDescriptionMethod;
+}
+export const LinkDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    href: S.String,
+    rel: S.String,
+    method: S.optional(LinkDescriptionMethod),
+  }),
+).annotate({
+  identifier: "LinkDescription",
+}) as any as S.Schema<LinkDescription>;
+
+/** An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/). */
+export type DefinitionsLinkDescriptionList = Array<LinkDescription>;
+export const DefinitionsLinkDescriptionList = /*@__PURE__*/ S.Array(
+  LinkDescription,
+) as any as S.Schema<DefinitionsLinkDescriptionList>;
+
+/** One or more webhook objects. */
+export interface Webhook {
+  /** The ID of the webhook. */
+  id?: string;
+  /** The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information. */
+  url: string;
+  event_types: DefinitionsEventTypeList;
+  links?: DefinitionsLinkDescriptionList;
+}
+export const Webhook = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    url: S.String,
+    event_types: DefinitionsEventTypeList,
+    links: S.optional(DefinitionsLinkDescriptionList),
+  }),
+).annotate({ identifier: "Webhook" }) as any as S.Schema<Webhook>;
+
+export interface GetWebhooksEventRequest {
+  /** The ID of the webhook event notification to resend. */
+  event_id: string;
+}
+export const GetWebhooksEventRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/notifications/webhooks-events/{event_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWebhooksEventRequest",
+}) as any as S.Schema<GetWebhooksEventRequest>;
+
+/** The resource that triggered the webhook event notification. */
+export type Resource = { [key: string]: unknown | undefined };
+export const Resource = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<Resource>;
+
+/** An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+export type LinkDescriptionList = Array<LinkDescription>;
+export const LinkDescriptionList = /*@__PURE__*/ S.Array(
+  LinkDescription,
+) as any as S.Schema<LinkDescriptionList>;
+
+/** A webhook event notification. */
+export interface Event {
+  /** The ID of the webhook event notification. */
+  id?: string;
+  /** The date and time when the webhook event notification was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  create_time?: string;
+  /** The name of the resource related to the webhook notification event. */
+  resource_type?: string;
+  event_version?: string;
+  /** The event that triggered the webhook event notification. */
+  event_type?: string;
+  /** A summary description for the event notification. */
+  summary?: string;
+  resource_version?: string;
+  resource?: Resource;
+  links?: LinkDescriptionList;
+}
+export const Event = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    create_time: S.optional(S.String),
+    resource_type: S.optional(S.String),
+    event_version: S.optional(S.String),
+    event_type: S.optional(S.String),
+    summary: S.optional(S.String),
+    resource_version: S.optional(S.String),
+    resource: S.optional(Resource),
+    links: S.optional(LinkDescriptionList),
+  }),
+).annotate({ identifier: "Event" }) as any as S.Schema<Event>;
+
+export interface GetWebhooksLookupRequest {
+  /** The ID of the webhook lookup to delete. */
+  webhook_lookup_id: string;
+}
+export const GetWebhooksLookupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhook_lookup_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/notifications/webhooks-lookup/{webhook_lookup_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWebhooksLookupRequest",
+}) as any as S.Schema<GetWebhooksLookupRequest>;
+
+/** The webhook lookup details. */
+export interface WebhooksLookup {
+  /** The ID of the webhook lookup. */
+  id?: string;
+  /** The application client ID. */
+  client_id?: string;
+  links?: DefinitionsLinkDescriptionList;
+}
+export const WebhooksLookup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    client_id: S.optional(S.String),
+    links: S.optional(DefinitionsLinkDescriptionList),
+  }),
+).annotate({ identifier: "WebhooksLookup" }) as any as S.Schema<WebhooksLookup>;
+
+export interface ListEventTypesRequest {
+  /** The ID of the webhook for which to list subscriptions. */
+  webhook_id: string;
+}
+export const ListEventTypesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhook_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/notifications/webhooks/{webhook_id}/event-types",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListEventTypesRequest",
+}) as any as S.Schema<ListEventTypesRequest>;
+
 /** An array of webhook events. */
 export type EventTypeList2 = Array<EventType>;
 export const EventTypeList2 = /*@__PURE__*/ S.Array(
@@ -71,7 +296,135 @@ export const EventTypeList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "EventTypeList" }) as any as S.Schema<EventTypeList>;
 
-export interface SimulateEventPostRequest {
+export type ListWebhooksRequestAnchorType = "APPLICATION" | "ACCOUNT";
+export const ListWebhooksRequestAnchorType = /*@__PURE__*/ S.String;
+
+export interface ListWebhooksRequest {
+  /** Filters the webhooks in the response by an `anchor_id` entity type. */
+  anchor_type?: ListWebhooksRequestAnchorType | (string & {});
+}
+export const ListWebhooksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    anchor_type: S.optional(ListWebhooksRequestAnchorType.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/notifications/webhooks", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListWebhooksRequest",
+}) as any as S.Schema<ListWebhooksRequest>;
+
+/** An array of webhooks. */
+export type WebhookList2 = Array<Webhook>;
+export const WebhookList2 = /*@__PURE__*/ S.Array(
+  Webhook,
+) as any as S.Schema<WebhookList2>;
+
+/** A list of webhooks. */
+export interface WebhookList {
+  webhooks?: WebhookList2;
+}
+export const WebhookList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhooks: S.optional(WebhookList2),
+  }),
+).annotate({ identifier: "WebhookList" }) as any as S.Schema<WebhookList>;
+
+export interface ListWebhooksEventsRequest {
+  /** The number of webhook event notifications to return in the response. */
+  page_size?: number;
+  /** Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`. */
+  start_time?: string;
+  /** Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`. */
+  end_time?: string;
+  /** Filters the response to a single transaction, by ID. */
+  transaction_id?: string;
+  /** Filters the response to a single event. */
+  event_type?: string;
+}
+export const ListWebhooksEventsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    page_size: S.optional(S.Number.pipe(T.Query())),
+    start_time: S.optional(S.String.pipe(T.Query())),
+    end_time: S.optional(S.String.pipe(T.Query())),
+    transaction_id: S.optional(S.String.pipe(T.Query())),
+    event_type: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/notifications/webhooks-events",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWebhooksEventsRequest",
+}) as any as S.Schema<ListWebhooksEventsRequest>;
+
+/** An array of webhooks events. */
+export type EventList2 = Array<Event>;
+export const EventList2 = /*@__PURE__*/ S.Array(
+  Event,
+) as any as S.Schema<EventList2>;
+
+/** A list of webhooks events. */
+export interface EventList {
+  events?: EventList2;
+  /** The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value. */
+  count?: number;
+  links?: LinkDescriptionList;
+}
+export const EventList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    events: S.optional(EventList2),
+    count: S.optional(S.Number),
+    links: S.optional(LinkDescriptionList),
+  }),
+).annotate({ identifier: "EventList" }) as any as S.Schema<EventList>;
+
+export interface ListWebhooksEventTypesRequest {}
+export const ListWebhooksEventTypesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/notifications/webhooks-event-types",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWebhooksEventTypesRequest",
+}) as any as S.Schema<ListWebhooksEventTypesRequest>;
+
+export interface ListWebhooksLookupRequest {}
+export const ListWebhooksLookupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v1/notifications/webhooks-lookup",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWebhooksLookupRequest",
+}) as any as S.Schema<ListWebhooksLookupRequest>;
+
+/** An array of webhook lookups. */
+export type WebhooksLookupList = Array<WebhooksLookup>;
+export const WebhooksLookupList = /*@__PURE__*/ S.Array(
+  WebhooksLookup,
+) as any as S.Schema<WebhooksLookupList>;
+
+/** A list of webhook lookups. */
+export interface WebhookLookupList {
+  webhooks_lookups?: WebhooksLookupList;
+}
+export const WebhookLookupList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhooks_lookups: S.optional(WebhooksLookupList),
+  }),
+).annotate({
+  identifier: "WebhookLookupList",
+}) as any as S.Schema<WebhookLookupList>;
+
+export interface PostSimulateEventRequest {
   /** The ID of the webhook. If omitted, the URL is required. */
   webhook_id?: string;
   /** The URL for the webhook endpoint. If omitted, the webhook ID is required. */
@@ -81,7 +434,7 @@ export interface SimulateEventPostRequest {
   /** The identifier for event type ex: 1.0/2.0 etc. */
   resource_version?: string;
 }
-export const SimulateEventPostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostSimulateEventRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     webhook_id: S.optional(S.String),
     url: S.optional(S.String),
@@ -95,15 +448,144 @@ export const SimulateEventPostRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SimulateEventPostRequest",
-}) as any as S.Schema<SimulateEventPostRequest>;
+  identifier: "PostSimulateEventRequest",
+}) as any as S.Schema<PostSimulateEventRequest>;
 
-export interface SimulateEventPostResponse {}
-export const SimulateEventPostResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PostSimulateEventResponse {}
+export const PostSimulateEventResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SimulateEventPostResponse",
-}) as any as S.Schema<SimulateEventPostResponse>;
+  identifier: "PostSimulateEventResponse",
+}) as any as S.Schema<PostSimulateEventResponse>;
+
+/** An event type. */
+export interface EventTypeInput {
+  /** The unique event name.<blockquote><strong>Note:</strong> To subscribe to all events, including events as they are added, specify an `*` as the value to represent a wildcard.</blockquote> */
+  name: string;
+}
+export const EventTypeInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+  }),
+).annotate({ identifier: "EventTypeInput" }) as any as S.Schema<EventTypeInput>;
+
+/** An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href="#event-type_list">list available events</a>. */
+export type DefinitionsEventTypeListInput = Array<EventTypeInput>;
+export const DefinitionsEventTypeListInput = /*@__PURE__*/ S.Array(
+  EventTypeInput,
+) as any as S.Schema<DefinitionsEventTypeListInput>;
+
+export interface PostWebhookRequest {
+  /** The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information. */
+  url: string;
+  event_types: DefinitionsEventTypeListInput;
+}
+export const PostWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+    event_types: DefinitionsEventTypeListInput,
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/notifications/webhooks", code: 200 }),
+  ),
+).annotate({
+  identifier: "PostWebhookRequest",
+}) as any as S.Schema<PostWebhookRequest>;
+
+export interface PostWebhooksLookupRequest {}
+export const PostWebhooksLookupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/notifications/webhooks-lookup",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PostWebhooksLookupRequest",
+}) as any as S.Schema<PostWebhooksLookupRequest>;
+
+/** An array of webhook account IDs. */
+export type WebhookIdsList = Array<string>;
+export const WebhookIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WebhookIdsList>;
+
+export interface ResendWebhooksEventRequest {
+  /** The ID of the webhook event notification to resend. */
+  event_id: string;
+  webhook_ids?: WebhookIdsList;
+}
+export const ResendWebhooksEventRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event_id: S.String.pipe(T.Label()),
+    webhook_ids: S.optional(WebhookIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/notifications/webhooks-events/{event_id}/resend",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ResendWebhooksEventRequest",
+}) as any as S.Schema<ResendWebhooksEventRequest>;
+
+export interface ResendWebhooksEventResponse {}
+export const ResendWebhooksEventResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResendWebhooksEventResponse",
+}) as any as S.Schema<ResendWebhooksEventResponse>;
+
+/** The operation. */
+export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
+export const PatchOp = /*@__PURE__*/ S.String;
+
+/** The JSON patch object to apply partial updates to resources. */
+export interface Patch {
+  /** The operation. */
+  op: PatchOp | (string & {});
+  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation. */
+  path?: string;
+  /** The value to apply. The <code>remove</code> operation does not require a value. */
+  value?: unknown | null;
+  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation. */
+  from?: string;
+}
+export const Patch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    op: PatchOp,
+    path: S.optional(S.String),
+    value: S.optional(S.NullOr(S.Unknown)),
+    from: S.optional(S.String),
+  }),
+).annotate({ identifier: "Patch" }) as any as S.Schema<Patch>;
+
+/** An array of JSON patch objects to apply partial updates to resources. */
+export type PatchRequest = Array<Patch>;
+export const PatchRequest = /*@__PURE__*/ S.Array(
+  Patch,
+) as any as S.Schema<PatchRequest>;
+
+export interface UpdateWebhookRequest {
+  /** The ID of the webhook for which to list subscriptions. */
+  webhook_id: string;
+  body?: PatchRequest;
+}
+export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    webhook_id: S.String.pipe(T.Label()),
+    body: S.optional(PatchRequest.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/v1/notifications/webhooks/{webhook_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWebhookRequest",
+}) as any as S.Schema<UpdateWebhookRequest>;
 
 /** A webhook event notification. */
 export interface EventInput {
@@ -172,513 +654,226 @@ export const VerifyWebhookSignatureResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VerifyWebhookSignatureResponse",
 }) as any as S.Schema<VerifyWebhookSignatureResponse>;
 
-export interface WebhooksDeleteRequest {
-  /** The ID of the webhook for which to list subscriptions. */
-  webhook_id: string;
-}
-export const WebhooksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhook_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v1/notifications/webhooks/{webhook_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksDeleteRequest",
-}) as any as S.Schema<WebhooksDeleteRequest>;
-
-export interface WebhooksDeleteResponse {}
-export const WebhooksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebhooksDeleteResponse",
-}) as any as S.Schema<WebhooksDeleteResponse>;
-
-export interface WebhooksEventsGetRequest {
-  /** The ID of the webhook event notification to resend. */
-  event_id: string;
-}
-export const WebhooksEventsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/notifications/webhooks-events/{event_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksEventsGetRequest",
-}) as any as S.Schema<WebhooksEventsGetRequest>;
-
-/** The resource that triggered the webhook event notification. */
-export type Resource = { [key: string]: unknown | undefined };
-export const Resource = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<Resource>;
-
-/** The HTTP method required to make the related call. */
-export type LinkDescriptionMethod =
-  | "GET"
-  | "POST"
-  | "PUT"
-  | "DELETE"
-  | "HEAD"
-  | "CONNECT"
-  | "OPTIONS"
-  | "PATCH";
-export const LinkDescriptionMethod = /*@__PURE__*/ S.String;
-
-/** The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information. */
-export interface LinkDescription {
-  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
-  href: string;
-  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
-  rel: string;
-  /** The HTTP method required to make the related call. */
-  method?: LinkDescriptionMethod;
-}
-export const LinkDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    href: S.String,
-    rel: S.String,
-    method: S.optional(LinkDescriptionMethod),
-  }),
-).annotate({
-  identifier: "LinkDescription",
-}) as any as S.Schema<LinkDescription>;
-
-/** An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type LinkDescriptionList = Array<LinkDescription>;
-export const LinkDescriptionList = /*@__PURE__*/ S.Array(
-  LinkDescription,
-) as any as S.Schema<LinkDescriptionList>;
-
-/** A webhook event notification. */
-export interface Event {
-  /** The ID of the webhook event notification. */
-  id?: string;
-  /** The date and time when the webhook event notification was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  create_time?: string;
-  /** The name of the resource related to the webhook notification event. */
-  resource_type?: string;
-  event_version?: string;
-  /** The event that triggered the webhook event notification. */
-  event_type?: string;
-  /** A summary description for the event notification. */
-  summary?: string;
-  resource_version?: string;
-  resource?: Resource;
-  links?: LinkDescriptionList;
-}
-export const Event = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    create_time: S.optional(S.String),
-    resource_type: S.optional(S.String),
-    event_version: S.optional(S.String),
-    event_type: S.optional(S.String),
-    summary: S.optional(S.String),
-    resource_version: S.optional(S.String),
-    resource: S.optional(Resource),
-    links: S.optional(LinkDescriptionList),
-  }),
-).annotate({ identifier: "Event" }) as any as S.Schema<Event>;
-
-export interface WebhooksEventsListRequest {
-  /** The number of webhook event notifications to return in the response. */
-  page_size?: number;
-  /** Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`. */
-  start_time?: string;
-  /** Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`. */
-  end_time?: string;
-  /** Filters the response to a single transaction, by ID. */
-  transaction_id?: string;
-  /** Filters the response to a single event. */
-  event_type?: string;
-}
-export const WebhooksEventsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    page_size: S.optional(S.Number.pipe(T.Query())),
-    start_time: S.optional(S.String.pipe(T.Query())),
-    end_time: S.optional(S.String.pipe(T.Query())),
-    transaction_id: S.optional(S.String.pipe(T.Query())),
-    event_type: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/notifications/webhooks-events",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksEventsListRequest",
-}) as any as S.Schema<WebhooksEventsListRequest>;
-
-/** An array of webhooks events. */
-export type EventList2 = Array<Event>;
-export const EventList2 = /*@__PURE__*/ S.Array(
-  Event,
-) as any as S.Schema<EventList2>;
-
-/** A list of webhooks events. */
-export interface EventList {
-  events?: EventList2;
-  /** The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value. */
-  count?: number;
-  links?: LinkDescriptionList;
-}
-export const EventList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    events: S.optional(EventList2),
-    count: S.optional(S.Number),
-    links: S.optional(LinkDescriptionList),
-  }),
-).annotate({ identifier: "EventList" }) as any as S.Schema<EventList>;
-
-/** An array of webhook account IDs. */
-export type WebhookIdsList = Array<string>;
-export const WebhookIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WebhookIdsList>;
-
-export interface WebhooksEventsResendRequest {
-  /** The ID of the webhook event notification to resend. */
-  event_id: string;
-  webhook_ids?: WebhookIdsList;
-}
-export const WebhooksEventsResendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event_id: S.String.pipe(T.Label()),
-    webhook_ids: S.optional(WebhookIdsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/notifications/webhooks-events/{event_id}/resend",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksEventsResendRequest",
-}) as any as S.Schema<WebhooksEventsResendRequest>;
-
-export interface WebhooksEventsResendResponse {}
-export const WebhooksEventsResendResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebhooksEventsResendResponse",
-}) as any as S.Schema<WebhooksEventsResendResponse>;
-
-export interface WebhooksEventTypesListRequest {}
-export const WebhooksEventTypesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/notifications/webhooks-event-types",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksEventTypesListRequest",
-}) as any as S.Schema<WebhooksEventTypesListRequest>;
-
-export interface WebhooksGetRequest {
-  /** The ID of the webhook for which to list subscriptions. */
-  webhook_id: string;
-}
-export const WebhooksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhook_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/notifications/webhooks/{webhook_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksGetRequest",
-}) as any as S.Schema<WebhooksGetRequest>;
-
-/** An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href="#event-type_list">list available events</a>. */
-export type DefinitionsEventTypeList = Array<EventType>;
-export const DefinitionsEventTypeList = /*@__PURE__*/ S.Array(
-  EventType,
-) as any as S.Schema<DefinitionsEventTypeList>;
-
-/** An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/). */
-export type DefinitionsLinkDescriptionList = Array<LinkDescription>;
-export const DefinitionsLinkDescriptionList = /*@__PURE__*/ S.Array(
-  LinkDescription,
-) as any as S.Schema<DefinitionsLinkDescriptionList>;
-
-/** One or more webhook objects. */
-export interface Webhook {
-  /** The ID of the webhook. */
-  id?: string;
-  /** The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information. */
-  url: string;
-  event_types: DefinitionsEventTypeList;
-  links?: DefinitionsLinkDescriptionList;
-}
-export const Webhook = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    url: S.String,
-    event_types: DefinitionsEventTypeList,
-    links: S.optional(DefinitionsLinkDescriptionList),
-  }),
-).annotate({ identifier: "Webhook" }) as any as S.Schema<Webhook>;
-
-export type WebhooksListRequestAnchorType = "APPLICATION" | "ACCOUNT";
-export const WebhooksListRequestAnchorType = /*@__PURE__*/ S.String;
-
-export interface WebhooksListRequest {
-  /** Filters the webhooks in the response by an `anchor_id` entity type. */
-  anchor_type?: WebhooksListRequestAnchorType | (string & {});
-}
-export const WebhooksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    anchor_type: S.optional(WebhooksListRequestAnchorType.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/notifications/webhooks", code: 200 }),
-  ),
-).annotate({
-  identifier: "WebhooksListRequest",
-}) as any as S.Schema<WebhooksListRequest>;
-
-/** An array of webhooks. */
-export type WebhookList2 = Array<Webhook>;
-export const WebhookList2 = /*@__PURE__*/ S.Array(
-  Webhook,
-) as any as S.Schema<WebhookList2>;
-
-/** A list of webhooks. */
-export interface WebhookList {
-  webhooks?: WebhookList2;
-}
-export const WebhookList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhooks: S.optional(WebhookList2),
-  }),
-).annotate({ identifier: "WebhookList" }) as any as S.Schema<WebhookList>;
-
-export interface WebhooksLookupDeleteRequest {
-  /** The ID of the webhook lookup to delete. */
-  webhook_lookup_id: string;
-}
-export const WebhooksLookupDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhook_lookup_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/v1/notifications/webhooks-lookup/{webhook_lookup_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksLookupDeleteRequest",
-}) as any as S.Schema<WebhooksLookupDeleteRequest>;
-
-export interface WebhooksLookupDeleteResponse {}
-export const WebhooksLookupDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebhooksLookupDeleteResponse",
-}) as any as S.Schema<WebhooksLookupDeleteResponse>;
-
-export interface WebhooksLookupGetRequest {
-  /** The ID of the webhook lookup to delete. */
-  webhook_lookup_id: string;
-}
-export const WebhooksLookupGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhook_lookup_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/notifications/webhooks-lookup/{webhook_lookup_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksLookupGetRequest",
-}) as any as S.Schema<WebhooksLookupGetRequest>;
-
-/** The webhook lookup details. */
-export interface WebhooksLookup {
-  /** The ID of the webhook lookup. */
-  id?: string;
-  /** The application client ID. */
-  client_id?: string;
-  links?: DefinitionsLinkDescriptionList;
-}
-export const WebhooksLookup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    client_id: S.optional(S.String),
-    links: S.optional(DefinitionsLinkDescriptionList),
-  }),
-).annotate({ identifier: "WebhooksLookup" }) as any as S.Schema<WebhooksLookup>;
-
-export interface WebhooksLookupList2Request {}
-export const WebhooksLookupList2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v1/notifications/webhooks-lookup",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksLookupList2Request",
-}) as any as S.Schema<WebhooksLookupList2Request>;
-
-/** An array of webhook lookups. */
-export type WebhooksLookupList = Array<WebhooksLookup>;
-export const WebhooksLookupList = /*@__PURE__*/ S.Array(
-  WebhooksLookup,
-) as any as S.Schema<WebhooksLookupList>;
-
-/** A list of webhook lookups. */
-export interface WebhookLookupList {
-  webhooks_lookups?: WebhooksLookupList;
-}
-export const WebhookLookupList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhooks_lookups: S.optional(WebhooksLookupList),
-  }),
-).annotate({
-  identifier: "WebhookLookupList",
-}) as any as S.Schema<WebhookLookupList>;
-
-export interface WebhooksLookupPostRequest {}
-export const WebhooksLookupPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/notifications/webhooks-lookup",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksLookupPostRequest",
-}) as any as S.Schema<WebhooksLookupPostRequest>;
-
-/** An event type. */
-export interface EventTypeInput {
-  /** The unique event name.<blockquote><strong>Note:</strong> To subscribe to all events, including events as they are added, specify an `*` as the value to represent a wildcard.</blockquote> */
-  name: string;
-}
-export const EventTypeInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-  }),
-).annotate({ identifier: "EventTypeInput" }) as any as S.Schema<EventTypeInput>;
-
-/** An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href="#event-type_list">list available events</a>. */
-export type DefinitionsEventTypeListInput = Array<EventTypeInput>;
-export const DefinitionsEventTypeListInput = /*@__PURE__*/ S.Array(
-  EventTypeInput,
-) as any as S.Schema<DefinitionsEventTypeListInput>;
-
-export interface WebhooksPostRequest {
-  /** The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information. */
-  url: string;
-  event_types: DefinitionsEventTypeListInput;
-}
-export const WebhooksPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-    event_types: DefinitionsEventTypeListInput,
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/notifications/webhooks", code: 200 }),
-  ),
-).annotate({
-  identifier: "WebhooksPostRequest",
-}) as any as S.Schema<WebhooksPostRequest>;
-
-/** The operation. */
-export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
-
-/** The JSON patch object to apply partial updates to resources. */
-export interface Patch {
-  /** The operation. */
-  op: PatchOp | (string & {});
-  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation. */
-  path?: string;
-  /** The value to apply. The <code>remove</code> operation does not require a value. */
-  value?: unknown | null;
-  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation. */
-  from?: string;
-}
-export const Patch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    op: PatchOp,
-    path: S.optional(S.String),
-    value: S.optional(S.NullOr(S.Unknown)),
-    from: S.optional(S.String),
-  }),
-).annotate({ identifier: "Patch" }) as any as S.Schema<Patch>;
-
-/** An array of JSON patch objects to apply partial updates to resources. */
-export type PatchRequest = Array<Patch>;
-export const PatchRequest = /*@__PURE__*/ S.Array(
-  Patch,
-) as any as S.Schema<PatchRequest>;
-
-export interface WebhooksUpdateRequest {
-  /** The ID of the webhook for which to list subscriptions. */
-  webhook_id: string;
-  body?: PatchRequest;
-}
-export const WebhooksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    webhook_id: S.String.pipe(T.Label()),
-    body: S.optional(PatchRequest.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/v1/notifications/webhooks/{webhook_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WebhooksUpdateRequest",
-}) as any as S.Schema<WebhooksUpdateRequest>;
-
-export type EventTypesListError = PaypalOpError;
-/** List event subscriptions for webhook Lists event subscriptions for a webhook, by ID. */
-export const eventTypesList: API.OperationMethod<
-  EventTypesListRequest,
-  EventTypeList,
-  EventTypesListError,
+export type DeleteWebhookError = PaypalOpError;
+/** Delete webhook Deletes a webhook, by ID. */
+export const deleteWebhook: API.OperationMethod<
+  DeleteWebhookRequest,
+  DeleteWebhookResponse,
+  DeleteWebhookError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventTypesListRequest,
+  input: DeleteWebhookRequest,
+  output: DeleteWebhookResponse,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebhooksLookupError = PaypalOpError;
+/** Delete webhook lookup Deletes a webhook lookup, by ID. */
+export const deleteWebhooksLookup: API.OperationMethod<
+  DeleteWebhooksLookupRequest,
+  DeleteWebhooksLookupResponse,
+  DeleteWebhooksLookupError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebhooksLookupRequest,
+  output: DeleteWebhooksLookupResponse,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebhookError = PaypalOpError;
+/** Show webhook details Shows details for a webhook, by ID. */
+export const getWebhook: API.OperationMethod<
+  GetWebhookRequest,
+  Webhook,
+  GetWebhookError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhookRequest,
+  output: Webhook,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebhooksEventError = PaypalOpError;
+/** Show event notification details Shows details for a webhooks event notification, by ID. */
+export const getWebhooksEvent: API.OperationMethod<
+  GetWebhooksEventRequest,
+  Event,
+  GetWebhooksEventError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhooksEventRequest,
+  output: Event,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebhooksLookupError = PaypalOpError;
+/** Show webhook lookup details Shows details for a webhook lookup, by ID. */
+export const getWebhooksLookup: API.OperationMethod<
+  GetWebhooksLookupRequest,
+  WebhooksLookup,
+  GetWebhooksLookupError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhooksLookupRequest,
+  output: WebhooksLookup,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEventTypesError = PaypalOpError;
+/** List event subscriptions for webhook Lists event subscriptions for a webhook, by ID. */
+export const listEventTypes: API.OperationMethod<
+  ListEventTypesRequest,
+  EventTypeList,
+  ListEventTypesError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEventTypesRequest,
   output: EventTypeList,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type SimulateEventPostError = PaypalOpError;
-/** Simulate webhook event Simulates a webhook event. In the JSON request body, specify a sample payload.<br>You need to subscribe to the following webhook events for Pay upon Invoice:<br><table><thead><tr><th>Event</th><th>Trigger</th></tr></thead><tbody><tr><td><code>PAYMENT.CAPTURE.COMPLETED</code></td><td>A payment capture completes.</td></tr><tr><td><code>PAYMENT.CAPTURE.DENIED</code></td><td>A payment capture is denied.</td></tr><tr><td><code>CHECKOUT.PAYMENT-APPROVAL.REVERSED</code></td><td>PayPal reverses a payment capture.</td></tr></tbody></table> */
-export const simulateEventPost: API.OperationMethod<
-  SimulateEventPostRequest,
-  SimulateEventPostResponse,
-  SimulateEventPostError,
+export type ListWebhooksError = PaypalOpError;
+/** List webhooks Lists webhooks for an app. */
+export const listWebhooks: API.OperationMethod<
+  ListWebhooksRequest,
+  WebhookList,
+  ListWebhooksError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SimulateEventPostRequest,
-  output: SimulateEventPostResponse,
+  input: ListWebhooksRequest,
+  output: WebhookList,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebhooksEventsError = PaypalOpError;
+/** List event notifications Lists webhooks event notifications. Use query parameters to filter the response. */
+export const listWebhooksEvents: API.OperationMethod<
+  ListWebhooksEventsRequest,
+  EventList,
+  ListWebhooksEventsError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebhooksEventsRequest,
+  output: EventList,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebhooksEventTypesError = PaypalOpError;
+/** List available events Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/). */
+export const listWebhooksEventTypes: API.OperationMethod<
+  ListWebhooksEventTypesRequest,
+  EventTypeList,
+  ListWebhooksEventTypesError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebhooksEventTypesRequest,
+  output: EventTypeList,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebhooksLookupError = PaypalOpError;
+/** List webhook lookups Lists webhook lookups. */
+export const listWebhooksLookup: API.OperationMethod<
+  ListWebhooksLookupRequest,
+  WebhookLookupList,
+  ListWebhooksLookupError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebhooksLookupRequest,
+  output: WebhookLookupList,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostSimulateEventError = PaypalOpError;
+/** Simulate webhook event Simulates a webhook event. In the JSON request body, specify a sample payload.<br>You need to subscribe to the following webhook events for Pay upon Invoice:<br><table><thead><tr><th>Event</th><th>Trigger</th></tr></thead><tbody><tr><td><code>PAYMENT.CAPTURE.COMPLETED</code></td><td>A payment capture completes.</td></tr><tr><td><code>PAYMENT.CAPTURE.DENIED</code></td><td>A payment capture is denied.</td></tr><tr><td><code>CHECKOUT.PAYMENT-APPROVAL.REVERSED</code></td><td>PayPal reverses a payment capture.</td></tr></tbody></table> */
+export const postSimulateEvent: API.OperationMethod<
+  PostSimulateEventRequest,
+  PostSimulateEventResponse,
+  PostSimulateEventError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostSimulateEventRequest,
+  output: PostSimulateEventResponse,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostWebhookError = PaypalOpError;
+/** Create webhook Subscribes your webhook listener to events. */
+export const postWebhook: API.OperationMethod<
+  PostWebhookRequest,
+  Webhook,
+  PostWebhookError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostWebhookRequest,
+  output: Webhook,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostWebhooksLookupError = PaypalOpError;
+/** Create webhook lookup Creates a webhook lookup. A webhook lookup ties the API caller's REST API app to the subject account (or, if no subject is specified, to the API caller's account). If a webhook event is generated for an event that is tied to the account but not to a particular REST API app (for example, payments initiated with the NVP/SOAP APIs or through the user interface on PayPal.com), those webhook events will treated as if they were intended for the REST API app registered in the webhook lookup instead. Webhook events will then be delivered to any webhooks registered to that REST API app. */
+export const postWebhooksLookup: API.OperationMethod<
+  PostWebhooksLookupRequest,
+  WebhooksLookup,
+  PostWebhooksLookupError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostWebhooksLookupRequest,
+  output: WebhooksLookup,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResendWebhooksEventError = PaypalOpError;
+/** Resend event notification Resends a webhook event notification, by ID. Any pending notifications are not resent. */
+export const resendWebhooksEvent: API.OperationMethod<
+  ResendWebhooksEventRequest,
+  ResendWebhooksEventResponse,
+  ResendWebhooksEventError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResendWebhooksEventRequest,
+  output: ResendWebhooksEventResponse,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebhookError = PaypalOpError;
+/** Update webhook Updates a webhook to replace webhook fields with new values. Supports only the `replace` operation. Pass a `json_patch` object with `replace` operation and `path`, which is `/url` for a URL or `/event_types` for events. The `value` is either the URL or a list of events. */
+export const updateWebhook: API.OperationMethod<
+  UpdateWebhookRequest,
+  Webhook,
+  UpdateWebhookError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebhookRequest,
+  output: Webhook,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
@@ -694,201 +889,6 @@ export const verifyWebhookSignaturePost: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VerifyWebhookSignaturePostRequest,
   output: VerifyWebhookSignatureResponse,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksDeleteError = PaypalOpError;
-/** Delete webhook Deletes a webhook, by ID. */
-export const webhooksDelete: API.OperationMethod<
-  WebhooksDeleteRequest,
-  WebhooksDeleteResponse,
-  WebhooksDeleteError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksDeleteRequest,
-  output: WebhooksDeleteResponse,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksEventsGetError = PaypalOpError;
-/** Show event notification details Shows details for a webhooks event notification, by ID. */
-export const webhooksEventsGet: API.OperationMethod<
-  WebhooksEventsGetRequest,
-  Event,
-  WebhooksEventsGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksEventsGetRequest,
-  output: Event,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksEventsListError = PaypalOpError;
-/** List event notifications Lists webhooks event notifications. Use query parameters to filter the response. */
-export const webhooksEventsList: API.OperationMethod<
-  WebhooksEventsListRequest,
-  EventList,
-  WebhooksEventsListError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksEventsListRequest,
-  output: EventList,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksEventsResendError = PaypalOpError;
-/** Resend event notification Resends a webhook event notification, by ID. Any pending notifications are not resent. */
-export const webhooksEventsResend: API.OperationMethod<
-  WebhooksEventsResendRequest,
-  WebhooksEventsResendResponse,
-  WebhooksEventsResendError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksEventsResendRequest,
-  output: WebhooksEventsResendResponse,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksEventTypesListError = PaypalOpError;
-/** List available events Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/). */
-export const webhooksEventTypesList: API.OperationMethod<
-  WebhooksEventTypesListRequest,
-  EventTypeList,
-  WebhooksEventTypesListError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksEventTypesListRequest,
-  output: EventTypeList,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksGetError = PaypalOpError;
-/** Show webhook details Shows details for a webhook, by ID. */
-export const webhooksGet: API.OperationMethod<
-  WebhooksGetRequest,
-  Webhook,
-  WebhooksGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksGetRequest,
-  output: Webhook,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksListError = PaypalOpError;
-/** List webhooks Lists webhooks for an app. */
-export const webhooksList: API.OperationMethod<
-  WebhooksListRequest,
-  WebhookList,
-  WebhooksListError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksListRequest,
-  output: WebhookList,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksLookupDeleteError = PaypalOpError;
-/** Delete webhook lookup Deletes a webhook lookup, by ID. */
-export const webhooksLookupDelete: API.OperationMethod<
-  WebhooksLookupDeleteRequest,
-  WebhooksLookupDeleteResponse,
-  WebhooksLookupDeleteError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksLookupDeleteRequest,
-  output: WebhooksLookupDeleteResponse,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksLookupGetError = PaypalOpError;
-/** Show webhook lookup details Shows details for a webhook lookup, by ID. */
-export const webhooksLookupGet: API.OperationMethod<
-  WebhooksLookupGetRequest,
-  WebhooksLookup,
-  WebhooksLookupGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksLookupGetRequest,
-  output: WebhooksLookup,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksLookupList2Error = PaypalOpError;
-/** List webhook lookups Lists webhook lookups. */
-export const webhooksLookupList2: API.OperationMethod<
-  WebhooksLookupList2Request,
-  WebhookLookupList,
-  WebhooksLookupList2Error,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksLookupList2Request,
-  output: WebhookLookupList,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksLookupPostError = PaypalOpError;
-/** Create webhook lookup Creates a webhook lookup. A webhook lookup ties the API caller's REST API app to the subject account (or, if no subject is specified, to the API caller's account). If a webhook event is generated for an event that is tied to the account but not to a particular REST API app (for example, payments initiated with the NVP/SOAP APIs or through the user interface on PayPal.com), those webhook events will treated as if they were intended for the REST API app registered in the webhook lookup instead. Webhook events will then be delivered to any webhooks registered to that REST API app. */
-export const webhooksLookupPost: API.OperationMethod<
-  WebhooksLookupPostRequest,
-  WebhooksLookup,
-  WebhooksLookupPostError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksLookupPostRequest,
-  output: WebhooksLookup,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksPostError = PaypalOpError;
-/** Create webhook Subscribes your webhook listener to events. */
-export const webhooksPost: API.OperationMethod<
-  WebhooksPostRequest,
-  Webhook,
-  WebhooksPostError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksPostRequest,
-  output: Webhook,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebhooksUpdateError = PaypalOpError;
-/** Update webhook Updates a webhook to replace webhook fields with new values. Supports only the `replace` operation. Pass a `json_patch` object with `replace` operation and `path`, which is `/url` for a URL or `/event_types` for events. The `value` is either the URL or a list of events. */
-export const webhooksUpdate: API.OperationMethod<
-  WebhooksUpdateRequest,
-  Webhook,
-  WebhooksUpdateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebhooksUpdateRequest,
-  output: Webhook,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,

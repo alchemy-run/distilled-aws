@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.paypal.shipping_shipment_tracking_v1#TrackerListInput": {
@@ -5152,7 +5153,7 @@
         "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPostRequest": {
+    "com.paypal.shipping_shipment_tracking_v1#PostTrackerBatchRequest": {
       "type": "structure",
       "members": {
         "trackers": {
@@ -5518,10 +5519,10 @@
         "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPost": {
+    "com.paypal.shipping_shipment_tracking_v1#PostTrackerBatch": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPostRequest"
+        "target": "com.paypal.shipping_shipment_tracking_v1#PostTrackerBatchRequest"
       },
       "output": {
         "target": "com.paypal.shipping_shipment_tracking_v1#BatchTrackerCollection"
@@ -5546,7 +5547,7 @@
         "smithy.api#documentation": "Add tracking information for multiple PayPal transactions\n\n<blockquote><strong>Deprecation notice:</strong> Adding tracking details for an order through <code>/v1/shipping/trackers-batch</code> is deprecated as its a legacy way of integration. Use the new <a href=\"/docs/tracking/orders-api/integrate/\">Orders v2 API</a> to share tracking details with PayPal.</blockquote>Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href=\"/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithtrackingnumbers\">Add tracking information with tracking numbers</a> and <a href=\"/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithouttrackingnumbers\">Add tracking information without tracking numbers</a>."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGetRequest": {
+    "com.paypal.shipping_shipment_tracking_v1#GetTrackerBatchRequest": {
       "type": "structure",
       "members": {
         "transaction_id": {
@@ -5727,10 +5728,10 @@
         "smithy.api#documentation": "To denote which party uploaded the shipment tracking info."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGet": {
+    "com.paypal.shipping_shipment_tracking_v1#GetTrackerBatch": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGetRequest"
+        "target": "com.paypal.shipping_shipment_tracking_v1#GetTrackerBatchRequest"
       },
       "output": {
         "target": "com.paypal.shipping_shipment_tracking_v1#Tracker"
@@ -5744,7 +5745,7 @@
         "smithy.api#documentation": "List tracking information\n\nLists tracking information that meet search criteria. The tracking ID is required but the tracking number is optional."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersPostRequest": {
+    "com.paypal.shipping_shipment_tracking_v1#PostTrackerRequest": {
       "type": "structure",
       "members": {
         "trackers": {
@@ -5787,10 +5788,10 @@
         "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links)."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersPost": {
+    "com.paypal.shipping_shipment_tracking_v1#PostTracker": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPostRequest"
+        "target": "com.paypal.shipping_shipment_tracking_v1#PostTrackerRequest"
       },
       "output": {
         "target": "com.paypal.shipping_shipment_tracking_v1#TrackerIdentifierCollection"
@@ -5804,7 +5805,7 @@
         "smithy.api#documentation": "Add tracking information for PayPal transaction\n\nAdds tracking information for a PayPal transaction."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersGetRequest": {
+    "com.paypal.shipping_shipment_tracking_v1#GetTrackerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5827,10 +5828,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersGet": {
+    "com.paypal.shipping_shipment_tracking_v1#GetTracker": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersGetRequest"
+        "target": "com.paypal.shipping_shipment_tracking_v1#GetTrackerRequest"
       },
       "output": {
         "target": "com.paypal.shipping_shipment_tracking_v1#Tracker"
@@ -5844,7 +5845,7 @@
         "smithy.api#documentation": "Show tracking information\n\nShows tracking information, by tracker ID, for a PayPal transaction."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequestShipmentDirection": {
+    "com.paypal.shipping_shipment_tracking_v1#PutTrackerRequestShipmentDirection": {
       "type": "enum",
       "members": {
         "FORWARD": {
@@ -5864,7 +5865,7 @@
         "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequest": {
+    "com.paypal.shipping_shipment_tracking_v1#PutTrackerRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -5928,7 +5929,7 @@
           }
         },
         "shipment_direction": {
-          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequestShipmentDirection",
+          "target": "com.paypal.shipping_shipment_tracking_v1#PutTrackerRequestShipmentDirection",
           "traits": {
             "smithy.api#documentation": "To denote whether the shipment is sent forward to the receiver or returned back."
           }
@@ -5944,10 +5945,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.shipping_shipment_tracking_v1#TrackersPut": {
+    "com.paypal.shipping_shipment_tracking_v1#PutTracker": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPutRequest"
+        "target": "com.paypal.shipping_shipment_tracking_v1#PutTrackerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6005,19 +6006,19 @@
       "version": "1.9",
       "operations": [
         {
-          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchPost"
+          "target": "com.paypal.shipping_shipment_tracking_v1#PostTrackerBatch"
         },
         {
-          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersBatchGet"
+          "target": "com.paypal.shipping_shipment_tracking_v1#GetTrackerBatch"
         },
         {
-          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPost"
+          "target": "com.paypal.shipping_shipment_tracking_v1#PostTracker"
         },
         {
-          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersGet"
+          "target": "com.paypal.shipping_shipment_tracking_v1#GetTracker"
         },
         {
-          "target": "com.paypal.shipping_shipment_tracking_v1#TrackersPut"
+          "target": "com.paypal.shipping_shipment_tracking_v1#PutTracker"
         }
       ],
       "traits": {

@@ -40,69 +40,36 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface PayoutsGetRequest {
-  /** The ID of the payout for which to show details. */
-  id: string;
-  /** Shows details for only the specified fields. */
-  fields?: string;
-  /** A non-zero integer representing the page of the results. */
-  page?: number;
-  /** The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`. */
-  page_size?: number;
-  /** Indicates whether to show the total items and total pages count in the response. */
-  total_required?: boolean;
+export interface CancelPayoutsItemRequest {
+  /** The ID of the payout item to cancel. */
+  payout_item_id: string;
 }
-export const PayoutsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const CancelPayoutsItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String.pipe(T.Label()),
-    fields: S.optional(S.String.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    page_size: S.optional(S.Number.pipe(T.Query())),
-    total_required: S.optional(S.Boolean.pipe(T.Query())),
+    payout_item_id: S.String.pipe(T.Label()),
   }).pipe(
-    T.Http({ method: "GET", uri: "/v1/payments/payouts/{id}", code: 200 }),
+    T.Http({
+      method: "POST",
+      uri: "/v1/payments/payouts-item/{payout_item_id}/cancel",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "PayoutsGetRequest",
-}) as any as S.Schema<PayoutsGetRequest>;
+  identifier: "CancelPayoutsItemRequest",
+}) as any as S.Schema<CancelPayoutsItemRequest>;
 
-/** The payouts status. */
-export type BatchEnum =
-  | "DENIED"
-  | "PENDING"
-  | "PROCESSING"
+/** The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote> */
+export type TransactionEnum =
   | "SUCCESS"
-  | "CANCELED";
-export const BatchEnum = /*@__PURE__*/ S.String;
-
-/** The ID type that identifies the payment receiver. */
-export type RecipientEnum = "EMAIL" | "PHONE" | "PAYPAL_ID";
-export const RecipientEnum = /*@__PURE__*/ S.String;
-
-/** The sender-provided header for a payout request. */
-export interface PayoutSenderBatchHeader {
-  /** The sender-specified ID number. Tracks the payout in an accounting system.<blockquote><strong>Note:</strong> <p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>. The API completes a payment only once for a <code>sender_batch_id</code> that is used within 30 days.</p></blockquote> */
-  sender_batch_id?: string;
-  recipient_type?: RecipientEnum;
-  /** The subject line for the email that PayPal sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string with a maximum length of 255 single-byte characters. */
-  email_subject?: string;
-  /** The email message that PayPal sends when the payout item completes. The message is the same for all recipients. */
-  email_message?: string;
-}
-export const PayoutSenderBatchHeader = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sender_batch_id: S.optional(S.String),
-    recipient_type: S.optional(RecipientEnum),
-    email_subject: S.optional(S.String),
-    email_message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PayoutSenderBatchHeader",
-}) as any as S.Schema<PayoutSenderBatchHeader>;
-
-/** Identifies a funding source type. */
-export type FundingSource = "BALANCE";
-export const FundingSource = /*@__PURE__*/ S.String;
+  | "FAILED"
+  | "PENDING"
+  | "UNCLAIMED"
+  | "RETURNED"
+  | "ONHOLD"
+  | "BLOCKED"
+  | "REFUNDED"
+  | "REVERSED";
+export const TransactionEnum = /*@__PURE__*/ S.String;
 
 /** The currency and amount for a financial transaction, such as a balance or payment due. */
 export interface Currency {
@@ -118,55 +85,9 @@ export const Currency = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Currency" }) as any as S.Schema<Currency>;
 
-/** The payout header that is returned in response to a payout header request. Shows details for an entire payout request. */
-export interface PayoutBatchHeader {
-  /** The PayPal-generated ID for a payout. */
-  payout_batch_id: string;
-  /** The PayPal-generated payout status. If the payout passes preliminary checks, the status is `PENDING`. */
-  batch_status: BatchEnum;
-  /** The date and time when processing for the payout began, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  time_created?: string;
-  /** The date and time when processing for the payout was completed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  time_completed?: string;
-  /** The date and time when the payout was closed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). A payout is considered closed when all items in a batch are processed and the available balance from the temporary hold is released. */
-  time_closed?: string;
-  /** The original payout header, as provided by the payment sender. */
-  sender_batch_header: PayoutSenderBatchHeader;
-  /** The ID to differentiate a PayPal balance-funded transaction from a PayPal treasury-funded transaction. */
-  funding_source?: FundingSource;
-  /** The currency and total amount requested for the payouts. */
-  amount?: Currency;
-  /** The currency and amount of the total estimate for the applicable payouts fees. Initially, the fee is `0`. The fee is populated after the payout moves to the `PROCESSING` state. */
-  fees?: Currency;
-}
-export const PayoutBatchHeader = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payout_batch_id: S.String,
-    batch_status: BatchEnum,
-    time_created: S.optional(S.String),
-    time_completed: S.optional(S.String),
-    time_closed: S.optional(S.String),
-    sender_batch_header: PayoutSenderBatchHeader,
-    funding_source: S.optional(FundingSource),
-    amount: S.optional(Currency),
-    fees: S.optional(Currency),
-  }),
-).annotate({
-  identifier: "PayoutBatchHeader",
-}) as any as S.Schema<PayoutBatchHeader>;
-
-/** The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote> */
-export type TransactionEnum =
-  | "SUCCESS"
-  | "FAILED"
-  | "PENDING"
-  | "UNCLAIMED"
-  | "RETURNED"
-  | "ONHOLD"
-  | "BLOCKED"
-  | "REFUNDED"
-  | "REVERSED";
-export const TransactionEnum = /*@__PURE__*/ S.String;
+/** The ID type that identifies the payment receiver. */
+export type RecipientEnum = "EMAIL" | "PHONE" | "PAYPAL_ID";
+export const RecipientEnum = /*@__PURE__*/ S.String;
 
 /** The name of the party. */
 export interface Name {
@@ -357,6 +278,151 @@ export const Error = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Error" }) as any as S.Schema<Error>;
 
 /** An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links). */
+export type PayoutItemDefinitionsLinkDescriptionList = Array<LinkDescription>;
+export const PayoutItemDefinitionsLinkDescriptionList = /*@__PURE__*/ S.Array(
+  LinkDescription,
+) as any as S.Schema<PayoutItemDefinitionsLinkDescriptionList>;
+
+/** The payout item status and other details. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>. */
+export interface PayoutItem {
+  /** The ID for the payout item. Visible when you show details for a payout. */
+  payout_item_id: string;
+  /** The PayPal-generated ID for the transaction. */
+  transaction_id?: string;
+  /** The unique PayPal-generated common ID that links the sender- and receiver-side transactions. Used for tracking. */
+  activity_id?: string;
+  transaction_status?: TransactionEnum;
+  /** The estimate for the payout fee. Initially, the fee is `0`. The fee is populated after the item moves to the `PENDING` state */
+  payout_item_fee?: Currency;
+  /** The PayPal-generated ID for the payout batch. */
+  payout_batch_id: string;
+  /** A sender-specified ID. Tracks the payout in an accounting system. Should be unique within 30 days. */
+  sender_batch_id?: string;
+  /** The sender-provided information for the payout item. */
+  payout_item: PayoutItemDetail;
+  /** The currency conversion applicable for this payout item. */
+  currency_conversion?: PayoutCurrencyConversion;
+  /** The date and time when this item was last processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  time_processed?: string;
+  /** The error details. */
+  errors?: Error;
+  links?: PayoutItemDefinitionsLinkDescriptionList;
+}
+export const PayoutItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    payout_item_id: S.String,
+    transaction_id: S.optional(S.String),
+    activity_id: S.optional(S.String),
+    transaction_status: S.optional(TransactionEnum),
+    payout_item_fee: S.optional(Currency),
+    payout_batch_id: S.String,
+    sender_batch_id: S.optional(S.String),
+    payout_item: PayoutItemDetail,
+    currency_conversion: S.optional(PayoutCurrencyConversion),
+    time_processed: S.optional(S.String),
+    errors: S.optional(Error),
+    links: S.optional(PayoutItemDefinitionsLinkDescriptionList),
+  }),
+).annotate({ identifier: "PayoutItem" }) as any as S.Schema<PayoutItem>;
+
+export interface GetPayoutRequest {
+  /** The ID of the payout for which to show details. */
+  id: string;
+  /** Shows details for only the specified fields. */
+  fields?: string;
+  /** A non-zero integer representing the page of the results. */
+  page?: number;
+  /** The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`. */
+  page_size?: number;
+  /** Indicates whether to show the total items and total pages count in the response. */
+  total_required?: boolean;
+}
+export const GetPayoutRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    fields: S.optional(S.String.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    page_size: S.optional(S.Number.pipe(T.Query())),
+    total_required: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/payments/payouts/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetPayoutRequest",
+}) as any as S.Schema<GetPayoutRequest>;
+
+/** The payouts status. */
+export type BatchEnum =
+  | "DENIED"
+  | "PENDING"
+  | "PROCESSING"
+  | "SUCCESS"
+  | "CANCELED";
+export const BatchEnum = /*@__PURE__*/ S.String;
+
+/** The sender-provided header for a payout request. */
+export interface PayoutSenderBatchHeader {
+  /** The sender-specified ID number. Tracks the payout in an accounting system.<blockquote><strong>Note:</strong> <p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>. The API completes a payment only once for a <code>sender_batch_id</code> that is used within 30 days.</p></blockquote> */
+  sender_batch_id?: string;
+  recipient_type?: RecipientEnum;
+  /** The subject line for the email that PayPal sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string with a maximum length of 255 single-byte characters. */
+  email_subject?: string;
+  /** The email message that PayPal sends when the payout item completes. The message is the same for all recipients. */
+  email_message?: string;
+}
+export const PayoutSenderBatchHeader = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sender_batch_id: S.optional(S.String),
+    recipient_type: S.optional(RecipientEnum),
+    email_subject: S.optional(S.String),
+    email_message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PayoutSenderBatchHeader",
+}) as any as S.Schema<PayoutSenderBatchHeader>;
+
+/** Identifies a funding source type. */
+export type FundingSource = "BALANCE";
+export const FundingSource = /*@__PURE__*/ S.String;
+
+/** The payout header that is returned in response to a payout header request. Shows details for an entire payout request. */
+export interface PayoutBatchHeader {
+  /** The PayPal-generated ID for a payout. */
+  payout_batch_id: string;
+  /** The PayPal-generated payout status. If the payout passes preliminary checks, the status is `PENDING`. */
+  batch_status: BatchEnum;
+  /** The date and time when processing for the payout began, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  time_created?: string;
+  /** The date and time when processing for the payout was completed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  time_completed?: string;
+  /** The date and time when the payout was closed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). A payout is considered closed when all items in a batch are processed and the available balance from the temporary hold is released. */
+  time_closed?: string;
+  /** The original payout header, as provided by the payment sender. */
+  sender_batch_header: PayoutSenderBatchHeader;
+  /** The ID to differentiate a PayPal balance-funded transaction from a PayPal treasury-funded transaction. */
+  funding_source?: FundingSource;
+  /** The currency and total amount requested for the payouts. */
+  amount?: Currency;
+  /** The currency and amount of the total estimate for the applicable payouts fees. Initially, the fee is `0`. The fee is populated after the payout moves to the `PROCESSING` state. */
+  fees?: Currency;
+}
+export const PayoutBatchHeader = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    payout_batch_id: S.String,
+    batch_status: BatchEnum,
+    time_created: S.optional(S.String),
+    time_completed: S.optional(S.String),
+    time_closed: S.optional(S.String),
+    sender_batch_header: PayoutSenderBatchHeader,
+    funding_source: S.optional(FundingSource),
+    amount: S.optional(Currency),
+    fees: S.optional(Currency),
+  }),
+).annotate({
+  identifier: "PayoutBatchHeader",
+}) as any as S.Schema<PayoutBatchHeader>;
+
+/** An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links). */
 export type PayoutBatchItemsDefinitionsLinkDescriptionList =
   Array<LinkDescription>;
 export const PayoutBatchItemsDefinitionsLinkDescriptionList =
@@ -437,77 +503,11 @@ export const PayoutBatch = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PayoutBatch" }) as any as S.Schema<PayoutBatch>;
 
-export interface PayoutsItemCancelRequest {
+export interface GetPayoutsItemRequest {
   /** The ID of the payout item to cancel. */
   payout_item_id: string;
 }
-export const PayoutsItemCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payout_item_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/payments/payouts-item/{payout_item_id}/cancel",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PayoutsItemCancelRequest",
-}) as any as S.Schema<PayoutsItemCancelRequest>;
-
-/** An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links). */
-export type PayoutItemDefinitionsLinkDescriptionList = Array<LinkDescription>;
-export const PayoutItemDefinitionsLinkDescriptionList = /*@__PURE__*/ S.Array(
-  LinkDescription,
-) as any as S.Schema<PayoutItemDefinitionsLinkDescriptionList>;
-
-/** The payout item status and other details. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>. */
-export interface PayoutItem {
-  /** The ID for the payout item. Visible when you show details for a payout. */
-  payout_item_id: string;
-  /** The PayPal-generated ID for the transaction. */
-  transaction_id?: string;
-  /** The unique PayPal-generated common ID that links the sender- and receiver-side transactions. Used for tracking. */
-  activity_id?: string;
-  transaction_status?: TransactionEnum;
-  /** The estimate for the payout fee. Initially, the fee is `0`. The fee is populated after the item moves to the `PENDING` state */
-  payout_item_fee?: Currency;
-  /** The PayPal-generated ID for the payout batch. */
-  payout_batch_id: string;
-  /** A sender-specified ID. Tracks the payout in an accounting system. Should be unique within 30 days. */
-  sender_batch_id?: string;
-  /** The sender-provided information for the payout item. */
-  payout_item: PayoutItemDetail;
-  /** The currency conversion applicable for this payout item. */
-  currency_conversion?: PayoutCurrencyConversion;
-  /** The date and time when this item was last processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  time_processed?: string;
-  /** The error details. */
-  errors?: Error;
-  links?: PayoutItemDefinitionsLinkDescriptionList;
-}
-export const PayoutItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    payout_item_id: S.String,
-    transaction_id: S.optional(S.String),
-    activity_id: S.optional(S.String),
-    transaction_status: S.optional(TransactionEnum),
-    payout_item_fee: S.optional(Currency),
-    payout_batch_id: S.String,
-    sender_batch_id: S.optional(S.String),
-    payout_item: PayoutItemDetail,
-    currency_conversion: S.optional(PayoutCurrencyConversion),
-    time_processed: S.optional(S.String),
-    errors: S.optional(Error),
-    links: S.optional(PayoutItemDefinitionsLinkDescriptionList),
-  }),
-).annotate({ identifier: "PayoutItem" }) as any as S.Schema<PayoutItem>;
-
-export interface PayoutsItemGetRequest {
-  /** The ID of the payout item to cancel. */
-  payout_item_id: string;
-}
-export const PayoutsItemGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPayoutsItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     payout_item_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -518,8 +518,8 @@ export const PayoutsItemGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PayoutsItemGetRequest",
-}) as any as S.Schema<PayoutsItemGetRequest>;
+  identifier: "GetPayoutsItemRequest",
+}) as any as S.Schema<GetPayoutsItemRequest>;
 
 /** The sender-provided payout header for a payout request. */
 export interface SenderBatchHeader {
@@ -641,22 +641,22 @@ export const PayoutItemRequestList = /*@__PURE__*/ S.Array(
   PayoutItemRequest,
 ) as any as S.Schema<PayoutItemRequestList>;
 
-export interface PayoutsPostRequest {
+export interface PostPayoutRequest {
   /** The server stores keys for 30 days. */
   payPalRequestId?: string;
   /** The sender-provided payout header for a payout request. */
   sender_batch_header: SenderBatchHeader;
   items: PayoutItemRequestList;
 }
-export const PayoutsPostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostPayoutRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
     sender_batch_header: SenderBatchHeader,
     items: PayoutItemRequestList,
   }).pipe(T.Http({ method: "POST", uri: "/v1/payments/payouts", code: 200 })),
 ).annotate({
-  identifier: "PayoutsPostRequest",
-}) as any as S.Schema<PayoutsPostRequest>;
+  identifier: "PostPayoutRequest",
+}) as any as S.Schema<PostPayoutRequest>;
 
 /** The payout header that is returned in response to a payout header request. Shows details for an entire payout request. */
 export interface PayoutHeader {
@@ -697,60 +697,60 @@ export const Payout = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Payout" }) as any as S.Schema<Payout>;
 
-export type PayoutsGetError = NotFound | PaypalOpError;
-/** Show payout batch details Shows the latest status of a batch payout. Includes the transaction status and other data for individual payout items. */
-export const payoutsGet: API.OperationMethod<
-  PayoutsGetRequest,
-  PayoutBatch,
-  PayoutsGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PayoutsGetRequest,
-  output: PayoutBatch,
-  errors: [NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PayoutsItemCancelError = BadRequest | NotFound | PaypalOpError;
+export type CancelPayoutsItemError = BadRequest | NotFound | PaypalOpError;
 /** Cancel unclaimed payout item Cancels an unclaimed payout item, by ID. If no one claims the unclaimed item within 30 days, the API automatically returns the funds to the sender. Use this call to cancel the unclaimed item before the automatic 30-day refund. You can cancel payout items with a <code>transaction_status</code> of <code>UNCLAIMED</code>. */
-export const payoutsItemCancel: API.OperationMethod<
-  PayoutsItemCancelRequest,
+export const cancelPayoutsItem: API.OperationMethod<
+  CancelPayoutsItemRequest,
   PayoutItem,
-  PayoutsItemCancelError,
+  CancelPayoutsItemError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PayoutsItemCancelRequest,
+  input: CancelPayoutsItemRequest,
   output: PayoutItem,
   errors: [BadRequest, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PayoutsItemGetError = NotFound | PaypalOpError;
-/** Show payout item details Shows details for a payout item, by ID. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>. */
-export const payoutsItemGet: API.OperationMethod<
-  PayoutsItemGetRequest,
-  PayoutItem,
-  PayoutsItemGetError,
+export type GetPayoutError = NotFound | PaypalOpError;
+/** Show payout batch details Shows the latest status of a batch payout. Includes the transaction status and other data for individual payout items. */
+export const getPayout: API.OperationMethod<
+  GetPayoutRequest,
+  PayoutBatch,
+  GetPayoutError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PayoutsItemGetRequest,
+  input: GetPayoutRequest,
+  output: PayoutBatch,
+  errors: [NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPayoutsItemError = NotFound | PaypalOpError;
+/** Show payout item details Shows details for a payout item, by ID. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>. */
+export const getPayoutsItem: API.OperationMethod<
+  GetPayoutsItemRequest,
+  PayoutItem,
+  GetPayoutsItemError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPayoutsItemRequest,
   output: PayoutItem,
   errors: [NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PayoutsPostError = BadRequest | Forbidden | PaypalOpError;
+export type PostPayoutError = BadRequest | Forbidden | PaypalOpError;
 /** Create batch payout Creates a batch payout. In the JSON request body, pass a `sender_batch_header` and an `items` array. The `sender_batch_header` defines how to handle the payout. The `items` array defines the payout items.<br/>You can make payouts to one or more recipients.<blockquote><strong>Notes:</strong> <ul><li><p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>.</p></li><li><p>The Payouts API does not support build notation (BN) codes. In a future Payouts release, you can optionally provide BN codes in the <code>PayPal-Partner-Attribution-Id</code> request header.</p><p>For information about the <code>PayPal-Partner-Attribution-Id</code> header, see <a href="/api/rest/requests/#http-request-headers">HTTP request headers</a>. To learn about or request a BN code, contact your partner manager or see <a href="https://www.paypal.com/us/webapps/mpp/partner-program">PayPal Partner Program</a>.</p></li></ul></blockquote> */
-export const payoutsPost: API.OperationMethod<
-  PayoutsPostRequest,
+export const postPayout: API.OperationMethod<
+  PostPayoutRequest,
   Payout,
-  PayoutsPostError,
+  PostPayoutError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PayoutsPostRequest,
+  input: PostPayoutRequest,
   output: Payout,
   errors: [BadRequest, Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,

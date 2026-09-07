@@ -31,20 +31,20 @@ export class Forbidden
     [{ status: 403 }],
   ) {}
 
-export interface BalancesGetRequest {
+export interface GetBalanceRequest {
   /** List balances in the response at the date time provided, will return the last refreshed balance in the system when not provided. */
   as_of_time?: string;
   /** Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency. */
   currency_code?: string;
 }
-export const BalancesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBalanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     as_of_time: S.optional(S.String.pipe(T.Query())),
     currency_code: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v1/reporting/balances", code: 200 })),
 ).annotate({
-  identifier: "BalancesGetRequest",
-}) as any as S.Schema<BalancesGetRequest>;
+  identifier: "GetBalanceRequest",
+}) as any as S.Schema<GetBalanceRequest>;
 
 /** The currency and amount for a financial transaction, such as a balance or payment due. */
 export interface Money {
@@ -707,15 +707,15 @@ export const SearchResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SearchResponse" }) as any as S.Schema<SearchResponse>;
 
-export type BalancesGetError = BadRequest | Forbidden | PaypalOpError;
+export type GetBalanceError = BadRequest | Forbidden | PaypalOpError;
 /** List all balances List all balances. Specify date time to list balances for that time that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>It takes a maximum of three hours for balances to appear in the list balances call.</li><li>This call lists balances upto the previous three years.</li></ul></blockquote> */
-export const balancesGet: API.OperationMethod<
-  BalancesGetRequest,
+export const getBalance: API.OperationMethod<
+  GetBalanceRequest,
   BalancesResponse,
-  BalancesGetError,
+  GetBalanceError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BalancesGetRequest,
+  input: GetBalanceRequest,
   output: BalancesResponse,
   errors: [BadRequest, Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,

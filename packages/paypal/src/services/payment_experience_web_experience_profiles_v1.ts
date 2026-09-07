@@ -75,7 +75,7 @@ export const Presentation = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Presentation" }) as any as S.Schema<Presentation>;
 
-export interface WebProfileCreateRequest {
+export interface CreateWebProfileRequest {
   /** The server stores keys for three hours. */
   payPalRequestId: string;
   /** The web experience profile name. Must be unique for a set of profiles for a merchant. */
@@ -86,7 +86,7 @@ export interface WebProfileCreateRequest {
   input_fields?: InputFields;
   presentation?: Presentation;
 }
-export const WebProfileCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWebProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     payPalRequestId: S.String.pipe(T.Header("PayPal-Request-Id")),
     name: S.String,
@@ -102,8 +102,8 @@ export const WebProfileCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebProfileCreateRequest",
-}) as any as S.Schema<WebProfileCreateRequest>;
+  identifier: "CreateWebProfileRequest",
+}) as any as S.Schema<CreateWebProfileRequest>;
 
 /** A payment web experience profile. */
 export interface WebProfile {
@@ -128,11 +128,11 @@ export const WebProfile = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WebProfile" }) as any as S.Schema<WebProfile>;
 
-export interface WebProfileDeleteRequest {
+export interface DeleteWebProfileRequest {
   /** The ID of the profile to delete. */
   id: string;
 }
-export const WebProfileDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteWebProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(
@@ -143,21 +143,21 @@ export const WebProfileDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebProfileDeleteRequest",
-}) as any as S.Schema<WebProfileDeleteRequest>;
+  identifier: "DeleteWebProfileRequest",
+}) as any as S.Schema<DeleteWebProfileRequest>;
 
-export interface WebProfileDeleteResponse {}
-export const WebProfileDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteWebProfileResponse {}
+export const DeleteWebProfileResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "WebProfileDeleteResponse",
-}) as any as S.Schema<WebProfileDeleteResponse>;
+  identifier: "DeleteWebProfileResponse",
+}) as any as S.Schema<DeleteWebProfileResponse>;
 
-export interface WebProfileGetRequest {
+export interface GetWebProfileRequest {
   /** The ID of the profile to delete. */
   id: string;
 }
-export const WebProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebProfileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(
@@ -168,34 +168,45 @@ export const WebProfileGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebProfileGetRequest",
-}) as any as S.Schema<WebProfileGetRequest>;
+  identifier: "GetWebProfileRequest",
+}) as any as S.Schema<GetWebProfileRequest>;
 
-export interface WebProfileGetListRequest {}
-export const WebProfileGetListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+export interface UpdateWebProfileRequest {
+  /** The ID of the profile to delete. */
+  id: string;
+  /** The web experience profile name. Must be unique for a set of profiles for a merchant. */
+  name: string;
+  /** Indicates whether the profile persists for three hours or permanently. To persist the profile permanently, set to `false`. To persist the profile for three hours, set to `true`. */
+  temporary?: boolean;
+  flow_config?: FlowConfig;
+  input_fields?: InputFields;
+  presentation?: Presentation;
+}
+export const UpdateWebProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    name: S.String,
+    temporary: S.optional(S.Boolean),
+    flow_config: S.optional(FlowConfig),
+    input_fields: S.optional(InputFields),
+    presentation: S.optional(Presentation),
+  }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/v1/payment-experience/web-profiles",
+      method: "PUT",
+      uri: "/v1/payment-experience/web-profiles/{id}",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "WebProfileGetListRequest",
-}) as any as S.Schema<WebProfileGetListRequest>;
+  identifier: "UpdateWebProfileRequest",
+}) as any as S.Schema<UpdateWebProfileRequest>;
 
-/** An array of web profiles. */
-export type WebProfileList = Array<WebProfile>;
-export const WebProfileList = /*@__PURE__*/ S.Array(
-  WebProfile,
-) as any as S.Schema<WebProfileList>;
-
-export type WebProfileGetListResponse = WebProfileList;
-export const WebProfileGetListResponse = /*@__PURE__*/ S.suspend(() =>
-  WebProfileList.pipe(T.RawResponseRoot()),
+export interface UpdateWebProfileResponse {}
+export const UpdateWebProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "WebProfileGetListResponse",
-}) as any as S.Schema<WebProfileGetListResponse>;
+  identifier: "UpdateWebProfileResponse",
+}) as any as S.Schema<UpdateWebProfileResponse>;
 
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
@@ -227,12 +238,12 @@ export const PatchRequest = /*@__PURE__*/ S.Array(
   Patch,
 ) as any as S.Schema<PatchRequest>;
 
-export interface WebProfilePartialUpdateRequest {
+export interface UpdateWebProfilePartialRequest {
   /** The ID of the profile to delete. */
   id: string;
   body?: PatchRequest;
 }
-export const WebProfilePartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWebProfilePartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     body: S.optional(PatchRequest.pipe(T.HttpBody())),
@@ -244,93 +255,112 @@ export const WebProfilePartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebProfilePartialUpdateRequest",
-}) as any as S.Schema<WebProfilePartialUpdateRequest>;
+  identifier: "UpdateWebProfilePartialRequest",
+}) as any as S.Schema<UpdateWebProfilePartialRequest>;
 
-export interface WebProfilePartialUpdateResponse {}
-export const WebProfilePartialUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UpdateWebProfilePartialResponse {}
+export const UpdateWebProfilePartialResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "WebProfilePartialUpdateResponse",
-}) as any as S.Schema<WebProfilePartialUpdateResponse>;
+  identifier: "UpdateWebProfilePartialResponse",
+}) as any as S.Schema<UpdateWebProfilePartialResponse>;
 
-export interface WebProfileUpdateRequest {
-  /** The ID of the profile to delete. */
-  id: string;
-  /** The web experience profile name. Must be unique for a set of profiles for a merchant. */
-  name: string;
-  /** Indicates whether the profile persists for three hours or permanently. To persist the profile permanently, set to `false`. To persist the profile for three hours, set to `true`. */
-  temporary?: boolean;
-  flow_config?: FlowConfig;
-  input_fields?: InputFields;
-  presentation?: Presentation;
-}
-export const WebProfileUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    name: S.String,
-    temporary: S.optional(S.Boolean),
-    flow_config: S.optional(FlowConfig),
-    input_fields: S.optional(InputFields),
-    presentation: S.optional(Presentation),
-  }).pipe(
+export interface WebProfileGetListRequest {}
+export const WebProfileGetListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/v1/payment-experience/web-profiles/{id}",
+      method: "GET",
+      uri: "/v1/payment-experience/web-profiles",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "WebProfileUpdateRequest",
-}) as any as S.Schema<WebProfileUpdateRequest>;
+  identifier: "WebProfileGetListRequest",
+}) as any as S.Schema<WebProfileGetListRequest>;
 
-export interface WebProfileUpdateResponse {}
-export const WebProfileUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** An array of web profiles. */
+export type WebProfileList = Array<WebProfile>;
+export const WebProfileList = /*@__PURE__*/ S.Array(
+  WebProfile,
+) as any as S.Schema<WebProfileList>;
+
+export type WebProfileGetListResponse = WebProfileList;
+export const WebProfileGetListResponse = /*@__PURE__*/ S.suspend(() =>
+  WebProfileList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "WebProfileUpdateResponse",
-}) as any as S.Schema<WebProfileUpdateResponse>;
+  identifier: "WebProfileGetListResponse",
+}) as any as S.Schema<WebProfileGetListResponse>;
 
-export type WebProfileCreateError = PaypalOpError;
+export type CreateWebProfileError = PaypalOpError;
 /** Create web experience profile Creates a web experience profile. In the JSON request body, specify the profile name and details. */
-export const webProfileCreate: API.OperationMethod<
-  WebProfileCreateRequest,
+export const createWebProfile: API.OperationMethod<
+  CreateWebProfileRequest,
   WebProfile,
-  WebProfileCreateError,
+  CreateWebProfileError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebProfileCreateRequest,
+  input: CreateWebProfileRequest,
   output: WebProfile,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebProfileDeleteError = PaypalOpError;
+export type DeleteWebProfileError = PaypalOpError;
 /** Delete web experience profile Deletes a web experience profile, by ID. */
-export const webProfileDelete: API.OperationMethod<
-  WebProfileDeleteRequest,
-  WebProfileDeleteResponse,
-  WebProfileDeleteError,
+export const deleteWebProfile: API.OperationMethod<
+  DeleteWebProfileRequest,
+  DeleteWebProfileResponse,
+  DeleteWebProfileError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebProfileDeleteRequest,
-  output: WebProfileDeleteResponse,
+  input: DeleteWebProfileRequest,
+  output: DeleteWebProfileResponse,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebProfileGetError = PaypalOpError;
+export type GetWebProfileError = PaypalOpError;
 /** Show web experience profile details by ID Shows details for a web experience profile, by ID. */
-export const webProfileGet: API.OperationMethod<
-  WebProfileGetRequest,
+export const getWebProfile: API.OperationMethod<
+  GetWebProfileRequest,
   WebProfile,
-  WebProfileGetError,
+  GetWebProfileError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebProfileGetRequest,
+  input: GetWebProfileRequest,
   output: WebProfile,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebProfileError = PaypalOpError;
+/** Update web experience profile Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed. */
+export const updateWebProfile: API.OperationMethod<
+  UpdateWebProfileRequest,
+  UpdateWebProfileResponse,
+  UpdateWebProfileError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebProfileRequest,
+  output: UpdateWebProfileResponse,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebProfilePartialError = PaypalOpError;
+/** Partially update web experience profile Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value. */
+export const updateWebProfilePartial: API.OperationMethod<
+  UpdateWebProfilePartialRequest,
+  UpdateWebProfilePartialResponse,
+  UpdateWebProfilePartialError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebProfilePartialRequest,
+  output: UpdateWebProfilePartialResponse,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
@@ -346,36 +376,6 @@ export const webProfileGetList: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebProfileGetListRequest,
   output: WebProfileGetListResponse,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebProfilePartialUpdateError = PaypalOpError;
-/** Partially update web experience profile Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value. */
-export const webProfilePartialUpdate: API.OperationMethod<
-  WebProfilePartialUpdateRequest,
-  WebProfilePartialUpdateResponse,
-  WebProfilePartialUpdateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebProfilePartialUpdateRequest,
-  output: WebProfilePartialUpdateResponse,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebProfileUpdateError = PaypalOpError;
-/** Update web experience profile Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed. */
-export const webProfileUpdate: API.OperationMethod<
-  WebProfileUpdateRequest,
-  WebProfileUpdateResponse,
-  WebProfileUpdateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebProfileUpdateRequest,
-  output: WebProfileUpdateResponse,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,

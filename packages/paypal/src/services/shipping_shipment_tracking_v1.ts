@@ -40,23 +40,22 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface TrackersBatchGetRequest {
-  /** Filters the tracking information that appears in the response by a PayPal transaction ID. */
-  transaction_id: string;
-  /** Filters the tracking information that appears in the response by a tracking number. */
-  tracking_number?: string;
+export interface GetTrackerRequest {
+  /** The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format. */
+  id: string;
   /** Encrypted PayPal Account ID of the buyer or seller. */
   account_id?: string;
 }
-export const TrackersBatchGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetTrackerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    transaction_id: S.String.pipe(T.Query()),
-    tracking_number: S.optional(S.String.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
     account_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/shipping/trackers", code: 200 })),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/v1/shipping/trackers/{id}", code: 200 }),
+  ),
 ).annotate({
-  identifier: "TrackersBatchGetRequest",
-}) as any as S.Schema<TrackersBatchGetRequest>;
+  identifier: "GetTrackerRequest",
+}) as any as S.Schema<GetTrackerRequest>;
 
 /** The tracking number type. */
 export type TrackingNumberType = "CARRIER_PROVIDED" | "E2E_PARTNER_PROVIDED";
@@ -1004,6 +1003,24 @@ export const Tracker = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Tracker" }) as any as S.Schema<Tracker>;
 
+export interface GetTrackerBatchRequest {
+  /** Filters the tracking information that appears in the response by a PayPal transaction ID. */
+  transaction_id: string;
+  /** Filters the tracking information that appears in the response by a tracking number. */
+  tracking_number?: string;
+  /** Encrypted PayPal Account ID of the buyer or seller. */
+  account_id?: string;
+}
+export const GetTrackerBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transaction_id: S.String.pipe(T.Query()),
+    tracking_number: S.optional(S.String.pipe(T.Query())),
+    account_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/shipping/trackers", code: 200 })),
+).annotate({
+  identifier: "GetTrackerBatchRequest",
+}) as any as S.Schema<GetTrackerBatchRequest>;
+
 /** To denote whether the shipment is sent forward to the receiver or returned back. */
 export type TrackerInputShipmentDirection = "FORWARD" | "RETURN";
 export const TrackerInputShipmentDirection = /*@__PURE__*/ S.String;
@@ -1053,18 +1070,16 @@ export const TrackerListInput = /*@__PURE__*/ S.Array(
   TrackerInput,
 ) as any as S.Schema<TrackerListInput>;
 
-export interface TrackersBatchPostRequest {
+export interface PostTrackerRequest {
   trackers?: TrackerListInput;
 }
-export const TrackersBatchPostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostTrackerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     trackers: S.optional(TrackerListInput),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/v1/shipping/trackers-batch", code: 200 }),
-  ),
+  }).pipe(T.Http({ method: "POST", uri: "/v1/shipping/trackers", code: 200 })),
 ).annotate({
-  identifier: "TrackersBatchPostRequest",
-}) as any as S.Schema<TrackersBatchPostRequest>;
+  identifier: "PostTrackerRequest",
+}) as any as S.Schema<PostTrackerRequest>;
 
 /** The tracking identifiers for a shipment. */
 export interface TrackerIdentifier {
@@ -1083,6 +1098,49 @@ export const TrackerIdentifier = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TrackerIdentifier",
 }) as any as S.Schema<TrackerIdentifier>;
+
+/** An array of tracking IDs. */
+export type DefinitionsTrackerIdentifierList = Array<TrackerIdentifier>;
+export const DefinitionsTrackerIdentifierList = /*@__PURE__*/ S.Array(
+  TrackerIdentifier,
+) as any as S.Schema<DefinitionsTrackerIdentifierList>;
+
+/** An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+export type TrackerIdentifierCollectionDefinitionsLinkDescriptionList =
+  Array<LinkDescription>;
+export const TrackerIdentifierCollectionDefinitionsLinkDescriptionList =
+  /*@__PURE__*/ S.Array(
+    LinkDescription,
+  ) as any as S.Schema<TrackerIdentifierCollectionDefinitionsLinkDescriptionList>;
+
+/** The add tracking information for a PayPal transaction response details. */
+export interface TrackerIdentifierCollection {
+  tracker_identifiers?: DefinitionsTrackerIdentifierList;
+  links?: TrackerIdentifierCollectionDefinitionsLinkDescriptionList;
+}
+export const TrackerIdentifierCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tracker_identifiers: S.optional(DefinitionsTrackerIdentifierList),
+    links: S.optional(
+      TrackerIdentifierCollectionDefinitionsLinkDescriptionList,
+    ),
+  }),
+).annotate({
+  identifier: "TrackerIdentifierCollection",
+}) as any as S.Schema<TrackerIdentifierCollection>;
+
+export interface PostTrackerBatchRequest {
+  trackers?: TrackerListInput;
+}
+export const PostTrackerBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trackers: S.optional(TrackerListInput),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/v1/shipping/trackers-batch", code: 200 }),
+  ),
+).annotate({
+  identifier: "PostTrackerBatchRequest",
+}) as any as S.Schema<PostTrackerBatchRequest>;
 
 /** The batch header. */
 export type TrackerIdentifierList = Array<TrackerIdentifier>;
@@ -1218,69 +1276,11 @@ export const BatchTrackerCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchTrackerCollection",
 }) as any as S.Schema<BatchTrackerCollection>;
 
-export interface TrackersGetRequest {
-  /** The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format. */
-  id: string;
-  /** Encrypted PayPal Account ID of the buyer or seller. */
-  account_id?: string;
-}
-export const TrackersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/v1/shipping/trackers/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "TrackersGetRequest",
-}) as any as S.Schema<TrackersGetRequest>;
-
-export interface TrackersPostRequest {
-  trackers?: TrackerListInput;
-}
-export const TrackersPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trackers: S.optional(TrackerListInput),
-  }).pipe(T.Http({ method: "POST", uri: "/v1/shipping/trackers", code: 200 })),
-).annotate({
-  identifier: "TrackersPostRequest",
-}) as any as S.Schema<TrackersPostRequest>;
-
-/** An array of tracking IDs. */
-export type DefinitionsTrackerIdentifierList = Array<TrackerIdentifier>;
-export const DefinitionsTrackerIdentifierList = /*@__PURE__*/ S.Array(
-  TrackerIdentifier,
-) as any as S.Schema<DefinitionsTrackerIdentifierList>;
-
-/** An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type TrackerIdentifierCollectionDefinitionsLinkDescriptionList =
-  Array<LinkDescription>;
-export const TrackerIdentifierCollectionDefinitionsLinkDescriptionList =
-  /*@__PURE__*/ S.Array(
-    LinkDescription,
-  ) as any as S.Schema<TrackerIdentifierCollectionDefinitionsLinkDescriptionList>;
-
-/** The add tracking information for a PayPal transaction response details. */
-export interface TrackerIdentifierCollection {
-  tracker_identifiers?: DefinitionsTrackerIdentifierList;
-  links?: TrackerIdentifierCollectionDefinitionsLinkDescriptionList;
-}
-export const TrackerIdentifierCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tracker_identifiers: S.optional(DefinitionsTrackerIdentifierList),
-    links: S.optional(
-      TrackerIdentifierCollectionDefinitionsLinkDescriptionList,
-    ),
-  }),
-).annotate({
-  identifier: "TrackerIdentifierCollection",
-}) as any as S.Schema<TrackerIdentifierCollection>;
-
 /** To denote whether the shipment is sent forward to the receiver or returned back. */
-export type TrackersPutRequestShipmentDirection = "FORWARD" | "RETURN";
-export const TrackersPutRequestShipmentDirection = /*@__PURE__*/ S.String;
+export type PutTrackerRequestShipmentDirection = "FORWARD" | "RETURN";
+export const PutTrackerRequestShipmentDirection = /*@__PURE__*/ S.String;
 
-export interface TrackersPutRequest {
+export interface PutTrackerRequest {
   /** The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format. */
   id: string;
   /** The PayPal transaction ID. */
@@ -1300,11 +1300,11 @@ export interface TrackersPutRequest {
   /** The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
   last_updated_time?: string;
   /** To denote whether the shipment is sent forward to the receiver or returned back. */
-  shipment_direction?: TrackersPutRequestShipmentDirection | (string & {});
+  shipment_direction?: PutTrackerRequestShipmentDirection | (string & {});
   /** Tracking Link of the shipment. */
   tracking_url?: string;
 }
-export const TrackersPutRequest = /*@__PURE__*/ S.suspend(() =>
+export const PutTrackerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     transaction_id: S.String,
@@ -1316,96 +1316,96 @@ export const TrackersPutRequest = /*@__PURE__*/ S.suspend(() =>
     carrier_name_other: S.optional(S.String),
     notify_buyer: S.optional(S.Boolean),
     last_updated_time: S.optional(S.String),
-    shipment_direction: S.optional(TrackersPutRequestShipmentDirection),
+    shipment_direction: S.optional(PutTrackerRequestShipmentDirection),
     tracking_url: S.optional(S.String),
   }).pipe(
     T.Http({ method: "PUT", uri: "/v1/shipping/trackers/{id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "TrackersPutRequest",
-}) as any as S.Schema<TrackersPutRequest>;
+  identifier: "PutTrackerRequest",
+}) as any as S.Schema<PutTrackerRequest>;
 
-export interface TrackersPutResponse {}
-export const TrackersPutResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PutTrackerResponse {}
+export const PutTrackerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "TrackersPutResponse",
-}) as any as S.Schema<TrackersPutResponse>;
+  identifier: "PutTrackerResponse",
+}) as any as S.Schema<PutTrackerResponse>;
 
-export type TrackersBatchGetError = PaypalOpError;
-/** List tracking information Lists tracking information that meet search criteria. The tracking ID is required but the tracking number is optional. */
-export const trackersBatchGet: API.OperationMethod<
-  TrackersBatchGetRequest,
-  Tracker,
-  TrackersBatchGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrackersBatchGetRequest,
-  output: Tracker,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrackersBatchPostError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PaypalOpError;
-/** Add tracking information for multiple PayPal transactions <blockquote><strong>Deprecation notice:</strong> Adding tracking details for an order through <code>/v1/shipping/trackers-batch</code> is deprecated as its a legacy way of integration. Use the new <a href="/docs/tracking/orders-api/integrate/">Orders v2 API</a> to share tracking details with PayPal.</blockquote>Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href="/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithtrackingnumbers">Add tracking information with tracking numbers</a> and <a href="/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithouttrackingnumbers">Add tracking information without tracking numbers</a>. */
-export const trackersBatchPost: API.OperationMethod<
-  TrackersBatchPostRequest,
-  BatchTrackerCollection,
-  TrackersBatchPostError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrackersBatchPostRequest,
-  output: BatchTrackerCollection,
-  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrackersGetError = PaypalOpError;
+export type GetTrackerError = PaypalOpError;
 /** Show tracking information Shows tracking information, by tracker ID, for a PayPal transaction. */
-export const trackersGet: API.OperationMethod<
-  TrackersGetRequest,
+export const getTracker: API.OperationMethod<
+  GetTrackerRequest,
   Tracker,
-  TrackersGetError,
+  GetTrackerError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrackersGetRequest,
+  input: GetTrackerRequest,
   output: Tracker,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrackersPostError = PaypalOpError;
-/** Add tracking information for PayPal transaction Adds tracking information for a PayPal transaction. */
-export const trackersPost: API.OperationMethod<
-  TrackersPostRequest,
-  TrackerIdentifierCollection,
-  TrackersPostError,
+export type GetTrackerBatchError = PaypalOpError;
+/** List tracking information Lists tracking information that meet search criteria. The tracking ID is required but the tracking number is optional. */
+export const getTrackerBatch: API.OperationMethod<
+  GetTrackerBatchRequest,
+  Tracker,
+  GetTrackerBatchError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrackersPostRequest,
+  input: GetTrackerBatchRequest,
+  output: Tracker,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostTrackerError = PaypalOpError;
+/** Add tracking information for PayPal transaction Adds tracking information for a PayPal transaction. */
+export const postTracker: API.OperationMethod<
+  PostTrackerRequest,
+  TrackerIdentifierCollection,
+  PostTrackerError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostTrackerRequest,
   output: TrackerIdentifierCollection,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrackersPutError = PaypalOpError;
-/** Update or cancel tracking information for PayPal transaction Updates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see <a href="/docs/tracking/tracking-api/integrate/#link-updateorcanceltrackinginformation">Update or cancel tracking information</a>. */
-export const trackersPut: API.OperationMethod<
-  TrackersPutRequest,
-  TrackersPutResponse,
-  TrackersPutError,
+export type PostTrackerBatchError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PaypalOpError;
+/** Add tracking information for multiple PayPal transactions <blockquote><strong>Deprecation notice:</strong> Adding tracking details for an order through <code>/v1/shipping/trackers-batch</code> is deprecated as its a legacy way of integration. Use the new <a href="/docs/tracking/orders-api/integrate/">Orders v2 API</a> to share tracking details with PayPal.</blockquote>Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href="/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithtrackingnumbers">Add tracking information with tracking numbers</a> and <a href="/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithouttrackingnumbers">Add tracking information without tracking numbers</a>. */
+export const postTrackerBatch: API.OperationMethod<
+  PostTrackerBatchRequest,
+  BatchTrackerCollection,
+  PostTrackerBatchError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrackersPutRequest,
-  output: TrackersPutResponse,
+  input: PostTrackerBatchRequest,
+  output: BatchTrackerCollection,
+  errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PutTrackerError = PaypalOpError;
+/** Update or cancel tracking information for PayPal transaction Updates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see <a href="/docs/tracking/tracking-api/integrate/#link-updateorcanceltrackinginformation">Update or cancel tracking information</a>. */
+export const putTracker: API.OperationMethod<
+  PutTrackerRequest,
+  PutTrackerResponse,
+  PutTrackerError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PutTrackerRequest,
+  output: PutTrackerResponse,
   errors: [UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,

@@ -58,1406 +58,20 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface AuthorizationsCaptureRequestAmount {
+export interface AuthorizationsReauthorizeRequestAmount {
   currency_code: string;
   /** The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/). */
   value: string;
 }
-export const AuthorizationsCaptureRequestAmount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currency_code: S.String,
-    value: S.String,
-  }),
-).annotate({
-  identifier: "AuthorizationsCaptureRequestAmount",
-}) as any as S.Schema<AuthorizationsCaptureRequestAmount>;
-
-export type AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export interface AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee {
-  email_address?: unknown;
-  merchant_id?: unknown;
-}
-export const AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      email_address: S.optional(S.Unknown),
-      merchant_id: S.optional(S.Unknown),
-    }),
-  ).annotate({
-    identifier:
-      "AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee",
-  }) as any as S.Schema<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee>;
-
-export interface AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem {
-  amount: AuthorizationsCaptureRequestAmount;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-}
-export const AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      amount: AuthorizationsCaptureRequestAmount,
-      payee: S.optional(
-        AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem",
-  }) as any as S.Schema<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-
-/** An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability. */
-export type AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList =
-  Array<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-export const AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem,
-  ) as any as S.Schema<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList>;
-
-export interface AuthorizationsCaptureRequestPaymentInstruction {
-  /** An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability. */
-  platform_fees?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList;
-  disbursement_mode?: unknown;
-  /** This field is only enabled for selected merchants/partners to use and provides the ability to trigger a specific pricing rate/plan for a payment transaction. The list of eligible 'payee_pricing_tier_id' would be provided to you by your Account Manager. Specifying values other than the one provided to you by your account manager would result in an error. */
-  payee_pricing_tier_id?: string;
-  /** FX identifier generated returned by PayPal to be used for payment processing in order to honor FX rate (for eligible integrations) to be used when amount is settled/received into the payee account. */
-  payee_receivable_fx_rate_id?: string;
-}
-export const AuthorizationsCaptureRequestPaymentInstruction =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      platform_fees: S.optional(
-        AuthorizationsCaptureRequestPaymentInstructionPlatformFeesList,
-      ),
-      disbursement_mode: S.optional(S.Unknown),
-      payee_pricing_tier_id: S.optional(S.String),
-      payee_receivable_fx_rate_id: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureRequestPaymentInstruction",
-  }) as any as S.Schema<AuthorizationsCaptureRequestPaymentInstruction>;
-
-export interface AuthorizationsCaptureRequest {
-  /** The PayPal-generated ID for the authorized payment to capture. */
-  authorization_id: string;
-  /** A unique ID identifying the request header for idempotency purposes. */
-  payPalRequestId?: string;
-  /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
-  prefer?: string;
-  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
-  payPalAuthAssertion?: string;
-  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
-  invoice_id?: string;
-  /** An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives. */
-  note_to_payer?: string;
-  amount?: AuthorizationsCaptureRequestAmount;
-  /** Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization. */
-  final_capture?: boolean;
-  payment_instruction?: AuthorizationsCaptureRequestPaymentInstruction;
-  /** The payment descriptor on the payer's account statement. */
-  soft_descriptor?: string;
-}
-export const AuthorizationsCaptureRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authorization_id: S.String.pipe(T.Label()),
-    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
-    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
-    payPalAuthAssertion: S.optional(
-      S.String.pipe(T.Header("PayPal-Auth-Assertion")),
-    ),
-    invoice_id: S.optional(S.String),
-    note_to_payer: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureRequestAmount),
-    final_capture: S.optional(S.Boolean),
-    payment_instruction: S.optional(
-      AuthorizationsCaptureRequestPaymentInstruction,
-    ),
-    soft_descriptor: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/payments/authorizations/{authorization_id}/capture",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AuthorizationsCaptureRequest",
-}) as any as S.Schema<AuthorizationsCaptureRequest>;
-
-/** The status of the captured payment. */
-export type AuthorizationsCaptureResponseStatus =
-  | "COMPLETED"
-  | "DECLINED"
-  | "PARTIALLY_REFUNDED"
-  | "PENDING"
-  | "REFUNDED"
-  | "FAILED";
-export const AuthorizationsCaptureResponseStatus = /*@__PURE__*/ S.String;
-
-/** The reason why the captured payment status is `PENDING` or `DENIED`. */
-export type AuthorizationsCaptureResponseStatusDetailsReason =
-  | "BUYER_COMPLAINT"
-  | "CHARGEBACK"
-  | "ECHECK"
-  | "INTERNATIONAL_WITHDRAWAL"
-  | "OTHER"
-  | "PENDING_REVIEW"
-  | "RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION"
-  | "REFUNDED"
-  | "TRANSACTION_APPROVED_AWAITING_FUNDING"
-  | "UNILATERAL"
-  | "VERIFICATION_REQUIRED"
-  | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const AuthorizationsCaptureResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
-
-export interface AuthorizationsCaptureResponseStatusDetails {
-  /** The reason why the captured payment status is `PENDING` or `DENIED`. */
-  reason?: AuthorizationsCaptureResponseStatusDetailsReason;
-}
-export const AuthorizationsCaptureResponseStatusDetails =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      reason: S.optional(AuthorizationsCaptureResponseStatusDetailsReason),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseStatusDetails",
-  }) as any as S.Schema<AuthorizationsCaptureResponseStatusDetails>;
-
-export type AmountBreakdownItemTotal = AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownItemTotal = AuthorizationsCaptureRequestAmount;
-
-export type AmountBreakdownShipping = AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownShipping = AuthorizationsCaptureRequestAmount;
-
-export type AmountBreakdownHandling = AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownHandling = AuthorizationsCaptureRequestAmount;
-
-export type AmountBreakdownTaxTotal = AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownTaxTotal = AuthorizationsCaptureRequestAmount;
-
-export type AmountBreakdownInsurance = AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownInsurance = AuthorizationsCaptureRequestAmount;
-
-export type AmountBreakdownShippingDiscount =
-  AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownShippingDiscount =
-  AuthorizationsCaptureRequestAmount;
-
-export type AmountBreakdownDiscount = AuthorizationsCaptureRequestAmount;
-export const AmountBreakdownDiscount = AuthorizationsCaptureRequestAmount;
-
-/** The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, shipping, handling, insurance, and discounts, if any. */
-export interface AmountBreakdown {
-  item_total?: AuthorizationsCaptureRequestAmount;
-  shipping?: AuthorizationsCaptureRequestAmount;
-  handling?: AuthorizationsCaptureRequestAmount;
-  tax_total?: AuthorizationsCaptureRequestAmount;
-  insurance?: AuthorizationsCaptureRequestAmount;
-  shipping_discount?: AuthorizationsCaptureRequestAmount;
-  discount?: AuthorizationsCaptureRequestAmount;
-}
-export const AmountBreakdown = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    item_total: S.optional(AuthorizationsCaptureRequestAmount),
-    shipping: S.optional(AuthorizationsCaptureRequestAmount),
-    handling: S.optional(AuthorizationsCaptureRequestAmount),
-    tax_total: S.optional(AuthorizationsCaptureRequestAmount),
-    insurance: S.optional(AuthorizationsCaptureRequestAmount),
-    shipping_discount: S.optional(AuthorizationsCaptureRequestAmount),
-    discount: S.optional(AuthorizationsCaptureRequestAmount),
-  }),
-).annotate({
-  identifier: "AmountBreakdown",
-}) as any as S.Schema<AmountBreakdown>;
-
-export interface AuthorizationsCaptureResponseAmount {
-  currency_code: string;
-  /** The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/). */
-  value: string;
-  breakdown?: AmountBreakdown;
-}
-export const AuthorizationsCaptureResponseAmount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currency_code: S.String,
-    value: S.String,
-    breakdown: S.optional(AmountBreakdown),
-  }),
-).annotate({
-  identifier: "AuthorizationsCaptureResponseAmount",
-}) as any as S.Schema<AuthorizationsCaptureResponseAmount>;
-
-/** Reference values used by the card network to identify a transaction. */
-export interface NetworkTransaction {
-  /** Transaction reference id returned by the scheme. For Visa and Amex, this is the "Tran id" field in response. For MasterCard, this is the "BankNet reference id" field in response. For Discover, this is the "NRID" field in response. The pattern we expect for this field from Visa/Amex/CB/Discover is numeric, Mastercard/BNPP is alphanumeric and Paysecure is alphanumeric with special character -. */
-  id?: string;
-  /** The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as "BankNet reference date". For some specific networks, such as MasterCard and Discover, this date field is mandatory when the `previous_network_transaction_reference_id` is passed. */
-  date?: string;
-  network?: unknown;
-  /** Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks. */
-  acquirer_reference_number?: string;
-}
-export const NetworkTransaction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    date: S.optional(S.String),
-    network: S.optional(S.Unknown),
-    acquirer_reference_number: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NetworkTransaction",
-}) as any as S.Schema<NetworkTransaction>;
-
-/** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-export type AuthorizationsCaptureResponseSellerProtectionStatus =
-  | "ELIGIBLE"
-  | "PARTIALLY_ELIGIBLE"
-  | "NOT_ELIGIBLE";
-export const AuthorizationsCaptureResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
-
-/** The condition that is covered for the transaction. */
-export type AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesItem =
-  | "ITEM_NOT_RECEIVED"
-  | "UNAUTHORIZED_TRANSACTION";
-export const AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
-
-/** An array of conditions that are covered for the transaction. */
-export type AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList =
-  Array<AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesItem>;
-export const AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesItem,
-  ) as any as S.Schema<AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList>;
-
-export interface AuthorizationsCaptureResponseSellerProtection {
-  /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-  status?: AuthorizationsCaptureResponseSellerProtectionStatus;
-  /** An array of conditions that are covered for the transaction. */
-  dispute_categories?: AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList;
-}
-export const AuthorizationsCaptureResponseSellerProtection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(AuthorizationsCaptureResponseSellerProtectionStatus),
-      dispute_categories: S.optional(
-        AuthorizationsCaptureResponseSellerProtectionDisputeCategoriesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseSellerProtection",
-  }) as any as S.Schema<AuthorizationsCaptureResponseSellerProtection>;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownReceivableAmount =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownReceivableAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export interface AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate {
-  source_currency?: unknown;
-  target_currency?: unknown;
-  /** The target currency amount. Equivalent to one unit of the source currency. Formatted as integer or decimal value with one to 15 digits to the right of the decimal point. */
-  value?: string;
-}
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      source_currency: S.optional(S.Unknown),
-      target_currency: S.optional(S.Unknown),
-      value: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate",
-  }) as any as S.Schema<AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate>;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-
-/** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
-export type AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList =
-  Array<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-export const AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem,
-  ) as any as S.Schema<AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList>;
-
-export interface AuthorizationsCaptureResponseSellerReceivableBreakdown {
-  gross_amount: AuthorizationsCaptureRequestAmount;
-  paypal_fee?: AuthorizationsCaptureRequestAmount;
-  paypal_fee_in_receivable_currency?: AuthorizationsCaptureRequestAmount;
-  net_amount?: AuthorizationsCaptureRequestAmount;
-  receivable_amount?: AuthorizationsCaptureRequestAmount;
-  exchange_rate?: AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-  /** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
-  platform_fees?: AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList;
-}
-export const AuthorizationsCaptureResponseSellerReceivableBreakdown =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      gross_amount: AuthorizationsCaptureRequestAmount,
-      paypal_fee: S.optional(AuthorizationsCaptureRequestAmount),
-      paypal_fee_in_receivable_currency: S.optional(
-        AuthorizationsCaptureRequestAmount,
-      ),
-      net_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      receivable_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      exchange_rate: S.optional(
-        AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate,
-      ),
-      platform_fees: S.optional(
-        AuthorizationsCaptureResponseSellerReceivableBreakdownPlatformFeesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseSellerReceivableBreakdown",
-  }) as any as S.Schema<AuthorizationsCaptureResponseSellerReceivableBreakdown>;
-
-/** The funds that are held on behalf of the merchant. */
-export type DisbursementMode = "INSTANT" | "DELAYED";
-export const DisbursementMode = /*@__PURE__*/ S.String;
-
-/** The HTTP method required to make the related call. */
-export type AuthorizationsCaptureResponseLinksItemMethod =
-  | "GET"
-  | "POST"
-  | "PUT"
-  | "DELETE"
-  | "HEAD"
-  | "CONNECT"
-  | "OPTIONS"
-  | "PATCH";
-export const AuthorizationsCaptureResponseLinksItemMethod =
-  /*@__PURE__*/ S.String;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type AuthorizationsCaptureResponseLinksItemSchemaAllOfList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type AuthorizationsCaptureResponseLinksItemSchemaAnyOfList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type AuthorizationsCaptureResponseLinksItemSchemaOneOfList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemSchemaOneOfList>;
-
-/** An array of links. */
-export type AuthorizationsCaptureResponseLinksItemSchemaLinksList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export interface AuthorizationsCaptureResponseLinksItemSchemaMedia {
-  /** The media type. See [Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types](https://tools.ietf.org/html/rfc2046). */
-  type?: string;
-  /** The content-encoding scheme. See [Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies](https://tools.ietf.org/html/rfc2045). */
-  binaryEncoding?: string;
-}
-export const AuthorizationsCaptureResponseLinksItemSchemaMedia =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(S.String),
-      binaryEncoding: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseLinksItemSchemaMedia",
-  }) as any as S.Schema<AuthorizationsCaptureResponseLinksItemSchemaMedia>;
-
-export interface AuthorizationsCaptureResponseLinksItemSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: AuthorizationsCaptureResponseLinksItemSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: AuthorizationsCaptureResponseLinksItemSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: AuthorizationsCaptureResponseLinksItemSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: AuthorizationsCaptureResponseLinksItemSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const AuthorizationsCaptureResponseLinksItemSchema =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(AuthorizationsCaptureResponseLinksItemSchemaAllOfList),
-      anyOf: S.optional(AuthorizationsCaptureResponseLinksItemSchemaAnyOfList),
-      oneOf: S.optional(AuthorizationsCaptureResponseLinksItemSchemaOneOfList),
-      not: S.optional(S.Unknown),
-      links: S.optional(AuthorizationsCaptureResponseLinksItemSchemaLinksList),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseLinksItemSchema",
-  }) as any as S.Schema<AuthorizationsCaptureResponseLinksItemSchema>;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList>;
-
-/** An array of links. */
-export type AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList =
-  Array<unknown>;
-export const AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type AuthorizationsCaptureResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const AuthorizationsCaptureResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface AuthorizationsCaptureResponseLinksItemTargetSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const AuthorizationsCaptureResponseLinksItemTargetSchema =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(
-        AuthorizationsCaptureResponseLinksItemTargetSchemaAllOfList,
-      ),
-      anyOf: S.optional(
-        AuthorizationsCaptureResponseLinksItemTargetSchemaAnyOfList,
-      ),
-      oneOf: S.optional(
-        AuthorizationsCaptureResponseLinksItemTargetSchemaOneOfList,
-      ),
-      not: S.optional(S.Unknown),
-      links: S.optional(
-        AuthorizationsCaptureResponseLinksItemTargetSchemaLinksList,
-      ),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseLinksItemTargetSchema",
-  }) as any as S.Schema<AuthorizationsCaptureResponseLinksItemTargetSchema>;
-
-export interface AuthorizationsCaptureResponseLinksItem {
-  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
-  href: string;
-  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
-  rel: string;
-  /** The HTTP method required to make the related call. */
-  method?: AuthorizationsCaptureResponseLinksItemMethod;
-  /** The link title. */
-  title?: string;
-  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
-  mediaType?: string;
-  /** The media type in which to submit the request data. */
-  encType?: string;
-  schema?: AuthorizationsCaptureResponseLinksItemSchema;
-  targetSchema?: AuthorizationsCaptureResponseLinksItemTargetSchema;
-}
-export const AuthorizationsCaptureResponseLinksItem = /*@__PURE__*/ S.suspend(
+export const AuthorizationsReauthorizeRequestAmount = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      href: S.String,
-      rel: S.String,
-      method: S.optional(AuthorizationsCaptureResponseLinksItemMethod),
-      title: S.optional(S.String),
-      mediaType: S.optional(S.String),
-      encType: S.optional(S.String),
-      schema: S.optional(AuthorizationsCaptureResponseLinksItemSchema),
-      targetSchema: S.optional(
-        AuthorizationsCaptureResponseLinksItemTargetSchema,
-      ),
+      currency_code: S.String,
+      value: S.String,
     }),
 ).annotate({
-  identifier: "AuthorizationsCaptureResponseLinksItem",
-}) as any as S.Schema<AuthorizationsCaptureResponseLinksItem>;
-
-/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type AuthorizationsCaptureResponseLinksList =
-  Array<AuthorizationsCaptureResponseLinksItem>;
-export const AuthorizationsCaptureResponseLinksList = /*@__PURE__*/ S.Array(
-  AuthorizationsCaptureResponseLinksItem,
-) as any as S.Schema<AuthorizationsCaptureResponseLinksList>;
-
-/** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
-export type AuthorizationsCaptureResponseProcessorResponseAvsCode =
-  | "A"
-  | "B"
-  | "C"
-  | "D"
-  | "E"
-  | "F"
-  | "G"
-  | "I"
-  | "M"
-  | "N"
-  | "P"
-  | "R"
-  | "S"
-  | "U"
-  | "W"
-  | "X"
-  | "Y"
-  | "Z"
-  | "Null"
-  | "0"
-  | "1"
-  | "2"
-  | "3"
-  | "4";
-export const AuthorizationsCaptureResponseProcessorResponseAvsCode =
-  /*@__PURE__*/ S.String;
-
-/** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
-export type AuthorizationsCaptureResponseProcessorResponseCvvCode =
-  | "E"
-  | "I"
-  | "M"
-  | "N"
-  | "P"
-  | "S"
-  | "U"
-  | "X"
-  | "All others"
-  | "0"
-  | "1"
-  | "2"
-  | "3"
-  | "4";
-export const AuthorizationsCaptureResponseProcessorResponseCvvCode =
-  /*@__PURE__*/ S.String;
-
-/** Processor response code for the non-PayPal payment processor errors. */
-export type AuthorizationsCaptureResponseProcessorResponseResponseCode =
-  | "0000"
-  | "00N7"
-  | "0100"
-  | "0390"
-  | "0500"
-  | "0580"
-  | "0800"
-  | "0880"
-  | "0890"
-  | "0960"
-  | "0R00"
-  | "1000"
-  | "10BR"
-  | "1300"
-  | "1310"
-  | "1312"
-  | "1317"
-  | "1320"
-  | "1330"
-  | "1335"
-  | "1340"
-  | "1350"
-  | "1352"
-  | "1360"
-  | "1370"
-  | "1380"
-  | "1382"
-  | "1384"
-  | "1390"
-  | "1393"
-  | "5100"
-  | "5110"
-  | "5120"
-  | "5130"
-  | "5135"
-  | "5140"
-  | "5150"
-  | "5160"
-  | "5170"
-  | "5180"
-  | "5190"
-  | "5200"
-  | "5210"
-  | "5400"
-  | "5500"
-  | "5650"
-  | "5700"
-  | "5710"
-  | "5800"
-  | "5900"
-  | "5910"
-  | "5920"
-  | "5930"
-  | "5950"
-  | "6300"
-  | "7600"
-  | "7700"
-  | "7710"
-  | "7800"
-  | "7900"
-  | "8000"
-  | "8010"
-  | "8020"
-  | "8030"
-  | "8100"
-  | "8110"
-  | "8220"
-  | "9100"
-  | "9500"
-  | "9510"
-  | "9520"
-  | "9530"
-  | "9540"
-  | "9600"
-  | "PCNR"
-  | "PCVV"
-  | "PP06"
-  | "PPRN"
-  | "PPAD"
-  | "PPAB"
-  | "PPAE"
-  | "PPAG"
-  | "PPAI"
-  | "PPAR"
-  | "PPAU"
-  | "PPAV"
-  | "PPAX"
-  | "PPBG"
-  | "PPC2"
-  | "PPCE"
-  | "PPCO"
-  | "PPCR"
-  | "PPCT"
-  | "PPCU"
-  | "PPD3"
-  | "PPDC"
-  | "PPDI"
-  | "PPDV"
-  | "PPDT"
-  | "PPEF"
-  | "PPEL"
-  | "PPER"
-  | "PPEX"
-  | "PPFE"
-  | "PPFI"
-  | "PPFR"
-  | "PPFV"
-  | "PPGR"
-  | "PPH1"
-  | "PPIF"
-  | "PPII"
-  | "PPIM"
-  | "PPIT"
-  | "PPLR"
-  | "PPLS"
-  | "PPMB"
-  | "PPMC"
-  | "PPMD"
-  | "PPNC"
-  | "PPNL"
-  | "PPNM"
-  | "PPNT"
-  | "PPPH"
-  | "PPPI"
-  | "PPPM"
-  | "PPQC"
-  | "PPRE"
-  | "PPRF"
-  | "PPRR"
-  | "PPS0"
-  | "PPS1"
-  | "PPS2"
-  | "PPS3"
-  | "PPS4"
-  | "PPS5"
-  | "PPS6"
-  | "PPSC"
-  | "PPSD"
-  | "PPSE"
-  | "PPTE"
-  | "PPTF"
-  | "PPTI"
-  | "PPTR"
-  | "PPTT"
-  | "PPTV"
-  | "PPUA"
-  | "PPUC"
-  | "PPUE"
-  | "PPUI"
-  | "PPUP"
-  | "PPUR"
-  | "PPVC"
-  | "PPVE"
-  | "PPVT";
-export const AuthorizationsCaptureResponseProcessorResponseResponseCode =
-  /*@__PURE__*/ S.String;
-
-/** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
-export type AuthorizationsCaptureResponseProcessorResponsePaymentAdviceCode =
-  | "01"
-  | "02"
-  | "03"
-  | "04"
-  | "21"
-  | "22"
-  | "24"
-  | "25"
-  | "26"
-  | "27"
-  | "28"
-  | "29"
-  | "30"
-  | "40"
-  | "43";
-export const AuthorizationsCaptureResponseProcessorResponsePaymentAdviceCode =
-  /*@__PURE__*/ S.String;
-
-export interface AuthorizationsCaptureResponseProcessorResponse {
-  /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
-  avs_code?: AuthorizationsCaptureResponseProcessorResponseAvsCode;
-  /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
-  cvv_code?: AuthorizationsCaptureResponseProcessorResponseCvvCode;
-  /** Processor response code for the non-PayPal payment processor errors. */
-  response_code?: AuthorizationsCaptureResponseProcessorResponseResponseCode;
-  /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
-  payment_advice_code?: AuthorizationsCaptureResponseProcessorResponsePaymentAdviceCode;
-}
-export const AuthorizationsCaptureResponseProcessorResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      avs_code: S.optional(
-        AuthorizationsCaptureResponseProcessorResponseAvsCode,
-      ),
-      cvv_code: S.optional(
-        AuthorizationsCaptureResponseProcessorResponseCvvCode,
-      ),
-      response_code: S.optional(
-        AuthorizationsCaptureResponseProcessorResponseResponseCode,
-      ),
-      payment_advice_code: S.optional(
-        AuthorizationsCaptureResponseProcessorResponsePaymentAdviceCode,
-      ),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseProcessorResponse",
-  }) as any as S.Schema<AuthorizationsCaptureResponseProcessorResponse>;
-
-export interface AuthorizationsCaptureResponseSupplementaryDataRelatedIds {
-  /** Order ID related to the resource. */
-  order_id?: string;
-  /** Authorization ID related to the resource. */
-  authorization_id?: string;
-  /** Capture ID related to the resource. */
-  capture_id?: string;
-}
-export const AuthorizationsCaptureResponseSupplementaryDataRelatedIds =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      order_id: S.optional(S.String),
-      authorization_id: S.optional(S.String),
-      capture_id: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseSupplementaryDataRelatedIds",
-  }) as any as S.Schema<AuthorizationsCaptureResponseSupplementaryDataRelatedIds>;
-
-export interface AuthorizationsCaptureResponseSupplementaryData {
-  related_ids?: AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
-}
-export const AuthorizationsCaptureResponseSupplementaryData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      related_ids: S.optional(
-        AuthorizationsCaptureResponseSupplementaryDataRelatedIds,
-      ),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsCaptureResponseSupplementaryData",
-  }) as any as S.Schema<AuthorizationsCaptureResponseSupplementaryData>;
-
-export type AuthorizationsCaptureResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const AuthorizationsCaptureResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export interface AuthorizationsCaptureResponse {
-  /** The status of the captured payment. */
-  status?: AuthorizationsCaptureResponseStatus;
-  status_details?: AuthorizationsCaptureResponseStatusDetails;
-  /** The PayPal-generated ID for the captured payment. */
-  id?: string;
-  amount?: AuthorizationsCaptureResponseAmount;
-  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
-  invoice_id?: string;
-  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
-  custom_id?: string;
-  network_transaction_reference?: NetworkTransaction;
-  seller_protection?: AuthorizationsCaptureResponseSellerProtection;
-  /** Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization. */
-  final_capture?: boolean;
-  seller_receivable_breakdown?: AuthorizationsCaptureResponseSellerReceivableBreakdown;
-  disbursement_mode?: DisbursementMode;
-  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-  links?: AuthorizationsCaptureResponseLinksList;
-  processor_response?: AuthorizationsCaptureResponseProcessorResponse;
-  create_time?: unknown;
-  update_time?: unknown;
-  supplementary_data?: AuthorizationsCaptureResponseSupplementaryData;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-}
-export const AuthorizationsCaptureResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(AuthorizationsCaptureResponseStatus),
-    status_details: S.optional(AuthorizationsCaptureResponseStatusDetails),
-    id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureResponseAmount),
-    invoice_id: S.optional(S.String),
-    custom_id: S.optional(S.String),
-    network_transaction_reference: S.optional(NetworkTransaction),
-    seller_protection: S.optional(
-      AuthorizationsCaptureResponseSellerProtection,
-    ),
-    final_capture: S.optional(S.Boolean),
-    seller_receivable_breakdown: S.optional(
-      AuthorizationsCaptureResponseSellerReceivableBreakdown,
-    ),
-    disbursement_mode: S.optional(DisbursementMode),
-    links: S.optional(AuthorizationsCaptureResponseLinksList),
-    processor_response: S.optional(
-      AuthorizationsCaptureResponseProcessorResponse,
-    ),
-    create_time: S.optional(S.Unknown),
-    update_time: S.optional(S.Unknown),
-    supplementary_data: S.optional(
-      AuthorizationsCaptureResponseSupplementaryData,
-    ),
-    payee: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
-  }),
-).annotate({
-  identifier: "AuthorizationsCaptureResponse",
-}) as any as S.Schema<AuthorizationsCaptureResponse>;
-
-export interface AuthorizationsGetRequest {
-  /** The ID of the authorized payment for which to show details. */
-  authorization_id: string;
-  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
-  payPalAuthAssertion?: string;
-}
-export const AuthorizationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authorization_id: S.String.pipe(T.Label()),
-    payPalAuthAssertion: S.optional(
-      S.String.pipe(T.Header("PayPal-Auth-Assertion")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v2/payments/authorizations/{authorization_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AuthorizationsGetRequest",
-}) as any as S.Schema<AuthorizationsGetRequest>;
-
-/** The status for the authorized payment. */
-export type AuthorizationsGetResponseStatus =
-  | "CREATED"
-  | "CAPTURED"
-  | "DENIED"
-  | "PARTIALLY_CAPTURED"
-  | "VOIDED"
-  | "PENDING";
-export const AuthorizationsGetResponseStatus = /*@__PURE__*/ S.String;
-
-/** The reason why the authorized status is `PENDING`. */
-export type AuthorizationsGetResponseStatusDetailsReason =
-  | "PENDING_REVIEW"
-  | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const AuthorizationsGetResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
-
-export interface AuthorizationsGetResponseStatusDetails {
-  /** The reason why the authorized status is `PENDING`. */
-  reason?: AuthorizationsGetResponseStatusDetailsReason;
-}
-export const AuthorizationsGetResponseStatusDetails = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      reason: S.optional(AuthorizationsGetResponseStatusDetailsReason),
-    }),
-).annotate({
-  identifier: "AuthorizationsGetResponseStatusDetails",
-}) as any as S.Schema<AuthorizationsGetResponseStatusDetails>;
-
-export type AuthorizationsGetResponseAmount =
-  AuthorizationsCaptureResponseAmount;
-export const AuthorizationsGetResponseAmount =
-  AuthorizationsCaptureResponseAmount;
-
-/** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-export type AuthorizationsGetResponseSellerProtectionStatus =
-  | "ELIGIBLE"
-  | "PARTIALLY_ELIGIBLE"
-  | "NOT_ELIGIBLE";
-export const AuthorizationsGetResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
-
-/** The condition that is covered for the transaction. */
-export type AuthorizationsGetResponseSellerProtectionDisputeCategoriesItem =
-  | "ITEM_NOT_RECEIVED"
-  | "UNAUTHORIZED_TRANSACTION";
-export const AuthorizationsGetResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
-
-/** An array of conditions that are covered for the transaction. */
-export type AuthorizationsGetResponseSellerProtectionDisputeCategoriesList =
-  Array<AuthorizationsGetResponseSellerProtectionDisputeCategoriesItem>;
-export const AuthorizationsGetResponseSellerProtectionDisputeCategoriesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsGetResponseSellerProtectionDisputeCategoriesItem,
-  ) as any as S.Schema<AuthorizationsGetResponseSellerProtectionDisputeCategoriesList>;
-
-export interface AuthorizationsGetResponseSellerProtection {
-  /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-  status?: AuthorizationsGetResponseSellerProtectionStatus;
-  /** An array of conditions that are covered for the transaction. */
-  dispute_categories?: AuthorizationsGetResponseSellerProtectionDisputeCategoriesList;
-}
-export const AuthorizationsGetResponseSellerProtection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(AuthorizationsGetResponseSellerProtectionStatus),
-      dispute_categories: S.optional(
-        AuthorizationsGetResponseSellerProtectionDisputeCategoriesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsGetResponseSellerProtection",
-  }) as any as S.Schema<AuthorizationsGetResponseSellerProtection>;
-
-/** The HTTP method required to make the related call. */
-export type AuthorizationsGetResponseLinksItemMethod =
-  | "GET"
-  | "POST"
-  | "PUT"
-  | "DELETE"
-  | "HEAD"
-  | "CONNECT"
-  | "OPTIONS"
-  | "PATCH";
-export const AuthorizationsGetResponseLinksItemMethod = /*@__PURE__*/ S.String;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type AuthorizationsGetResponseLinksItemSchemaAllOfList = Array<unknown>;
-export const AuthorizationsGetResponseLinksItemSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type AuthorizationsGetResponseLinksItemSchemaAnyOfList = Array<unknown>;
-export const AuthorizationsGetResponseLinksItemSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type AuthorizationsGetResponseLinksItemSchemaOneOfList = Array<unknown>;
-export const AuthorizationsGetResponseLinksItemSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemSchemaOneOfList>;
-
-/** An array of links. */
-export type AuthorizationsGetResponseLinksItemSchemaLinksList = Array<unknown>;
-export const AuthorizationsGetResponseLinksItemSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type AuthorizationsGetResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const AuthorizationsGetResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface AuthorizationsGetResponseLinksItemSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: AuthorizationsGetResponseLinksItemSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: AuthorizationsGetResponseLinksItemSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: AuthorizationsGetResponseLinksItemSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: AuthorizationsGetResponseLinksItemSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const AuthorizationsGetResponseLinksItemSchema = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(AuthorizationsGetResponseLinksItemSchemaAllOfList),
-      anyOf: S.optional(AuthorizationsGetResponseLinksItemSchemaAnyOfList),
-      oneOf: S.optional(AuthorizationsGetResponseLinksItemSchemaOneOfList),
-      not: S.optional(S.Unknown),
-      links: S.optional(AuthorizationsGetResponseLinksItemSchemaLinksList),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AuthorizationsGetResponseLinksItemSchema",
-}) as any as S.Schema<AuthorizationsGetResponseLinksItemSchema>;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type AuthorizationsGetResponseLinksItemTargetSchemaAllOfList =
-  Array<unknown>;
-export const AuthorizationsGetResponseLinksItemTargetSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemTargetSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList =
-  Array<unknown>;
-export const AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type AuthorizationsGetResponseLinksItemTargetSchemaOneOfList =
-  Array<unknown>;
-export const AuthorizationsGetResponseLinksItemTargetSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemTargetSchemaOneOfList>;
-
-/** An array of links. */
-export type AuthorizationsGetResponseLinksItemTargetSchemaLinksList =
-  Array<unknown>;
-export const AuthorizationsGetResponseLinksItemTargetSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsGetResponseLinksItemTargetSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type AuthorizationsGetResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const AuthorizationsGetResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface AuthorizationsGetResponseLinksItemTargetSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: AuthorizationsGetResponseLinksItemTargetSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: AuthorizationsGetResponseLinksItemTargetSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: AuthorizationsGetResponseLinksItemTargetSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const AuthorizationsGetResponseLinksItemTargetSchema =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(
-        AuthorizationsGetResponseLinksItemTargetSchemaAllOfList,
-      ),
-      anyOf: S.optional(
-        AuthorizationsGetResponseLinksItemTargetSchemaAnyOfList,
-      ),
-      oneOf: S.optional(
-        AuthorizationsGetResponseLinksItemTargetSchemaOneOfList,
-      ),
-      not: S.optional(S.Unknown),
-      links: S.optional(
-        AuthorizationsGetResponseLinksItemTargetSchemaLinksList,
-      ),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsGetResponseLinksItemTargetSchema",
-  }) as any as S.Schema<AuthorizationsGetResponseLinksItemTargetSchema>;
-
-export interface AuthorizationsGetResponseLinksItem {
-  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
-  href: string;
-  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
-  rel: string;
-  /** The HTTP method required to make the related call. */
-  method?: AuthorizationsGetResponseLinksItemMethod;
-  /** The link title. */
-  title?: string;
-  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
-  mediaType?: string;
-  /** The media type in which to submit the request data. */
-  encType?: string;
-  schema?: AuthorizationsGetResponseLinksItemSchema;
-  targetSchema?: AuthorizationsGetResponseLinksItemTargetSchema;
-}
-export const AuthorizationsGetResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    href: S.String,
-    rel: S.String,
-    method: S.optional(AuthorizationsGetResponseLinksItemMethod),
-    title: S.optional(S.String),
-    mediaType: S.optional(S.String),
-    encType: S.optional(S.String),
-    schema: S.optional(AuthorizationsGetResponseLinksItemSchema),
-    targetSchema: S.optional(AuthorizationsGetResponseLinksItemTargetSchema),
-  }),
-).annotate({
-  identifier: "AuthorizationsGetResponseLinksItem",
-}) as any as S.Schema<AuthorizationsGetResponseLinksItem>;
-
-/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type AuthorizationsGetResponseLinksList =
-  Array<AuthorizationsGetResponseLinksItem>;
-export const AuthorizationsGetResponseLinksList = /*@__PURE__*/ S.Array(
-  AuthorizationsGetResponseLinksItem,
-) as any as S.Schema<AuthorizationsGetResponseLinksList>;
-
-export type AuthorizationsGetResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
-export const AuthorizationsGetResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
-
-export type AuthorizationsGetResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
-export const AuthorizationsGetResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
-
-export type AuthorizationsGetResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const AuthorizationsGetResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export interface AuthorizationsGetResponse {
-  /** The status for the authorized payment. */
-  status?: AuthorizationsGetResponseStatus;
-  status_details?: AuthorizationsGetResponseStatusDetails;
-  /** The PayPal-generated ID for the authorized payment. */
-  id?: string;
-  amount?: AuthorizationsCaptureResponseAmount;
-  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
-  invoice_id?: string;
-  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
-  custom_id?: string;
-  network_transaction_reference?: NetworkTransaction;
-  seller_protection?: AuthorizationsGetResponseSellerProtection;
-  expiration_time?: unknown;
-  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-  links?: AuthorizationsGetResponseLinksList;
-  create_time?: unknown;
-  update_time?: unknown;
-  supplementary_data?: AuthorizationsCaptureResponseSupplementaryData;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-}
-export const AuthorizationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(AuthorizationsGetResponseStatus),
-    status_details: S.optional(AuthorizationsGetResponseStatusDetails),
-    id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureResponseAmount),
-    invoice_id: S.optional(S.String),
-    custom_id: S.optional(S.String),
-    network_transaction_reference: S.optional(NetworkTransaction),
-    seller_protection: S.optional(AuthorizationsGetResponseSellerProtection),
-    expiration_time: S.optional(S.Unknown),
-    links: S.optional(AuthorizationsGetResponseLinksList),
-    create_time: S.optional(S.Unknown),
-    update_time: S.optional(S.Unknown),
-    supplementary_data: S.optional(
-      AuthorizationsCaptureResponseSupplementaryData,
-    ),
-    payee: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
-  }),
-).annotate({
-  identifier: "AuthorizationsGetResponse",
-}) as any as S.Schema<AuthorizationsGetResponse>;
-
-export type AuthorizationsReauthorizeRequestAmount =
-  AuthorizationsCaptureRequestAmount;
-export const AuthorizationsReauthorizeRequestAmount =
-  AuthorizationsCaptureRequestAmount;
+  identifier: "AuthorizationsReauthorizeRequestAmount",
+}) as any as S.Schema<AuthorizationsReauthorizeRequestAmount>;
 
 export interface AuthorizationsReauthorizeRequest {
   /** The PayPal-generated ID for the authorized payment to reauthorize. */
@@ -1468,7 +82,7 @@ export interface AuthorizationsReauthorizeRequest {
   prefer?: string;
   /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
   payPalAuthAssertion?: string;
-  amount?: AuthorizationsCaptureRequestAmount;
+  amount?: AuthorizationsReauthorizeRequestAmount;
 }
 export const AuthorizationsReauthorizeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1478,7 +92,7 @@ export const AuthorizationsReauthorizeRequest = /*@__PURE__*/ S.suspend(() =>
     payPalAuthAssertion: S.optional(
       S.String.pipe(T.Header("PayPal-Auth-Assertion")),
     ),
-    amount: S.optional(AuthorizationsCaptureRequestAmount),
+    amount: S.optional(AuthorizationsReauthorizeRequestAmount),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1520,10 +134,90 @@ export const AuthorizationsReauthorizeResponseStatusDetails =
     identifier: "AuthorizationsReauthorizeResponseStatusDetails",
   }) as any as S.Schema<AuthorizationsReauthorizeResponseStatusDetails>;
 
-export type AuthorizationsReauthorizeResponseAmount =
-  AuthorizationsCaptureResponseAmount;
-export const AuthorizationsReauthorizeResponseAmount =
-  AuthorizationsCaptureResponseAmount;
+export type AmountBreakdownItemTotal = AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownItemTotal = AuthorizationsReauthorizeRequestAmount;
+
+export type AmountBreakdownShipping = AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownShipping = AuthorizationsReauthorizeRequestAmount;
+
+export type AmountBreakdownHandling = AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownHandling = AuthorizationsReauthorizeRequestAmount;
+
+export type AmountBreakdownTaxTotal = AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownTaxTotal = AuthorizationsReauthorizeRequestAmount;
+
+export type AmountBreakdownInsurance = AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownInsurance = AuthorizationsReauthorizeRequestAmount;
+
+export type AmountBreakdownShippingDiscount =
+  AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownShippingDiscount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type AmountBreakdownDiscount = AuthorizationsReauthorizeRequestAmount;
+export const AmountBreakdownDiscount = AuthorizationsReauthorizeRequestAmount;
+
+/** The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, shipping, handling, insurance, and discounts, if any. */
+export interface AmountBreakdown {
+  item_total?: AuthorizationsReauthorizeRequestAmount;
+  shipping?: AuthorizationsReauthorizeRequestAmount;
+  handling?: AuthorizationsReauthorizeRequestAmount;
+  tax_total?: AuthorizationsReauthorizeRequestAmount;
+  insurance?: AuthorizationsReauthorizeRequestAmount;
+  shipping_discount?: AuthorizationsReauthorizeRequestAmount;
+  discount?: AuthorizationsReauthorizeRequestAmount;
+}
+export const AmountBreakdown = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    item_total: S.optional(AuthorizationsReauthorizeRequestAmount),
+    shipping: S.optional(AuthorizationsReauthorizeRequestAmount),
+    handling: S.optional(AuthorizationsReauthorizeRequestAmount),
+    tax_total: S.optional(AuthorizationsReauthorizeRequestAmount),
+    insurance: S.optional(AuthorizationsReauthorizeRequestAmount),
+    shipping_discount: S.optional(AuthorizationsReauthorizeRequestAmount),
+    discount: S.optional(AuthorizationsReauthorizeRequestAmount),
+  }),
+).annotate({
+  identifier: "AmountBreakdown",
+}) as any as S.Schema<AmountBreakdown>;
+
+export interface AuthorizationsReauthorizeResponseAmount {
+  currency_code: string;
+  /** The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/). */
+  value: string;
+  breakdown?: AmountBreakdown;
+}
+export const AuthorizationsReauthorizeResponseAmount = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      currency_code: S.String,
+      value: S.String,
+      breakdown: S.optional(AmountBreakdown),
+    }),
+).annotate({
+  identifier: "AuthorizationsReauthorizeResponseAmount",
+}) as any as S.Schema<AuthorizationsReauthorizeResponseAmount>;
+
+/** Reference values used by the card network to identify a transaction. */
+export interface NetworkTransaction {
+  /** Transaction reference id returned by the scheme. For Visa and Amex, this is the "Tran id" field in response. For MasterCard, this is the "BankNet reference id" field in response. For Discover, this is the "NRID" field in response. The pattern we expect for this field from Visa/Amex/CB/Discover is numeric, Mastercard/BNPP is alphanumeric and Paysecure is alphanumeric with special character -. */
+  id?: string;
+  /** The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as "BankNet reference date". For some specific networks, such as MasterCard and Discover, this date field is mandatory when the `previous_network_transaction_reference_id` is passed. */
+  date?: string;
+  network?: unknown;
+  /** Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks. */
+  acquirer_reference_number?: string;
+}
+export const NetworkTransaction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    date: S.optional(S.String),
+    network: S.optional(S.Unknown),
+    acquirer_reference_number: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NetworkTransaction",
+}) as any as S.Schema<NetworkTransaction>;
 
 /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
 export type AuthorizationsReauthorizeResponseSellerProtectionStatus =
@@ -1614,10 +308,21 @@ export const AuthorizationsReauthorizeResponseLinksItemSchemaLinksList =
   ) as any as S.Schema<AuthorizationsReauthorizeResponseLinksItemSchemaLinksList>;
 
 /** The media type and context-encoding scheme. */
-export type AuthorizationsReauthorizeResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+export interface AuthorizationsReauthorizeResponseLinksItemSchemaMedia {
+  /** The media type. See [Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types](https://tools.ietf.org/html/rfc2046). */
+  type?: string;
+  /** The content-encoding scheme. See [Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies](https://tools.ietf.org/html/rfc2045). */
+  binaryEncoding?: string;
+}
 export const AuthorizationsReauthorizeResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(S.String),
+      binaryEncoding: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "AuthorizationsReauthorizeResponseLinksItemSchemaMedia",
+  }) as any as S.Schema<AuthorizationsReauthorizeResponseLinksItemSchemaMedia>;
 
 export interface AuthorizationsReauthorizeResponseLinksItemSchema {
   /** Any additional items. */
@@ -1645,7 +350,7 @@ export interface AuthorizationsReauthorizeResponseLinksItemSchema {
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
@@ -1672,7 +377,7 @@ export const AuthorizationsReauthorizeResponseLinksItemSchema =
         AuthorizationsReauthorizeResponseLinksItemSchemaLinksList,
       ),
       fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
       pathStart: S.optional(S.String),
     }),
   ).annotate({
@@ -1713,9 +418,9 @@ export const AuthorizationsReauthorizeResponseLinksItemTargetSchemaLinksList =
 
 /** The media type and context-encoding scheme. */
 export type AuthorizationsReauthorizeResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 export const AuthorizationsReauthorizeResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 
 export interface AuthorizationsReauthorizeResponseLinksItemTargetSchema {
   /** Any additional items. */
@@ -1743,7 +448,7 @@ export interface AuthorizationsReauthorizeResponseLinksItemTargetSchema {
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
@@ -1770,7 +475,7 @@ export const AuthorizationsReauthorizeResponseLinksItemTargetSchema =
         AuthorizationsReauthorizeResponseLinksItemTargetSchemaLinksList,
       ),
       fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
       pathStart: S.optional(S.String),
     }),
   ).annotate({
@@ -1818,20 +523,52 @@ export const AuthorizationsReauthorizeResponseLinksList = /*@__PURE__*/ S.Array(
   AuthorizationsReauthorizeResponseLinksItem,
 ) as any as S.Schema<AuthorizationsReauthorizeResponseLinksList>;
 
-export type AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
+export interface AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds {
+  /** Order ID related to the resource. */
+  order_id?: string;
+  /** Authorization ID related to the resource. */
+  authorization_id?: string;
+  /** Capture ID related to the resource. */
+  capture_id?: string;
+}
 export const AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      order_id: S.optional(S.String),
+      authorization_id: S.optional(S.String),
+      capture_id: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds",
+  }) as any as S.Schema<AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds>;
 
-export type AuthorizationsReauthorizeResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
+export interface AuthorizationsReauthorizeResponseSupplementaryData {
+  related_ids?: AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+}
 export const AuthorizationsReauthorizeResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      related_ids: S.optional(
+        AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds,
+      ),
+    }),
+  ).annotate({
+    identifier: "AuthorizationsReauthorizeResponseSupplementaryData",
+  }) as any as S.Schema<AuthorizationsReauthorizeResponseSupplementaryData>;
 
-export type AuthorizationsReauthorizeResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const AuthorizationsReauthorizeResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+export interface AuthorizationsReauthorizeResponsePayee {
+  email_address?: unknown;
+  merchant_id?: unknown;
+}
+export const AuthorizationsReauthorizeResponsePayee = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      email_address: S.optional(S.Unknown),
+      merchant_id: S.optional(S.Unknown),
+    }),
+).annotate({
+  identifier: "AuthorizationsReauthorizeResponsePayee",
+}) as any as S.Schema<AuthorizationsReauthorizeResponsePayee>;
 
 export interface AuthorizationsReauthorizeResponse {
   /** The status for the authorized payment. */
@@ -1839,7 +576,7 @@ export interface AuthorizationsReauthorizeResponse {
   status_details?: AuthorizationsReauthorizeResponseStatusDetails;
   /** The PayPal-generated ID for the authorized payment. */
   id?: string;
-  amount?: AuthorizationsCaptureResponseAmount;
+  amount?: AuthorizationsReauthorizeResponseAmount;
   /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
   invoice_id?: string;
   /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
@@ -1851,15 +588,15 @@ export interface AuthorizationsReauthorizeResponse {
   links?: AuthorizationsReauthorizeResponseLinksList;
   create_time?: unknown;
   update_time?: unknown;
-  supplementary_data?: AuthorizationsCaptureResponseSupplementaryData;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+  supplementary_data?: AuthorizationsReauthorizeResponseSupplementaryData;
+  payee?: AuthorizationsReauthorizeResponsePayee;
 }
 export const AuthorizationsReauthorizeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     status: S.optional(AuthorizationsReauthorizeResponseStatus),
     status_details: S.optional(AuthorizationsReauthorizeResponseStatusDetails),
     id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureResponseAmount),
+    amount: S.optional(AuthorizationsReauthorizeResponseAmount),
     invoice_id: S.optional(S.String),
     custom_id: S.optional(S.String),
     network_transaction_reference: S.optional(NetworkTransaction),
@@ -1871,446 +608,133 @@ export const AuthorizationsReauthorizeResponse = /*@__PURE__*/ S.suspend(() =>
     create_time: S.optional(S.Unknown),
     update_time: S.optional(S.Unknown),
     supplementary_data: S.optional(
-      AuthorizationsCaptureResponseSupplementaryData,
+      AuthorizationsReauthorizeResponseSupplementaryData,
     ),
-    payee: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
+    payee: S.optional(AuthorizationsReauthorizeResponsePayee),
   }),
 ).annotate({
   identifier: "AuthorizationsReauthorizeResponse",
 }) as any as S.Schema<AuthorizationsReauthorizeResponse>;
 
-export interface AuthorizationsVoidRequest {
-  /** The PayPal-generated ID for the authorized payment to void. */
+export type CaptureAuthorizationRequestAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationRequestAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const CaptureAuthorizationRequestPaymentInstructionPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export interface CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem {
+  amount: AuthorizationsReauthorizeRequestAmount;
+  payee?: AuthorizationsReauthorizeResponsePayee;
+}
+export const CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      amount: AuthorizationsReauthorizeRequestAmount,
+      payee: S.optional(AuthorizationsReauthorizeResponsePayee),
+    }),
+  ).annotate({
+    identifier: "CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem",
+  }) as any as S.Schema<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+
+/** An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability. */
+export type CaptureAuthorizationRequestPaymentInstructionPlatformFeesList =
+  Array<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+export const CaptureAuthorizationRequestPaymentInstructionPlatformFeesList =
+  /*@__PURE__*/ S.Array(
+    CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem,
+  ) as any as S.Schema<CaptureAuthorizationRequestPaymentInstructionPlatformFeesList>;
+
+export interface CaptureAuthorizationRequestPaymentInstruction {
+  /** An array of various fees, commissions, tips, or donations. This field is only applicable to merchants that been enabled for PayPal Complete Payments Platform for Marketplaces and Platforms capability. */
+  platform_fees?: CaptureAuthorizationRequestPaymentInstructionPlatformFeesList;
+  disbursement_mode?: unknown;
+  /** This field is only enabled for selected merchants/partners to use and provides the ability to trigger a specific pricing rate/plan for a payment transaction. The list of eligible 'payee_pricing_tier_id' would be provided to you by your Account Manager. Specifying values other than the one provided to you by your account manager would result in an error. */
+  payee_pricing_tier_id?: string;
+  /** FX identifier generated returned by PayPal to be used for payment processing in order to honor FX rate (for eligible integrations) to be used when amount is settled/received into the payee account. */
+  payee_receivable_fx_rate_id?: string;
+}
+export const CaptureAuthorizationRequestPaymentInstruction =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      platform_fees: S.optional(
+        CaptureAuthorizationRequestPaymentInstructionPlatformFeesList,
+      ),
+      disbursement_mode: S.optional(S.Unknown),
+      payee_pricing_tier_id: S.optional(S.String),
+      payee_receivable_fx_rate_id: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CaptureAuthorizationRequestPaymentInstruction",
+  }) as any as S.Schema<CaptureAuthorizationRequestPaymentInstruction>;
+
+export interface CaptureAuthorizationRequest {
+  /** The PayPal-generated ID for the authorized payment to capture. */
   authorization_id: string;
-  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
-  payPalAuthAssertion?: string;
   /** A unique ID identifying the request header for idempotency purposes. */
   payPalRequestId?: string;
   /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
   prefer?: string;
+  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
+  payPalAuthAssertion?: string;
+  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
+  invoice_id?: string;
+  /** An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives. */
+  note_to_payer?: string;
+  amount?: AuthorizationsReauthorizeRequestAmount;
+  /** Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization. */
+  final_capture?: boolean;
+  payment_instruction?: CaptureAuthorizationRequestPaymentInstruction;
+  /** The payment descriptor on the payer's account statement. */
+  soft_descriptor?: string;
 }
-export const AuthorizationsVoidRequest = /*@__PURE__*/ S.suspend(() =>
+export const CaptureAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     authorization_id: S.String.pipe(T.Label()),
+    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
+    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
     payPalAuthAssertion: S.optional(
       S.String.pipe(T.Header("PayPal-Auth-Assertion")),
     ),
-    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
-    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
+    invoice_id: S.optional(S.String),
+    note_to_payer: S.optional(S.String),
+    amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+    final_capture: S.optional(S.Boolean),
+    payment_instruction: S.optional(
+      CaptureAuthorizationRequestPaymentInstruction,
+    ),
+    soft_descriptor: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/v2/payments/authorizations/{authorization_id}/void",
+      uri: "/v2/payments/authorizations/{authorization_id}/capture",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "AuthorizationsVoidRequest",
-}) as any as S.Schema<AuthorizationsVoidRequest>;
-
-/** The status for the authorized payment. */
-export type AuthorizationsVoidResponseStatus =
-  | "CREATED"
-  | "CAPTURED"
-  | "DENIED"
-  | "PARTIALLY_CAPTURED"
-  | "VOIDED"
-  | "PENDING";
-export const AuthorizationsVoidResponseStatus = /*@__PURE__*/ S.String;
-
-/** The reason why the authorized status is `PENDING`. */
-export type AuthorizationsVoidResponseStatusDetailsReason =
-  | "PENDING_REVIEW"
-  | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const AuthorizationsVoidResponseStatusDetailsReason =
-  /*@__PURE__*/ S.String;
-
-export interface AuthorizationsVoidResponseStatusDetails {
-  /** The reason why the authorized status is `PENDING`. */
-  reason?: AuthorizationsVoidResponseStatusDetailsReason;
-}
-export const AuthorizationsVoidResponseStatusDetails = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      reason: S.optional(AuthorizationsVoidResponseStatusDetailsReason),
-    }),
-).annotate({
-  identifier: "AuthorizationsVoidResponseStatusDetails",
-}) as any as S.Schema<AuthorizationsVoidResponseStatusDetails>;
-
-export type AuthorizationsVoidResponseAmount =
-  AuthorizationsCaptureResponseAmount;
-export const AuthorizationsVoidResponseAmount =
-  AuthorizationsCaptureResponseAmount;
-
-/** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-export type AuthorizationsVoidResponseSellerProtectionStatus =
-  | "ELIGIBLE"
-  | "PARTIALLY_ELIGIBLE"
-  | "NOT_ELIGIBLE";
-export const AuthorizationsVoidResponseSellerProtectionStatus =
-  /*@__PURE__*/ S.String;
-
-/** The condition that is covered for the transaction. */
-export type AuthorizationsVoidResponseSellerProtectionDisputeCategoriesItem =
-  | "ITEM_NOT_RECEIVED"
-  | "UNAUTHORIZED_TRANSACTION";
-export const AuthorizationsVoidResponseSellerProtectionDisputeCategoriesItem =
-  /*@__PURE__*/ S.String;
-
-/** An array of conditions that are covered for the transaction. */
-export type AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList =
-  Array<AuthorizationsVoidResponseSellerProtectionDisputeCategoriesItem>;
-export const AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsVoidResponseSellerProtectionDisputeCategoriesItem,
-  ) as any as S.Schema<AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList>;
-
-export interface AuthorizationsVoidResponseSellerProtection {
-  /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-  status?: AuthorizationsVoidResponseSellerProtectionStatus;
-  /** An array of conditions that are covered for the transaction. */
-  dispute_categories?: AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList;
-}
-export const AuthorizationsVoidResponseSellerProtection =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(AuthorizationsVoidResponseSellerProtectionStatus),
-      dispute_categories: S.optional(
-        AuthorizationsVoidResponseSellerProtectionDisputeCategoriesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsVoidResponseSellerProtection",
-  }) as any as S.Schema<AuthorizationsVoidResponseSellerProtection>;
-
-/** The HTTP method required to make the related call. */
-export type AuthorizationsVoidResponseLinksItemMethod =
-  | "GET"
-  | "POST"
-  | "PUT"
-  | "DELETE"
-  | "HEAD"
-  | "CONNECT"
-  | "OPTIONS"
-  | "PATCH";
-export const AuthorizationsVoidResponseLinksItemMethod = /*@__PURE__*/ S.String;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type AuthorizationsVoidResponseLinksItemSchemaAllOfList = Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type AuthorizationsVoidResponseLinksItemSchemaAnyOfList = Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type AuthorizationsVoidResponseLinksItemSchemaOneOfList = Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemSchemaOneOfList>;
-
-/** An array of links. */
-export type AuthorizationsVoidResponseLinksItemSchemaLinksList = Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type AuthorizationsVoidResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const AuthorizationsVoidResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface AuthorizationsVoidResponseLinksItemSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: AuthorizationsVoidResponseLinksItemSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: AuthorizationsVoidResponseLinksItemSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: AuthorizationsVoidResponseLinksItemSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: AuthorizationsVoidResponseLinksItemSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const AuthorizationsVoidResponseLinksItemSchema =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(AuthorizationsVoidResponseLinksItemSchemaAllOfList),
-      anyOf: S.optional(AuthorizationsVoidResponseLinksItemSchemaAnyOfList),
-      oneOf: S.optional(AuthorizationsVoidResponseLinksItemSchemaOneOfList),
-      not: S.optional(S.Unknown),
-      links: S.optional(AuthorizationsVoidResponseLinksItemSchemaLinksList),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsVoidResponseLinksItemSchema",
-  }) as any as S.Schema<AuthorizationsVoidResponseLinksItemSchema>;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList =
-  Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList =
-  Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList =
-  Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList>;
-
-/** An array of links. */
-export type AuthorizationsVoidResponseLinksItemTargetSchemaLinksList =
-  Array<unknown>;
-export const AuthorizationsVoidResponseLinksItemTargetSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<AuthorizationsVoidResponseLinksItemTargetSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type AuthorizationsVoidResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const AuthorizationsVoidResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface AuthorizationsVoidResponseLinksItemTargetSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: AuthorizationsVoidResponseLinksItemTargetSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const AuthorizationsVoidResponseLinksItemTargetSchema =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(
-        AuthorizationsVoidResponseLinksItemTargetSchemaAllOfList,
-      ),
-      anyOf: S.optional(
-        AuthorizationsVoidResponseLinksItemTargetSchemaAnyOfList,
-      ),
-      oneOf: S.optional(
-        AuthorizationsVoidResponseLinksItemTargetSchemaOneOfList,
-      ),
-      not: S.optional(S.Unknown),
-      links: S.optional(
-        AuthorizationsVoidResponseLinksItemTargetSchemaLinksList,
-      ),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AuthorizationsVoidResponseLinksItemTargetSchema",
-  }) as any as S.Schema<AuthorizationsVoidResponseLinksItemTargetSchema>;
-
-export interface AuthorizationsVoidResponseLinksItem {
-  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
-  href: string;
-  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
-  rel: string;
-  /** The HTTP method required to make the related call. */
-  method?: AuthorizationsVoidResponseLinksItemMethod;
-  /** The link title. */
-  title?: string;
-  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
-  mediaType?: string;
-  /** The media type in which to submit the request data. */
-  encType?: string;
-  schema?: AuthorizationsVoidResponseLinksItemSchema;
-  targetSchema?: AuthorizationsVoidResponseLinksItemTargetSchema;
-}
-export const AuthorizationsVoidResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    href: S.String,
-    rel: S.String,
-    method: S.optional(AuthorizationsVoidResponseLinksItemMethod),
-    title: S.optional(S.String),
-    mediaType: S.optional(S.String),
-    encType: S.optional(S.String),
-    schema: S.optional(AuthorizationsVoidResponseLinksItemSchema),
-    targetSchema: S.optional(AuthorizationsVoidResponseLinksItemTargetSchema),
-  }),
-).annotate({
-  identifier: "AuthorizationsVoidResponseLinksItem",
-}) as any as S.Schema<AuthorizationsVoidResponseLinksItem>;
-
-/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type AuthorizationsVoidResponseLinksList =
-  Array<AuthorizationsVoidResponseLinksItem>;
-export const AuthorizationsVoidResponseLinksList = /*@__PURE__*/ S.Array(
-  AuthorizationsVoidResponseLinksItem,
-) as any as S.Schema<AuthorizationsVoidResponseLinksList>;
-
-export type AuthorizationsVoidResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
-export const AuthorizationsVoidResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
-
-export type AuthorizationsVoidResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
-export const AuthorizationsVoidResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
-
-export type AuthorizationsVoidResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const AuthorizationsVoidResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export interface AuthorizationsVoidResponse {
-  /** The status for the authorized payment. */
-  status?: AuthorizationsVoidResponseStatus;
-  status_details?: AuthorizationsVoidResponseStatusDetails;
-  /** The PayPal-generated ID for the authorized payment. */
-  id?: string;
-  amount?: AuthorizationsCaptureResponseAmount;
-  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
-  invoice_id?: string;
-  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
-  custom_id?: string;
-  network_transaction_reference?: NetworkTransaction;
-  seller_protection?: AuthorizationsVoidResponseSellerProtection;
-  expiration_time?: unknown;
-  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-  links?: AuthorizationsVoidResponseLinksList;
-  create_time?: unknown;
-  update_time?: unknown;
-  supplementary_data?: AuthorizationsCaptureResponseSupplementaryData;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-}
-export const AuthorizationsVoidResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(AuthorizationsVoidResponseStatus),
-    status_details: S.optional(AuthorizationsVoidResponseStatusDetails),
-    id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureResponseAmount),
-    invoice_id: S.optional(S.String),
-    custom_id: S.optional(S.String),
-    network_transaction_reference: S.optional(NetworkTransaction),
-    seller_protection: S.optional(AuthorizationsVoidResponseSellerProtection),
-    expiration_time: S.optional(S.Unknown),
-    links: S.optional(AuthorizationsVoidResponseLinksList),
-    create_time: S.optional(S.Unknown),
-    update_time: S.optional(S.Unknown),
-    supplementary_data: S.optional(
-      AuthorizationsCaptureResponseSupplementaryData,
-    ),
-    payee: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
-  }),
-).annotate({
-  identifier: "AuthorizationsVoidResponse",
-}) as any as S.Schema<AuthorizationsVoidResponse>;
-
-export interface CapturesGetRequest {
-  /** The PayPal-generated ID for the captured payment for which to show details. */
-  capture_id: string;
-}
-export const CapturesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capture_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/v2/payments/captures/{capture_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CapturesGetRequest",
-}) as any as S.Schema<CapturesGetRequest>;
+  identifier: "CaptureAuthorizationRequest",
+}) as any as S.Schema<CaptureAuthorizationRequest>;
 
 /** The status of the captured payment. */
-export type CapturesGetResponseStatus =
+export type CaptureAuthorizationResponseStatus =
   | "COMPLETED"
   | "DECLINED"
   | "PARTIALLY_REFUNDED"
   | "PENDING"
   | "REFUNDED"
   | "FAILED";
-export const CapturesGetResponseStatus = /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseStatus = /*@__PURE__*/ S.String;
 
 /** The reason why the captured payment status is `PENDING` or `DENIED`. */
-export type CapturesGetResponseStatusDetailsReason =
+export type CaptureAuthorizationResponseStatusDetailsReason =
   | "BUYER_COMPLAINT"
   | "CHARGEBACK"
   | "ECHECK"
@@ -2323,148 +747,171 @@ export type CapturesGetResponseStatusDetailsReason =
   | "UNILATERAL"
   | "VERIFICATION_REQUIRED"
   | "DECLINED_BY_RISK_FRAUD_FILTERS";
-export const CapturesGetResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseStatusDetailsReason =
+  /*@__PURE__*/ S.String;
 
-export interface CapturesGetResponseStatusDetails {
+export interface CaptureAuthorizationResponseStatusDetails {
   /** The reason why the captured payment status is `PENDING` or `DENIED`. */
-  reason?: CapturesGetResponseStatusDetailsReason;
+  reason?: CaptureAuthorizationResponseStatusDetailsReason;
 }
-export const CapturesGetResponseStatusDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reason: S.optional(CapturesGetResponseStatusDetailsReason),
-  }),
-).annotate({
-  identifier: "CapturesGetResponseStatusDetails",
-}) as any as S.Schema<CapturesGetResponseStatusDetails>;
+export const CaptureAuthorizationResponseStatusDetails =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      reason: S.optional(CaptureAuthorizationResponseStatusDetailsReason),
+    }),
+  ).annotate({
+    identifier: "CaptureAuthorizationResponseStatusDetails",
+  }) as any as S.Schema<CaptureAuthorizationResponseStatusDetails>;
 
-export type CapturesGetResponseAmount = AuthorizationsCaptureResponseAmount;
-export const CapturesGetResponseAmount = AuthorizationsCaptureResponseAmount;
+export type CaptureAuthorizationResponseAmount =
+  AuthorizationsReauthorizeResponseAmount;
+export const CaptureAuthorizationResponseAmount =
+  AuthorizationsReauthorizeResponseAmount;
 
 /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-export type CapturesGetResponseSellerProtectionStatus =
+export type CaptureAuthorizationResponseSellerProtectionStatus =
   | "ELIGIBLE"
   | "PARTIALLY_ELIGIBLE"
   | "NOT_ELIGIBLE";
-export const CapturesGetResponseSellerProtectionStatus = /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseSellerProtectionStatus =
+  /*@__PURE__*/ S.String;
 
 /** The condition that is covered for the transaction. */
-export type CapturesGetResponseSellerProtectionDisputeCategoriesItem =
+export type CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem =
   | "ITEM_NOT_RECEIVED"
   | "UNAUTHORIZED_TRANSACTION";
-export const CapturesGetResponseSellerProtectionDisputeCategoriesItem =
+export const CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem =
   /*@__PURE__*/ S.String;
 
 /** An array of conditions that are covered for the transaction. */
-export type CapturesGetResponseSellerProtectionDisputeCategoriesList =
-  Array<CapturesGetResponseSellerProtectionDisputeCategoriesItem>;
-export const CapturesGetResponseSellerProtectionDisputeCategoriesList =
+export type CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList =
+  Array<CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem>;
+export const CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList =
   /*@__PURE__*/ S.Array(
-    CapturesGetResponseSellerProtectionDisputeCategoriesItem,
-  ) as any as S.Schema<CapturesGetResponseSellerProtectionDisputeCategoriesList>;
+    CaptureAuthorizationResponseSellerProtectionDisputeCategoriesItem,
+  ) as any as S.Schema<CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList>;
 
-export interface CapturesGetResponseSellerProtection {
+export interface CaptureAuthorizationResponseSellerProtection {
   /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
-  status?: CapturesGetResponseSellerProtectionStatus;
+  status?: CaptureAuthorizationResponseSellerProtectionStatus;
   /** An array of conditions that are covered for the transaction. */
-  dispute_categories?: CapturesGetResponseSellerProtectionDisputeCategoriesList;
+  dispute_categories?: CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList;
 }
-export const CapturesGetResponseSellerProtection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapturesGetResponseSellerProtectionStatus),
-    dispute_categories: S.optional(
-      CapturesGetResponseSellerProtectionDisputeCategoriesList,
-    ),
-  }),
-).annotate({
-  identifier: "CapturesGetResponseSellerProtection",
-}) as any as S.Schema<CapturesGetResponseSellerProtection>;
-
-export type CapturesGetResponseSellerReceivableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesGetResponseSellerReceivableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesGetResponseSellerReceivableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesGetResponseSellerReceivableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesGetResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesGetResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesGetResponseSellerReceivableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesGetResponseSellerReceivableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesGetResponseSellerReceivableBreakdownReceivableAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesGetResponseSellerReceivableBreakdownReceivableAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesGetResponseSellerReceivableBreakdownExchangeRate =
-  AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-export const CapturesGetResponseSellerReceivableBreakdownExchangeRate =
-  AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-
-export type CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const CapturesGetResponseSellerReceivableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export type CapturesGetResponseSellerReceivableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-export const CapturesGetResponseSellerReceivableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-
-/** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
-export type CapturesGetResponseSellerReceivableBreakdownPlatformFeesList =
-  Array<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-export const CapturesGetResponseSellerReceivableBreakdownPlatformFeesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem,
-  ) as any as S.Schema<CapturesGetResponseSellerReceivableBreakdownPlatformFeesList>;
-
-export interface CapturesGetResponseSellerReceivableBreakdown {
-  gross_amount: AuthorizationsCaptureRequestAmount;
-  paypal_fee?: AuthorizationsCaptureRequestAmount;
-  paypal_fee_in_receivable_currency?: AuthorizationsCaptureRequestAmount;
-  net_amount?: AuthorizationsCaptureRequestAmount;
-  receivable_amount?: AuthorizationsCaptureRequestAmount;
-  exchange_rate?: AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-  /** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
-  platform_fees?: CapturesGetResponseSellerReceivableBreakdownPlatformFeesList;
-}
-export const CapturesGetResponseSellerReceivableBreakdown =
+export const CaptureAuthorizationResponseSellerProtection =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      gross_amount: AuthorizationsCaptureRequestAmount,
-      paypal_fee: S.optional(AuthorizationsCaptureRequestAmount),
-      paypal_fee_in_receivable_currency: S.optional(
-        AuthorizationsCaptureRequestAmount,
-      ),
-      net_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      receivable_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      exchange_rate: S.optional(
-        AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate,
-      ),
-      platform_fees: S.optional(
-        CapturesGetResponseSellerReceivableBreakdownPlatformFeesList,
+      status: S.optional(CaptureAuthorizationResponseSellerProtectionStatus),
+      dispute_categories: S.optional(
+        CaptureAuthorizationResponseSellerProtectionDisputeCategoriesList,
       ),
     }),
   ).annotate({
-    identifier: "CapturesGetResponseSellerReceivableBreakdown",
-  }) as any as S.Schema<CapturesGetResponseSellerReceivableBreakdown>;
+    identifier: "CaptureAuthorizationResponseSellerProtection",
+  }) as any as S.Schema<CaptureAuthorizationResponseSellerProtection>;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownReceivableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownReceivableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export interface CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate {
+  source_currency?: unknown;
+  target_currency?: unknown;
+  /** The target currency amount. Equivalent to one unit of the source currency. Formatted as integer or decimal value with one to 15 digits to the right of the decimal point. */
+  value?: string;
+}
+export const CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      source_currency: S.optional(S.Unknown),
+      target_currency: S.optional(S.Unknown),
+      value: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate",
+  }) as any as S.Schema<CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate>;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export type CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+
+/** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
+export type CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList =
+  Array<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+export const CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList =
+  /*@__PURE__*/ S.Array(
+    CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem,
+  ) as any as S.Schema<CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList>;
+
+export interface CaptureAuthorizationResponseSellerReceivableBreakdown {
+  gross_amount: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee?: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee_in_receivable_currency?: AuthorizationsReauthorizeRequestAmount;
+  net_amount?: AuthorizationsReauthorizeRequestAmount;
+  receivable_amount?: AuthorizationsReauthorizeRequestAmount;
+  exchange_rate?: CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+  /** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
+  platform_fees?: CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList;
+}
+export const CaptureAuthorizationResponseSellerReceivableBreakdown =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      gross_amount: AuthorizationsReauthorizeRequestAmount,
+      paypal_fee: S.optional(AuthorizationsReauthorizeRequestAmount),
+      paypal_fee_in_receivable_currency: S.optional(
+        AuthorizationsReauthorizeRequestAmount,
+      ),
+      net_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      receivable_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      exchange_rate: S.optional(
+        CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate,
+      ),
+      platform_fees: S.optional(
+        CaptureAuthorizationResponseSellerReceivableBreakdownPlatformFeesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "CaptureAuthorizationResponseSellerReceivableBreakdown",
+  }) as any as S.Schema<CaptureAuthorizationResponseSellerReceivableBreakdown>;
+
+/** The funds that are held on behalf of the merchant. */
+export type DisbursementMode = "INSTANT" | "DELAYED";
+export const DisbursementMode = /*@__PURE__*/ S.String;
 
 /** The HTTP method required to make the related call. */
-export type CapturesGetResponseLinksItemMethod =
+export type CaptureAuthorizationResponseLinksItemMethod =
   | "GET"
   | "POST"
   | "PUT"
@@ -2473,43 +920,48 @@ export type CapturesGetResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const CapturesGetResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const CaptureAuthorizationResponseLinksItemMethod =
+  /*@__PURE__*/ S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type CapturesGetResponseLinksItemSchemaAllOfList = Array<unknown>;
-export const CapturesGetResponseLinksItemSchemaAllOfList =
+export type CaptureAuthorizationResponseLinksItemSchemaAllOfList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemSchemaAllOfList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemSchemaAllOfList>;
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemSchemaAllOfList>;
 
 /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type CapturesGetResponseLinksItemSchemaAnyOfList = Array<unknown>;
-export const CapturesGetResponseLinksItemSchemaAnyOfList =
+export type CaptureAuthorizationResponseLinksItemSchemaAnyOfList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemSchemaAnyOfList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemSchemaAnyOfList>;
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemSchemaAnyOfList>;
 
 /** An array of sub-schemas. The data must validate against one sub-schema. */
-export type CapturesGetResponseLinksItemSchemaOneOfList = Array<unknown>;
-export const CapturesGetResponseLinksItemSchemaOneOfList =
+export type CaptureAuthorizationResponseLinksItemSchemaOneOfList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemSchemaOneOfList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemSchemaOneOfList>;
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemSchemaOneOfList>;
 
 /** An array of links. */
-export type CapturesGetResponseLinksItemSchemaLinksList = Array<unknown>;
-export const CapturesGetResponseLinksItemSchemaLinksList =
+export type CaptureAuthorizationResponseLinksItemSchemaLinksList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemSchemaLinksList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemSchemaLinksList>;
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemSchemaLinksList>;
 
 /** The media type and context-encoding scheme. */
-export type CapturesGetResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const CapturesGetResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+export type CaptureAuthorizationResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const CaptureAuthorizationResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 
-export interface CapturesGetResponseLinksItemSchema {
+export interface CaptureAuthorizationResponseLinksItemSchema {
   /** Any additional items. */
   additionalItems?: unknown;
   /** Any Dependencies. */
@@ -2523,109 +975,24 @@ export interface CapturesGetResponseLinksItemSchema {
   /** Properties. */
   properties?: unknown;
   /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: CapturesGetResponseLinksItemSchemaAllOfList;
+  allOf?: CaptureAuthorizationResponseLinksItemSchemaAllOfList;
   /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: CapturesGetResponseLinksItemSchemaAnyOfList;
+  anyOf?: CaptureAuthorizationResponseLinksItemSchemaAnyOfList;
   /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: CapturesGetResponseLinksItemSchemaOneOfList;
+  oneOf?: CaptureAuthorizationResponseLinksItemSchemaOneOfList;
   /** Not. */
   not?: unknown;
   /** An array of links. */
-  links?: CapturesGetResponseLinksItemSchemaLinksList;
+  links?: CaptureAuthorizationResponseLinksItemSchemaLinksList;
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
-export const CapturesGetResponseLinksItemSchema = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalItems: S.optional(S.Unknown),
-    dependencies: S.optional(S.Unknown),
-    items: S.optional(S.Unknown),
-    definitions: S.optional(S.Unknown),
-    patternProperties: S.optional(S.Unknown),
-    properties: S.optional(S.Unknown),
-    allOf: S.optional(CapturesGetResponseLinksItemSchemaAllOfList),
-    anyOf: S.optional(CapturesGetResponseLinksItemSchemaAnyOfList),
-    oneOf: S.optional(CapturesGetResponseLinksItemSchemaOneOfList),
-    not: S.optional(S.Unknown),
-    links: S.optional(CapturesGetResponseLinksItemSchemaLinksList),
-    fragmentResolution: S.optional(S.String),
-    media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-    pathStart: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CapturesGetResponseLinksItemSchema",
-}) as any as S.Schema<CapturesGetResponseLinksItemSchema>;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type CapturesGetResponseLinksItemTargetSchemaAllOfList = Array<unknown>;
-export const CapturesGetResponseLinksItemTargetSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemTargetSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type CapturesGetResponseLinksItemTargetSchemaAnyOfList = Array<unknown>;
-export const CapturesGetResponseLinksItemTargetSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemTargetSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type CapturesGetResponseLinksItemTargetSchemaOneOfList = Array<unknown>;
-export const CapturesGetResponseLinksItemTargetSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemTargetSchemaOneOfList>;
-
-/** An array of links. */
-export type CapturesGetResponseLinksItemTargetSchemaLinksList = Array<unknown>;
-export const CapturesGetResponseLinksItemTargetSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesGetResponseLinksItemTargetSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type CapturesGetResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const CapturesGetResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface CapturesGetResponseLinksItemTargetSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: CapturesGetResponseLinksItemTargetSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: CapturesGetResponseLinksItemTargetSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: CapturesGetResponseLinksItemTargetSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: CapturesGetResponseLinksItemTargetSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const CapturesGetResponseLinksItemTargetSchema = /*@__PURE__*/ S.suspend(
-  () =>
+export const CaptureAuthorizationResponseLinksItemSchema =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       additionalItems: S.optional(S.Unknown),
       dependencies: S.optional(S.Unknown),
@@ -2633,58 +1000,160 @@ export const CapturesGetResponseLinksItemTargetSchema = /*@__PURE__*/ S.suspend(
       definitions: S.optional(S.Unknown),
       patternProperties: S.optional(S.Unknown),
       properties: S.optional(S.Unknown),
-      allOf: S.optional(CapturesGetResponseLinksItemTargetSchemaAllOfList),
-      anyOf: S.optional(CapturesGetResponseLinksItemTargetSchemaAnyOfList),
-      oneOf: S.optional(CapturesGetResponseLinksItemTargetSchemaOneOfList),
+      allOf: S.optional(CaptureAuthorizationResponseLinksItemSchemaAllOfList),
+      anyOf: S.optional(CaptureAuthorizationResponseLinksItemSchemaAnyOfList),
+      oneOf: S.optional(CaptureAuthorizationResponseLinksItemSchemaOneOfList),
       not: S.optional(S.Unknown),
-      links: S.optional(CapturesGetResponseLinksItemTargetSchemaLinksList),
+      links: S.optional(CaptureAuthorizationResponseLinksItemSchemaLinksList),
       fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
       pathStart: S.optional(S.String),
     }),
-).annotate({
-  identifier: "CapturesGetResponseLinksItemTargetSchema",
-}) as any as S.Schema<CapturesGetResponseLinksItemTargetSchema>;
+  ).annotate({
+    identifier: "CaptureAuthorizationResponseLinksItemSchema",
+  }) as any as S.Schema<CaptureAuthorizationResponseLinksItemSchema>;
 
-export interface CapturesGetResponseLinksItem {
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList>;
+
+/** An array of links. */
+export type CaptureAuthorizationResponseLinksItemTargetSchemaLinksList =
+  Array<unknown>;
+export const CaptureAuthorizationResponseLinksItemTargetSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<CaptureAuthorizationResponseLinksItemTargetSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type CaptureAuthorizationResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const CaptureAuthorizationResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface CaptureAuthorizationResponseLinksItemTargetSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: CaptureAuthorizationResponseLinksItemTargetSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const CaptureAuthorizationResponseLinksItemTargetSchema =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(
+        CaptureAuthorizationResponseLinksItemTargetSchemaAllOfList,
+      ),
+      anyOf: S.optional(
+        CaptureAuthorizationResponseLinksItemTargetSchemaAnyOfList,
+      ),
+      oneOf: S.optional(
+        CaptureAuthorizationResponseLinksItemTargetSchemaOneOfList,
+      ),
+      not: S.optional(S.Unknown),
+      links: S.optional(
+        CaptureAuthorizationResponseLinksItemTargetSchemaLinksList,
+      ),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CaptureAuthorizationResponseLinksItemTargetSchema",
+  }) as any as S.Schema<CaptureAuthorizationResponseLinksItemTargetSchema>;
+
+export interface CaptureAuthorizationResponseLinksItem {
   /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
   href: string;
   /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
   rel: string;
   /** The HTTP method required to make the related call. */
-  method?: CapturesGetResponseLinksItemMethod;
+  method?: CaptureAuthorizationResponseLinksItemMethod;
   /** The link title. */
   title?: string;
   /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
   mediaType?: string;
   /** The media type in which to submit the request data. */
   encType?: string;
-  schema?: CapturesGetResponseLinksItemSchema;
-  targetSchema?: CapturesGetResponseLinksItemTargetSchema;
+  schema?: CaptureAuthorizationResponseLinksItemSchema;
+  targetSchema?: CaptureAuthorizationResponseLinksItemTargetSchema;
 }
-export const CapturesGetResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    href: S.String,
-    rel: S.String,
-    method: S.optional(CapturesGetResponseLinksItemMethod),
-    title: S.optional(S.String),
-    mediaType: S.optional(S.String),
-    encType: S.optional(S.String),
-    schema: S.optional(CapturesGetResponseLinksItemSchema),
-    targetSchema: S.optional(CapturesGetResponseLinksItemTargetSchema),
-  }),
+export const CaptureAuthorizationResponseLinksItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      href: S.String,
+      rel: S.String,
+      method: S.optional(CaptureAuthorizationResponseLinksItemMethod),
+      title: S.optional(S.String),
+      mediaType: S.optional(S.String),
+      encType: S.optional(S.String),
+      schema: S.optional(CaptureAuthorizationResponseLinksItemSchema),
+      targetSchema: S.optional(
+        CaptureAuthorizationResponseLinksItemTargetSchema,
+      ),
+    }),
 ).annotate({
-  identifier: "CapturesGetResponseLinksItem",
-}) as any as S.Schema<CapturesGetResponseLinksItem>;
+  identifier: "CaptureAuthorizationResponseLinksItem",
+}) as any as S.Schema<CaptureAuthorizationResponseLinksItem>;
 
 /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type CapturesGetResponseLinksList = Array<CapturesGetResponseLinksItem>;
-export const CapturesGetResponseLinksList = /*@__PURE__*/ S.Array(
-  CapturesGetResponseLinksItem,
-) as any as S.Schema<CapturesGetResponseLinksList>;
+export type CaptureAuthorizationResponseLinksList =
+  Array<CaptureAuthorizationResponseLinksItem>;
+export const CaptureAuthorizationResponseLinksList = /*@__PURE__*/ S.Array(
+  CaptureAuthorizationResponseLinksItem,
+) as any as S.Schema<CaptureAuthorizationResponseLinksList>;
 
 /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
-export type CapturesGetResponseProcessorResponseAvsCode =
+export type CaptureAuthorizationResponseProcessorResponseAvsCode =
   | "A"
   | "B"
   | "C"
@@ -2709,11 +1178,11 @@ export type CapturesGetResponseProcessorResponseAvsCode =
   | "2"
   | "3"
   | "4";
-export const CapturesGetResponseProcessorResponseAvsCode =
+export const CaptureAuthorizationResponseProcessorResponseAvsCode =
   /*@__PURE__*/ S.String;
 
 /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
-export type CapturesGetResponseProcessorResponseCvvCode =
+export type CaptureAuthorizationResponseProcessorResponseCvvCode =
   | "E"
   | "I"
   | "M"
@@ -2728,11 +1197,11 @@ export type CapturesGetResponseProcessorResponseCvvCode =
   | "2"
   | "3"
   | "4";
-export const CapturesGetResponseProcessorResponseCvvCode =
+export const CaptureAuthorizationResponseProcessorResponseCvvCode =
   /*@__PURE__*/ S.String;
 
 /** Processor response code for the non-PayPal payment processor errors. */
-export type CapturesGetResponseProcessorResponseResponseCode =
+export type CaptureAuthorizationResponseProcessorResponseResponseCode =
   | "0000"
   | "00N7"
   | "0100"
@@ -2887,11 +1356,11 @@ export type CapturesGetResponseProcessorResponseResponseCode =
   | "PPVC"
   | "PPVE"
   | "PPVT";
-export const CapturesGetResponseProcessorResponseResponseCode =
+export const CaptureAuthorizationResponseProcessorResponseResponseCode =
   /*@__PURE__*/ S.String;
 
 /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
-export type CapturesGetResponseProcessorResponsePaymentAdviceCode =
+export type CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode =
   | "01"
   | "02"
   | "03"
@@ -2907,624 +1376,108 @@ export type CapturesGetResponseProcessorResponsePaymentAdviceCode =
   | "30"
   | "40"
   | "43";
-export const CapturesGetResponseProcessorResponsePaymentAdviceCode =
+export const CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode =
   /*@__PURE__*/ S.String;
 
-export interface CapturesGetResponseProcessorResponse {
+export interface CaptureAuthorizationResponseProcessorResponse {
   /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
-  avs_code?: CapturesGetResponseProcessorResponseAvsCode;
+  avs_code?: CaptureAuthorizationResponseProcessorResponseAvsCode;
   /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
-  cvv_code?: CapturesGetResponseProcessorResponseCvvCode;
+  cvv_code?: CaptureAuthorizationResponseProcessorResponseCvvCode;
   /** Processor response code for the non-PayPal payment processor errors. */
-  response_code?: CapturesGetResponseProcessorResponseResponseCode;
+  response_code?: CaptureAuthorizationResponseProcessorResponseResponseCode;
   /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
-  payment_advice_code?: CapturesGetResponseProcessorResponsePaymentAdviceCode;
+  payment_advice_code?: CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode;
 }
-export const CapturesGetResponseProcessorResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const CaptureAuthorizationResponseProcessorResponse =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      avs_code: S.optional(CapturesGetResponseProcessorResponseAvsCode),
-      cvv_code: S.optional(CapturesGetResponseProcessorResponseCvvCode),
+      avs_code: S.optional(
+        CaptureAuthorizationResponseProcessorResponseAvsCode,
+      ),
+      cvv_code: S.optional(
+        CaptureAuthorizationResponseProcessorResponseCvvCode,
+      ),
       response_code: S.optional(
-        CapturesGetResponseProcessorResponseResponseCode,
+        CaptureAuthorizationResponseProcessorResponseResponseCode,
       ),
       payment_advice_code: S.optional(
-        CapturesGetResponseProcessorResponsePaymentAdviceCode,
+        CaptureAuthorizationResponseProcessorResponsePaymentAdviceCode,
       ),
     }),
-).annotate({
-  identifier: "CapturesGetResponseProcessorResponse",
-}) as any as S.Schema<CapturesGetResponseProcessorResponse>;
+  ).annotate({
+    identifier: "CaptureAuthorizationResponseProcessorResponse",
+  }) as any as S.Schema<CaptureAuthorizationResponseProcessorResponse>;
 
-export type CapturesGetResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
-export const CapturesGetResponseSupplementaryDataRelatedIds =
-  AuthorizationsCaptureResponseSupplementaryDataRelatedIds;
+export type CaptureAuthorizationResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+export const CaptureAuthorizationResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
 
-export type CapturesGetResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
-export const CapturesGetResponseSupplementaryData =
-  AuthorizationsCaptureResponseSupplementaryData;
+export type CaptureAuthorizationResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+export const CaptureAuthorizationResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
 
-export type CapturesGetResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const CapturesGetResponsePayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+export type CaptureAuthorizationResponsePayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const CaptureAuthorizationResponsePayee =
+  AuthorizationsReauthorizeResponsePayee;
 
-export interface CapturesGetResponse {
+export interface CaptureAuthorizationResponse {
   /** The status of the captured payment. */
-  status?: CapturesGetResponseStatus;
-  status_details?: CapturesGetResponseStatusDetails;
+  status?: CaptureAuthorizationResponseStatus;
+  status_details?: CaptureAuthorizationResponseStatusDetails;
   /** The PayPal-generated ID for the captured payment. */
   id?: string;
-  amount?: AuthorizationsCaptureResponseAmount;
+  amount?: AuthorizationsReauthorizeResponseAmount;
   /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
   invoice_id?: string;
   /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
   custom_id?: string;
   network_transaction_reference?: NetworkTransaction;
-  seller_protection?: CapturesGetResponseSellerProtection;
+  seller_protection?: CaptureAuthorizationResponseSellerProtection;
   /** Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization. */
   final_capture?: boolean;
-  seller_receivable_breakdown?: CapturesGetResponseSellerReceivableBreakdown;
+  seller_receivable_breakdown?: CaptureAuthorizationResponseSellerReceivableBreakdown;
   disbursement_mode?: DisbursementMode;
   /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-  links?: CapturesGetResponseLinksList;
-  processor_response?: CapturesGetResponseProcessorResponse;
+  links?: CaptureAuthorizationResponseLinksList;
+  processor_response?: CaptureAuthorizationResponseProcessorResponse;
   create_time?: unknown;
   update_time?: unknown;
-  supplementary_data?: AuthorizationsCaptureResponseSupplementaryData;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+  supplementary_data?: AuthorizationsReauthorizeResponseSupplementaryData;
+  payee?: AuthorizationsReauthorizeResponsePayee;
 }
-export const CapturesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const CaptureAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(CapturesGetResponseStatus),
-    status_details: S.optional(CapturesGetResponseStatusDetails),
+    status: S.optional(CaptureAuthorizationResponseStatus),
+    status_details: S.optional(CaptureAuthorizationResponseStatusDetails),
     id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureResponseAmount),
+    amount: S.optional(AuthorizationsReauthorizeResponseAmount),
     invoice_id: S.optional(S.String),
     custom_id: S.optional(S.String),
     network_transaction_reference: S.optional(NetworkTransaction),
-    seller_protection: S.optional(CapturesGetResponseSellerProtection),
+    seller_protection: S.optional(CaptureAuthorizationResponseSellerProtection),
     final_capture: S.optional(S.Boolean),
     seller_receivable_breakdown: S.optional(
-      CapturesGetResponseSellerReceivableBreakdown,
+      CaptureAuthorizationResponseSellerReceivableBreakdown,
     ),
     disbursement_mode: S.optional(DisbursementMode),
-    links: S.optional(CapturesGetResponseLinksList),
-    processor_response: S.optional(CapturesGetResponseProcessorResponse),
+    links: S.optional(CaptureAuthorizationResponseLinksList),
+    processor_response: S.optional(
+      CaptureAuthorizationResponseProcessorResponse,
+    ),
     create_time: S.optional(S.Unknown),
     update_time: S.optional(S.Unknown),
     supplementary_data: S.optional(
-      AuthorizationsCaptureResponseSupplementaryData,
+      AuthorizationsReauthorizeResponseSupplementaryData,
     ),
-    payee: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
+    payee: S.optional(AuthorizationsReauthorizeResponsePayee),
   }),
 ).annotate({
-  identifier: "CapturesGetResponse",
-}) as any as S.Schema<CapturesGetResponse>;
-
-export type CapturesRefundRequestAmount = AuthorizationsCaptureRequestAmount;
-export const CapturesRefundRequestAmount = AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundRequestPaymentInstructionPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundRequestPaymentInstructionPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundRequestPaymentInstructionPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const CapturesRefundRequestPaymentInstructionPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export type CapturesRefundRequestPaymentInstructionPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-export const CapturesRefundRequestPaymentInstructionPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-
-/** Specifies the amount that the API caller will contribute to the refund being processed. The amount needs to be lower than platform_fees amount originally captured or the amount that is remaining if multiple refunds have been processed. This field is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability. */
-export type CapturesRefundRequestPaymentInstructionPlatformFeesList =
-  Array<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-export const CapturesRefundRequestPaymentInstructionPlatformFeesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem,
-  ) as any as S.Schema<CapturesRefundRequestPaymentInstructionPlatformFeesList>;
-
-export interface CapturesRefundRequestPaymentInstruction {
-  /** Specifies the amount that the API caller will contribute to the refund being processed. The amount needs to be lower than platform_fees amount originally captured or the amount that is remaining if multiple refunds have been processed. This field is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability. */
-  platform_fees?: CapturesRefundRequestPaymentInstructionPlatformFeesList;
-}
-export const CapturesRefundRequestPaymentInstruction = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      platform_fees: S.optional(
-        CapturesRefundRequestPaymentInstructionPlatformFeesList,
-      ),
-    }),
-).annotate({
-  identifier: "CapturesRefundRequestPaymentInstruction",
-}) as any as S.Schema<CapturesRefundRequestPaymentInstruction>;
-
-export interface CapturesRefundRequest {
-  /** The PayPal-generated ID for the captured payment to refund. */
-  capture_id: string;
-  /** A unique ID identifying the request header for idempotency purposes. */
-  payPalRequestId?: string;
-  /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
-  prefer?: string;
-  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
-  payPalAuthAssertion?: string;
-  amount?: AuthorizationsCaptureRequestAmount;
-  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. The pattern is defined by an external party and supports Unicode. */
-  custom_id?: string;
-  /** The API caller-provided external invoice ID for this order. The pattern is defined by an external party and supports Unicode. */
-  invoice_id?: string;
-  /** The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives. The pattern is defined by an external party and supports Unicode. */
-  note_to_payer?: string;
-  payment_instruction?: CapturesRefundRequestPaymentInstruction;
-}
-export const CapturesRefundRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capture_id: S.String.pipe(T.Label()),
-    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
-    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
-    payPalAuthAssertion: S.optional(
-      S.String.pipe(T.Header("PayPal-Auth-Assertion")),
-    ),
-    amount: S.optional(AuthorizationsCaptureRequestAmount),
-    custom_id: S.optional(S.String),
-    invoice_id: S.optional(S.String),
-    note_to_payer: S.optional(S.String),
-    payment_instruction: S.optional(CapturesRefundRequestPaymentInstruction),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v2/payments/captures/{capture_id}/refund",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CapturesRefundRequest",
-}) as any as S.Schema<CapturesRefundRequest>;
-
-/** The status of the refund. */
-export type CapturesRefundResponseStatus =
-  | "CANCELLED"
-  | "FAILED"
-  | "PENDING"
-  | "COMPLETED";
-export const CapturesRefundResponseStatus = /*@__PURE__*/ S.String;
-
-/** The reason why the refund has the `PENDING` or `FAILED` status. */
-export type CapturesRefundResponseStatusDetailsReason = "ECHECK";
-export const CapturesRefundResponseStatusDetailsReason = /*@__PURE__*/ S.String;
-
-export interface CapturesRefundResponseStatusDetails {
-  /** The reason why the refund has the `PENDING` or `FAILED` status. */
-  reason?: CapturesRefundResponseStatusDetailsReason;
-}
-export const CapturesRefundResponseStatusDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reason: S.optional(CapturesRefundResponseStatusDetailsReason),
-  }),
-).annotate({
-  identifier: "CapturesRefundResponseStatusDetails",
-}) as any as S.Schema<CapturesRefundResponseStatusDetails>;
-
-export type CapturesRefundResponseAmount = AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseAmount = AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const CapturesRefundResponseSellerPayableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-export type CapturesRefundResponseSellerPayableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-export const CapturesRefundResponseSellerPayableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-
-/** An array of platform or partner fees, commissions, or brokerage fees for the refund. */
-export type CapturesRefundResponseSellerPayableBreakdownPlatformFeesList =
-  Array<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-export const CapturesRefundResponseSellerPayableBreakdownPlatformFeesList =
-  /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem,
-  ) as any as S.Schema<CapturesRefundResponseSellerPayableBreakdownPlatformFeesList>;
-
-export type CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
-  AuthorizationsCaptureRequestAmount;
-
-export type CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
-  AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-export const CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
-  AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-
-export interface CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem {
-  payable_amount?: AuthorizationsCaptureRequestAmount;
-  converted_amount?: AuthorizationsCaptureRequestAmount;
-  exchange_rate?: AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-}
-export const CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      payable_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      converted_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      exchange_rate: S.optional(
-        AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem",
-  }) as any as S.Schema<CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem>;
-
-/** An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. */
-export type CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList =
-  Array<CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem>;
-export const CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList =
-  /*@__PURE__*/ S.Array(
-    CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem,
-  ) as any as S.Schema<CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList>;
-
-export type CapturesRefundResponseSellerPayableBreakdownTotalRefundedAmount =
-  AuthorizationsCaptureRequestAmount;
-export const CapturesRefundResponseSellerPayableBreakdownTotalRefundedAmount =
-  AuthorizationsCaptureRequestAmount;
-
-/** The breakdown of the refund. */
-export interface CapturesRefundResponseSellerPayableBreakdown {
-  gross_amount?: AuthorizationsCaptureRequestAmount;
-  paypal_fee?: AuthorizationsCaptureRequestAmount;
-  paypal_fee_in_receivable_currency?: AuthorizationsCaptureRequestAmount;
-  net_amount?: AuthorizationsCaptureRequestAmount;
-  net_amount_in_receivable_currency?: AuthorizationsCaptureRequestAmount;
-  /** An array of platform or partner fees, commissions, or brokerage fees for the refund. */
-  platform_fees?: CapturesRefundResponseSellerPayableBreakdownPlatformFeesList;
-  /** An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. */
-  net_amount_breakdown?: CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList;
-  total_refunded_amount?: AuthorizationsCaptureRequestAmount;
-}
-export const CapturesRefundResponseSellerPayableBreakdown =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      gross_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      paypal_fee: S.optional(AuthorizationsCaptureRequestAmount),
-      paypal_fee_in_receivable_currency: S.optional(
-        AuthorizationsCaptureRequestAmount,
-      ),
-      net_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      net_amount_in_receivable_currency: S.optional(
-        AuthorizationsCaptureRequestAmount,
-      ),
-      platform_fees: S.optional(
-        CapturesRefundResponseSellerPayableBreakdownPlatformFeesList,
-      ),
-      net_amount_breakdown: S.optional(
-        CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownList,
-      ),
-      total_refunded_amount: S.optional(AuthorizationsCaptureRequestAmount),
-    }),
-  ).annotate({
-    identifier: "CapturesRefundResponseSellerPayableBreakdown",
-  }) as any as S.Schema<CapturesRefundResponseSellerPayableBreakdown>;
-
-export type CapturesRefundResponsePayer =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const CapturesRefundResponsePayer =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-
-/** The HTTP method required to make the related call. */
-export type CapturesRefundResponseLinksItemMethod =
-  | "GET"
-  | "POST"
-  | "PUT"
-  | "DELETE"
-  | "HEAD"
-  | "CONNECT"
-  | "OPTIONS"
-  | "PATCH";
-export const CapturesRefundResponseLinksItemMethod = /*@__PURE__*/ S.String;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type CapturesRefundResponseLinksItemSchemaAllOfList = Array<unknown>;
-export const CapturesRefundResponseLinksItemSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type CapturesRefundResponseLinksItemSchemaAnyOfList = Array<unknown>;
-export const CapturesRefundResponseLinksItemSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type CapturesRefundResponseLinksItemSchemaOneOfList = Array<unknown>;
-export const CapturesRefundResponseLinksItemSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemSchemaOneOfList>;
-
-/** An array of links. */
-export type CapturesRefundResponseLinksItemSchemaLinksList = Array<unknown>;
-export const CapturesRefundResponseLinksItemSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type CapturesRefundResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const CapturesRefundResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface CapturesRefundResponseLinksItemSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: CapturesRefundResponseLinksItemSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: CapturesRefundResponseLinksItemSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: CapturesRefundResponseLinksItemSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: CapturesRefundResponseLinksItemSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const CapturesRefundResponseLinksItemSchema = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(CapturesRefundResponseLinksItemSchemaAllOfList),
-      anyOf: S.optional(CapturesRefundResponseLinksItemSchemaAnyOfList),
-      oneOf: S.optional(CapturesRefundResponseLinksItemSchemaOneOfList),
-      not: S.optional(S.Unknown),
-      links: S.optional(CapturesRefundResponseLinksItemSchemaLinksList),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "CapturesRefundResponseLinksItemSchema",
-}) as any as S.Schema<CapturesRefundResponseLinksItemSchema>;
-
-/** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type CapturesRefundResponseLinksItemTargetSchemaAllOfList =
-  Array<unknown>;
-export const CapturesRefundResponseLinksItemTargetSchemaAllOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemTargetSchemaAllOfList>;
-
-/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type CapturesRefundResponseLinksItemTargetSchemaAnyOfList =
-  Array<unknown>;
-export const CapturesRefundResponseLinksItemTargetSchemaAnyOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemTargetSchemaAnyOfList>;
-
-/** An array of sub-schemas. The data must validate against one sub-schema. */
-export type CapturesRefundResponseLinksItemTargetSchemaOneOfList =
-  Array<unknown>;
-export const CapturesRefundResponseLinksItemTargetSchemaOneOfList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemTargetSchemaOneOfList>;
-
-/** An array of links. */
-export type CapturesRefundResponseLinksItemTargetSchemaLinksList =
-  Array<unknown>;
-export const CapturesRefundResponseLinksItemTargetSchemaLinksList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<CapturesRefundResponseLinksItemTargetSchemaLinksList>;
-
-/** The media type and context-encoding scheme. */
-export type CapturesRefundResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const CapturesRefundResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-
-export interface CapturesRefundResponseLinksItemTargetSchema {
-  /** Any additional items. */
-  additionalItems?: unknown;
-  /** Any Dependencies. */
-  dependencies?: unknown;
-  /** An item. */
-  items?: unknown;
-  /** Definitions. */
-  definitions?: unknown;
-  /** The pattern properties. */
-  patternProperties?: unknown;
-  /** Properties. */
-  properties?: unknown;
-  /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: CapturesRefundResponseLinksItemTargetSchemaAllOfList;
-  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: CapturesRefundResponseLinksItemTargetSchemaAnyOfList;
-  /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: CapturesRefundResponseLinksItemTargetSchemaOneOfList;
-  /** Not. */
-  not?: unknown;
-  /** An array of links. */
-  links?: CapturesRefundResponseLinksItemTargetSchemaLinksList;
-  /** The fragment resolution. */
-  fragmentResolution?: string;
-  /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
-  /** To apply this schema to the instances' URIs, start the URIs with this value. */
-  pathStart?: string;
-}
-export const CapturesRefundResponseLinksItemTargetSchema =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      additionalItems: S.optional(S.Unknown),
-      dependencies: S.optional(S.Unknown),
-      items: S.optional(S.Unknown),
-      definitions: S.optional(S.Unknown),
-      patternProperties: S.optional(S.Unknown),
-      properties: S.optional(S.Unknown),
-      allOf: S.optional(CapturesRefundResponseLinksItemTargetSchemaAllOfList),
-      anyOf: S.optional(CapturesRefundResponseLinksItemTargetSchemaAnyOfList),
-      oneOf: S.optional(CapturesRefundResponseLinksItemTargetSchemaOneOfList),
-      not: S.optional(S.Unknown),
-      links: S.optional(CapturesRefundResponseLinksItemTargetSchemaLinksList),
-      fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
-      pathStart: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CapturesRefundResponseLinksItemTargetSchema",
-  }) as any as S.Schema<CapturesRefundResponseLinksItemTargetSchema>;
-
-export interface CapturesRefundResponseLinksItem {
-  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
-  href: string;
-  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
-  rel: string;
-  /** The HTTP method required to make the related call. */
-  method?: CapturesRefundResponseLinksItemMethod;
-  /** The link title. */
-  title?: string;
-  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
-  mediaType?: string;
-  /** The media type in which to submit the request data. */
-  encType?: string;
-  schema?: CapturesRefundResponseLinksItemSchema;
-  targetSchema?: CapturesRefundResponseLinksItemTargetSchema;
-}
-export const CapturesRefundResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    href: S.String,
-    rel: S.String,
-    method: S.optional(CapturesRefundResponseLinksItemMethod),
-    title: S.optional(S.String),
-    mediaType: S.optional(S.String),
-    encType: S.optional(S.String),
-    schema: S.optional(CapturesRefundResponseLinksItemSchema),
-    targetSchema: S.optional(CapturesRefundResponseLinksItemTargetSchema),
-  }),
-).annotate({
-  identifier: "CapturesRefundResponseLinksItem",
-}) as any as S.Schema<CapturesRefundResponseLinksItem>;
-
-/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type CapturesRefundResponseLinksList =
-  Array<CapturesRefundResponseLinksItem>;
-export const CapturesRefundResponseLinksList = /*@__PURE__*/ S.Array(
-  CapturesRefundResponseLinksItem,
-) as any as S.Schema<CapturesRefundResponseLinksList>;
-
-export interface CapturesRefundResponse {
-  /** The status of the refund. */
-  status?: CapturesRefundResponseStatus;
-  status_details?: CapturesRefundResponseStatusDetails;
-  /** The PayPal-generated ID for the refund. */
-  id?: string;
-  amount?: AuthorizationsCaptureRequestAmount;
-  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
-  invoice_id?: string;
-  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
-  custom_id?: string;
-  /** Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks. */
-  acquirer_reference_number?: string;
-  /** The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives. */
-  note_to_payer?: string;
-  /** The breakdown of the refund. */
-  seller_payable_breakdown?: CapturesRefundResponseSellerPayableBreakdown;
-  payer?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-  links?: CapturesRefundResponseLinksList;
-  create_time?: unknown;
-  update_time?: unknown;
-}
-export const CapturesRefundResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(CapturesRefundResponseStatus),
-    status_details: S.optional(CapturesRefundResponseStatusDetails),
-    id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureRequestAmount),
-    invoice_id: S.optional(S.String),
-    custom_id: S.optional(S.String),
-    acquirer_reference_number: S.optional(S.String),
-    note_to_payer: S.optional(S.String),
-    seller_payable_breakdown: S.optional(
-      CapturesRefundResponseSellerPayableBreakdown,
-    ),
-    payer: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
-    links: S.optional(CapturesRefundResponseLinksList),
-    create_time: S.optional(S.Unknown),
-    update_time: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "CapturesRefundResponse",
-}) as any as S.Schema<CapturesRefundResponse>;
+  identifier: "CaptureAuthorizationResponse",
+}) as any as S.Schema<CaptureAuthorizationResponse>;
 
 export interface FindEligibleMethodsRequestCustomerChannel {
   /** The browser used by the customer. Example: Safari, Chrome, etc. */
@@ -3586,26 +1539,22 @@ export const FindEligibleMethodsRequestCustomer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FindEligibleMethodsRequestCustomer>;
 
 /** The total order amount with an optional breakdown that provides details, such as the total item amount, total tax amount, shipping, handling, insurance, and discounts, if any.<br/>If you specify `amount.breakdown`, the amount equals `item_total` plus `tax_total` plus `shipping` plus `handling` plus `insurance` minus `shipping_discount` minus discount.<br/>The amount must be a positive number. For listed of supported currencies and decimal precision, see the PayPal REST APIs <a href="/docs/integration/direct/rest/currency-codes/">Currency Codes</a>. */
-export type AmountWithBreakdown = AuthorizationsCaptureResponseAmount;
-export const AmountWithBreakdown = AuthorizationsCaptureResponseAmount;
+export type AmountWithBreakdown = AuthorizationsReauthorizeResponseAmount;
+export const AmountWithBreakdown = AuthorizationsReauthorizeResponseAmount;
 
 /** The merchant who receives the funds and fulfills the order. The merchant is also known as the payee. */
-export type Payee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const Payee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+export type Payee = AuthorizationsReauthorizeResponsePayee;
+export const Payee = AuthorizationsReauthorizeResponsePayee;
 
 /** Purchase unit for payment eligibility. */
 export interface EligibilityPurchaseUnitRequest {
-  amount?: AuthorizationsCaptureResponseAmount;
-  payee?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+  amount?: AuthorizationsReauthorizeResponseAmount;
+  payee?: AuthorizationsReauthorizeResponsePayee;
 }
 export const EligibilityPurchaseUnitRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    amount: S.optional(AuthorizationsCaptureResponseAmount),
-    payee: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
+    amount: S.optional(AuthorizationsReauthorizeResponseAmount),
+    payee: S.optional(AuthorizationsReauthorizeResponsePayee),
   }),
 ).annotate({
   identifier: "EligibilityPurchaseUnitRequest",
@@ -3893,9 +1842,9 @@ export const LinkDescriptionSchemaLinksList = /*@__PURE__*/ S.Array(
 
 /** The media type and context-encoding scheme. */
 export type LinkDescriptionSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 export const LinkDescriptionSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 
 export interface LinkDescriptionSchema {
   /** Any additional items. */
@@ -3923,7 +1872,7 @@ export interface LinkDescriptionSchema {
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
@@ -3941,7 +1890,7 @@ export const LinkDescriptionSchema = /*@__PURE__*/ S.suspend(() =>
     not: S.optional(S.Unknown),
     links: S.optional(LinkDescriptionSchemaLinksList),
     fragmentResolution: S.optional(S.String),
-    media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+    media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
     pathStart: S.optional(S.String),
   }),
 ).annotate({
@@ -3974,9 +1923,9 @@ export const LinkDescriptionTargetSchemaLinksList = /*@__PURE__*/ S.Array(
 
 /** The media type and context-encoding scheme. */
 export type LinkDescriptionTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 export const LinkDescriptionTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 
 export interface LinkDescriptionTargetSchema {
   /** Any additional items. */
@@ -4004,7 +1953,7 @@ export interface LinkDescriptionTargetSchema {
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
@@ -4022,7 +1971,7 @@ export const LinkDescriptionTargetSchema = /*@__PURE__*/ S.suspend(() =>
     not: S.optional(S.Unknown),
     links: S.optional(LinkDescriptionTargetSchemaLinksList),
     fragmentResolution: S.optional(S.String),
-    media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+    media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
     pathStart: S.optional(S.String),
   }),
 ).annotate({
@@ -4113,13 +2062,1111 @@ export const FindEligibleMethodsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FindEligibleMethodsResponse",
 }) as any as S.Schema<FindEligibleMethodsResponse>;
 
-export interface RefundsGetRequest {
+export interface GetAuthorizationRequest {
+  /** The ID of the authorized payment for which to show details. */
+  authorization_id: string;
+  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
+  payPalAuthAssertion?: string;
+}
+export const GetAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authorization_id: S.String.pipe(T.Label()),
+    payPalAuthAssertion: S.optional(
+      S.String.pipe(T.Header("PayPal-Auth-Assertion")),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/payments/authorizations/{authorization_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAuthorizationRequest",
+}) as any as S.Schema<GetAuthorizationRequest>;
+
+/** The status for the authorized payment. */
+export type GetAuthorizationResponseStatus =
+  | "CREATED"
+  | "CAPTURED"
+  | "DENIED"
+  | "PARTIALLY_CAPTURED"
+  | "VOIDED"
+  | "PENDING";
+export const GetAuthorizationResponseStatus = /*@__PURE__*/ S.String;
+
+/** The reason why the authorized status is `PENDING`. */
+export type GetAuthorizationResponseStatusDetailsReason =
+  | "PENDING_REVIEW"
+  | "DECLINED_BY_RISK_FRAUD_FILTERS";
+export const GetAuthorizationResponseStatusDetailsReason =
+  /*@__PURE__*/ S.String;
+
+export interface GetAuthorizationResponseStatusDetails {
+  /** The reason why the authorized status is `PENDING`. */
+  reason?: GetAuthorizationResponseStatusDetailsReason;
+}
+export const GetAuthorizationResponseStatusDetails = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      reason: S.optional(GetAuthorizationResponseStatusDetailsReason),
+    }),
+).annotate({
+  identifier: "GetAuthorizationResponseStatusDetails",
+}) as any as S.Schema<GetAuthorizationResponseStatusDetails>;
+
+export type GetAuthorizationResponseAmount =
+  AuthorizationsReauthorizeResponseAmount;
+export const GetAuthorizationResponseAmount =
+  AuthorizationsReauthorizeResponseAmount;
+
+/** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
+export type GetAuthorizationResponseSellerProtectionStatus =
+  | "ELIGIBLE"
+  | "PARTIALLY_ELIGIBLE"
+  | "NOT_ELIGIBLE";
+export const GetAuthorizationResponseSellerProtectionStatus =
+  /*@__PURE__*/ S.String;
+
+/** The condition that is covered for the transaction. */
+export type GetAuthorizationResponseSellerProtectionDisputeCategoriesItem =
+  | "ITEM_NOT_RECEIVED"
+  | "UNAUTHORIZED_TRANSACTION";
+export const GetAuthorizationResponseSellerProtectionDisputeCategoriesItem =
+  /*@__PURE__*/ S.String;
+
+/** An array of conditions that are covered for the transaction. */
+export type GetAuthorizationResponseSellerProtectionDisputeCategoriesList =
+  Array<GetAuthorizationResponseSellerProtectionDisputeCategoriesItem>;
+export const GetAuthorizationResponseSellerProtectionDisputeCategoriesList =
+  /*@__PURE__*/ S.Array(
+    GetAuthorizationResponseSellerProtectionDisputeCategoriesItem,
+  ) as any as S.Schema<GetAuthorizationResponseSellerProtectionDisputeCategoriesList>;
+
+export interface GetAuthorizationResponseSellerProtection {
+  /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
+  status?: GetAuthorizationResponseSellerProtectionStatus;
+  /** An array of conditions that are covered for the transaction. */
+  dispute_categories?: GetAuthorizationResponseSellerProtectionDisputeCategoriesList;
+}
+export const GetAuthorizationResponseSellerProtection = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      status: S.optional(GetAuthorizationResponseSellerProtectionStatus),
+      dispute_categories: S.optional(
+        GetAuthorizationResponseSellerProtectionDisputeCategoriesList,
+      ),
+    }),
+).annotate({
+  identifier: "GetAuthorizationResponseSellerProtection",
+}) as any as S.Schema<GetAuthorizationResponseSellerProtection>;
+
+/** The HTTP method required to make the related call. */
+export type GetAuthorizationResponseLinksItemMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "HEAD"
+  | "CONNECT"
+  | "OPTIONS"
+  | "PATCH";
+export const GetAuthorizationResponseLinksItemMethod = /*@__PURE__*/ S.String;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type GetAuthorizationResponseLinksItemSchemaAllOfList = Array<unknown>;
+export const GetAuthorizationResponseLinksItemSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type GetAuthorizationResponseLinksItemSchemaAnyOfList = Array<unknown>;
+export const GetAuthorizationResponseLinksItemSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type GetAuthorizationResponseLinksItemSchemaOneOfList = Array<unknown>;
+export const GetAuthorizationResponseLinksItemSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemSchemaOneOfList>;
+
+/** An array of links. */
+export type GetAuthorizationResponseLinksItemSchemaLinksList = Array<unknown>;
+export const GetAuthorizationResponseLinksItemSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type GetAuthorizationResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const GetAuthorizationResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface GetAuthorizationResponseLinksItemSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: GetAuthorizationResponseLinksItemSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: GetAuthorizationResponseLinksItemSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: GetAuthorizationResponseLinksItemSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: GetAuthorizationResponseLinksItemSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const GetAuthorizationResponseLinksItemSchema = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(GetAuthorizationResponseLinksItemSchemaAllOfList),
+      anyOf: S.optional(GetAuthorizationResponseLinksItemSchemaAnyOfList),
+      oneOf: S.optional(GetAuthorizationResponseLinksItemSchemaOneOfList),
+      not: S.optional(S.Unknown),
+      links: S.optional(GetAuthorizationResponseLinksItemSchemaLinksList),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetAuthorizationResponseLinksItemSchema",
+}) as any as S.Schema<GetAuthorizationResponseLinksItemSchema>;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type GetAuthorizationResponseLinksItemTargetSchemaAllOfList =
+  Array<unknown>;
+export const GetAuthorizationResponseLinksItemTargetSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemTargetSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type GetAuthorizationResponseLinksItemTargetSchemaAnyOfList =
+  Array<unknown>;
+export const GetAuthorizationResponseLinksItemTargetSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemTargetSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type GetAuthorizationResponseLinksItemTargetSchemaOneOfList =
+  Array<unknown>;
+export const GetAuthorizationResponseLinksItemTargetSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemTargetSchemaOneOfList>;
+
+/** An array of links. */
+export type GetAuthorizationResponseLinksItemTargetSchemaLinksList =
+  Array<unknown>;
+export const GetAuthorizationResponseLinksItemTargetSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetAuthorizationResponseLinksItemTargetSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type GetAuthorizationResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const GetAuthorizationResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface GetAuthorizationResponseLinksItemTargetSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: GetAuthorizationResponseLinksItemTargetSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: GetAuthorizationResponseLinksItemTargetSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: GetAuthorizationResponseLinksItemTargetSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: GetAuthorizationResponseLinksItemTargetSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const GetAuthorizationResponseLinksItemTargetSchema =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(GetAuthorizationResponseLinksItemTargetSchemaAllOfList),
+      anyOf: S.optional(GetAuthorizationResponseLinksItemTargetSchemaAnyOfList),
+      oneOf: S.optional(GetAuthorizationResponseLinksItemTargetSchemaOneOfList),
+      not: S.optional(S.Unknown),
+      links: S.optional(GetAuthorizationResponseLinksItemTargetSchemaLinksList),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetAuthorizationResponseLinksItemTargetSchema",
+  }) as any as S.Schema<GetAuthorizationResponseLinksItemTargetSchema>;
+
+export interface GetAuthorizationResponseLinksItem {
+  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
+  href: string;
+  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
+  rel: string;
+  /** The HTTP method required to make the related call. */
+  method?: GetAuthorizationResponseLinksItemMethod;
+  /** The link title. */
+  title?: string;
+  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
+  mediaType?: string;
+  /** The media type in which to submit the request data. */
+  encType?: string;
+  schema?: GetAuthorizationResponseLinksItemSchema;
+  targetSchema?: GetAuthorizationResponseLinksItemTargetSchema;
+}
+export const GetAuthorizationResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    href: S.String,
+    rel: S.String,
+    method: S.optional(GetAuthorizationResponseLinksItemMethod),
+    title: S.optional(S.String),
+    mediaType: S.optional(S.String),
+    encType: S.optional(S.String),
+    schema: S.optional(GetAuthorizationResponseLinksItemSchema),
+    targetSchema: S.optional(GetAuthorizationResponseLinksItemTargetSchema),
+  }),
+).annotate({
+  identifier: "GetAuthorizationResponseLinksItem",
+}) as any as S.Schema<GetAuthorizationResponseLinksItem>;
+
+/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+export type GetAuthorizationResponseLinksList =
+  Array<GetAuthorizationResponseLinksItem>;
+export const GetAuthorizationResponseLinksList = /*@__PURE__*/ S.Array(
+  GetAuthorizationResponseLinksItem,
+) as any as S.Schema<GetAuthorizationResponseLinksList>;
+
+export type GetAuthorizationResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+export const GetAuthorizationResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+
+export type GetAuthorizationResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+export const GetAuthorizationResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+
+export type GetAuthorizationResponsePayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const GetAuthorizationResponsePayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export interface GetAuthorizationResponse {
+  /** The status for the authorized payment. */
+  status?: GetAuthorizationResponseStatus;
+  status_details?: GetAuthorizationResponseStatusDetails;
+  /** The PayPal-generated ID for the authorized payment. */
+  id?: string;
+  amount?: AuthorizationsReauthorizeResponseAmount;
+  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
+  invoice_id?: string;
+  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
+  custom_id?: string;
+  network_transaction_reference?: NetworkTransaction;
+  seller_protection?: GetAuthorizationResponseSellerProtection;
+  expiration_time?: unknown;
+  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+  links?: GetAuthorizationResponseLinksList;
+  create_time?: unknown;
+  update_time?: unknown;
+  supplementary_data?: AuthorizationsReauthorizeResponseSupplementaryData;
+  payee?: AuthorizationsReauthorizeResponsePayee;
+}
+export const GetAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(GetAuthorizationResponseStatus),
+    status_details: S.optional(GetAuthorizationResponseStatusDetails),
+    id: S.optional(S.String),
+    amount: S.optional(AuthorizationsReauthorizeResponseAmount),
+    invoice_id: S.optional(S.String),
+    custom_id: S.optional(S.String),
+    network_transaction_reference: S.optional(NetworkTransaction),
+    seller_protection: S.optional(GetAuthorizationResponseSellerProtection),
+    expiration_time: S.optional(S.Unknown),
+    links: S.optional(GetAuthorizationResponseLinksList),
+    create_time: S.optional(S.Unknown),
+    update_time: S.optional(S.Unknown),
+    supplementary_data: S.optional(
+      AuthorizationsReauthorizeResponseSupplementaryData,
+    ),
+    payee: S.optional(AuthorizationsReauthorizeResponsePayee),
+  }),
+).annotate({
+  identifier: "GetAuthorizationResponse",
+}) as any as S.Schema<GetAuthorizationResponse>;
+
+export interface GetCaptureRequest {
+  /** The PayPal-generated ID for the captured payment for which to show details. */
+  capture_id: string;
+}
+export const GetCaptureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capture_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/v2/payments/captures/{capture_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCaptureRequest",
+}) as any as S.Schema<GetCaptureRequest>;
+
+/** The status of the captured payment. */
+export type GetCaptureResponseStatus =
+  | "COMPLETED"
+  | "DECLINED"
+  | "PARTIALLY_REFUNDED"
+  | "PENDING"
+  | "REFUNDED"
+  | "FAILED";
+export const GetCaptureResponseStatus = /*@__PURE__*/ S.String;
+
+/** The reason why the captured payment status is `PENDING` or `DENIED`. */
+export type GetCaptureResponseStatusDetailsReason =
+  | "BUYER_COMPLAINT"
+  | "CHARGEBACK"
+  | "ECHECK"
+  | "INTERNATIONAL_WITHDRAWAL"
+  | "OTHER"
+  | "PENDING_REVIEW"
+  | "RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION"
+  | "REFUNDED"
+  | "TRANSACTION_APPROVED_AWAITING_FUNDING"
+  | "UNILATERAL"
+  | "VERIFICATION_REQUIRED"
+  | "DECLINED_BY_RISK_FRAUD_FILTERS";
+export const GetCaptureResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+
+export interface GetCaptureResponseStatusDetails {
+  /** The reason why the captured payment status is `PENDING` or `DENIED`. */
+  reason?: GetCaptureResponseStatusDetailsReason;
+}
+export const GetCaptureResponseStatusDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.optional(GetCaptureResponseStatusDetailsReason),
+  }),
+).annotate({
+  identifier: "GetCaptureResponseStatusDetails",
+}) as any as S.Schema<GetCaptureResponseStatusDetails>;
+
+export type GetCaptureResponseAmount = AuthorizationsReauthorizeResponseAmount;
+export const GetCaptureResponseAmount = AuthorizationsReauthorizeResponseAmount;
+
+/** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
+export type GetCaptureResponseSellerProtectionStatus =
+  | "ELIGIBLE"
+  | "PARTIALLY_ELIGIBLE"
+  | "NOT_ELIGIBLE";
+export const GetCaptureResponseSellerProtectionStatus = /*@__PURE__*/ S.String;
+
+/** The condition that is covered for the transaction. */
+export type GetCaptureResponseSellerProtectionDisputeCategoriesItem =
+  | "ITEM_NOT_RECEIVED"
+  | "UNAUTHORIZED_TRANSACTION";
+export const GetCaptureResponseSellerProtectionDisputeCategoriesItem =
+  /*@__PURE__*/ S.String;
+
+/** An array of conditions that are covered for the transaction. */
+export type GetCaptureResponseSellerProtectionDisputeCategoriesList =
+  Array<GetCaptureResponseSellerProtectionDisputeCategoriesItem>;
+export const GetCaptureResponseSellerProtectionDisputeCategoriesList =
+  /*@__PURE__*/ S.Array(
+    GetCaptureResponseSellerProtectionDisputeCategoriesItem,
+  ) as any as S.Schema<GetCaptureResponseSellerProtectionDisputeCategoriesList>;
+
+export interface GetCaptureResponseSellerProtection {
+  /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
+  status?: GetCaptureResponseSellerProtectionStatus;
+  /** An array of conditions that are covered for the transaction. */
+  dispute_categories?: GetCaptureResponseSellerProtectionDisputeCategoriesList;
+}
+export const GetCaptureResponseSellerProtection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(GetCaptureResponseSellerProtectionStatus),
+    dispute_categories: S.optional(
+      GetCaptureResponseSellerProtectionDisputeCategoriesList,
+    ),
+  }),
+).annotate({
+  identifier: "GetCaptureResponseSellerProtection",
+}) as any as S.Schema<GetCaptureResponseSellerProtection>;
+
+export type GetCaptureResponseSellerReceivableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetCaptureResponseSellerReceivableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type GetCaptureResponseSellerReceivableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetCaptureResponseSellerReceivableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type GetCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetCaptureResponseSellerReceivableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type GetCaptureResponseSellerReceivableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetCaptureResponseSellerReceivableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type GetCaptureResponseSellerReceivableBreakdownReceivableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetCaptureResponseSellerReceivableBreakdownReceivableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type GetCaptureResponseSellerReceivableBreakdownExchangeRate =
+  CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+export const GetCaptureResponseSellerReceivableBreakdownExchangeRate =
+  CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+
+export type GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const GetCaptureResponseSellerReceivableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export type GetCaptureResponseSellerReceivableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+export const GetCaptureResponseSellerReceivableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+
+/** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
+export type GetCaptureResponseSellerReceivableBreakdownPlatformFeesList =
+  Array<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+export const GetCaptureResponseSellerReceivableBreakdownPlatformFeesList =
+  /*@__PURE__*/ S.Array(
+    CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem,
+  ) as any as S.Schema<GetCaptureResponseSellerReceivableBreakdownPlatformFeesList>;
+
+export interface GetCaptureResponseSellerReceivableBreakdown {
+  gross_amount: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee?: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee_in_receivable_currency?: AuthorizationsReauthorizeRequestAmount;
+  net_amount?: AuthorizationsReauthorizeRequestAmount;
+  receivable_amount?: AuthorizationsReauthorizeRequestAmount;
+  exchange_rate?: CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+  /** An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment. */
+  platform_fees?: GetCaptureResponseSellerReceivableBreakdownPlatformFeesList;
+}
+export const GetCaptureResponseSellerReceivableBreakdown =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      gross_amount: AuthorizationsReauthorizeRequestAmount,
+      paypal_fee: S.optional(AuthorizationsReauthorizeRequestAmount),
+      paypal_fee_in_receivable_currency: S.optional(
+        AuthorizationsReauthorizeRequestAmount,
+      ),
+      net_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      receivable_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      exchange_rate: S.optional(
+        CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate,
+      ),
+      platform_fees: S.optional(
+        GetCaptureResponseSellerReceivableBreakdownPlatformFeesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetCaptureResponseSellerReceivableBreakdown",
+  }) as any as S.Schema<GetCaptureResponseSellerReceivableBreakdown>;
+
+/** The HTTP method required to make the related call. */
+export type GetCaptureResponseLinksItemMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "HEAD"
+  | "CONNECT"
+  | "OPTIONS"
+  | "PATCH";
+export const GetCaptureResponseLinksItemMethod = /*@__PURE__*/ S.String;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type GetCaptureResponseLinksItemSchemaAllOfList = Array<unknown>;
+export const GetCaptureResponseLinksItemSchemaAllOfList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GetCaptureResponseLinksItemSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type GetCaptureResponseLinksItemSchemaAnyOfList = Array<unknown>;
+export const GetCaptureResponseLinksItemSchemaAnyOfList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GetCaptureResponseLinksItemSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type GetCaptureResponseLinksItemSchemaOneOfList = Array<unknown>;
+export const GetCaptureResponseLinksItemSchemaOneOfList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GetCaptureResponseLinksItemSchemaOneOfList>;
+
+/** An array of links. */
+export type GetCaptureResponseLinksItemSchemaLinksList = Array<unknown>;
+export const GetCaptureResponseLinksItemSchemaLinksList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GetCaptureResponseLinksItemSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type GetCaptureResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const GetCaptureResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface GetCaptureResponseLinksItemSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: GetCaptureResponseLinksItemSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: GetCaptureResponseLinksItemSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: GetCaptureResponseLinksItemSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: GetCaptureResponseLinksItemSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const GetCaptureResponseLinksItemSchema = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalItems: S.optional(S.Unknown),
+    dependencies: S.optional(S.Unknown),
+    items: S.optional(S.Unknown),
+    definitions: S.optional(S.Unknown),
+    patternProperties: S.optional(S.Unknown),
+    properties: S.optional(S.Unknown),
+    allOf: S.optional(GetCaptureResponseLinksItemSchemaAllOfList),
+    anyOf: S.optional(GetCaptureResponseLinksItemSchemaAnyOfList),
+    oneOf: S.optional(GetCaptureResponseLinksItemSchemaOneOfList),
+    not: S.optional(S.Unknown),
+    links: S.optional(GetCaptureResponseLinksItemSchemaLinksList),
+    fragmentResolution: S.optional(S.String),
+    media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+    pathStart: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetCaptureResponseLinksItemSchema",
+}) as any as S.Schema<GetCaptureResponseLinksItemSchema>;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type GetCaptureResponseLinksItemTargetSchemaAllOfList = Array<unknown>;
+export const GetCaptureResponseLinksItemTargetSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetCaptureResponseLinksItemTargetSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type GetCaptureResponseLinksItemTargetSchemaAnyOfList = Array<unknown>;
+export const GetCaptureResponseLinksItemTargetSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetCaptureResponseLinksItemTargetSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type GetCaptureResponseLinksItemTargetSchemaOneOfList = Array<unknown>;
+export const GetCaptureResponseLinksItemTargetSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetCaptureResponseLinksItemTargetSchemaOneOfList>;
+
+/** An array of links. */
+export type GetCaptureResponseLinksItemTargetSchemaLinksList = Array<unknown>;
+export const GetCaptureResponseLinksItemTargetSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GetCaptureResponseLinksItemTargetSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type GetCaptureResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const GetCaptureResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface GetCaptureResponseLinksItemTargetSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: GetCaptureResponseLinksItemTargetSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: GetCaptureResponseLinksItemTargetSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: GetCaptureResponseLinksItemTargetSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: GetCaptureResponseLinksItemTargetSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const GetCaptureResponseLinksItemTargetSchema = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(GetCaptureResponseLinksItemTargetSchemaAllOfList),
+      anyOf: S.optional(GetCaptureResponseLinksItemTargetSchemaAnyOfList),
+      oneOf: S.optional(GetCaptureResponseLinksItemTargetSchemaOneOfList),
+      not: S.optional(S.Unknown),
+      links: S.optional(GetCaptureResponseLinksItemTargetSchemaLinksList),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetCaptureResponseLinksItemTargetSchema",
+}) as any as S.Schema<GetCaptureResponseLinksItemTargetSchema>;
+
+export interface GetCaptureResponseLinksItem {
+  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
+  href: string;
+  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
+  rel: string;
+  /** The HTTP method required to make the related call. */
+  method?: GetCaptureResponseLinksItemMethod;
+  /** The link title. */
+  title?: string;
+  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
+  mediaType?: string;
+  /** The media type in which to submit the request data. */
+  encType?: string;
+  schema?: GetCaptureResponseLinksItemSchema;
+  targetSchema?: GetCaptureResponseLinksItemTargetSchema;
+}
+export const GetCaptureResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    href: S.String,
+    rel: S.String,
+    method: S.optional(GetCaptureResponseLinksItemMethod),
+    title: S.optional(S.String),
+    mediaType: S.optional(S.String),
+    encType: S.optional(S.String),
+    schema: S.optional(GetCaptureResponseLinksItemSchema),
+    targetSchema: S.optional(GetCaptureResponseLinksItemTargetSchema),
+  }),
+).annotate({
+  identifier: "GetCaptureResponseLinksItem",
+}) as any as S.Schema<GetCaptureResponseLinksItem>;
+
+/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+export type GetCaptureResponseLinksList = Array<GetCaptureResponseLinksItem>;
+export const GetCaptureResponseLinksList = /*@__PURE__*/ S.Array(
+  GetCaptureResponseLinksItem,
+) as any as S.Schema<GetCaptureResponseLinksList>;
+
+/** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
+export type GetCaptureResponseProcessorResponseAvsCode =
+  | "A"
+  | "B"
+  | "C"
+  | "D"
+  | "E"
+  | "F"
+  | "G"
+  | "I"
+  | "M"
+  | "N"
+  | "P"
+  | "R"
+  | "S"
+  | "U"
+  | "W"
+  | "X"
+  | "Y"
+  | "Z"
+  | "Null"
+  | "0"
+  | "1"
+  | "2"
+  | "3"
+  | "4";
+export const GetCaptureResponseProcessorResponseAvsCode =
+  /*@__PURE__*/ S.String;
+
+/** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
+export type GetCaptureResponseProcessorResponseCvvCode =
+  | "E"
+  | "I"
+  | "M"
+  | "N"
+  | "P"
+  | "S"
+  | "U"
+  | "X"
+  | "All others"
+  | "0"
+  | "1"
+  | "2"
+  | "3"
+  | "4";
+export const GetCaptureResponseProcessorResponseCvvCode =
+  /*@__PURE__*/ S.String;
+
+/** Processor response code for the non-PayPal payment processor errors. */
+export type GetCaptureResponseProcessorResponseResponseCode =
+  | "0000"
+  | "00N7"
+  | "0100"
+  | "0390"
+  | "0500"
+  | "0580"
+  | "0800"
+  | "0880"
+  | "0890"
+  | "0960"
+  | "0R00"
+  | "1000"
+  | "10BR"
+  | "1300"
+  | "1310"
+  | "1312"
+  | "1317"
+  | "1320"
+  | "1330"
+  | "1335"
+  | "1340"
+  | "1350"
+  | "1352"
+  | "1360"
+  | "1370"
+  | "1380"
+  | "1382"
+  | "1384"
+  | "1390"
+  | "1393"
+  | "5100"
+  | "5110"
+  | "5120"
+  | "5130"
+  | "5135"
+  | "5140"
+  | "5150"
+  | "5160"
+  | "5170"
+  | "5180"
+  | "5190"
+  | "5200"
+  | "5210"
+  | "5400"
+  | "5500"
+  | "5650"
+  | "5700"
+  | "5710"
+  | "5800"
+  | "5900"
+  | "5910"
+  | "5920"
+  | "5930"
+  | "5950"
+  | "6300"
+  | "7600"
+  | "7700"
+  | "7710"
+  | "7800"
+  | "7900"
+  | "8000"
+  | "8010"
+  | "8020"
+  | "8030"
+  | "8100"
+  | "8110"
+  | "8220"
+  | "9100"
+  | "9500"
+  | "9510"
+  | "9520"
+  | "9530"
+  | "9540"
+  | "9600"
+  | "PCNR"
+  | "PCVV"
+  | "PP06"
+  | "PPRN"
+  | "PPAD"
+  | "PPAB"
+  | "PPAE"
+  | "PPAG"
+  | "PPAI"
+  | "PPAR"
+  | "PPAU"
+  | "PPAV"
+  | "PPAX"
+  | "PPBG"
+  | "PPC2"
+  | "PPCE"
+  | "PPCO"
+  | "PPCR"
+  | "PPCT"
+  | "PPCU"
+  | "PPD3"
+  | "PPDC"
+  | "PPDI"
+  | "PPDV"
+  | "PPDT"
+  | "PPEF"
+  | "PPEL"
+  | "PPER"
+  | "PPEX"
+  | "PPFE"
+  | "PPFI"
+  | "PPFR"
+  | "PPFV"
+  | "PPGR"
+  | "PPH1"
+  | "PPIF"
+  | "PPII"
+  | "PPIM"
+  | "PPIT"
+  | "PPLR"
+  | "PPLS"
+  | "PPMB"
+  | "PPMC"
+  | "PPMD"
+  | "PPNC"
+  | "PPNL"
+  | "PPNM"
+  | "PPNT"
+  | "PPPH"
+  | "PPPI"
+  | "PPPM"
+  | "PPQC"
+  | "PPRE"
+  | "PPRF"
+  | "PPRR"
+  | "PPS0"
+  | "PPS1"
+  | "PPS2"
+  | "PPS3"
+  | "PPS4"
+  | "PPS5"
+  | "PPS6"
+  | "PPSC"
+  | "PPSD"
+  | "PPSE"
+  | "PPTE"
+  | "PPTF"
+  | "PPTI"
+  | "PPTR"
+  | "PPTT"
+  | "PPTV"
+  | "PPUA"
+  | "PPUC"
+  | "PPUE"
+  | "PPUI"
+  | "PPUP"
+  | "PPUR"
+  | "PPVC"
+  | "PPVE"
+  | "PPVT";
+export const GetCaptureResponseProcessorResponseResponseCode =
+  /*@__PURE__*/ S.String;
+
+/** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
+export type GetCaptureResponseProcessorResponsePaymentAdviceCode =
+  | "01"
+  | "02"
+  | "03"
+  | "04"
+  | "21"
+  | "22"
+  | "24"
+  | "25"
+  | "26"
+  | "27"
+  | "28"
+  | "29"
+  | "30"
+  | "40"
+  | "43";
+export const GetCaptureResponseProcessorResponsePaymentAdviceCode =
+  /*@__PURE__*/ S.String;
+
+export interface GetCaptureResponseProcessorResponse {
+  /** The address verification code for Visa, Discover, Mastercard, or American Express transactions. */
+  avs_code?: GetCaptureResponseProcessorResponseAvsCode;
+  /** The card verification value code for for Visa, Discover, Mastercard, or American Express. */
+  cvv_code?: GetCaptureResponseProcessorResponseCvvCode;
+  /** Processor response code for the non-PayPal payment processor errors. */
+  response_code?: GetCaptureResponseProcessorResponseResponseCode;
+  /** The declined payment transactions might have payment advice codes. The card networks, like Visa and Mastercard, return payment advice codes. */
+  payment_advice_code?: GetCaptureResponseProcessorResponsePaymentAdviceCode;
+}
+export const GetCaptureResponseProcessorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    avs_code: S.optional(GetCaptureResponseProcessorResponseAvsCode),
+    cvv_code: S.optional(GetCaptureResponseProcessorResponseCvvCode),
+    response_code: S.optional(GetCaptureResponseProcessorResponseResponseCode),
+    payment_advice_code: S.optional(
+      GetCaptureResponseProcessorResponsePaymentAdviceCode,
+    ),
+  }),
+).annotate({
+  identifier: "GetCaptureResponseProcessorResponse",
+}) as any as S.Schema<GetCaptureResponseProcessorResponse>;
+
+export type GetCaptureResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+export const GetCaptureResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+
+export type GetCaptureResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+export const GetCaptureResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+
+export type GetCaptureResponsePayee = AuthorizationsReauthorizeResponsePayee;
+export const GetCaptureResponsePayee = AuthorizationsReauthorizeResponsePayee;
+
+export interface GetCaptureResponse {
+  /** The status of the captured payment. */
+  status?: GetCaptureResponseStatus;
+  status_details?: GetCaptureResponseStatusDetails;
+  /** The PayPal-generated ID for the captured payment. */
+  id?: string;
+  amount?: AuthorizationsReauthorizeResponseAmount;
+  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
+  invoice_id?: string;
+  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
+  custom_id?: string;
+  network_transaction_reference?: NetworkTransaction;
+  seller_protection?: GetCaptureResponseSellerProtection;
+  /** Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization. */
+  final_capture?: boolean;
+  seller_receivable_breakdown?: GetCaptureResponseSellerReceivableBreakdown;
+  disbursement_mode?: DisbursementMode;
+  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+  links?: GetCaptureResponseLinksList;
+  processor_response?: GetCaptureResponseProcessorResponse;
+  create_time?: unknown;
+  update_time?: unknown;
+  supplementary_data?: AuthorizationsReauthorizeResponseSupplementaryData;
+  payee?: AuthorizationsReauthorizeResponsePayee;
+}
+export const GetCaptureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(GetCaptureResponseStatus),
+    status_details: S.optional(GetCaptureResponseStatusDetails),
+    id: S.optional(S.String),
+    amount: S.optional(AuthorizationsReauthorizeResponseAmount),
+    invoice_id: S.optional(S.String),
+    custom_id: S.optional(S.String),
+    network_transaction_reference: S.optional(NetworkTransaction),
+    seller_protection: S.optional(GetCaptureResponseSellerProtection),
+    final_capture: S.optional(S.Boolean),
+    seller_receivable_breakdown: S.optional(
+      GetCaptureResponseSellerReceivableBreakdown,
+    ),
+    disbursement_mode: S.optional(DisbursementMode),
+    links: S.optional(GetCaptureResponseLinksList),
+    processor_response: S.optional(GetCaptureResponseProcessorResponse),
+    create_time: S.optional(S.Unknown),
+    update_time: S.optional(S.Unknown),
+    supplementary_data: S.optional(
+      AuthorizationsReauthorizeResponseSupplementaryData,
+    ),
+    payee: S.optional(AuthorizationsReauthorizeResponsePayee),
+  }),
+).annotate({
+  identifier: "GetCaptureResponse",
+}) as any as S.Schema<GetCaptureResponse>;
+
+export interface GetRefundRequest {
   /** The PayPal-generated ID for the refund for which to show details. */
   refund_id: string;
   /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
   payPalAuthAssertion?: string;
 }
-export const RefundsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRefundRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     refund_id: S.String.pipe(T.Label()),
     payPalAuthAssertion: S.optional(
@@ -4133,161 +3180,172 @@ export const RefundsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RefundsGetRequest",
-}) as any as S.Schema<RefundsGetRequest>;
+  identifier: "GetRefundRequest",
+}) as any as S.Schema<GetRefundRequest>;
 
 /** The status of the refund. */
-export type RefundsGetResponseStatus =
+export type GetRefundResponseStatus =
   | "CANCELLED"
   | "FAILED"
   | "PENDING"
   | "COMPLETED";
-export const RefundsGetResponseStatus = /*@__PURE__*/ S.String;
+export const GetRefundResponseStatus = /*@__PURE__*/ S.String;
 
 /** The reason why the refund has the `PENDING` or `FAILED` status. */
-export type RefundsGetResponseStatusDetailsReason = "ECHECK";
-export const RefundsGetResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+export type GetRefundResponseStatusDetailsReason = "ECHECK";
+export const GetRefundResponseStatusDetailsReason = /*@__PURE__*/ S.String;
 
-export interface RefundsGetResponseStatusDetails {
+export interface GetRefundResponseStatusDetails {
   /** The reason why the refund has the `PENDING` or `FAILED` status. */
-  reason?: RefundsGetResponseStatusDetailsReason;
+  reason?: GetRefundResponseStatusDetailsReason;
 }
-export const RefundsGetResponseStatusDetails = /*@__PURE__*/ S.suspend(() =>
+export const GetRefundResponseStatusDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    reason: S.optional(RefundsGetResponseStatusDetailsReason),
+    reason: S.optional(GetRefundResponseStatusDetailsReason),
   }),
 ).annotate({
-  identifier: "RefundsGetResponseStatusDetails",
-}) as any as S.Schema<RefundsGetResponseStatusDetails>;
+  identifier: "GetRefundResponseStatusDetails",
+}) as any as S.Schema<GetRefundResponseStatusDetails>;
 
-export type RefundsGetResponseAmount = AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseAmount = AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseAmount = AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseAmount = AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownGrossAmount =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownPaypalFee =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownNetAmount =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownPlatformFeesItemAmount =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const RefundsGetResponseSellerPayableBreakdownPlatformFeesItemPayee =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+export type GetRefundResponseSellerPayableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const GetRefundResponseSellerPayableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
 
-export type RefundsGetResponseSellerPayableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
-export const RefundsGetResponseSellerPayableBreakdownPlatformFeesItem =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem;
+export type GetRefundResponseSellerPayableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+export const GetRefundResponseSellerPayableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
 
 /** An array of platform or partner fees, commissions, or brokerage fees for the refund. */
-export type RefundsGetResponseSellerPayableBreakdownPlatformFeesList =
-  Array<AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem>;
-export const RefundsGetResponseSellerPayableBreakdownPlatformFeesList =
+export type GetRefundResponseSellerPayableBreakdownPlatformFeesList =
+  Array<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+export const GetRefundResponseSellerPayableBreakdownPlatformFeesList =
   /*@__PURE__*/ S.Array(
-    AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItem,
-  ) as any as S.Schema<RefundsGetResponseSellerPayableBreakdownPlatformFeesList>;
+    CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem,
+  ) as any as S.Schema<GetRefundResponseSellerPayableBreakdownPlatformFeesList>;
 
-export type RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
-  AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
-export const RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
-  AuthorizationsCaptureResponseSellerReceivableBreakdownExchangeRate;
+export type GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
+  CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+export const GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
+  CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
 
-export type RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItem =
-  CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem;
-export const RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownItem =
-  CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem;
+export interface GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem {
+  payable_amount?: AuthorizationsReauthorizeRequestAmount;
+  converted_amount?: AuthorizationsReauthorizeRequestAmount;
+  exchange_rate?: CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+}
+export const GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      payable_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      converted_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      exchange_rate: S.optional(
+        CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem",
+  }) as any as S.Schema<GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem>;
 
 /** An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. */
-export type RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList =
-  Array<CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem>;
-export const RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList =
+export type GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList =
+  Array<GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem>;
+export const GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList =
   /*@__PURE__*/ S.Array(
-    CapturesRefundResponseSellerPayableBreakdownNetAmountBreakdownItem,
-  ) as any as S.Schema<RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList>;
+    GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem,
+  ) as any as S.Schema<GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList>;
 
-export type RefundsGetResponseSellerPayableBreakdownTotalRefundedAmount =
-  AuthorizationsCaptureRequestAmount;
-export const RefundsGetResponseSellerPayableBreakdownTotalRefundedAmount =
-  AuthorizationsCaptureRequestAmount;
+export type GetRefundResponseSellerPayableBreakdownTotalRefundedAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const GetRefundResponseSellerPayableBreakdownTotalRefundedAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
 /** The breakdown of the refund. */
-export interface RefundsGetResponseSellerPayableBreakdown {
-  gross_amount?: AuthorizationsCaptureRequestAmount;
-  paypal_fee?: AuthorizationsCaptureRequestAmount;
-  paypal_fee_in_receivable_currency?: AuthorizationsCaptureRequestAmount;
-  net_amount?: AuthorizationsCaptureRequestAmount;
-  net_amount_in_receivable_currency?: AuthorizationsCaptureRequestAmount;
+export interface GetRefundResponseSellerPayableBreakdown {
+  gross_amount?: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee?: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee_in_receivable_currency?: AuthorizationsReauthorizeRequestAmount;
+  net_amount?: AuthorizationsReauthorizeRequestAmount;
+  net_amount_in_receivable_currency?: AuthorizationsReauthorizeRequestAmount;
   /** An array of platform or partner fees, commissions, or brokerage fees for the refund. */
-  platform_fees?: RefundsGetResponseSellerPayableBreakdownPlatformFeesList;
+  platform_fees?: GetRefundResponseSellerPayableBreakdownPlatformFeesList;
   /** An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. */
-  net_amount_breakdown?: RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList;
-  total_refunded_amount?: AuthorizationsCaptureRequestAmount;
+  net_amount_breakdown?: GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList;
+  total_refunded_amount?: AuthorizationsReauthorizeRequestAmount;
 }
-export const RefundsGetResponseSellerPayableBreakdown = /*@__PURE__*/ S.suspend(
+export const GetRefundResponseSellerPayableBreakdown = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      gross_amount: S.optional(AuthorizationsCaptureRequestAmount),
-      paypal_fee: S.optional(AuthorizationsCaptureRequestAmount),
+      gross_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      paypal_fee: S.optional(AuthorizationsReauthorizeRequestAmount),
       paypal_fee_in_receivable_currency: S.optional(
-        AuthorizationsCaptureRequestAmount,
+        AuthorizationsReauthorizeRequestAmount,
       ),
-      net_amount: S.optional(AuthorizationsCaptureRequestAmount),
+      net_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
       net_amount_in_receivable_currency: S.optional(
-        AuthorizationsCaptureRequestAmount,
+        AuthorizationsReauthorizeRequestAmount,
       ),
       platform_fees: S.optional(
-        RefundsGetResponseSellerPayableBreakdownPlatformFeesList,
+        GetRefundResponseSellerPayableBreakdownPlatformFeesList,
       ),
       net_amount_breakdown: S.optional(
-        RefundsGetResponseSellerPayableBreakdownNetAmountBreakdownList,
+        GetRefundResponseSellerPayableBreakdownNetAmountBreakdownList,
       ),
-      total_refunded_amount: S.optional(AuthorizationsCaptureRequestAmount),
+      total_refunded_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
     }),
 ).annotate({
-  identifier: "RefundsGetResponseSellerPayableBreakdown",
-}) as any as S.Schema<RefundsGetResponseSellerPayableBreakdown>;
+  identifier: "GetRefundResponseSellerPayableBreakdown",
+}) as any as S.Schema<GetRefundResponseSellerPayableBreakdown>;
 
-export type RefundsGetResponsePayer =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
-export const RefundsGetResponsePayer =
-  AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+export type GetRefundResponsePayer = AuthorizationsReauthorizeResponsePayee;
+export const GetRefundResponsePayer = AuthorizationsReauthorizeResponsePayee;
 
 /** The HTTP method required to make the related call. */
-export type RefundsGetResponseLinksItemMethod =
+export type GetRefundResponseLinksItemMethod =
   | "GET"
   | "POST"
   | "PUT"
@@ -4296,39 +3354,39 @@ export type RefundsGetResponseLinksItemMethod =
   | "CONNECT"
   | "OPTIONS"
   | "PATCH";
-export const RefundsGetResponseLinksItemMethod = /*@__PURE__*/ S.String;
+export const GetRefundResponseLinksItemMethod = /*@__PURE__*/ S.String;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type RefundsGetResponseLinksItemSchemaAllOfList = Array<unknown>;
-export const RefundsGetResponseLinksItemSchemaAllOfList = /*@__PURE__*/ S.Array(
+export type GetRefundResponseLinksItemSchemaAllOfList = Array<unknown>;
+export const GetRefundResponseLinksItemSchemaAllOfList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<RefundsGetResponseLinksItemSchemaAllOfList>;
+) as any as S.Schema<GetRefundResponseLinksItemSchemaAllOfList>;
 
 /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type RefundsGetResponseLinksItemSchemaAnyOfList = Array<unknown>;
-export const RefundsGetResponseLinksItemSchemaAnyOfList = /*@__PURE__*/ S.Array(
+export type GetRefundResponseLinksItemSchemaAnyOfList = Array<unknown>;
+export const GetRefundResponseLinksItemSchemaAnyOfList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<RefundsGetResponseLinksItemSchemaAnyOfList>;
+) as any as S.Schema<GetRefundResponseLinksItemSchemaAnyOfList>;
 
 /** An array of sub-schemas. The data must validate against one sub-schema. */
-export type RefundsGetResponseLinksItemSchemaOneOfList = Array<unknown>;
-export const RefundsGetResponseLinksItemSchemaOneOfList = /*@__PURE__*/ S.Array(
+export type GetRefundResponseLinksItemSchemaOneOfList = Array<unknown>;
+export const GetRefundResponseLinksItemSchemaOneOfList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<RefundsGetResponseLinksItemSchemaOneOfList>;
+) as any as S.Schema<GetRefundResponseLinksItemSchemaOneOfList>;
 
 /** An array of links. */
-export type RefundsGetResponseLinksItemSchemaLinksList = Array<unknown>;
-export const RefundsGetResponseLinksItemSchemaLinksList = /*@__PURE__*/ S.Array(
+export type GetRefundResponseLinksItemSchemaLinksList = Array<unknown>;
+export const GetRefundResponseLinksItemSchemaLinksList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<RefundsGetResponseLinksItemSchemaLinksList>;
+) as any as S.Schema<GetRefundResponseLinksItemSchemaLinksList>;
 
 /** The media type and context-encoding scheme. */
-export type RefundsGetResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const RefundsGetResponseLinksItemSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+export type GetRefundResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const GetRefundResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 
-export interface RefundsGetResponseLinksItemSchema {
+export interface GetRefundResponseLinksItemSchema {
   /** Any additional items. */
   additionalItems?: unknown;
   /** Any Dependencies. */
@@ -4342,23 +3400,23 @@ export interface RefundsGetResponseLinksItemSchema {
   /** Properties. */
   properties?: unknown;
   /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: RefundsGetResponseLinksItemSchemaAllOfList;
+  allOf?: GetRefundResponseLinksItemSchemaAllOfList;
   /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: RefundsGetResponseLinksItemSchemaAnyOfList;
+  anyOf?: GetRefundResponseLinksItemSchemaAnyOfList;
   /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: RefundsGetResponseLinksItemSchemaOneOfList;
+  oneOf?: GetRefundResponseLinksItemSchemaOneOfList;
   /** Not. */
   not?: unknown;
   /** An array of links. */
-  links?: RefundsGetResponseLinksItemSchemaLinksList;
+  links?: GetRefundResponseLinksItemSchemaLinksList;
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
-export const RefundsGetResponseLinksItemSchema = /*@__PURE__*/ S.suspend(() =>
+export const GetRefundResponseLinksItemSchema = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     additionalItems: S.optional(S.Unknown),
     dependencies: S.optional(S.Unknown),
@@ -4366,54 +3424,54 @@ export const RefundsGetResponseLinksItemSchema = /*@__PURE__*/ S.suspend(() =>
     definitions: S.optional(S.Unknown),
     patternProperties: S.optional(S.Unknown),
     properties: S.optional(S.Unknown),
-    allOf: S.optional(RefundsGetResponseLinksItemSchemaAllOfList),
-    anyOf: S.optional(RefundsGetResponseLinksItemSchemaAnyOfList),
-    oneOf: S.optional(RefundsGetResponseLinksItemSchemaOneOfList),
+    allOf: S.optional(GetRefundResponseLinksItemSchemaAllOfList),
+    anyOf: S.optional(GetRefundResponseLinksItemSchemaAnyOfList),
+    oneOf: S.optional(GetRefundResponseLinksItemSchemaOneOfList),
     not: S.optional(S.Unknown),
-    links: S.optional(RefundsGetResponseLinksItemSchemaLinksList),
+    links: S.optional(GetRefundResponseLinksItemSchemaLinksList),
     fragmentResolution: S.optional(S.String),
-    media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+    media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
     pathStart: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "RefundsGetResponseLinksItemSchema",
-}) as any as S.Schema<RefundsGetResponseLinksItemSchema>;
+  identifier: "GetRefundResponseLinksItemSchema",
+}) as any as S.Schema<GetRefundResponseLinksItemSchema>;
 
 /** An array of sub-schemas. The data must validate against all sub-schemas. */
-export type RefundsGetResponseLinksItemTargetSchemaAllOfList = Array<unknown>;
-export const RefundsGetResponseLinksItemTargetSchemaAllOfList =
+export type GetRefundResponseLinksItemTargetSchemaAllOfList = Array<unknown>;
+export const GetRefundResponseLinksItemTargetSchemaAllOfList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<RefundsGetResponseLinksItemTargetSchemaAllOfList>;
+  ) as any as S.Schema<GetRefundResponseLinksItemTargetSchemaAllOfList>;
 
 /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-export type RefundsGetResponseLinksItemTargetSchemaAnyOfList = Array<unknown>;
-export const RefundsGetResponseLinksItemTargetSchemaAnyOfList =
+export type GetRefundResponseLinksItemTargetSchemaAnyOfList = Array<unknown>;
+export const GetRefundResponseLinksItemTargetSchemaAnyOfList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<RefundsGetResponseLinksItemTargetSchemaAnyOfList>;
+  ) as any as S.Schema<GetRefundResponseLinksItemTargetSchemaAnyOfList>;
 
 /** An array of sub-schemas. The data must validate against one sub-schema. */
-export type RefundsGetResponseLinksItemTargetSchemaOneOfList = Array<unknown>;
-export const RefundsGetResponseLinksItemTargetSchemaOneOfList =
+export type GetRefundResponseLinksItemTargetSchemaOneOfList = Array<unknown>;
+export const GetRefundResponseLinksItemTargetSchemaOneOfList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<RefundsGetResponseLinksItemTargetSchemaOneOfList>;
+  ) as any as S.Schema<GetRefundResponseLinksItemTargetSchemaOneOfList>;
 
 /** An array of links. */
-export type RefundsGetResponseLinksItemTargetSchemaLinksList = Array<unknown>;
-export const RefundsGetResponseLinksItemTargetSchemaLinksList =
+export type GetRefundResponseLinksItemTargetSchemaLinksList = Array<unknown>;
+export const GetRefundResponseLinksItemTargetSchemaLinksList =
   /*@__PURE__*/ S.Array(
     S.Unknown,
-  ) as any as S.Schema<RefundsGetResponseLinksItemTargetSchemaLinksList>;
+  ) as any as S.Schema<GetRefundResponseLinksItemTargetSchemaLinksList>;
 
 /** The media type and context-encoding scheme. */
-export type RefundsGetResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
-export const RefundsGetResponseLinksItemTargetSchemaMedia =
-  AuthorizationsCaptureResponseLinksItemSchemaMedia;
+export type GetRefundResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const GetRefundResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
 
-export interface RefundsGetResponseLinksItemTargetSchema {
+export interface GetRefundResponseLinksItemTargetSchema {
   /** Any additional items. */
   additionalItems?: unknown;
   /** Any Dependencies. */
@@ -4427,23 +3485,23 @@ export interface RefundsGetResponseLinksItemTargetSchema {
   /** Properties. */
   properties?: unknown;
   /** An array of sub-schemas. The data must validate against all sub-schemas. */
-  allOf?: RefundsGetResponseLinksItemTargetSchemaAllOfList;
+  allOf?: GetRefundResponseLinksItemTargetSchemaAllOfList;
   /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
-  anyOf?: RefundsGetResponseLinksItemTargetSchemaAnyOfList;
+  anyOf?: GetRefundResponseLinksItemTargetSchemaAnyOfList;
   /** An array of sub-schemas. The data must validate against one sub-schema. */
-  oneOf?: RefundsGetResponseLinksItemTargetSchemaOneOfList;
+  oneOf?: GetRefundResponseLinksItemTargetSchemaOneOfList;
   /** Not. */
   not?: unknown;
   /** An array of links. */
-  links?: RefundsGetResponseLinksItemTargetSchemaLinksList;
+  links?: GetRefundResponseLinksItemTargetSchemaLinksList;
   /** The fragment resolution. */
   fragmentResolution?: string;
   /** The media type and context-encoding scheme. */
-  media?: AuthorizationsCaptureResponseLinksItemSchemaMedia;
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
   /** To apply this schema to the instances' URIs, start the URIs with this value. */
   pathStart?: string;
 }
-export const RefundsGetResponseLinksItemTargetSchema = /*@__PURE__*/ S.suspend(
+export const GetRefundResponseLinksItemTargetSchema = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       additionalItems: S.optional(S.Unknown),
@@ -4452,63 +3510,63 @@ export const RefundsGetResponseLinksItemTargetSchema = /*@__PURE__*/ S.suspend(
       definitions: S.optional(S.Unknown),
       patternProperties: S.optional(S.Unknown),
       properties: S.optional(S.Unknown),
-      allOf: S.optional(RefundsGetResponseLinksItemTargetSchemaAllOfList),
-      anyOf: S.optional(RefundsGetResponseLinksItemTargetSchemaAnyOfList),
-      oneOf: S.optional(RefundsGetResponseLinksItemTargetSchemaOneOfList),
+      allOf: S.optional(GetRefundResponseLinksItemTargetSchemaAllOfList),
+      anyOf: S.optional(GetRefundResponseLinksItemTargetSchemaAnyOfList),
+      oneOf: S.optional(GetRefundResponseLinksItemTargetSchemaOneOfList),
       not: S.optional(S.Unknown),
-      links: S.optional(RefundsGetResponseLinksItemTargetSchemaLinksList),
+      links: S.optional(GetRefundResponseLinksItemTargetSchemaLinksList),
       fragmentResolution: S.optional(S.String),
-      media: S.optional(AuthorizationsCaptureResponseLinksItemSchemaMedia),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
       pathStart: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "RefundsGetResponseLinksItemTargetSchema",
-}) as any as S.Schema<RefundsGetResponseLinksItemTargetSchema>;
+  identifier: "GetRefundResponseLinksItemTargetSchema",
+}) as any as S.Schema<GetRefundResponseLinksItemTargetSchema>;
 
-export interface RefundsGetResponseLinksItem {
+export interface GetRefundResponseLinksItem {
   /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
   href: string;
   /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
   rel: string;
   /** The HTTP method required to make the related call. */
-  method?: RefundsGetResponseLinksItemMethod;
+  method?: GetRefundResponseLinksItemMethod;
   /** The link title. */
   title?: string;
   /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
   mediaType?: string;
   /** The media type in which to submit the request data. */
   encType?: string;
-  schema?: RefundsGetResponseLinksItemSchema;
-  targetSchema?: RefundsGetResponseLinksItemTargetSchema;
+  schema?: GetRefundResponseLinksItemSchema;
+  targetSchema?: GetRefundResponseLinksItemTargetSchema;
 }
-export const RefundsGetResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
+export const GetRefundResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     href: S.String,
     rel: S.String,
-    method: S.optional(RefundsGetResponseLinksItemMethod),
+    method: S.optional(GetRefundResponseLinksItemMethod),
     title: S.optional(S.String),
     mediaType: S.optional(S.String),
     encType: S.optional(S.String),
-    schema: S.optional(RefundsGetResponseLinksItemSchema),
-    targetSchema: S.optional(RefundsGetResponseLinksItemTargetSchema),
+    schema: S.optional(GetRefundResponseLinksItemSchema),
+    targetSchema: S.optional(GetRefundResponseLinksItemTargetSchema),
   }),
 ).annotate({
-  identifier: "RefundsGetResponseLinksItem",
-}) as any as S.Schema<RefundsGetResponseLinksItem>;
+  identifier: "GetRefundResponseLinksItem",
+}) as any as S.Schema<GetRefundResponseLinksItem>;
 
 /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-export type RefundsGetResponseLinksList = Array<RefundsGetResponseLinksItem>;
-export const RefundsGetResponseLinksList = /*@__PURE__*/ S.Array(
-  RefundsGetResponseLinksItem,
-) as any as S.Schema<RefundsGetResponseLinksList>;
+export type GetRefundResponseLinksList = Array<GetRefundResponseLinksItem>;
+export const GetRefundResponseLinksList = /*@__PURE__*/ S.Array(
+  GetRefundResponseLinksItem,
+) as any as S.Schema<GetRefundResponseLinksList>;
 
-export interface RefundsGetResponse {
+export interface GetRefundResponse {
   /** The status of the refund. */
-  status?: RefundsGetResponseStatus;
-  status_details?: RefundsGetResponseStatusDetails;
+  status?: GetRefundResponseStatus;
+  status_details?: GetRefundResponseStatusDetails;
   /** The PayPal-generated ID for the refund. */
   id?: string;
-  amount?: AuthorizationsCaptureRequestAmount;
+  amount?: AuthorizationsReauthorizeRequestAmount;
   /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
   invoice_id?: string;
   /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
@@ -4518,79 +3576,938 @@ export interface RefundsGetResponse {
   /** The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives. */
   note_to_payer?: string;
   /** The breakdown of the refund. */
-  seller_payable_breakdown?: RefundsGetResponseSellerPayableBreakdown;
-  payer?: AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee;
+  seller_payable_breakdown?: GetRefundResponseSellerPayableBreakdown;
+  payer?: AuthorizationsReauthorizeResponsePayee;
   /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
-  links?: RefundsGetResponseLinksList;
+  links?: GetRefundResponseLinksList;
   create_time?: unknown;
   update_time?: unknown;
 }
-export const RefundsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRefundResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(RefundsGetResponseStatus),
-    status_details: S.optional(RefundsGetResponseStatusDetails),
+    status: S.optional(GetRefundResponseStatus),
+    status_details: S.optional(GetRefundResponseStatusDetails),
     id: S.optional(S.String),
-    amount: S.optional(AuthorizationsCaptureRequestAmount),
+    amount: S.optional(AuthorizationsReauthorizeRequestAmount),
     invoice_id: S.optional(S.String),
     custom_id: S.optional(S.String),
     acquirer_reference_number: S.optional(S.String),
     note_to_payer: S.optional(S.String),
     seller_payable_breakdown: S.optional(
-      RefundsGetResponseSellerPayableBreakdown,
+      GetRefundResponseSellerPayableBreakdown,
     ),
-    payer: S.optional(
-      AuthorizationsCaptureRequestPaymentInstructionPlatformFeesItemPayee,
-    ),
-    links: S.optional(RefundsGetResponseLinksList),
+    payer: S.optional(AuthorizationsReauthorizeResponsePayee),
+    links: S.optional(GetRefundResponseLinksList),
     create_time: S.optional(S.Unknown),
     update_time: S.optional(S.Unknown),
   }),
 ).annotate({
-  identifier: "RefundsGetResponse",
-}) as any as S.Schema<RefundsGetResponse>;
+  identifier: "GetRefundResponse",
+}) as any as S.Schema<GetRefundResponse>;
 
-export type AuthorizationsCaptureError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Capture authorized payment Captures an authorized payment, by ID. */
-export const authorizationsCapture: API.OperationMethod<
-  AuthorizationsCaptureRequest,
-  AuthorizationsCaptureResponse,
-  AuthorizationsCaptureError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationsCaptureRequest,
-  output: AuthorizationsCaptureResponse,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    Conflict,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
+export type RefundCaptureRequestAmount = AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureRequestAmount =
+  AuthorizationsReauthorizeRequestAmount;
 
-export type AuthorizationsGetError = Forbidden | NotFound | PaypalOpError;
-/** Show details for authorized payment Shows details for an authorized payment, by ID. */
-export const authorizationsGet: API.OperationMethod<
-  AuthorizationsGetRequest,
-  AuthorizationsGetResponse,
-  AuthorizationsGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationsGetRequest,
-  output: AuthorizationsGetResponse,
-  errors: [Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
+export type RefundCaptureRequestPaymentInstructionPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureRequestPaymentInstructionPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureRequestPaymentInstructionPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const RefundCaptureRequestPaymentInstructionPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export type RefundCaptureRequestPaymentInstructionPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+export const RefundCaptureRequestPaymentInstructionPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+
+/** Specifies the amount that the API caller will contribute to the refund being processed. The amount needs to be lower than platform_fees amount originally captured or the amount that is remaining if multiple refunds have been processed. This field is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability. */
+export type RefundCaptureRequestPaymentInstructionPlatformFeesList =
+  Array<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+export const RefundCaptureRequestPaymentInstructionPlatformFeesList =
+  /*@__PURE__*/ S.Array(
+    CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem,
+  ) as any as S.Schema<RefundCaptureRequestPaymentInstructionPlatformFeesList>;
+
+export interface RefundCaptureRequestPaymentInstruction {
+  /** Specifies the amount that the API caller will contribute to the refund being processed. The amount needs to be lower than platform_fees amount originally captured or the amount that is remaining if multiple refunds have been processed. This field is only applicable to merchants that have been enabled for PayPal Commerce Platform for Marketplaces and Platforms capability. Please speak to your account manager if you want to use this capability. */
+  platform_fees?: RefundCaptureRequestPaymentInstructionPlatformFeesList;
+}
+export const RefundCaptureRequestPaymentInstruction = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      platform_fees: S.optional(
+        RefundCaptureRequestPaymentInstructionPlatformFeesList,
+      ),
+    }),
+).annotate({
+  identifier: "RefundCaptureRequestPaymentInstruction",
+}) as any as S.Schema<RefundCaptureRequestPaymentInstruction>;
+
+export interface RefundCaptureRequest {
+  /** The PayPal-generated ID for the captured payment to refund. */
+  capture_id: string;
+  /** A unique ID identifying the request header for idempotency purposes. */
+  payPalRequestId?: string;
+  /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
+  prefer?: string;
+  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
+  payPalAuthAssertion?: string;
+  amount?: AuthorizationsReauthorizeRequestAmount;
+  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. The pattern is defined by an external party and supports Unicode. */
+  custom_id?: string;
+  /** The API caller-provided external invoice ID for this order. The pattern is defined by an external party and supports Unicode. */
+  invoice_id?: string;
+  /** The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives. The pattern is defined by an external party and supports Unicode. */
+  note_to_payer?: string;
+  payment_instruction?: RefundCaptureRequestPaymentInstruction;
+}
+export const RefundCaptureRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capture_id: S.String.pipe(T.Label()),
+    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
+    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
+    payPalAuthAssertion: S.optional(
+      S.String.pipe(T.Header("PayPal-Auth-Assertion")),
+    ),
+    amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+    custom_id: S.optional(S.String),
+    invoice_id: S.optional(S.String),
+    note_to_payer: S.optional(S.String),
+    payment_instruction: S.optional(RefundCaptureRequestPaymentInstruction),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/payments/captures/{capture_id}/refund",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RefundCaptureRequest",
+}) as any as S.Schema<RefundCaptureRequest>;
+
+/** The status of the refund. */
+export type RefundCaptureResponseStatus =
+  | "CANCELLED"
+  | "FAILED"
+  | "PENDING"
+  | "COMPLETED";
+export const RefundCaptureResponseStatus = /*@__PURE__*/ S.String;
+
+/** The reason why the refund has the `PENDING` or `FAILED` status. */
+export type RefundCaptureResponseStatusDetailsReason = "ECHECK";
+export const RefundCaptureResponseStatusDetailsReason = /*@__PURE__*/ S.String;
+
+export interface RefundCaptureResponseStatusDetails {
+  /** The reason why the refund has the `PENDING` or `FAILED` status. */
+  reason?: RefundCaptureResponseStatusDetailsReason;
+}
+export const RefundCaptureResponseStatusDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.optional(RefundCaptureResponseStatusDetailsReason),
+  }),
+).annotate({
+  identifier: "RefundCaptureResponseStatusDetails",
+}) as any as S.Schema<RefundCaptureResponseStatusDetails>;
+
+export type RefundCaptureResponseAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownGrossAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownPaypalFee =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownPaypalFeeInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmountInReceivableCurrency =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const RefundCaptureResponseSellerPayableBreakdownPlatformFeesItemPayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export type RefundCaptureResponseSellerPayableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+export const RefundCaptureResponseSellerPayableBreakdownPlatformFeesItem =
+  CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem;
+
+/** An array of platform or partner fees, commissions, or brokerage fees for the refund. */
+export type RefundCaptureResponseSellerPayableBreakdownPlatformFeesList =
+  Array<CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem>;
+export const RefundCaptureResponseSellerPayableBreakdownPlatformFeesList =
+  /*@__PURE__*/ S.Array(
+    CaptureAuthorizationRequestPaymentInstructionPlatformFeesItem,
+  ) as any as S.Schema<RefundCaptureResponseSellerPayableBreakdownPlatformFeesList>;
+
+export type RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemPayableAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemConvertedAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+export type RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
+  CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItemExchangeRate =
+  CaptureAuthorizationResponseSellerReceivableBreakdownExchangeRate;
+
+export type RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItem =
+  GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownItem =
+  GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem;
+
+/** An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. */
+export type RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList =
+  Array<GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem>;
+export const RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList =
+  /*@__PURE__*/ S.Array(
+    GetRefundResponseSellerPayableBreakdownNetAmountBreakdownItem,
+  ) as any as S.Schema<RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList>;
+
+export type RefundCaptureResponseSellerPayableBreakdownTotalRefundedAmount =
+  AuthorizationsReauthorizeRequestAmount;
+export const RefundCaptureResponseSellerPayableBreakdownTotalRefundedAmount =
+  AuthorizationsReauthorizeRequestAmount;
+
+/** The breakdown of the refund. */
+export interface RefundCaptureResponseSellerPayableBreakdown {
+  gross_amount?: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee?: AuthorizationsReauthorizeRequestAmount;
+  paypal_fee_in_receivable_currency?: AuthorizationsReauthorizeRequestAmount;
+  net_amount?: AuthorizationsReauthorizeRequestAmount;
+  net_amount_in_receivable_currency?: AuthorizationsReauthorizeRequestAmount;
+  /** An array of platform or partner fees, commissions, or brokerage fees for the refund. */
+  platform_fees?: RefundCaptureResponseSellerPayableBreakdownPlatformFeesList;
+  /** An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds. */
+  net_amount_breakdown?: RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList;
+  total_refunded_amount?: AuthorizationsReauthorizeRequestAmount;
+}
+export const RefundCaptureResponseSellerPayableBreakdown =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      gross_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      paypal_fee: S.optional(AuthorizationsReauthorizeRequestAmount),
+      paypal_fee_in_receivable_currency: S.optional(
+        AuthorizationsReauthorizeRequestAmount,
+      ),
+      net_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+      net_amount_in_receivable_currency: S.optional(
+        AuthorizationsReauthorizeRequestAmount,
+      ),
+      platform_fees: S.optional(
+        RefundCaptureResponseSellerPayableBreakdownPlatformFeesList,
+      ),
+      net_amount_breakdown: S.optional(
+        RefundCaptureResponseSellerPayableBreakdownNetAmountBreakdownList,
+      ),
+      total_refunded_amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+    }),
+  ).annotate({
+    identifier: "RefundCaptureResponseSellerPayableBreakdown",
+  }) as any as S.Schema<RefundCaptureResponseSellerPayableBreakdown>;
+
+export type RefundCaptureResponsePayer = AuthorizationsReauthorizeResponsePayee;
+export const RefundCaptureResponsePayer =
+  AuthorizationsReauthorizeResponsePayee;
+
+/** The HTTP method required to make the related call. */
+export type RefundCaptureResponseLinksItemMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "HEAD"
+  | "CONNECT"
+  | "OPTIONS"
+  | "PATCH";
+export const RefundCaptureResponseLinksItemMethod = /*@__PURE__*/ S.String;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type RefundCaptureResponseLinksItemSchemaAllOfList = Array<unknown>;
+export const RefundCaptureResponseLinksItemSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type RefundCaptureResponseLinksItemSchemaAnyOfList = Array<unknown>;
+export const RefundCaptureResponseLinksItemSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type RefundCaptureResponseLinksItemSchemaOneOfList = Array<unknown>;
+export const RefundCaptureResponseLinksItemSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemSchemaOneOfList>;
+
+/** An array of links. */
+export type RefundCaptureResponseLinksItemSchemaLinksList = Array<unknown>;
+export const RefundCaptureResponseLinksItemSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type RefundCaptureResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const RefundCaptureResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface RefundCaptureResponseLinksItemSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: RefundCaptureResponseLinksItemSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: RefundCaptureResponseLinksItemSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: RefundCaptureResponseLinksItemSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: RefundCaptureResponseLinksItemSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const RefundCaptureResponseLinksItemSchema = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(RefundCaptureResponseLinksItemSchemaAllOfList),
+      anyOf: S.optional(RefundCaptureResponseLinksItemSchemaAnyOfList),
+      oneOf: S.optional(RefundCaptureResponseLinksItemSchemaOneOfList),
+      not: S.optional(S.Unknown),
+      links: S.optional(RefundCaptureResponseLinksItemSchemaLinksList),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RefundCaptureResponseLinksItemSchema",
+}) as any as S.Schema<RefundCaptureResponseLinksItemSchema>;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type RefundCaptureResponseLinksItemTargetSchemaAllOfList =
+  Array<unknown>;
+export const RefundCaptureResponseLinksItemTargetSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemTargetSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type RefundCaptureResponseLinksItemTargetSchemaAnyOfList =
+  Array<unknown>;
+export const RefundCaptureResponseLinksItemTargetSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemTargetSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type RefundCaptureResponseLinksItemTargetSchemaOneOfList =
+  Array<unknown>;
+export const RefundCaptureResponseLinksItemTargetSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemTargetSchemaOneOfList>;
+
+/** An array of links. */
+export type RefundCaptureResponseLinksItemTargetSchemaLinksList =
+  Array<unknown>;
+export const RefundCaptureResponseLinksItemTargetSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<RefundCaptureResponseLinksItemTargetSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type RefundCaptureResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const RefundCaptureResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface RefundCaptureResponseLinksItemTargetSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: RefundCaptureResponseLinksItemTargetSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: RefundCaptureResponseLinksItemTargetSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: RefundCaptureResponseLinksItemTargetSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: RefundCaptureResponseLinksItemTargetSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const RefundCaptureResponseLinksItemTargetSchema =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(RefundCaptureResponseLinksItemTargetSchemaAllOfList),
+      anyOf: S.optional(RefundCaptureResponseLinksItemTargetSchemaAnyOfList),
+      oneOf: S.optional(RefundCaptureResponseLinksItemTargetSchemaOneOfList),
+      not: S.optional(S.Unknown),
+      links: S.optional(RefundCaptureResponseLinksItemTargetSchemaLinksList),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "RefundCaptureResponseLinksItemTargetSchema",
+  }) as any as S.Schema<RefundCaptureResponseLinksItemTargetSchema>;
+
+export interface RefundCaptureResponseLinksItem {
+  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
+  href: string;
+  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
+  rel: string;
+  /** The HTTP method required to make the related call. */
+  method?: RefundCaptureResponseLinksItemMethod;
+  /** The link title. */
+  title?: string;
+  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
+  mediaType?: string;
+  /** The media type in which to submit the request data. */
+  encType?: string;
+  schema?: RefundCaptureResponseLinksItemSchema;
+  targetSchema?: RefundCaptureResponseLinksItemTargetSchema;
+}
+export const RefundCaptureResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    href: S.String,
+    rel: S.String,
+    method: S.optional(RefundCaptureResponseLinksItemMethod),
+    title: S.optional(S.String),
+    mediaType: S.optional(S.String),
+    encType: S.optional(S.String),
+    schema: S.optional(RefundCaptureResponseLinksItemSchema),
+    targetSchema: S.optional(RefundCaptureResponseLinksItemTargetSchema),
+  }),
+).annotate({
+  identifier: "RefundCaptureResponseLinksItem",
+}) as any as S.Schema<RefundCaptureResponseLinksItem>;
+
+/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+export type RefundCaptureResponseLinksList =
+  Array<RefundCaptureResponseLinksItem>;
+export const RefundCaptureResponseLinksList = /*@__PURE__*/ S.Array(
+  RefundCaptureResponseLinksItem,
+) as any as S.Schema<RefundCaptureResponseLinksList>;
+
+export interface RefundCaptureResponse {
+  /** The status of the refund. */
+  status?: RefundCaptureResponseStatus;
+  status_details?: RefundCaptureResponseStatusDetails;
+  /** The PayPal-generated ID for the refund. */
+  id?: string;
+  amount?: AuthorizationsReauthorizeRequestAmount;
+  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
+  invoice_id?: string;
+  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
+  custom_id?: string;
+  /** Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks. */
+  acquirer_reference_number?: string;
+  /** The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives. */
+  note_to_payer?: string;
+  /** The breakdown of the refund. */
+  seller_payable_breakdown?: RefundCaptureResponseSellerPayableBreakdown;
+  payer?: AuthorizationsReauthorizeResponsePayee;
+  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+  links?: RefundCaptureResponseLinksList;
+  create_time?: unknown;
+  update_time?: unknown;
+}
+export const RefundCaptureResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(RefundCaptureResponseStatus),
+    status_details: S.optional(RefundCaptureResponseStatusDetails),
+    id: S.optional(S.String),
+    amount: S.optional(AuthorizationsReauthorizeRequestAmount),
+    invoice_id: S.optional(S.String),
+    custom_id: S.optional(S.String),
+    acquirer_reference_number: S.optional(S.String),
+    note_to_payer: S.optional(S.String),
+    seller_payable_breakdown: S.optional(
+      RefundCaptureResponseSellerPayableBreakdown,
+    ),
+    payer: S.optional(AuthorizationsReauthorizeResponsePayee),
+    links: S.optional(RefundCaptureResponseLinksList),
+    create_time: S.optional(S.Unknown),
+    update_time: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "RefundCaptureResponse",
+}) as any as S.Schema<RefundCaptureResponse>;
+
+export interface VoidAuthorizationRequest {
+  /** The PayPal-generated ID for the authorized payment to void. */
+  authorization_id: string;
+  /** Header for an API client-provided JWT assertion that identifies the merchant. Establishing the consent to act-on-behalf of a merchant is a prerequisite for using this header. */
+  payPalAuthAssertion?: string;
+  /** A unique ID identifying the request header for idempotency purposes. */
+  payPalRequestId?: string;
+  /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
+  prefer?: string;
+}
+export const VoidAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authorization_id: S.String.pipe(T.Label()),
+    payPalAuthAssertion: S.optional(
+      S.String.pipe(T.Header("PayPal-Auth-Assertion")),
+    ),
+    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
+    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v2/payments/authorizations/{authorization_id}/void",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "VoidAuthorizationRequest",
+}) as any as S.Schema<VoidAuthorizationRequest>;
+
+/** The status for the authorized payment. */
+export type VoidAuthorizationResponseStatus =
+  | "CREATED"
+  | "CAPTURED"
+  | "DENIED"
+  | "PARTIALLY_CAPTURED"
+  | "VOIDED"
+  | "PENDING";
+export const VoidAuthorizationResponseStatus = /*@__PURE__*/ S.String;
+
+/** The reason why the authorized status is `PENDING`. */
+export type VoidAuthorizationResponseStatusDetailsReason =
+  | "PENDING_REVIEW"
+  | "DECLINED_BY_RISK_FRAUD_FILTERS";
+export const VoidAuthorizationResponseStatusDetailsReason =
+  /*@__PURE__*/ S.String;
+
+export interface VoidAuthorizationResponseStatusDetails {
+  /** The reason why the authorized status is `PENDING`. */
+  reason?: VoidAuthorizationResponseStatusDetailsReason;
+}
+export const VoidAuthorizationResponseStatusDetails = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      reason: S.optional(VoidAuthorizationResponseStatusDetailsReason),
+    }),
+).annotate({
+  identifier: "VoidAuthorizationResponseStatusDetails",
+}) as any as S.Schema<VoidAuthorizationResponseStatusDetails>;
+
+export type VoidAuthorizationResponseAmount =
+  AuthorizationsReauthorizeResponseAmount;
+export const VoidAuthorizationResponseAmount =
+  AuthorizationsReauthorizeResponseAmount;
+
+/** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
+export type VoidAuthorizationResponseSellerProtectionStatus =
+  | "ELIGIBLE"
+  | "PARTIALLY_ELIGIBLE"
+  | "NOT_ELIGIBLE";
+export const VoidAuthorizationResponseSellerProtectionStatus =
+  /*@__PURE__*/ S.String;
+
+/** The condition that is covered for the transaction. */
+export type VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem =
+  | "ITEM_NOT_RECEIVED"
+  | "UNAUTHORIZED_TRANSACTION";
+export const VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem =
+  /*@__PURE__*/ S.String;
+
+/** An array of conditions that are covered for the transaction. */
+export type VoidAuthorizationResponseSellerProtectionDisputeCategoriesList =
+  Array<VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem>;
+export const VoidAuthorizationResponseSellerProtectionDisputeCategoriesList =
+  /*@__PURE__*/ S.Array(
+    VoidAuthorizationResponseSellerProtectionDisputeCategoriesItem,
+  ) as any as S.Schema<VoidAuthorizationResponseSellerProtectionDisputeCategoriesList>;
+
+export interface VoidAuthorizationResponseSellerProtection {
+  /** Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection). */
+  status?: VoidAuthorizationResponseSellerProtectionStatus;
+  /** An array of conditions that are covered for the transaction. */
+  dispute_categories?: VoidAuthorizationResponseSellerProtectionDisputeCategoriesList;
+}
+export const VoidAuthorizationResponseSellerProtection =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(VoidAuthorizationResponseSellerProtectionStatus),
+      dispute_categories: S.optional(
+        VoidAuthorizationResponseSellerProtectionDisputeCategoriesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "VoidAuthorizationResponseSellerProtection",
+  }) as any as S.Schema<VoidAuthorizationResponseSellerProtection>;
+
+/** The HTTP method required to make the related call. */
+export type VoidAuthorizationResponseLinksItemMethod =
+  | "GET"
+  | "POST"
+  | "PUT"
+  | "DELETE"
+  | "HEAD"
+  | "CONNECT"
+  | "OPTIONS"
+  | "PATCH";
+export const VoidAuthorizationResponseLinksItemMethod = /*@__PURE__*/ S.String;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type VoidAuthorizationResponseLinksItemSchemaAllOfList = Array<unknown>;
+export const VoidAuthorizationResponseLinksItemSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type VoidAuthorizationResponseLinksItemSchemaAnyOfList = Array<unknown>;
+export const VoidAuthorizationResponseLinksItemSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type VoidAuthorizationResponseLinksItemSchemaOneOfList = Array<unknown>;
+export const VoidAuthorizationResponseLinksItemSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemSchemaOneOfList>;
+
+/** An array of links. */
+export type VoidAuthorizationResponseLinksItemSchemaLinksList = Array<unknown>;
+export const VoidAuthorizationResponseLinksItemSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type VoidAuthorizationResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const VoidAuthorizationResponseLinksItemSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface VoidAuthorizationResponseLinksItemSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: VoidAuthorizationResponseLinksItemSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: VoidAuthorizationResponseLinksItemSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: VoidAuthorizationResponseLinksItemSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: VoidAuthorizationResponseLinksItemSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const VoidAuthorizationResponseLinksItemSchema = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(VoidAuthorizationResponseLinksItemSchemaAllOfList),
+      anyOf: S.optional(VoidAuthorizationResponseLinksItemSchemaAnyOfList),
+      oneOf: S.optional(VoidAuthorizationResponseLinksItemSchemaOneOfList),
+      not: S.optional(S.Unknown),
+      links: S.optional(VoidAuthorizationResponseLinksItemSchemaLinksList),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "VoidAuthorizationResponseLinksItemSchema",
+}) as any as S.Schema<VoidAuthorizationResponseLinksItemSchema>;
+
+/** An array of sub-schemas. The data must validate against all sub-schemas. */
+export type VoidAuthorizationResponseLinksItemTargetSchemaAllOfList =
+  Array<unknown>;
+export const VoidAuthorizationResponseLinksItemTargetSchemaAllOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemTargetSchemaAllOfList>;
+
+/** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+export type VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList =
+  Array<unknown>;
+export const VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList>;
+
+/** An array of sub-schemas. The data must validate against one sub-schema. */
+export type VoidAuthorizationResponseLinksItemTargetSchemaOneOfList =
+  Array<unknown>;
+export const VoidAuthorizationResponseLinksItemTargetSchemaOneOfList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemTargetSchemaOneOfList>;
+
+/** An array of links. */
+export type VoidAuthorizationResponseLinksItemTargetSchemaLinksList =
+  Array<unknown>;
+export const VoidAuthorizationResponseLinksItemTargetSchemaLinksList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<VoidAuthorizationResponseLinksItemTargetSchemaLinksList>;
+
+/** The media type and context-encoding scheme. */
+export type VoidAuthorizationResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+export const VoidAuthorizationResponseLinksItemTargetSchemaMedia =
+  AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+
+export interface VoidAuthorizationResponseLinksItemTargetSchema {
+  /** Any additional items. */
+  additionalItems?: unknown;
+  /** Any Dependencies. */
+  dependencies?: unknown;
+  /** An item. */
+  items?: unknown;
+  /** Definitions. */
+  definitions?: unknown;
+  /** The pattern properties. */
+  patternProperties?: unknown;
+  /** Properties. */
+  properties?: unknown;
+  /** An array of sub-schemas. The data must validate against all sub-schemas. */
+  allOf?: VoidAuthorizationResponseLinksItemTargetSchemaAllOfList;
+  /** An array of sub-schemas. The data must validate against one or more sub-schemas. */
+  anyOf?: VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList;
+  /** An array of sub-schemas. The data must validate against one sub-schema. */
+  oneOf?: VoidAuthorizationResponseLinksItemTargetSchemaOneOfList;
+  /** Not. */
+  not?: unknown;
+  /** An array of links. */
+  links?: VoidAuthorizationResponseLinksItemTargetSchemaLinksList;
+  /** The fragment resolution. */
+  fragmentResolution?: string;
+  /** The media type and context-encoding scheme. */
+  media?: AuthorizationsReauthorizeResponseLinksItemSchemaMedia;
+  /** To apply this schema to the instances' URIs, start the URIs with this value. */
+  pathStart?: string;
+}
+export const VoidAuthorizationResponseLinksItemTargetSchema =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      additionalItems: S.optional(S.Unknown),
+      dependencies: S.optional(S.Unknown),
+      items: S.optional(S.Unknown),
+      definitions: S.optional(S.Unknown),
+      patternProperties: S.optional(S.Unknown),
+      properties: S.optional(S.Unknown),
+      allOf: S.optional(
+        VoidAuthorizationResponseLinksItemTargetSchemaAllOfList,
+      ),
+      anyOf: S.optional(
+        VoidAuthorizationResponseLinksItemTargetSchemaAnyOfList,
+      ),
+      oneOf: S.optional(
+        VoidAuthorizationResponseLinksItemTargetSchemaOneOfList,
+      ),
+      not: S.optional(S.Unknown),
+      links: S.optional(
+        VoidAuthorizationResponseLinksItemTargetSchemaLinksList,
+      ),
+      fragmentResolution: S.optional(S.String),
+      media: S.optional(AuthorizationsReauthorizeResponseLinksItemSchemaMedia),
+      pathStart: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "VoidAuthorizationResponseLinksItemTargetSchema",
+  }) as any as S.Schema<VoidAuthorizationResponseLinksItemTargetSchema>;
+
+export interface VoidAuthorizationResponseLinksItem {
+  /** The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call. */
+  href: string;
+  /** The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml). */
+  rel: string;
+  /** The HTTP method required to make the related call. */
+  method?: VoidAuthorizationResponseLinksItemMethod;
+  /** The link title. */
+  title?: string;
+  /** The media type, as defined by [RFC 2046](https://www.ietf.org/rfc/rfc2046.txt). Describes the link target. */
+  mediaType?: string;
+  /** The media type in which to submit the request data. */
+  encType?: string;
+  schema?: VoidAuthorizationResponseLinksItemSchema;
+  targetSchema?: VoidAuthorizationResponseLinksItemTargetSchema;
+}
+export const VoidAuthorizationResponseLinksItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    href: S.String,
+    rel: S.String,
+    method: S.optional(VoidAuthorizationResponseLinksItemMethod),
+    title: S.optional(S.String),
+    mediaType: S.optional(S.String),
+    encType: S.optional(S.String),
+    schema: S.optional(VoidAuthorizationResponseLinksItemSchema),
+    targetSchema: S.optional(VoidAuthorizationResponseLinksItemTargetSchema),
+  }),
+).annotate({
+  identifier: "VoidAuthorizationResponseLinksItem",
+}) as any as S.Schema<VoidAuthorizationResponseLinksItem>;
+
+/** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+export type VoidAuthorizationResponseLinksList =
+  Array<VoidAuthorizationResponseLinksItem>;
+export const VoidAuthorizationResponseLinksList = /*@__PURE__*/ S.Array(
+  VoidAuthorizationResponseLinksItem,
+) as any as S.Schema<VoidAuthorizationResponseLinksList>;
+
+export type VoidAuthorizationResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+export const VoidAuthorizationResponseSupplementaryDataRelatedIds =
+  AuthorizationsReauthorizeResponseSupplementaryDataRelatedIds;
+
+export type VoidAuthorizationResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+export const VoidAuthorizationResponseSupplementaryData =
+  AuthorizationsReauthorizeResponseSupplementaryData;
+
+export type VoidAuthorizationResponsePayee =
+  AuthorizationsReauthorizeResponsePayee;
+export const VoidAuthorizationResponsePayee =
+  AuthorizationsReauthorizeResponsePayee;
+
+export interface VoidAuthorizationResponse {
+  /** The status for the authorized payment. */
+  status?: VoidAuthorizationResponseStatus;
+  status_details?: VoidAuthorizationResponseStatusDetails;
+  /** The PayPal-generated ID for the authorized payment. */
+  id?: string;
+  amount?: AuthorizationsReauthorizeResponseAmount;
+  /** The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives. */
+  invoice_id?: string;
+  /** The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports. */
+  custom_id?: string;
+  network_transaction_reference?: NetworkTransaction;
+  seller_protection?: VoidAuthorizationResponseSellerProtection;
+  expiration_time?: unknown;
+  /** An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links). */
+  links?: VoidAuthorizationResponseLinksList;
+  create_time?: unknown;
+  update_time?: unknown;
+  supplementary_data?: AuthorizationsReauthorizeResponseSupplementaryData;
+  payee?: AuthorizationsReauthorizeResponsePayee;
+}
+export const VoidAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(VoidAuthorizationResponseStatus),
+    status_details: S.optional(VoidAuthorizationResponseStatusDetails),
+    id: S.optional(S.String),
+    amount: S.optional(AuthorizationsReauthorizeResponseAmount),
+    invoice_id: S.optional(S.String),
+    custom_id: S.optional(S.String),
+    network_transaction_reference: S.optional(NetworkTransaction),
+    seller_protection: S.optional(VoidAuthorizationResponseSellerProtection),
+    expiration_time: S.optional(S.Unknown),
+    links: S.optional(VoidAuthorizationResponseLinksList),
+    create_time: S.optional(S.Unknown),
+    update_time: S.optional(S.Unknown),
+    supplementary_data: S.optional(
+      AuthorizationsReauthorizeResponseSupplementaryData,
+    ),
+    payee: S.optional(AuthorizationsReauthorizeResponsePayee),
+  }),
+).annotate({
+  identifier: "VoidAuthorizationResponse",
+}) as any as S.Schema<VoidAuthorizationResponse>;
 
 export type AuthorizationsReauthorizeError =
   | BadRequest
@@ -4618,63 +4535,22 @@ export const authorizationsReauthorize: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AuthorizationsVoidError =
-  | Forbidden
-  | NotFound
-  | Conflict
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Void authorized payment Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that has been fully captured. */
-export const authorizationsVoid: API.OperationMethod<
-  AuthorizationsVoidRequest,
-  AuthorizationsVoidResponse,
-  AuthorizationsVoidError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationsVoidRequest,
-  output: AuthorizationsVoidResponse,
-  errors: [
-    Forbidden,
-    NotFound,
-    Conflict,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CapturesGetError = Forbidden | NotFound | PaypalOpError;
-/** Show captured payment details Shows details for a captured payment, by ID. */
-export const capturesGet: API.OperationMethod<
-  CapturesGetRequest,
-  CapturesGetResponse,
-  CapturesGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CapturesGetRequest,
-  output: CapturesGetResponse,
-  errors: [Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CapturesRefundError =
+export type CaptureAuthorizationError =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | UnprocessableEntity
   | PaypalOpError;
-/** Refund captured payment Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an <code>amount</code> object in the JSON request body. */
-export const capturesRefund: API.OperationMethod<
-  CapturesRefundRequest,
-  CapturesRefundResponse,
-  CapturesRefundError,
+/** Capture authorized payment Captures an authorized payment, by ID. */
+export const captureAuthorization: API.OperationMethod<
+  CaptureAuthorizationRequest,
+  CaptureAuthorizationResponse,
+  CaptureAuthorizationError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CapturesRefundRequest,
-  output: CapturesRefundResponse,
+  input: CaptureAuthorizationRequest,
+  output: CaptureAuthorizationResponse,
   errors: [
     BadRequest,
     Forbidden,
@@ -4706,17 +4582,101 @@ export const findEligibleMethods: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RefundsGetError = Forbidden | NotFound | PaypalOpError;
-/** Show refund details Shows details for a refund, by ID. */
-export const refundsGet: API.OperationMethod<
-  RefundsGetRequest,
-  RefundsGetResponse,
-  RefundsGetError,
+export type GetAuthorizationError = Forbidden | NotFound | PaypalOpError;
+/** Show details for authorized payment Shows details for an authorized payment, by ID. */
+export const getAuthorization: API.OperationMethod<
+  GetAuthorizationRequest,
+  GetAuthorizationResponse,
+  GetAuthorizationError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RefundsGetRequest,
-  output: RefundsGetResponse,
+  input: GetAuthorizationRequest,
+  output: GetAuthorizationResponse,
   errors: [Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCaptureError = Forbidden | NotFound | PaypalOpError;
+/** Show captured payment details Shows details for a captured payment, by ID. */
+export const getCapture: API.OperationMethod<
+  GetCaptureRequest,
+  GetCaptureResponse,
+  GetCaptureError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCaptureRequest,
+  output: GetCaptureResponse,
+  errors: [Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRefundError = Forbidden | NotFound | PaypalOpError;
+/** Show refund details Shows details for a refund, by ID. */
+export const getRefund: API.OperationMethod<
+  GetRefundRequest,
+  GetRefundResponse,
+  GetRefundError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRefundRequest,
+  output: GetRefundResponse,
+  errors: [Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RefundCaptureError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Refund captured payment Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an <code>amount</code> object in the JSON request body. */
+export const refundCapture: API.OperationMethod<
+  RefundCaptureRequest,
+  RefundCaptureResponse,
+  RefundCaptureError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RefundCaptureRequest,
+  output: RefundCaptureResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    Conflict,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VoidAuthorizationError =
+  | Forbidden
+  | NotFound
+  | Conflict
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Void authorized payment Voids, or cancels, an authorized payment, by ID. You cannot void an authorized payment that has been fully captured. */
+export const voidAuthorization: API.OperationMethod<
+  VoidAuthorizationRequest,
+  VoidAuthorizationResponse,
+  VoidAuthorizationError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: VoidAuthorizationRequest,
+  output: VoidAuthorizationResponse,
+  errors: [
+    Forbidden,
+    NotFound,
+    Conflict,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));

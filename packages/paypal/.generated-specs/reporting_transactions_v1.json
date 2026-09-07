@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.paypal.reporting_transactions_v1#SearchGetRequest": {
@@ -1131,7 +1132,7 @@
         "smithy.api#documentation": "List transactions\n\nLists transactions. Specify one or more query parameters to filter the transaction that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>If you specify one or more optional query parameters, the <code>ending_balance</code> response field is empty.</li><li>It takes a maximum of three hours for executed transactions to appear in the list transactions call.</li><li>This call lists transaction for the previous three years.</li></ul></blockquote>"
       }
     },
-    "com.paypal.reporting_transactions_v1#BalancesGetRequest": {
+    "com.paypal.reporting_transactions_v1#GetBalanceRequest": {
       "type": "structure",
       "members": {
         "as_of_time": {
@@ -1228,10 +1229,10 @@
         "smithy.api#documentation": "The Balance information."
       }
     },
-    "com.paypal.reporting_transactions_v1#BalancesGet": {
+    "com.paypal.reporting_transactions_v1#GetBalance": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.reporting_transactions_v1#BalancesGetRequest"
+        "target": "com.paypal.reporting_transactions_v1#GetBalanceRequest"
       },
       "output": {
         "target": "com.paypal.reporting_transactions_v1#BalancesResponse"
@@ -1287,7 +1288,7 @@
           "target": "com.paypal.reporting_transactions_v1#SearchGet"
         },
         {
-          "target": "com.paypal.reporting_transactions_v1#BalancesGet"
+          "target": "com.paypal.reporting_transactions_v1#GetBalance"
         }
       ],
       "traits": {

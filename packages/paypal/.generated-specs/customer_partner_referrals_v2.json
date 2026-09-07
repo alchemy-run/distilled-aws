@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.paypal.customer_partner_referrals_v2#IndividualOwnerListInput": {
@@ -2546,7 +2547,7 @@
         "smithy.api#documentation": "Requested Currencies for a Transfer Method."
       }
     },
-    "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreateRequest": {
+    "com.paypal.customer_partner_referrals_v2#CreatePartnerReferralRequest": {
       "type": "structure",
       "members": {
         "individual_owners": {
@@ -2730,10 +2731,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreate": {
+    "com.paypal.customer_partner_referrals_v2#CreatePartnerReferral": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreateRequest"
+        "target": "com.paypal.customer_partner_referrals_v2#CreatePartnerReferralRequest"
       },
       "output": {
         "target": "com.paypal.customer_partner_referrals_v2#CreateReferralDataResponse"
@@ -2758,7 +2759,7 @@
         "smithy.api#documentation": "Create partner referral\n\nCreates a partner referral that is shared by the partner or API caller. The partner referral is used to onboard the seller, and contains the seller's personal, business, financial and operations."
       }
     },
-    "com.paypal.customer_partner_referrals_v2#PartnerReferralsReadRequest": {
+    "com.paypal.customer_partner_referrals_v2#ReadPartnerReferralRequest": {
       "type": "structure",
       "members": {
         "partner_referral_id": {
@@ -3327,10 +3328,10 @@
         "smithy.api#documentation": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links)."
       }
     },
-    "com.paypal.customer_partner_referrals_v2#PartnerReferralsRead": {
+    "com.paypal.customer_partner_referrals_v2#ReadPartnerReferral": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsReadRequest"
+        "target": "com.paypal.customer_partner_referrals_v2#ReadPartnerReferralRequest"
       },
       "output": {
         "target": "com.paypal.customer_partner_referrals_v2#ReferralDataResponse"
@@ -3393,10 +3394,10 @@
       "version": "2.5",
       "operations": [
         {
-          "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsCreate"
+          "target": "com.paypal.customer_partner_referrals_v2#CreatePartnerReferral"
         },
         {
-          "target": "com.paypal.customer_partner_referrals_v2#PartnerReferralsRead"
+          "target": "com.paypal.customer_partner_referrals_v2#ReadPartnerReferral"
         }
       ],
       "traits": {

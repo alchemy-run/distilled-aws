@@ -265,19 +265,232 @@ export const EscalateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EscalateResponse",
 }) as any as S.Schema<EscalateResponse>;
 
-export interface DisputesGetRequest {
+/** The currency and amount for a financial transaction, such as a balance or payment due. */
+export interface Money {
+  currency_code: string;
+  /** The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/). */
+  value: string;
+}
+export const Money = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currency_code: S.String,
+    value: S.String,
+  }),
+).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+
+/** The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios where fine-grain address information might be needed. Not portable with common third party and open source. Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`. */
+export interface AddressDetails {
+  /** The street number. */
+  street_number?: string;
+  /** The street name. Just `Drury` in `Drury Lane`. */
+  street_name?: string;
+  /** The street type. For example, avenue, boulevard, road, or expressway. */
+  street_type?: string;
+  /** The delivery service. Post office box, bag number, or post office name. */
+  delivery_service?: string;
+  /** A named locations that represents the premise. Usually a building name or number or collection of buildings with a common name or number. For example, <code>Craven House</code>. */
+  building_name?: string;
+  /** The first-order entity below a named building or location that represents the sub-premises. Usually a single building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment. */
+  sub_building?: string;
+}
+export const AddressDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    street_number: S.optional(S.String),
+    street_name: S.optional(S.String),
+    street_type: S.optional(S.String),
+    delivery_service: S.optional(S.String),
+    building_name: S.optional(S.String),
+    sub_building: S.optional(S.String),
+  }),
+).annotate({ identifier: "AddressDetails" }) as any as S.Schema<AddressDetails>;
+
+/** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
+export interface AddressPortable {
+  /** The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address. */
+  address_line_1?: string;
+  /** The second line of the address. For example, suite or apartment number. */
+  address_line_2?: string;
+  /** The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as `next to Walmart`, or a landmark in an Indian address. */
+  address_line_3?: string;
+  /** The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained administrative levels in China.</li></ul> */
+  admin_area_4?: string;
+  /** A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil. Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not always available but a sub-locality or district can be a very small area.</li></ul> */
+  admin_area_3?: string;
+  /** A city, town, or village. Smaller than `admin_area_level_1`. */
+  admin_area_2?: string;
+  /** The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul> */
+  admin_area_1?: string;
+  /** The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code). */
+  postal_code?: string;
+  country_code: string;
+  address_details?: AddressDetails;
+}
+export const AddressPortable = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    address_line_1: S.optional(S.String),
+    address_line_2: S.optional(S.String),
+    address_line_3: S.optional(S.String),
+    admin_area_4: S.optional(S.String),
+    admin_area_3: S.optional(S.String),
+    admin_area_2: S.optional(S.String),
+    admin_area_1: S.optional(S.String),
+    postal_code: S.optional(S.String),
+    country_code: S.String,
+    address_details: S.optional(AddressDetails),
+  }),
+).annotate({
+  identifier: "AddressPortable",
+}) as any as S.Schema<AddressPortable>;
+
+/** The merchant-proposed offer type for the dispute. */
+export type OfferType =
+  | "REFUND"
+  | "REFUND_WITH_RETURN"
+  | "REFUND_WITH_REPLACEMENT"
+  | "REPLACEMENT_WITHOUT_REFUND";
+export const OfferType = /*@__PURE__*/ S.String;
+
+export interface DisputesMakeOfferRequest {
+  /** The ID of the dispute for which to provide the supporting information. */
+  id: string;
+  /** The merchant's notes about the offer. */
+  note: string;
+  /** The amount proposed to resolve the dispute. */
+  offer_amount?: Money;
+  /** The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount. */
+  return_shipping_address?: AddressPortable;
+  /** The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system. */
+  invoice_id?: string;
+  offer_type: OfferType | (string & {});
+}
+export const DisputesMakeOfferRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    note: S.String,
+    offer_amount: S.optional(Money),
+    return_shipping_address: S.optional(AddressPortable),
+    invoice_id: S.optional(S.String),
+    offer_type: OfferType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/customer/disputes/{id}/make-offer",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DisputesMakeOfferRequest",
+}) as any as S.Schema<DisputesMakeOfferRequest>;
+
+export interface DisputesProvideEvidenceRequest {
+  /** The ID of the dispute for which to provide the supporting information. */
+  id: string;
+  /** A file with evidence. */
+  evidence_file?: string;
+}
+export const DisputesProvideEvidenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    evidence_file: S.optional(S.String.pipe(T.Body("evidence-file"))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/customer/disputes/{id}/provide-evidence",
+      code: 200,
+      contentType: "multipart",
+    }),
+  ),
+).annotate({
+  identifier: "DisputesProvideEvidenceRequest",
+}) as any as S.Schema<DisputesProvideEvidenceRequest>;
+
+export interface DisputesProvideSupportingInfoRequest {
+  /** The ID of the dispute for which to provide the supporting information. */
+  id: string;
+  /** A file with evidence. */
+  supporting_document?: string;
+}
+export const DisputesProvideSupportingInfoRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String.pipe(T.Label()),
+      supporting_document: S.optional(
+        S.String.pipe(T.Body("supporting document")),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/v1/customer/disputes/{id}/provide-supporting-info",
+        code: 200,
+        contentType: "multipart",
+      }),
+    ),
+).annotate({
+  identifier: "DisputesProvideSupportingInfoRequest",
+}) as any as S.Schema<DisputesProvideSupportingInfoRequest>;
+
+/** The action. Indicates whether the state change enables the customer or merchant to submit evidence. */
+export type DisputesRequireEvidenceRequestAction =
+  | "BUYER_EVIDENCE"
+  | "SELLER_EVIDENCE";
+export const DisputesRequireEvidenceRequestAction = /*@__PURE__*/ S.String;
+
+export interface DisputesRequireEvidenceRequest {
+  /** The ID of the dispute for which to provide the supporting information. */
+  id: string;
+  /** The action. Indicates whether the state change enables the customer or merchant to submit evidence. */
+  action: DisputesRequireEvidenceRequestAction | (string & {});
+}
+export const DisputesRequireEvidenceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    action: DisputesRequireEvidenceRequestAction,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/customer/disputes/{id}/require-evidence",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DisputesRequireEvidenceRequest",
+}) as any as S.Schema<DisputesRequireEvidenceRequest>;
+
+export interface DisputesSendMessageRequest {
+  /** The ID of the dispute for which to provide the supporting information. */
+  id: string;
+  /** A file that contains any additional info about the message posted. */
+  message_document?: string;
+}
+export const DisputesSendMessageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    message_document: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/customer/disputes/{id}/send-message",
+      code: 200,
+      contentType: "multipart",
+    }),
+  ),
+).annotate({
+  identifier: "DisputesSendMessageRequest",
+}) as any as S.Schema<DisputesSendMessageRequest>;
+
+export interface GetDisputeRequest {
   /** The ID of the dispute for which to provide the supporting information. */
   id: string;
 }
-export const DisputesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDisputeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/v1/customer/disputes/{id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DisputesGetRequest",
-}) as any as S.Schema<DisputesGetRequest>;
+  identifier: "GetDisputeRequest",
+}) as any as S.Schema<GetDisputeRequest>;
 
 /** The transaction status. */
 export type TransactionInfoTransactionStatus =
@@ -292,19 +505,6 @@ export type TransactionInfoTransactionStatus =
   | "REVERSED"
   | "CANCELLED";
 export const TransactionInfoTransactionStatus = /*@__PURE__*/ S.String;
-
-/** The currency and amount for a financial transaction, such as a balance or payment due. */
-export interface Money {
-  currency_code: string;
-  /** The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/). */
-  value: string;
-}
-export const Money = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currency_code: S.String,
-    value: S.String,
-  }),
-).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
 
 /** The cryptocurrency symbol or code ticker options. Assigned by liquidity providers and exchanges. */
 export type CryptocurrencySymbol =
@@ -1139,70 +1339,6 @@ export const BillingDisputesProperties = /*@__PURE__*/ S.suspend(() =>
 /** The issue type. */
 export type MerchandizeDisputePropertiesIssueType = "PRODUCT" | "SERVICE";
 export const MerchandizeDisputePropertiesIssueType = /*@__PURE__*/ S.String;
-
-/** The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios where fine-grain address information might be needed. Not portable with common third party and open source. Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`. */
-export interface AddressDetails {
-  /** The street number. */
-  street_number?: string;
-  /** The street name. Just `Drury` in `Drury Lane`. */
-  street_name?: string;
-  /** The street type. For example, avenue, boulevard, road, or expressway. */
-  street_type?: string;
-  /** The delivery service. Post office box, bag number, or post office name. */
-  delivery_service?: string;
-  /** A named locations that represents the premise. Usually a building name or number or collection of buildings with a common name or number. For example, <code>Craven House</code>. */
-  building_name?: string;
-  /** The first-order entity below a named building or location that represents the sub-premises. Usually a single building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment. */
-  sub_building?: string;
-}
-export const AddressDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    street_number: S.optional(S.String),
-    street_name: S.optional(S.String),
-    street_type: S.optional(S.String),
-    delivery_service: S.optional(S.String),
-    building_name: S.optional(S.String),
-    sub_building: S.optional(S.String),
-  }),
-).annotate({ identifier: "AddressDetails" }) as any as S.Schema<AddressDetails>;
-
-/** The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute). */
-export interface AddressPortable {
-  /** The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address. */
-  address_line_1?: string;
-  /** The second line of the address. For example, suite or apartment number. */
-  address_line_2?: string;
-  /** The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as `next to Walmart`, or a landmark in an Indian address. */
-  address_line_3?: string;
-  /** The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained administrative levels in China.</li></ul> */
-  admin_area_4?: string;
-  /** A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil. Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not always available but a sub-locality or district can be a very small area.</li></ul> */
-  admin_area_3?: string;
-  /** A city, town, or village. Smaller than `admin_area_level_1`. */
-  admin_area_2?: string;
-  /** The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul> */
-  admin_area_1?: string;
-  /** The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code). */
-  postal_code?: string;
-  country_code: string;
-  address_details?: AddressDetails;
-}
-export const AddressPortable = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    address_line_1: S.optional(S.String),
-    address_line_2: S.optional(S.String),
-    address_line_3: S.optional(S.String),
-    admin_area_4: S.optional(S.String),
-    admin_area_3: S.optional(S.String),
-    admin_area_2: S.optional(S.String),
-    admin_area_1: S.optional(S.String),
-    postal_code: S.optional(S.String),
-    country_code: S.String,
-    address_details: S.optional(AddressDetails),
-  }),
-).annotate({
-  identifier: "AddressPortable",
-}) as any as S.Schema<AddressPortable>;
 
 /** The customer-provided merchandise issue details for the dispute. */
 export interface MerchandizeDisputeProperties {
@@ -2739,14 +2875,6 @@ export const EvidenceList = /*@__PURE__*/ S.Array(
   Evidence,
 ) as any as S.Schema<EvidenceList>;
 
-/** The merchant-proposed offer type for the dispute. */
-export type OfferType =
-  | "REFUND"
-  | "REFUND_WITH_RETURN"
-  | "REFUND_WITH_REPLACEMENT"
-  | "REPLACEMENT_WITHOUT_REFUND";
-export const OfferType = /*@__PURE__*/ S.String;
-
 /** The event-related actor. */
 export type OfferHistoryActor = "BUYER" | "SELLER";
 export const OfferHistoryActor = /*@__PURE__*/ S.String;
@@ -3037,7 +3165,7 @@ export const Dispute = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Dispute" }) as any as S.Schema<Dispute>;
 
-export interface DisputesListRequest {
+export interface ListDisputesRequest {
   /** Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters. */
   start_time?: string;
   /** Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter. */
@@ -3053,7 +3181,7 @@ export interface DisputesListRequest {
   /** The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported. */
   update_time_after?: string;
 }
-export const DisputesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDisputesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     start_time: S.optional(S.String.pipe(T.Query())),
     disputed_transaction_id: S.optional(S.String.pipe(T.Query())),
@@ -3064,8 +3192,8 @@ export const DisputesListRequest = /*@__PURE__*/ S.suspend(() =>
     update_time_after: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v1/customer/disputes", code: 200 })),
 ).annotate({
-  identifier: "DisputesListRequest",
-}) as any as S.Schema<DisputesListRequest>;
+  identifier: "ListDisputesRequest",
+}) as any as S.Schema<ListDisputesRequest>;
 
 /** The user specific state of the dispute, could vary between parties during the dispute lifecycle. */
 export type DisputeState =
@@ -3136,38 +3264,6 @@ export const DisputeSearch = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DisputeSearch" }) as any as S.Schema<DisputeSearch>;
 
-export interface DisputesMakeOfferRequest {
-  /** The ID of the dispute for which to provide the supporting information. */
-  id: string;
-  /** The merchant's notes about the offer. */
-  note: string;
-  /** The amount proposed to resolve the dispute. */
-  offer_amount?: Money;
-  /** The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount. */
-  return_shipping_address?: AddressPortable;
-  /** The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system. */
-  invoice_id?: string;
-  offer_type: OfferType | (string & {});
-}
-export const DisputesMakeOfferRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    note: S.String,
-    offer_amount: S.optional(Money),
-    return_shipping_address: S.optional(AddressPortable),
-    invoice_id: S.optional(S.String),
-    offer_type: OfferType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/customer/disputes/{id}/make-offer",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DisputesMakeOfferRequest",
-}) as any as S.Schema<DisputesMakeOfferRequest>;
-
 /** The operation. */
 export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
 export const PatchOp = /*@__PURE__*/ S.String;
@@ -3198,12 +3294,12 @@ export const PatchRequest = /*@__PURE__*/ S.Array(
   Patch,
 ) as any as S.Schema<PatchRequest>;
 
-export interface DisputesPatchRequest {
+export interface PatchDisputeRequest {
   /** The ID of the dispute for which to provide the supporting information. */
   id: string;
   body?: PatchRequest;
 }
-export const DisputesPatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchDisputeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     body: S.optional(PatchRequest.pipe(T.HttpBody())),
@@ -3211,111 +3307,15 @@ export const DisputesPatchRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "PATCH", uri: "/v1/customer/disputes/{id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "DisputesPatchRequest",
-}) as any as S.Schema<DisputesPatchRequest>;
+  identifier: "PatchDisputeRequest",
+}) as any as S.Schema<PatchDisputeRequest>;
 
-export interface DisputesPatchResponse {}
-export const DisputesPatchResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PatchDisputeResponse {}
+export const PatchDisputeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DisputesPatchResponse",
-}) as any as S.Schema<DisputesPatchResponse>;
-
-export interface DisputesProvideEvidenceRequest {
-  /** The ID of the dispute for which to provide the supporting information. */
-  id: string;
-  /** A file with evidence. */
-  evidence_file?: string;
-}
-export const DisputesProvideEvidenceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    evidence_file: S.optional(S.String.pipe(T.Body("evidence-file"))),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/customer/disputes/{id}/provide-evidence",
-      code: 200,
-      contentType: "multipart",
-    }),
-  ),
-).annotate({
-  identifier: "DisputesProvideEvidenceRequest",
-}) as any as S.Schema<DisputesProvideEvidenceRequest>;
-
-export interface DisputesProvideSupportingInfoRequest {
-  /** The ID of the dispute for which to provide the supporting information. */
-  id: string;
-  /** A file with evidence. */
-  supporting_document?: string;
-}
-export const DisputesProvideSupportingInfoRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-      supporting_document: S.optional(
-        S.String.pipe(T.Body("supporting document")),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/v1/customer/disputes/{id}/provide-supporting-info",
-        code: 200,
-        contentType: "multipart",
-      }),
-    ),
-).annotate({
-  identifier: "DisputesProvideSupportingInfoRequest",
-}) as any as S.Schema<DisputesProvideSupportingInfoRequest>;
-
-/** The action. Indicates whether the state change enables the customer or merchant to submit evidence. */
-export type DisputesRequireEvidenceRequestAction =
-  | "BUYER_EVIDENCE"
-  | "SELLER_EVIDENCE";
-export const DisputesRequireEvidenceRequestAction = /*@__PURE__*/ S.String;
-
-export interface DisputesRequireEvidenceRequest {
-  /** The ID of the dispute for which to provide the supporting information. */
-  id: string;
-  /** The action. Indicates whether the state change enables the customer or merchant to submit evidence. */
-  action: DisputesRequireEvidenceRequestAction | (string & {});
-}
-export const DisputesRequireEvidenceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    action: DisputesRequireEvidenceRequestAction,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/customer/disputes/{id}/require-evidence",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DisputesRequireEvidenceRequest",
-}) as any as S.Schema<DisputesRequireEvidenceRequest>;
-
-export interface DisputesSendMessageRequest {
-  /** The ID of the dispute for which to provide the supporting information. */
-  id: string;
-  /** A file that contains any additional info about the message posted. */
-  message_document?: string;
-}
-export const DisputesSendMessageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    message_document: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/customer/disputes/{id}/send-message",
-      code: 200,
-      contentType: "multipart",
-    }),
-  ),
-).annotate({
-  identifier: "DisputesSendMessageRequest",
-}) as any as S.Schema<DisputesSendMessageRequest>;
+  identifier: "PatchDisputeResponse",
+}) as any as S.Schema<PatchDisputeResponse>;
 
 export type DisputesAcceptClaimError = BadRequest | PaypalOpError;
 /** Accept claim Accepts liability for a claim, by ID. When you accept liability for a claim, the dispute closes in the customer’s favor and PayPal automatically refunds money to the customer from the merchant's account. Allowed accept_claim_type values for the request is available in dispute details <a href="/docs/api/customer-disputes/v1/#definition-allowed_response_options">allowed response options</a> object. */
@@ -3437,36 +3437,6 @@ export const disputesEscalate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DisputesGetError = PaypalOpError;
-/** Show dispute details Shows details for a dispute, by ID.<blockquote><strong>Note:</strong> The fields that appear in the response depend on the access. For example, if the merchant requests shows dispute details, the customer's email ID does not appear.</blockquote> */
-export const disputesGet: API.OperationMethod<
-  DisputesGetRequest,
-  Dispute,
-  DisputesGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisputesGetRequest,
-  output: Dispute,
-  errors: [UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DisputesListError = BadRequest | PaypalOpError;
-/** List disputes Lists disputes with a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_state</code>, <code>dispute_life_cycle_stage</code>, <code>dispute_channel</code>, <code>dispute_amount</code>, <code>create_time</code> and <code>update_time</code> fields.<br/><br/>To filter the disputes in the response, specify one or more optional query parameters. To limit the number of disputes in the response, specify the <code>page_size</code> query parameter.<br/><br/>To list multiple disputes, set these query parameters in the request:<ul><li><code>page_size=2</code></li><li><code>start_time</code> instead of <code>disputed_transaction_id</code></li></ul><br/>If the response contains more than two disputes, it lists two disputes and includes a HATEOAS link to the next page of results. */
-export const disputesList: API.OperationMethod<
-  DisputesListRequest,
-  DisputeSearch,
-  DisputesListError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisputesListRequest,
-  output: DisputeSearch,
-  errors: [BadRequest, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DisputesMakeOfferError =
   | BadRequest
   | UnprocessableEntity
@@ -3480,24 +3450,6 @@ export const disputesMakeOffer: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DisputesMakeOfferRequest,
   output: SubsequentAction,
-  errors: [BadRequest, UnprocessableEntity, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DisputesPatchError =
-  | BadRequest
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Partially update dispute Partially updates a dispute, by ID. Seller can update the `communication_detail` value or The partner can add the `partner action` information. */
-export const disputesPatch: API.OperationMethod<
-  DisputesPatchRequest,
-  DisputesPatchResponse,
-  DisputesPatchError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisputesPatchRequest,
-  output: DisputesPatchResponse,
   errors: [BadRequest, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
@@ -3568,6 +3520,54 @@ export const disputesSendMessage: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DisputesSendMessageRequest,
   output: SubsequentAction,
+  errors: [BadRequest, UnprocessableEntity, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDisputeError = PaypalOpError;
+/** Show dispute details Shows details for a dispute, by ID.<blockquote><strong>Note:</strong> The fields that appear in the response depend on the access. For example, if the merchant requests shows dispute details, the customer's email ID does not appear.</blockquote> */
+export const getDispute: API.OperationMethod<
+  GetDisputeRequest,
+  Dispute,
+  GetDisputeError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDisputeRequest,
+  output: Dispute,
+  errors: [UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDisputesError = BadRequest | PaypalOpError;
+/** List disputes Lists disputes with a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_state</code>, <code>dispute_life_cycle_stage</code>, <code>dispute_channel</code>, <code>dispute_amount</code>, <code>create_time</code> and <code>update_time</code> fields.<br/><br/>To filter the disputes in the response, specify one or more optional query parameters. To limit the number of disputes in the response, specify the <code>page_size</code> query parameter.<br/><br/>To list multiple disputes, set these query parameters in the request:<ul><li><code>page_size=2</code></li><li><code>start_time</code> instead of <code>disputed_transaction_id</code></li></ul><br/>If the response contains more than two disputes, it lists two disputes and includes a HATEOAS link to the next page of results. */
+export const listDisputes: API.OperationMethod<
+  ListDisputesRequest,
+  DisputeSearch,
+  ListDisputesError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDisputesRequest,
+  output: DisputeSearch,
+  errors: [BadRequest, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchDisputeError =
+  | BadRequest
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Partially update dispute Partially updates a dispute, by ID. Seller can update the `communication_detail` value or The partner can add the `partner action` information. */
+export const patchDispute: API.OperationMethod<
+  PatchDisputeRequest,
+  PatchDisputeResponse,
+  PatchDisputeError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchDisputeRequest,
+  output: PatchDisputeResponse,
   errors: [BadRequest, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,

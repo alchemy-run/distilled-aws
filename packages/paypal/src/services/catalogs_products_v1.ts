@@ -50,8 +50,8 @@ export class UnprocessableEntity
   ) {}
 
 /** The product type. Indicates whether the product is physical or digital goods, or a service. */
-export type ProductsCreateRequestType = "PHYSICAL" | "DIGITAL" | "SERVICE";
-export const ProductsCreateRequestType = /*@__PURE__*/ S.String;
+export type CreateProductRequestType = "PHYSICAL" | "DIGITAL" | "SERVICE";
+export const CreateProductRequestType = /*@__PURE__*/ S.String;
 
 /** The product category. */
 export type ProductCategory =
@@ -503,7 +503,7 @@ export type ProductCategory =
   | "WOMEN_CLOTHING";
 export const ProductCategory = /*@__PURE__*/ S.String;
 
-export interface ProductsCreateRequest {
+export interface CreateProductRequest {
   /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
   prefer?: string;
   /** The server stores keys for 72 hours. */
@@ -515,28 +515,28 @@ export interface ProductsCreateRequest {
   /** The product description. */
   description?: string;
   /** The product type. Indicates whether the product is physical or digital goods, or a service. */
-  type: ProductsCreateRequestType | (string & {});
+  type: CreateProductRequestType | (string & {});
   category?: ProductCategory | (string & {});
   /** The image URL for the product. */
   image_url?: string;
   /** The home page URL for the product. */
   home_url?: string;
 }
-export const ProductsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProductRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
     payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
     id: S.optional(S.String),
     name: S.String,
     description: S.optional(S.String),
-    type: ProductsCreateRequestType,
+    type: CreateProductRequestType,
     category: S.optional(ProductCategory),
     image_url: S.optional(S.String),
     home_url: S.optional(S.String),
   }).pipe(T.Http({ method: "POST", uri: "/v1/catalogs/products", code: 200 })),
 ).annotate({
-  identifier: "ProductsCreateRequest",
-}) as any as S.Schema<ProductsCreateRequest>;
+  identifier: "CreateProductRequest",
+}) as any as S.Schema<CreateProductRequest>;
 
 /** The product type. Indicates whether the product is physical or digital goods, or a service. */
 export type ProductType = "PHYSICAL" | "DIGITAL" | "SERVICE";
@@ -615,11 +615,11 @@ export const Product = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
 
-export interface ProductsGetRequest {
+export interface GetProductRequest {
   /** The product ID. */
   product_id: string;
 }
-export const ProductsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProductRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     product_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -630,10 +630,10 @@ export const ProductsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProductsGetRequest",
-}) as any as S.Schema<ProductsGetRequest>;
+  identifier: "GetProductRequest",
+}) as any as S.Schema<GetProductRequest>;
 
-export interface ProductsListRequest {
+export interface ListProductsRequest {
   /** The number of items to return in the response. */
   page_size?: number;
   /** A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items. */
@@ -641,15 +641,15 @@ export interface ProductsListRequest {
   /** Indicates whether to show the total items and total pages in the response. */
   total_required?: boolean;
 }
-export const ProductsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListProductsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     page_size: S.optional(S.Number.pipe(T.Query())),
     page: S.optional(S.Number.pipe(T.Query())),
     total_required: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/v1/catalogs/products", code: 200 })),
 ).annotate({
-  identifier: "ProductsListRequest",
-}) as any as S.Schema<ProductsListRequest>;
+  identifier: "ListProductsRequest",
+}) as any as S.Schema<ListProductsRequest>;
 
 /** The details for a product in the collection response. */
 export interface ProductCollectionElement {
@@ -731,12 +731,12 @@ export const PatchRequest = /*@__PURE__*/ S.Array(
   Patch,
 ) as any as S.Schema<PatchRequest>;
 
-export interface ProductsPatchRequest {
+export interface PatchProductRequest {
   /** The product ID. */
   product_id: string;
   body?: PatchRequest;
 }
-export const ProductsPatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchProductRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     product_id: S.String.pipe(T.Label()),
     body: S.optional(PatchRequest.pipe(T.HttpBody())),
@@ -748,80 +748,80 @@ export const ProductsPatchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProductsPatchRequest",
-}) as any as S.Schema<ProductsPatchRequest>;
+  identifier: "PatchProductRequest",
+}) as any as S.Schema<PatchProductRequest>;
 
-export interface ProductsPatchResponse {}
-export const ProductsPatchResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PatchProductResponse {}
+export const PatchProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ProductsPatchResponse",
-}) as any as S.Schema<ProductsPatchResponse>;
+  identifier: "PatchProductResponse",
+}) as any as S.Schema<PatchProductResponse>;
 
-export type ProductsCreateError =
+export type CreateProductError =
   | BadRequest
   | Forbidden
   | UnprocessableEntity
   | PaypalOpError;
 /** Create product Creates a product. */
-export const productsCreate: API.OperationMethod<
-  ProductsCreateRequest,
+export const createProduct: API.OperationMethod<
+  CreateProductRequest,
   Product,
-  ProductsCreateError,
+  CreateProductError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsCreateRequest,
+  input: CreateProductRequest,
   output: Product,
   errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductsGetError = Forbidden | NotFound | PaypalOpError;
+export type GetProductError = Forbidden | NotFound | PaypalOpError;
 /** Show product details Shows details for a product, by ID. */
-export const productsGet: API.OperationMethod<
-  ProductsGetRequest,
+export const getProduct: API.OperationMethod<
+  GetProductRequest,
   Product,
-  ProductsGetError,
+  GetProductError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsGetRequest,
+  input: GetProductRequest,
   output: Product,
   errors: [Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductsListError = BadRequest | Forbidden | PaypalOpError;
+export type ListProductsError = BadRequest | Forbidden | PaypalOpError;
 /** List products Lists products. */
-export const productsList: API.OperationMethod<
-  ProductsListRequest,
+export const listProducts: API.OperationMethod<
+  ListProductsRequest,
   ProductCollection,
-  ProductsListError,
+  ListProductsError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsListRequest,
+  input: ListProductsRequest,
   output: ProductCollection,
   errors: [BadRequest, Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductsPatchError =
+export type PatchProductError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PaypalOpError;
 /** Update product Updates a product, by ID. You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>add, replace, remove</td></tr><tr><td><code>category</code></td><td>add, replace, remove</td></tr><tr><td><code>image_url</code></td><td>add, replace, remove</td></tr><tr><td><code>home_url</code></td><td>add, replace, remove</td></tr></tbody></table> */
-export const productsPatch: API.OperationMethod<
-  ProductsPatchRequest,
-  ProductsPatchResponse,
-  ProductsPatchError,
+export const patchProduct: API.OperationMethod<
+  PatchProductRequest,
+  PatchProductResponse,
+  PatchProductError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsPatchRequest,
-  output: ProductsPatchResponse,
+  input: PatchProductRequest,
+  output: PatchProductResponse,
   errors: [
     BadRequest,
     Forbidden,

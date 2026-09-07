@@ -1256,7 +1256,7 @@ export const PayoutAttributes = /*@__PURE__*/ S.suspend(() =>
   identifier: "PayoutAttributes",
 }) as any as S.Schema<PayoutAttributes>;
 
-export interface PartnerReferralsCreateRequest {
+export interface CreatePartnerReferralRequest {
   individual_owners?: IndividualOwnerListInput;
   /** Business entity of the account. */
   business_entity?: BusinessEntityInput;
@@ -1280,7 +1280,7 @@ export interface PartnerReferralsCreateRequest {
   /** Legal Country Code. */
   legal_country_code?: string;
 }
-export const PartnerReferralsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePartnerReferralRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     individual_owners: S.optional(IndividualOwnerListInput),
     business_entity: S.optional(BusinessEntityInput),
@@ -1304,8 +1304,8 @@ export const PartnerReferralsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PartnerReferralsCreateRequest",
-}) as any as S.Schema<PartnerReferralsCreateRequest>;
+  identifier: "CreatePartnerReferralRequest",
+}) as any as S.Schema<CreatePartnerReferralRequest>;
 
 /** The HTTP method required to make the related call. */
 export type LinkDescriptionMethod =
@@ -1356,11 +1356,11 @@ export const CreateReferralDataResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateReferralDataResponse",
 }) as any as S.Schema<CreateReferralDataResponse>;
 
-export interface PartnerReferralsReadRequest {
+export interface ReadPartnerReferralRequest {
   /** The ID of the partner-referrals data for which to show details. */
   partner_referral_id: string;
 }
-export const PartnerReferralsReadRequest = /*@__PURE__*/ S.suspend(() =>
+export const ReadPartnerReferralRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     partner_referral_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -1371,8 +1371,8 @@ export const PartnerReferralsReadRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PartnerReferralsReadRequest",
-}) as any as S.Schema<PartnerReferralsReadRequest>;
+  identifier: "ReadPartnerReferralRequest",
+}) as any as S.Schema<ReadPartnerReferralRequest>;
 
 /** The HATEOAS links. */
 export type LinkDescriptionList = Array<LinkDescription>;
@@ -1721,34 +1721,34 @@ export const ReferralDataResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReferralDataResponse",
 }) as any as S.Schema<ReferralDataResponse>;
 
-export type PartnerReferralsCreateError =
+export type CreatePartnerReferralError =
   | BadRequest
   | Forbidden
   | UnprocessableEntity
   | PaypalOpError;
 /** Create partner referral Creates a partner referral that is shared by the partner or API caller. The partner referral is used to onboard the seller, and contains the seller's personal, business, financial and operations. */
-export const partnerReferralsCreate: API.OperationMethod<
-  PartnerReferralsCreateRequest,
+export const createPartnerReferral: API.OperationMethod<
+  CreatePartnerReferralRequest,
   CreateReferralDataResponse,
-  PartnerReferralsCreateError,
+  CreatePartnerReferralError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PartnerReferralsCreateRequest,
+  input: CreatePartnerReferralRequest,
   output: CreateReferralDataResponse,
   errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PartnerReferralsReadError = Forbidden | PaypalOpError;
+export type ReadPartnerReferralError = Forbidden | PaypalOpError;
 /** Show referral data Shows details by ID for referral data that was shared by the partner or API caller. */
-export const partnerReferralsRead: API.OperationMethod<
-  PartnerReferralsReadRequest,
+export const readPartnerReferral: API.OperationMethod<
+  ReadPartnerReferralRequest,
   ReferralDataResponse,
-  PartnerReferralsReadError,
+  ReadPartnerReferralError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PartnerReferralsReadRequest,
+  input: ReadPartnerReferralRequest,
   output: ReferralDataResponse,
   errors: [Forbidden, UnknownPaypalError],
   protocol: PaypalProtocol,

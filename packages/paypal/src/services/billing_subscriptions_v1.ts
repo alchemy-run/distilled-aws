@@ -49,11 +49,11 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface PlansActivateRequest {
+export interface ActivatePlanRequest {
   /** The ID of the subscription. */
   id: string;
 }
-export const PlansActivateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ActivatePlanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(
@@ -64,19 +64,75 @@ export const PlansActivateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PlansActivateRequest",
-}) as any as S.Schema<PlansActivateRequest>;
+  identifier: "ActivatePlanRequest",
+}) as any as S.Schema<ActivatePlanRequest>;
 
-export interface PlansActivateResponse {}
-export const PlansActivateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface ActivatePlanResponse {}
+export const ActivatePlanResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "PlansActivateResponse",
-}) as any as S.Schema<PlansActivateResponse>;
+  identifier: "ActivatePlanResponse",
+}) as any as S.Schema<ActivatePlanResponse>;
 
-/** The initial state of the plan. Allowed input values are CREATED and ACTIVE. */
-export type PlansCreateRequestStatus = "CREATED" | "INACTIVE" | "ACTIVE";
-export const PlansCreateRequestStatus = /*@__PURE__*/ S.String;
+export interface ActivateSubscriptionRequest {
+  /** The ID of the subscription. */
+  id: string;
+  /** The reason for activation of a subscription. Required to reactivate the subscription. */
+  reason?: string;
+}
+export const ActivateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    reason: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/billing/subscriptions/{id}/activate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ActivateSubscriptionRequest",
+}) as any as S.Schema<ActivateSubscriptionRequest>;
+
+export interface ActivateSubscriptionResponse {}
+export const ActivateSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ActivateSubscriptionResponse",
+}) as any as S.Schema<ActivateSubscriptionResponse>;
+
+export interface CancelSubscriptionRequest {
+  /** The ID of the subscription. */
+  id: string;
+  /** The reason for the cancellation of a subscription. */
+  reason: string;
+}
+export const CancelSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    reason: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/billing/subscriptions/{id}/cancel",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CancelSubscriptionRequest",
+}) as any as S.Schema<CancelSubscriptionRequest>;
+
+export interface CancelSubscriptionResponse {}
+export const CancelSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelSubscriptionResponse",
+}) as any as S.Schema<CancelSubscriptionResponse>;
+
+/** The type of capture. */
+export type CaptureSubscriptionRequestCaptureType = "OUTSTANDING_BALANCE";
+export const CaptureSubscriptionRequestCaptureType = /*@__PURE__*/ S.String;
 
 /** The currency and amount for a financial transaction, such as a balance or payment due. */
 export interface Money {
@@ -90,6 +146,129 @@ export const Money = /*@__PURE__*/ S.suspend(() =>
     value: S.String,
   }),
 ).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+
+export interface CaptureSubscriptionRequest {
+  /** The ID of the subscription. */
+  id: string;
+  /** The server stores keys for 72 hours. */
+  payPalRequestId?: string;
+  /** The reason or note for the subscription charge. */
+  note: string;
+  /** The type of capture. */
+  capture_type: CaptureSubscriptionRequestCaptureType | (string & {});
+  /** The amount of the outstanding balance. This value cannot be greater than the current outstanding balance amount. */
+  amount: Money;
+}
+export const CaptureSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
+    note: S.String,
+    capture_type: CaptureSubscriptionRequestCaptureType,
+    amount: Money,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/billing/subscriptions/{id}/capture",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CaptureSubscriptionRequest",
+}) as any as S.Schema<CaptureSubscriptionRequest>;
+
+/** The status of the captured payment. */
+export type TransactionStatus =
+  | "COMPLETED"
+  | "DECLINED"
+  | "PARTIALLY_REFUNDED"
+  | "PENDING"
+  | "REFUNDED"
+  | "FAILED";
+export const TransactionStatus = /*@__PURE__*/ S.String;
+
+/** The breakdown details for the amount. Includes the gross, tax, fee, and shipping amounts. */
+export interface AmountWithBreakdown {
+  /** The amount for this transaction. */
+  gross_amount: Money;
+  /** The item total for the transaction. */
+  total_item_amount?: Money;
+  /** The fee details for the transaction. */
+  fee_amount?: Money;
+  /** The shipping amount for the transaction. */
+  shipping_amount?: Money;
+  /** The tax amount for the transaction. */
+  tax_amount?: Money;
+  /** The net amount that the payee receives for this transaction in their PayPal account. The net amount is computed as <code>gross_amount</code> minus the <code>paypal_fee</code>. */
+  net_amount?: Money;
+}
+export const AmountWithBreakdown = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    gross_amount: Money,
+    total_item_amount: S.optional(Money),
+    fee_amount: S.optional(Money),
+    shipping_amount: S.optional(Money),
+    tax_amount: S.optional(Money),
+    net_amount: S.optional(Money),
+  }),
+).annotate({
+  identifier: "AmountWithBreakdown",
+}) as any as S.Schema<AmountWithBreakdown>;
+
+/** The name of the party. */
+export interface Name {
+  /** The prefix, or title, to the party's name. */
+  prefix?: string;
+  /** When the party is a person, the party's given, or first, name. */
+  given_name?: string;
+  /** When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname. */
+  surname?: string;
+  /** When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name. */
+  middle_name?: string;
+  /** The suffix for the party's name. */
+  suffix?: string;
+  /** When the party is a person, the party's full name. */
+  full_name?: string;
+}
+export const Name = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    prefix: S.optional(S.String),
+    given_name: S.optional(S.String),
+    surname: S.optional(S.String),
+    middle_name: S.optional(S.String),
+    suffix: S.optional(S.String),
+    full_name: S.optional(S.String),
+  }),
+).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
+
+/** The transaction details. */
+export interface Transaction {
+  /** The status of the captured payment. */
+  status?: TransactionStatus;
+  /** The PayPal-generated transaction ID. */
+  id: string;
+  amount_with_breakdown: AmountWithBreakdown;
+  /** The name of the customer. */
+  payer_name?: Name;
+  /** The email ID of the customer. */
+  payer_email?: string;
+  /** The date and time when the transaction was processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
+  time: string;
+}
+export const Transaction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(TransactionStatus),
+    id: S.String,
+    amount_with_breakdown: AmountWithBreakdown,
+    payer_name: S.optional(Name),
+    payer_email: S.optional(S.String),
+    time: S.String,
+  }),
+).annotate({ identifier: "Transaction" }) as any as S.Schema<Transaction>;
+
+/** The initial state of the plan. Allowed input values are CREATED and ACTIVE. */
+export type CreatePlanRequestStatus = "CREATED" | "INACTIVE" | "ACTIVE";
+export const CreatePlanRequestStatus = /*@__PURE__*/ S.String;
 
 /** The pricing model for tiered plan. The `tiers` parameter is required. */
 export type PricingSchemeInputPricingModel = "VOLUME" | "TIERED";
@@ -233,7 +412,7 @@ export const Taxes = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Taxes" }) as any as S.Schema<Taxes>;
 
-export interface PlansCreateRequest {
+export interface CreatePlanRequest {
   /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
   prefer?: string;
   /** The server stores keys for 72 hours. */
@@ -243,7 +422,7 @@ export interface PlansCreateRequest {
   /** The plan name. */
   name: string;
   /** The initial state of the plan. Allowed input values are CREATED and ACTIVE. */
-  status?: PlansCreateRequestStatus | (string & {});
+  status?: CreatePlanRequestStatus | (string & {});
   /** The detailed description of the plan. */
   description?: string;
   billing_cycles: BillingCycleListInput;
@@ -252,13 +431,13 @@ export interface PlansCreateRequest {
   /** Indicates whether you can subscribe to this plan by providing a quantity for the goods or service. */
   quantity_supported?: boolean;
 }
-export const PlansCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePlanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
     payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
     product_id: S.String,
     name: S.String,
-    status: S.optional(PlansCreateRequestStatus),
+    status: S.optional(CreatePlanRequestStatus),
     description: S.optional(S.String),
     billing_cycles: BillingCycleListInput,
     payment_preferences: PaymentPreferences,
@@ -266,8 +445,8 @@ export const PlansCreateRequest = /*@__PURE__*/ S.suspend(() =>
     quantity_supported: S.optional(S.Boolean),
   }).pipe(T.Http({ method: "POST", uri: "/v1/billing/plans", code: 200 })),
 ).annotate({
-  identifier: "PlansCreateRequest",
-}) as any as S.Schema<PlansCreateRequest>;
+  identifier: "CreatePlanRequest",
+}) as any as S.Schema<CreatePlanRequest>;
 
 /** The plan status. */
 export type PlanStatus = "CREATED" | "INACTIVE" | "ACTIVE";
@@ -411,372 +590,6 @@ export const Plan = /*@__PURE__*/ S.suspend(() =>
     links: S.optional(LinkDescriptionList),
   }),
 ).annotate({ identifier: "Plan" }) as any as S.Schema<Plan>;
-
-export interface PlansDeactivateRequest {
-  /** The ID of the subscription. */
-  id: string;
-}
-export const PlansDeactivateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/billing/plans/{id}/deactivate",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PlansDeactivateRequest",
-}) as any as S.Schema<PlansDeactivateRequest>;
-
-export interface PlansDeactivateResponse {}
-export const PlansDeactivateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PlansDeactivateResponse",
-}) as any as S.Schema<PlansDeactivateResponse>;
-
-export interface PlansGetRequest {
-  /** The ID of the subscription. */
-  id: string;
-}
-export const PlansGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/billing/plans/{id}", code: 200 })),
-).annotate({
-  identifier: "PlansGetRequest",
-}) as any as S.Schema<PlansGetRequest>;
-
-export interface PlansListRequest {
-  /** Filters the response by a Product ID. */
-  product_id?: string;
-  /** The number of items to return in the response. */
-  page_size?: number;
-  /** A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items. */
-  page?: number;
-  /** Indicates whether to show the total count in the response. */
-  total_required?: boolean;
-  /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
-  prefer?: string;
-}
-export const PlansListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    product_id: S.optional(S.String.pipe(T.Query())),
-    page_size: S.optional(S.Number.pipe(T.Query())),
-    page: S.optional(S.Number.pipe(T.Query())),
-    total_required: S.optional(S.Boolean.pipe(T.Query())),
-    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
-  }).pipe(T.Http({ method: "GET", uri: "/v1/billing/plans", code: 200 })),
-).annotate({
-  identifier: "PlansListRequest",
-}) as any as S.Schema<PlansListRequest>;
-
-/** An array of plans. */
-export type PlanList = Array<Plan>;
-export const PlanList = /*@__PURE__*/ S.Array(
-  Plan,
-) as any as S.Schema<PlanList>;
-
-/** The list of plans with details. */
-export interface PlanCollection {
-  plans?: PlanList;
-  /** The total number of items. */
-  total_items?: number;
-  /** The total number of pages. */
-  total_pages?: number;
-  links?: LinkDescriptionList;
-}
-export const PlanCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    plans: S.optional(PlanList),
-    total_items: S.optional(S.Number),
-    total_pages: S.optional(S.Number),
-    links: S.optional(LinkDescriptionList),
-  }),
-).annotate({ identifier: "PlanCollection" }) as any as S.Schema<PlanCollection>;
-
-/** The operation. */
-export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
-export const PatchOp = /*@__PURE__*/ S.String;
-
-/** The JSON patch object to apply partial updates to resources. */
-export interface Patch {
-  /** The operation. */
-  op: PatchOp | (string & {});
-  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation. */
-  path?: string;
-  /** The value to apply. The <code>remove</code>, <code>copy</code>, and <code>move</code> operations do not require a value. Since <a href="https://www.rfc-editor.org/rfc/rfc69021">JSON Patch</a> allows any type for <code>value</code>, the <code>type</code> property is not specified. */
-  value?: unknown;
-  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation. */
-  from?: string;
-}
-export const Patch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    op: PatchOp,
-    path: S.optional(S.String),
-    value: S.optional(S.Unknown),
-    from: S.optional(S.String),
-  }),
-).annotate({ identifier: "Patch" }) as any as S.Schema<Patch>;
-
-/** An array of JSON patch objects to apply partial updates to resources. */
-export type PatchRequest = Array<Patch>;
-export const PatchRequest = /*@__PURE__*/ S.Array(
-  Patch,
-) as any as S.Schema<PatchRequest>;
-
-export interface PlansPatchRequest {
-  /** The ID of the subscription. */
-  id: string;
-  body?: PatchRequest;
-}
-export const PlansPatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    body: S.optional(PatchRequest.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({ method: "PATCH", uri: "/v1/billing/plans/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "PlansPatchRequest",
-}) as any as S.Schema<PlansPatchRequest>;
-
-export interface PlansPatchResponse {}
-export const PlansPatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PlansPatchResponse",
-}) as any as S.Schema<PlansPatchResponse>;
-
-/** The update pricing scheme request details. */
-export interface UpdatePricingSchemeRequestInput {
-  /** The billing cycle sequence. */
-  billing_cycle_sequence: number;
-  pricing_scheme: PricingSchemeInput;
-}
-export const UpdatePricingSchemeRequestInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billing_cycle_sequence: S.Number,
-    pricing_scheme: PricingSchemeInput,
-  }),
-).annotate({
-  identifier: "UpdatePricingSchemeRequestInput",
-}) as any as S.Schema<UpdatePricingSchemeRequestInput>;
-
-/** An array of pricing schemes. */
-export type UpdatePricingSchemeRequestListInput =
-  Array<UpdatePricingSchemeRequestInput>;
-export const UpdatePricingSchemeRequestListInput = /*@__PURE__*/ S.Array(
-  UpdatePricingSchemeRequestInput,
-) as any as S.Schema<UpdatePricingSchemeRequestListInput>;
-
-export interface PlansUpdatePricingSchemesRequest {
-  /** The ID of the subscription. */
-  id: string;
-  pricing_schemes: UpdatePricingSchemeRequestListInput;
-}
-export const PlansUpdatePricingSchemesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    pricing_schemes: UpdatePricingSchemeRequestListInput,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/billing/plans/{id}/update-pricing-schemes",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PlansUpdatePricingSchemesRequest",
-}) as any as S.Schema<PlansUpdatePricingSchemesRequest>;
-
-export interface PlansUpdatePricingSchemesResponse {}
-export const PlansUpdatePricingSchemesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PlansUpdatePricingSchemesResponse",
-}) as any as S.Schema<PlansUpdatePricingSchemesResponse>;
-
-export interface SubscriptionsActivateRequest {
-  /** The ID of the subscription. */
-  id: string;
-  /** The reason for activation of a subscription. Required to reactivate the subscription. */
-  reason?: string;
-}
-export const SubscriptionsActivateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    reason: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/billing/subscriptions/{id}/activate",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsActivateRequest",
-}) as any as S.Schema<SubscriptionsActivateRequest>;
-
-export interface SubscriptionsActivateResponse {}
-export const SubscriptionsActivateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SubscriptionsActivateResponse",
-}) as any as S.Schema<SubscriptionsActivateResponse>;
-
-export interface SubscriptionsCancelRequest {
-  /** The ID of the subscription. */
-  id: string;
-  /** The reason for the cancellation of a subscription. */
-  reason: string;
-}
-export const SubscriptionsCancelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    reason: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/billing/subscriptions/{id}/cancel",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsCancelRequest",
-}) as any as S.Schema<SubscriptionsCancelRequest>;
-
-export interface SubscriptionsCancelResponse {}
-export const SubscriptionsCancelResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SubscriptionsCancelResponse",
-}) as any as S.Schema<SubscriptionsCancelResponse>;
-
-/** The type of capture. */
-export type SubscriptionsCaptureRequestCaptureType = "OUTSTANDING_BALANCE";
-export const SubscriptionsCaptureRequestCaptureType = /*@__PURE__*/ S.String;
-
-export interface SubscriptionsCaptureRequest {
-  /** The ID of the subscription. */
-  id: string;
-  /** The server stores keys for 72 hours. */
-  payPalRequestId?: string;
-  /** The reason or note for the subscription charge. */
-  note: string;
-  /** The type of capture. */
-  capture_type: SubscriptionsCaptureRequestCaptureType | (string & {});
-  /** The amount of the outstanding balance. This value cannot be greater than the current outstanding balance amount. */
-  amount: Money;
-}
-export const SubscriptionsCaptureRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
-    note: S.String,
-    capture_type: SubscriptionsCaptureRequestCaptureType,
-    amount: Money,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/billing/subscriptions/{id}/capture",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsCaptureRequest",
-}) as any as S.Schema<SubscriptionsCaptureRequest>;
-
-/** The status of the captured payment. */
-export type TransactionStatus =
-  | "COMPLETED"
-  | "DECLINED"
-  | "PARTIALLY_REFUNDED"
-  | "PENDING"
-  | "REFUNDED"
-  | "FAILED";
-export const TransactionStatus = /*@__PURE__*/ S.String;
-
-/** The breakdown details for the amount. Includes the gross, tax, fee, and shipping amounts. */
-export interface AmountWithBreakdown {
-  /** The amount for this transaction. */
-  gross_amount: Money;
-  /** The item total for the transaction. */
-  total_item_amount?: Money;
-  /** The fee details for the transaction. */
-  fee_amount?: Money;
-  /** The shipping amount for the transaction. */
-  shipping_amount?: Money;
-  /** The tax amount for the transaction. */
-  tax_amount?: Money;
-  /** The net amount that the payee receives for this transaction in their PayPal account. The net amount is computed as <code>gross_amount</code> minus the <code>paypal_fee</code>. */
-  net_amount?: Money;
-}
-export const AmountWithBreakdown = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    gross_amount: Money,
-    total_item_amount: S.optional(Money),
-    fee_amount: S.optional(Money),
-    shipping_amount: S.optional(Money),
-    tax_amount: S.optional(Money),
-    net_amount: S.optional(Money),
-  }),
-).annotate({
-  identifier: "AmountWithBreakdown",
-}) as any as S.Schema<AmountWithBreakdown>;
-
-/** The name of the party. */
-export interface Name {
-  /** The prefix, or title, to the party's name. */
-  prefix?: string;
-  /** When the party is a person, the party's given, or first, name. */
-  given_name?: string;
-  /** When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname. */
-  surname?: string;
-  /** When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name. */
-  middle_name?: string;
-  /** The suffix for the party's name. */
-  suffix?: string;
-  /** When the party is a person, the party's full name. */
-  full_name?: string;
-}
-export const Name = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    prefix: S.optional(S.String),
-    given_name: S.optional(S.String),
-    surname: S.optional(S.String),
-    middle_name: S.optional(S.String),
-    suffix: S.optional(S.String),
-    full_name: S.optional(S.String),
-  }),
-).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
-
-/** The transaction details. */
-export interface Transaction {
-  /** The status of the captured payment. */
-  status?: TransactionStatus;
-  /** The PayPal-generated transaction ID. */
-  id: string;
-  amount_with_breakdown: AmountWithBreakdown;
-  /** The name of the customer. */
-  payer_name?: Name;
-  /** The email ID of the customer. */
-  payer_email?: string;
-  /** The date and time when the transaction was processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). */
-  time: string;
-}
-export const Transaction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(TransactionStatus),
-    id: S.String,
-    amount_with_breakdown: AmountWithBreakdown,
-    payer_name: S.optional(Name),
-    payer_email: S.optional(S.String),
-    time: S.String,
-  }),
-).annotate({ identifier: "Transaction" }) as any as S.Schema<Transaction>;
 
 /** The name of the party. */
 export interface SubscriberRequestName {
@@ -1248,7 +1061,7 @@ export const PlanOverrideInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PlanOverrideInput",
 }) as any as S.Schema<PlanOverrideInput>;
 
-export interface SubscriptionsCreateRequest {
+export interface CreateSubscriptionRequest {
   /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
   prefer?: string;
   /** The server stores keys for 72 hours. */
@@ -1272,7 +1085,7 @@ export interface SubscriptionsCreateRequest {
   /** Merchant's inventory identifier details for the WPS hosted button. */
   merchant_inventory?: unknown;
 }
-export const SubscriptionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
     payPalRequestId: S.optional(S.String.pipe(T.Header("PayPal-Request-Id"))),
@@ -1290,18 +1103,18 @@ export const SubscriptionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/v1/billing/subscriptions", code: 200 }),
   ),
 ).annotate({
-  identifier: "SubscriptionsCreateRequest",
-}) as any as S.Schema<SubscriptionsCreateRequest>;
+  identifier: "CreateSubscriptionRequest",
+}) as any as S.Schema<CreateSubscriptionRequest>;
 
 /** The status of the subscription. */
-export type SubscriptionsCreateResponseStatus =
+export type CreateSubscriptionResponseStatus =
   | "APPROVAL_PENDING"
   | "APPROVED"
   | "ACTIVE"
   | "SUSPENDED"
   | "CANCELLED"
   | "EXPIRED";
-export const SubscriptionsCreateResponseStatus = /*@__PURE__*/ S.String;
+export const CreateSubscriptionResponseStatus = /*@__PURE__*/ S.String;
 
 /** The name of the party. */
 export type SubscriberName = SubscriberRequestName;
@@ -1647,7 +1460,7 @@ export const SubscriptionBillingInfo = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SubscriptionBillingInfo>;
 
 /** The plan details. */
-export interface SubscriptionsCreateResponsePlan {
+export interface CreateSubscriptionResponsePlan {
   /** The ID for the product. */
   product_id?: string;
   /** The plan name. */
@@ -1660,7 +1473,7 @@ export interface SubscriptionsCreateResponsePlan {
   /** Indicates whether you can subscribe to this plan by providing a quantity for the goods or service. */
   quantity_supported?: boolean;
 }
-export const SubscriptionsCreateResponsePlan = /*@__PURE__*/ S.suspend(() =>
+export const CreateSubscriptionResponsePlan = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     product_id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1671,12 +1484,12 @@ export const SubscriptionsCreateResponsePlan = /*@__PURE__*/ S.suspend(() =>
     quantity_supported: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "SubscriptionsCreateResponsePlan",
-}) as any as S.Schema<SubscriptionsCreateResponsePlan>;
+  identifier: "CreateSubscriptionResponsePlan",
+}) as any as S.Schema<CreateSubscriptionResponsePlan>;
 
-export interface SubscriptionsCreateResponse {
+export interface CreateSubscriptionResponse {
   /** The status of the subscription. */
-  status?: SubscriptionsCreateResponseStatus;
+  status?: CreateSubscriptionResponseStatus;
   /** The reason or notes for the status of the subscription. */
   status_change_note?: string;
   status_update_time?: string;
@@ -1697,12 +1510,12 @@ export interface SubscriptionsCreateResponse {
   /** Indicates whether the subscription has overridden any plan attributes. */
   plan_overridden?: boolean;
   /** The plan details. */
-  plan?: SubscriptionsCreateResponsePlan;
+  plan?: CreateSubscriptionResponsePlan;
   links?: LinkDescriptionList;
 }
-export const SubscriptionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(SubscriptionsCreateResponseStatus),
+    status: S.optional(CreateSubscriptionResponseStatus),
     status_change_note: S.optional(S.String),
     status_update_time: S.optional(S.String),
     id: S.optional(S.String),
@@ -1716,20 +1529,55 @@ export const SubscriptionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     update_time: S.optional(S.String),
     custom_id: S.optional(S.String),
     plan_overridden: S.optional(S.Boolean),
-    plan: S.optional(SubscriptionsCreateResponsePlan),
+    plan: S.optional(CreateSubscriptionResponsePlan),
     links: S.optional(LinkDescriptionList),
   }),
 ).annotate({
-  identifier: "SubscriptionsCreateResponse",
-}) as any as S.Schema<SubscriptionsCreateResponse>;
+  identifier: "CreateSubscriptionResponse",
+}) as any as S.Schema<CreateSubscriptionResponse>;
 
-export interface SubscriptionsGetRequest {
+export interface DeactivatePlanRequest {
+  /** The ID of the subscription. */
+  id: string;
+}
+export const DeactivatePlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/billing/plans/{id}/deactivate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeactivatePlanRequest",
+}) as any as S.Schema<DeactivatePlanRequest>;
+
+export interface DeactivatePlanResponse {}
+export const DeactivatePlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeactivatePlanResponse",
+}) as any as S.Schema<DeactivatePlanResponse>;
+
+export interface GetPlanRequest {
+  /** The ID of the subscription. */
+  id: string;
+}
+export const GetPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/billing/plans/{id}", code: 200 })),
+).annotate({ identifier: "GetPlanRequest" }) as any as S.Schema<GetPlanRequest>;
+
+export interface GetSubscriptionRequest {
   /** The ID of the subscription. */
   id: string;
   /** List of fields that are to be returned in the response. Possible value for fields are last_failed_payment and plan. */
   fields?: string;
 }
-export const SubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     fields: S.optional(S.String.pipe(T.Query())),
@@ -1737,26 +1585,26 @@ export const SubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "GET", uri: "/v1/billing/subscriptions/{id}", code: 200 }),
   ),
 ).annotate({
-  identifier: "SubscriptionsGetRequest",
-}) as any as S.Schema<SubscriptionsGetRequest>;
+  identifier: "GetSubscriptionRequest",
+}) as any as S.Schema<GetSubscriptionRequest>;
 
 /** The status of the subscription. */
-export type SubscriptionsGetResponseStatus =
+export type GetSubscriptionResponseStatus =
   | "APPROVAL_PENDING"
   | "APPROVED"
   | "ACTIVE"
   | "SUSPENDED"
   | "CANCELLED"
   | "EXPIRED";
-export const SubscriptionsGetResponseStatus = /*@__PURE__*/ S.String;
+export const GetSubscriptionResponseStatus = /*@__PURE__*/ S.String;
 
 /** The plan details. */
-export type SubscriptionsGetResponsePlan = SubscriptionsCreateResponsePlan;
-export const SubscriptionsGetResponsePlan = SubscriptionsCreateResponsePlan;
+export type GetSubscriptionResponsePlan = CreateSubscriptionResponsePlan;
+export const GetSubscriptionResponsePlan = CreateSubscriptionResponsePlan;
 
-export interface SubscriptionsGetResponse {
+export interface GetSubscriptionResponse {
   /** The status of the subscription. */
-  status?: SubscriptionsGetResponseStatus;
+  status?: GetSubscriptionResponseStatus;
   /** The reason or notes for the status of the subscription. */
   status_change_note?: string;
   status_update_time?: string;
@@ -1777,12 +1625,12 @@ export interface SubscriptionsGetResponse {
   /** Indicates whether the subscription has overridden any plan attributes. */
   plan_overridden?: boolean;
   /** The plan details. */
-  plan?: SubscriptionsCreateResponsePlan;
+  plan?: CreateSubscriptionResponsePlan;
   links?: LinkDescriptionList;
 }
-export const SubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(SubscriptionsGetResponseStatus),
+    status: S.optional(GetSubscriptionResponseStatus),
     status_change_note: S.optional(S.String),
     status_update_time: S.optional(S.String),
     id: S.optional(S.String),
@@ -1796,19 +1644,120 @@ export const SubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
     update_time: S.optional(S.String),
     custom_id: S.optional(S.String),
     plan_overridden: S.optional(S.Boolean),
-    plan: S.optional(SubscriptionsCreateResponsePlan),
+    plan: S.optional(CreateSubscriptionResponsePlan),
     links: S.optional(LinkDescriptionList),
   }),
 ).annotate({
-  identifier: "SubscriptionsGetResponse",
-}) as any as S.Schema<SubscriptionsGetResponse>;
+  identifier: "GetSubscriptionResponse",
+}) as any as S.Schema<GetSubscriptionResponse>;
 
-export interface SubscriptionsPatchRequest {
+export interface ListPlansRequest {
+  /** Filters the response by a Product ID. */
+  product_id?: string;
+  /** The number of items to return in the response. */
+  page_size?: number;
+  /** A non-zero integer which is the start index of the entire list of items to return in the response. The combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items. */
+  page?: number;
+  /** Indicates whether to show the total count in the response. */
+  total_required?: boolean;
+  /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
+  prefer?: string;
+}
+export const ListPlansRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    product_id: S.optional(S.String.pipe(T.Query())),
+    page_size: S.optional(S.Number.pipe(T.Query())),
+    page: S.optional(S.Number.pipe(T.Query())),
+    total_required: S.optional(S.Boolean.pipe(T.Query())),
+    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
+  }).pipe(T.Http({ method: "GET", uri: "/v1/billing/plans", code: 200 })),
+).annotate({
+  identifier: "ListPlansRequest",
+}) as any as S.Schema<ListPlansRequest>;
+
+/** An array of plans. */
+export type PlanList = Array<Plan>;
+export const PlanList = /*@__PURE__*/ S.Array(
+  Plan,
+) as any as S.Schema<PlanList>;
+
+/** The list of plans with details. */
+export interface PlanCollection {
+  plans?: PlanList;
+  /** The total number of items. */
+  total_items?: number;
+  /** The total number of pages. */
+  total_pages?: number;
+  links?: LinkDescriptionList;
+}
+export const PlanCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    plans: S.optional(PlanList),
+    total_items: S.optional(S.Number),
+    total_pages: S.optional(S.Number),
+    links: S.optional(LinkDescriptionList),
+  }),
+).annotate({ identifier: "PlanCollection" }) as any as S.Schema<PlanCollection>;
+
+/** The operation. */
+export type PatchOp = "add" | "remove" | "replace" | "move" | "copy" | "test";
+export const PatchOp = /*@__PURE__*/ S.String;
+
+/** The JSON patch object to apply partial updates to resources. */
+export interface Patch {
+  /** The operation. */
+  op: PatchOp | (string & {});
+  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation. */
+  path?: string;
+  /** The value to apply. The <code>remove</code>, <code>copy</code>, and <code>move</code> operations do not require a value. Since <a href="https://www.rfc-editor.org/rfc/rfc69021">JSON Patch</a> allows any type for <code>value</code>, the <code>type</code> property is not specified. */
+  value?: unknown;
+  /** The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation. */
+  from?: string;
+}
+export const Patch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    op: PatchOp,
+    path: S.optional(S.String),
+    value: S.optional(S.Unknown),
+    from: S.optional(S.String),
+  }),
+).annotate({ identifier: "Patch" }) as any as S.Schema<Patch>;
+
+/** An array of JSON patch objects to apply partial updates to resources. */
+export type PatchRequest = Array<Patch>;
+export const PatchRequest = /*@__PURE__*/ S.Array(
+  Patch,
+) as any as S.Schema<PatchRequest>;
+
+export interface PatchPlanRequest {
   /** The ID of the subscription. */
   id: string;
   body?: PatchRequest;
 }
-export const SubscriptionsPatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    body: S.optional(PatchRequest.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({ method: "PATCH", uri: "/v1/billing/plans/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "PatchPlanRequest",
+}) as any as S.Schema<PatchPlanRequest>;
+
+export interface PatchPlanResponse {}
+export const PatchPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PatchPlanResponse",
+}) as any as S.Schema<PatchPlanResponse>;
+
+export interface PatchSubscriptionRequest {
+  /** The ID of the subscription. */
+  id: string;
+  body?: PatchRequest;
+}
+export const PatchSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
     body: S.optional(PatchRequest.pipe(T.HttpBody())),
@@ -1820,15 +1769,64 @@ export const SubscriptionsPatchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SubscriptionsPatchRequest",
-}) as any as S.Schema<SubscriptionsPatchRequest>;
+  identifier: "PatchSubscriptionRequest",
+}) as any as S.Schema<PatchSubscriptionRequest>;
 
-export interface SubscriptionsPatchResponse {}
-export const SubscriptionsPatchResponse = /*@__PURE__*/ S.suspend(() =>
+export interface PatchSubscriptionResponse {}
+export const PatchSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SubscriptionsPatchResponse",
-}) as any as S.Schema<SubscriptionsPatchResponse>;
+  identifier: "PatchSubscriptionResponse",
+}) as any as S.Schema<PatchSubscriptionResponse>;
+
+/** The update pricing scheme request details. */
+export interface UpdatePricingSchemeRequestInput {
+  /** The billing cycle sequence. */
+  billing_cycle_sequence: number;
+  pricing_scheme: PricingSchemeInput;
+}
+export const UpdatePricingSchemeRequestInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billing_cycle_sequence: S.Number,
+    pricing_scheme: PricingSchemeInput,
+  }),
+).annotate({
+  identifier: "UpdatePricingSchemeRequestInput",
+}) as any as S.Schema<UpdatePricingSchemeRequestInput>;
+
+/** An array of pricing schemes. */
+export type UpdatePricingSchemeRequestListInput =
+  Array<UpdatePricingSchemeRequestInput>;
+export const UpdatePricingSchemeRequestListInput = /*@__PURE__*/ S.Array(
+  UpdatePricingSchemeRequestInput,
+) as any as S.Schema<UpdatePricingSchemeRequestListInput>;
+
+export interface PlansUpdatePricingSchemesRequest {
+  /** The ID of the subscription. */
+  id: string;
+  pricing_schemes: UpdatePricingSchemeRequestListInput;
+}
+export const PlansUpdatePricingSchemesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    pricing_schemes: UpdatePricingSchemeRequestListInput,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/billing/plans/{id}/update-pricing-schemes",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PlansUpdatePricingSchemesRequest",
+}) as any as S.Schema<PlansUpdatePricingSchemesRequest>;
+
+export interface PlansUpdatePricingSchemesResponse {}
+export const PlansUpdatePricingSchemesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PlansUpdatePricingSchemesResponse",
+}) as any as S.Schema<PlansUpdatePricingSchemesResponse>;
 
 /** The location from which the shipping address is derived. */
 export type SubscriptionsReviseRequestApplicationContextShippingPreference =
@@ -1992,34 +1990,6 @@ export const SubscriptionReviseResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubscriptionReviseResponse",
 }) as any as S.Schema<SubscriptionReviseResponse>;
 
-export interface SubscriptionsSuspendRequest {
-  /** The ID of the subscription. */
-  id: string;
-  /** The reason for suspension of the Subscription. */
-  reason: string;
-}
-export const SubscriptionsSuspendRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    reason: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/v1/billing/subscriptions/{id}/suspend",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsSuspendRequest",
-}) as any as S.Schema<SubscriptionsSuspendRequest>;
-
-export interface SubscriptionsSuspendResponse {}
-export const SubscriptionsSuspendResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SubscriptionsSuspendResponse",
-}) as any as S.Schema<SubscriptionsSuspendResponse>;
-
 export interface SubscriptionsTransactionsRequest {
   /** The ID of the subscription. */
   id: string;
@@ -2070,108 +2040,274 @@ export const TransactionsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "TransactionsList",
 }) as any as S.Schema<TransactionsList>;
 
-export type PlansActivateError =
+export interface SuspendSubscriptionRequest {
+  /** The ID of the subscription. */
+  id: string;
+  /** The reason for suspension of the Subscription. */
+  reason: string;
+}
+export const SuspendSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    reason: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/v1/billing/subscriptions/{id}/suspend",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SuspendSubscriptionRequest",
+}) as any as S.Schema<SuspendSubscriptionRequest>;
+
+export interface SuspendSubscriptionResponse {}
+export const SuspendSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SuspendSubscriptionResponse",
+}) as any as S.Schema<SuspendSubscriptionResponse>;
+
+export type ActivatePlanError =
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PaypalOpError;
 /** Activate plan Activates a plan, by ID. */
-export const plansActivate: API.OperationMethod<
-  PlansActivateRequest,
-  PlansActivateResponse,
-  PlansActivateError,
+export const activatePlan: API.OperationMethod<
+  ActivatePlanRequest,
+  ActivatePlanResponse,
+  ActivatePlanError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PlansActivateRequest,
-  output: PlansActivateResponse,
+  input: ActivatePlanRequest,
+  output: ActivatePlanResponse,
   errors: [Forbidden, NotFound, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PlansCreateError =
+export type ActivateSubscriptionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Activate subscription Activates the subscription. */
+export const activateSubscription: API.OperationMethod<
+  ActivateSubscriptionRequest,
+  ActivateSubscriptionResponse,
+  ActivateSubscriptionError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ActivateSubscriptionRequest,
+  output: ActivateSubscriptionResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CancelSubscriptionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Cancel subscription Cancels the subscription. */
+export const cancelSubscription: API.OperationMethod<
+  CancelSubscriptionRequest,
+  CancelSubscriptionResponse,
+  CancelSubscriptionError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelSubscriptionRequest,
+  output: CancelSubscriptionResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CaptureSubscriptionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Capture authorized payment on subscription Captures an authorized payment from the subscriber on the subscription. */
+export const captureSubscription: API.OperationMethod<
+  CaptureSubscriptionRequest,
+  Transaction,
+  CaptureSubscriptionError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CaptureSubscriptionRequest,
+  output: Transaction,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePlanError =
   | BadRequest
   | Forbidden
   | UnprocessableEntity
   | PaypalOpError;
 /** Create plan Creates a plan that defines pricing and billing cycle details for subscriptions. */
-export const plansCreate: API.OperationMethod<
-  PlansCreateRequest,
+export const createPlan: API.OperationMethod<
+  CreatePlanRequest,
   Plan,
-  PlansCreateError,
+  CreatePlanError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PlansCreateRequest,
+  input: CreatePlanRequest,
   output: Plan,
   errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PlansDeactivateError =
+export type CreateSubscriptionError =
+  | BadRequest
+  | Forbidden
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Create subscription Creates a subscription. */
+export const createSubscription: API.OperationMethod<
+  CreateSubscriptionRequest,
+  CreateSubscriptionResponse,
+  CreateSubscriptionError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSubscriptionRequest,
+  output: CreateSubscriptionResponse,
+  errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeactivatePlanError =
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PaypalOpError;
 /** Deactivate plan Deactivates a plan, by ID. */
-export const plansDeactivate: API.OperationMethod<
-  PlansDeactivateRequest,
-  PlansDeactivateResponse,
-  PlansDeactivateError,
+export const deactivatePlan: API.OperationMethod<
+  DeactivatePlanRequest,
+  DeactivatePlanResponse,
+  DeactivatePlanError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PlansDeactivateRequest,
-  output: PlansDeactivateResponse,
+  input: DeactivatePlanRequest,
+  output: DeactivatePlanResponse,
   errors: [Forbidden, NotFound, UnprocessableEntity, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PlansGetError = Forbidden | NotFound | PaypalOpError;
+export type GetPlanError = Forbidden | NotFound | PaypalOpError;
 /** Show plan details Shows details for a plan, by ID. */
-export const plansGet: API.OperationMethod<
-  PlansGetRequest,
+export const getPlan: API.OperationMethod<
+  GetPlanRequest,
   Plan,
-  PlansGetError,
+  GetPlanError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PlansGetRequest,
+  input: GetPlanRequest,
   output: Plan,
   errors: [Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PlansListError = BadRequest | Forbidden | NotFound | PaypalOpError;
-/** List plans Lists billing plans. */
-export const plansList: API.OperationMethod<
-  PlansListRequest,
-  PlanCollection,
-  PlansListError,
+export type GetSubscriptionError = Forbidden | NotFound | PaypalOpError;
+/** Show subscription details Shows details for a subscription, by ID. */
+export const getSubscription: API.OperationMethod<
+  GetSubscriptionRequest,
+  GetSubscriptionResponse,
+  GetSubscriptionError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PlansListRequest,
+  input: GetSubscriptionRequest,
+  output: GetSubscriptionResponse,
+  errors: [Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPlansError = BadRequest | Forbidden | NotFound | PaypalOpError;
+/** List plans Lists billing plans. */
+export const listPlans: API.OperationMethod<
+  ListPlansRequest,
+  PlanCollection,
+  ListPlansError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPlansRequest,
   output: PlanCollection,
   errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));
 
-export type PlansPatchError =
+export type PatchPlanError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | PaypalOpError;
 /** Update plan Updates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, you can make only status updates.<br/>You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>replace</td></tr><tr><td><code>payment_preferences.auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>taxes.percentage</code></td><td>replace</td></tr><tr><td><code>payment_preferences.payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee_failure_action</code></td><td>replace</td></tr><tr><td><code>name</code></td><td>replace</td></tr></tbody></table> */
-export const plansPatch: API.OperationMethod<
-  PlansPatchRequest,
-  PlansPatchResponse,
-  PlansPatchError,
+export const patchPlan: API.OperationMethod<
+  PatchPlanRequest,
+  PatchPlanResponse,
+  PatchPlanError,
   PaypalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PlansPatchRequest,
-  output: PlansPatchResponse,
+  input: PatchPlanRequest,
+  output: PatchPlanResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchSubscriptionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Update subscription Updates a subscription which could be in <code>ACTIVE</code> or <code>SUSPENDED</code> status. You can override plan level default attributes by providing customised values for plan path in the patch request.<br /> <ul> <li>You cannot update attributes that have already completed (Example - trial cycles can’t be updated if completed).</li> <li>Once overridden, changes to plan resource will not impact subscription.</li> <li>Any price update will not impact billing cycles within next 10 days (Applicable only for subscriptions funded by PayPal account).</li> </ul> Following are the fields eligible for patch.<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>billing_info.outstanding_balance</code></td><td>replace</td></tr><tr><td><code>custom_id</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.fixed_price</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.tiers</code></td><td>replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>total_cycles</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>plan.taxes.inclusive</code></td><td>add,replace</td></tr><tr><td><code>plan.taxes.percentage</code></td><td>add,replace</td></tr><tr><td><code>shipping_amount</code></td><td>add,replace</td></tr><tr><td><code>start_time</code></td><td>replace</td></tr><tr><td><code>subscriber.shipping_address</code></td><td>add,replace</td></tr><tr><td><code>subscriber.payment_source (for subscriptions funded<br/>by card payments)</code></td><td>replace</td></tr></tbody></table> */
+export const patchSubscription: API.OperationMethod<
+  PatchSubscriptionRequest,
+  PatchSubscriptionResponse,
+  PatchSubscriptionError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchSubscriptionRequest,
+  output: PatchSubscriptionResponse,
   errors: [
     BadRequest,
     Forbidden,
@@ -2209,144 +2345,6 @@ export const plansUpdatePricingSchemes: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SubscriptionsActivateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Activate subscription Activates the subscription. */
-export const subscriptionsActivate: API.OperationMethod<
-  SubscriptionsActivateRequest,
-  SubscriptionsActivateResponse,
-  SubscriptionsActivateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsActivateRequest,
-  output: SubscriptionsActivateResponse,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsCancelError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Cancel subscription Cancels the subscription. */
-export const subscriptionsCancel: API.OperationMethod<
-  SubscriptionsCancelRequest,
-  SubscriptionsCancelResponse,
-  SubscriptionsCancelError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsCancelRequest,
-  output: SubscriptionsCancelResponse,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsCaptureError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Capture authorized payment on subscription Captures an authorized payment from the subscriber on the subscription. */
-export const subscriptionsCapture: API.OperationMethod<
-  SubscriptionsCaptureRequest,
-  Transaction,
-  SubscriptionsCaptureError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsCaptureRequest,
-  output: Transaction,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsCreateError =
-  | BadRequest
-  | Forbidden
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Create subscription Creates a subscription. */
-export const subscriptionsCreate: API.OperationMethod<
-  SubscriptionsCreateRequest,
-  SubscriptionsCreateResponse,
-  SubscriptionsCreateError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsCreateRequest,
-  output: SubscriptionsCreateResponse,
-  errors: [BadRequest, Forbidden, UnprocessableEntity, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsGetError = Forbidden | NotFound | PaypalOpError;
-/** Show subscription details Shows details for a subscription, by ID. */
-export const subscriptionsGet: API.OperationMethod<
-  SubscriptionsGetRequest,
-  SubscriptionsGetResponse,
-  SubscriptionsGetError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsGetRequest,
-  output: SubscriptionsGetResponse,
-  errors: [Forbidden, NotFound, UnknownPaypalError],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsPatchError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Update subscription Updates a subscription which could be in <code>ACTIVE</code> or <code>SUSPENDED</code> status. You can override plan level default attributes by providing customised values for plan path in the patch request.<br /> <ul> <li>You cannot update attributes that have already completed (Example - trial cycles can’t be updated if completed).</li> <li>Once overridden, changes to plan resource will not impact subscription.</li> <li>Any price update will not impact billing cycles within next 10 days (Applicable only for subscriptions funded by PayPal account).</li> </ul> Following are the fields eligible for patch.<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>billing_info.outstanding_balance</code></td><td>replace</td></tr><tr><td><code>custom_id</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.fixed_price</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.tiers</code></td><td>replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>total_cycles</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>plan.taxes.inclusive</code></td><td>add,replace</td></tr><tr><td><code>plan.taxes.percentage</code></td><td>add,replace</td></tr><tr><td><code>shipping_amount</code></td><td>add,replace</td></tr><tr><td><code>start_time</code></td><td>replace</td></tr><tr><td><code>subscriber.shipping_address</code></td><td>add,replace</td></tr><tr><td><code>subscriber.payment_source (for subscriptions funded<br/>by card payments)</code></td><td>replace</td></tr></tbody></table> */
-export const subscriptionsPatch: API.OperationMethod<
-  SubscriptionsPatchRequest,
-  SubscriptionsPatchResponse,
-  SubscriptionsPatchError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsPatchRequest,
-  output: SubscriptionsPatchResponse,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SubscriptionsReviseError =
   | BadRequest
   | Forbidden
@@ -2373,32 +2371,6 @@ export const subscriptionsRevise: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SubscriptionsSuspendError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | PaypalOpError;
-/** Suspend subscription Suspends the subscription. */
-export const subscriptionsSuspend: API.OperationMethod<
-  SubscriptionsSuspendRequest,
-  SubscriptionsSuspendResponse,
-  SubscriptionsSuspendError,
-  PaypalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsSuspendRequest,
-  output: SubscriptionsSuspendResponse,
-  errors: [
-    BadRequest,
-    Forbidden,
-    NotFound,
-    UnprocessableEntity,
-    UnknownPaypalError,
-  ],
-  protocol: PaypalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SubscriptionsTransactionsError =
   | BadRequest
   | Forbidden
@@ -2414,6 +2386,32 @@ export const subscriptionsTransactions: API.OperationMethod<
   input: SubscriptionsTransactionsRequest,
   output: TransactionsList,
   errors: [BadRequest, Forbidden, NotFound, UnknownPaypalError],
+  protocol: PaypalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SuspendSubscriptionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | PaypalOpError;
+/** Suspend subscription Suspends the subscription. */
+export const suspendSubscription: API.OperationMethod<
+  SuspendSubscriptionRequest,
+  SuspendSubscriptionResponse,
+  SuspendSubscriptionError,
+  PaypalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SuspendSubscriptionRequest,
+  output: SuspendSubscriptionResponse,
+  errors: [
+    BadRequest,
+    Forbidden,
+    NotFound,
+    UnprocessableEntity,
+    UnknownPaypalError,
+  ],
   protocol: PaypalProtocol,
   retry: Retry.Retry,
 }));

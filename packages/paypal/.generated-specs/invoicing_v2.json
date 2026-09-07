@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.paypal.invoicing_v2#InvoicesListRequest": {
+    "com.paypal.invoicing_v2#ListInvoicesRequest": {
       "type": "structure",
       "members": {
         "page": {
@@ -1668,10 +1669,10 @@
         "smithy.api#documentation": "The HTTP method required to make the related call."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesList": {
+    "com.paypal.invoicing_v2#ListInvoices": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesListRequest"
+        "target": "com.paypal.invoicing_v2#ListInvoicesRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Invoices"
@@ -1835,7 +1836,7 @@
         "smithy.api#documentation": "The invoicing refund details. Includes the refund type, date, amount, and method."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesCreateRequest": {
+    "com.paypal.invoicing_v2#CreateInvoiceRequest": {
       "type": "structure",
       "members": {
         "detail": {
@@ -1889,10 +1890,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesCreate": {
+    "com.paypal.invoicing_v2#CreateInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesCreateRequest"
+        "target": "com.paypal.invoicing_v2#CreateInvoiceRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Invoice"
@@ -1917,7 +1918,7 @@
         "smithy.api#documentation": "Create draft invoice\n\nCreates a draft invoice. To move the invoice from a draft to payable state, you must <a href=\"#invoices_send\">send the invoice</a>.<br/><br/>In the JSON request body, include invoice details including merchant information. The <code>invoice</code> object must include an <code>items</code> array.<blockquote><strong>Note:</strong> The merchant that you specify in an invoice must have a PayPal account in good standing.</blockquote>."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesSendRequest": {
+    "com.paypal.invoicing_v2#SendInvoiceRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -1960,10 +1961,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesSend": {
+    "com.paypal.invoicing_v2#SendInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesSendRequest"
+        "target": "com.paypal.invoicing_v2#SendInvoiceRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#LinkDescription"
@@ -2065,7 +2066,7 @@
         "smithy.api#documentation": "Send invoice reminder\n\nSends a reminder to the payer about an invoice, by ID. In the JSON request body, include a `notification` object that defines the subject of the reminder and other details. <blockquote><strong>Notes:</strong><ul><li>API caller can send only 2 reminders in a day.</li></ul></blockquote>."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesCancelRequest": {
+    "com.paypal.invoicing_v2#CancelInvoiceRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -2108,10 +2109,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesCancel": {
+    "com.paypal.invoicing_v2#CancelInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesCancelRequest"
+        "target": "com.paypal.invoicing_v2#CancelInvoiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2237,7 +2238,7 @@
         "smithy.api#documentation": "Record payment for invoice\n\nRecords a payment for the invoice. If no payment is due, the invoice is marked as `PAID`. Otherwise, the invoice is marked as `PARTIALLY PAID`."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesPaymentsDeleteRequest": {
+    "com.paypal.invoicing_v2#DeleteInvoicesPaymentRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -2261,10 +2262,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesPaymentsDelete": {
+    "com.paypal.invoicing_v2#DeleteInvoicesPayment": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesPaymentsDeleteRequest"
+        "target": "com.paypal.invoicing_v2#DeleteInvoicesPaymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2372,7 +2373,7 @@
         "smithy.api#documentation": "Record refund for invoice\n\nRecords a refund for the invoice. If all payments are refunded, the invoice is marked as `REFUNDED`. Otherwise, the invoice is marked as `PARTIALLY REFUNDED`."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesRefundsDeleteRequest": {
+    "com.paypal.invoicing_v2#DeleteInvoicesRefundRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -2396,10 +2397,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesRefundsDelete": {
+    "com.paypal.invoicing_v2#DeleteInvoicesRefund": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesRefundsDeleteRequest"
+        "target": "com.paypal.invoicing_v2#DeleteInvoicesRefundRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2545,7 +2546,7 @@
         "smithy.api#documentation": "Generate invoice number\n\nGenerates the next invoice number that is available to the merchant. The next invoice number uses the prefix and suffix from the last invoice number and increments the number by one. For example, the next invoice number after `INVOICE-1234` is `INVOICE-1235`."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesGetRequest": {
+    "com.paypal.invoicing_v2#GetInvoiceRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -2561,10 +2562,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesGet": {
+    "com.paypal.invoicing_v2#GetInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesGetRequest"
+        "target": "com.paypal.invoicing_v2#GetInvoiceRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Invoice"
@@ -2589,7 +2590,7 @@
         "smithy.api#documentation": "Show invoice details\n\nShows details for an invoice, by ID."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesUpdateRequest": {
+    "com.paypal.invoicing_v2#UpdateInvoiceRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -2665,10 +2666,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesUpdate": {
+    "com.paypal.invoicing_v2#UpdateInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesUpdateRequest"
+        "target": "com.paypal.invoicing_v2#UpdateInvoiceRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Invoice"
@@ -2696,7 +2697,7 @@
         "smithy.api#documentation": "Fully update invoice\n\nFully updates an invoice, by ID. In the JSON request body, include a complete `invoice` object. This call does not support partial updates. <blockquote><strong>Notes:</strong><ul><li>API caller can change/modify recipient only 2 times in 72 hours.</li></ul></blockquote>."
       }
     },
-    "com.paypal.invoicing_v2#InvoicesDeleteRequest": {
+    "com.paypal.invoicing_v2#DeleteInvoiceRequest": {
       "type": "structure",
       "members": {
         "invoice_id": {
@@ -2712,10 +2713,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#InvoicesDelete": {
+    "com.paypal.invoicing_v2#DeleteInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#InvoicesDeleteRequest"
+        "target": "com.paypal.invoicing_v2#DeleteInvoiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2965,7 +2966,7 @@
         "smithy.api#documentation": "Search for invoices\n\nSearches for and lists invoices that match search criteria. If you pass multiple criteria, the response lists invoices that match all criteria."
       }
     },
-    "com.paypal.invoicing_v2#TemplatesListRequest": {
+    "com.paypal.invoicing_v2#ListTemplatesRequest": {
       "type": "structure",
       "members": {
         "fields": {
@@ -3453,10 +3454,10 @@
         "smithy.api#documentation": "The field names in the template for discount, shipping, and custom amounts."
       }
     },
-    "com.paypal.invoicing_v2#TemplatesList": {
+    "com.paypal.invoicing_v2#ListTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#TemplatesListRequest"
+        "target": "com.paypal.invoicing_v2#ListTemplatesRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Templates"
@@ -3589,7 +3590,7 @@
         "smithy.api#documentation": "An array of invoice line-item information."
       }
     },
-    "com.paypal.invoicing_v2#TemplatesCreateRequest": {
+    "com.paypal.invoicing_v2#CreateTemplateRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3627,10 +3628,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#TemplatesCreate": {
+    "com.paypal.invoicing_v2#CreateTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#TemplatesCreateRequest"
+        "target": "com.paypal.invoicing_v2#CreateTemplateRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Template"
@@ -3655,7 +3656,7 @@
         "smithy.api#documentation": "Create template\n\nCreates an invoice template. You can use details from this template to create an invoice. You can create up to 50 templates.<blockquote><strong>Note:</strong> Every merchant starts with three PayPal system templates that are optimized for the unit type billed. The template includes `Quantity`, `Hours`, and `Amount`.</blockquote>"
       }
     },
-    "com.paypal.invoicing_v2#TemplatesGetRequest": {
+    "com.paypal.invoicing_v2#GetTemplateRequest": {
       "type": "structure",
       "members": {
         "template_id": {
@@ -3671,10 +3672,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#TemplatesGet": {
+    "com.paypal.invoicing_v2#GetTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#TemplatesGetRequest"
+        "target": "com.paypal.invoicing_v2#GetTemplateRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Template"
@@ -3696,7 +3697,7 @@
         "smithy.api#documentation": "Show template details\n\nShows details for a template, by ID."
       }
     },
-    "com.paypal.invoicing_v2#TemplatesUpdateRequest": {
+    "com.paypal.invoicing_v2#UpdateTemplateRequest": {
       "type": "structure",
       "members": {
         "template_id": {
@@ -3742,10 +3743,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#TemplatesUpdate": {
+    "com.paypal.invoicing_v2#UpdateTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#TemplatesUpdateRequest"
+        "target": "com.paypal.invoicing_v2#UpdateTemplateRequest"
       },
       "output": {
         "target": "com.paypal.invoicing_v2#Template"
@@ -3770,7 +3771,7 @@
         "smithy.api#documentation": "Fully update template\n\nFully updates a template, by ID. In the JSON request body, include a complete `template` object. This call does not support partial updates."
       }
     },
-    "com.paypal.invoicing_v2#TemplatesDeleteRequest": {
+    "com.paypal.invoicing_v2#DeleteTemplateRequest": {
       "type": "structure",
       "members": {
         "template_id": {
@@ -3786,10 +3787,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.invoicing_v2#TemplatesDelete": {
+    "com.paypal.invoicing_v2#DeleteTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.invoicing_v2#TemplatesDeleteRequest"
+        "target": "com.paypal.invoicing_v2#DeleteTemplateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3883,7 +3884,7 @@
         "smithy.api#documentation": "The status of the last sync. This property supports Unicode."
       }
     },
-    "com.paypal.invoicing_v2#ConnectionsGet": {
+    "com.paypal.invoicing_v2#GetConnection": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4038,31 +4039,31 @@
       "version": "2.6",
       "operations": [
         {
-          "target": "com.paypal.invoicing_v2#InvoicesList"
+          "target": "com.paypal.invoicing_v2#ListInvoices"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesCreate"
+          "target": "com.paypal.invoicing_v2#CreateInvoice"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesSend"
+          "target": "com.paypal.invoicing_v2#SendInvoice"
         },
         {
           "target": "com.paypal.invoicing_v2#InvoicesRemind"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesCancel"
+          "target": "com.paypal.invoicing_v2#CancelInvoice"
         },
         {
           "target": "com.paypal.invoicing_v2#InvoicesPayments"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesPaymentsDelete"
+          "target": "com.paypal.invoicing_v2#DeleteInvoicesPayment"
         },
         {
           "target": "com.paypal.invoicing_v2#InvoicesRefunds"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesRefundsDelete"
+          "target": "com.paypal.invoicing_v2#DeleteInvoicesRefund"
         },
         {
           "target": "com.paypal.invoicing_v2#InvoicesGenerateQrCode"
@@ -4071,34 +4072,34 @@
           "target": "com.paypal.invoicing_v2#InvoicingGenerateNextInvoiceNumber"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesGet"
+          "target": "com.paypal.invoicing_v2#GetInvoice"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesUpdate"
+          "target": "com.paypal.invoicing_v2#UpdateInvoice"
         },
         {
-          "target": "com.paypal.invoicing_v2#InvoicesDelete"
+          "target": "com.paypal.invoicing_v2#DeleteInvoice"
         },
         {
           "target": "com.paypal.invoicing_v2#InvoicesSearchInvoices"
         },
         {
-          "target": "com.paypal.invoicing_v2#TemplatesList"
+          "target": "com.paypal.invoicing_v2#ListTemplates"
         },
         {
-          "target": "com.paypal.invoicing_v2#TemplatesCreate"
+          "target": "com.paypal.invoicing_v2#CreateTemplate"
         },
         {
-          "target": "com.paypal.invoicing_v2#TemplatesGet"
+          "target": "com.paypal.invoicing_v2#GetTemplate"
         },
         {
-          "target": "com.paypal.invoicing_v2#TemplatesUpdate"
+          "target": "com.paypal.invoicing_v2#UpdateTemplate"
         },
         {
-          "target": "com.paypal.invoicing_v2#TemplatesDelete"
+          "target": "com.paypal.invoicing_v2#DeleteTemplate"
         },
         {
-          "target": "com.paypal.invoicing_v2#ConnectionsGet"
+          "target": "com.paypal.invoicing_v2#GetConnection"
         },
         {
           "target": "com.paypal.invoicing_v2#InvoiceConnectionDetailsGet"

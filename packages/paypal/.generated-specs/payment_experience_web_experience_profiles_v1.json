@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileList": {
@@ -226,7 +227,7 @@
         "smithy.api#documentation": "List web experience profiles\n\nLists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID."
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreateRequest": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#CreateWebProfileRequest": {
       "type": "structure",
       "members": {
         "payPalRequestId": {
@@ -264,10 +265,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreate": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#CreateWebProfile": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreateRequest"
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#CreateWebProfileRequest"
       },
       "output": {
         "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfile"
@@ -281,7 +282,7 @@
         "smithy.api#documentation": "Create web experience profile\n\nCreates a web experience profile. In the JSON request body, specify the profile name and details."
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetRequest": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#GetWebProfileRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -297,10 +298,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGet": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#GetWebProfile": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetRequest"
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#GetWebProfileRequest"
       },
       "output": {
         "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfile"
@@ -314,7 +315,7 @@
         "smithy.api#documentation": "Show web experience profile details by ID\n\nShows details for a web experience profile, by ID."
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdateRequest": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfileRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -352,10 +353,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdate": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfile": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdateRequest"
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -456,7 +457,7 @@
         "smithy.api#documentation": "The operation."
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdateRequest": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfilePartialRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -478,10 +479,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdate": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfilePartial": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdateRequest"
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfilePartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -495,7 +496,7 @@
         "smithy.api#documentation": "Partially update web experience profile\n\nPartially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value."
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDeleteRequest": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#DeleteWebProfileRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -511,10 +512,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDelete": {
+    "com.paypal.payment_experience_web_experience_profiles_v1#DeleteWebProfile": {
       "type": "operation",
       "input": {
-        "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDeleteRequest"
+        "target": "com.paypal.payment_experience_web_experience_profiles_v1#DeleteWebProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -536,19 +537,19 @@
           "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGetList"
         },
         {
-          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileCreate"
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#CreateWebProfile"
         },
         {
-          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileGet"
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#GetWebProfile"
         },
         {
-          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileUpdate"
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfile"
         },
         {
-          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfilePartialUpdate"
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#UpdateWebProfilePartial"
         },
         {
-          "target": "com.paypal.payment_experience_web_experience_profiles_v1#WebProfileDelete"
+          "target": "com.paypal.payment_experience_web_experience_profiles_v1#DeleteWebProfile"
         }
       ],
       "traits": {
