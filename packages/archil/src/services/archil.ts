@@ -558,42 +558,6 @@ export const ApiResponseShareUrl = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApiResponseShareUrl",
 }) as any as S.Schema<ApiResponseShareUrl>;
 
-export interface DeleteApiTokenRequest {
-  /** The token ID (hash) */
-  id: string;
-}
-export const DeleteApiTokenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "DELETE", uri: "/api/tokens/{id}", code: 200 })),
-).annotate({
-  identifier: "DeleteApiTokenRequest",
-}) as any as S.Schema<DeleteApiTokenRequest>;
-
-export interface ApiResponseMessageData {
-  message?: string;
-}
-export const ApiResponseMessageData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApiResponseMessageData",
-}) as any as S.Schema<ApiResponseMessageData>;
-
-export interface ApiResponseMessage {
-  success: boolean;
-  data: ApiResponseMessageData;
-}
-export const ApiResponseMessage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-    data: ApiResponseMessageData,
-  }),
-).annotate({
-  identifier: "ApiResponseMessage",
-}) as any as S.Schema<ApiResponseMessage>;
-
 export interface DeleteDiskRequest {
   /** Disk ID (format `dsk-{16 hex chars}`) */
   id: string;
@@ -635,6 +599,42 @@ export const DeleteSandboxResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteSandboxResponse",
 }) as any as S.Schema<DeleteSandboxResponse>;
+
+export interface DeleteTokenRequest {
+  /** The token ID (hash) */
+  id: string;
+}
+export const DeleteTokenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "DELETE", uri: "/api/tokens/{id}", code: 200 })),
+).annotate({
+  identifier: "DeleteTokenRequest",
+}) as any as S.Schema<DeleteTokenRequest>;
+
+export interface ApiResponseMessageData {
+  message?: string;
+}
+export const ApiResponseMessageData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApiResponseMessageData",
+}) as any as S.Schema<ApiResponseMessageData>;
+
+export interface ApiResponseMessage {
+  success: boolean;
+  data: ApiResponseMessageData;
+}
+export const ApiResponseMessage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    success: S.Boolean,
+    data: ApiResponseMessageData,
+  }),
+).annotate({
+  identifier: "ApiResponseMessage",
+}) as any as S.Schema<ApiResponseMessage>;
 
 export interface ExecMount {
   /** Disk ID to mount at this relative path */
@@ -1517,21 +1517,6 @@ export const createShareUrl: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeleteApiTokenError = NotFound | ArchilOpError;
-/** Delete API token Revokes and deletes an API token. */
-export const deleteApiToken: API.OperationMethod<
-  DeleteApiTokenRequest,
-  ApiResponseMessage,
-  DeleteApiTokenError,
-  ArchilOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteApiTokenRequest,
-  output: ApiResponseMessage,
-  errors: [NotFound, UnknownArchilError],
-  protocol: ArchilProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeleteDiskError = BadRequest | NotFound | ArchilOpError;
 /** Delete a disk Deletes a disk and all associated resources. */
 export const deleteDisk: API.OperationMethod<
@@ -1558,6 +1543,21 @@ export const deleteSandbox: API.OperationMethod<
   input: DeleteSandboxRequest,
   output: DeleteSandboxResponse,
   errors: [NotFound, Conflict, UnknownArchilError],
+  protocol: ArchilProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTokenError = NotFound | ArchilOpError;
+/** Delete API token Revokes and deletes an API token. */
+export const deleteToken: API.OperationMethod<
+  DeleteTokenRequest,
+  ApiResponseMessage,
+  DeleteTokenError,
+  ArchilOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTokenRequest,
+  output: ApiResponseMessage,
+  errors: [NotFound, UnknownArchilError],
   protocol: ArchilProtocol,
   retry: Retry.Retry,
 }));

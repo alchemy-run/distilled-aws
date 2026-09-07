@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.archil.api#ListDisksRequest": {
@@ -2897,7 +2898,7 @@
         "smithy.api#documentation": "Create API token\n\nCreates a new API token for programmatic access. The full token value\nis only returned once at creation time."
       }
     },
-    "com.archil.api#DeleteApiTokenRequest": {
+    "com.archil.api#DeleteTokenRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2913,10 +2914,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.archil.api#DeleteApiToken": {
+    "com.archil.api#DeleteToken": {
       "type": "operation",
       "input": {
-        "target": "com.archil.api#DeleteApiTokenRequest"
+        "target": "com.archil.api#DeleteTokenRequest"
       },
       "output": {
         "target": "com.archil.api#ApiResponseMessage"
@@ -3058,7 +3059,7 @@
           "target": "com.archil.api#CreateApiToken"
         },
         {
-          "target": "com.archil.api#DeleteApiToken"
+          "target": "com.archil.api#DeleteToken"
         }
       ],
       "traits": {
