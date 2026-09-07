@@ -28,5 +28,10 @@ await runOpenApiConvert({
     namespace: "com.opencode.api",
     serviceName: "Opencode",
     skipDeprecated: true,
+    operationNames: {
+      // `provider.auth` would emit a `ProviderAuthError` union alias that
+      // collides with the spec's own ProviderAuthError schema.
+      "GET /provider/auth": "listProviderAuthMethods",
+    },
   },
 });
