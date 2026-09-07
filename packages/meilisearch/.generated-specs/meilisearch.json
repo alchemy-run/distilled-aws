@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.meilisearch.api#GetBatchesRequestBatchUidsList": {
@@ -5062,7 +5063,7 @@
         "smithy.api#documentation": "Edit documents by function\n\nUse a [RHAI function](https://rhai.rs/book/engine/hello-world.html) to edit one or more documents directly in Meilisearch. The function receives each document and returns the modified document.\n\nThis feature is experimental and must be enabled through the experimental route."
       }
     },
-    "com.meilisearch.api#DocumentsByQueryPostRequestFieldsList": {
+    "com.meilisearch.api#PostDocumentsByQueryRequestFieldsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5071,7 +5072,7 @@
         "smithy.api#documentation": "Array of document attributes to include in the response. If not\nspecified, all attributes listed in the `displayedAttributes` setting\nare returned. Use this to reduce response size by only requesting the\nfields you need. Example: `[\"title\", \"description\", \"price\"]`."
       }
     },
-    "com.meilisearch.api#DocumentsByQueryPostRequestIdsList": {
+    "com.meilisearch.api#PostDocumentsByQueryRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5080,7 +5081,7 @@
         "smithy.api#documentation": "Array of specific document IDs to retrieve. Only documents with\nmatching [primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) values will be returned. If not specified, all\ndocuments matching other criteria are returned. This is useful for\nfetching specific known documents."
       }
     },
-    "com.meilisearch.api#DocumentsByQueryPostRequestSortList": {
+    "com.meilisearch.api#PostDocumentsByQueryRequestSortList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5089,7 +5090,7 @@
         "smithy.api#documentation": "Array of attributes to sort the documents by. Each entry should be in\nthe format `attribute:direction` where direction is either `asc`\n(ascending) or `desc` (descending). Example: `[\"price:asc\",\n\"rating:desc\"]` sorts by price ascending, then by rating descending."
       }
     },
-    "com.meilisearch.api#DocumentsByQueryPostRequest": {
+    "com.meilisearch.api#PostDocumentsByQueryRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -5113,7 +5114,7 @@
           }
         },
         "fields": {
-          "target": "com.meilisearch.api#DocumentsByQueryPostRequestFieldsList",
+          "target": "com.meilisearch.api#PostDocumentsByQueryRequestFieldsList",
           "traits": {
             "smithy.api#documentation": "Array of document attributes to include in the response. If not\nspecified, all attributes listed in the `displayedAttributes` setting\nare returned. Use this to reduce response size by only requesting the\nfields you need. Example: `[\"title\", \"description\", \"price\"]`.",
             "com.distilled.openapi#nullable": {}
@@ -5126,7 +5127,7 @@
           }
         },
         "ids": {
-          "target": "com.meilisearch.api#DocumentsByQueryPostRequestIdsList",
+          "target": "com.meilisearch.api#PostDocumentsByQueryRequestIdsList",
           "traits": {
             "smithy.api#documentation": "Array of specific document IDs to retrieve. Only documents with\nmatching [primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) values will be returned. If not specified, all\ndocuments matching other criteria are returned. This is useful for\nfetching specific known documents.",
             "com.distilled.openapi#nullable": {}
@@ -5139,7 +5140,7 @@
           }
         },
         "sort": {
-          "target": "com.meilisearch.api#DocumentsByQueryPostRequestSortList",
+          "target": "com.meilisearch.api#PostDocumentsByQueryRequestSortList",
           "traits": {
             "smithy.api#documentation": "Array of attributes to sort the documents by. Each entry should be in\nthe format `attribute:direction` where direction is either `asc`\n(ascending) or `desc` (descending). Example: `[\"price:asc\",\n\"rating:desc\"]` sorts by price ascending, then by rating descending.",
             "com.distilled.openapi#nullable": {}
@@ -5157,10 +5158,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#DocumentsByQueryPost": {
+    "com.meilisearch.api#PostDocumentsByQuery": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#DocumentsByQueryPostRequest"
+        "target": "com.meilisearch.api#PostDocumentsByQueryRequest"
       },
       "output": {
         "target": "com.meilisearch.api#PaginationViewValue"
@@ -8320,7 +8321,7 @@
         "smithy.api#documentation": "An array of attribute name patterns. Each pattern can be an exact\nattribute name, or include wildcards (`*`) at the start, end, or\nboth. Examples: `[\"title\", \"description_*\", \"*_date\", \"*content*\"]`."
       }
     },
-    "com.meilisearch.api#PostIndexFieldsRequest": {
+    "com.meilisearch.api#CreateIndexFieldRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -8594,10 +8595,10 @@
         "smithy.api#documentation": "Items for the current page."
       }
     },
-    "com.meilisearch.api#PostIndexFields": {
+    "com.meilisearch.api#CreateIndexField": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#PostIndexFieldsRequest"
+        "target": "com.meilisearch.api#CreateIndexFieldRequest"
       },
       "output": {
         "target": "com.meilisearch.api#PaginationViewField"
@@ -12129,7 +12130,7 @@
         "smithy.api#documentation": "Reset embedders\n\nResets the `embedders` setting to its default value."
       }
     },
-    "com.meilisearch.api#GetfacetSearchRequest": {
+    "com.meilisearch.api#SearchGetfacetRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -12145,7 +12146,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#GetfacetSearchResponse": {
+    "com.meilisearch.api#SearchGetfacetResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -12160,13 +12161,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.meilisearch.api#GetfacetSearch": {
+    "com.meilisearch.api#SearchGetfacet": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#GetfacetSearchRequest"
+        "target": "com.meilisearch.api#SearchGetfacetRequest"
       },
       "output": {
-        "target": "com.meilisearch.api#GetfacetSearchResponse"
+        "target": "com.meilisearch.api#SearchGetfacetResponse"
       },
       "errors": [
         {
@@ -12182,7 +12183,7 @@
         "smithy.api#documentation": "Get facetSearch\n\nReturns the current value of the `facetSearch` setting for the index."
       }
     },
-    "com.meilisearch.api#PutfacetSearchRequest": {
+    "com.meilisearch.api#SearchPutfacetRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -12198,10 +12199,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#PutfacetSearch": {
+    "com.meilisearch.api#SearchPutfacet": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#PutfacetSearchRequest"
+        "target": "com.meilisearch.api#SearchPutfacetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12220,7 +12221,7 @@
         "smithy.api#documentation": "Update facetSearch\n\nUpdates the `facetSearch` setting for the index. Send the new value in the request body; send null to reset to default."
       }
     },
-    "com.meilisearch.api#DeletefacetSearchRequest": {
+    "com.meilisearch.api#SearchDeletefacetRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -12236,10 +12237,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#DeletefacetSearch": {
+    "com.meilisearch.api#SearchDeletefacet": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#DeletefacetSearchRequest"
+        "target": "com.meilisearch.api#SearchDeletefacetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13119,7 +13120,7 @@
         "smithy.api#documentation": "Reset pagination\n\nResets the `pagination` setting to its default value."
       }
     },
-    "com.meilisearch.api#GetprefixSearchRequest": {
+    "com.meilisearch.api#SearchGetprefixRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -13135,7 +13136,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#GetprefixSearchResponse": {
+    "com.meilisearch.api#SearchGetprefixResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -13150,13 +13151,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.meilisearch.api#GetprefixSearch": {
+    "com.meilisearch.api#SearchGetprefix": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#GetprefixSearchRequest"
+        "target": "com.meilisearch.api#SearchGetprefixRequest"
       },
       "output": {
-        "target": "com.meilisearch.api#GetprefixSearchResponse"
+        "target": "com.meilisearch.api#SearchGetprefixResponse"
       },
       "errors": [
         {
@@ -13172,7 +13173,7 @@
         "smithy.api#documentation": "Get prefixSearch\n\nReturns the current value of the `prefixSearch` setting for the index."
       }
     },
-    "com.meilisearch.api#PutprefixSearchRequest": {
+    "com.meilisearch.api#SearchPutprefixRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -13195,10 +13196,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#PutprefixSearch": {
+    "com.meilisearch.api#SearchPutprefix": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#PutprefixSearchRequest"
+        "target": "com.meilisearch.api#SearchPutprefixRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13217,7 +13218,7 @@
         "smithy.api#documentation": "Update prefixSearch\n\nUpdates the `prefixSearch` setting for the index. Send the new value in the request body; send null to reset to default."
       }
     },
-    "com.meilisearch.api#DeleteprefixSearchRequest": {
+    "com.meilisearch.api#SearchDeleteprefixRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -13233,10 +13234,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#DeleteprefixSearch": {
+    "com.meilisearch.api#SearchDeleteprefix": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#DeleteprefixSearchRequest"
+        "target": "com.meilisearch.api#SearchDeleteprefixRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14802,14 +14803,14 @@
         "smithy.api#documentation": "Reset typoTolerance\n\nResets the `typoTolerance` setting to its default value."
       }
     },
-    "com.meilisearch.api#SimilarGetRequestAttributesToRetrieveList": {
+    "com.meilisearch.api#GetSimilarRequestAttributesToRetrieveList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.meilisearch.api#SimilarGetRequest": {
+    "com.meilisearch.api#GetSimilarRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -14851,7 +14852,7 @@
           }
         },
         "attributes_to_retrieve": {
-          "target": "com.meilisearch.api#SimilarGetRequestAttributesToRetrieveList",
+          "target": "com.meilisearch.api#GetSimilarRequestAttributesToRetrieveList",
           "traits": {
             "smithy.api#httpQuery": "attributes_to_retrieve",
             "smithy.api#documentation": "Comma-separated list of document attributes to include in the response.\nUse `*` to retrieve all attributes. By default, all attributes listed\nin the `displayedAttributes` setting are returned. Example:\n`title,description,price`."
@@ -14904,7 +14905,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#SimilarGetResponseHitsList": {
+    "com.meilisearch.api#GetSimilarResponseHitsList": {
       "type": "list",
       "member": {
         "target": "com.meilisearch.api#SearchHit"
@@ -14913,7 +14914,7 @@
         "smithy.api#documentation": "Results of the query"
       }
     },
-    "com.meilisearch.api#SimilarGetResponse": {
+    "com.meilisearch.api#GetSimilarResponse": {
       "type": "structure",
       "members": {
         "hitsPerPage": {
@@ -14959,7 +14960,7 @@
           }
         },
         "hits": {
-          "target": "com.meilisearch.api#SimilarGetResponseHitsList",
+          "target": "com.meilisearch.api#GetSimilarResponseHitsList",
           "traits": {
             "smithy.api#documentation": "Results of the query",
             "smithy.api#required": {}
@@ -14990,13 +14991,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.meilisearch.api#SimilarGet": {
+    "com.meilisearch.api#GetSimilar": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#SimilarGetRequest"
+        "target": "com.meilisearch.api#GetSimilarRequest"
       },
       "output": {
-        "target": "com.meilisearch.api#SimilarGetResponse"
+        "target": "com.meilisearch.api#GetSimilarResponse"
       },
       "errors": [
         {
@@ -15012,7 +15013,7 @@
         "smithy.api#documentation": "Get similar documents with GET\n\nRetrieve documents similar to a reference document identified by its id.\n\n> Useful for “more like this” or recommendations."
       }
     },
-    "com.meilisearch.api#SimilarPostRequestAttributesToRetrieveList": {
+    "com.meilisearch.api#PostSimilarRequestAttributesToRetrieveList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -15021,7 +15022,7 @@
         "smithy.api#documentation": "Attributes to display in the returned documents"
       }
     },
-    "com.meilisearch.api#SimilarPostRequest": {
+    "com.meilisearch.api#PostSimilarRequest": {
       "type": "structure",
       "members": {
         "index_uid": {
@@ -15065,7 +15066,7 @@
           }
         },
         "attributesToRetrieve": {
-          "target": "com.meilisearch.api#SimilarPostRequestAttributesToRetrieveList",
+          "target": "com.meilisearch.api#PostSimilarRequestAttributesToRetrieveList",
           "traits": {
             "smithy.api#documentation": "Attributes to display in the returned documents",
             "com.distilled.openapi#nullable": {}
@@ -15106,7 +15107,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#SimilarPostResponseHitsList": {
+    "com.meilisearch.api#PostSimilarResponseHitsList": {
       "type": "list",
       "member": {
         "target": "com.meilisearch.api#SearchHit"
@@ -15115,7 +15116,7 @@
         "smithy.api#documentation": "Results of the query"
       }
     },
-    "com.meilisearch.api#SimilarPostResponse": {
+    "com.meilisearch.api#PostSimilarResponse": {
       "type": "structure",
       "members": {
         "hitsPerPage": {
@@ -15161,7 +15162,7 @@
           }
         },
         "hits": {
-          "target": "com.meilisearch.api#SimilarPostResponseHitsList",
+          "target": "com.meilisearch.api#PostSimilarResponseHitsList",
           "traits": {
             "smithy.api#documentation": "Results of the query",
             "smithy.api#required": {}
@@ -15192,13 +15193,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.meilisearch.api#SimilarPost": {
+    "com.meilisearch.api#PostSimilar": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#SimilarPostRequest"
+        "target": "com.meilisearch.api#PostSimilarRequest"
       },
       "output": {
-        "target": "com.meilisearch.api#SimilarPostResponse"
+        "target": "com.meilisearch.api#PostSimilarResponse"
       },
       "errors": [
         {
@@ -17282,7 +17283,7 @@
         "smithy.api#documentation": "Get network topology\n\nReturn the list of Meilisearch instances currently known to this node (self and remotes)."
       }
     },
-    "com.meilisearch.api#PatchNetworkRequestRemotesMap": {
+    "com.meilisearch.api#UpdateNetworkRequestRemotesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17294,7 +17295,7 @@
         "smithy.api#documentation": "Map of remote instance names to their configurations\n\n- Pass `null` as a value for a remote to remove it from the configuration.\n- Removing a remote will also remove it from all shards.\n- Remotes that don't appear in this list will be unmodified by the network call."
       }
     },
-    "com.meilisearch.api#PatchNetworkRequestShardsMap": {
+    "com.meilisearch.api#UpdateNetworkRequestShardsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17306,7 +17307,7 @@
         "smithy.api#documentation": "Map of shard names to their configurations.\n\n- Pass `null` as a value for a shard to remove it from the configuration.\n- Shards that don't appear in this list will be unmodified by the network call."
       }
     },
-    "com.meilisearch.api#PatchNetworkRequestPreviousShardsMap": {
+    "com.meilisearch.api#UpdateNetworkRequestPreviousShardsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17318,7 +17319,7 @@
         "smithy.api#documentation": "Previous shard configurations\n\nThis field should not be passed by end-users. It is used in internal communications between Meilisearch instances"
       }
     },
-    "com.meilisearch.api#PatchNetworkRequestPreviousRemotesMap": {
+    "com.meilisearch.api#UpdateNetworkRequestPreviousRemotesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17330,25 +17331,25 @@
         "smithy.api#documentation": "Previous remote configurations\n\nThis field should not be passed by end-users. It is used in internal communications between Meilisearch instances"
       }
     },
-    "com.meilisearch.api#PatchNetworkRequest": {
+    "com.meilisearch.api#UpdateNetworkRequest": {
       "type": "structure",
       "members": {
         "remotes": {
-          "target": "com.meilisearch.api#PatchNetworkRequestRemotesMap",
+          "target": "com.meilisearch.api#UpdateNetworkRequestRemotesMap",
           "traits": {
             "smithy.api#documentation": "Map of remote instance names to their configurations\n\n- Pass `null` as a value for a remote to remove it from the configuration.\n- Removing a remote will also remove it from all shards.\n- Remotes that don't appear in this list will be unmodified by the network call.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "shards": {
-          "target": "com.meilisearch.api#PatchNetworkRequestShardsMap",
+          "target": "com.meilisearch.api#UpdateNetworkRequestShardsMap",
           "traits": {
             "smithy.api#documentation": "Map of shard names to their configurations.\n\n- Pass `null` as a value for a shard to remove it from the configuration.\n- Shards that don't appear in this list will be unmodified by the network call.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "previousShards": {
-          "target": "com.meilisearch.api#PatchNetworkRequestPreviousShardsMap",
+          "target": "com.meilisearch.api#UpdateNetworkRequestPreviousShardsMap",
           "traits": {
             "smithy.api#documentation": "Previous shard configurations\n\nThis field should not be passed by end-users. It is used in internal communications between Meilisearch instances",
             "com.distilled.openapi#nullable": {}
@@ -17369,7 +17370,7 @@
           }
         },
         "previousRemotes": {
-          "target": "com.meilisearch.api#PatchNetworkRequestPreviousRemotesMap",
+          "target": "com.meilisearch.api#UpdateNetworkRequestPreviousRemotesMap",
           "traits": {
             "smithy.api#documentation": "Previous remote configurations\n\nThis field should not be passed by end-users. It is used in internal communications between Meilisearch instances",
             "com.distilled.openapi#nullable": {}
@@ -17380,10 +17381,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#PatchNetwork": {
+    "com.meilisearch.api#UpdateNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#PatchNetworkRequest"
+        "target": "com.meilisearch.api#UpdateNetworkRequest"
       },
       "output": {
         "target": "com.meilisearch.api#Network"
@@ -17731,7 +17732,7 @@
       },
       "traits": {}
     },
-    "com.meilisearch.api#RenderPostRequest": {
+    "com.meilisearch.api#PostRenderRequest": {
       "type": "structure",
       "members": {
         "template": {
@@ -17771,10 +17772,10 @@
       },
       "traits": {}
     },
-    "com.meilisearch.api#RenderPost": {
+    "com.meilisearch.api#PostRender": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#RenderPostRequest"
+        "target": "com.meilisearch.api#PostRenderRequest"
       },
       "output": {
         "target": "com.meilisearch.api#RenderResult"
@@ -19184,7 +19185,7 @@
         "smithy.api#documentation": "List webhooks\n\nReturn all webhooks registered on the instance. Each webhook is returned with its URL, optional headers, and UUID (the key value is never returned)."
       }
     },
-    "com.meilisearch.api#PostWebhookRequestHeadersMap": {
+    "com.meilisearch.api#CreateWebhookRequestHeadersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19196,7 +19197,7 @@
         "smithy.api#documentation": "HTTP headers to include in webhook requests."
       }
     },
-    "com.meilisearch.api#PostWebhookRequest": {
+    "com.meilisearch.api#CreateWebhookRequest": {
       "type": "structure",
       "members": {
         "url": {
@@ -19207,7 +19208,7 @@
           }
         },
         "headers": {
-          "target": "com.meilisearch.api#PostWebhookRequestHeadersMap",
+          "target": "com.meilisearch.api#CreateWebhookRequestHeadersMap",
           "traits": {
             "smithy.api#documentation": "HTTP headers to include in webhook requests.",
             "com.distilled.openapi#nullable": {}
@@ -19218,7 +19219,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#PostWebhookResponseHeadersMap": {
+    "com.meilisearch.api#CreateWebhookResponseHeadersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19230,7 +19231,7 @@
         "smithy.api#documentation": "HTTP headers to include in webhook requests."
       }
     },
-    "com.meilisearch.api#PostWebhookResponse": {
+    "com.meilisearch.api#CreateWebhookResponse": {
       "type": "structure",
       "members": {
         "url": {
@@ -19241,7 +19242,7 @@
           }
         },
         "headers": {
-          "target": "com.meilisearch.api#PostWebhookResponseHeadersMap",
+          "target": "com.meilisearch.api#CreateWebhookResponseHeadersMap",
           "traits": {
             "smithy.api#documentation": "HTTP headers to include in webhook requests.",
             "com.distilled.openapi#nullable": {}
@@ -19266,13 +19267,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.meilisearch.api#PostWebhook": {
+    "com.meilisearch.api#CreateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#PostWebhookRequest"
+        "target": "com.meilisearch.api#CreateWebhookRequest"
       },
       "output": {
-        "target": "com.meilisearch.api#PostWebhookResponse"
+        "target": "com.meilisearch.api#CreateWebhookResponse"
       },
       "errors": [
         {
@@ -19374,7 +19375,7 @@
         "smithy.api#documentation": "Get webhook\n\nRetrieve a single webhook by its UUID."
       }
     },
-    "com.meilisearch.api#PatchWebhookRequestHeadersMap": {
+    "com.meilisearch.api#UpdateWebhookRequestHeadersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19386,7 +19387,7 @@
         "smithy.api#documentation": "HTTP headers to include in webhook requests."
       }
     },
-    "com.meilisearch.api#PatchWebhookRequest": {
+    "com.meilisearch.api#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -19405,7 +19406,7 @@
           }
         },
         "headers": {
-          "target": "com.meilisearch.api#PatchWebhookRequestHeadersMap",
+          "target": "com.meilisearch.api#UpdateWebhookRequestHeadersMap",
           "traits": {
             "smithy.api#documentation": "HTTP headers to include in webhook requests.",
             "com.distilled.openapi#nullable": {}
@@ -19416,7 +19417,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.meilisearch.api#PatchWebhookResponseHeadersMap": {
+    "com.meilisearch.api#UpdateWebhookResponseHeadersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19428,7 +19429,7 @@
         "smithy.api#documentation": "HTTP headers to include in webhook requests."
       }
     },
-    "com.meilisearch.api#PatchWebhookResponse": {
+    "com.meilisearch.api#UpdateWebhookResponse": {
       "type": "structure",
       "members": {
         "url": {
@@ -19439,7 +19440,7 @@
           }
         },
         "headers": {
-          "target": "com.meilisearch.api#PatchWebhookResponseHeadersMap",
+          "target": "com.meilisearch.api#UpdateWebhookResponseHeadersMap",
           "traits": {
             "smithy.api#documentation": "HTTP headers to include in webhook requests.",
             "com.distilled.openapi#nullable": {}
@@ -19464,13 +19465,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.meilisearch.api#PatchWebhook": {
+    "com.meilisearch.api#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.meilisearch.api#PatchWebhookRequest"
+        "target": "com.meilisearch.api#UpdateWebhookRequest"
       },
       "output": {
-        "target": "com.meilisearch.api#PatchWebhookResponse"
+        "target": "com.meilisearch.api#UpdateWebhookResponse"
       },
       "errors": [
         {
@@ -19657,7 +19658,7 @@
           "target": "com.meilisearch.api#EditDocumentsByFunction"
         },
         {
-          "target": "com.meilisearch.api#DocumentsByQueryPost"
+          "target": "com.meilisearch.api#PostDocumentsByQuery"
         },
         {
           "target": "com.meilisearch.api#GetDocument"
@@ -19669,7 +19670,7 @@
           "target": "com.meilisearch.api#Search"
         },
         {
-          "target": "com.meilisearch.api#PostIndexFields"
+          "target": "com.meilisearch.api#CreateIndexField"
         },
         {
           "target": "com.meilisearch.api#SearchWithUrlQuery"
@@ -19732,13 +19733,13 @@
           "target": "com.meilisearch.api#Deleteembedders"
         },
         {
-          "target": "com.meilisearch.api#GetfacetSearch"
+          "target": "com.meilisearch.api#SearchGetfacet"
         },
         {
-          "target": "com.meilisearch.api#PutfacetSearch"
+          "target": "com.meilisearch.api#SearchPutfacet"
         },
         {
-          "target": "com.meilisearch.api#DeletefacetSearch"
+          "target": "com.meilisearch.api#SearchDeletefacet"
         },
         {
           "target": "com.meilisearch.api#Getfaceting"
@@ -19795,13 +19796,13 @@
           "target": "com.meilisearch.api#Deletepagination"
         },
         {
-          "target": "com.meilisearch.api#GetprefixSearch"
+          "target": "com.meilisearch.api#SearchGetprefix"
         },
         {
-          "target": "com.meilisearch.api#PutprefixSearch"
+          "target": "com.meilisearch.api#SearchPutprefix"
         },
         {
-          "target": "com.meilisearch.api#DeleteprefixSearch"
+          "target": "com.meilisearch.api#SearchDeleteprefix"
         },
         {
           "target": "com.meilisearch.api#GetproximityPrecision"
@@ -19885,10 +19886,10 @@
           "target": "com.meilisearch.api#DeletetypoTolerance"
         },
         {
-          "target": "com.meilisearch.api#SimilarGet"
+          "target": "com.meilisearch.api#GetSimilar"
         },
         {
-          "target": "com.meilisearch.api#SimilarPost"
+          "target": "com.meilisearch.api#PostSimilar"
         },
         {
           "target": "com.meilisearch.api#GetIndexStats"
@@ -19927,13 +19928,13 @@
           "target": "com.meilisearch.api#GetNetwork"
         },
         {
-          "target": "com.meilisearch.api#PatchNetwork"
+          "target": "com.meilisearch.api#UpdateNetwork"
         },
         {
           "target": "com.meilisearch.api#PostNetworkChange"
         },
         {
-          "target": "com.meilisearch.api#RenderPost"
+          "target": "com.meilisearch.api#PostRender"
         },
         {
           "target": "com.meilisearch.api#CreateSnapshot"
@@ -19972,13 +19973,13 @@
           "target": "com.meilisearch.api#GetWebhooks"
         },
         {
-          "target": "com.meilisearch.api#PostWebhook"
+          "target": "com.meilisearch.api#CreateWebhook"
         },
         {
           "target": "com.meilisearch.api#GetWebhook"
         },
         {
-          "target": "com.meilisearch.api#PatchWebhook"
+          "target": "com.meilisearch.api#UpdateWebhook"
         },
         {
           "target": "com.meilisearch.api#DeleteWebhook"

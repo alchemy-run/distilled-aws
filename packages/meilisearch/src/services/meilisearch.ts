@@ -1656,6 +1656,206 @@ export const CreateIndexResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateIndexResponse",
 }) as any as S.Schema<CreateIndexResponse>;
 
+/** An array of attribute name patterns. Each pattern can be an exact attribute name, or include wildcards (`*`) at the start, end, or both. Examples: `["title", "description_*", "*_date", "*content*"]`. */
+export type AttributePatternsPatternsList = Array<string>;
+export const AttributePatternsPatternsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AttributePatternsPatternsList>;
+
+/** A collection of patterns used to match attribute names. Patterns can include wildcards (`*`) for flexible matching. For example, `title` matches exactly, `overview_*` matches any attribute starting with `overview_`, and `*_date` matches any attribute ending with `_date`. */
+export interface AttributePatterns {
+  /** An array of attribute name patterns. Each pattern can be an exact attribute name, or include wildcards (`*`) at the start, end, or both. Examples: `["title", "description_*", "*_date", "*content*"]`. */
+  patterns: AttributePatternsPatternsList;
+}
+export const AttributePatterns = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    patterns: AttributePatternsPatternsList,
+  }),
+).annotate({
+  identifier: "AttributePatterns",
+}) as any as S.Schema<AttributePatterns>;
+
+/** Filter fields by attribute name patterns or by capability (displayed, searchable, sortable, etc.). All criteria are ANDed. */
+export interface ListFieldsFilter {
+  attributePatterns?: AttributePatterns | null;
+  /** Only include fields that are displayed (true) or not displayed (false) in search results. */
+  displayed?: boolean | null;
+  /** Only include fields that are searchable (true) or not searchable (false). */
+  searchable?: boolean | null;
+  /** Only include fields that are sortable (true) or not sortable (false). */
+  sortable?: boolean | null;
+  /** Only include fields that are used as distinct attribute (true) or not (false). */
+  distinct?: boolean | null;
+  /** Only include fields that have a custom ranking rule (asc/desc) (true) or not (false). */
+  rankingRule?: boolean | null;
+  /** Only include fields that are filterable (true) or not filterable (false). */
+  filterable?: boolean | null;
+}
+export const ListFieldsFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attributePatterns: S.optional(S.NullOr(AttributePatterns)),
+    displayed: S.optional(S.NullOr(S.Boolean)),
+    searchable: S.optional(S.NullOr(S.Boolean)),
+    sortable: S.optional(S.NullOr(S.Boolean)),
+    distinct: S.optional(S.NullOr(S.Boolean)),
+    rankingRule: S.optional(S.NullOr(S.Boolean)),
+    filterable: S.optional(S.NullOr(S.Boolean)),
+  }),
+).annotate({
+  identifier: "ListFieldsFilter",
+}) as any as S.Schema<ListFieldsFilter>;
+
+export interface CreateIndexFieldRequest {
+  /** Unique identifier of the index whose fields to list. */
+  index_uid: string;
+  /** Number of fields to skip. Defaults to 0. */
+  offset?: number;
+  /** Maximum number of fields to return. Defaults to 20. */
+  limit?: number;
+  filter?: ListFieldsFilter | null;
+}
+export const CreateIndexFieldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+    offset: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    filter: S.optional(S.NullOr(ListFieldsFilter)),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/indexes/{index_uid}/fields", code: 200 }),
+  ),
+).annotate({
+  identifier: "CreateIndexFieldRequest",
+}) as any as S.Schema<CreateIndexFieldRequest>;
+
+export interface FieldDisplayConfig {
+  enabled: boolean;
+}
+export const FieldDisplayConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "FieldDisplayConfig",
+}) as any as S.Schema<FieldDisplayConfig>;
+
+export type FieldSearchConfig = FieldDisplayConfig;
+export const FieldSearchConfig = FieldDisplayConfig;
+
+export type FieldSortableConfig = FieldDisplayConfig;
+export const FieldSortableConfig = FieldDisplayConfig;
+
+export type FieldDistinctConfig = FieldDisplayConfig;
+export const FieldDistinctConfig = FieldDisplayConfig;
+
+export type FieldRankingRuleConfigOrderList = Array<string>;
+export const FieldRankingRuleConfigOrderList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FieldRankingRuleConfigOrderList>;
+
+export interface FieldRankingRuleConfig {
+  enabled: boolean;
+  order?: FieldRankingRuleConfigOrderList;
+}
+export const FieldRankingRuleConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+    order: S.optional(FieldRankingRuleConfigOrderList),
+  }),
+).annotate({
+  identifier: "FieldRankingRuleConfig",
+}) as any as S.Schema<FieldRankingRuleConfig>;
+
+export type FacetValuesSort = "alpha" | "count";
+export const FacetValuesSort = /*@__PURE__*/ S.String;
+
+export interface FieldFilterableConfig {
+  enabled: boolean;
+  sortBy: FacetValuesSort;
+  facetSearch: boolean;
+  equality: boolean;
+  comparison: boolean;
+}
+export const FieldFilterableConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.Boolean,
+    sortBy: FacetValuesSort,
+    facetSearch: S.Boolean,
+    equality: S.Boolean,
+    comparison: S.Boolean,
+  }),
+).annotate({
+  identifier: "FieldFilterableConfig",
+}) as any as S.Schema<FieldFilterableConfig>;
+
+export type FieldLocalizedConfigLocalesList = Array<string>;
+export const FieldLocalizedConfigLocalesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FieldLocalizedConfigLocalesList>;
+
+export interface FieldLocalizedConfig {
+  locales: FieldLocalizedConfigLocalesList;
+}
+export const FieldLocalizedConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    locales: FieldLocalizedConfigLocalesList,
+  }),
+).annotate({
+  identifier: "FieldLocalizedConfig",
+}) as any as S.Schema<FieldLocalizedConfig>;
+
+export interface PaginationViewFieldResultsItem {
+  name: string;
+  displayed: FieldDisplayConfig;
+  searchable: FieldDisplayConfig;
+  sortable: FieldDisplayConfig;
+  distinct: FieldDisplayConfig;
+  rankingRule: FieldRankingRuleConfig;
+  filterable: FieldFilterableConfig;
+  localized: FieldLocalizedConfig;
+}
+export const PaginationViewFieldResultsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    displayed: FieldDisplayConfig,
+    searchable: FieldDisplayConfig,
+    sortable: FieldDisplayConfig,
+    distinct: FieldDisplayConfig,
+    rankingRule: FieldRankingRuleConfig,
+    filterable: FieldFilterableConfig,
+    localized: FieldLocalizedConfig,
+  }),
+).annotate({
+  identifier: "PaginationViewFieldResultsItem",
+}) as any as S.Schema<PaginationViewFieldResultsItem>;
+
+/** Items for the current page. */
+export type PaginationViewFieldResultsList =
+  Array<PaginationViewFieldResultsItem>;
+export const PaginationViewFieldResultsList = /*@__PURE__*/ S.Array(
+  PaginationViewFieldResultsItem,
+) as any as S.Schema<PaginationViewFieldResultsList>;
+
+export interface PaginationViewField {
+  /** Items for the current page. */
+  results: PaginationViewFieldResultsList;
+  /** Number of items skipped. */
+  offset: number;
+  /** Maximum number of items returned. */
+  limit: number;
+  /** Total number of items matching the query. */
+  total: number;
+}
+export const PaginationViewField = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: PaginationViewFieldResultsList,
+    offset: S.Number,
+    limit: S.Number,
+    total: S.Number,
+  }),
+).annotate({
+  identifier: "PaginationViewField",
+}) as any as S.Schema<PaginationViewField>;
+
 export interface CreateSnapshotRequest {}
 export const CreateSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "POST", uri: "/snapshots", code: 200 })),
@@ -1669,6 +1869,60 @@ export const CreateSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "CreateSnapshotResponse",
 }) as any as S.Schema<CreateSnapshotResponse>;
+
+/** HTTP headers to include in webhook requests. */
+export type CreateWebhookRequestHeadersMap = {
+  [key: string]: string | undefined;
+};
+export const CreateWebhookRequestHeadersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateWebhookRequestHeadersMap>;
+
+export interface CreateWebhookRequest {
+  /** URL endpoint to call when tasks complete. */
+  url?: string | null;
+  /** HTTP headers to include in webhook requests. */
+  headers?: CreateWebhookRequestHeadersMap | null;
+}
+export const CreateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.NullOr(S.String)),
+    headers: S.optional(S.NullOr(CreateWebhookRequestHeadersMap)),
+  }).pipe(T.Http({ method: "POST", uri: "/webhooks", code: 200 })),
+).annotate({
+  identifier: "CreateWebhookRequest",
+}) as any as S.Schema<CreateWebhookRequest>;
+
+/** HTTP headers to include in webhook requests. */
+export type CreateWebhookResponseHeadersMap = {
+  [key: string]: string | undefined;
+};
+export const CreateWebhookResponseHeadersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateWebhookResponseHeadersMap>;
+
+export interface CreateWebhookResponse {
+  /** URL endpoint to call when tasks complete. */
+  url?: string | null;
+  /** HTTP headers to include in webhook requests. */
+  headers?: CreateWebhookResponseHeadersMap | null;
+  /** Unique identifier of the webhook. */
+  uuid: string;
+  /** Whether the webhook can be edited. */
+  isEditable: boolean;
+}
+export const CreateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.NullOr(S.String)),
+    headers: S.optional(S.NullOr(CreateWebhookResponseHeadersMap)),
+    uuid: S.String,
+    isEditable: S.Boolean,
+  }),
+).annotate({
+  identifier: "CreateWebhookResponse",
+}) as any as S.Schema<CreateWebhookResponse>;
 
 export interface DeleteAllRequest {
   /** Unique identifier of the index. */
@@ -1982,31 +2236,6 @@ export const DeletefacetingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletefacetingResponse",
 }) as any as S.Schema<DeletefacetingResponse>;
 
-export interface DeletefacetSearchRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-}
-export const DeletefacetSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/indexes/{index_uid}/settings/facet-search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DeletefacetSearchRequest",
-}) as any as S.Schema<DeletefacetSearchRequest>;
-
-export interface DeletefacetSearchResponse {}
-export const DeletefacetSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeletefacetSearchResponse",
-}) as any as S.Schema<DeletefacetSearchResponse>;
-
 export interface DeletefilterableAttributesRequest {
   /** Unique identifier of the index. */
   index_uid: string;
@@ -2150,31 +2379,6 @@ export const DeletepaginationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeletepaginationResponse",
 }) as any as S.Schema<DeletepaginationResponse>;
-
-export interface DeleteprefixSearchRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-}
-export const DeleteprefixSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/indexes/{index_uid}/settings/prefix-search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DeleteprefixSearchRequest",
-}) as any as S.Schema<DeleteprefixSearchRequest>;
-
-export interface DeleteprefixSearchResponse {}
-export const DeleteprefixSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeleteprefixSearchResponse",
-}) as any as S.Schema<DeleteprefixSearchResponse>;
 
 export interface DeleteproximityPrecisionRequest {
   /** Unique identifier of the index. */
@@ -2516,93 +2720,6 @@ export const DeleteWebhookResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteWebhookResponse",
 }) as any as S.Schema<DeleteWebhookResponse>;
 
-/** Array of document attributes to include in the response. If not specified, all attributes listed in the `displayedAttributes` setting are returned. Use this to reduce response size by only requesting the fields you need. Example: `["title", "description", "price"]`. */
-export type DocumentsByQueryPostRequestFieldsList = Array<string>;
-export const DocumentsByQueryPostRequestFieldsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DocumentsByQueryPostRequestFieldsList>;
-
-/** Array of specific document IDs to retrieve. Only documents with matching [primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) values will be returned. If not specified, all documents matching other criteria are returned. This is useful for fetching specific known documents. */
-export type DocumentsByQueryPostRequestIdsList = Array<string>;
-export const DocumentsByQueryPostRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DocumentsByQueryPostRequestIdsList>;
-
-/** Array of attributes to sort the documents by. Each entry should be in the format `attribute:direction` where direction is either `asc` (ascending) or `desc` (descending). Example: `["price:asc", "rating:desc"]` sorts by price ascending, then by rating descending. */
-export type DocumentsByQueryPostRequestSortList = Array<string>;
-export const DocumentsByQueryPostRequestSortList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DocumentsByQueryPostRequestSortList>;
-
-export interface DocumentsByQueryPostRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-  /** Number of documents to skip in the response. Use together with `limit` for pagination through large document sets. For example, to get documents 151-170, set `offset=150` and `limit=20`. Defaults to `0`. */
-  offset?: number;
-  /** Maximum number of documents to return in a single response. Use together with `offset` for pagination. Higher values return more results but may increase response time and memory usage. Defaults to `20`. */
-  limit?: number;
-  /** Array of document attributes to include in the response. If not specified, all attributes listed in the `displayedAttributes` setting are returned. Use this to reduce response size by only requesting the fields you need. Example: `["title", "description", "price"]`. */
-  fields?: DocumentsByQueryPostRequestFieldsList | null;
-  /** When `true`, includes the vector embeddings in the response for documents that have them. This is useful when you need to inspect or export vector data. Note that this can significantly increase response size. Defaults to `false`. */
-  retrieveVectors?: boolean;
-  /** Array of specific document IDs to retrieve. Only documents with matching [primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) values will be returned. If not specified, all documents matching other criteria are returned. This is useful for fetching specific known documents. */
-  ids?: DocumentsByQueryPostRequestIdsList | null;
-  /** Filter expression to select which documents to return. Attributes must be added to the `filterableAttributes` index setting before they can be used in filters. Accepts a string or an array of arrays of strings for AND/OR combinations. Example string: `"genres = action AND rating > 4"`. Example array: `[["genres = action", "genres = comedy"], "rating > 4"]` (inner array = OR, outer = AND). */
-  filter?: unknown;
-  /** Array of attributes to sort the documents by. Each entry should be in the format `attribute:direction` where direction is either `asc` (ascending) or `desc` (descending). Example: `["price:asc", "rating:desc"]` sorts by price ascending, then by rating descending. */
-  sort?: DocumentsByQueryPostRequestSortList | null;
-  /** When `true`, runs the query on the whole network (all shards covered exactly once). When `false`, the query runs locally. When omitted or `null`, the default value depends on whether the sharding is enabled for the instance: - If the instance has sharding enabled (has a leader), defaults to `true`. - Otherwise defaults to `false`. It also requires the `network` [experimental feature](http://localhost:3000/reference/api/experimental-features/configure-experimental-features). Values: `true` = use the whole network; `false` = local, default = see above. When using the network, the index must exist with compatible settings on all remotes. */
-  useNetwork?: boolean | null;
-}
-export const DocumentsByQueryPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-    offset: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    fields: S.optional(S.NullOr(DocumentsByQueryPostRequestFieldsList)),
-    retrieveVectors: S.optional(S.Boolean),
-    ids: S.optional(S.NullOr(DocumentsByQueryPostRequestIdsList)),
-    filter: S.optional(S.Unknown),
-    sort: S.optional(S.NullOr(DocumentsByQueryPostRequestSortList)),
-    useNetwork: S.optional(S.NullOr(S.Boolean)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/indexes/{index_uid}/documents/fetch",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DocumentsByQueryPostRequest",
-}) as any as S.Schema<DocumentsByQueryPostRequest>;
-
-/** Items for the current page. */
-export type PaginationViewValueResultsList = Array<unknown>;
-export const PaginationViewValueResultsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<PaginationViewValueResultsList>;
-
-export interface PaginationViewValue {
-  /** Items for the current page. */
-  results: PaginationViewValueResultsList;
-  /** Number of items skipped. */
-  offset: number;
-  /** Maximum number of items returned. */
-  limit: number;
-  /** Total number of items matching the query. */
-  total: number;
-}
-export const PaginationViewValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: PaginationViewValueResultsList,
-    offset: S.Number,
-    limit: S.Number,
-    total: S.Number,
-  }),
-).annotate({
-  identifier: "PaginationViewValue",
-}) as any as S.Schema<PaginationViewValue>;
-
 export interface EditDocumentsByFunctionRequest {
   /** Unique identifier of the index. */
   index_uid: string;
@@ -2895,9 +3012,6 @@ export const TypoSettings = /*@__PURE__*/ S.suspend(() =>
     disableOnNumbers: S.optional(S.NullOr(S.Boolean)),
   }),
 ).annotate({ identifier: "TypoSettings" }) as any as S.Schema<TypoSettings>;
-
-export type FacetValuesSort = "alpha" | "count";
-export const FacetValuesSort = /*@__PURE__*/ S.String;
 
 /** Sort order per facet: by descending count (`count`) or ascending alphanumeric (`alpha`). Key `*` applies to all facets. */
 export type FacetingSettingsSortFacetValuesByMap = {
@@ -4021,6 +4135,33 @@ export const GetDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDocumentsRequest",
 }) as any as S.Schema<GetDocumentsRequest>;
 
+/** Items for the current page. */
+export type PaginationViewValueResultsList = Array<unknown>;
+export const PaginationViewValueResultsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<PaginationViewValueResultsList>;
+
+export interface PaginationViewValue {
+  /** Items for the current page. */
+  results: PaginationViewValueResultsList;
+  /** Number of items skipped. */
+  offset: number;
+  /** Maximum number of items returned. */
+  limit: number;
+  /** Total number of items matching the query. */
+  total: number;
+}
+export const PaginationViewValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: PaginationViewValueResultsList,
+    offset: S.Number,
+    limit: S.Number,
+    total: S.Number,
+  }),
+).annotate({
+  identifier: "PaginationViewValue",
+}) as any as S.Schema<PaginationViewValue>;
+
 export interface GetembeddersRequest {
   /** Unique identifier of the index. */
   index_uid: string;
@@ -4175,31 +4316,6 @@ export const GetfacetingRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetfacetingRequest",
 }) as any as S.Schema<GetfacetingRequest>;
-
-export interface GetfacetSearchRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-}
-export const GetfacetSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/indexes/{index_uid}/settings/facet-search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetfacetSearchRequest",
-}) as any as S.Schema<GetfacetSearchRequest>;
-
-export type GetfacetSearchResponse = boolean;
-export const GetfacetSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Boolean.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetfacetSearchResponse",
-}) as any as S.Schema<GetfacetSearchResponse>;
 
 export interface GetFeaturesRequest {}
 export const GetFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
@@ -4698,31 +4814,6 @@ export const GetpaginationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetpaginationRequest",
 }) as any as S.Schema<GetpaginationRequest>;
 
-export interface GetprefixSearchRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-}
-export const GetprefixSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/indexes/{index_uid}/settings/prefix-search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetprefixSearchRequest",
-}) as any as S.Schema<GetprefixSearchRequest>;
-
-export type GetprefixSearchResponse = PrefixSearchSettings;
-export const GetprefixSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  PrefixSearchSettings.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetprefixSearchResponse",
-}) as any as S.Schema<GetprefixSearchResponse>;
-
 export interface GetproximityPrecisionRequest {
   /** Unique identifier of the index. */
   index_uid: string;
@@ -5091,6 +5182,181 @@ export const GetSettingsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetSettingsResponse",
 }) as any as S.Schema<GetSettingsResponse>;
+
+export type GetSimilarRequestAttributesToRetrieveList = Array<string>;
+export const GetSimilarRequestAttributesToRetrieveList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetSimilarRequestAttributesToRetrieveList>;
+
+export interface GetSimilarRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+  /** The unique identifier ([primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) value) of the target document. Meilisearch will find and return documents that are semantically similar to this document based on their vector embeddings. This is a required parameter. */
+  id: string;
+  /** The name of the embedder to use for finding similar documents. This must match one of the embedders configured in your index settings. The embedder determines how document similarity is calculated based on vector embeddings. */
+  embedder: string;
+  /** Number of similar documents to skip in the response. Use together with `limit` for pagination through large result sets. For example, to get similar documents 21-40, set `offset=20` and `limit=20`. Defaults to `0`. */
+  offset?: number;
+  /** Maximum number of similar documents to return in a single response. Use together with `offset` for pagination. Higher values return more results but may increase response time. Defaults to `20`. */
+  limit?: number;
+  /** Comma-separated list of document attributes to include in the response. Use `*` to retrieve all attributes. By default, all attributes listed in the `displayedAttributes` setting are returned. Example: `title,description,price`. */
+  attributes_to_retrieve?: GetSimilarRequestAttributesToRetrieveList;
+  /** When `true`, includes the vector embeddings for each returned document. Useful for debugging or when you need to inspect the vector data. Note that this can significantly increase response size. Defaults to `false`. */
+  retrieve_vectors?: boolean;
+  /** Filter expression to narrow down which documents can be returned as similar. Uses the same syntax as search filters. Only documents matching this filter will be considered when finding similar documents. Example: `genres = action AND year > 2000`. */
+  filter?: string;
+  /** When `true`, includes a global `_rankingScore` field in each document showing how similar it is to the target document. The score is a value between 0 and 1, where higher values indicate greater similarity. Defaults to `false`. */
+  show_ranking_score?: boolean;
+  /** When `true`, includes a detailed `_rankingScoreDetails` object in each document breaking down how the similarity score was calculated. Useful for debugging and understanding why certain documents are considered more similar. Defaults to `false`. */
+  show_ranking_score_details?: boolean;
+  /** When `true`, includes a `_performanceDetails` object showing the performance details of the search. */
+  show_performance_details?: boolean;
+  /** Minimum ranking score threshold (between 0.0 and 1.0) that documents must meet to be included in results. Documents with a similarity score below this threshold will be excluded. Useful for ensuring only highly similar documents are returned. */
+  ranking_score_threshold?: number;
+}
+export const GetSimilarRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Query()),
+    embedder: S.String.pipe(T.Query()),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    attributes_to_retrieve: S.optional(
+      GetSimilarRequestAttributesToRetrieveList.pipe(T.Query()),
+    ),
+    retrieve_vectors: S.optional(S.Boolean.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    show_ranking_score: S.optional(S.Boolean.pipe(T.Query())),
+    show_ranking_score_details: S.optional(S.Boolean.pipe(T.Query())),
+    show_performance_details: S.optional(S.Boolean.pipe(T.Query())),
+    ranking_score_threshold: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/indexes/{index_uid}/similar", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSimilarRequest",
+}) as any as S.Schema<GetSimilarRequest>;
+
+/** Document with highlighted and cropped attributes. Present when `attributesToHighlight` or `attributesToCrop` was set. */
+export type SearchHitFormattedMap = { [key: string]: unknown | undefined };
+export const SearchHitFormattedMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SearchHitFormattedMap>;
+
+/** Byte indices of individual matched characters when the match spans multiple positions (e.g., for prefix matches). This is `null` for simple contiguous matches. */
+export type MatchBoundsIndicesList = Array<number>;
+export const MatchBoundsIndicesList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<MatchBoundsIndicesList>;
+
+/** Represents the position of a matching term in a document field. Used to indicate where query terms were found within attribute values, enabling features like highlighting and match position display. */
+export interface MatchBounds {
+  /** The byte offset where the match begins within the attribute value. This is a zero-indexed position from the start of the string. */
+  start: number;
+  /** The length in bytes of the matched text. Combined with `start`, this defines the exact substring that matched the query term. */
+  length: number;
+  /** Byte indices of individual matched characters when the match spans multiple positions (e.g., for prefix matches). This is `null` for simple contiguous matches. */
+  indices?: MatchBoundsIndicesList | null;
+}
+export const MatchBounds = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    start: S.Number,
+    length: S.Number,
+    indices: S.optional(S.NullOr(MatchBoundsIndicesList)),
+  }),
+).annotate({ identifier: "MatchBounds" }) as any as S.Schema<MatchBounds>;
+
+export type SearchHitMatchesPositionValueList = Array<MatchBounds>;
+export const SearchHitMatchesPositionValueList = /*@__PURE__*/ S.Array(
+  MatchBounds,
+) as any as S.Schema<SearchHitMatchesPositionValueList>;
+
+/** Byte offsets (`start`, `length`) of each matched term per attribute. Present when `showMatchesPosition` was true. */
+export type SearchHitMatchesPositionMap = {
+  [key: string]: SearchHitMatchesPositionValueList | undefined;
+};
+export const SearchHitMatchesPositionMap = /*@__PURE__*/ S.Record(
+  S.String,
+  SearchHitMatchesPositionValueList,
+) as any as S.Schema<SearchHitMatchesPositionMap>;
+
+/** Per-rule score breakdown (words, typo, proximity, etc.). Present when `showRankingScoreDetails` was true. */
+export type SearchHitRankingScoreDetailsMap = {
+  [key: string]: unknown | undefined;
+};
+export const SearchHitRankingScoreDetailsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SearchHitRankingScoreDetailsMap>;
+
+/** A single search result hit. */
+export interface SearchHit {
+  /** Document with highlighted and cropped attributes. Present when `attributesToHighlight` or `attributesToCrop` was set. */
+  _formatted?: SearchHitFormattedMap;
+  /** Byte offsets (`start`, `length`) of each matched term per attribute. Present when `showMatchesPosition` was true. */
+  _matchesPosition?: SearchHitMatchesPositionMap | null;
+  /** Global [ranking score](https://www.meilisearch.com/docs/learn/relevancy/ranking_score) from 0.0 to 1.0. Present when `showRankingScore` was true. */
+  _rankingScore?: number | null;
+  /** Per-rule score breakdown (words, typo, proximity, etc.). Present when `showRankingScoreDetails` was true. */
+  _rankingScoreDetails?: SearchHitRankingScoreDetailsMap | null;
+}
+export const SearchHit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _formatted: S.optional(SearchHitFormattedMap),
+    _matchesPosition: S.optional(S.NullOr(SearchHitMatchesPositionMap)),
+    _rankingScore: S.optional(S.NullOr(S.Number)),
+    _rankingScoreDetails: S.optional(S.NullOr(SearchHitRankingScoreDetailsMap)),
+  }),
+).annotate({ identifier: "SearchHit" }) as any as S.Schema<SearchHit>;
+
+/** Results of the query */
+export type GetSimilarResponseHitsList = Array<SearchHit>;
+export const GetSimilarResponseHitsList = /*@__PURE__*/ S.Array(
+  SearchHit,
+) as any as S.Schema<GetSimilarResponseHitsList>;
+
+export interface GetSimilarResponse {
+  /** Number of results per page. */
+  hitsPerPage?: number;
+  /** Current page index (1-based). */
+  page?: number;
+  /** Exhaustive total number of result pages. */
+  totalPages?: number;
+  /** Exhaustive total number of matching documents. */
+  totalHits?: number;
+  /** Maximum number of documents returned. */
+  limit?: number;
+  /** Number of documents skipped. */
+  offset?: number;
+  /** Estimated total number of matches (not exhaustive). Prioritizes relevancy and performance. */
+  estimatedTotalHits?: number;
+  /** Results of the query */
+  hits: GetSimilarResponseHitsList;
+  /** Document ID that was used as reference */
+  id: string;
+  /** Processing time of the query in milliseconds */
+  processingTimeMs: number;
+  /** Performance details of the query */
+  performanceDetails?: unknown;
+}
+export const GetSimilarResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hitsPerPage: S.optional(S.Number),
+    page: S.optional(S.Number),
+    totalPages: S.optional(S.Number),
+    totalHits: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    offset: S.optional(S.Number),
+    estimatedTotalHits: S.optional(S.Number),
+    hits: GetSimilarResponseHitsList,
+    id: S.String,
+    processingTimeMs: S.Number,
+    performanceDetails: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "GetSimilarResponse",
+}) as any as S.Schema<GetSimilarResponse>;
 
 export interface GetsortableAttributesRequest {
   /** Unique identifier of the index. */
@@ -6298,25 +6564,6 @@ export const SearchQueryWithIndexSortList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<SearchQueryWithIndexSortList>;
 
-/** An array of attribute name patterns. Each pattern can be an exact attribute name, or include wildcards (`*`) at the start, end, or both. Examples: `["title", "description_*", "*_date", "*content*"]`. */
-export type AttributePatternsPatternsList = Array<string>;
-export const AttributePatternsPatternsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AttributePatternsPatternsList>;
-
-/** A collection of patterns used to match attribute names. Patterns can include wildcards (`*`) for flexible matching. For example, `title` matches exactly, `overview_*` matches any attribute starting with `overview_`, and `*_date` matches any attribute ending with `_date`. */
-export interface AttributePatterns {
-  /** An array of attribute name patterns. Each pattern can be an exact attribute name, or include wildcards (`*`) at the start, end, or both. Examples: `["title", "description_*", "*_date", "*content*"]`. */
-  patterns: AttributePatternsPatternsList;
-}
-export const AttributePatterns = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    patterns: AttributePatternsPatternsList,
-  }),
-).annotate({
-  identifier: "AttributePatterns",
-}) as any as S.Schema<AttributePatterns>;
-
 /** Restrict search to the specified attributes */
 export type SearchQueryWithIndexAttributesToSearchOnList = Array<string>;
 export const SearchQueryWithIndexAttributesToSearchOnList =
@@ -6545,79 +6792,6 @@ export const MultiSearchWithPostRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MultiSearchWithPostRequest",
 }) as any as S.Schema<MultiSearchWithPostRequest>;
-
-/** Document with highlighted and cropped attributes. Present when `attributesToHighlight` or `attributesToCrop` was set. */
-export type SearchHitFormattedMap = { [key: string]: unknown | undefined };
-export const SearchHitFormattedMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SearchHitFormattedMap>;
-
-/** Byte indices of individual matched characters when the match spans multiple positions (e.g., for prefix matches). This is `null` for simple contiguous matches. */
-export type MatchBoundsIndicesList = Array<number>;
-export const MatchBoundsIndicesList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<MatchBoundsIndicesList>;
-
-/** Represents the position of a matching term in a document field. Used to indicate where query terms were found within attribute values, enabling features like highlighting and match position display. */
-export interface MatchBounds {
-  /** The byte offset where the match begins within the attribute value. This is a zero-indexed position from the start of the string. */
-  start: number;
-  /** The length in bytes of the matched text. Combined with `start`, this defines the exact substring that matched the query term. */
-  length: number;
-  /** Byte indices of individual matched characters when the match spans multiple positions (e.g., for prefix matches). This is `null` for simple contiguous matches. */
-  indices?: MatchBoundsIndicesList | null;
-}
-export const MatchBounds = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    start: S.Number,
-    length: S.Number,
-    indices: S.optional(S.NullOr(MatchBoundsIndicesList)),
-  }),
-).annotate({ identifier: "MatchBounds" }) as any as S.Schema<MatchBounds>;
-
-export type SearchHitMatchesPositionValueList = Array<MatchBounds>;
-export const SearchHitMatchesPositionValueList = /*@__PURE__*/ S.Array(
-  MatchBounds,
-) as any as S.Schema<SearchHitMatchesPositionValueList>;
-
-/** Byte offsets (`start`, `length`) of each matched term per attribute. Present when `showMatchesPosition` was true. */
-export type SearchHitMatchesPositionMap = {
-  [key: string]: SearchHitMatchesPositionValueList | undefined;
-};
-export const SearchHitMatchesPositionMap = /*@__PURE__*/ S.Record(
-  S.String,
-  SearchHitMatchesPositionValueList,
-) as any as S.Schema<SearchHitMatchesPositionMap>;
-
-/** Per-rule score breakdown (words, typo, proximity, etc.). Present when `showRankingScoreDetails` was true. */
-export type SearchHitRankingScoreDetailsMap = {
-  [key: string]: unknown | undefined;
-};
-export const SearchHitRankingScoreDetailsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SearchHitRankingScoreDetailsMap>;
-
-/** A single search result hit. */
-export interface SearchHit {
-  /** Document with highlighted and cropped attributes. Present when `attributesToHighlight` or `attributesToCrop` was set. */
-  _formatted?: SearchHitFormattedMap;
-  /** Byte offsets (`start`, `length`) of each matched term per attribute. Present when `showMatchesPosition` was true. */
-  _matchesPosition?: SearchHitMatchesPositionMap | null;
-  /** Global [ranking score](https://www.meilisearch.com/docs/learn/relevancy/ranking_score) from 0.0 to 1.0. Present when `showRankingScore` was true. */
-  _rankingScore?: number | null;
-  /** Per-rule score breakdown (words, typo, proximity, etc.). Present when `showRankingScoreDetails` was true. */
-  _rankingScoreDetails?: SearchHitRankingScoreDetailsMap | null;
-}
-export const SearchHit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _formatted: S.optional(SearchHitFormattedMap),
-    _matchesPosition: S.optional(S.NullOr(SearchHitMatchesPositionMap)),
-    _rankingScore: S.optional(S.NullOr(S.Number)),
-    _rankingScoreDetails: S.optional(S.NullOr(SearchHitRankingScoreDetailsMap)),
-  }),
-).annotate({ identifier: "SearchHit" }) as any as S.Schema<SearchHit>;
 
 /** Combined search results from all queries */
 export type MultiSearchWithPostResponseHitsList = Array<SearchHit>;
@@ -7018,69 +7192,6 @@ export const PatchFeaturesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchFeaturesRequest",
 }) as any as S.Schema<PatchFeaturesRequest>;
 
-/** Map of remote instance names to their configurations - Pass `null` as a value for a remote to remove it from the configuration. - Removing a remote will also remove it from all shards. - Remotes that don't appear in this list will be unmodified by the network call. */
-export type PatchNetworkRequestRemotesMap = {
-  [key: string]: Remote | undefined;
-};
-export const PatchNetworkRequestRemotesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Remote,
-) as any as S.Schema<PatchNetworkRequestRemotesMap>;
-
-/** Map of shard names to their configurations. - Pass `null` as a value for a shard to remove it from the configuration. - Shards that don't appear in this list will be unmodified by the network call. */
-export type PatchNetworkRequestShardsMap = { [key: string]: Shard | undefined };
-export const PatchNetworkRequestShardsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Shard,
-) as any as S.Schema<PatchNetworkRequestShardsMap>;
-
-/** Previous shard configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
-export type PatchNetworkRequestPreviousShardsMap = {
-  [key: string]: Shard | undefined;
-};
-export const PatchNetworkRequestPreviousShardsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Shard,
-) as any as S.Schema<PatchNetworkRequestPreviousShardsMap>;
-
-/** Previous remote configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
-export type PatchNetworkRequestPreviousRemotesMap = {
-  [key: string]: Remote | undefined;
-};
-export const PatchNetworkRequestPreviousRemotesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  Remote,
-) as any as S.Schema<PatchNetworkRequestPreviousRemotesMap>;
-
-export interface PatchNetworkRequest {
-  /** Map of remote instance names to their configurations - Pass `null` as a value for a remote to remove it from the configuration. - Removing a remote will also remove it from all shards. - Remotes that don't appear in this list will be unmodified by the network call. */
-  remotes?: PatchNetworkRequestRemotesMap | null;
-  /** Map of shard names to their configurations. - Pass `null` as a value for a shard to remove it from the configuration. - Shards that don't appear in this list will be unmodified by the network call. */
-  shards?: PatchNetworkRequestShardsMap | null;
-  /** Previous shard configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
-  previousShards?: PatchNetworkRequestPreviousShardsMap | null;
-  /** Name of this instance in the network */
-  self?: string | null;
-  /** Name of the leader instance in the network */
-  leader?: string | null;
-  /** Previous remote configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
-  previousRemotes?: PatchNetworkRequestPreviousRemotesMap | null;
-}
-export const PatchNetworkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    remotes: S.optional(S.NullOr(PatchNetworkRequestRemotesMap)),
-    shards: S.optional(S.NullOr(PatchNetworkRequestShardsMap)),
-    previousShards: S.optional(S.NullOr(PatchNetworkRequestPreviousShardsMap)),
-    self: S.optional(S.NullOr(S.String)),
-    leader: S.optional(S.NullOr(S.String)),
-    previousRemotes: S.optional(
-      S.NullOr(PatchNetworkRequestPreviousRemotesMap),
-    ),
-  }).pipe(T.Http({ method: "PATCH", uri: "/network", code: 200 })),
-).annotate({
-  identifier: "PatchNetworkRequest",
-}) as any as S.Schema<PatchNetworkRequest>;
-
 export interface PatchpaginationRequest {
   /** Unique identifier of the index. */
   index_uid: string;
@@ -7246,240 +7357,65 @@ export const PatchtypoToleranceResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchtypoToleranceResponse",
 }) as any as S.Schema<PatchtypoToleranceResponse>;
 
-/** HTTP headers to include in webhook requests. */
-export type PatchWebhookRequestHeadersMap = {
-  [key: string]: string | undefined;
-};
-export const PatchWebhookRequestHeadersMap = /*@__PURE__*/ S.Record(
+/** Array of document attributes to include in the response. If not specified, all attributes listed in the `displayedAttributes` setting are returned. Use this to reduce response size by only requesting the fields you need. Example: `["title", "description", "price"]`. */
+export type PostDocumentsByQueryRequestFieldsList = Array<string>;
+export const PostDocumentsByQueryRequestFieldsList = /*@__PURE__*/ S.Array(
   S.String,
+) as any as S.Schema<PostDocumentsByQueryRequestFieldsList>;
+
+/** Array of specific document IDs to retrieve. Only documents with matching [primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) values will be returned. If not specified, all documents matching other criteria are returned. This is useful for fetching specific known documents. */
+export type PostDocumentsByQueryRequestIdsList = Array<string>;
+export const PostDocumentsByQueryRequestIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<PatchWebhookRequestHeadersMap>;
+) as any as S.Schema<PostDocumentsByQueryRequestIdsList>;
 
-export interface PatchWebhookRequest {
-  /** Universally unique identifier of the webhook. */
-  uuid: string;
-  /** URL endpoint to call when tasks complete. */
-  url?: string | null;
-  /** HTTP headers to include in webhook requests. */
-  headers?: PatchWebhookRequestHeadersMap | null;
-}
-export const PatchWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uuid: S.String.pipe(T.Label()),
-    url: S.optional(S.NullOr(S.String)),
-    headers: S.optional(S.NullOr(PatchWebhookRequestHeadersMap)),
-  }).pipe(T.Http({ method: "PATCH", uri: "/webhooks/{uuid}", code: 200 })),
-).annotate({
-  identifier: "PatchWebhookRequest",
-}) as any as S.Schema<PatchWebhookRequest>;
-
-/** HTTP headers to include in webhook requests. */
-export type PatchWebhookResponseHeadersMap = {
-  [key: string]: string | undefined;
-};
-export const PatchWebhookResponseHeadersMap = /*@__PURE__*/ S.Record(
+/** Array of attributes to sort the documents by. Each entry should be in the format `attribute:direction` where direction is either `asc` (ascending) or `desc` (descending). Example: `["price:asc", "rating:desc"]` sorts by price ascending, then by rating descending. */
+export type PostDocumentsByQueryRequestSortList = Array<string>;
+export const PostDocumentsByQueryRequestSortList = /*@__PURE__*/ S.Array(
   S.String,
-  S.String,
-) as any as S.Schema<PatchWebhookResponseHeadersMap>;
+) as any as S.Schema<PostDocumentsByQueryRequestSortList>;
 
-export interface PatchWebhookResponse {
-  /** URL endpoint to call when tasks complete. */
-  url?: string | null;
-  /** HTTP headers to include in webhook requests. */
-  headers?: PatchWebhookResponseHeadersMap | null;
-  /** Unique identifier of the webhook. */
-  uuid: string;
-  /** Whether the webhook can be edited. */
-  isEditable: boolean;
-}
-export const PatchWebhookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.NullOr(S.String)),
-    headers: S.optional(S.NullOr(PatchWebhookResponseHeadersMap)),
-    uuid: S.String,
-    isEditable: S.Boolean,
-  }),
-).annotate({
-  identifier: "PatchWebhookResponse",
-}) as any as S.Schema<PatchWebhookResponse>;
-
-/** Filter fields by attribute name patterns or by capability (displayed, searchable, sortable, etc.). All criteria are ANDed. */
-export interface ListFieldsFilter {
-  attributePatterns?: AttributePatterns | null;
-  /** Only include fields that are displayed (true) or not displayed (false) in search results. */
-  displayed?: boolean | null;
-  /** Only include fields that are searchable (true) or not searchable (false). */
-  searchable?: boolean | null;
-  /** Only include fields that are sortable (true) or not sortable (false). */
-  sortable?: boolean | null;
-  /** Only include fields that are used as distinct attribute (true) or not (false). */
-  distinct?: boolean | null;
-  /** Only include fields that have a custom ranking rule (asc/desc) (true) or not (false). */
-  rankingRule?: boolean | null;
-  /** Only include fields that are filterable (true) or not filterable (false). */
-  filterable?: boolean | null;
-}
-export const ListFieldsFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attributePatterns: S.optional(S.NullOr(AttributePatterns)),
-    displayed: S.optional(S.NullOr(S.Boolean)),
-    searchable: S.optional(S.NullOr(S.Boolean)),
-    sortable: S.optional(S.NullOr(S.Boolean)),
-    distinct: S.optional(S.NullOr(S.Boolean)),
-    rankingRule: S.optional(S.NullOr(S.Boolean)),
-    filterable: S.optional(S.NullOr(S.Boolean)),
-  }),
-).annotate({
-  identifier: "ListFieldsFilter",
-}) as any as S.Schema<ListFieldsFilter>;
-
-export interface PostIndexFieldsRequest {
-  /** Unique identifier of the index whose fields to list. */
+export interface PostDocumentsByQueryRequest {
+  /** Unique identifier of the index. */
   index_uid: string;
-  /** Number of fields to skip. Defaults to 0. */
+  /** Number of documents to skip in the response. Use together with `limit` for pagination through large document sets. For example, to get documents 151-170, set `offset=150` and `limit=20`. Defaults to `0`. */
   offset?: number;
-  /** Maximum number of fields to return. Defaults to 20. */
+  /** Maximum number of documents to return in a single response. Use together with `offset` for pagination. Higher values return more results but may increase response time and memory usage. Defaults to `20`. */
   limit?: number;
-  filter?: ListFieldsFilter | null;
+  /** Array of document attributes to include in the response. If not specified, all attributes listed in the `displayedAttributes` setting are returned. Use this to reduce response size by only requesting the fields you need. Example: `["title", "description", "price"]`. */
+  fields?: PostDocumentsByQueryRequestFieldsList | null;
+  /** When `true`, includes the vector embeddings in the response for documents that have them. This is useful when you need to inspect or export vector data. Note that this can significantly increase response size. Defaults to `false`. */
+  retrieveVectors?: boolean;
+  /** Array of specific document IDs to retrieve. Only documents with matching [primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) values will be returned. If not specified, all documents matching other criteria are returned. This is useful for fetching specific known documents. */
+  ids?: PostDocumentsByQueryRequestIdsList | null;
+  /** Filter expression to select which documents to return. Attributes must be added to the `filterableAttributes` index setting before they can be used in filters. Accepts a string or an array of arrays of strings for AND/OR combinations. Example string: `"genres = action AND rating > 4"`. Example array: `[["genres = action", "genres = comedy"], "rating > 4"]` (inner array = OR, outer = AND). */
+  filter?: unknown;
+  /** Array of attributes to sort the documents by. Each entry should be in the format `attribute:direction` where direction is either `asc` (ascending) or `desc` (descending). Example: `["price:asc", "rating:desc"]` sorts by price ascending, then by rating descending. */
+  sort?: PostDocumentsByQueryRequestSortList | null;
+  /** When `true`, runs the query on the whole network (all shards covered exactly once). When `false`, the query runs locally. When omitted or `null`, the default value depends on whether the sharding is enabled for the instance: - If the instance has sharding enabled (has a leader), defaults to `true`. - Otherwise defaults to `false`. It also requires the `network` [experimental feature](http://localhost:3000/reference/api/experimental-features/configure-experimental-features). Values: `true` = use the whole network; `false` = local, default = see above. When using the network, the index must exist with compatible settings on all remotes. */
+  useNetwork?: boolean | null;
 }
-export const PostIndexFieldsRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostDocumentsByQueryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     index_uid: S.String.pipe(T.Label()),
     offset: S.optional(S.Number),
     limit: S.optional(S.Number),
-    filter: S.optional(S.NullOr(ListFieldsFilter)),
+    fields: S.optional(S.NullOr(PostDocumentsByQueryRequestFieldsList)),
+    retrieveVectors: S.optional(S.Boolean),
+    ids: S.optional(S.NullOr(PostDocumentsByQueryRequestIdsList)),
+    filter: S.optional(S.Unknown),
+    sort: S.optional(S.NullOr(PostDocumentsByQueryRequestSortList)),
+    useNetwork: S.optional(S.NullOr(S.Boolean)),
   }).pipe(
-    T.Http({ method: "POST", uri: "/indexes/{index_uid}/fields", code: 200 }),
+    T.Http({
+      method: "POST",
+      uri: "/indexes/{index_uid}/documents/fetch",
+      code: 200,
+    }),
   ),
 ).annotate({
-  identifier: "PostIndexFieldsRequest",
-}) as any as S.Schema<PostIndexFieldsRequest>;
-
-export interface FieldDisplayConfig {
-  enabled: boolean;
-}
-export const FieldDisplayConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-  }),
-).annotate({
-  identifier: "FieldDisplayConfig",
-}) as any as S.Schema<FieldDisplayConfig>;
-
-export type FieldSearchConfig = FieldDisplayConfig;
-export const FieldSearchConfig = FieldDisplayConfig;
-
-export type FieldSortableConfig = FieldDisplayConfig;
-export const FieldSortableConfig = FieldDisplayConfig;
-
-export type FieldDistinctConfig = FieldDisplayConfig;
-export const FieldDistinctConfig = FieldDisplayConfig;
-
-export type FieldRankingRuleConfigOrderList = Array<string>;
-export const FieldRankingRuleConfigOrderList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FieldRankingRuleConfigOrderList>;
-
-export interface FieldRankingRuleConfig {
-  enabled: boolean;
-  order?: FieldRankingRuleConfigOrderList;
-}
-export const FieldRankingRuleConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-    order: S.optional(FieldRankingRuleConfigOrderList),
-  }),
-).annotate({
-  identifier: "FieldRankingRuleConfig",
-}) as any as S.Schema<FieldRankingRuleConfig>;
-
-export interface FieldFilterableConfig {
-  enabled: boolean;
-  sortBy: FacetValuesSort;
-  facetSearch: boolean;
-  equality: boolean;
-  comparison: boolean;
-}
-export const FieldFilterableConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.Boolean,
-    sortBy: FacetValuesSort,
-    facetSearch: S.Boolean,
-    equality: S.Boolean,
-    comparison: S.Boolean,
-  }),
-).annotate({
-  identifier: "FieldFilterableConfig",
-}) as any as S.Schema<FieldFilterableConfig>;
-
-export type FieldLocalizedConfigLocalesList = Array<string>;
-export const FieldLocalizedConfigLocalesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FieldLocalizedConfigLocalesList>;
-
-export interface FieldLocalizedConfig {
-  locales: FieldLocalizedConfigLocalesList;
-}
-export const FieldLocalizedConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    locales: FieldLocalizedConfigLocalesList,
-  }),
-).annotate({
-  identifier: "FieldLocalizedConfig",
-}) as any as S.Schema<FieldLocalizedConfig>;
-
-export interface PaginationViewFieldResultsItem {
-  name: string;
-  displayed: FieldDisplayConfig;
-  searchable: FieldDisplayConfig;
-  sortable: FieldDisplayConfig;
-  distinct: FieldDisplayConfig;
-  rankingRule: FieldRankingRuleConfig;
-  filterable: FieldFilterableConfig;
-  localized: FieldLocalizedConfig;
-}
-export const PaginationViewFieldResultsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    displayed: FieldDisplayConfig,
-    searchable: FieldDisplayConfig,
-    sortable: FieldDisplayConfig,
-    distinct: FieldDisplayConfig,
-    rankingRule: FieldRankingRuleConfig,
-    filterable: FieldFilterableConfig,
-    localized: FieldLocalizedConfig,
-  }),
-).annotate({
-  identifier: "PaginationViewFieldResultsItem",
-}) as any as S.Schema<PaginationViewFieldResultsItem>;
-
-/** Items for the current page. */
-export type PaginationViewFieldResultsList =
-  Array<PaginationViewFieldResultsItem>;
-export const PaginationViewFieldResultsList = /*@__PURE__*/ S.Array(
-  PaginationViewFieldResultsItem,
-) as any as S.Schema<PaginationViewFieldResultsList>;
-
-export interface PaginationViewField {
-  /** Items for the current page. */
-  results: PaginationViewFieldResultsList;
-  /** Number of items skipped. */
-  offset: number;
-  /** Maximum number of items returned. */
-  limit: number;
-  /** Total number of items matching the query. */
-  total: number;
-}
-export const PaginationViewField = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: PaginationViewFieldResultsList,
-    offset: S.Number,
-    limit: S.Number,
-    total: S.Number,
-  }),
-).annotate({
-  identifier: "PaginationViewField",
-}) as any as S.Schema<PaginationViewField>;
+  identifier: "PostDocumentsByQueryRequest",
+}) as any as S.Schema<PostDocumentsByQueryRequest>;
 
 export type MessageCase0Type = "exportNoIndexForRemote";
 export const MessageCase0Type = /*@__PURE__*/ S.String;
@@ -7560,59 +7496,193 @@ export const PostNetworkChangeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PostNetworkChangeResponse",
 }) as any as S.Schema<PostNetworkChangeResponse>;
 
-/** HTTP headers to include in webhook requests. */
-export type PostWebhookRequestHeadersMap = {
-  [key: string]: string | undefined;
-};
-export const PostWebhookRequestHeadersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PostWebhookRequestHeadersMap>;
+export type RenderQueryTemplateKind =
+  | "documentTemplate"
+  | "chatDocumentTemplate"
+  | "indexingFragment"
+  | "searchFragment"
+  | "inlineDocumentTemplate"
+  | "inlineFragment";
+export const RenderQueryTemplateKind = /*@__PURE__*/ S.String;
 
-export interface PostWebhookRequest {
-  /** URL endpoint to call when tasks complete. */
-  url?: string | null;
-  /** HTTP headers to include in webhook requests. */
-  headers?: PostWebhookRequestHeadersMap | null;
+export interface RenderQueryTemplate {
+  /** Kind of template or fragment to fetch. Determines which other parameters are allowed and mandatory. */
+  kind: RenderQueryTemplateKind | (string & {});
+  indexUid?: string | null;
+  /** Embedder to fetch the template or fragment from. - Mandatory for `kind`s: `documentTemplate`, `chatDocumentTemplate`, `indexingFragment` and `searchFragment`. */
+  embedder?: string | null;
+  /** Name of the fragment to fetch. - Mandatory for `kind`s: `indexingFragment` and `searchFragment`. */
+  fragment?: string | null;
+  /** Inline value of the template or fragment. - Mandatory for `kind`s: `inlineDocumentTemplate` and `inlineFragment`. */
+  inline?: unknown;
+  /** If present, truncate document template rendering to the specified number of bytes. - Available for `kind`s: `documentTemplate`, `inlineDocumentTemplate` and `chatDocumentTemplate` - If present for `documentTemplate` overrides the setting of the index. - If missing for `documentTemplate`, the setting of the index is used. - If missing for `inlineDocumentTemplate`, the default value of 400 bytes is used. */
+  documentTemplateMaxBytes?: number | null;
 }
-export const PostWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+export const RenderQueryTemplate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    url: S.optional(S.NullOr(S.String)),
-    headers: S.optional(S.NullOr(PostWebhookRequestHeadersMap)),
-  }).pipe(T.Http({ method: "POST", uri: "/webhooks", code: 200 })),
-).annotate({
-  identifier: "PostWebhookRequest",
-}) as any as S.Schema<PostWebhookRequest>;
-
-/** HTTP headers to include in webhook requests. */
-export type PostWebhookResponseHeadersMap = {
-  [key: string]: string | undefined;
-};
-export const PostWebhookResponseHeadersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PostWebhookResponseHeadersMap>;
-
-export interface PostWebhookResponse {
-  /** URL endpoint to call when tasks complete. */
-  url?: string | null;
-  /** HTTP headers to include in webhook requests. */
-  headers?: PostWebhookResponseHeadersMap | null;
-  /** Unique identifier of the webhook. */
-  uuid: string;
-  /** Whether the webhook can be edited. */
-  isEditable: boolean;
-}
-export const PostWebhookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.NullOr(S.String)),
-    headers: S.optional(S.NullOr(PostWebhookResponseHeadersMap)),
-    uuid: S.String,
-    isEditable: S.Boolean,
+    kind: RenderQueryTemplateKind,
+    indexUid: S.optional(S.NullOr(S.String)),
+    embedder: S.optional(S.NullOr(S.String)),
+    fragment: S.optional(S.NullOr(S.String)),
+    inline: S.optional(S.Unknown),
+    documentTemplateMaxBytes: S.optional(S.NullOr(S.Number)),
   }),
 ).annotate({
-  identifier: "PostWebhookResponse",
-}) as any as S.Schema<PostWebhookResponse>;
+  identifier: "RenderQueryTemplate",
+}) as any as S.Schema<RenderQueryTemplate>;
+
+export type RenderQueryInputKind =
+  | "indexDocument"
+  | "inlineDocument"
+  | "inlineSearch";
+export const RenderQueryInputKind = /*@__PURE__*/ S.String;
+
+export interface RenderQueryInput {
+  kind: RenderQueryInputKind | (string & {});
+  indexUid?: string | null;
+  id?: string | null;
+  inline?: unknown;
+}
+export const RenderQueryInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: RenderQueryInputKind,
+    indexUid: S.optional(S.NullOr(S.String)),
+    id: S.optional(S.NullOr(S.String)),
+    inline: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "RenderQueryInput",
+}) as any as S.Schema<RenderQueryInput>;
+
+export interface PostRenderRequest {
+  /** Template/fragment to fetch for rendering. Use its `kind` parameter to determine the type of template or fragment to fetch. */
+  template: RenderQueryTemplate;
+  input?: RenderQueryInput | null;
+}
+export const PostRenderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    template: RenderQueryTemplate,
+    input: S.optional(S.NullOr(RenderQueryInput)),
+  }).pipe(T.Http({ method: "POST", uri: "/render-template", code: 200 })),
+).annotate({
+  identifier: "PostRenderRequest",
+}) as any as S.Schema<PostRenderRequest>;
+
+export interface RenderResult {
+  /** **Un**rendered template or fragment, fetched in index or echoed back from inline template in request. */
+  template: unknown;
+  /** Result of rendering the template by injecting the `input` to the template. `null` if `input` was `null` or missing in the request. */
+  rendered?: unknown;
+}
+export const RenderResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    template: S.Unknown,
+    rendered: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "RenderResult" }) as any as S.Schema<RenderResult>;
+
+/** Attributes to display in the returned documents */
+export type PostSimilarRequestAttributesToRetrieveList = Array<string>;
+export const PostSimilarRequestAttributesToRetrieveList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PostSimilarRequestAttributesToRetrieveList>;
+
+export interface PostSimilarRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+  /** Document ID to find similar documents for */
+  id: string;
+  /** Number of documents to skip */
+  offset?: number;
+  /** Maximum number of documents returned */
+  limit?: number;
+  /** Filter queries by an attribute's value */
+  filter?: unknown;
+  /** Name of the embedder to use for semantic similarity */
+  embedder: string;
+  /** Attributes to display in the returned documents */
+  attributesToRetrieve?: PostSimilarRequestAttributesToRetrieveList | null;
+  /** Return document vector data */
+  retrieveVectors?: boolean;
+  /** Display the global ranking score of a document */
+  showRankingScore?: boolean;
+  /** Adds a detailed global ranking score field */
+  showRankingScoreDetails?: boolean;
+  /** Adds a detailed performance details field */
+  showPerformanceDetails?: boolean;
+  /** Excludes results with low ranking scores */
+  rankingScoreThreshold?: number;
+}
+export const PostSimilarRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+    id: S.String,
+    offset: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    filter: S.optional(S.Unknown),
+    embedder: S.String,
+    attributesToRetrieve: S.optional(
+      S.NullOr(PostSimilarRequestAttributesToRetrieveList),
+    ),
+    retrieveVectors: S.optional(S.Boolean),
+    showRankingScore: S.optional(S.Boolean),
+    showRankingScoreDetails: S.optional(S.Boolean),
+    showPerformanceDetails: S.optional(S.Boolean),
+    rankingScoreThreshold: S.optional(S.Number),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/indexes/{index_uid}/similar", code: 200 }),
+  ),
+).annotate({
+  identifier: "PostSimilarRequest",
+}) as any as S.Schema<PostSimilarRequest>;
+
+/** Results of the query */
+export type PostSimilarResponseHitsList = Array<SearchHit>;
+export const PostSimilarResponseHitsList = /*@__PURE__*/ S.Array(
+  SearchHit,
+) as any as S.Schema<PostSimilarResponseHitsList>;
+
+export interface PostSimilarResponse {
+  /** Number of results per page. */
+  hitsPerPage?: number;
+  /** Current page index (1-based). */
+  page?: number;
+  /** Exhaustive total number of result pages. */
+  totalPages?: number;
+  /** Exhaustive total number of matching documents. */
+  totalHits?: number;
+  /** Maximum number of documents returned. */
+  limit?: number;
+  /** Number of documents skipped. */
+  offset?: number;
+  /** Estimated total number of matches (not exhaustive). Prioritizes relevancy and performance. */
+  estimatedTotalHits?: number;
+  /** Results of the query */
+  hits: PostSimilarResponseHitsList;
+  /** Document ID that was used as reference */
+  id: string;
+  /** Processing time of the query in milliseconds */
+  processingTimeMs: number;
+  /** Performance details of the query */
+  performanceDetails?: unknown;
+}
+export const PostSimilarResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hitsPerPage: S.optional(S.Number),
+    page: S.optional(S.Number),
+    totalPages: S.optional(S.Number),
+    totalHits: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    offset: S.optional(S.Number),
+    estimatedTotalHits: S.optional(S.Number),
+    hits: PostSimilarResponseHitsList,
+    id: S.String,
+    processingTimeMs: S.Number,
+    performanceDetails: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "PostSimilarResponse",
+}) as any as S.Schema<PostSimilarResponse>;
 
 export type PutdictionaryRequestBodyList = Array<string>;
 export const PutdictionaryRequestBodyList = /*@__PURE__*/ S.Array(
@@ -7702,31 +7772,6 @@ export const PutdistinctAttributeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PutdistinctAttributeResponse",
 }) as any as S.Schema<PutdistinctAttributeResponse>;
-
-export interface PutfacetSearchRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-}
-export const PutfacetSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/indexes/{index_uid}/settings/facet-search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PutfacetSearchRequest",
-}) as any as S.Schema<PutfacetSearchRequest>;
-
-export interface PutfacetSearchResponse {}
-export const PutfacetSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PutfacetSearchResponse",
-}) as any as S.Schema<PutfacetSearchResponse>;
 
 export type PutfilterableAttributesRequestBodyList =
   Array<FilterableAttributesRule>;
@@ -7857,33 +7902,6 @@ export const PutnonSeparatorTokensResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PutnonSeparatorTokensResponse",
 }) as any as S.Schema<PutnonSeparatorTokensResponse>;
-
-export interface PutprefixSearchRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-  body: PrefixSearchSettings | (string & {});
-}
-export const PutprefixSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-    body: PrefixSearchSettings.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/indexes/{index_uid}/settings/prefix-search",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "PutprefixSearchRequest",
-}) as any as S.Schema<PutprefixSearchRequest>;
-
-export interface PutprefixSearchResponse {}
-export const PutprefixSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PutprefixSearchResponse",
-}) as any as S.Schema<PutprefixSearchResponse>;
 
 export interface PutproximityPrecisionRequest {
   /** Unique identifier of the index. */
@@ -8137,91 +8155,6 @@ export const PutsynonymsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutsynonymsResponse",
 }) as any as S.Schema<PutsynonymsResponse>;
 
-export type RenderQueryTemplateKind =
-  | "documentTemplate"
-  | "chatDocumentTemplate"
-  | "indexingFragment"
-  | "searchFragment"
-  | "inlineDocumentTemplate"
-  | "inlineFragment";
-export const RenderQueryTemplateKind = /*@__PURE__*/ S.String;
-
-export interface RenderQueryTemplate {
-  /** Kind of template or fragment to fetch. Determines which other parameters are allowed and mandatory. */
-  kind: RenderQueryTemplateKind | (string & {});
-  indexUid?: string | null;
-  /** Embedder to fetch the template or fragment from. - Mandatory for `kind`s: `documentTemplate`, `chatDocumentTemplate`, `indexingFragment` and `searchFragment`. */
-  embedder?: string | null;
-  /** Name of the fragment to fetch. - Mandatory for `kind`s: `indexingFragment` and `searchFragment`. */
-  fragment?: string | null;
-  /** Inline value of the template or fragment. - Mandatory for `kind`s: `inlineDocumentTemplate` and `inlineFragment`. */
-  inline?: unknown;
-  /** If present, truncate document template rendering to the specified number of bytes. - Available for `kind`s: `documentTemplate`, `inlineDocumentTemplate` and `chatDocumentTemplate` - If present for `documentTemplate` overrides the setting of the index. - If missing for `documentTemplate`, the setting of the index is used. - If missing for `inlineDocumentTemplate`, the default value of 400 bytes is used. */
-  documentTemplateMaxBytes?: number | null;
-}
-export const RenderQueryTemplate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: RenderQueryTemplateKind,
-    indexUid: S.optional(S.NullOr(S.String)),
-    embedder: S.optional(S.NullOr(S.String)),
-    fragment: S.optional(S.NullOr(S.String)),
-    inline: S.optional(S.Unknown),
-    documentTemplateMaxBytes: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "RenderQueryTemplate",
-}) as any as S.Schema<RenderQueryTemplate>;
-
-export type RenderQueryInputKind =
-  | "indexDocument"
-  | "inlineDocument"
-  | "inlineSearch";
-export const RenderQueryInputKind = /*@__PURE__*/ S.String;
-
-export interface RenderQueryInput {
-  kind: RenderQueryInputKind | (string & {});
-  indexUid?: string | null;
-  id?: string | null;
-  inline?: unknown;
-}
-export const RenderQueryInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: RenderQueryInputKind,
-    indexUid: S.optional(S.NullOr(S.String)),
-    id: S.optional(S.NullOr(S.String)),
-    inline: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "RenderQueryInput",
-}) as any as S.Schema<RenderQueryInput>;
-
-export interface RenderPostRequest {
-  /** Template/fragment to fetch for rendering. Use its `kind` parameter to determine the type of template or fragment to fetch. */
-  template: RenderQueryTemplate;
-  input?: RenderQueryInput | null;
-}
-export const RenderPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    template: RenderQueryTemplate,
-    input: S.optional(S.NullOr(RenderQueryInput)),
-  }).pipe(T.Http({ method: "POST", uri: "/render-template", code: 200 })),
-).annotate({
-  identifier: "RenderPostRequest",
-}) as any as S.Schema<RenderPostRequest>;
-
-export interface RenderResult {
-  /** **Un**rendered template or fragment, fetched in index or echoed back from inline template in request. */
-  template: unknown;
-  /** Result of rendering the template by injecting the `input` to the template. `null` if `input` was `null` or missing in the request. */
-  rendered?: unknown;
-}
-export const RenderResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    template: S.Unknown,
-    rendered: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "RenderResult" }) as any as S.Schema<RenderResult>;
-
 export interface ReplaceDocumentsRequest {
   /** Unique identifier of the index. */
   index_uid: string;
@@ -8409,6 +8342,158 @@ export const FacetSearchResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "FacetSearchResult",
 }) as any as S.Schema<FacetSearchResult>;
+
+export interface SearchDeletefacetRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+}
+export const SearchDeletefacetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/indexes/{index_uid}/settings/facet-search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchDeletefacetRequest",
+}) as any as S.Schema<SearchDeletefacetRequest>;
+
+export interface SearchDeletefacetResponse {}
+export const SearchDeletefacetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SearchDeletefacetResponse",
+}) as any as S.Schema<SearchDeletefacetResponse>;
+
+export interface SearchDeleteprefixRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+}
+export const SearchDeleteprefixRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/indexes/{index_uid}/settings/prefix-search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchDeleteprefixRequest",
+}) as any as S.Schema<SearchDeleteprefixRequest>;
+
+export interface SearchDeleteprefixResponse {}
+export const SearchDeleteprefixResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SearchDeleteprefixResponse",
+}) as any as S.Schema<SearchDeleteprefixResponse>;
+
+export interface SearchGetfacetRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+}
+export const SearchGetfacetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/indexes/{index_uid}/settings/facet-search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchGetfacetRequest",
+}) as any as S.Schema<SearchGetfacetRequest>;
+
+export type SearchGetfacetResponse = boolean;
+export const SearchGetfacetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Boolean.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "SearchGetfacetResponse",
+}) as any as S.Schema<SearchGetfacetResponse>;
+
+export interface SearchGetprefixRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+}
+export const SearchGetprefixRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/indexes/{index_uid}/settings/prefix-search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchGetprefixRequest",
+}) as any as S.Schema<SearchGetprefixRequest>;
+
+export type SearchGetprefixResponse = PrefixSearchSettings;
+export const SearchGetprefixResponse = /*@__PURE__*/ S.suspend(() =>
+  PrefixSearchSettings.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "SearchGetprefixResponse",
+}) as any as S.Schema<SearchGetprefixResponse>;
+
+export interface SearchPutfacetRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+}
+export const SearchPutfacetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/indexes/{index_uid}/settings/facet-search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchPutfacetRequest",
+}) as any as S.Schema<SearchPutfacetRequest>;
+
+export interface SearchPutfacetResponse {}
+export const SearchPutfacetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SearchPutfacetResponse",
+}) as any as S.Schema<SearchPutfacetResponse>;
+
+export interface SearchPutprefixRequest {
+  /** Unique identifier of the index. */
+  index_uid: string;
+  body: PrefixSearchSettings | (string & {});
+}
+export const SearchPutprefixRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    index_uid: S.String.pipe(T.Label()),
+    body: PrefixSearchSettings.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/indexes/{index_uid}/settings/prefix-search",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "SearchPutprefixRequest",
+}) as any as S.Schema<SearchPutprefixRequest>;
+
+export interface SearchPutprefixResponse {}
+export const SearchPutprefixResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "SearchPutprefixResponse",
+}) as any as S.Schema<SearchPutprefixResponse>;
 
 /** List of attributes to include in each returned document. Use `["*"]` to return all attributes; if not set, the index [displayed attributes](https://www.meilisearch.com/docs/learn/relevancy/displayed_searchable_attributes) list is used. Attributes that are not in [displayedAttributes](https://www.meilisearch.com/docs/reference/api/settings/update-all-settings#body-displayed-attributes-one-of-0) are omitted from the response. */
 export type SearchWithPostRequestAttributesToRetrieveList = Array<string>;
@@ -8928,211 +9013,6 @@ export const SearchWithUrlQueryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchWithUrlQueryResponse",
 }) as any as S.Schema<SearchWithUrlQueryResponse>;
 
-export type SimilarGetRequestAttributesToRetrieveList = Array<string>;
-export const SimilarGetRequestAttributesToRetrieveList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SimilarGetRequestAttributesToRetrieveList>;
-
-export interface SimilarGetRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-  /** The unique identifier ([primary key](https://www.meilisearch.com/docs/learn/getting_started/primary_key) value) of the target document. Meilisearch will find and return documents that are semantically similar to this document based on their vector embeddings. This is a required parameter. */
-  id: string;
-  /** The name of the embedder to use for finding similar documents. This must match one of the embedders configured in your index settings. The embedder determines how document similarity is calculated based on vector embeddings. */
-  embedder: string;
-  /** Number of similar documents to skip in the response. Use together with `limit` for pagination through large result sets. For example, to get similar documents 21-40, set `offset=20` and `limit=20`. Defaults to `0`. */
-  offset?: number;
-  /** Maximum number of similar documents to return in a single response. Use together with `offset` for pagination. Higher values return more results but may increase response time. Defaults to `20`. */
-  limit?: number;
-  /** Comma-separated list of document attributes to include in the response. Use `*` to retrieve all attributes. By default, all attributes listed in the `displayedAttributes` setting are returned. Example: `title,description,price`. */
-  attributes_to_retrieve?: SimilarGetRequestAttributesToRetrieveList;
-  /** When `true`, includes the vector embeddings for each returned document. Useful for debugging or when you need to inspect the vector data. Note that this can significantly increase response size. Defaults to `false`. */
-  retrieve_vectors?: boolean;
-  /** Filter expression to narrow down which documents can be returned as similar. Uses the same syntax as search filters. Only documents matching this filter will be considered when finding similar documents. Example: `genres = action AND year > 2000`. */
-  filter?: string;
-  /** When `true`, includes a global `_rankingScore` field in each document showing how similar it is to the target document. The score is a value between 0 and 1, where higher values indicate greater similarity. Defaults to `false`. */
-  show_ranking_score?: boolean;
-  /** When `true`, includes a detailed `_rankingScoreDetails` object in each document breaking down how the similarity score was calculated. Useful for debugging and understanding why certain documents are considered more similar. Defaults to `false`. */
-  show_ranking_score_details?: boolean;
-  /** When `true`, includes a `_performanceDetails` object showing the performance details of the search. */
-  show_performance_details?: boolean;
-  /** Minimum ranking score threshold (between 0.0 and 1.0) that documents must meet to be included in results. Documents with a similarity score below this threshold will be excluded. Useful for ensuring only highly similar documents are returned. */
-  ranking_score_threshold?: number;
-}
-export const SimilarGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Query()),
-    embedder: S.String.pipe(T.Query()),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    attributes_to_retrieve: S.optional(
-      SimilarGetRequestAttributesToRetrieveList.pipe(T.Query()),
-    ),
-    retrieve_vectors: S.optional(S.Boolean.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
-    show_ranking_score: S.optional(S.Boolean.pipe(T.Query())),
-    show_ranking_score_details: S.optional(S.Boolean.pipe(T.Query())),
-    show_performance_details: S.optional(S.Boolean.pipe(T.Query())),
-    ranking_score_threshold: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/indexes/{index_uid}/similar", code: 200 }),
-  ),
-).annotate({
-  identifier: "SimilarGetRequest",
-}) as any as S.Schema<SimilarGetRequest>;
-
-/** Results of the query */
-export type SimilarGetResponseHitsList = Array<SearchHit>;
-export const SimilarGetResponseHitsList = /*@__PURE__*/ S.Array(
-  SearchHit,
-) as any as S.Schema<SimilarGetResponseHitsList>;
-
-export interface SimilarGetResponse {
-  /** Number of results per page. */
-  hitsPerPage?: number;
-  /** Current page index (1-based). */
-  page?: number;
-  /** Exhaustive total number of result pages. */
-  totalPages?: number;
-  /** Exhaustive total number of matching documents. */
-  totalHits?: number;
-  /** Maximum number of documents returned. */
-  limit?: number;
-  /** Number of documents skipped. */
-  offset?: number;
-  /** Estimated total number of matches (not exhaustive). Prioritizes relevancy and performance. */
-  estimatedTotalHits?: number;
-  /** Results of the query */
-  hits: SimilarGetResponseHitsList;
-  /** Document ID that was used as reference */
-  id: string;
-  /** Processing time of the query in milliseconds */
-  processingTimeMs: number;
-  /** Performance details of the query */
-  performanceDetails?: unknown;
-}
-export const SimilarGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hitsPerPage: S.optional(S.Number),
-    page: S.optional(S.Number),
-    totalPages: S.optional(S.Number),
-    totalHits: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    offset: S.optional(S.Number),
-    estimatedTotalHits: S.optional(S.Number),
-    hits: SimilarGetResponseHitsList,
-    id: S.String,
-    processingTimeMs: S.Number,
-    performanceDetails: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "SimilarGetResponse",
-}) as any as S.Schema<SimilarGetResponse>;
-
-/** Attributes to display in the returned documents */
-export type SimilarPostRequestAttributesToRetrieveList = Array<string>;
-export const SimilarPostRequestAttributesToRetrieveList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SimilarPostRequestAttributesToRetrieveList>;
-
-export interface SimilarPostRequest {
-  /** Unique identifier of the index. */
-  index_uid: string;
-  /** Document ID to find similar documents for */
-  id: string;
-  /** Number of documents to skip */
-  offset?: number;
-  /** Maximum number of documents returned */
-  limit?: number;
-  /** Filter queries by an attribute's value */
-  filter?: unknown;
-  /** Name of the embedder to use for semantic similarity */
-  embedder: string;
-  /** Attributes to display in the returned documents */
-  attributesToRetrieve?: SimilarPostRequestAttributesToRetrieveList | null;
-  /** Return document vector data */
-  retrieveVectors?: boolean;
-  /** Display the global ranking score of a document */
-  showRankingScore?: boolean;
-  /** Adds a detailed global ranking score field */
-  showRankingScoreDetails?: boolean;
-  /** Adds a detailed performance details field */
-  showPerformanceDetails?: boolean;
-  /** Excludes results with low ranking scores */
-  rankingScoreThreshold?: number;
-}
-export const SimilarPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    index_uid: S.String.pipe(T.Label()),
-    id: S.String,
-    offset: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    filter: S.optional(S.Unknown),
-    embedder: S.String,
-    attributesToRetrieve: S.optional(
-      S.NullOr(SimilarPostRequestAttributesToRetrieveList),
-    ),
-    retrieveVectors: S.optional(S.Boolean),
-    showRankingScore: S.optional(S.Boolean),
-    showRankingScoreDetails: S.optional(S.Boolean),
-    showPerformanceDetails: S.optional(S.Boolean),
-    rankingScoreThreshold: S.optional(S.Number),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/indexes/{index_uid}/similar", code: 200 }),
-  ),
-).annotate({
-  identifier: "SimilarPostRequest",
-}) as any as S.Schema<SimilarPostRequest>;
-
-/** Results of the query */
-export type SimilarPostResponseHitsList = Array<SearchHit>;
-export const SimilarPostResponseHitsList = /*@__PURE__*/ S.Array(
-  SearchHit,
-) as any as S.Schema<SimilarPostResponseHitsList>;
-
-export interface SimilarPostResponse {
-  /** Number of results per page. */
-  hitsPerPage?: number;
-  /** Current page index (1-based). */
-  page?: number;
-  /** Exhaustive total number of result pages. */
-  totalPages?: number;
-  /** Exhaustive total number of matching documents. */
-  totalHits?: number;
-  /** Maximum number of documents returned. */
-  limit?: number;
-  /** Number of documents skipped. */
-  offset?: number;
-  /** Estimated total number of matches (not exhaustive). Prioritizes relevancy and performance. */
-  estimatedTotalHits?: number;
-  /** Results of the query */
-  hits: SimilarPostResponseHitsList;
-  /** Document ID that was used as reference */
-  id: string;
-  /** Processing time of the query in milliseconds */
-  processingTimeMs: number;
-  /** Performance details of the query */
-  performanceDetails?: unknown;
-}
-export const SimilarPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hitsPerPage: S.optional(S.Number),
-    page: S.optional(S.Number),
-    totalPages: S.optional(S.Number),
-    totalHits: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    offset: S.optional(S.Number),
-    estimatedTotalHits: S.optional(S.Number),
-    hits: SimilarPostResponseHitsList,
-    id: S.String,
-    processingTimeMs: S.Number,
-    performanceDetails: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "SimilarPostResponse",
-}) as any as S.Schema<SimilarPostResponse>;
-
 /** Array of the two index names to be swapped */
 export type SwapIndexesPayloadIndexesList = Array<string>;
 export const SwapIndexesPayloadIndexesList = /*@__PURE__*/ S.Array(
@@ -9425,6 +9305,71 @@ export const UpdateIndexResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateIndexResponse",
 }) as any as S.Schema<UpdateIndexResponse>;
 
+/** Map of remote instance names to their configurations - Pass `null` as a value for a remote to remove it from the configuration. - Removing a remote will also remove it from all shards. - Remotes that don't appear in this list will be unmodified by the network call. */
+export type UpdateNetworkRequestRemotesMap = {
+  [key: string]: Remote | undefined;
+};
+export const UpdateNetworkRequestRemotesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Remote,
+) as any as S.Schema<UpdateNetworkRequestRemotesMap>;
+
+/** Map of shard names to their configurations. - Pass `null` as a value for a shard to remove it from the configuration. - Shards that don't appear in this list will be unmodified by the network call. */
+export type UpdateNetworkRequestShardsMap = {
+  [key: string]: Shard | undefined;
+};
+export const UpdateNetworkRequestShardsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Shard,
+) as any as S.Schema<UpdateNetworkRequestShardsMap>;
+
+/** Previous shard configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
+export type UpdateNetworkRequestPreviousShardsMap = {
+  [key: string]: Shard | undefined;
+};
+export const UpdateNetworkRequestPreviousShardsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Shard,
+) as any as S.Schema<UpdateNetworkRequestPreviousShardsMap>;
+
+/** Previous remote configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
+export type UpdateNetworkRequestPreviousRemotesMap = {
+  [key: string]: Remote | undefined;
+};
+export const UpdateNetworkRequestPreviousRemotesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  Remote,
+) as any as S.Schema<UpdateNetworkRequestPreviousRemotesMap>;
+
+export interface UpdateNetworkRequest {
+  /** Map of remote instance names to their configurations - Pass `null` as a value for a remote to remove it from the configuration. - Removing a remote will also remove it from all shards. - Remotes that don't appear in this list will be unmodified by the network call. */
+  remotes?: UpdateNetworkRequestRemotesMap | null;
+  /** Map of shard names to their configurations. - Pass `null` as a value for a shard to remove it from the configuration. - Shards that don't appear in this list will be unmodified by the network call. */
+  shards?: UpdateNetworkRequestShardsMap | null;
+  /** Previous shard configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
+  previousShards?: UpdateNetworkRequestPreviousShardsMap | null;
+  /** Name of this instance in the network */
+  self?: string | null;
+  /** Name of the leader instance in the network */
+  leader?: string | null;
+  /** Previous remote configurations This field should not be passed by end-users. It is used in internal communications between Meilisearch instances */
+  previousRemotes?: UpdateNetworkRequestPreviousRemotesMap | null;
+}
+export const UpdateNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    remotes: S.optional(S.NullOr(UpdateNetworkRequestRemotesMap)),
+    shards: S.optional(S.NullOr(UpdateNetworkRequestShardsMap)),
+    previousShards: S.optional(S.NullOr(UpdateNetworkRequestPreviousShardsMap)),
+    self: S.optional(S.NullOr(S.String)),
+    leader: S.optional(S.NullOr(S.String)),
+    previousRemotes: S.optional(
+      S.NullOr(UpdateNetworkRequestPreviousRemotesMap),
+    ),
+  }).pipe(T.Http({ method: "PATCH", uri: "/network", code: 200 })),
+).annotate({
+  identifier: "UpdateNetworkRequest",
+}) as any as S.Schema<UpdateNetworkRequest>;
+
 /** Actions to apply when the dynamic search rule matches. */
 export type UpdateOrCreateRuleRequestActionsList = Array<RuleAction>;
 export const UpdateOrCreateRuleRequestActionsList = /*@__PURE__*/ S.Array(
@@ -9484,6 +9429,63 @@ export const UpdateStderrTargetResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateStderrTargetResponse",
 }) as any as S.Schema<UpdateStderrTargetResponse>;
+
+/** HTTP headers to include in webhook requests. */
+export type UpdateWebhookRequestHeadersMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWebhookRequestHeadersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWebhookRequestHeadersMap>;
+
+export interface UpdateWebhookRequest {
+  /** Universally unique identifier of the webhook. */
+  uuid: string;
+  /** URL endpoint to call when tasks complete. */
+  url?: string | null;
+  /** HTTP headers to include in webhook requests. */
+  headers?: UpdateWebhookRequestHeadersMap | null;
+}
+export const UpdateWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uuid: S.String.pipe(T.Label()),
+    url: S.optional(S.NullOr(S.String)),
+    headers: S.optional(S.NullOr(UpdateWebhookRequestHeadersMap)),
+  }).pipe(T.Http({ method: "PATCH", uri: "/webhooks/{uuid}", code: 200 })),
+).annotate({
+  identifier: "UpdateWebhookRequest",
+}) as any as S.Schema<UpdateWebhookRequest>;
+
+/** HTTP headers to include in webhook requests. */
+export type UpdateWebhookResponseHeadersMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWebhookResponseHeadersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWebhookResponseHeadersMap>;
+
+export interface UpdateWebhookResponse {
+  /** URL endpoint to call when tasks complete. */
+  url?: string | null;
+  /** HTTP headers to include in webhook requests. */
+  headers?: UpdateWebhookResponseHeadersMap | null;
+  /** Unique identifier of the webhook. */
+  uuid: string;
+  /** Whether the webhook can be edited. */
+  isEditable: boolean;
+}
+export const UpdateWebhookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.NullOr(S.String)),
+    headers: S.optional(S.NullOr(UpdateWebhookResponseHeadersMap)),
+    uuid: S.String,
+    isEditable: S.Boolean,
+  }),
+).annotate({
+  identifier: "UpdateWebhookResponse",
+}) as any as S.Schema<UpdateWebhookResponse>;
 
 export type CancelLogsError = MeilisearchOpError;
 /** Stop retrieving logs Call this route to make the engine stop sending logs to the client that opened the `POST /logs/stream` connection. */
@@ -9635,6 +9637,21 @@ export const createIndex: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateIndexFieldError = NotFound | MeilisearchOpError;
+/** List index fields Returns a paginated list of fields in the index with their metadata: whether they are displayed, searchable, sortable, filterable, distinct, have a custom ranking rule (asc/desc), and for filterable fields the sort order for facet values. */
+export const createIndexField: API.OperationMethod<
+  CreateIndexFieldRequest,
+  PaginationViewField,
+  CreateIndexFieldError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateIndexFieldRequest,
+  output: PaginationViewField,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type CreateSnapshotError = MeilisearchOpError;
 /** Create snapshot Trigger a snapshot creation process. When complete, a snapshot file is written to the snapshot directory. The directory is created if it does not exist. */
 export const createSnapshot: API.OperationMethod<
@@ -9646,6 +9663,21 @@ export const createSnapshot: API.OperationMethod<
   input: CreateSnapshotRequest,
   output: CreateSnapshotResponse,
   errors: [UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWebhookError = BadRequest | MeilisearchOpError;
+/** Create webhook Register a new webhook to receive task completion notifications. You can optionally set custom headers (e.g. for authentication) and configure the callback URL. */
+export const createWebhook: API.OperationMethod<
+  CreateWebhookRequest,
+  CreateWebhookResponse,
+  CreateWebhookError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWebhookRequest,
+  output: CreateWebhookResponse,
+  errors: [BadRequest, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
 }));
@@ -9830,21 +9862,6 @@ export const deletefaceting: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeletefacetSearchError = NotFound | MeilisearchOpError;
-/** Reset facetSearch Resets the `facetSearch` setting to its default value. */
-export const deletefacetSearch: API.OperationMethod<
-  DeletefacetSearchRequest,
-  DeletefacetSearchResponse,
-  DeletefacetSearchError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletefacetSearchRequest,
-  output: DeletefacetSearchResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DeletefilterableAttributesError = NotFound | MeilisearchOpError;
 /** Reset filterableAttributes Resets the `filterableAttributes` setting to its default value. */
 export const deletefilterableAttributes: API.OperationMethod<
@@ -9930,21 +9947,6 @@ export const deletepagination: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeletepaginationRequest,
   output: DeletepaginationResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeleteprefixSearchError = NotFound | MeilisearchOpError;
-/** Reset prefixSearch Resets the `prefixSearch` setting to its default value. */
-export const deleteprefixSearch: API.OperationMethod<
-  DeleteprefixSearchRequest,
-  DeleteprefixSearchResponse,
-  DeleteprefixSearchError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeleteprefixSearchRequest,
-  output: DeleteprefixSearchResponse,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -10125,21 +10127,6 @@ export const deleteWebhook: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteWebhookRequest,
   output: DeleteWebhookResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DocumentsByQueryPostError = NotFound | MeilisearchOpError;
-/** List documents with POST Retrieve a set of documents with optional filtering, sorting, and pagination. Use the request body to specify filters, sort order, and which fields to return. **Note:** Sending an empty payload (`{}`) returns all documents in the index. **Note:** Documents are not returned following the order of their primary keys. */
-export const documentsByQueryPost: API.OperationMethod<
-  DocumentsByQueryPostRequest,
-  PaginationViewValue,
-  DocumentsByQueryPostError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DocumentsByQueryPostRequest,
-  output: PaginationViewValue,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -10385,21 +10372,6 @@ export const getfaceting: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetfacetSearchError = NotFound | MeilisearchOpError;
-/** Get facetSearch Returns the current value of the `facetSearch` setting for the index. */
-export const getfacetSearch: API.OperationMethod<
-  GetfacetSearchRequest,
-  GetfacetSearchResponse,
-  GetfacetSearchError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetfacetSearchRequest,
-  output: GetfacetSearchResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetFeaturesError = MeilisearchOpError;
 /** List experimental features Return all experimental features that can be toggled via this API, and whether each one is currently enabled or disabled. */
 export const getFeatures: API.OperationMethod<
@@ -10580,21 +10552,6 @@ export const getpagination: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GetprefixSearchError = NotFound | MeilisearchOpError;
-/** Get prefixSearch Returns the current value of the `prefixSearch` setting for the index. */
-export const getprefixSearch: API.OperationMethod<
-  GetprefixSearchRequest,
-  GetprefixSearchResponse,
-  GetprefixSearchError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GetprefixSearchRequest,
-  output: GetprefixSearchResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GetproximityPrecisionError = NotFound | MeilisearchOpError;
 /** Get proximityPrecision Returns the current value of the `proximityPrecision` setting for the index. */
 export const getproximityPrecision: API.OperationMethod<
@@ -10695,6 +10652,21 @@ export const getSettings: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetSettingsRequest,
   output: GetSettingsResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSimilarError = NotFound | MeilisearchOpError;
+/** Get similar documents with GET Retrieve documents similar to a reference document identified by its id. > Useful for “more like this” or recommendations. */
+export const getSimilar: API.OperationMethod<
+  GetSimilarRequest,
+  GetSimilarResponse,
+  GetSimilarError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSimilarRequest,
+  output: GetSimilarResponse,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -11030,21 +11002,6 @@ export const patchFeatures: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchNetworkError = MeilisearchOpError;
-/** Configure network topology Add or remove remote nodes from the network. Changes apply to the current instance’s view of the cluster. */
-export const patchNetwork: API.OperationMethod<
-  PatchNetworkRequest,
-  Network,
-  PatchNetworkError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PatchNetworkRequest,
-  output: Network,
-  errors: [UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PatchpaginationError = NotFound | MeilisearchOpError;
 /** Update pagination Updates the `pagination` setting for the index. Send the new value in the request body; send null to reset to default. */
 export const patchpagination: API.OperationMethod<
@@ -11090,31 +11047,16 @@ export const patchtypoTolerance: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PatchWebhookError = BadRequest | NotFound | MeilisearchOpError;
-/** Update webhook Update the URL or headers of an existing webhook identified by its UUID. */
-export const patchWebhook: API.OperationMethod<
-  PatchWebhookRequest,
-  PatchWebhookResponse,
-  PatchWebhookError,
+export type PostDocumentsByQueryError = NotFound | MeilisearchOpError;
+/** List documents with POST Retrieve a set of documents with optional filtering, sorting, and pagination. Use the request body to specify filters, sort order, and which fields to return. **Note:** Sending an empty payload (`{}`) returns all documents in the index. **Note:** Documents are not returned following the order of their primary keys. */
+export const postDocumentsByQuery: API.OperationMethod<
+  PostDocumentsByQueryRequest,
+  PaginationViewValue,
+  PostDocumentsByQueryError,
   MeilisearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PatchWebhookRequest,
-  output: PatchWebhookResponse,
-  errors: [BadRequest, NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PostIndexFieldsError = NotFound | MeilisearchOpError;
-/** List index fields Returns a paginated list of fields in the index with their metadata: whether they are displayed, searchable, sortable, filterable, distinct, have a custom ranking rule (asc/desc), and for filterable fields the sort order for facet values. */
-export const postIndexFields: API.OperationMethod<
-  PostIndexFieldsRequest,
-  PaginationViewField,
-  PostIndexFieldsError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PostIndexFieldsRequest,
-  output: PaginationViewField,
+  input: PostDocumentsByQueryRequest,
+  output: PaginationViewValue,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -11135,17 +11077,32 @@ export const postNetworkChange: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PostWebhookError = BadRequest | MeilisearchOpError;
-/** Create webhook Register a new webhook to receive task completion notifications. You can optionally set custom headers (e.g. for authentication) and configure the callback URL. */
-export const postWebhook: API.OperationMethod<
-  PostWebhookRequest,
-  PostWebhookResponse,
-  PostWebhookError,
+export type PostRenderError = BadRequest | NotFound | MeilisearchOpError;
+/** Render template Render a template, either fetched from the settings of an index (embedder document template, chat document template, indexing or search fragment) or provided inline, by injecting the given input (a document from an index, an inline document, or a search query). Returns the template and the rendered result, allowing to preview how Meilisearch renders templates without indexing any document. This route is only available when the `renderRoute` [experimental feature](https://www.meilisearch.com/docs/resources/help/experimental_features_overview) is enabled. */
+export const postRender: API.OperationMethod<
+  PostRenderRequest,
+  RenderResult,
+  PostRenderError,
   MeilisearchOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PostWebhookRequest,
-  output: PostWebhookResponse,
-  errors: [BadRequest, UnknownMeilisearchError],
+  input: PostRenderRequest,
+  output: RenderResult,
+  errors: [BadRequest, NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostSimilarError = NotFound | MeilisearchOpError;
+/** Get similar documents with POST Retrieve documents similar to a reference document identified by its id. > Useful for “more like this” or recommendations. */
+export const postSimilar: API.OperationMethod<
+  PostSimilarRequest,
+  PostSimilarResponse,
+  PostSimilarError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostSimilarRequest,
+  output: PostSimilarResponse,
+  errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
 }));
@@ -11190,21 +11147,6 @@ export const putdistinctAttribute: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PutdistinctAttributeRequest,
   output: PutdistinctAttributeResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutfacetSearchError = NotFound | MeilisearchOpError;
-/** Update facetSearch Updates the `facetSearch` setting for the index. Send the new value in the request body; send null to reset to default. */
-export const putfacetSearch: API.OperationMethod<
-  PutfacetSearchRequest,
-  PutfacetSearchResponse,
-  PutfacetSearchError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutfacetSearchRequest,
-  output: PutfacetSearchResponse,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -11265,21 +11207,6 @@ export const putnonSeparatorTokens: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PutnonSeparatorTokensRequest,
   output: PutnonSeparatorTokensResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PutprefixSearchError = NotFound | MeilisearchOpError;
-/** Update prefixSearch Updates the `prefixSearch` setting for the index. Send the new value in the request body; send null to reset to default. */
-export const putprefixSearch: API.OperationMethod<
-  PutprefixSearchRequest,
-  PutprefixSearchResponse,
-  PutprefixSearchError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PutprefixSearchRequest,
-  output: PutprefixSearchResponse,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -11405,21 +11332,6 @@ export const putsynonyms: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RenderPostError = BadRequest | NotFound | MeilisearchOpError;
-/** Render template Render a template, either fetched from the settings of an index (embedder document template, chat document template, indexing or search fragment) or provided inline, by injecting the given input (a document from an index, an inline document, or a search query). Returns the template and the rendered result, allowing to preview how Meilisearch renders templates without indexing any document. This route is only available when the `renderRoute` [experimental feature](https://www.meilisearch.com/docs/resources/help/experimental_features_overview) is enabled. */
-export const renderPost: API.OperationMethod<
-  RenderPostRequest,
-  RenderResult,
-  RenderPostError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RenderPostRequest,
-  output: RenderResult,
-  errors: [BadRequest, NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReplaceDocumentsError = NotFound | MeilisearchOpError;
 /** Add or replace documents Add a list of documents or replace them if they already exist. If you send an already existing document (same id) the whole existing document will be overwritten by the new document. Fields previously in the document not present in the new document are removed. If the provided index does not exist, it will be created. **Accepted content types:** `application/json`, `application/x-ndjson`, `text/csv`. **Note:** Use the reserved `_geo` object to add geo coordinates: `{"lat": 48.8566, "lng": 2.3522}`. For a partial update see [add or update documents route](/docs/reference/api/documents/add-or-update-documents). */
 export const replaceDocuments: API.OperationMethod<
@@ -11465,6 +11377,96 @@ export const search: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type SearchDeletefacetError = NotFound | MeilisearchOpError;
+/** Reset facetSearch Resets the `facetSearch` setting to its default value. */
+export const searchDeletefacet: API.OperationMethod<
+  SearchDeletefacetRequest,
+  SearchDeletefacetResponse,
+  SearchDeletefacetError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchDeletefacetRequest,
+  output: SearchDeletefacetResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchDeleteprefixError = NotFound | MeilisearchOpError;
+/** Reset prefixSearch Resets the `prefixSearch` setting to its default value. */
+export const searchDeleteprefix: API.OperationMethod<
+  SearchDeleteprefixRequest,
+  SearchDeleteprefixResponse,
+  SearchDeleteprefixError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchDeleteprefixRequest,
+  output: SearchDeleteprefixResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchGetfacetError = NotFound | MeilisearchOpError;
+/** Get facetSearch Returns the current value of the `facetSearch` setting for the index. */
+export const searchGetfacet: API.OperationMethod<
+  SearchGetfacetRequest,
+  SearchGetfacetResponse,
+  SearchGetfacetError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchGetfacetRequest,
+  output: SearchGetfacetResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchGetprefixError = NotFound | MeilisearchOpError;
+/** Get prefixSearch Returns the current value of the `prefixSearch` setting for the index. */
+export const searchGetprefix: API.OperationMethod<
+  SearchGetprefixRequest,
+  SearchGetprefixResponse,
+  SearchGetprefixError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchGetprefixRequest,
+  output: SearchGetprefixResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchPutfacetError = NotFound | MeilisearchOpError;
+/** Update facetSearch Updates the `facetSearch` setting for the index. Send the new value in the request body; send null to reset to default. */
+export const searchPutfacet: API.OperationMethod<
+  SearchPutfacetRequest,
+  SearchPutfacetResponse,
+  SearchPutfacetError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchPutfacetRequest,
+  output: SearchPutfacetResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchPutprefixError = NotFound | MeilisearchOpError;
+/** Update prefixSearch Updates the `prefixSearch` setting for the index. Send the new value in the request body; send null to reset to default. */
+export const searchPutprefix: API.OperationMethod<
+  SearchPutprefixRequest,
+  SearchPutprefixResponse,
+  SearchPutprefixError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchPutprefixRequest,
+  output: SearchPutprefixResponse,
+  errors: [NotFound, UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type SearchWithPostError = NotFound | MeilisearchOpError;
 /** Search with POST Search for documents matching a query in the given index. > Equivalent to the [search with GET route](/docs/reference/api/search/search-with-get) in the Meilisearch API. **Note:** By default this endpoint returns at most 1000 results. Configure `pagination.maxTotalHits` in index settings to change this limit. */
 export const searchWithPost: API.OperationMethod<
@@ -11490,36 +11492,6 @@ export const searchWithUrlQuery: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SearchWithUrlQueryRequest,
   output: SearchWithUrlQueryResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SimilarGetError = NotFound | MeilisearchOpError;
-/** Get similar documents with GET Retrieve documents similar to a reference document identified by its id. > Useful for “more like this” or recommendations. */
-export const similarGet: API.OperationMethod<
-  SimilarGetRequest,
-  SimilarGetResponse,
-  SimilarGetError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SimilarGetRequest,
-  output: SimilarGetResponse,
-  errors: [NotFound, UnknownMeilisearchError],
-  protocol: MeilisearchProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SimilarPostError = NotFound | MeilisearchOpError;
-/** Get similar documents with POST Retrieve documents similar to a reference document identified by its id. > Useful for “more like this” or recommendations. */
-export const similarPost: API.OperationMethod<
-  SimilarPostRequest,
-  SimilarPostResponse,
-  SimilarPostError,
-  MeilisearchOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SimilarPostRequest,
-  output: SimilarPostResponse,
   errors: [NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
@@ -11585,6 +11557,21 @@ export const updateIndex: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type UpdateNetworkError = MeilisearchOpError;
+/** Configure network topology Add or remove remote nodes from the network. Changes apply to the current instance’s view of the cluster. */
+export const updateNetwork: API.OperationMethod<
+  UpdateNetworkRequest,
+  Network,
+  UpdateNetworkError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateNetworkRequest,
+  output: Network,
+  errors: [UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
 export type UpdateOrCreateRuleError = MeilisearchOpError;
 /** Create or update a search rule Partially update a search rule by replacing the provided fields. If the rule doesn't exist, it will be created. */
 export const updateOrCreateRule: API.OperationMethod<
@@ -11611,6 +11598,21 @@ export const updateStderrTarget: API.OperationMethod<
   input: UpdateStderrTargetRequest,
   output: UpdateStderrTargetResponse,
   errors: [UnknownMeilisearchError],
+  protocol: MeilisearchProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebhookError = BadRequest | NotFound | MeilisearchOpError;
+/** Update webhook Update the URL or headers of an existing webhook identified by its UUID. */
+export const updateWebhook: API.OperationMethod<
+  UpdateWebhookRequest,
+  UpdateWebhookResponse,
+  UpdateWebhookError,
+  MeilisearchOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebhookRequest,
+  output: UpdateWebhookResponse,
+  errors: [BadRequest, NotFound, UnknownMeilisearchError],
   protocol: MeilisearchProtocol,
   retry: Retry.Retry,
 }));
